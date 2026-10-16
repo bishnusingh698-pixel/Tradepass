@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B compatibility test",
+  "spike.intro": "This test checks that Tradepass can move a company location between B2B markets on this store. It creates test companies, markets and catalogs, and removes them afterwards.",
+  "spike.devOnly": "This test only runs on development stores.",
+  "spike.run": "Run test",
+  "spike.cleanup": "Remove test data",
+  "spike.copy": "Copy results",
+  "spike.running": "Running the test. This can take up to a minute.",
+  "spike.passed": "Passed: Tradepass can assign tiers automatically on this store.",
+  "spike.failed": "Didn't pass: Tradepass will use assisted tier assignment on this store."
+}

@@ -1,0 +1,16 @@
+{
+  "home.title": "Domov",
+  "home.readiness.heading": "Paket in pripravljenost",
+  "home.readiness.plan": "Paket Shopify: {plan}",
+  "home.readiness.b2bOn": "B2B je na voljo v vašem paketu.",
+  "home.readiness.b2bOff": "B2B ni na voljo v vašem trenutnem paketu Shopify. Za veleprodajne kupce potrebujete paket Basic ali višji.",
+  "home.readiness.marketsOn": "Trgi B2B so vklopljeni.",
+  "home.readiness.marketsOff": "Trgi B2B še niso vklopljeni. Tradepass jih potrebuje, da lahko vsaki ravni dodeli lastne cene.",
+  "home.readiness.catalogBudget": "{used, plural, one {Uporabljen # katalog B2B od {limit}} two {Uporabljena # kataloga B2B od {limit}} few {Uporabljeni # katalogi B2B od {limit}} other {Uporabljenih # katalogov B2B od {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {V uporabi je # katalog B2B} two {V uporabi sta # kataloga B2B} few {V uporabi so # katalogi B2B} other {V uporabi je # katalogov B2B}}",
+  "home.readiness.viewPlans": "Ogled paketov Shopify",
+  "home.readiness.refresh": "Preveri znova",
+  "home.pending.heading": "Čaka na vas",
+  "home.pending.none": "Trenutno nič ne potrebuje vaše pozornosti.",
+  "home.pending.applications": "{count, plural, one {# vloga čaka} two {# vlogi čakata} few {# vloge čakajo} other {# vlog čaka}}"
+}

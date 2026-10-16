@@ -1,0 +1,6 @@
+{
+  "applications.title": "Solicitudes",
+  "applications.empty.heading": "Aún no hay solicitudes",
+  "applications.empty.body": "Cuando una empresa solicite acceso mayorista en su tienda, la solicitud aparecerá aquí para que la revise.",
+  "applications.empty.action": "Configurar el formulario"
+}

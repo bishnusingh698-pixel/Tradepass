@@ -1,0 +1,6 @@
+{
+  "automation.title": "자동화",
+  "automation.empty.heading": "신청서 자동 승인",
+  "automation.empty.body": "조건에 맞는 신청서를 승인하거나 거부하는 규칙을 설정하고 Shopify Flow를 연결합니다.",
+  "automation.empty.action": "규칙 만들기"
+}

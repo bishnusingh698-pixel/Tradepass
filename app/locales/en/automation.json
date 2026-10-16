@@ -1,0 +1,6 @@
+{
+  "automation.title": "Automation",
+  "automation.empty.heading": "Approve applications automatically",
+  "automation.empty.body": "Set rules to approve or reject applications that match your conditions, and connect Shopify Flow.",
+  "automation.empty.action": "Create rule"
+}

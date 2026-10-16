@@ -1,0 +1,6 @@
+{
+  "tiers.title": "Tingkat Harga",
+  "tiers.empty.heading": "Buat tingkat harga pertama Anda",
+  "tiers.empty.body": "Tingkat harga adalah level harga grosir, seperti Pengecer atau Distributor. Pembeli yang disetujui akan melihat harga sesuai tingkat harganya.",
+  "tiers.empty.action": "Buat tingkat harga"
+}

@@ -1,0 +1,11 @@
+{
+  "spike.title": "Test de compatibilité B2B",
+  "spike.intro": "Ce test vérifie que Tradepass peut déplacer un site d’entreprise d’un marché B2B à un autre sur cette boutique. Il crée des entreprises, marchés et catalogues de test, puis les supprime.",
+  "spike.devOnly": "Ce test ne s’exécute que sur les boutiques de développement.",
+  "spike.run": "Lancer le test",
+  "spike.cleanup": "Supprimer les données de test",
+  "spike.copy": "Copier les résultats",
+  "spike.running": "Test en cours. Cela peut prendre jusqu’à une minute.",
+  "spike.passed": "Réussi : Tradepass peut attribuer les niveaux automatiquement sur cette boutique.",
+  "spike.failed": "Échec : Tradepass utilisera l’attribution assistée des niveaux sur cette boutique."
+}

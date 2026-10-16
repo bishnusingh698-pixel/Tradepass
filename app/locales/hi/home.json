@@ -1,0 +1,16 @@
+{
+  "home.title": "होम",
+  "home.readiness.heading": "प्लान और तैयारी",
+  "home.readiness.plan": "Shopify प्लान: {plan}",
+  "home.readiness.b2bOn": "आपके प्लान पर B2B उपलब्ध है।",
+  "home.readiness.b2bOff": "आपके मौजूदा Shopify प्लान पर B2B उपलब्ध नहीं है। होलसेल खरीदारों के लिए Basic या उससे ऊपर का प्लान ज़रूरी है।",
+  "home.readiness.marketsOn": "B2B मार्केट चालू हैं।",
+  "home.readiness.marketsOff": "B2B मार्केट अभी चालू नहीं हैं। हर टियर को उसकी अपनी कीमतें देने के लिए Tradepass को इनकी ज़रूरत है।",
+  "home.readiness.catalogBudget": "{used, plural, one {{limit} में से # B2B कैटलॉग इस्तेमाल हुआ} other {{limit} में से # B2B कैटलॉग इस्तेमाल हुए}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B कैटलॉग इस्तेमाल में है} other {# B2B कैटलॉग इस्तेमाल में हैं}}",
+  "home.readiness.viewPlans": "Shopify प्लान देखें",
+  "home.readiness.refresh": "फिर से जाँचें",
+  "home.pending.heading": "आपकी कार्रवाई का इंतज़ार",
+  "home.pending.none": "अभी किसी चीज़ पर आपका ध्यान ज़रूरी नहीं है।",
+  "home.pending.applications": "{count, plural, one {# आवेदन इंतज़ार में है} other {# आवेदन इंतज़ार में हैं}}"
+}

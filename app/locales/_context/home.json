@@ -1,0 +1,81 @@
+{
+  "home.title": {
+    "note": "Page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.readiness.heading": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.plan": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "home.readiness.b2bOn": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.b2bOff": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.marketsOn": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.marketsOff": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.catalogBudget": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": [
+      "used",
+      "limit"
+    ]
+  },
+  "home.readiness.catalogUnlimited": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": [
+      "used"
+    ]
+  },
+  "home.readiness.viewPlans": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.refresh": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.pending.heading": {
+    "note": "Home page, Waiting for you card.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "home.pending.none": {
+    "note": "Home page, Waiting for you card.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "home.pending.applications": {
+    "note": "Home page, Waiting for you card.",
+    "maxLength": 80,
+    "placeholders": [
+      "count"
+    ]
+  }
+}

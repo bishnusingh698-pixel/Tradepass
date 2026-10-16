@@ -1,0 +1,11 @@
+{
+  "spike.title": "Test kompatibilnosti B2B",
+  "spike.intro": "Ovaj test provjerava može li Tradepass u ovoj trgovini premjestiti lokaciju tvrtke između B2B tržišta. Izrađuje testne tvrtke, tržišta i kataloge te ih nakon toga uklanja.",
+  "spike.devOnly": "Ovaj se test pokreće samo u razvojnim trgovinama.",
+  "spike.run": "Pokreni test",
+  "spike.cleanup": "Ukloni testne podatke",
+  "spike.copy": "Kopiraj rezultate",
+  "spike.running": "Test je u tijeku. To može potrajati do jedne minute.",
+  "spike.passed": "Uspješno: Tradepass u ovoj trgovini može automatski dodjeljivati razine.",
+  "spike.failed": "Neuspješno: Tradepass će u ovoj trgovini razine dodjeljivati poluautomatski."
+}

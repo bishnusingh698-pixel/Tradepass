@@ -1,0 +1,16 @@
+{
+  "home.title": "Hem",
+  "home.readiness.heading": "Abonnemang och beredskap",
+  "home.readiness.plan": "Shopify-abonnemang: {plan}",
+  "home.readiness.b2bOn": "B2B är tillgängligt i ditt abonnemang.",
+  "home.readiness.b2bOff": "B2B är inte tillgängligt i ditt nuvarande Shopify-abonnemang. Grossistköpare kräver Basic-abonnemanget eller högre.",
+  "home.readiness.marketsOn": "B2B-marknader är aktiverade.",
+  "home.readiness.marketsOff": "B2B-marknader är inte aktiverade än. Tradepass behöver dem för att ge varje nivå egna priser.",
+  "home.readiness.catalogBudget": "{used, plural, one {# av {limit} B2B-kataloger används} other {# av {limit} B2B-kataloger används}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B-katalog används} other {# B2B-kataloger används}}",
+  "home.readiness.viewPlans": "Visa Shopify-abonnemang",
+  "home.readiness.refresh": "Kontrollera igen",
+  "home.pending.heading": "Väntar på dig",
+  "home.pending.none": "Inget kräver din uppmärksamhet just nu.",
+  "home.pending.applications": "{count, plural, one {# ansökan väntar} other {# ansökningar väntar}}"
+}

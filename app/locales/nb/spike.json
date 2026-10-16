@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B-kompatibilitetstest",
+  "spike.intro": "Denne testen kontrollerer at Tradepass kan flytte en bedriftslokasjon mellom B2B-markeder i denne butikken. Den oppretter testbedrifter, -markeder og -kataloger og fjerner dem etterpå.",
+  "spike.devOnly": "Denne testen kan bare kjøres i utviklingsbutikker.",
+  "spike.run": "Kjør test",
+  "spike.cleanup": "Fjern testdata",
+  "spike.copy": "Kopier resultater",
+  "spike.running": "Testen kjører. Dette kan ta opptil ett minutt.",
+  "spike.passed": "Bestått: Tradepass kan tildele nivåer automatisk i denne butikken.",
+  "spike.failed": "Ikke bestått: Tradepass bruker assistert nivåtildeling i denne butikken."
+}

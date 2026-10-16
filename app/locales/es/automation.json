@@ -1,0 +1,6 @@
+{
+  "automation.title": "Automatización",
+  "automation.empty.heading": "Aprobar solicitudes automáticamente",
+  "automation.empty.body": "Defina reglas para aprobar o rechazar las solicitudes que cumplan sus condiciones y conecte Shopify Flow.",
+  "automation.empty.action": "Crear regla"
+}

@@ -1,5 +1,6 @@
 import db from "../db.server";
 import { safeEqual } from "./crypto.server";
+import { areaDaily, areaHourly } from "./tasks";
 
 // cron-job.org calls POST /jobs/hourly and /jobs/daily with the header
 // `X-Tradepass-Job-Secret`. Each run must finish in ~2 minutes, so work is
@@ -41,7 +42,7 @@ export async function runTasks(tasks: Task[], now = Date.now()): Promise<TaskRes
 const HOUR = 3_600_000;
 const DAY = 24 * HOUR;
 
-export const hourlyTasks: Task[] = [
+const coreHourly: Task[] = [
   {
     name: "prune-rate-limits",
     run: async () => {
@@ -59,12 +60,11 @@ export const hourlyTasks: Task[] = [
     name: "release-stale-locks",
     run: async () => (await db.shopLock.deleteMany({ where: { expiresAt: { lt: new Date() } } })).count,
   },
-  // P2+: sync tiers with Shopify, retry failed approval steps. P4: send queued emails.
 ];
 
 type RetentionSettings = { retention?: { months?: number } };
 
-export const dailyTasks: Task[] = [
+const coreDaily: Task[] = [
   {
     name: "retention-cleanup",
     run: async (deadline) => {
@@ -103,5 +103,8 @@ export const dailyTasks: Task[] = [
     run: async () =>
       (await db.emailLog.deleteMany({ where: { status: { not: "queued" }, createdAt: { lt: new Date(Date.now() - 90 * DAY) } } })).count,
   },
-  // P6: certificate expiry checks and renewal emails. P4: merchant daily digest.
 ];
+
+// Area tasks first (they may queue emails), core housekeeping last.
+export const hourlyTasks: Task[] = [...areaHourly, ...coreHourly];
+export const dailyTasks: Task[] = [...areaDaily, ...coreDaily];

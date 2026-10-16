@@ -1,0 +1,16 @@
+{
+  "home.title": "Начало",
+  "home.readiness.heading": "План и готовност",
+  "home.readiness.plan": "План в Shopify: {plan}",
+  "home.readiness.b2bOn": "B2B е налично във Вашия план.",
+  "home.readiness.b2bOff": "B2B не е налично в текущия Ви план в Shopify. За купувачи на едро е необходим план Basic или по-висок.",
+  "home.readiness.marketsOn": "B2B пазарите са включени.",
+  "home.readiness.marketsOff": "B2B пазарите все още не са включени. Tradepass се нуждае от тях, за да зададе собствени цени за всяко ниво.",
+  "home.readiness.catalogBudget": "{used, plural, one {Използван е # от {limit} B2B каталога} other {Използвани са # от {limit} B2B каталога}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B каталог в употреба} other {# B2B каталога в употреба}}",
+  "home.readiness.viewPlans": "Преглед на плановете на Shopify",
+  "home.readiness.refresh": "Нова проверка",
+  "home.pending.heading": "Очаква действие от Вас",
+  "home.pending.none": "В момента нищо не изисква вниманието Ви.",
+  "home.pending.applications": "{count, plural, one {# заявка очаква преглед} other {# заявки очакват преглед}}"
+}

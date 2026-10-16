@@ -1,0 +1,16 @@
+{
+  "home.title": "Etusivu",
+  "home.readiness.heading": "Paketti ja valmius",
+  "home.readiness.plan": "Shopify-paketti: {plan}",
+  "home.readiness.b2bOn": "B2B on käytettävissä nykyisessä paketissa.",
+  "home.readiness.b2bOff": "B2B ei ole käytettävissä nykyisessä Shopify-paketissa. Tukkuostajat edellyttävät Basic-pakettia tai sitä ylempää.",
+  "home.readiness.marketsOn": "B2B-markkina-alueet on otettu käyttöön.",
+  "home.readiness.marketsOff": "B2B-markkina-alueita ei ole vielä otettu käyttöön. Tradepass tarvitsee niitä, jotta jokaisella tasolla voi olla omat hintansa.",
+  "home.readiness.catalogBudget": "{used, plural, one {B2B-luetteloita käytössä # / {limit}} other {B2B-luetteloita käytössä # / {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B-luettelo käytössä} other {# B2B-luetteloa käytössä}}",
+  "home.readiness.viewPlans": "Näytä Shopify-paketit",
+  "home.readiness.refresh": "Tarkista uudelleen",
+  "home.pending.heading": "Odottaa toimenpiteitä",
+  "home.pending.none": "Mikään ei vaadi huomiota juuri nyt.",
+  "home.pending.applications": "{count, plural, one {# hakemus odottaa} other {# hakemusta odottaa}}"
+}

@@ -1,0 +1,16 @@
+{
+  "home.title": "Startseite",
+  "home.readiness.heading": "Tarif und Einsatzbereitschaft",
+  "home.readiness.plan": "Shopify-Tarif: {plan}",
+  "home.readiness.b2bOn": "B2B ist in Ihrem Tarif verfügbar.",
+  "home.readiness.b2bOff": "B2B ist in Ihrem aktuellen Shopify-Tarif nicht verfügbar. Für Großhandelskäufer benötigen Sie mindestens den Basic-Tarif.",
+  "home.readiness.marketsOn": "B2B-Märkte sind aktiviert.",
+  "home.readiness.marketsOff": "B2B-Märkte sind noch nicht aktiviert. Tradepass benötigt sie, um jeder Stufe eigene Preise zuzuweisen.",
+  "home.readiness.catalogBudget": "{used, plural, one {# von {limit} B2B-Katalogen genutzt} other {# von {limit} B2B-Katalogen genutzt}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B-Katalog in Verwendung} other {# B2B-Kataloge in Verwendung}}",
+  "home.readiness.viewPlans": "Shopify-Tarife ansehen",
+  "home.readiness.refresh": "Erneut prüfen",
+  "home.pending.heading": "Wartet auf Sie",
+  "home.pending.none": "Derzeit ist nichts zu erledigen.",
+  "home.pending.applications": "{count, plural, one {# Antrag wartet} other {# Anträge warten}}"
+}

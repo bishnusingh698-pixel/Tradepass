@@ -1,0 +1,16 @@
+{
+  "home.title": "홈",
+  "home.readiness.heading": "요금제 및 준비 상태",
+  "home.readiness.plan": "Shopify 요금제: {plan}",
+  "home.readiness.b2bOn": "현재 요금제에서 B2B를 사용할 수 있습니다.",
+  "home.readiness.b2bOff": "현재 Shopify 요금제에서는 B2B를 사용할 수 없습니다. 도매 구매자를 받으려면 Basic 요금제 이상이 필요합니다.",
+  "home.readiness.marketsOn": "B2B 마켓이 활성화되어 있습니다.",
+  "home.readiness.marketsOff": "B2B 마켓이 아직 활성화되지 않았습니다. Tradepass에서 등급별로 별도의 가격을 적용하려면 B2B 마켓이 필요합니다.",
+  "home.readiness.catalogBudget": "{used, plural, other {B2B 카탈로그 {limit}개 중 #개 사용 중}}",
+  "home.readiness.catalogUnlimited": "{used, plural, other {B2B 카탈로그 #개 사용 중}}",
+  "home.readiness.viewPlans": "Shopify 요금제 보기",
+  "home.readiness.refresh": "다시 확인",
+  "home.pending.heading": "처리 대기 중",
+  "home.pending.none": "지금은 처리할 항목이 없습니다.",
+  "home.pending.applications": "{count, plural, other {대기 중인 신청서 #건}}"
+}

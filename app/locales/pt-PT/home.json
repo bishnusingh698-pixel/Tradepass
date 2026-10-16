@@ -1,0 +1,16 @@
+{
+  "home.title": "Início",
+  "home.readiness.heading": "Plano e preparação",
+  "home.readiness.plan": "Plano Shopify: {plan}",
+  "home.readiness.b2bOn": "O B2B está disponível no seu plano.",
+  "home.readiness.b2bOff": "O B2B não está disponível no seu plano Shopify atual. Os compradores grossistas requerem o plano Basic ou superior.",
+  "home.readiness.marketsOn": "Os mercados B2B estão ativados.",
+  "home.readiness.marketsOff": "Os mercados B2B ainda não estão ativados. O Tradepass precisa deles para atribuir preços próprios a cada nível.",
+  "home.readiness.catalogBudget": "{used, plural, one {# de {limit} catálogos B2B em utilização} many {# de {limit} catálogos B2B em utilização} other {# de {limit} catálogos B2B em utilização}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# catálogo B2B em utilização} many {# de catálogos B2B em utilização} other {# catálogos B2B em utilização}}",
+  "home.readiness.viewPlans": "Ver planos Shopify",
+  "home.readiness.refresh": "Verificar novamente",
+  "home.pending.heading": "A aguardar a sua ação",
+  "home.pending.none": "De momento, nada requer a sua atenção.",
+  "home.pending.applications": "{count, plural, one {# candidatura a aguardar} many {# de candidaturas a aguardar} other {# candidaturas a aguardar}}"
+}

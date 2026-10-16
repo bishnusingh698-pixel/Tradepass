@@ -1,0 +1,6 @@
+{
+  "notifications.title": "알림",
+  "notifications.empty.heading": "신청자 및 구매자에게 보내는 이메일",
+  "notifications.empty.body": "Tradepass에서 보내는 이메일을 편집하고 받을 알림을 선택합니다.",
+  "notifications.empty.action": "이메일 편집"
+}

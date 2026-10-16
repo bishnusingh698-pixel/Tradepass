@@ -1,0 +1,16 @@
+{
+  "home.title": "Kezdőlap",
+  "home.readiness.heading": "Csomag és felkészültség",
+  "home.readiness.plan": "Shopify-csomag: {plan}",
+  "home.readiness.b2bOn": "A B2B elérhető az Ön csomagjában.",
+  "home.readiness.b2bOff": "A B2B nem érhető el az Ön jelenlegi Shopify-csomagjában. A nagykereskedelmi vásárlókhoz Basic vagy magasabb csomag szükséges.",
+  "home.readiness.marketsOn": "A B2B-piacok be vannak kapcsolva.",
+  "home.readiness.marketsOff": "A B2B-piacok még nincsenek bekapcsolva. A Tradepass ezek segítségével ad minden szintnek saját árakat.",
+  "home.readiness.catalogBudget": "{used, plural, one {{limit} B2B-katalógusból # használatban} other {{limit} B2B-katalógusból # használatban}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B-katalógus használatban} other {# B2B-katalógus használatban}}",
+  "home.readiness.viewPlans": "Shopify-csomagok megtekintése",
+  "home.readiness.refresh": "Újraellenőrzés",
+  "home.pending.heading": "Önre vár",
+  "home.pending.none": "Jelenleg semmi sem igényli a figyelmét.",
+  "home.pending.applications": "{count, plural, one {# jelentkezés vár} other {# jelentkezés vár}}"
+}

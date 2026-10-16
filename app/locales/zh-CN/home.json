@@ -1,0 +1,16 @@
+{
+  "home.title": "主页",
+  "home.readiness.heading": "套餐和就绪状态",
+  "home.readiness.plan": "Shopify 套餐：{plan}",
+  "home.readiness.b2bOn": "您的套餐支持 B2B。",
+  "home.readiness.b2bOff": "您当前的 Shopify 套餐不支持 B2B。批发买家需要 Basic 套餐或更高版本的套餐。",
+  "home.readiness.marketsOn": "B2B 市场已开启。",
+  "home.readiness.marketsOff": "B2B 市场尚未开启。Tradepass 需要借助 B2B 市场为每个等级设置单独的价格。",
+  "home.readiness.catalogBudget": "{used, plural, other {已使用 # 个 B2B 目录（共 {limit} 个）}}",
+  "home.readiness.catalogUnlimited": "{used, plural, other {正在使用 # 个 B2B 目录}}",
+  "home.readiness.viewPlans": "查看 Shopify 套餐",
+  "home.readiness.refresh": "重新检查",
+  "home.pending.heading": "待您处理",
+  "home.pending.none": "目前没有需要您处理的事项。",
+  "home.pending.applications": "{count, plural, other {# 个申请待处理}}"
+}

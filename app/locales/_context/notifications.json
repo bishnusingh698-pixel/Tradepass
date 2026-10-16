@@ -1,0 +1,22 @@
+{
+  "notifications.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "notifications.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "notifications.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "notifications.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  }
+}

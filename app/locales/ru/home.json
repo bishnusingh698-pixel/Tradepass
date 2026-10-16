@@ -1,0 +1,16 @@
+{
+  "home.title": "Главная",
+  "home.readiness.heading": "Тариф и готовность",
+  "home.readiness.plan": "Тариф Shopify: {plan}",
+  "home.readiness.b2bOn": "B2B доступен в вашем тарифе.",
+  "home.readiness.b2bOff": "B2B недоступен в вашем текущем тарифе Shopify. Для оптовых покупателей нужен тариф Basic или выше.",
+  "home.readiness.marketsOn": "Рынки B2B включены.",
+  "home.readiness.marketsOff": "Рынки B2B ещё не включены. Они нужны Tradepass, чтобы назначать каждому уровню собственные цены.",
+  "home.readiness.catalogBudget": "{used, plural, one {Использован # каталог B2B из {limit}} few {Использовано # каталога B2B из {limit}} many {Использовано # каталогов B2B из {limit}} other {Использовано # каталога B2B из {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {Используется # каталог B2B} few {Используются # каталога B2B} many {Используется # каталогов B2B} other {Используется # каталога B2B}}",
+  "home.readiness.viewPlans": "Посмотреть тарифы Shopify",
+  "home.readiness.refresh": "Проверить снова",
+  "home.pending.heading": "Ожидает вашего решения",
+  "home.pending.none": "Сейчас ничего не требует вашего внимания.",
+  "home.pending.applications": "{count, plural, one {# заявка ожидает рассмотрения} few {# заявки ожидают рассмотрения} many {# заявок ожидают рассмотрения} other {# заявки ожидают рассмотрения}}"
+}

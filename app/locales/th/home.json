@@ -1,0 +1,16 @@
+{
+  "home.title": "หน้าแรก",
+  "home.readiness.heading": "แพ็กเกจและความพร้อม",
+  "home.readiness.plan": "แพ็กเกจ Shopify: {plan}",
+  "home.readiness.b2bOn": "แพ็กเกจของคุณรองรับ B2B",
+  "home.readiness.b2bOff": "แพ็กเกจ Shopify ปัจจุบันของคุณไม่รองรับ B2B ผู้ซื้อขายส่งต้องใช้แพ็กเกจ Basic ขึ้นไป",
+  "home.readiness.marketsOn": "เปิดใช้ตลาด B2B แล้ว",
+  "home.readiness.marketsOff": "ยังไม่ได้เปิดใช้ตลาด B2B ซึ่ง Tradepass จำเป็นต้องใช้เพื่อกำหนดราคาเฉพาะให้กับแต่ละระดับ",
+  "home.readiness.catalogBudget": "{used, plural, other {ใช้แคตตาล็อก B2B ไปแล้ว # จาก {limit} รายการ}}",
+  "home.readiness.catalogUnlimited": "{used, plural, other {มีแคตตาล็อก B2B ที่ใช้งานอยู่ # รายการ}}",
+  "home.readiness.viewPlans": "ดูแพ็กเกจของ Shopify",
+  "home.readiness.refresh": "ตรวจสอบอีกครั้ง",
+  "home.pending.heading": "รายการที่รอคุณดำเนินการ",
+  "home.pending.none": "ขณะนี้ไม่มีรายการที่ต้องดำเนินการ",
+  "home.pending.applications": "{count, plural, other {มีใบสมัครรอดำเนินการ # รายการ}}"
+}

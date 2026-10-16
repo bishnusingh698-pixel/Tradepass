@@ -1,0 +1,16 @@
+{
+  "home.title": "Trang chủ",
+  "home.readiness.heading": "Gói dịch vụ và mức độ sẵn sàng",
+  "home.readiness.plan": "Gói Shopify: {plan}",
+  "home.readiness.b2bOn": "Gói của bạn hỗ trợ B2B.",
+  "home.readiness.b2bOff": "Gói Shopify hiện tại của bạn không hỗ trợ B2B. Để có người mua bán buôn, bạn cần gói Basic trở lên.",
+  "home.readiness.marketsOn": "Thị trường B2B đã được bật.",
+  "home.readiness.marketsOff": "Thị trường B2B chưa được bật. Tradepass cần thị trường B2B để áp dụng giá riêng cho từng cấp giá.",
+  "home.readiness.catalogBudget": "{used, plural, other {Đã dùng # trên {limit} danh mục B2B}}",
+  "home.readiness.catalogUnlimited": "{used, plural, other {Đang dùng # danh mục B2B}}",
+  "home.readiness.viewPlans": "Xem các gói Shopify",
+  "home.readiness.refresh": "Kiểm tra lại",
+  "home.pending.heading": "Đang chờ bạn xử lý",
+  "home.pending.none": "Hiện không có mục nào cần bạn xử lý.",
+  "home.pending.applications": "{count, plural, other {# đơn đăng ký đang chờ}}"
+}

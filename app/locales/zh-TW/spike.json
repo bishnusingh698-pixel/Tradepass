@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B 相容性測試",
+  "spike.intro": "此測試會檢查 Tradepass 能否在此商店中將公司地點移至不同的 B2B 市場。測試會建立測試用的公司、市場和型錄，並在完成後將其移除。",
+  "spike.devOnly": "此測試僅在開發商店中執行。",
+  "spike.run": "執行測試",
+  "spike.cleanup": "移除測試資料",
+  "spike.copy": "複製結果",
+  "spike.running": "正在執行測試，最多可能需要一分鐘。",
+  "spike.passed": "通過：Tradepass 可以在此商店中自動指派等級。",
+  "spike.failed": "未通過：Tradepass 將在此商店中使用輔助方式指派等級。"
+}

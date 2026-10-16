@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B-compatibiliteitstest",
+  "spike.intro": "Deze test controleert of Tradepass in deze winkel een bedrijfslocatie tussen B2B-markten kan verplaatsen. De test maakt testbedrijven, -markten en -catalogi aan en verwijdert ze daarna.",
+  "spike.devOnly": "Deze test werkt alleen in ontwikkelwinkels.",
+  "spike.run": "Test uitvoeren",
+  "spike.cleanup": "Testgegevens verwijderen",
+  "spike.copy": "Resultaten kopiëren",
+  "spike.running": "De test wordt uitgevoerd. Dit kan tot een minuut duren.",
+  "spike.passed": "Geslaagd: Tradepass kan in deze winkel automatisch niveaus toewijzen.",
+  "spike.failed": "Niet geslaagd: Tradepass gebruikt in deze winkel ondersteunde niveautoewijzing."
+}

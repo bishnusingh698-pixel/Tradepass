@@ -1,0 +1,16 @@
+{
+  "home.title": "דף הבית",
+  "home.readiness.heading": "תוכנית ומוכנות",
+  "home.readiness.plan": "תוכנית Shopify: {plan}",
+  "home.readiness.b2bOn": "B2B זמין בתוכנית הנוכחית.",
+  "home.readiness.b2bOff": "B2B לא זמין בתוכנית Shopify הנוכחית. קונים סיטונאיים זקוקים לתוכנית Basic ומעלה.",
+  "home.readiness.marketsOn": "שווקי B2B מופעלים.",
+  "home.readiness.marketsOff": "שווקי B2B עדיין לא הופעלו. Tradepass זקוק להם כדי לקבוע לכל רמה מחירים משלה.",
+  "home.readiness.catalogBudget": "{used, plural, one {# מתוך {limit} קטלוגי B2B בשימוש} two {# מתוך {limit} קטלוגי B2B בשימוש} other {# מתוך {limit} קטלוגי B2B בשימוש}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# קטלוג B2B בשימוש} two {# קטלוגי B2B בשימוש} other {# קטלוגי B2B בשימוש}}",
+  "home.readiness.viewPlans": "הצגת התוכניות של Shopify",
+  "home.readiness.refresh": "בדיקה חוזרת",
+  "home.pending.heading": "ממתין לטיפולך",
+  "home.pending.none": "כרגע אין שום דבר שדורש טיפול.",
+  "home.pending.applications": "{count, plural, one {# בקשה ממתינה} two {# בקשות ממתינות} other {# בקשות ממתינות}}"
+}

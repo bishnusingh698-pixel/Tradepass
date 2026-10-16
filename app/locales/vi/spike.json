@@ -1,0 +1,11 @@
+{
+  "spike.title": "Kiểm tra khả năng tương thích B2B",
+  "spike.intro": "Bài kiểm tra này xác nhận Tradepass có thể chuyển địa điểm của công ty giữa các thị trường B2B trên cửa hàng này. Bài kiểm tra sẽ tạo công ty, thị trường và danh mục thử nghiệm, sau đó xóa chúng.",
+  "spike.devOnly": "Bài kiểm tra này chỉ chạy trên cửa hàng phát triển.",
+  "spike.run": "Chạy kiểm tra",
+  "spike.cleanup": "Xóa dữ liệu thử nghiệm",
+  "spike.copy": "Sao chép kết quả",
+  "spike.running": "Đang chạy kiểm tra. Quá trình này có thể mất tối đa một phút.",
+  "spike.passed": "Đạt: Tradepass có thể tự động chỉ định cấp giá trên cửa hàng này.",
+  "spike.failed": "Không đạt: Tradepass sẽ dùng cách chỉ định cấp giá có hỗ trợ trên cửa hàng này."
+}

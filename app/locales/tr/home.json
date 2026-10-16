@@ -1,0 +1,16 @@
+{
+  "home.title": "Ana sayfa",
+  "home.readiness.heading": "Plan ve hazırlık durumu",
+  "home.readiness.plan": "Shopify planı: {plan}",
+  "home.readiness.b2bOn": "B2B, planınızda kullanılabilir.",
+  "home.readiness.b2bOff": "B2B, mevcut Shopify planınızda kullanılamıyor. Toptan alıcılar için Basic veya daha üst bir plan gerekir.",
+  "home.readiness.marketsOn": "B2B pazarları açık.",
+  "home.readiness.marketsOff": "B2B pazarları henüz açılmadı. Tradepass, her seviyeye kendi fiyatlarını verebilmek için bu pazarlara ihtiyaç duyar.",
+  "home.readiness.catalogBudget": "{used, plural, one {{limit} B2B kataloğundan # tanesi kullanılıyor} other {{limit} B2B kataloğundan # tanesi kullanılıyor}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B kataloğu kullanımda} other {# B2B kataloğu kullanımda}}",
+  "home.readiness.viewPlans": "Shopify planlarını görüntüle",
+  "home.readiness.refresh": "Tekrar kontrol et",
+  "home.pending.heading": "Sizi bekleyenler",
+  "home.pending.none": "Şu anda ilgilenmeniz gereken bir şey yok.",
+  "home.pending.applications": "{count, plural, one {# başvuru bekliyor} other {# başvuru bekliyor}}"
+}

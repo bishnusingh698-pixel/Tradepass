@@ -1,0 +1,6 @@
+{
+  "storefront.title": "Storefront",
+  "storefront.empty.heading": "What visitors see",
+  "storefront.empty.body": "Choose whether retail visitors see prices, see a message asking them to log in or apply, or can't check out at all.",
+  "storefront.empty.action": "Choose access mode"
+}

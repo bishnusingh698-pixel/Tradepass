@@ -1,0 +1,16 @@
+{
+  "home.title": "Acasă",
+  "home.readiness.heading": "Plan și pregătire",
+  "home.readiness.plan": "Plan Shopify: {plan}",
+  "home.readiness.b2bOn": "B2B este disponibil în planul dumneavoastră.",
+  "home.readiness.b2bOff": "B2B nu este disponibil în planul Shopify actual. Cumpărătorii en-gros au nevoie de planul Basic sau de unul superior.",
+  "home.readiness.marketsOn": "Piețele B2B sunt activate.",
+  "home.readiness.marketsOff": "Piețele B2B nu sunt încă activate. Tradepass are nevoie de ele pentru a oferi fiecărui nivel prețuri proprii.",
+  "home.readiness.catalogBudget": "{used, plural, one {Cataloage B2B utilizate: # din {limit}} few {Cataloage B2B utilizate: # din {limit}} other {Cataloage B2B utilizate: # din {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# catalog B2B în uz} few {# cataloage B2B în uz} other {# de cataloage B2B în uz}}",
+  "home.readiness.viewPlans": "Vedeți planurile Shopify",
+  "home.readiness.refresh": "Verificați din nou",
+  "home.pending.heading": "Vă așteaptă",
+  "home.pending.none": "Nimic nu necesită atenția dumneavoastră acum.",
+  "home.pending.applications": "{count, plural, one {# cerere în așteptare} few {# cereri în așteptare} other {# de cereri în așteptare}}"
+}

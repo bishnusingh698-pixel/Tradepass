@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B-kompatibilitási teszt",
+  "spike.intro": "Ez a teszt ellenőrzi, hogy a Tradepass át tud-e helyezni egy vállalati helyszínt B2B-piacok között ebben az áruházban. Tesztvállalatokat, -piacokat és -katalógusokat hoz létre, majd eltávolítja őket.",
+  "spike.devOnly": "Ez a teszt csak fejlesztői áruházakban futtatható.",
+  "spike.run": "Teszt futtatása",
+  "spike.cleanup": "Tesztadatok eltávolítása",
+  "spike.copy": "Eredmények másolása",
+  "spike.running": "A teszt fut. Ez akár egy percig is tarthat.",
+  "spike.passed": "Sikeres: a Tradepass automatikusan hozzá tudja rendelni a szinteket ebben az áruházban.",
+  "spike.failed": "Sikertelen: a Tradepass támogatott szinthozzárendelést fog használni ebben az áruházban."
+}

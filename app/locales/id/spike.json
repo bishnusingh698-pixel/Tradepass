@@ -1,0 +1,11 @@
+{
+  "spike.title": "Uji kompatibilitas B2B",
+  "spike.intro": "Uji ini memeriksa apakah Tradepass dapat memindahkan lokasi perusahaan antar-pasar B2B di toko ini. Uji ini membuat perusahaan, pasar, dan katalog uji, lalu menghapusnya setelah selesai.",
+  "spike.devOnly": "Uji ini hanya berjalan di toko pengembangan.",
+  "spike.run": "Jalankan uji",
+  "spike.cleanup": "Hapus data uji",
+  "spike.copy": "Salin hasil",
+  "spike.running": "Uji sedang berjalan. Proses ini dapat memakan waktu hingga satu menit.",
+  "spike.passed": "Lulus: Tradepass dapat menetapkan tingkat harga secara otomatis di toko ini.",
+  "spike.failed": "Tidak lulus: Tradepass akan menggunakan penetapan tingkat harga berbantuan di toko ini."
+}

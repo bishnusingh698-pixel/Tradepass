@@ -5,7 +5,7 @@ import { catalogs } from "./catalog";
 
 export { LOCALES, isRtl, matchLocale, type Locale };
 
-export type MessageKey = keyof Messages & string;
+export type MessageKey = string;
 export type Values = Record<string, string | number | Date>;
 
 /** Merchant text overrides: { locale: { key: text } }. Override beats built-in. */

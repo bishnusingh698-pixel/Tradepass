@@ -1,0 +1,11 @@
+{
+  "spike.title": "Test de compatibilitate B2B",
+  "spike.intro": "Acest test verifică dacă Tradepass poate muta locația unei companii între piețe B2B în acest magazin. Creează companii, piețe și cataloage de test și le elimină ulterior.",
+  "spike.devOnly": "Acest test rulează doar în magazinele de dezvoltare.",
+  "spike.run": "Rulați testul",
+  "spike.cleanup": "Eliminați datele de test",
+  "spike.copy": "Copiați rezultatele",
+  "spike.running": "Testul rulează. Poate dura până la un minut.",
+  "spike.passed": "Reușit: Tradepass poate atribui automat niveluri în acest magazin.",
+  "spike.failed": "Nereușit: Tradepass va folosi atribuirea asistată a nivelurilor în acest magazin."
+}

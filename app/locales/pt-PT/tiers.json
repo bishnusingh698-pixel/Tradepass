@@ -1,0 +1,6 @@
+{
+  "tiers.title": "Níveis",
+  "tiers.empty.heading": "Crie o primeiro nível",
+  "tiers.empty.body": "Um nível é um escalão de preços por grosso, como Retalhista ou Distribuidor. Os compradores aprovados veem os preços do seu nível.",
+  "tiers.empty.action": "Criar nível"
+}

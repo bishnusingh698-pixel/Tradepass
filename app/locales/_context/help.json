@@ -1,0 +1,29 @@
+{
+  "help.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "help.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "help.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "help.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "help.contact": {
+    "note": "Admin text.",
+    "maxLength": 120,
+    "placeholders": [
+      "email"
+    ]
+  }
+}

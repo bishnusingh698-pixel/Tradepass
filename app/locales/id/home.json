@@ -1,0 +1,16 @@
+{
+  "home.title": "Beranda",
+  "home.readiness.heading": "Paket dan kesiapan",
+  "home.readiness.plan": "Paket Shopify: {plan}",
+  "home.readiness.b2bOn": "B2B tersedia di paket Anda.",
+  "home.readiness.b2bOff": "B2B tidak tersedia di paket Shopify Anda saat ini. Pembeli grosir memerlukan paket Basic atau yang lebih tinggi.",
+  "home.readiness.marketsOn": "Pasar B2B sudah diaktifkan.",
+  "home.readiness.marketsOff": "Pasar B2B belum diaktifkan. Tradepass memerlukannya untuk memberikan harga tersendiri bagi setiap tingkat harga.",
+  "home.readiness.catalogBudget": "{used, plural, other {# dari {limit} katalog B2B digunakan}}",
+  "home.readiness.catalogUnlimited": "{used, plural, other {# katalog B2B sedang digunakan}}",
+  "home.readiness.viewPlans": "Lihat paket Shopify",
+  "home.readiness.refresh": "Periksa lagi",
+  "home.pending.heading": "Menunggu tindakan Anda",
+  "home.pending.none": "Tidak ada yang perlu ditindaklanjuti saat ini.",
+  "home.pending.applications": "{count, plural, other {# pengajuan menunggu}}"
+}

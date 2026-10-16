@@ -1,0 +1,6 @@
+{
+  "storefront.title": "스토어프론트",
+  "storefront.empty.heading": "방문자에게 표시되는 내용",
+  "storefront.empty.body": "일반 방문자에게 가격을 표시할지, 로그인 또는 신청을 요청하는 메시지를 표시할지, 결제를 아예 할 수 없게 할지 선택합니다.",
+  "storefront.empty.action": "액세스 모드 선택"
+}

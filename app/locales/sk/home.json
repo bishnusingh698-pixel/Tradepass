@@ -1,0 +1,16 @@
+{
+  "home.title": "Domov",
+  "home.readiness.heading": "Plán a pripravenosť",
+  "home.readiness.plan": "Plán Shopify: {plan}",
+  "home.readiness.b2bOn": "Váš plán zahŕňa B2B.",
+  "home.readiness.b2bOff": "Váš aktuálny plán Shopify nezahŕňa B2B. Veľkoobchodní kupujúci vyžadujú plán Basic alebo vyšší.",
+  "home.readiness.marketsOn": "Trhy B2B sú zapnuté.",
+  "home.readiness.marketsOff": "Trhy B2B zatiaľ nie sú zapnuté. Tradepass ich potrebuje, aby mohol každej úrovni priradiť vlastné ceny.",
+  "home.readiness.catalogBudget": "{used, plural, one {Využitý # katalóg B2B z {limit}} few {Využité # katalógy B2B z {limit}} many {Využité # katalógu B2B z {limit}} other {Využitých # katalógov B2B z {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {Používa sa # katalóg B2B} few {Používajú sa # katalógy B2B} many {Používa sa # katalógu B2B} other {Používa sa # katalógov B2B}}",
+  "home.readiness.viewPlans": "Zobraziť plány Shopify",
+  "home.readiness.refresh": "Skontrolovať znova",
+  "home.pending.heading": "Čaká na vás",
+  "home.pending.none": "Momentálne nič nevyžaduje vašu pozornosť.",
+  "home.pending.applications": "{count, plural, one {# žiadosť čaká} few {# žiadosti čakajú} many {# žiadosti čaká} other {# žiadostí čaká}}"
+}

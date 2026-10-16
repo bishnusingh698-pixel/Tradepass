@@ -1,0 +1,6 @@
+{
+  "tiers.title": "Niveles",
+  "tiers.empty.heading": "Cree su primer nivel",
+  "tiers.empty.body": "Un nivel es un rango de precios mayoristas, como Minorista o Distribuidor. Los compradores aprobados ven los precios de su nivel.",
+  "tiers.empty.action": "Crear nivel"
+}

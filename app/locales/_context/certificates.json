@@ -1,0 +1,22 @@
+{
+  "certificates.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "certificates.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "certificates.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  }
+}

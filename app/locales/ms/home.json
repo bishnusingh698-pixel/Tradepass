@@ -1,0 +1,16 @@
+{
+  "home.title": "Laman Utama",
+  "home.readiness.heading": "Pelan dan kesediaan",
+  "home.readiness.plan": "Pelan Shopify: {plan}",
+  "home.readiness.b2bOn": "B2B tersedia pada pelan anda.",
+  "home.readiness.b2bOff": "B2B tidak tersedia pada pelan Shopify semasa anda. Pembeli borong memerlukan pelan Basic atau lebih tinggi.",
+  "home.readiness.marketsOn": "Pasaran B2B telah dihidupkan.",
+  "home.readiness.marketsOff": "Pasaran B2B belum dihidupkan. Tradepass memerlukannya untuk memberikan harga tersendiri kepada setiap peringkat harga.",
+  "home.readiness.catalogBudget": "{used, plural, other {# daripada {limit} katalog B2B digunakan}}",
+  "home.readiness.catalogUnlimited": "{used, plural, other {# katalog B2B sedang digunakan}}",
+  "home.readiness.viewPlans": "Lihat pelan Shopify",
+  "home.readiness.refresh": "Semak semula",
+  "home.pending.heading": "Menunggu tindakan anda",
+  "home.pending.none": "Tiada apa-apa yang memerlukan perhatian anda buat masa ini.",
+  "home.pending.applications": "{count, plural, other {# permohonan sedang menunggu}}"
+}

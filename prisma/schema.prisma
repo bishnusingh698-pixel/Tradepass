@@ -54,6 +54,12 @@ model Shop {
   settingsVersion   Int       @default(1)
   welcomeDoneAt     DateTime?
   checkedAt         DateTime? // last plan/entitlement check
+  name              String?
+  email             String? // shop contact email: reply-to for applicant emails
+  currency          String?
+  country           String? // store country, for tax suggestions
+  placeholderCompanyGid String? // see DECISIONS D-004 (only if empty B2B markets are rejected)
+  subscriptionGid   String? // active Billing API subscription
 }
 
 model Form {
@@ -89,6 +95,12 @@ model Application {
   assignee       String?
   approvalState  Json? // per-step progress of the approval engine (retry/undo)
   buyerId        String?
+  source         String    @default("form") // form | flow | import | manual
+  suggestedTierId String?
+  notes          Json      @default("[]") // internal notes: [{ at, by, text }]
+  requested      Json? // needs-info request: { fields: string[], message, at }
+  autoRuleId     String? // set when an automation rule decided it
+  ipHash         String?
   submittedAt    DateTime  @default(now())
   decidedAt      DateTime?
 
@@ -121,6 +133,8 @@ model Tier {
   discountPct    Int?
   defaults       Json     @default("{}") // payment terms template, checkout behaviour, tax behaviour
   syncState      String   @default("ok") // ok | changed_in_shopify | missing
+  mode           String   @default("market") // market (non-Plus: B2B market + catalog) | direct (Plus: catalog on locations)
+  placeholderLocationGid String? // D-004 placeholder kept in the market so it is never empty
   position       Int      @default(0)
   updatedAt      DateTime @updatedAt
   createdAt      DateTime @default(now())
@@ -136,6 +150,9 @@ model Buyer {
   contactGid   String?
   tierId       String?
   status       String   @default("active") // active | paused
+  pausedTierId String? // tier to restore on Resume
+  taxExemptions String[] @default([])
+  country      String?
   source       String   @default("application") // application | import | tag
   name         String // company name, for list display
   approvedAt   DateTime @default(now())
@@ -158,6 +175,8 @@ model Certificate {
   status        String    @default("pending") // pending | valid | expiring | expired | rejected
   fileGid       String?
   remindedAt    Json      @default("{}") // { "30": iso, "7": iso }
+  rejectReason  String?
+  decidedOnExpiry String? // merchant choice after expiry: keep | remove
   createdAt     DateTime  @default(now())
 
   @@index([shop, expiresOn])

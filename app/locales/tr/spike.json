@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B uyumluluk testi",
+  "spike.intro": "Bu test, Tradepass'in bu mağazada bir şirket konumunu B2B pazarları arasında taşıyabildiğini kontrol eder. Test şirketleri, pazarları ve katalogları oluşturur ve ardından bunları kaldırır.",
+  "spike.devOnly": "Bu test yalnızca geliştirme mağazalarında çalışır.",
+  "spike.run": "Testi çalıştır",
+  "spike.cleanup": "Test verilerini kaldır",
+  "spike.copy": "Sonuçları kopyala",
+  "spike.running": "Test çalışıyor. Bu işlem bir dakika kadar sürebilir.",
+  "spike.passed": "Başarılı: Tradepass bu mağazada seviyeleri otomatik olarak atayabilir.",
+  "spike.failed": "Başarısız: Tradepass bu mağazada destekli seviye atamasını kullanacak."
+}

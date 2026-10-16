@@ -1,0 +1,6 @@
+{
+  "notifications.title": "通知",
+  "notifications.empty.heading": "发送给申请人和买家的电子邮件",
+  "notifications.empty.body": "编辑 Tradepass 发送的电子邮件，并选择您要接收的提醒。",
+  "notifications.empty.action": "编辑电子邮件"
+}

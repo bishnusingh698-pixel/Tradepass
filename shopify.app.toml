@@ -13,7 +13,7 @@ include_config_on_deploy = true
 [access_scopes]
 # Minimal scopes; each is justified in DECISIONS.md (D-007). Later phases add
 # scopes only when the feature using them lands.
-scopes = "write_companies,write_markets,write_products,read_locales"
+scopes = "write_companies,write_customers,write_markets,write_products,write_publications,write_files,read_orders,read_locales"
 
 [auth]
 redirect_urls = ["https://example.com/auth/callback"]

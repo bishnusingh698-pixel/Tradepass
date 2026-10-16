@@ -1,0 +1,11 @@
+{
+  "spike.title": "Test kompatibility B2B",
+  "spike.intro": "Tento test ověří, zda Tradepass může v tomto obchodě přesouvat pobočku firmy mezi trhy B2B. Vytvoří testovací firmy, trhy a katalogy a poté je odstraní.",
+  "spike.devOnly": "Tento test lze spustit pouze ve vývojových obchodech.",
+  "spike.run": "Spustit test",
+  "spike.cleanup": "Odstranit testovací data",
+  "spike.copy": "Kopírovat výsledky",
+  "spike.running": "Test probíhá. Může to trvat až minutu.",
+  "spike.passed": "Úspěch: Tradepass může v tomto obchodě přiřazovat úrovně automaticky.",
+  "spike.failed": "Neúspěch: Tradepass bude v tomto obchodě přiřazovat úrovně poloautomaticky."
+}

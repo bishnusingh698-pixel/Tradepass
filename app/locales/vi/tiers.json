@@ -1,0 +1,6 @@
+{
+  "tiers.title": "Cấp giá",
+  "tiers.empty.heading": "Tạo cấp giá đầu tiên",
+  "tiers.empty.body": "Cấp giá là một mức giá bán buôn, chẳng hạn như Nhà bán lẻ hoặc Nhà phân phối. Người mua đã được phê duyệt sẽ thấy giá theo cấp giá của mình.",
+  "tiers.empty.action": "Tạo cấp giá"
+}

@@ -1,0 +1,16 @@
+{
+  "home.title": "Startpagina",
+  "home.readiness.heading": "Abonnement en gereedheid",
+  "home.readiness.plan": "Shopify-abonnement: {plan}",
+  "home.readiness.b2bOn": "B2B is beschikbaar met uw abonnement.",
+  "home.readiness.b2bOff": "B2B is niet beschikbaar met uw huidige Shopify-abonnement. Voor groothandelskopers is minimaal het Basic-abonnement nodig.",
+  "home.readiness.marketsOn": "B2B-markten zijn ingeschakeld.",
+  "home.readiness.marketsOff": "B2B-markten zijn nog niet ingeschakeld. Tradepass heeft ze nodig om elk niveau eigen prijzen te geven.",
+  "home.readiness.catalogBudget": "{used, plural, one {# van {limit} B2B-catalogi gebruikt} other {# van {limit} B2B-catalogi gebruikt}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B-catalogus in gebruik} other {# B2B-catalogi in gebruik}}",
+  "home.readiness.viewPlans": "Shopify-abonnementen bekijken",
+  "home.readiness.refresh": "Opnieuw controleren",
+  "home.pending.heading": "Wacht op u",
+  "home.pending.none": "Er vraagt op dit moment niets om uw aandacht.",
+  "home.pending.applications": "{count, plural, one {# aanvraag wacht} other {# aanvragen wachten}}"
+}

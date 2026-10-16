@@ -1,0 +1,6 @@
+{
+  "automation.title": "Автоматизация",
+  "automation.empty.heading": "Автоматическое одобрение заявок",
+  "automation.empty.body": "Настройте правила, чтобы одобрять или отклонять заявки, соответствующие вашим условиям, и подключите Shopify Flow.",
+  "automation.empty.action": "Создать правило"
+}

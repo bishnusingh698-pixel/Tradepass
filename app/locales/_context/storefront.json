@@ -1,0 +1,22 @@
+{
+  "storefront.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "storefront.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "storefront.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  }
+}

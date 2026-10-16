@@ -1,0 +1,6 @@
+{
+  "notifications.title": "通知",
+  "notifications.empty.heading": "申請者とバイヤーへのメール",
+  "notifications.empty.body": "Tradepassが送信するメールを編集し、受け取るアラートを選択します。",
+  "notifications.empty.action": "メールを編集"
+}

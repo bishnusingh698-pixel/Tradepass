@@ -1,0 +1,6 @@
+{
+  "import.title": "インポート",
+  "import.empty.heading": "既存の卸売顧客を取り込む",
+  "import.empty.body": "スプレッドシートをアップロードするか、「wholesale」などのタグが付いた顧客をB2Bの会社に変換します。",
+  "import.empty.action": "インポートを開始"
+}

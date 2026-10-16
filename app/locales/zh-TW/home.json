@@ -1,0 +1,16 @@
+{
+  "home.title": "首頁",
+  "home.readiness.heading": "方案與準備狀態",
+  "home.readiness.plan": "Shopify 方案：{plan}",
+  "home.readiness.b2bOn": "您的方案支援 B2B。",
+  "home.readiness.b2bOff": "您目前的 Shopify 方案不支援 B2B。批發買家需要 Basic 方案或更高階的方案。",
+  "home.readiness.marketsOn": "B2B 市場已開啟。",
+  "home.readiness.marketsOff": "B2B 市場尚未開啟。Tradepass 需要透過 B2B 市場為每個等級設定各自的價格。",
+  "home.readiness.catalogBudget": "{used, plural, other {已使用 # 個 B2B 型錄（共 {limit} 個）}}",
+  "home.readiness.catalogUnlimited": "{used, plural, other {正在使用 # 個 B2B 型錄}}",
+  "home.readiness.viewPlans": "查看 Shopify 方案",
+  "home.readiness.refresh": "重新檢查",
+  "home.pending.heading": "待您處理",
+  "home.pending.none": "目前沒有需要您處理的事項。",
+  "home.pending.applications": "{count, plural, other {# 份申請待處理}}"
+}

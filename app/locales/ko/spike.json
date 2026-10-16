@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B 호환성 테스트",
+  "spike.intro": "이 테스트는 Tradepass가 이 스토어에서 회사 위치를 B2B 마켓 간에 이동할 수 있는지 확인합니다. 테스트용 회사, 마켓, 카탈로그를 생성하고 완료 후 삭제합니다.",
+  "spike.devOnly": "이 테스트는 개발 스토어에서만 실행됩니다.",
+  "spike.run": "테스트 실행",
+  "spike.cleanup": "테스트 데이터 삭제",
+  "spike.copy": "결과 복사",
+  "spike.running": "테스트를 실행하는 중입니다. 최대 1분 정도 걸릴 수 있습니다.",
+  "spike.passed": "통과: 이 스토어에서는 Tradepass가 등급을 자동으로 할당할 수 있습니다.",
+  "spike.failed": "통과하지 못함: 이 스토어에서는 Tradepass가 보조 등급 할당 방식을 사용합니다."
+}

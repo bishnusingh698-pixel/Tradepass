@@ -1,0 +1,6 @@
+{
+  "automation.title": "自動化",
+  "automation.empty.heading": "申請を自動で承認",
+  "automation.empty.body": "条件に一致する申請を承認または却下するルールを設定し、Shopify Flowと連携します。",
+  "automation.empty.action": "ルールを作成"
+}

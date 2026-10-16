@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B 兼容性测试",
+  "spike.intro": "此测试将检查 Tradepass 能否在此商店中将公司地点在不同 B2B 市场之间移动。测试会创建测试用的公司、市场和目录，并在完成后将其删除。",
+  "spike.devOnly": "此测试仅在开发商店中运行。",
+  "spike.run": "运行测试",
+  "spike.cleanup": "删除测试数据",
+  "spike.copy": "复制结果",
+  "spike.running": "正在运行测试，最多可能需要一分钟。",
+  "spike.passed": "通过：Tradepass 可以在此商店中自动分配等级。",
+  "spike.failed": "未通过：Tradepass 将在此商店中使用辅助方式分配等级。"
+}

@@ -1,0 +1,11 @@
+{
+  "spike.title": "Test zgodności B2B",
+  "spike.intro": "Ten test sprawdza, czy Tradepass może przenosić lokalizację firmy między rynkami B2B w tym sklepie. Tworzy testowe firmy, rynki i katalogi, a następnie je usuwa.",
+  "spike.devOnly": "Ten test działa tylko w sklepach deweloperskich.",
+  "spike.run": "Uruchom test",
+  "spike.cleanup": "Usuń dane testowe",
+  "spike.copy": "Kopiuj wyniki",
+  "spike.running": "Trwa test. Może to potrwać do minuty.",
+  "spike.passed": "Zaliczony: Tradepass może automatycznie przypisywać poziomy w tym sklepie.",
+  "spike.failed": "Niezaliczony: w tym sklepie Tradepass będzie przypisywać poziomy półautomatycznie."
+}

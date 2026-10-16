@@ -1,0 +1,6 @@
+{
+  "tiers.title": "Tasot",
+  "tiers.empty.heading": "Luo ensimmäinen taso",
+  "tiers.empty.body": "Taso on tukkuhintataso, esimerkiksi Jälleenmyyjä tai Jakelija. Hyväksytyt ostajat näkevät oman tasonsa hinnat.",
+  "tiers.empty.action": "Luo taso"
+}

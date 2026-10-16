@@ -1,0 +1,16 @@
+{
+  "home.title": "Hjem",
+  "home.readiness.heading": "Abonnement og klarhed",
+  "home.readiness.plan": "Shopify-abonnement: {plan}",
+  "home.readiness.b2bOn": "B2B er tilgængelig med dit abonnement.",
+  "home.readiness.b2bOff": "B2B er ikke tilgængelig med dit nuværende Shopify-abonnement. Engroskøbere kræver Basic-abonnementet eller højere.",
+  "home.readiness.marketsOn": "B2B-markeder er slået til.",
+  "home.readiness.marketsOff": "B2B-markeder er ikke slået til endnu. Tradepass skal bruge dem for at give hvert niveau sine egne priser.",
+  "home.readiness.catalogBudget": "{used, plural, one {# af {limit} B2B-kataloger brugt} other {# af {limit} B2B-kataloger brugt}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# B2B-katalog i brug} other {# B2B-kataloger i brug}}",
+  "home.readiness.viewPlans": "Se Shopify-abonnementer",
+  "home.readiness.refresh": "Tjek igen",
+  "home.pending.heading": "Afventer dig",
+  "home.pending.none": "Intet kræver din opmærksomhed lige nu.",
+  "home.pending.applications": "{count, plural, one {# ansøgning afventer} other {# ansøgninger afventer}}"
+}

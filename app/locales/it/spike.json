@@ -1,0 +1,11 @@
+{
+  "spike.title": "Test di compatibilità B2B",
+  "spike.intro": "Questo test verifica che Tradepass possa spostare una sede aziendale tra mercati B2B in questo negozio. Crea aziende, mercati e cataloghi di prova e poi li rimuove.",
+  "spike.devOnly": "Questo test viene eseguito solo nei negozi di sviluppo.",
+  "spike.run": "Esegui test",
+  "spike.cleanup": "Rimuovi dati di prova",
+  "spike.copy": "Copia risultati",
+  "spike.running": "Test in corso. Può richiedere fino a un minuto.",
+  "spike.passed": "Superato: Tradepass può assegnare automaticamente i livelli in questo negozio.",
+  "spike.failed": "Non superato: Tradepass userà l’assegnazione assistita dei livelli in questo negozio."
+}

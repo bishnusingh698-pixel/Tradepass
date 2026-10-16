@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B suderinamumo testas",
+  "spike.intro": "Šis testas patikrina, ar Tradepass gali šioje parduotuvėje perkelti įmonės vietą tarp B2B rinkų. Jis sukuria bandomąsias įmones, rinkas ir katalogus, o po to juos pašalina.",
+  "spike.devOnly": "Šis testas veikia tik kūrimo parduotuvėse.",
+  "spike.run": "Paleisti testą",
+  "spike.cleanup": "Pašalinti bandomuosius duomenis",
+  "spike.copy": "Kopijuoti rezultatus",
+  "spike.running": "Vykdomas testas. Tai gali užtrukti iki minutės.",
+  "spike.passed": "Pavyko: Tradepass šioje parduotuvėje gali automatiškai priskirti lygius.",
+  "spike.failed": "Nepavyko: Tradepass šioje parduotuvėje lygius priskirs pusiau automatiškai."
+}

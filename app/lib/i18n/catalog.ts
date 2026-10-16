@@ -1,16 +1,19 @@
-import en from "../../locales/en.json";
+// All admin / hosted-page / email catalogs, bundled at build time.
+// Layout: app/locales/<locale>/<namespace>.json, each a flat { key: ICU message }.
+// Namespaces are merged per locale. English is the source; `_context` holds
+// translator notes and is not a locale.
+export type Messages = Record<string, string>;
 
-export type Messages = typeof en;
+const modules = import.meta.glob<{ default: Messages }>("../../locales/*/*.json", { eager: true });
 
-// All admin/hosted-page catalogs, bundled at build time. Each file is a flat
-// { key: ICU message } map; English is the source and the type of truth.
-const modules = import.meta.glob<{ default: Partial<Messages> }>(
-  "../../locales/*.json",
-  { eager: true },
-);
+export const catalogs: Record<string, Messages> = {};
+for (const [path, mod] of Object.entries(modules)) {
+  const locale = path.split("/").slice(-2)[0];
+  if (locale.startsWith("_")) continue;
+  Object.assign((catalogs[locale] ??= {}), mod.default);
+}
 
-export const catalogs: Record<string, Partial<Messages>> = Object.fromEntries(
-  Object.entries(modules)
-    .map(([path, mod]) => [path.split("/").pop()!.replace(/\.json$/, ""), mod.default] as const)
-    .filter(([name]) => !name.startsWith("_")),
-);
+export const context: Record<string, { note: string; maxLength: number; placeholders: string[] }> = {};
+for (const [path, mod] of Object.entries(modules)) {
+  if (path.includes("/_context/")) Object.assign(context, mod.default as unknown as typeof context);
+}

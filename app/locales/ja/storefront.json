@@ -1,0 +1,6 @@
+{
+  "storefront.title": "ストアフロント",
+  "storefront.empty.heading": "訪問者への表示",
+  "storefront.empty.body": "一般の訪問者に価格を表示するか、ログインまたは申請を促すメッセージを表示するか、チェックアウトを一切できないようにするかを選択します。",
+  "storefront.empty.action": "アクセスモードを選択"
+}

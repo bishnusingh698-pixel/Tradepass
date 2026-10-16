@@ -1,0 +1,6 @@
+{
+  "automation.title": "ระบบอัตโนมัติ",
+  "automation.empty.heading": "อนุมัติใบสมัครโดยอัตโนมัติ",
+  "automation.empty.body": "ตั้งกฎเพื่ออนุมัติหรือปฏิเสธใบสมัครที่ตรงตามเงื่อนไขของคุณ และเชื่อมต่อ Shopify Flow",
+  "automation.empty.action": "สร้างกฎ"
+}

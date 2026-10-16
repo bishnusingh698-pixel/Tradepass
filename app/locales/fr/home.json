@@ -1,0 +1,16 @@
+{
+  "home.title": "Accueil",
+  "home.readiness.heading": "Forfait et état de préparation",
+  "home.readiness.plan": "Forfait Shopify : {plan}",
+  "home.readiness.b2bOn": "Le B2B est disponible avec votre forfait.",
+  "home.readiness.b2bOff": "Le B2B n’est pas disponible avec votre forfait Shopify actuel. Les acheteurs professionnels nécessitent le forfait Basic ou supérieur.",
+  "home.readiness.marketsOn": "Les marchés B2B sont activés.",
+  "home.readiness.marketsOff": "Les marchés B2B ne sont pas encore activés. Tradepass en a besoin pour attribuer des prix propres à chaque niveau.",
+  "home.readiness.catalogBudget": "{used, plural, one {# catalogue B2B utilisé sur {limit}} many {# de catalogues B2B utilisés sur {limit}} other {# catalogues B2B utilisés sur {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {# catalogue B2B utilisé} many {# de catalogues B2B utilisés} other {# catalogues B2B utilisés}}",
+  "home.readiness.viewPlans": "Voir les forfaits Shopify",
+  "home.readiness.refresh": "Vérifier à nouveau",
+  "home.pending.heading": "En attente de votre action",
+  "home.pending.none": "Rien ne requiert votre attention pour le moment.",
+  "home.pending.applications": "{count, plural, one {# demande en attente} many {# de demandes en attente} other {# demandes en attente}}"
+}

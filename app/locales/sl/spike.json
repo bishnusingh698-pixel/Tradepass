@@ -1,0 +1,11 @@
+{
+  "spike.title": "Preizkus združljivosti B2B",
+  "spike.intro": "Ta preizkus preveri, ali lahko Tradepass v tej trgovini premakne lokacijo podjetja med trgi B2B. Ustvari preizkusna podjetja, trge in kataloge ter jih nato odstrani.",
+  "spike.devOnly": "Ta preizkus deluje samo v razvojnih trgovinah.",
+  "spike.run": "Zaženi preizkus",
+  "spike.cleanup": "Odstrani preizkusne podatke",
+  "spike.copy": "Kopiraj rezultate",
+  "spike.running": "Preizkus poteka. To lahko traja do ene minute.",
+  "spike.passed": "Uspešno: Tradepass lahko v tej trgovini samodejno dodeljuje ravni.",
+  "spike.failed": "Neuspešno: Tradepass bo v tej trgovini ravni dodeljeval polsamodejno."
+}

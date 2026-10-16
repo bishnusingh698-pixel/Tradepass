@@ -1,0 +1,16 @@
+{
+  "home.title": "ホーム",
+  "home.readiness.heading": "プランと準備状況",
+  "home.readiness.plan": "Shopifyプラン: {plan}",
+  "home.readiness.b2bOn": "ご利用のプランでB2Bを利用できます。",
+  "home.readiness.b2bOff": "現在のShopifyプランではB2Bを利用できません。卸売バイヤーを受け入れるには、Basicプラン以上が必要です。",
+  "home.readiness.marketsOn": "B2Bマーケットは有効になっています。",
+  "home.readiness.marketsOff": "B2Bマーケットはまだ有効になっていません。Tradepassで価格ランクごとに個別の価格を設定するには、B2Bマーケットが必要です。",
+  "home.readiness.catalogBudget": "{used, plural, other {B2Bカタログ: {limit}件中#件を使用中}}",
+  "home.readiness.catalogUnlimited": "{used, plural, other {B2Bカタログ: #件を使用中}}",
+  "home.readiness.viewPlans": "Shopifyのプランを見る",
+  "home.readiness.refresh": "再確認",
+  "home.pending.heading": "対応待ち",
+  "home.pending.none": "現在、対応が必要な項目はありません。",
+  "home.pending.applications": "{count, plural, other {#件の申請が対応待ちです}}"
+}

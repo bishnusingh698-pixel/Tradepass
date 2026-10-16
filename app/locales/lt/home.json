@@ -1,0 +1,16 @@
+{
+  "home.title": "Pradžia",
+  "home.readiness.heading": "Planas ir parengtis",
+  "home.readiness.plan": "Shopify planas: {plan}",
+  "home.readiness.b2bOn": "Jūsų plane galima naudoti B2B.",
+  "home.readiness.b2bOff": "Jūsų dabartiniame Shopify plane B2B nepasiekiama. Didmeniniams pirkėjams reikia Basic ar aukštesnio plano.",
+  "home.readiness.marketsOn": "B2B rinkos įjungtos.",
+  "home.readiness.marketsOff": "B2B rinkos dar neįjungtos. Jų reikia Tradepass, kad kiekvienam lygiui būtų galima priskirti atskiras kainas.",
+  "home.readiness.catalogBudget": "{used, plural, one {Naudojamas # B2B katalogas iš {limit}} few {Naudojami # B2B katalogai iš {limit}} many {Naudojama # B2B katalogo iš {limit}} other {Naudojama # B2B katalogų iš {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {Naudojamas # B2B katalogas} few {Naudojami # B2B katalogai} many {Naudojama # B2B katalogo} other {Naudojama # B2B katalogų}}",
+  "home.readiness.viewPlans": "Peržiūrėti Shopify planus",
+  "home.readiness.refresh": "Tikrinti dar kartą",
+  "home.pending.heading": "Laukia jūsų",
+  "home.pending.none": "Šiuo metu nieko nereikia atlikti.",
+  "home.pending.applications": "{count, plural, one {# paraiška laukia} few {# paraiškos laukia} many {# paraiškos laukia} other {# paraiškų laukia}}"
+}

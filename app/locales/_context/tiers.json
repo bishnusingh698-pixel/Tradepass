@@ -1,0 +1,22 @@
+{
+  "tiers.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "tiers.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "tiers.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  }
+}

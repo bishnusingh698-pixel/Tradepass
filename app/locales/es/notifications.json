@@ -1,0 +1,6 @@
+{
+  "notifications.title": "Notificaciones",
+  "notifications.empty.heading": "Correos para solicitantes y compradores",
+  "notifications.empty.body": "Edite los correos electrónicos que envía Tradepass y elija qué alertas recibe.",
+  "notifications.empty.action": "Editar correos"
+}

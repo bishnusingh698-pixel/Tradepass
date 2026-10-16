@@ -1,0 +1,16 @@
+{
+  "home.title": "الرئيسية",
+  "home.readiness.heading": "الخطة والجاهزية",
+  "home.readiness.plan": "خطة Shopify: {plan}",
+  "home.readiness.b2bOn": "ميزة B2B متاحة في خطتك.",
+  "home.readiness.b2bOff": "ميزة B2B غير متاحة في خطة Shopify الحالية. يحتاج مشترو الجملة إلى خطة Basic أو أعلى.",
+  "home.readiness.marketsOn": "أسواق B2B مفعّلة.",
+  "home.readiness.marketsOff": "لم يتم تفعيل أسواق B2B بعد. يحتاج إليها Tradepass لتحديد أسعار خاصة بكل مستوى.",
+  "home.readiness.catalogBudget": "{used, plural, zero {كتالوجات B2B المستخدمة: # من أصل {limit}} one {كتالوجات B2B المستخدمة: # من أصل {limit}} two {كتالوجات B2B المستخدمة: # من أصل {limit}} few {كتالوجات B2B المستخدمة: # من أصل {limit}} many {كتالوجات B2B المستخدمة: # من أصل {limit}} other {كتالوجات B2B المستخدمة: # من أصل {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, zero {# كتالوج B2B قيد الاستخدام} one {# كتالوج B2B قيد الاستخدام} two {# كتالوجان B2B قيد الاستخدام} few {# كتالوجات B2B قيد الاستخدام} many {# كتالوجًا B2B قيد الاستخدام} other {# كتالوج B2B قيد الاستخدام}}",
+  "home.readiness.viewPlans": "عرض خطط Shopify",
+  "home.readiness.refresh": "التحقق مرة أخرى",
+  "home.pending.heading": "بانتظار إجراء منك",
+  "home.pending.none": "لا يوجد ما يتطلب انتباهك حاليًا.",
+  "home.pending.applications": "{count, plural, zero {# طلب بانتظار المراجعة} one {# طلب بانتظار المراجعة} two {# طلبان بانتظار المراجعة} few {# طلبات بانتظار المراجعة} many {# طلبًا بانتظار المراجعة} other {# طلب بانتظار المراجعة}}"
+}

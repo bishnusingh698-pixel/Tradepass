@@ -1,0 +1,16 @@
+{
+  "home.title": "Početna",
+  "home.readiness.heading": "Paket i spremnost",
+  "home.readiness.plan": "Shopify paket: {plan}",
+  "home.readiness.b2bOn": "B2B je dostupan u vašem paketu.",
+  "home.readiness.b2bOff": "B2B nije dostupan u vašem trenutačnom Shopify paketu. Veleprodajni kupci zahtijevaju paket Basic ili viši.",
+  "home.readiness.marketsOn": "B2B tržišta su uključena.",
+  "home.readiness.marketsOff": "B2B tržišta još nisu uključena. Tradepass ih treba kako bi svakoj razini dodijelio vlastite cijene.",
+  "home.readiness.catalogBudget": "{used, plural, one {Iskorišten # B2B katalog od {limit}} few {Iskorištena # B2B kataloga od {limit}} other {Iskorišteno # B2B kataloga od {limit}}}",
+  "home.readiness.catalogUnlimited": "{used, plural, one {U upotrebi je # B2B katalog} few {U upotrebi su # B2B kataloga} other {U upotrebi je # B2B kataloga}}",
+  "home.readiness.viewPlans": "Pogledajte Shopify pakete",
+  "home.readiness.refresh": "Provjeri ponovno",
+  "home.pending.heading": "Čeka vas",
+  "home.pending.none": "Trenutačno ništa ne zahtijeva vašu pozornost.",
+  "home.pending.applications": "{count, plural, one {# zahtjev čeka} few {# zahtjeva čekaju} other {# zahtjeva čeka}}"
+}

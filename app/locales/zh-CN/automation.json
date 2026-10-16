@@ -1,0 +1,6 @@
+{
+  "automation.title": "自动化",
+  "automation.empty.heading": "自动批准申请",
+  "automation.empty.body": "设置规则以批准或拒绝符合您条件的申请，并连接 Shopify Flow。",
+  "automation.empty.action": "创建规则"
+}

@@ -1,0 +1,47 @@
+{
+  "spike.title": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.intro": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.devOnly": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.run": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.cleanup": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.copy": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.running": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.passed": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.failed": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  }
+}

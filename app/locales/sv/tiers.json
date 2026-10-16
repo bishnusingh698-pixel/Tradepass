@@ -1,0 +1,6 @@
+{
+  "tiers.title": "Nivåer",
+  "tiers.empty.heading": "Skapa din första nivå",
+  "tiers.empty.body": "En nivå är en grossistprisnivå, till exempel Återförsäljare eller Distributör. Godkända köpare ser priserna för sin nivå.",
+  "tiers.empty.action": "Skapa nivå"
+}

@@ -1,0 +1,11 @@
+{
+  "spike.title": "B2B-yhteensopivuustesti",
+  "spike.intro": "Tämä testi tarkistaa, että Tradepass voi siirtää yrityksen sijainnin B2B-markkina-alueelta toiselle tässä kaupassa. Se luo testiyrityksiä, -markkina-alueita ja -luetteloita ja poistaa ne lopuksi.",
+  "spike.devOnly": "Tämän testin voi suorittaa vain kehityskaupoissa.",
+  "spike.run": "Suorita testi",
+  "spike.cleanup": "Poista testitiedot",
+  "spike.copy": "Kopioi tulokset",
+  "spike.running": "Testi on käynnissä. Tämä voi kestää enintään minuutin.",
+  "spike.passed": "Läpäisty: Tradepass voi määrittää tasot automaattisesti tässä kaupassa.",
+  "spike.failed": "Ei läpäisty: Tradepass käyttää tässä kaupassa avustettua tasojen määritystä."
+}

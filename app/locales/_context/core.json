@@ -1,0 +1,124 @@
+{
+  "app.name": {
+    "note": "Brand name. Never translate.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.home": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.applications": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.buyers": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.tiers": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.form": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.storefront": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.certificates": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.notifications": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.automation": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.import": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.settings": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.help": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "common.back": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.save": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.discard": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.saved": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.cancel": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.retry": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.learnMore": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.comingSoon": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.availableOn": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "errors.generic": {
+    "note": "Admin error message shown in a red banner.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "errors.notFound": {
+    "note": "Admin error message shown in a red banner.",
+    "maxLength": 200,
+    "placeholders": []
+  }
+}

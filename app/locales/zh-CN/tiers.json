@@ -1,0 +1,6 @@
+{
+  "tiers.title": "等级",
+  "tiers.empty.heading": "创建您的第一个等级",
+  "tiers.empty.body": "等级是一个批发价格级别，例如“零售商”或“分销商”。获得批准的买家会看到其所属等级的价格。",
+  "tiers.empty.action": "创建等级"
+}

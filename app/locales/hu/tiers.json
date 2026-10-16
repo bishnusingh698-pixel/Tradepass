@@ -1,0 +1,6 @@
+{
+  "tiers.title": "Szintek",
+  "tiers.empty.heading": "Hozza létre az első szintet",
+  "tiers.empty.body": "A szint egy nagykereskedelmi árszint, például Viszonteladó vagy Disztribútor. A jóváhagyott vásárlók a saját szintjük árait látják.",
+  "tiers.empty.action": "Szint létrehozása"
+}

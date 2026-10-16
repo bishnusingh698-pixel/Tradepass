@@ -1,0 +1,11 @@
+{
+  "spike.title": "Ujian keserasian B2B",
+  "spike.intro": "Ujian ini menyemak sama ada Tradepass dapat memindahkan lokasi syarikat antara pasaran B2B di kedai ini. Ujian ini mencipta syarikat, pasaran dan katalog ujian, kemudian memadamkannya selepas selesai.",
+  "spike.devOnly": "Ujian ini hanya dijalankan pada kedai pembangunan.",
+  "spike.run": "Jalankan ujian",
+  "spike.cleanup": "Padamkan data ujian",
+  "spike.copy": "Salin keputusan",
+  "spike.running": "Ujian sedang dijalankan. Proses ini boleh mengambil masa sehingga satu minit.",
+  "spike.passed": "Lulus: Tradepass dapat menetapkan peringkat harga secara automatik di kedai ini.",
+  "spike.failed": "Tidak lulus: Tradepass akan menggunakan penetapan peringkat harga berbantu di kedai ini."
+}
