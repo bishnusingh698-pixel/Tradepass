@@ -22,6 +22,11 @@ export function useI18n() {
       if (!f) cache.set(pattern, (f = new IntlMessageFormat(pattern, locale)));
       return String(f.format(values));
     };
-    return { t, locale, dir };
+    const i18n = {
+      number: (n: number, o?: Intl.NumberFormatOptions) => new Intl.NumberFormat(locale, o).format(n),
+      money: (n: number, currency: string) => new Intl.NumberFormat(locale, { style: "currency", currency }).format(n),
+      date: (d: Date | string, o: Intl.DateTimeFormatOptions = { dateStyle: "medium" }) => new Intl.DateTimeFormat(locale, o).format(new Date(d)),
+    };
+    return { t, locale, dir, i18n };
   }, [locale, dir, messages]);
 }

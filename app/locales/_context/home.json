@@ -77,5 +77,387 @@
     "placeholders": [
       "count"
     ]
+  },
+  "home.welcome.heading": {
+    "note": "Welcome card heading on first open.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "home.welcome.body": {
+    "note": "Welcome card text.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "home.welcome.question": {
+    "note": "Question label above five choices.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "home.welcome.audience.retail": {
+    "note": "Welcome answer option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.welcome.audience.salon": {
+    "note": "Welcome answer option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.welcome.audience.restaurant": {
+    "note": "Welcome answer option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.welcome.audience.distributor": {
+    "note": "Welcome answer option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.welcome.audience.other": {
+    "note": "Welcome answer option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.welcome.suggestedTiers": {
+    "note": "Shows example tier names, a comma-separated list.",
+    "maxLength": 120,
+    "placeholders": [
+      "names"
+    ]
+  },
+  "home.welcome.continue": {
+    "note": "Primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.welcome.skip": {
+    "note": "Button. The welcome can be reopened from Help.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.checklist.heading": {
+    "note": "Section heading for the setup checklist.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.checklist.progress": {
+    "note": "Checklist progress line.",
+    "maxLength": 40,
+    "placeholders": [
+      "done",
+      "total"
+    ]
+  },
+  "home.checklist.dismiss": {
+    "note": "Button shown when all steps are done.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.checklist.show": {
+    "note": "Button to bring the hidden checklist back.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.checklist.openEditor": {
+    "note": "Button that opens the Shopify theme editor.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.checklist.addBlock": {
+    "note": "Button that opens the theme editor with the form block ready to add.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.checklist.tier.title": {
+    "note": "Checklist step.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "home.checklist.tier.body": {
+    "note": "Checklist step explanation.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "home.checklist.tier.action": {
+    "note": "Checklist button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.checklist.form.title": {
+    "note": "Checklist step.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "home.checklist.form.body": {
+    "note": "Checklist step explanation.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "home.checklist.form.action": {
+    "note": "Checklist button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.checklist.embed.title": {
+    "note": "Checklist step.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "home.checklist.embed.body": {
+    "note": "Checklist step explanation.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "home.checklist.block.title": {
+    "note": "Checklist step.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "home.checklist.block.body": {
+    "note": "Checklist step explanation. The quoted block name must match the theme block name.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "home.checklist.block.help": {
+    "note": "Link to the help guide.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.checklist.storefront.title": {
+    "note": "Checklist step.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "home.checklist.storefront.body": {
+    "note": "Checklist step explanation.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "home.checklist.storefront.action": {
+    "note": "Checklist button.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.checklist.test.title": {
+    "note": "Checklist step.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "home.checklist.test.body": {
+    "note": "Checklist step explanation.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "home.checklist.test.action": {
+    "note": "Checklist button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.pending.oldest": {
+    "note": "Text before a relative time, e.g. \"oldest from 2 days ago\".",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.pending.certificates": {
+    "note": "Pending work link.",
+    "maxLength": 60,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "home.pending.assignments": {
+    "note": "Pending work link (assisted mode).",
+    "maxLength": 70,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "home.numbers.heading": {
+    "note": "Section heading for key numbers.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.numbers.loading": {
+    "note": "Shown while the numbers load.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.numbers.received": {
+    "note": "Number tile label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.numbers.approved": {
+    "note": "Number tile label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.numbers.rate": {
+    "note": "Number tile label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.numbers.median": {
+    "note": "Number tile label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.numbers.previous": {
+    "note": "Comparison line under a number.",
+    "maxLength": 40,
+    "placeholders": [
+      "value"
+    ]
+  },
+  "home.numbers.hours": {
+    "note": "Duration.",
+    "maxLength": 20,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "home.numbers.days": {
+    "note": "Duration.",
+    "maxLength": 20,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "home.numbers.newBuyers": {
+    "note": "Sub-heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.numbers.tierLine": {
+    "note": "Line with a tier name and number of new buyers.",
+    "maxLength": 60,
+    "placeholders": [
+      "count",
+      "tier"
+    ]
+  },
+  "home.numbers.noTier": {
+    "note": "Used for buyers without a tier.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "home.numbers.orders": {
+    "note": "Orders placed by Tradepass buyers.",
+    "maxLength": 100,
+    "placeholders": [
+      "count",
+      "total"
+    ]
+  },
+  "home.numbers.ordersTruncated": {
+    "note": "Note when there were too many orders to check.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "home.numbers.ordersUnavailable": {
+    "note": "Shown when Shopify order data can't be read.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "home.readiness.marketsHelp": {
+    "note": "Button linking to Shopify help.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "home.alert.catalog_limit.heading": {
+    "note": "Alert heading.",
+    "maxLength": 60,
+    "placeholders": [
+      "limit"
+    ]
+  },
+  "home.alert.catalog_limit.body": {
+    "note": "Alert body.",
+    "maxLength": 200,
+    "placeholders": [
+      "limit"
+    ]
+  },
+  "home.alert.catalog_limit.action": {
+    "note": "Alert button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.alert.email_quota.heading": {
+    "note": "Alert heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "home.alert.email_quota.body": {
+    "note": "Alert body.",
+    "maxLength": 200,
+    "placeholders": [
+      "cap"
+    ]
+  },
+  "home.alert.email_quota.action": {
+    "note": "Alert button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.alert.embed_off.heading": {
+    "note": "Alert heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "home.alert.embed_off.body": {
+    "note": "Alert body.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "home.alert.tier_missing.heading": {
+    "note": "Alert heading.",
+    "maxLength": 80,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "home.alert.tier_missing.body": {
+    "note": "Alert body.",
+    "maxLength": 200,
+    "placeholders": [
+      "tier"
+    ]
+  },
+  "home.alert.tier_missing.action": {
+    "note": "Alert button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.alert.plan_limit.heading": {
+    "note": "Alert heading. full is 1 when the limit is reached.",
+    "maxLength": 90,
+    "placeholders": [
+      "full",
+      "limit",
+      "used"
+    ]
+  },
+  "home.alert.plan_limit.body": {
+    "note": "Alert body.",
+    "maxLength": 200,
+    "placeholders": [
+      "full"
+    ]
+  },
+  "home.alert.plan_limit.action": {
+    "note": "Alert button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.alert.first_buyer.heading": {
+    "note": "Celebration banner heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "home.alert.first_buyer.body": {
+    "note": "Celebration banner text.",
+    "maxLength": 160,
+    "placeholders": []
   }
 }

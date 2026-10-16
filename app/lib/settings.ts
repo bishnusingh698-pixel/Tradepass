@@ -41,7 +41,8 @@ export type Settings = {
   branding: { logoUrl: string | null; accentColor: string | null };
   /** Merchant overrides for any built-in text, admin/emails/storefront: { locale: { key: text } } */
   texts: LocalizedTexts;
-  onboarding: { checklistDismissed: boolean; dismissedAlerts: Record<string, string> };
+  /** formReviewed / storefrontReviewed turn the matching checklist steps green once the merchant saved that page. */
+  onboarding: { checklistDismissed: boolean; dismissedAlerts: Record<string, string>; formReviewed: boolean; storefrontReviewed: boolean };
   debug: { storefrontUntil: string | null };
 };
 
@@ -78,7 +79,7 @@ export function defaultSettings(): Settings {
     retention: { months: 12, deleteFiles: true },
     branding: { logoUrl: null, accentColor: null },
     texts: {},
-    onboarding: { checklistDismissed: false, dismissedAlerts: {} },
+    onboarding: { checklistDismissed: false, dismissedAlerts: {}, formReviewed: false, storefrontReviewed: false },
     debug: { storefrontUntil: null },
   };
 }
