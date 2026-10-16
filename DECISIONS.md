@@ -44,5 +44,5 @@ Rejected or withdrawn applications are deleted after 12 months (merchant setting
 ## D-011 Translation of example tag names — Decided
 Translators localised the illustrative "wholesale" tag in the Import empty state (for example Danish "engros", Russian «опт»). Merchants type their real tag themselves, so this is only an example. Flagged in TRANSLATION_REVIEW.md.
 
-## D-012 Repository — Pending your action
-GitHub repo creation isn't available from this workspace. The work is committed locally and mirrored to the project files folder until you create an empty `tradepass` repository (see progress.md → What I need from you).
+## D-012 Repository — Decided
+Code lives at https://github.com/bishnusingh698-pixel/tradepass (branch `main`).

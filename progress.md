@@ -15,7 +15,7 @@
 - Tests: 129 Vitest tests pass (i18n checks across 36 locales, app proxy HMAC with Shopify's example, tax exemption mapping, encryption + link tokens, /healthz + jobs, plan detection). Typecheck, lint and build are clean. Smoke-tested the built server: /healthz 200, jobs 401 without the secret and 200 with it.
 
 ### Next
-1. Bishnu's accounts (below). Then: link the app with Shopify CLI, deploy to Render, install on the dev store, run CHECKLIST A–C.
+1. Bishnu's accounts (GitHub done). Then: link the app with Shopify CLI, deploy to Render, install on the dev store, run CHECKLIST A–C.
 2. Run the spike and fill in SPIKE_RESULTS.md. Decide automatic or assisted assignment, and settle D-004.
 3. P1 leftovers: verify install/reinstall live, the app.extensions() checklist, and a Playwright end-to-end smoke test against the dev store.
 4. P2: tiers and the approval engine.
