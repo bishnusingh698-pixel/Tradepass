@@ -1,0 +1,73 @@
+{%- comment -%}
+  "Apply for wholesale" app block: a button or a banner for header, footer or product
+  pages. Hidden for signed-in B2B buyers when the setting is on. Pure Liquid + CSS.
+{%- endcomment -%}
+{%- liquid
+  assign tp = app.metafields.tradepass.config.value
+  assign tp_show = true
+  if block.settings.hide_for_b2b and customer and customer.b2b?
+    assign tp_show = false
+  endif
+  assign tp_over = app.metafields.tradepass.texts.value[request.locale.iso_code]
+  assign tp_root = routes.root_url
+  if tp_root == '/'
+    assign tp_root = ''
+  endif
+  assign tp_apply = tp.applyUrl | default: '/pages/wholesale'
+  assign tp_first = tp_apply | slice: 0
+  if tp_first == '/'
+    assign tp_apply = tp_root | append: tp_apply
+  endif
+  assign tp_heading = block.settings.heading | default: tp_over['apply_block.heading']
+  if tp_heading == blank
+    assign tp_heading = 'apply_block.heading' | t
+  endif
+  assign tp_text = block.settings.text | default: tp_over['apply_block.text']
+  if tp_text == blank
+    assign tp_text = 'apply_block.text' | t
+  endif
+  assign tp_button = block.settings.button | default: tp_over['apply_block.button']
+  if tp_button == blank
+    assign tp_button = 'apply_block.button' | t
+  endif
+-%}
+{%- if tp_show -%}
+  <style>
+    .tp-apply{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin-block:.75rem}
+    .tp-apply--banner{flex-direction:column;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(0,0,0,.15);border-radius:4px}
+    .tp-apply__heading{margin:0;font-weight:600;font-size:1.1em}
+    .tp-apply__text{margin:0}
+    .tp-apply__btn{display:inline-flex;align-items:center;justify-content:center;min-block-size:44px;padding-inline:1.25rem;text-decoration:none;overflow-wrap:anywhere;text-align:center{% if tp.colors.button != blank %};background:{{ tp.colors.button }};color:#fff;border-color:{{ tp.colors.button }}{% endif %}}
+  </style>
+  <div class="tp-apply tp-apply--{{ block.settings.style }}" {{ block.shopify_attributes }}>
+    {%- if block.settings.style == 'banner' -%}
+      <p class="tp-apply__heading">{{ tp_heading | escape }}</p>
+      <p class="tp-apply__text">{{ tp_text | escape }}</p>
+    {%- endif -%}
+    <a class="tp-apply__btn button" href="{{ tp_apply | escape }}">{{ tp_button | escape }}</a>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:apply_block.name",
+  "target": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "t:apply_block.style",
+      "default": "button",
+      "options": [
+        { "value": "button", "label": "t:apply_block.style_button" },
+        { "value": "banner", "label": "t:apply_block.style_banner" }
+      ]
+    },
+    { "type": "paragraph", "content": "t:apply_block.texts_info" },
+    { "type": "text", "id": "heading", "label": "t:apply_block.heading" },
+    { "type": "text", "id": "text", "label": "t:apply_block.text" },
+    { "type": "text", "id": "button", "label": "t:apply_block.button" },
+    { "type": "checkbox", "id": "hide_for_b2b", "label": "t:apply_block.hide_for_b2b", "default": true }
+  ]
+}
+{% endschema %}

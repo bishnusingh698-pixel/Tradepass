@@ -18,5 +18,950 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "form.list.add": {
+    "note": "Primary page button that creates another application form (Pro).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.list.proNote": {
+    "note": "Banner on the Form list for plans without multiple forms; followed by 'Available on Pro'.",
+    "maxLength": 197,
+    "placeholders": []
+  },
+  "form.list.tableLabel": {
+    "note": "Accessible label of the forms table.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "form.list.name": {
+    "note": "Forms table column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.list.fields": {
+    "note": "Forms table column header: number of visible questions.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.list.tier": {
+    "note": "Forms table column header.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "form.list.updated": {
+    "note": "Forms table column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.list.default": {
+    "note": "Badge on the form used when a page block doesn't choose one.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.list.fieldCount": {
+    "note": "Forms table cell: number of visible questions.",
+    "maxLength": 94,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "form.list.noTier": {
+    "note": "Forms table cell when no tier is suggested.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.list.addHeading": {
+    "note": "Modal heading for creating a form.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.list.addBody": {
+    "note": "Modal body for creating a form.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "form.list.namePlaceholder": {
+    "note": "Placeholder for the new form name.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "form.list.nameRequired": {
+    "note": "Inline error when the form name is empty.",
+    "maxLength": 51,
+    "placeholders": []
+  },
+  "form.list.create": {
+    "note": "Modal primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.settings.name": {
+    "note": "Label of the form name field (only staff see it).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.settings.nameHelp": {
+    "note": "Help under the form name.",
+    "maxLength": 70,
+    "placeholders": []
+  },
+  "form.settings.tier": {
+    "note": "Label: tier pre-selected when approving applications from this form.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "form.settings.tierHelp": {
+    "note": "Help under suggested tier.",
+    "maxLength": 162,
+    "placeholders": []
+  },
+  "form.settings.noTiers": {
+    "note": "Help under suggested tier when there are no tiers.",
+    "maxLength": 72,
+    "placeholders": []
+  },
+  "form.settings.tierNone": {
+    "note": "Option: no suggested tier.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.settings.makeDefault": {
+    "note": "Page action: make this the default form.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.settings.defaultSet": {
+    "note": "Toast after making a form the default.",
+    "maxLength": 54,
+    "placeholders": []
+  },
+  "form.settings.delete": {
+    "note": "Page action (destructive).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.settings.deleteHeading": {
+    "note": "Confirmation modal heading; {name} is the form name.",
+    "maxLength": 32,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "form.settings.deleteBody": {
+    "note": "Confirmation modal body naming exactly what happens.",
+    "maxLength": 226,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "form.settings.deleteConfirm": {
+    "note": "Destructive modal button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.lang.label": {
+    "note": "Language switcher for editing texts and the preview.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.lang.help": {
+    "note": "Help under the language switcher.",
+    "maxLength": 133,
+    "placeholders": []
+  },
+  "form.lang.primary": {
+    "note": "Language option for the store's primary language; {language} is the language name.",
+    "maxLength": 51,
+    "placeholders": [
+      "language"
+    ]
+  },
+  "form.lang.published": {
+    "note": "Language option for a language the store publishes.",
+    "maxLength": 45,
+    "placeholders": [
+      "language"
+    ]
+  },
+  "form.errors.heading": {
+    "note": "Error summary banner heading at the top of the page.",
+    "maxLength": 149,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "form.saved.syncLater": {
+    "note": "Toast when saving worked but publishing to the storefront has to be retried.",
+    "maxLength": 88,
+    "placeholders": []
+  },
+  "form.section.titleLabel": {
+    "note": "Label for a section's title in the current language.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.section.moveUp": {
+    "note": "Accessible label of an icon button.",
+    "maxLength": 50,
+    "placeholders": [
+      "section"
+    ]
+  },
+  "form.section.moveDown": {
+    "note": "Accessible label of an icon button.",
+    "maxLength": 53,
+    "placeholders": [
+      "section"
+    ]
+  },
+  "form.section.empty": {
+    "note": "Shown in an empty section.",
+    "maxLength": 118,
+    "placeholders": []
+  },
+  "form.field.untitled": {
+    "note": "Name of a custom question without a label yet.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "form.field.conditional": {
+    "note": "Badge on a question shown only for certain answers.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.field.hasErrors": {
+    "note": "Red badge on a question row with errors.",
+    "maxLength": 91,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "form.field.moveUp": {
+    "note": "Accessible label of an icon button; {field} is the question name.",
+    "maxLength": 34,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.field.moveDown": {
+    "note": "Accessible label of an icon button.",
+    "maxLength": 37,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.field.edit": {
+    "note": "Button that opens a question's settings.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.field.close": {
+    "note": "Button that closes a question's settings.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.field.state": {
+    "note": "Label of the required/optional/hidden select.",
+    "maxLength": 38,
+    "placeholders": []
+  },
+  "form.field.lockedHint": {
+    "note": "Help for questions that can't be hidden.",
+    "maxLength": 93,
+    "placeholders": []
+  },
+  "form.field.label": {
+    "note": "Label of the question label input.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.field.placeholder": {
+    "note": "Label of the placeholder input.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.field.help": {
+    "note": "Label of the help text input.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.field.defaultHint": {
+    "note": "Help under an editable text that has a built-in translation.",
+    "maxLength": 91,
+    "placeholders": []
+  },
+  "form.field.consentHint": {
+    "note": "Shown instead of a label input for the consent checkbox.",
+    "maxLength": 91,
+    "placeholders": []
+  },
+  "form.field.delete": {
+    "note": "Button that deletes a custom question (opens a confirmation).",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "form.state.required": {
+    "note": "Question state / badge.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.state.optional": {
+    "note": "Question state / badge.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.state.hidden": {
+    "note": "Question state / badge.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.text": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.textarea": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.number": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.email": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.phone": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.url": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.select": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.checkboxes": {
+    "note": "Question type name in the builder.",
+    "maxLength": 53,
+    "placeholders": []
+  },
+  "form.type.date": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.file": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.address": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.country_tax": {
+    "note": "Question type name in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.type.consent": {
+    "note": "Question type name in the builder.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "form.fieldName.companyName": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.businessType": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.website": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.yearEstablished": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "form.fieldName.locationsCount": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "form.fieldName.monthlyOrderValue": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 54,
+    "placeholders": []
+  },
+  "form.fieldName.referral": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 51,
+    "placeholders": []
+  },
+  "form.fieldName.firstName": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.lastName": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.email": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.phone": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.jobTitle": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.preferredLanguage": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 38,
+    "placeholders": []
+  },
+  "form.fieldName.billingAddress": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "form.fieldName.shippingAddress": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "form.fieldName.taxNumber": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.certificates": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.fieldName.message": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 42,
+    "placeholders": []
+  },
+  "form.fieldName.consent": {
+    "note": "Name of a standard application question in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.sectionName.business": {
+    "note": "Name of a form section in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.sectionName.contact": {
+    "note": "Name of a form section in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.sectionName.addresses": {
+    "note": "Name of a form section in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.sectionName.tax": {
+    "note": "Name of a form section in the builder.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "form.sectionName.message": {
+    "note": "Name of a form section in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.sectionName.consent": {
+    "note": "Name of a form section in the builder.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.option.businessType.retail": {
+    "note": "Business type answer option (admin name).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.option.businessType.salon": {
+    "note": "Business type answer option (admin name).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.option.businessType.restaurant": {
+    "note": "Business type answer option (admin name).",
+    "maxLength": 38,
+    "placeholders": []
+  },
+  "form.option.businessType.distributor": {
+    "note": "Business type answer option (admin name).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.option.businessType.other": {
+    "note": "Business type answer option (admin name).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.option.monthlyOrderValue.lt1k": {
+    "note": "Monthly order value range option (admin name). Numbers are amounts in the store currency.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "form.option.monthlyOrderValue.1k-5k": {
+    "note": "Monthly order value range option (admin name). Numbers are amounts in the store currency.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "form.option.monthlyOrderValue.5k-20k": {
+    "note": "Monthly order value range option (admin name). Numbers are amounts in the store currency.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "form.option.monthlyOrderValue.gt20k": {
+    "note": "Monthly order value range option (admin name). Numbers are amounts in the store currency.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "form.options.heading": {
+    "note": "Heading of a dropdown/checkbox question's options.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "form.options.empty": {
+    "note": "Shown when a choice question has no options.",
+    "maxLength": 62,
+    "placeholders": []
+  },
+  "form.options.label": {
+    "note": "Label of an option text input; {n} is its position.",
+    "maxLength": 30,
+    "placeholders": [
+      "n"
+    ]
+  },
+  "form.options.remove": {
+    "note": "Accessible label of an icon button.",
+    "maxLength": 45,
+    "placeholders": [
+      "option"
+    ]
+  },
+  "form.options.new": {
+    "note": "Label of the input for adding an option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.options.add": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.showIf.toggle": {
+    "note": "Checkbox enabling conditional logic.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "form.showIf.noSources": {
+    "note": "Help when there is no earlier choice question to depend on.",
+    "maxLength": 101,
+    "placeholders": []
+  },
+  "form.showIf.field": {
+    "note": "Select of the question the condition depends on.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.showIf.equals": {
+    "note": "Select of the answer that shows this question.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.showIf.missing": {
+    "note": "Option shown when the condition points at a removed question.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "form.add.heading": {
+    "note": "Section heading.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "form.add.body": {
+    "note": "Section text.",
+    "maxLength": 106,
+    "placeholders": []
+  },
+  "form.add.type": {
+    "note": "Select label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.add.section": {
+    "note": "Select label.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "form.add.button": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.delete.heading": {
+    "note": "Confirmation modal heading.",
+    "maxLength": 43,
+    "placeholders": []
+  },
+  "form.delete.body": {
+    "note": "Confirmation modal body.",
+    "maxLength": 186,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.delete.confirm": {
+    "note": "Destructive modal button.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "form.consent.heading": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.consent.text": {
+    "note": "Label of the consent checkbox text.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.consent.privacyUrl": {
+    "note": "Label of a URL input.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "form.consent.privacyUrlHelp": {
+    "note": "Help under the privacy link.",
+    "maxLength": 176,
+    "placeholders": []
+  },
+  "form.success.heading": {
+    "note": "Section heading.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "form.success.message": {
+    "note": "Label.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "form.success.messageHelp": {
+    "note": "Help under the thank-you message.",
+    "maxLength": 106,
+    "placeholders": []
+  },
+  "form.success.redirect": {
+    "note": "Label of a URL input.",
+    "maxLength": 56,
+    "placeholders": []
+  },
+  "form.success.redirectHelp": {
+    "note": "Help under the redirect URL.",
+    "maxLength": 154,
+    "placeholders": []
+  },
+  "form.spam.heading": {
+    "note": "Section heading.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "form.spam.body": {
+    "note": "Section text.",
+    "maxLength": 210,
+    "placeholders": []
+  },
+  "form.spam.enable": {
+    "note": "Checkbox.",
+    "maxLength": 43,
+    "placeholders": []
+  },
+  "form.spam.question": {
+    "note": "Label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.spam.questionExample": {
+    "note": "Example placeholder question.",
+    "maxLength": 46,
+    "placeholders": []
+  },
+  "form.spam.answer": {
+    "note": "Label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.spam.answerExample": {
+    "note": "Example placeholder answer matching the example question.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.spam.answerHelp": {
+    "note": "Help under the answer.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "form.preview.heading": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.preview.desktop": {
+    "note": "Device switch button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.preview.mobile": {
+    "note": "Device switch button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.preview.frameTitle": {
+    "note": "Accessible title of the preview frame.",
+    "maxLength": 48,
+    "placeholders": []
+  },
+  "form.preview.loading": {
+    "note": "Accessible label of a spinner.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "form.preview.note": {
+    "note": "Small note under the preview.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "form.preview.unavailableHeading": {
+    "note": "Banner heading when the storefront renderer can't be loaded.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "form.preview.unavailableBody": {
+    "note": "Banner body.",
+    "maxLength": 163,
+    "placeholders": []
+  },
+  "form.place.heading": {
+    "note": "Section heading with 3 steps.",
+    "maxLength": 45,
+    "placeholders": []
+  },
+  "form.place.step1": {
+    "note": "Step 1.",
+    "maxLength": 131,
+    "placeholders": []
+  },
+  "form.place.step1Action": {
+    "note": "Link opening Shopify's new page screen.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.place.step2": {
+    "note": "Step 2. The quoted name is the app block name in the theme editor.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "form.place.step2Action": {
+    "note": "Link.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "form.place.step3": {
+    "note": "Step 3.",
+    "maxLength": 128,
+    "placeholders": []
+  },
+  "form.place.step3Action": {
+    "note": "Link.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "form.place.embedOn": {
+    "note": "Success badge.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "form.error.invalid": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 123,
+    "placeholders": []
+  },
+  "form.error.lockedHidden": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 134,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.lockedMissing": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 112,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.duplicateId": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 77,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.badCustomId": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 110,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.badType": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 133,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.labelRequired": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 133,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.tooLong": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 77,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.optionsRequired": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 77,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.badOptionValue": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 117,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.duplicateOption": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 94,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.tooManyOptions": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 80,
+    "placeholders": [
+      "field",
+      "max"
+    ]
+  },
+  "form.error.showIfMissing": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 152,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.showIfSelf": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 59,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.showIfNotChoice": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 125,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.showIfBadValue": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 128,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.showIfHidden": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 181,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.showIfOrder": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 125,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "form.error.badUrl": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 130,
+    "placeholders": []
+  },
+  "form.error.spamIncomplete": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 117,
+    "placeholders": []
+  },
+  "form.error.tooManyFields": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 70,
+    "placeholders": [
+      "max"
+    ]
+  },
+  "form.error.nameRequired": {
+    "note": "Inline error and error-summary item in the form builder. {field} is a question name (may be unused).",
+    "maxLength": 75,
+    "placeholders": []
   }
 }

@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Update your wholesale application",
+  "hosted.update.intro": "{store} needs a little more information to review your wholesale application.",
+  "hosted.update.messageLabel": "Message from {store}",
+  "hosted.update.submit": "Send update",
+  "hosted.update.doneHeading": "Thank you, your application has been updated",
+  "hosted.update.doneBody": "{store} will review it and get back to you by email.",
+  "hosted.link.invalidTitle": "This link isn't valid",
+  "hosted.link.invalidBody": "Check that you opened the whole link from the email, or contact {store}.",
+  "hosted.link.expiredTitle": "This link has expired",
+  "hosted.link.expiredBody": "For your security, update links only work for a limited time. Please contact {store} and ask for a new link.",
+  "hosted.link.usedTitle": "This link has already been used",
+  "hosted.link.usedBody": "Each update link works once. If you need to change something else, please contact {store}.",
+  "hosted.noscript": "Please turn on JavaScript in your browser to update your application.",
+  "hosted.error.generic": "Something went wrong on our side. Please try again in a few minutes."
+}

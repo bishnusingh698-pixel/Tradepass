@@ -1,0 +1,52 @@
+/* Tradepass application form. Mobile-first single column, logical properties (RTL),
+   inherits the theme's fonts and colours, no fixed widths (long translations wrap). */
+.tpf{max-inline-size:40rem;margin-inline:auto;color:inherit;font:inherit;line-height:1.5}
+.tpf *,.tpf *::before,.tpf *::after{box-sizing:border-box}
+.tpf-form{display:flex;flex-direction:column;gap:1.25rem}
+.tpf-section{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:1rem;min-inline-size:0}
+.tpf-section__title{font-size:1.15em;font-weight:600;padding:0;margin-block-end:.25rem}
+.tpf-field{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem;min-inline-size:0}
+.tpf-field[hidden],.tpf-address__fields[hidden]{display:none}
+.tpf-label,.tpf-sublabel{font-weight:600;overflow-wrap:anywhere;padding:0}
+.tpf-sublabel{font-weight:500}
+.tpf-req{color:inherit}
+.tpf-opt{font-weight:400;opacity:.8}
+.tpf-help{margin:0;font-size:.9em;opacity:.85;overflow-wrap:anywhere}
+.tpf input[type=text],.tpf input[type=email],.tpf input[type=tel],.tpf input[type=url],.tpf input[type=number],.tpf input[type=date],.tpf select,.tpf textarea{
+  inline-size:100%;min-block-size:48px;padding:.6rem .75rem;font:inherit;color:inherit;background:transparent;
+  border:1px solid currentColor;border-radius:4px}
+.tpf textarea{min-block-size:7rem;resize:vertical}
+.tpf input:focus-visible,.tpf select:focus-visible,.tpf textarea:focus-visible,.tpf button:focus-visible,.tpf a:focus-visible,.tpf-fileinput:focus-visible+.tpf-filebtn{outline:3px solid currentColor;outline-offset:2px}
+.tpf [aria-invalid=true]{border-width:2px;border-color:#b3261e}
+.tpf-error{margin:0;color:#b3261e;font-weight:600;overflow-wrap:anywhere}
+.tpf-error[hidden]{display:none}
+.tpf-sub{display:flex;flex-direction:column;gap:.25rem}
+.tpf-address__fields,.tpf-tax,.tpf-files,.tpf-address{display:flex;flex-direction:column;gap:.75rem}
+.tpf-choices{display:flex;flex-direction:column;gap:.5rem}
+.tpf-check{display:flex;align-items:flex-start;gap:.6rem}
+.tpf-check input{inline-size:1.4rem;block-size:1.4rem;margin:0;flex:none;margin-block-start:.1rem}
+.tpf-check label{overflow-wrap:anywhere}
+.tpf-filelist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.tpf-file{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:.5rem;border:1px solid rgba(0,0,0,.2);border-radius:4px}
+.tpf-file__name{font-weight:600;overflow-wrap:anywhere;flex:1 1 10rem}
+.tpf-file .tpf-sub{flex:1 1 100%}
+.tpf-fileinput{position:absolute;inline-size:1px;block-size:1px;opacity:0;overflow:hidden}
+.tpf-filebtn{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-block-size:44px;padding-inline:1rem;border:1px solid currentColor;border-radius:4px;cursor:pointer}
+.tpf-fileinput:disabled+.tpf-filebtn{opacity:.5;cursor:not-allowed}
+.tpf-link{background:none;border:0;padding:.25rem;min-block-size:44px;color:inherit;text-decoration:underline;font:inherit;cursor:pointer}
+.tpf-summary{padding:1rem;border:2px solid #b3261e;border-radius:4px}
+.tpf-summary[hidden]{display:none}
+.tpf-summary__title{margin:0 0 .5rem;font-weight:700}
+.tpf-summary ul{margin:0;padding-inline-start:1.25rem}
+.tpf-summary a{color:#b3261e;font-weight:600}
+.tpf-note{padding:.75rem 1rem;border:1px solid rgba(0,0,0,.2);border-radius:4px}
+.tpf-note[hidden]{display:none}
+.tpf-submit{min-block-size:48px;padding-inline:1.5rem;align-self:stretch;font:inherit;font-weight:600;cursor:pointer}
+.tpf-submit[disabled]{opacity:.7;cursor:progress}
+.tpf-status:empty{display:none}
+.tpf-success{padding:1.5rem;border:1px solid rgba(0,0,0,.2);border-radius:4px}
+.tpf-success__title{margin-block-start:0}
+.tpf-hp{position:absolute;inset-inline-start:-10000px;inline-size:1px;block-size:1px;overflow:hidden}
+.tpf-sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (min-width:750px){.tpf-submit{align-self:flex-start}}
+@media (prefers-reduced-motion:no-preference){.tpf-submit{transition:opacity .15s}}

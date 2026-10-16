@@ -1,0 +1,599 @@
+{
+  "approval.step.company": {
+    "note": "Name of one step in the live approval progress list (Company, Location, Contact, Terms and tax, Tier, Email).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.step.location": {
+    "note": "Name of one step in the live approval progress list (Company, Location, Contact, Terms and tax, Tier, Email).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.step.contact": {
+    "note": "Name of one step in the live approval progress list (Company, Location, Contact, Terms and tax, Tier, Email).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.step.terms_tax": {
+    "note": "Name of one step in the live approval progress list (Company, Location, Contact, Terms and tax, Tier, Email).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.step.tier": {
+    "note": "Name of one step in the live approval progress list (Company, Location, Contact, Terms and tax, Tier, Email).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.step.email": {
+    "note": "Name of one step in the live approval progress list (Company, Location, Contact, Terms and tax, Tier, Email).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.status.pending": {
+    "note": "Status next to an approval step that hasn't started.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "approval.status.running": {
+    "note": "Status next to the approval step running now.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "approval.status.done": {
+    "note": "Status next to a finished approval step.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "approval.status.failed": {
+    "note": "Status next to a failed approval step.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "approval.status.skipped": {
+    "note": "Status next to an approval step that wasn't needed (e.g. welcome email turned off).",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "approval.modal.heading": {
+    "note": "Approve dialog title; {company} is the applicant's company name.",
+    "maxLength": 60,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "approval.modal.loading": {
+    "note": "Screen-reader label for the loading spinner in the approve dialog.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "approval.section.tier": {
+    "note": "Section heading in the approve dialog.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.section.tax": {
+    "note": "Section heading in the approve dialog.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.section.company": {
+    "note": "Section heading in the approve dialog.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.section.contact": {
+    "note": "Section heading in the approve dialog.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.field.tier": {
+    "note": "Field label: wholesale tier (price level) for the new buyer.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.tier.budget": {
+    "note": "Help under the tier picker: how many of Shopify's B2B catalogs are in use.",
+    "maxLength": 60,
+    "placeholders": [
+      "limit",
+      "used"
+    ]
+  },
+  "approval.tier.none": {
+    "note": "Warning in the approve dialog when the store has no tiers.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.tier.create": {
+    "note": "Button linking to the tier editor.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.field.terms": {
+    "note": "Field label (e.g. Net 30).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.terms.none": {
+    "note": "Option for no payment terms.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "approval.field.checkoutToDraft": {
+    "note": "Checkbox: buyer's checkout creates a draft order for the merchant instead of a paid order.",
+    "maxLength": 70,
+    "placeholders": []
+  },
+  "approval.field.checkoutToDraftHelp": {
+    "note": "Help text under the draft-order checkbox.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "approval.field.taxExempt": {
+    "note": "Toggle label: buyer doesn't pay tax.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.tax.suggested": {
+    "note": "Help under the tax-exempt toggle; {exemption} is an exemption name, {reason} a sentence explaining why.",
+    "maxLength": 200,
+    "placeholders": [
+      "exemption",
+      "reason"
+    ]
+  },
+  "approval.tax.reason.us_resale_certificate": {
+    "note": "Why a tax exemption is suggested.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "approval.tax.reason.us_state_unknown": {
+    "note": "Why no exemption is suggested.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "approval.tax.reason.store_outside_eu": {
+    "note": "Why no exemption is suggested.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "approval.tax.reason.same_country": {
+    "note": "Why no exemption is suggested.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "approval.tax.reason.vat_not_verified": {
+    "note": "Why no exemption is suggested.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.tax.reason.eu_reverse_charge": {
+    "note": "Why the EU reverse charge is suggested.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "approval.tax.reason.none": {
+    "note": "Shown when we have no tax suggestion.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "approval.field.addExemption": {
+    "note": "Picker label to add a tax exemption.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.tax.choose": {
+    "note": "Placeholder option in the exemption picker.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.tax.remove": {
+    "note": "Screen-reader label for removing a chosen exemption.",
+    "maxLength": 80,
+    "placeholders": [
+      "exemption"
+    ]
+  },
+  "approval.exemption.usReseller": {
+    "note": "Exemption name; {state} is a 2-letter US state code like TX.",
+    "maxLength": 50,
+    "placeholders": [
+      "state"
+    ]
+  },
+  "approval.exemption.euReverseCharge": {
+    "note": "Exemption name for EU VAT reverse charge.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.field.taxRegistrationId": {
+    "note": "Field label (VAT number, EIN, etc.).",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.field.companyName": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.field.locationName": {
+    "note": "Field label: name of the company location in Shopify.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.field.billingAddress": {
+    "note": "Sub-heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.field.shippingAddress": {
+    "note": "Sub-heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.field.sameShipping": {
+    "note": "Checkbox label.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "approval.address.address1": {
+    "note": "Address field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.address.address2": {
+    "note": "Address field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.address.city": {
+    "note": "Address field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.address.zone": {
+    "note": "Address field label (e.g. TX, ON).",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.address.zoneHelp": {
+    "note": "Help under the state/province field.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "approval.address.zip": {
+    "note": "Address field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.address.country": {
+    "note": "Address field label: 2-letter country code.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.address.countryHelp": {
+    "note": "Help under the country code field.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "approval.field.contact": {
+    "note": "Picker: link existing customer or create new.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.contact.existing": {
+    "note": "Option in the contact picker.",
+    "maxLength": 100,
+    "placeholders": [
+      "email",
+      "name"
+    ]
+  },
+  "approval.contact.new": {
+    "note": "Option in the contact picker.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "approval.contact.otherCompany": {
+    "note": "Warning when the customer already belongs to another company.",
+    "maxLength": 160,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "approval.contact.willCreate": {
+    "note": "Shown when no existing customer has the applicant's email.",
+    "maxLength": 120,
+    "placeholders": [
+      "email",
+      "name"
+    ]
+  },
+  "approval.field.sendWelcome": {
+    "note": "Toggle label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.welcome.shopify": {
+    "note": "Help under the welcome-email toggle.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "approval.welcome.ours": {
+    "note": "Help under the welcome-email toggle.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "approval.action.approve": {
+    "note": "Primary button in the approve dialog.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "approval.action.retry": {
+    "note": "Button to continue a failed approval without duplicating anything.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "approval.action.retryEmail": {
+    "note": "Button when only the welcome email failed.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.action.undo": {
+    "note": "Destructive button: removes what this approval created in Shopify.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.action.close": {
+    "note": "Button closing the approve dialog.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "approval.progress.done": {
+    "note": "Success banner after approval.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "approval.progress.assisted": {
+    "note": "Shown after approval in assisted assignment mode.",
+    "maxLength": 180,
+    "placeholders": []
+  },
+  "approval.progress.running": {
+    "note": "Screen-reader label for the step spinner.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "approval.quota.heading": {
+    "note": "Banner heading on the free plan.",
+    "maxLength": 70,
+    "placeholders": []
+  },
+  "approval.quota.body": {
+    "note": "Banner body on the free plan.",
+    "maxLength": 200,
+    "placeholders": [
+      "limit"
+    ]
+  },
+  "approval.quota.upgrade": {
+    "note": "Button linking to the plans page.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "approval.error.field.tier": {
+    "note": "Inline field error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "approval.error.field.required": {
+    "note": "Inline field error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "approval.error.field.exemption": {
+    "note": "Inline field error.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "approval.error.field.country": {
+    "note": "Inline field error.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "approval.error.shopify": {
+    "note": "Plain-language reason an approval step failed, shown under the step. {detail} is Shopify's own message.",
+    "maxLength": 200,
+    "placeholders": [
+      "detail"
+    ]
+  },
+  "approval.error.network": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.busy": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.concurrent": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.verify_failed": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.missing_in_shopify": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.tier_missing": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.catalog_limit": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.markets_unavailable": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.contact_email_taken": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.contact_email_missing": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.no_contact_role": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.email_failed": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.plan_limit": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.no_b2b": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.volume_pricing": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.catalog_in_use": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.has_buyers": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.error.not_found": {
+    "note": "Plain-language reason an approval step failed, shown under the step.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.plan_limit": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.not_found": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.not_pending": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.busy": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.no_state": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.finished": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.missing_address": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.tier_required": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.blocked.failed": {
+    "note": "Error banner in the approve dialog.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "approval.skip.plan_limit": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.skip.not_pending": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.skip.tier_missing": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.skip.step_failed": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name. {step} is a step name, {error} the reason.",
+    "maxLength": 160,
+    "placeholders": [
+      "error",
+      "step"
+    ]
+  },
+  "approval.skip.not_found": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.skip.busy": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.skip.no_state": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.skip.finished": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.skip.missing_address": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "approval.skip.tier_required": {
+    "note": "Reason one application was skipped in a bulk approve, shown after the company name.",
+    "maxLength": 160,
+    "placeholders": []
+  }
+}

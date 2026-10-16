@@ -1,0 +1,24 @@
+# Wholesale-only checkout lock (feature spec §I mode 3). A cart and checkout
+# validation Function: it runs on Shopify, so the lock works while our server
+# sleeps. Tradepass turns it on/off with validationCreate / validationUpdate
+# (app/lib/checkout-lock.server.ts) and writes its config into two JSON
+# metafields on the Validation:
+#   $app:tradepass / lock_vars   → input query variables ({ exemptTags })
+#   $app:tradepass / lock_config → { enabled, messages: { locale: text }, defaultLocale }
+api_version = "2026-10"
+
+[[extensions]]
+name = "Tradepass wholesale-only checkout"
+handle = "tradepass-checkout-lock"
+type = "function"
+description = "Blocks checkout unless the buyer purchases for a B2B company (Tradepass wholesale-only mode)."
+
+  [[extensions.targeting]]
+  target = "cart.validations.generate.run"
+  input_query = "src/cart_validations_generate_run.graphql"
+  export = "cart-validations-generate-run"
+  input_variables = { namespace = "$app:tradepass", key = "lock_vars" }
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"

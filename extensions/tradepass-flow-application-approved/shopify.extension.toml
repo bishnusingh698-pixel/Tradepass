@@ -1,0 +1,36 @@
+# Shopify Flow trigger fired by app/lib/flow.server.ts (emitFlowTrigger).
+# Fields must match TRIGGER_FIELDS there (checked by tests/automation-flow.test.ts).
+[[extensions]]
+name = "Wholesale application approved"
+type = "flow_trigger"
+handle = "tradepass-flow-application-approved"
+description = "Runs when a Tradepass wholesale application is approved and the buyer's company is set up."
+
+[settings]
+
+  [[settings.fields]]
+  type = "company_reference"
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "Application ID"
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "Buyer ID"
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "Company name"
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "Contact email"
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "Country"
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "Tier"

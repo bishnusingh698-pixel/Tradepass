@@ -52,8 +52,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (intent === "reverse") {
     try {
-      const ok = await reverseAutoDecision({ admin: ctx.admin, shop: ctx.shop, actor: ctx.actor }, String(form.get("id")));
-      return { ok, intent };
+      const result = await reverseAutoDecision({ admin: ctx.admin, shop: ctx.shop, actor: ctx.actor, t: ctx.t }, String(form.get("id")));
+      return { ok: Boolean(result), intent, result };
     } catch {
       return { ok: false, intent };
     }
@@ -125,7 +125,8 @@ export default function Automation() {
 
   useEffect(() => {
     if (other.state !== "idle" || !other.data || other.data.intent !== "reverse") return;
-    shopify.toast.show(other.data.ok ? t("automation.recent.reversed") : t("automation.recent.reverseFailed"), { isError: !other.data.ok });
+    const result = "result" in other.data ? other.data.result : null;
+    shopify.toast.show(other.data.ok && result ? t(`automation.recent.reversed.${result}`) : t("automation.recent.reverseFailed"), { isError: !other.data.ok });
   }, [other.state, other.data, shopify, t]);
 
   // Block in-app navigation while unsaved; App Bridge asks to save or discard.

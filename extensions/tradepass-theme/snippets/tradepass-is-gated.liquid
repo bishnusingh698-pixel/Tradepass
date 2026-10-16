@@ -1,0 +1,38 @@
+{%- comment -%}
+  Prints "1" when product `p` is gated by the Tradepass scope `tp` (app-data config).
+  `handles` is the server-resolved list (collections/tags/products scope); tags and
+  collections are also checked directly so new products are gated before the next sync.
+{%- endcomment -%}
+{%- liquid
+  case tp.scope
+    when 'all'
+      echo '1'
+    when 'tags'
+      if handles contains p.handle
+        echo '1'
+      else
+        for tag in tp.tags
+          if p.tags contains tag
+            echo '1'
+            break
+          endif
+        endfor
+      endif
+    when 'collections'
+      if handles contains p.handle
+        echo '1'
+      else
+        assign tp_ch = p.collections | map: 'handle'
+        for c in tp.collections
+          if tp_ch contains c
+            echo '1'
+            break
+          endif
+        endfor
+      endif
+    else
+      if handles contains p.handle
+        echo '1'
+      endif
+  endcase
+-%}

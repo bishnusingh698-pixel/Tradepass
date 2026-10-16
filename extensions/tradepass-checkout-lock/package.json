@@ -1,0 +1,11 @@
+{
+  "name": "tradepass-checkout-lock",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "main": "src/index.js",
+  "dependencies": {
+    "@shopify/shopify_function": "2.0.1"
+  }
+}

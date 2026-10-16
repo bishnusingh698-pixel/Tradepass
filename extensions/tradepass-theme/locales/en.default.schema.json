@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Hides prices for retail visitors and shows the Log in / Apply message, based on your Tradepass storefront settings. Must be on for price hiding."
+  },
+  "form_block": {
+    "name": "Wholesale application",
+    "form_id": "Form ID",
+    "form_id_info": "Leave empty to use your default form. Copy a form's ID from Tradepass → Form.",
+    "show_heading": "Show heading",
+    "heading": "Heading",
+    "heading_info": "Leave empty to use the default text in the visitor's language."
+  },
+  "apply_block": {
+    "name": "Apply for wholesale",
+    "style": "Style",
+    "style_button": "Button",
+    "style_banner": "Banner",
+    "heading": "Heading",
+    "text": "Text",
+    "button": "Button label",
+    "texts_info": "Leave empty to use the default text in the visitor's language.",
+    "hide_for_b2b": "Hide for signed-in wholesale buyers"
+  }
+}

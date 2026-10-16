@@ -1,0 +1,7 @@
+# Theme app extension (app embed + app blocks). Never edits theme files; turning
+# the embed off or uninstalling leaves nothing behind. Config comes from
+# app-data metafields (namespace "tradepass") written by syncStorefrontConfig,
+# so everything here works while our server sleeps.
+name = "tradepass-theme"
+type = "theme"
+handle = "tradepass-theme"

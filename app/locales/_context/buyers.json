@@ -18,5 +18,616 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "buyers.exportAll": {
+    "note": "Page action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.search.label": {
+    "note": "Search field label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "buyers.search.placeholder": {
+    "note": "Search placeholder.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "buyers.filter.tier": {
+    "note": "Filter label.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.filter.cert": {
+    "note": "Filter label.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.filter.country": {
+    "note": "Filter label.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.filter.source": {
+    "note": "Filter label.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.filter.status": {
+    "note": "Filter label (active/paused).",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.filter.any": {
+    "note": "Filter option.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.filter.noTier": {
+    "note": "Filter option.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.cert.valid": {
+    "note": "Certificate status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.cert.expiring": {
+    "note": "Certificate status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.cert.expired": {
+    "note": "Certificate status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.cert.pending": {
+    "note": "Certificate status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.cert.rejected": {
+    "note": "Certificate status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.cert.none": {
+    "note": "Certificate status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.source.application": {
+    "note": "Buyer source.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.source.import": {
+    "note": "Buyer source.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.source.tag": {
+    "note": "Buyer source.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.status.active": {
+    "note": "Access status.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.status.paused": {
+    "note": "Access status.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.tier.none": {
+    "note": "Shown when a buyer has no tier.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.tax.exempt": {
+    "note": "Tax status.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.tax.charged": {
+    "note": "Tax status.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.selectAll": {
+    "note": "Screen-reader label.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.select": {
+    "note": "Screen-reader label.",
+    "maxLength": 60,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "buyers.col.company": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.col.contact": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.col.tier": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.col.terms": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.col.tax": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.col.certificates": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.col.orders": {
+    "note": "Table column (count and total).",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.col.approved": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.col.source": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.noResults.heading": {
+    "note": "Empty state when filtering.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.noResults.body": {
+    "note": "Empty state when filtering.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "buyers.bulk.selected": {
+    "note": "Bulk bar.",
+    "maxLength": 30,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.bulk.move": {
+    "note": "Bulk action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.bulk.renewal": {
+    "note": "Bulk action.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "buyers.bulk.pause": {
+    "note": "Bulk action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.bulk.resume": {
+    "note": "Bulk action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.bulk.export": {
+    "note": "Bulk action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.bulk.noneSelected": {
+    "note": "Error toast.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.bulk.moved": {
+    "note": "Toast.",
+    "maxLength": 50,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.bulk.paused": {
+    "note": "Toast.",
+    "maxLength": 60,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.bulk.resumed": {
+    "note": "Toast.",
+    "maxLength": 60,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.bulk.partial": {
+    "note": "Toast after a partly failed bulk action.",
+    "maxLength": 100,
+    "placeholders": [
+      "done",
+      "failed"
+    ]
+  },
+  "buyers.bulk.failedHeading": {
+    "note": "Error banner heading.",
+    "maxLength": 60,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.bulk.failedLine": {
+    "note": "One line in the error banner.",
+    "maxLength": 160,
+    "placeholders": [
+      "company",
+      "reason"
+    ]
+  },
+  "buyers.bulk.assistedPending": {
+    "note": "Info banner in assisted mode.",
+    "maxLength": 160,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.bulk.openChecklist": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.bulk.renewalSent": {
+    "note": "Toast.",
+    "maxLength": 60,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.move.heading": {
+    "note": "Dialog title.",
+    "maxLength": 60,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.move.tier": {
+    "note": "Picker label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.move.choose": {
+    "note": "Placeholder option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.move.consequence": {
+    "note": "Confirmation text naming exactly what will happen.",
+    "maxLength": 200,
+    "placeholders": [
+      "count",
+      "tier"
+    ]
+  },
+  "buyers.move.confirm": {
+    "note": "Confirm button.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.pause.heading": {
+    "note": "Dialog title.",
+    "maxLength": 60,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.pause.body": {
+    "note": "Dialog body naming what happens.",
+    "maxLength": 260,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "buyers.pause.confirm": {
+    "note": "Destructive confirm button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.error.verify_failed": {
+    "note": "Reason a buyer change failed.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "buyers.error.concurrent": {
+    "note": "Reason a buyer change failed.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "buyers.error.busy": {
+    "note": "Reason a buyer change failed.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "buyers.error.missing_in_shopify": {
+    "note": "Reason a buyer change failed.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "buyers.error.shopify": {
+    "note": "Reason a buyer change failed.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "buyers.detail.summary": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.changeTier": {
+    "note": "Primary page action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.changeTierHeading": {
+    "note": "Dialog title.",
+    "maxLength": 60,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "buyers.detail.openInShopify": {
+    "note": "Button.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "buyers.detail.pause": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.resume": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.missingInShopify": {
+    "note": "Warning banner.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "buyers.detail.locations": {
+    "note": "Fact label: number of company locations.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.tierHistory": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.noHistory": {
+    "note": "Empty text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.detail.certificates": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.noCertificates": {
+    "note": "Empty text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.detail.certType": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.detail.certJurisdiction": {
+    "note": "Table column.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.certExpires": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.detail.certStatus": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.detail.noExpiry": {
+    "note": "Shown for certificates without expiry.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.renewalsSent": {
+    "note": "Line under certificates.",
+    "maxLength": 100,
+    "placeholders": [
+      "count",
+      "date"
+    ]
+  },
+  "buyers.detail.activity": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.noActivity": {
+    "note": "Empty text.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "buyers.detail.failed": {
+    "note": "Marker on a failed activity entry.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "buyers.detail.neverDeletes": {
+    "note": "Note under activity.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "buyers.detail.assistedPending": {
+    "note": "Toast in assisted mode.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "buyers.detail.done.move": {
+    "note": "Toast.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.done.pause": {
+    "note": "Toast.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.detail.done.resume": {
+    "note": "Toast.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.certType.resale": {
+    "note": "Certificate type.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.certType.vat": {
+    "note": "Certificate type.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.certType.licence": {
+    "note": "Certificate type.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.certType.other": {
+    "note": "Certificate type.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.activity.buyer.move": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.buyer.pause": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.buyer.resume": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.buyer.create_import": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.buyer.create_tag": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.tier.assign": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.tier.unassign": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.application.approve": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.company_created": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.location_created": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.contact_created": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.customer_linked": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.terms_set": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.tax_set": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.welcome_sent": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.step_failed": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.approval.undo": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.tier.assisted_add_verified": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.activity.tier.assisted_remove_verified": {
+    "note": "Activity log entry label on the buyer page.",
+    "maxLength": 60,
+    "placeholders": []
   }
 }

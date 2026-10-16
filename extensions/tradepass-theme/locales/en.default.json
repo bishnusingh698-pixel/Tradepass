@@ -1,0 +1,149 @@
+{
+  "gate": {
+    "message": "Prices are shown to approved wholesale customers. Log in or apply for a wholesale account.",
+    "login": "Log in",
+    "apply": "Apply for wholesale",
+    "cart": "Some items in your cart are available to approved wholesale customers only."
+  },
+  "banner": {
+    "text": "Buying for a business?",
+    "link": "Apply for wholesale"
+  },
+  "hint": {
+    "text": "Wholesale pricing is available to approved businesses."
+  },
+  "wall": {
+    "heading": "Wholesale customers only",
+    "message": "This page is available to approved wholesale customers. Log in or apply for a wholesale account."
+  },
+  "apply_block": {
+    "heading": "Buying for a business?",
+    "text": "Apply for a wholesale account to see trade prices and order in bulk.",
+    "button": "Apply for wholesale"
+  },
+  "form": {
+    "heading": "Apply for a wholesale account",
+    "intro": "Tell us about your business. We review every application and reply by email.",
+    "required_note": "Fields marked * are required.",
+    "optional": "(optional)",
+    "select": "Select…",
+    "submit": "Send application",
+    "sending": "Sending…",
+    "retrying": "Still sending. We'll keep trying for up to a minute; your answers are safe.",
+    "failed": "We couldn't send your application. Your answers are saved in this browser. Please try again in a few minutes.",
+    "retry": "Try again",
+    "rate_limited": "We've received several applications from you recently. Please try again later.",
+    "duplicate": "You've already applied. We'll be in touch.",
+    "draft_restored": "We restored the answers you entered earlier.",
+    "clear_draft": "Start over",
+    "honeypot": "Leave this field empty",
+    "unavailable": "The application form isn't set up yet. Please contact the store.",
+    "section": {
+      "business": "Business",
+      "contact": "Contact",
+      "addresses": "Addresses",
+      "tax": "Tax and documents",
+      "message": "Message",
+      "consent": "Consent"
+    },
+    "field": {
+      "companyName": { "label": "Company name" },
+      "businessType": { "label": "Business type" },
+      "website": { "label": "Website", "placeholder": "https://" },
+      "yearEstablished": { "label": "Year established" },
+      "locationsCount": { "label": "Number of locations" },
+      "monthlyOrderValue": { "label": "Expected monthly order value" },
+      "referral": { "label": "How did you hear about us?" },
+      "firstName": { "label": "First name" },
+      "lastName": { "label": "Last name" },
+      "email": { "label": "Email", "help": "We'll send updates about your application to this address." },
+      "phone": { "label": "Phone" },
+      "jobTitle": { "label": "Job title" },
+      "preferredLanguage": { "label": "Preferred language" },
+      "billingAddress": { "label": "Billing address" },
+      "shippingAddress": { "label": "Shipping address" },
+      "taxNumber": { "label": "Tax registration" },
+      "certificates": { "label": "Certificates", "help": "For example a resale or tax-exemption certificate." },
+      "message": { "label": "Message to the store" },
+      "consent": { "label": "I agree that my details are used to review this application." }
+    },
+    "business_type": {
+      "retail": "Retail store",
+      "salon": "Salon or spa",
+      "restaurant": "Restaurant or café",
+      "distributor": "Distributor",
+      "other": "Other"
+    },
+    "order_value": {
+      "lt1k": "Less than 1,000",
+      "1k-5k": "1,000 to 5,000",
+      "5k-20k": "5,000 to 20,000",
+      "gt20k": "More than 20,000"
+    },
+    "address": {
+      "country": "Country/region",
+      "address1": "Address",
+      "address2": "Apartment, suite, etc.",
+      "city": "City",
+      "zone": {
+        "state": "State",
+        "province": "Province",
+        "region": "Region",
+        "county": "County",
+        "prefecture": "Prefecture",
+        "emirate": "Emirate",
+        "governorate": "Governorate",
+        "state_and_territory": "State/territory"
+      },
+      "zip": {
+        "postal": "Postal code",
+        "zip": "ZIP code",
+        "pin": "PIN code",
+        "postcode": "Postcode"
+      },
+      "same_as_billing": "Same as billing address"
+    },
+    "tax": {
+      "country": "Country of tax registration",
+      "vat": "VAT number",
+      "vat_help": "Include the country prefix, for example DE123456789.",
+      "abn": "ABN (Australian Business Number)",
+      "gst": "GST/HST number",
+      "us_resale": "Resale certificate number",
+      "us_state": "State that issued the certificate",
+      "tax_id": "Tax ID"
+    },
+    "upload": {
+      "add": "Add file",
+      "remove": "Remove {{ name }}",
+      "hint": "PDF, JPG or PNG, up to 5 MB each, up to 3 files.",
+      "expiry": "Expiry date for {{ name }} (optional)",
+      "uploading": "Uploading {{ name }}…",
+      "done": "{{ name }} uploaded",
+      "failed": "{{ name }} couldn't be uploaded. Please try again."
+    },
+    "consent_privacy": "Read our privacy policy",
+    "error": {
+      "summary": "Please correct the following:",
+      "required": "Enter {{ field }}.",
+      "choose": "Choose {{ field }}.",
+      "consent": "Please confirm to continue.",
+      "email": "Enter an email address like name@example.com.",
+      "url": "Enter a web address like https://example.com.",
+      "phone": "Enter a valid phone number.",
+      "number": "Enter a number.",
+      "date": "Enter a valid date.",
+      "too_long": "This is too long. Use up to {{ max }} characters.",
+      "file_type": "{{ name }} isn't a PDF, JPG or PNG file.",
+      "file_size": "{{ name }} is larger than 5 MB.",
+      "file_count": "You can add up to 3 files.",
+      "file_pending": "Wait for your files to finish uploading.",
+      "spam": "That answer doesn't match. Please try again."
+    },
+    "success": {
+      "heading": "Thank you, your application has been sent",
+      "body": "We'll review it and get back to you by email.",
+      "email": "We've sent you a confirmation email."
+    }
+  }
+}

@@ -18,5 +18,562 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "storefront.errors.heading": {
+    "note": "Error summary banner heading.",
+    "maxLength": 149,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "storefront.saved.syncLater": {
+    "note": "Toast when publishing to the storefront must be retried.",
+    "maxLength": 90,
+    "placeholders": []
+  },
+  "storefront.embed.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "storefront.embed.checking": {
+    "note": "Accessible spinner label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "storefront.embed.status.loading": {
+    "note": "Status badge of the app embed in the published theme.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.embed.status.active": {
+    "note": "Status badge of the app embed in the published theme.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.embed.status.available": {
+    "note": "Status badge of the app embed in the published theme.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.embed.status.unavailable": {
+    "note": "Status badge of the app embed in the published theme.",
+    "maxLength": 53,
+    "placeholders": []
+  },
+  "storefront.embed.status.unknown": {
+    "note": "Status badge of the app embed in the published theme.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "storefront.embed.activeBody": {
+    "note": "Body when the embed is on.",
+    "maxLength": 154,
+    "placeholders": []
+  },
+  "storefront.embed.inactiveBody": {
+    "note": "Body when the embed is off.",
+    "maxLength": 210,
+    "placeholders": []
+  },
+  "storefront.embed.open": {
+    "note": "Button: deep link that preselects the Tradepass embed.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "storefront.embed.checkAgain": {
+    "note": "Button that re-reads the embed status (Shopify can be slow to update).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.mode.heading": {
+    "note": "Section heading.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "storefront.mode.label": {
+    "note": "Radio group label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.mode.show": {
+    "note": "Access mode 1.",
+    "maxLength": 46,
+    "placeholders": []
+  },
+  "storefront.mode.showDetails": {
+    "note": "Mode 1 description.",
+    "maxLength": 166,
+    "placeholders": []
+  },
+  "storefront.mode.hide": {
+    "note": "Access mode 2.",
+    "maxLength": 72,
+    "placeholders": []
+  },
+  "storefront.mode.hideDetails": {
+    "note": "Mode 2 description.",
+    "maxLength": 210,
+    "placeholders": []
+  },
+  "storefront.mode.wholesaleOnly": {
+    "note": "Access mode 3.",
+    "maxLength": 42,
+    "placeholders": []
+  },
+  "storefront.mode.wholesaleOnlyDetails": {
+    "note": "Mode 3 description.",
+    "maxLength": 184,
+    "placeholders": []
+  },
+  "storefront.mode.visualNote": {
+    "note": "Info banner explaining enforcement.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "storefront.mode.noB2b": {
+    "note": "Warning when mode 3 is chosen without B2B.",
+    "maxLength": 227,
+    "placeholders": []
+  },
+  "storefront.mode.buyersNote": {
+    "note": "Reassurance note.",
+    "maxLength": 182,
+    "placeholders": []
+  },
+  "storefront.scope.label": {
+    "note": "Scope select label.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "storefront.scope.all": {
+    "note": "Scope option.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "storefront.scope.collections": {
+    "note": "Scope option.",
+    "maxLength": 38,
+    "placeholders": []
+  },
+  "storefront.scope.products": {
+    "note": "Scope option.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "storefront.scope.tags": {
+    "note": "Scope option.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "storefront.scope.pickCollections": {
+    "note": "Button opening Shopify's collection picker.",
+    "maxLength": 38,
+    "placeholders": []
+  },
+  "storefront.scope.pickProducts": {
+    "note": "Button opening Shopify's product picker.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "storefront.scope.noneChosen": {
+    "note": "Empty state of the scope list.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "storefront.scope.remove": {
+    "note": "Accessible label of a remove button; {title} is a product or collection title.",
+    "maxLength": 32,
+    "placeholders": [
+      "title"
+    ]
+  },
+  "storefront.scope.tagsLabel": {
+    "note": "Label of a comma-separated input.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.scope.tagsHelp": {
+    "note": "Help.",
+    "maxLength": 99,
+    "placeholders": []
+  },
+  "storefront.wall.pagesLabel": {
+    "note": "Label of a comma-separated handles input.",
+    "maxLength": 107,
+    "placeholders": []
+  },
+  "storefront.wall.pagesHelp": {
+    "note": "Help.",
+    "maxLength": 219,
+    "placeholders": []
+  },
+  "storefront.wall.exemptLabel": {
+    "note": "Label of a comma-separated input.",
+    "maxLength": 88,
+    "placeholders": []
+  },
+  "storefront.wall.exemptHelp": {
+    "note": "Help.",
+    "maxLength": 157,
+    "placeholders": []
+  },
+  "storefront.links.heading": {
+    "note": "Section heading.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "storefront.links.apply": {
+    "note": "URL label.",
+    "maxLength": 42,
+    "placeholders": []
+  },
+  "storefront.links.applyHelp": {
+    "note": "Help.",
+    "maxLength": 115,
+    "placeholders": []
+  },
+  "storefront.links.login": {
+    "note": "URL label.",
+    "maxLength": 43,
+    "placeholders": []
+  },
+  "storefront.links.loginHelp": {
+    "note": "Help.",
+    "maxLength": 115,
+    "placeholders": []
+  },
+  "storefront.links.banner": {
+    "note": "Checkbox (mode 1 only).",
+    "maxLength": 93,
+    "placeholders": []
+  },
+  "storefront.links.bannerHelp": {
+    "note": "Help.",
+    "maxLength": 86,
+    "placeholders": []
+  },
+  "storefront.links.hint": {
+    "note": "Checkbox, off by default.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "storefront.links.hintHelp": {
+    "note": "Help.",
+    "maxLength": 133,
+    "placeholders": []
+  },
+  "storefront.colors.button": {
+    "note": "Colour field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.colors.text": {
+    "note": "Colour field label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "storefront.colors.inherit": {
+    "note": "Help under colour fields.",
+    "maxLength": 74,
+    "placeholders": []
+  },
+  "storefront.colors.useTheme": {
+    "note": "Button that clears a custom colour.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "storefront.texts.heading": {
+    "note": "Section heading.",
+    "maxLength": 51,
+    "placeholders": []
+  },
+  "storefront.texts.body": {
+    "note": "Section text.",
+    "maxLength": 179,
+    "placeholders": []
+  },
+  "storefront.texts.reset": {
+    "note": "Button that removes a text override.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "storefront.texts.checkoutDefault": {
+    "note": "Default checkout-lock message shown as a placeholder in the admin language.",
+    "maxLength": 147,
+    "placeholders": []
+  },
+  "storefront.texts.gate_message": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "storefront.texts.gate_login": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.texts.gate_apply": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.texts.gate_cart": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.texts.banner_text": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.texts.banner_link": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "storefront.texts.hint_text": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.texts.wall_heading": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 53,
+    "placeholders": []
+  },
+  "storefront.texts.wall_message": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 53,
+    "placeholders": []
+  },
+  "storefront.texts.checkout_message": {
+    "note": "Label of an editable storefront text.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "storefront.preview.heading": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.preview.tier": {
+    "note": "Select label.",
+    "maxLength": 45,
+    "placeholders": []
+  },
+  "storefront.preview.retail": {
+    "note": "Preview column title.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "storefront.preview.retailNote": {
+    "note": "Preview column note.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "storefront.preview.customer": {
+    "note": "Preview column title.",
+    "maxLength": 38,
+    "placeholders": []
+  },
+  "storefront.preview.customerNote": {
+    "note": "Preview column note.",
+    "maxLength": 107,
+    "placeholders": []
+  },
+  "storefront.preview.wholesale": {
+    "note": "Preview column title.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "storefront.preview.wholesaleNote": {
+    "note": "Preview column note; {tier} is a tier name.",
+    "maxLength": 64,
+    "placeholders": [
+      "tier"
+    ]
+  },
+  "storefront.preview.wholesaleNoTier": {
+    "note": "Preview column note without tiers.",
+    "maxLength": 93,
+    "placeholders": []
+  },
+  "storefront.preview.frameTitle": {
+    "note": "Accessible title of a preview frame.",
+    "maxLength": 54,
+    "placeholders": [
+      "visitor"
+    ]
+  },
+  "storefront.preview.product": {
+    "note": "Mock product title in the preview.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "storefront.preview.collection": {
+    "note": "Mock collection heading in the preview.",
+    "maxLength": 37,
+    "placeholders": []
+  },
+  "storefront.preview.addToCart": {
+    "note": "Mock theme button in the preview.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.preview.quickAdd": {
+    "note": "Mock theme button in the preview.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.preview.checkoutNote": {
+    "note": "Note under the preview.",
+    "maxLength": 187,
+    "placeholders": []
+  },
+  "storefront.preview.loading": {
+    "note": "Accessible spinner label.",
+    "maxLength": 34,
+    "placeholders": []
+  },
+  "storefront.preview.unavailableHeading": {
+    "note": "Banner heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "storefront.preview.unavailableBody": {
+    "note": "Banner body.",
+    "maxLength": 88,
+    "placeholders": []
+  },
+  "storefront.advanced.heading": {
+    "note": "Section heading.",
+    "maxLength": 53,
+    "placeholders": []
+  },
+  "storefront.advanced.body": {
+    "note": "Section text.",
+    "maxLength": 229,
+    "placeholders": []
+  },
+  "storefront.advanced.price": {
+    "note": "Label.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "storefront.advanced.addToCart": {
+    "note": "Label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "storefront.advanced.productCard": {
+    "note": "Label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.advanced.help": {
+    "note": "Link to Help.",
+    "maxLength": 48,
+    "placeholders": []
+  },
+  "storefront.uninstall.heading": {
+    "note": "Section heading.",
+    "maxLength": 51,
+    "placeholders": []
+  },
+  "storefront.uninstall.body": {
+    "note": "Section text.",
+    "maxLength": 256,
+    "placeholders": []
+  },
+  "storefront.confirm.onHeading": {
+    "note": "Modal heading.",
+    "maxLength": 62,
+    "placeholders": []
+  },
+  "storefront.confirm.onBody": {
+    "note": "Modal body naming exactly what happens.",
+    "maxLength": 272,
+    "placeholders": []
+  },
+  "storefront.confirm.onAction": {
+    "note": "Modal primary button.",
+    "maxLength": 45,
+    "placeholders": []
+  },
+  "storefront.confirm.offHeading": {
+    "note": "Modal heading.",
+    "maxLength": 48,
+    "placeholders": []
+  },
+  "storefront.confirm.offBody": {
+    "note": "Modal body.",
+    "maxLength": 181,
+    "placeholders": []
+  },
+  "storefront.confirm.offAction": {
+    "note": "Modal destructive button.",
+    "maxLength": 46,
+    "placeholders": []
+  },
+  "storefront.confirm.saveNote": {
+    "note": "Modal note.",
+    "maxLength": 82,
+    "placeholders": []
+  },
+  "storefront.error.mode": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 45,
+    "placeholders": []
+  },
+  "storefront.error.plan": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 70,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "storefront.error.scopeEmpty": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 106,
+    "placeholders": []
+  },
+  "storefront.error.scopeIds": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 96,
+    "placeholders": []
+  },
+  "storefront.error.tag": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "storefront.error.url": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 130,
+    "placeholders": []
+  },
+  "storefront.error.color": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 128,
+    "placeholders": []
+  },
+  "storefront.error.selector": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 155,
+    "placeholders": []
+  },
+  "storefront.error.handle": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 133,
+    "placeholders": []
+  },
+  "storefront.error.text": {
+    "note": "Inline error and error-summary item on the Storefront page.",
+    "maxLength": 90,
+    "placeholders": [
+      "max"
+    ]
   }
 }

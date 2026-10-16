@@ -1,0 +1,39 @@
+# $exemptTags comes from the lock_vars metafield on the Validation (always
+# written, possibly as []; a missing value would make the run fail).
+query CartValidationsGenerateRunInput($exemptTags: [String!]!) {
+  buyerJourney {
+    step
+  }
+  cart {
+    buyerIdentity {
+      customer {
+        exempt: hasAnyTag(tags: $exemptTags)
+      }
+      purchasingCompany {
+        company {
+          id
+        }
+      }
+    }
+    lines {
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          product {
+            isGiftCard
+          }
+        }
+      }
+    }
+  }
+  localization {
+    language {
+      isoCode
+    }
+  }
+  validation {
+    config: metafield(namespace: "$app:tradepass", key: "lock_config") {
+      jsonValue
+    }
+  }
+}

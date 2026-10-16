@@ -1,0 +1,84 @@
+{
+  "hosted.update.title": {
+    "note": "Browser title and main heading of the hosted page where an applicant updates their application after the store asked for more information.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "hosted.update.intro": {
+    "note": "Intro under the heading on the hosted update page. {store} is the store name.",
+    "maxLength": 200,
+    "placeholders": [
+      "store"
+    ]
+  },
+  "hosted.update.messageLabel": {
+    "note": "Label above the store's own message to the applicant on the hosted update page.",
+    "maxLength": 60,
+    "placeholders": [
+      "store"
+    ]
+  },
+  "hosted.update.submit": {
+    "note": "Submit button on the hosted update page.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "hosted.update.doneHeading": {
+    "note": "Heading shown after the applicant sent their update.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "hosted.update.doneBody": {
+    "note": "Text shown after the applicant sent their update. {store} is the store name.",
+    "maxLength": 200,
+    "placeholders": [
+      "store"
+    ]
+  },
+  "hosted.link.invalidTitle": {
+    "note": "Heading when an update link is damaged or not for this store.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "hosted.link.invalidBody": {
+    "note": "Explanation when an update link is damaged. {store} is the store name.",
+    "maxLength": 200,
+    "placeholders": [
+      "store"
+    ]
+  },
+  "hosted.link.expiredTitle": {
+    "note": "Heading when an update link has expired.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "hosted.link.expiredBody": {
+    "note": "Explanation when an update link has expired; tells the applicant to ask the store for a new one.",
+    "maxLength": 220,
+    "placeholders": [
+      "store"
+    ]
+  },
+  "hosted.link.usedTitle": {
+    "note": "Heading when a single-use update link was already used.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "hosted.link.usedBody": {
+    "note": "Explanation when a single-use update link was already used.",
+    "maxLength": 220,
+    "placeholders": [
+      "store"
+    ]
+  },
+  "hosted.noscript": {
+    "note": "Shown on the hosted update page when the browser has JavaScript turned off.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "hosted.error.generic": {
+    "note": "Shown on a hosted page when our server failed unexpectedly.",
+    "maxLength": 160,
+    "placeholders": []
+  }
+}

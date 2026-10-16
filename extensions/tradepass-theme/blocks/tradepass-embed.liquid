@@ -1,0 +1,184 @@
+{%- comment -%}
+  Tradepass app embed (target: body). Reads app-data metafields written by
+  syncStorefrontConfig (namespace "tradepass"): config, gated, texts.
+  Gated prices and buttons are hidden with CSS emitted here, so there is no flash
+  and it keeps working when the Tradepass server is asleep. Signed-in B2B buyers
+  (customer.b2b?) always see prices. Nothing is written to the theme.
+{%- endcomment -%}
+{%- liquid
+  assign tp = app.metafields.tradepass.config.value
+  assign tp_on = false
+  if tp != blank and tp.mode != blank
+    assign tp_on = true
+  endif
+-%}
+{%- if tp_on -%}
+  {%- liquid
+    assign tp_b2b = false
+    if customer and customer.b2b?
+      assign tp_b2b = true
+    endif
+    assign tp_gate = false
+    if tp.mode == 'hide' or tp.mode == 'wholesale_only'
+      unless tp_b2b
+        assign tp_gate = true
+      endunless
+    endif
+    assign tp_handles = app.metafields.tradepass.gated.value.h
+    assign tp_product_gated = false
+    if tp_gate and product
+      capture tp_g
+        render 'tradepass-is-gated', p: product, tp: tp, handles: tp_handles
+      endcapture
+      if tp_g contains '1'
+        assign tp_product_gated = true
+      endif
+    endif
+    assign tp_wall = false
+    if tp_gate and tp.mode == 'wholesale_only' and tp.hidePages.size > 0
+      if template.name == 'page' and tp.hidePages contains page.handle
+        assign tp_wall = true
+      elsif template.name == 'collection' and tp.hidePages contains collection.handle
+        assign tp_wall = true
+      endif
+    endif
+    assign tp_banner = false
+    assign tp_hint = false
+    unless tp_b2b
+      if tp.mode == 'show' and tp.banner
+        assign tp_banner = true
+      endif
+      if tp.mode == 'show' and tp.hint and product
+        assign tp_hint = true
+      endif
+    endunless
+
+    assign tp_root = routes.root_url
+    if tp_root == '/'
+      assign tp_root = ''
+    endif
+    assign tp_apply = tp.applyUrl | default: '/pages/wholesale'
+    assign tp_first = tp_apply | slice: 0
+    if tp_first == '/'
+      assign tp_apply = tp_root | append: tp_apply
+    endif
+    assign tp_login = tp.loginUrl
+    if tp_login == blank or tp_login == '/account/login'
+      assign tp_login = routes.account_login_url
+    endif
+
+    assign tp_debug = false
+    if tp.debugUntil != blank
+      assign tp_now = 'now' | date: '%s' | plus: 0
+      assign tp_until = tp.debugUntil | date: '%s' | plus: 0
+      if tp_until > tp_now
+        assign tp_debug = true
+      endif
+    endif
+
+    assign tp_price = '.price,.price__container,.product__price,[data-product-price],product-price,.product-price,.price-item,.price-list,.product-item__price,.product-block--price,.cart-item__price-wrapper,.cart-item__totals'
+    assign tp_atc = 'form[action*="/cart/add"] [type="submit"],form[action*="/cart/add"] button[name="add"],.product-form__submit,.product-form__buttons,.product-form__quantity,.shopify-payment-button,shopify-accelerated-checkout,.quick-add,.card__quick-add,.quick-add__submit,quick-add-component,add-to-cart-component,quantity-selector-component,.quantity-selector,.product-form__quantity-selector'
+    assign tp_card = '.card-wrapper,.product-card,product-card,.product-card-wrapper,.product-item,.predictive-search__list-item,.predictive-search__item,.cart-item,.cart-drawer__item,.cart-items__table-row,li.product,quick-add-modal,.quick-add-modal,.quick-view'
+    if tp.sel.price != blank
+      assign tp_price = tp_price | append: ',' | append: tp.sel.price
+    endif
+    if tp.sel.addToCart != blank
+      assign tp_atc = tp_atc | append: ',' | append: tp.sel.addToCart
+    endif
+    if tp.sel.productCard != blank
+      assign tp_card = tp_card | append: ',' | append: tp.sel.productCard
+    endif
+    assign tp_hide = ':is(' | append: tp_price | append: ',' | append: tp_atc | append: ')'
+    assign tp_main = ':is(.shopify-section[id*="__main"],main-product,.product-information)'
+  -%}
+  <style>
+    .tp-gate{display:flex;flex-direction:column;gap:.5rem;margin-block:.75rem;max-inline-size:40rem;{% if tp.colors.text != blank %}color:{{ tp.colors.text }};{% endif %}}
+    .tp-gate__text{margin:0;line-height:1.5}
+    .tp-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+    .tp-btn{display:inline-flex;align-items:center;justify-content:center;min-block-size:44px;padding-inline:1rem;text-decoration:none;border:1px solid currentColor;border-radius:4px;overflow-wrap:anywhere;text-align:center}
+    .tp-btn--primary{{% if tp.colors.button != blank %}background:{{ tp.colors.button }};border-color:{{ tp.colors.button }};color:#fff;{% endif %}}
+    .tp-gate--compact{margin-block:.25rem}
+    .tp-gate--compact .tp-btn{min-block-size:32px;padding-inline:.6rem;font-size:.875em}
+    .tp-banner{padding:.75rem 1rem;text-align:center;border-block-end:1px solid rgba(0,0,0,.1)}
+    .tp-hint{margin-block:.25rem;font-size:.9em;opacity:.85}
+    .tp-wall{padding:3rem 1rem;max-inline-size:40rem;margin-inline:auto}
+    .tp-gated {{ tp_hide }}{display:none!important}
+    {%- if tp_gate and tp.scope == 'all' %}
+      {{ tp_hide }}{display:none!important}
+    {%- elsif tp_product_gated %}
+      {{ tp_main }} {{ tp_hide }}{display:none!important}
+    {%- endif -%}
+    {%- if tp_gate and tp.scope != 'all' -%}
+      {%- if template.name == 'collection' and collection -%}
+        {%- for p in collection.products -%}
+          {%- capture tp_g %}{% render 'tradepass-is-gated', p: p, tp: tp, handles: tp_handles %}{% endcapture -%}
+          {%- if tp_g contains '1' %}
+      :is({{ tp_card }}):has(a[href$="/products/{{ p.handle }}"],a[href*="/products/{{ p.handle }}?"]) {{ tp_hide }}{display:none!important}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- elsif template.name == 'search' and search.performed -%}
+        {%- for p in search.results -%}
+          {%- if p.object_type == 'product' -%}
+            {%- capture tp_g %}{% render 'tradepass-is-gated', p: p, tp: tp, handles: tp_handles %}{% endcapture -%}
+            {%- if tp_g contains '1' %}
+      :is({{ tp_card }}):has(a[href$="/products/{{ p.handle }}"],a[href*="/products/{{ p.handle }}?"]) {{ tp_hide }}{display:none!important}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if tp_wall %}
+      #MainContent > :not(.tp-wall),main > :not(.tp-wall){display:none!important}
+    {%- endif %}
+  </style>
+  {%- if tp_gate or tp_wall or tp_banner or tp_hint -%}
+    {%- liquid
+      assign tp_locale = request.locale.iso_code
+      assign tp_over = app.metafields.tradepass.texts.value[tp_locale]
+      assign tp_list = ''
+      if tp_gate and tp.scope != 'all'
+        assign tp_list = tp_handles
+      endif
+    -%}
+    <script type="application/json" id="tradepass-config">
+      {
+        "mode": {{ tp.mode | json }},
+        "scope": {{ tp.scope | json }},
+        "gate": {{ tp_gate | json }},
+        "b2b": {{ tp_b2b | json }},
+        "wall": {{ tp_wall | json }},
+        "banner": {{ tp_banner | json }},
+        "hint": {{ tp_hint | json }},
+        "debug": {{ tp_debug | json }},
+        "product": {% if product %}{ "handle": {{ product.handle | json }}, "gated": {{ tp_product_gated | json }} }{% else %}null{% endif %},
+        "handles": {% if tp_list != '' %}{{ tp_list | json }}{% else %}[]{% endif %},
+        "applyUrl": {{ tp_apply | json }},
+        "loginUrl": {{ tp_login | json }},
+        "sel": {{ tp.sel | json }},
+        "overrides": {{ tp_over | json }},
+        "texts": {
+          "gate.message": {{ 'gate.message' | t | json }},
+          "gate.login": {{ 'gate.login' | t | json }},
+          "gate.apply": {{ 'gate.apply' | t | json }},
+          "gate.cart": {{ 'gate.cart' | t | json }},
+          "banner.text": {{ 'banner.text' | t | json }},
+          "banner.link": {{ 'banner.link' | t | json }},
+          "hint.text": {{ 'hint.text' | t | json }},
+          "wall.heading": {{ 'wall.heading' | t | json }},
+          "wall.message": {{ 'wall.message' | t | json }}
+        }
+      }
+    </script>
+    <script src="{{ 'tradepass.js' | asset_url }}" defer></script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:embed.name",
+  "target": "body",
+  "settings": [
+    { "type": "paragraph", "content": "t:embed.info" }
+  ]
+}
+{% endschema %}

@@ -18,5 +18,503 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "tiers.create": {
+    "note": "Primary page action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.budget": {
+    "note": "Banner on the Tiers page.",
+    "maxLength": 160,
+    "placeholders": [
+      "limit",
+      "used"
+    ]
+  },
+  "tiers.block.plan_limit": {
+    "note": "Why Create tier is disabled.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "tiers.block.catalog_limit": {
+    "note": "Why Create tier is disabled.",
+    "maxLength": 220,
+    "placeholders": [
+      "limit",
+      "used"
+    ]
+  },
+  "tiers.block.no_b2b": {
+    "note": "Why Create tier is disabled.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "tiers.block.markets_unavailable": {
+    "note": "Why Create tier is disabled.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "tiers.plan.starter": {
+    "note": "Plan name, used in 'Available on {plan}'.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.plan.pro": {
+    "note": "Plan name, used in 'Available on {plan}'.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.col.name": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.col.pricing": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.col.buyers": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.col.terms": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.col.status": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.pricing.percent": {
+    "note": "Pricing summary; {pct} is a number.",
+    "maxLength": 40,
+    "placeholders": [
+      "pct"
+    ]
+  },
+  "tiers.pricing.catalog": {
+    "note": "Pricing summary for a tier linked to a catalog.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.terms.none": {
+    "note": "Shown when no default terms are set.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.status.ok": {
+    "note": "Tier status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.status.changed_in_shopify": {
+    "note": "Tier status badge: market/catalog was edited in Shopify admin.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.status.missing": {
+    "note": "Tier status badge: market/catalog was deleted in Shopify admin.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.repair.action": {
+    "note": "Button that restores a tier's Shopify setup.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.repair.done": {
+    "note": "Toast after fixing a tier.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.assisted.heading": {
+    "note": "Section heading (assisted mode).",
+    "maxLength": 70,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "tiers.assisted.body": {
+    "note": "Section help (assisted mode).",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.assisted.add": {
+    "note": "One assisted task.",
+    "maxLength": 100,
+    "placeholders": [
+      "buyer",
+      "tier"
+    ]
+  },
+  "tiers.assisted.remove": {
+    "note": "One assisted task.",
+    "maxLength": 100,
+    "placeholders": [
+      "buyer",
+      "tier"
+    ]
+  },
+  "tiers.assisted.unknownBuyer": {
+    "note": "Used when the buyer's name isn't known yet.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.assisted.openMarket": {
+    "note": "Button.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.assisted.verify": {
+    "note": "Button: verify the assignment in Shopify.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.assisted.verified": {
+    "note": "Toast.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.assisted.notYet": {
+    "note": "Toast.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "tiers.editor.newHeading": {
+    "note": "Page title.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.editHeading": {
+    "note": "Page title; {name} is the tier name.",
+    "maxLength": 60,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "tiers.editor.section.name": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.editor.section.pricing": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.editor.section.products": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.editor.section.defaults": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.name": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.editor.nameHelp": {
+    "note": "Field help.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "tiers.editor.buyerNames": {
+    "note": "Sub-heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.buyerNamesHelp": {
+    "note": "Help text.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "tiers.editor.buyerNameFor": {
+    "note": "Field label; {language} is a language name.",
+    "maxLength": 50,
+    "placeholders": [
+      "language"
+    ]
+  },
+  "tiers.editor.pricing": {
+    "note": "Picker label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.pricing.percent": {
+    "note": "Pricing option.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "tiers.editor.pricing.existing": {
+    "note": "Pricing option.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "tiers.editor.pct": {
+    "note": "Field label (percent).",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.editor.pctHelp": {
+    "note": "Field help.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "tiers.editor.catalog": {
+    "note": "Picker label.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.editor.catalogHelp": {
+    "note": "Picker help.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "tiers.editor.catalogChoose": {
+    "note": "Placeholder option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.direct": {
+    "note": "Plus-only checkbox.",
+    "maxLength": 70,
+    "placeholders": []
+  },
+  "tiers.editor.directHelp": {
+    "note": "Plus-only help.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "tiers.editor.products": {
+    "note": "Picker label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.products.all": {
+    "note": "Option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.editor.products.collections": {
+    "note": "Option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.chooseCollections": {
+    "note": "Button opening the collection picker.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.editor.removeCollection": {
+    "note": "Screen-reader label to remove a collection.",
+    "maxLength": 60,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "tiers.editor.collectionsHelp": {
+    "note": "Help under collections.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "tiers.editor.terms": {
+    "note": "Picker label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.checkout": {
+    "note": "Picker label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.editor.checkout.pay": {
+    "note": "Option.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "tiers.editor.checkout.draft": {
+    "note": "Option.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "tiers.editor.tax": {
+    "note": "Picker label.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "tiers.editor.tax.charge": {
+    "note": "Option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "tiers.editor.tax.exempt": {
+    "note": "Option.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "tiers.editor.quantityRules": {
+    "note": "Note with a link to Shopify help.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "tiers.editor.create": {
+    "note": "Submit button on a new tier.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.editor.fixErrors": {
+    "note": "Error summary banner.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "tiers.editor.error.nameRequired": {
+    "note": "Inline field error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "tiers.editor.error.nameTooLong": {
+    "note": "Inline field error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "tiers.editor.error.pctRange": {
+    "note": "Inline field error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "tiers.editor.error.catalogRequired": {
+    "note": "Inline field error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "tiers.editor.error.collectionsRequired": {
+    "note": "Inline field error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "tiers.delete.action": {
+    "note": "Destructive page action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.delete.heading": {
+    "note": "Confirmation dialog title.",
+    "maxLength": 60,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "tiers.delete.blocked": {
+    "note": "Shown instead of deleting.",
+    "maxLength": 160,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "tiers.delete.body": {
+    "note": "Dialog body.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "tiers.delete.shopify": {
+    "note": "Checkbox in the delete dialog.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "tiers.delete.shopifyHelp": {
+    "note": "Checkbox help.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "tiers.delete.notOurs": {
+    "note": "Shown when the tier links objects the merchant made.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "tiers.delete.confirm": {
+    "note": "Destructive confirm button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.delete.moveBuyers": {
+    "note": "Button to the buyer list filtered by this tier.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.error.plan_limit": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.catalog_limit": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.no_b2b": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.markets_unavailable": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.volume_pricing": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.catalog_in_use": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.has_buyers": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.not_found": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.missing_in_shopify": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.shopify": {
+    "note": "Error toast on the tier pages. {detail} is Shopify's own message.",
+    "maxLength": 200,
+    "placeholders": [
+      "detail"
+    ]
+  },
+  "tiers.error.verify_failed": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.concurrent": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "tiers.error.busy": {
+    "note": "Error toast on the tier pages.",
+    "maxLength": 200,
+    "placeholders": []
   }
 }

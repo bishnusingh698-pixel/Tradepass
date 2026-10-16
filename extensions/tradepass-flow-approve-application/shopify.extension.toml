@@ -1,0 +1,31 @@
+# Shopify Flow action handled by app/routes/flow.approve.tsx (HMAC-verified).
+# Field keys are read verbatim there (ACTION_FIELDS).
+[[extensions]]
+name = "Approve wholesale application to tier"
+type = "flow_action"
+handle = "tradepass-flow-approve-application"
+description = "Approve a Tradepass wholesale application and set up the buyer's company in the chosen tier."
+runtime_url = "/flow/approve"
+
+[settings]
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "Application ID"
+  name = "Application ID"
+  description = "Use the Application ID from a Tradepass trigger, for example {{applicationId}}."
+  required = true
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "Tier"
+  name = "Tier name"
+  description = "Exact name of a Tradepass tier. Leave empty to use the tier Tradepass suggests."
+  required = false
+
+  [[settings.fields]]
+  type = "boolean"
+  key = "Send welcome email"
+  name = "Send welcome email"
+  description = "Send the buyer Shopify's B2B access email after approval."
+  required = false
