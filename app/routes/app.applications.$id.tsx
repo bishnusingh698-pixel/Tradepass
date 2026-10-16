@@ -334,9 +334,6 @@ function NotesAndAssignee({ notes, assignee }: { notes: { at: string; by: string
   const fetcher = useFetcher();
   const [text, setText] = useState("");
   const [who, setWho] = useState(assignee ?? "");
-  useEffect(() => {
-    if (fetcher.state === "idle" && fetcher.data) setText("");
-  }, [fetcher.state, fetcher.data]);
   return (
     <s-stack direction="block" gap="base">
       <fetcher.Form method="post">
@@ -354,7 +351,7 @@ function NotesAndAssignee({ notes, assignee }: { notes: { at: string; by: string
           <s-paragraph>{n.text}</s-paragraph>
         </s-box>
       ))}
-      <fetcher.Form method="post">
+      <fetcher.Form method="post" onSubmit={() => setTimeout(() => setText(""), 0)}>
         <input type="hidden" name="intent" value="note" />
         <s-stack direction="block" gap="small-200">
           <s-text-area name="text" label={t("applications.detail.addNote")} value={text} onInput={(e) => setText((e.currentTarget as unknown as HTMLTextAreaElement).value)} />

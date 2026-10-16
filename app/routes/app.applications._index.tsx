@@ -78,7 +78,12 @@ export default function Applications() {
   const [selected, setSelected] = useState<string[]>([]);
   const [search, setSearch] = useState(data.filters.q ?? "");
 
-  useEffect(() => setSelected([]), [data.rows]);
+  // Clear the selection when the page of rows changes (React's "adjust state during render" pattern).
+  const [rowsSeen, setRowsSeen] = useState(data.rows);
+  if (rowsSeen !== data.rows) {
+    setRowsSeen(data.rows);
+    setSelected([]);
+  }
 
   useEffect(() => {
     const d = fetcher.data;
