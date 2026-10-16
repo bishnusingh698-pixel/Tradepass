@@ -1,0 +1,252 @@
+{
+  "email.received.subject": {
+    "note": "Email subject line sent to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "email.received.body": {
+    "note": "Email body. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "store_name",
+      "company"
+    ]
+  },
+  "email.needs_info.subject": {
+    "note": "Email subject line sent to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "email.needs_info.body": {
+    "note": "Email body. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "store_name",
+      "company",
+      "update_link"
+    ]
+  },
+  "email.needs_info.messageLine": {
+    "note": "Extra paragraph with the merchant message. Formal business register.",
+    "maxLength": 300,
+    "placeholders": [
+      "store_name",
+      "message"
+    ]
+  },
+  "email.approved.subject": {
+    "note": "Email subject line sent to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "email.approved.body": {
+    "note": "Email body. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "company",
+      "store_name",
+      "tier_name",
+      "login_url"
+    ]
+  },
+  "email.approved.termsLine": {
+    "note": "Extra paragraph with payment terms (e.g. Net 30). Formal business register.",
+    "maxLength": 300,
+    "placeholders": [
+      "terms"
+    ]
+  },
+  "email.rejected.subject": {
+    "note": "Email subject line sent to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "email.rejected.body": {
+    "note": "Email body. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "store_name",
+      "company"
+    ]
+  },
+  "email.rejected.reasonLine": {
+    "note": "Extra paragraph with the merchant reason for not approving. Formal business register.",
+    "maxLength": 300,
+    "placeholders": [
+      "reason"
+    ]
+  },
+  "email.cert_expiring.subject": {
+    "note": "Email subject line sent to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name",
+      "expiry_date"
+    ]
+  },
+  "email.cert_expiring.body": {
+    "note": "Email body. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "company",
+      "expiry_date",
+      "store_name",
+      "update_link"
+    ]
+  },
+  "email.cert_expired.subject": {
+    "note": "Email subject line sent to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "email.cert_expired.body": {
+    "note": "Email body. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "company",
+      "expiry_date",
+      "store_name",
+      "update_link"
+    ]
+  },
+  "email.merchant_new_application.subject": {
+    "note": "Email to the merchant (store owner/staff). Email subject line sent to the applicant/buyer.",
+    "maxLength": 120,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "email.merchant_new_application.body": {
+    "note": "Email to the merchant (store owner/staff). Email body. Blank line = new paragraph. Keep the link placeholder on its own line.",
+    "maxLength": 1200,
+    "placeholders": [
+      "company",
+      "store_name",
+      "admin_url"
+    ]
+  },
+  "email.merchant_digest.subject": {
+    "note": "Email to the merchant (store owner/staff). Email subject line sent to the applicant/buyer.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "email.merchant_digest.body": {
+    "note": "Email to the merchant (store owner/staff). Email body. Blank line = new paragraph. Keep the link placeholder on its own line.",
+    "maxLength": 1200,
+    "placeholders": []
+  },
+  "email.merchant_digest.pending": {
+    "note": "Line in the merchant daily digest email. Full sentence; # is the count.",
+    "maxLength": 300,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "email.merchant_digest.expiring": {
+    "note": "Line in the merchant daily digest email. Full sentence; # is the count.",
+    "maxLength": 300,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "email.merchant_digest.expired": {
+    "note": "Line in the merchant daily digest email. Full sentence; # is the count.",
+    "maxLength": 300,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "email.merchant_digest.failed": {
+    "note": "Line in the merchant daily digest email. Full sentence; # is the count.",
+    "maxLength": 300,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "email.merchant_digest.deferred": {
+    "note": "Line in the merchant daily digest email. Full sentence; # is the count.",
+    "maxLength": 300,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "email.merchant_digest.open": {
+    "note": "Line in the merchant daily digest email. Full sentence; # is the count.",
+    "maxLength": 300,
+    "placeholders": [
+      "admin_url"
+    ]
+  },
+  "email.test.subject": {
+    "note": "Test email sent by the merchant to themselves.",
+    "maxLength": 120,
+    "placeholders": [
+      "subject"
+    ]
+  },
+  "email.test.note": {
+    "note": "Test email sent by the merchant to themselves.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "email.footer.applicant": {
+    "note": "Small footer text at the bottom of every email.",
+    "maxLength": 300,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "email.footer.merchant": {
+    "note": "Small footer text at the bottom of every email.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "email.sample.company": {
+    "note": "Example value used in email previews and test emails.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "email.sample.firstName": {
+    "note": "Example value used in email previews and test emails.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "email.sample.tierName": {
+    "note": "Example value used in email previews and test emails.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "email.sample.reason": {
+    "note": "Example value used in email previews and test emails.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "email.sample.message": {
+    "note": "Example value used in email previews and test emails.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "email.sample.terms": {
+    "note": "Example value used in email previews and test emails.",
+    "maxLength": 300,
+    "placeholders": []
+  }
+}

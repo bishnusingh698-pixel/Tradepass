@@ -64,7 +64,7 @@ export async function serverAlerts(shop: string, settings: Settings, facts: Shop
   const q = approvalQuota(plan, approvals);
   if (q.warn && q.limit) {
     const month = today.slice(0, 7);
-    out.push({ id: "plan_limit", key: `${month}:${q.blocked ? 100 : 80}`, values: { used: q.used, limit: q.limit, full: q.blocked ? 1 : 0 } });
+    out.push({ id: "plan_limit", key: `${month}:${q.blocked ? 100 : 80}`, values: { used: q.used, limit: q.limit, full: q.blocked ? "yes" : "no" } });
   }
   if (buyers > 0) out.push({ id: "first_buyer", key: "1" });
 

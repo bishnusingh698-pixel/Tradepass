@@ -430,7 +430,7 @@
     "placeholders": []
   },
   "home.alert.plan_limit.heading": {
-    "note": "Alert heading. full is 1 when the limit is reached.",
+    "note": "Alert heading. full is yes when the limit is reached, otherwise no.",
     "maxLength": 90,
     "placeholders": [
       "full",

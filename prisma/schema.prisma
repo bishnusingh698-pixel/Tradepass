@@ -191,7 +191,7 @@ model EmailLog {
   type      String
   toHash    String // sha256 of recipient; the address itself lives in `payload` until sent
   payload   Json? // cleared after sending (no personal data kept)
-  status    String    @default("queued") // queued | sent | failed | skipped
+  status    String    @default("queued") // queued | sending | sent | failed | skipped
   quotaDay  String // YYYY-MM-DD (UTC) the email counts against
   sentAt    DateTime?
   createdAt DateTime  @default(now())

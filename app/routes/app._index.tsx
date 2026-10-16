@@ -124,7 +124,7 @@ export default function Home() {
       {d.alerts.map((a) => (
         <s-banner
           key={a.id}
-          tone={a.id === "first_buyer" ? "success" : a.id === "plan_limit" && a.values?.full ? "warning" : "info"}
+          tone={a.id === "first_buyer" ? "success" : a.id === "plan_limit" && a.values?.full === "yes" ? "warning" : "info"}
           heading={t(`home.alert.${a.id}.heading`, a.values)}
           dismissible
           onDismiss={() => dismiss(a.id, a.key)}

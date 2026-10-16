@@ -18,5 +18,459 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "certificates.noResults.heading": {
+    "note": "Heading when filters return nothing.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "certificates.noResults.body": {
+    "note": "Body when filters return nothing.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "certificates.noResults.action": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.gated.body": {
+    "note": "Plan-gate banner body.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "certificates.gated.action": {
+    "note": "Plan-gate banner button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.plan.starter": {
+    "note": "Plan name.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.plan.pro": {
+    "note": "Plan name.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.rules.auto": {
+    "note": "Rules summary line.",
+    "maxLength": 220,
+    "placeholders": [
+      "days"
+    ]
+  },
+  "certificates.rules.manual": {
+    "note": "Rules summary line.",
+    "maxLength": 220,
+    "placeholders": [
+      "days"
+    ]
+  },
+  "certificates.rules.change": {
+    "note": "Link.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.filter.status": {
+    "note": "Filter label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.type": {
+    "note": "Filter label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.anyType": {
+    "note": "Filter option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.status.all": {
+    "note": "Filter option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.status.pending": {
+    "note": "Filter option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.status.valid": {
+    "note": "Filter option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.status.expiring": {
+    "note": "Filter option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.status.expired": {
+    "note": "Filter option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.status.rejected": {
+    "note": "Filter option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.filter.status.no_expiry": {
+    "note": "Filter option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.col.holder": {
+    "note": "Table column.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.col.type": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.col.jurisdiction": {
+    "note": "Table column (country/state).",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.col.number": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.col.expiry": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.col.status": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.col.actions": {
+    "note": "Table column.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.holder.buyer": {
+    "note": "Small label under the name.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.holder.applicant": {
+    "note": "Small label under the name.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.type.resale": {
+    "note": "Certificate type.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.type.vat": {
+    "note": "Certificate type.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.type.licence": {
+    "note": "Certificate type.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.type.other": {
+    "note": "Certificate type.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.jurisdiction": {
+    "note": "Country name and state/province code, e.g. United States, TX.",
+    "maxLength": 60,
+    "placeholders": [
+      "country",
+      "region"
+    ]
+  },
+  "certificates.status.pending": {
+    "note": "Status badge.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "certificates.status.valid": {
+    "note": "Status badge.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "certificates.status.expiring": {
+    "note": "Status badge.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "certificates.status.expired": {
+    "note": "Status badge.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "certificates.status.rejected": {
+    "note": "Status badge.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "certificates.flag.noExpiry": {
+    "note": "Warning badge; merchant should add a date.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "certificates.flag.pastExpiry": {
+    "note": "Note under the expiry date.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "certificates.decision.needed": {
+    "note": "Note under Expired status.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "certificates.decision.keep": {
+    "note": "Button / status note.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.decision.remove": {
+    "note": "Destructive button / status note.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.decision.heading": {
+    "note": "Heading in the manage modal.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "certificates.decision.body": {
+    "note": "Explanation in the manage modal.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "certificates.decision.unknownExemption": {
+    "note": "Note when we can't map the certificate to an exemption.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "certificates.action.view": {
+    "note": "Button.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "certificates.action.viewFor": {
+    "note": "Accessible label.",
+    "maxLength": 100,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "certificates.action.manage": {
+    "note": "Button that opens actions.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "certificates.action.manageFor": {
+    "note": "Accessible label.",
+    "maxLength": 100,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "certificates.action.approve": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.action.reject": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.action.request": {
+    "note": "Button: emails the buyer an upload link.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.action.setExpiry": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.action.editExpiry": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.manage.heading": {
+    "note": "Modal heading.",
+    "maxLength": 80,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "certificates.manage.rejectedBecause": {
+    "note": "Line in modal.",
+    "maxLength": 300,
+    "placeholders": [
+      "reason"
+    ]
+  },
+  "certificates.reject.heading": {
+    "note": "Modal heading.",
+    "maxLength": 80,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "certificates.reject.body": {
+    "note": "Modal body.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "certificates.reject.reason": {
+    "note": "Field label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "certificates.reject.reasonHelp": {
+    "note": "Field help.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "certificates.reject.confirm": {
+    "note": "Destructive modal button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.expiry.heading": {
+    "note": "Modal heading.",
+    "maxLength": 80,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "certificates.expiry.label": {
+    "note": "Date field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.expiry.help": {
+    "note": "Date field help.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "certificates.remove.heading": {
+    "note": "Destructive confirmation heading.",
+    "maxLength": 80,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "certificates.remove.body": {
+    "note": "Destructive confirmation body. exemption = Shopify exemption code.",
+    "maxLength": 250,
+    "placeholders": [
+      "exemption",
+      "name"
+    ]
+  },
+  "certificates.remove.confirm": {
+    "note": "Destructive modal button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.toast.approve": {
+    "note": "Toast.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "certificates.toast.reject": {
+    "note": "Toast.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "certificates.toast.set_expiry": {
+    "note": "Toast.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "certificates.toast.request": {
+    "note": "Toast.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "certificates.toast.expiry_keep": {
+    "note": "Toast.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "certificates.toast.expiry_remove": {
+    "note": "Toast.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "certificates.error.generic": {
+    "note": "Error toast.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "certificates.error.plan": {
+    "note": "Error toast.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "certificates.error.not_found": {
+    "note": "Error toast.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "certificates.error.date": {
+    "note": "Error toast.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "certificates.error.no_recipient": {
+    "note": "Error toast.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "certificates.error.no_buyer": {
+    "note": "Error toast.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "certificates.error.unknown_exemption": {
+    "note": "Error toast.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "certificates.error.still_covered": {
+    "note": "Error toast.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "certificates.error.shopify_error": {
+    "note": "Error toast.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "certificates.error.unknown_intent": {
+    "note": "Error toast.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "certificates.error.file": {
+    "note": "Error toast.",
+    "maxLength": 100,
+    "placeholders": []
   }
 }

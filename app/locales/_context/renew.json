@@ -1,0 +1,141 @@
+{
+  "renew.title": {
+    "note": "Browser tab title of the hosted renewal page.",
+    "maxLength": 90,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "renew.form.heading": {
+    "note": "Page heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "renew.form.intro": {
+    "note": "Intro paragraph.",
+    "maxLength": 220,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "renew.form.file": {
+    "note": "File input label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "renew.form.fileHint": {
+    "note": "File input hint.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "renew.form.expiry": {
+    "note": "Date input label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "renew.form.expiryHint": {
+    "note": "Date input hint.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "renew.form.submit": {
+    "note": "Submit button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "renew.form.sending": {
+    "note": "Submit button while uploading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "renew.form.sendingHint": {
+    "note": "Status text while uploading.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "renew.done.heading": {
+    "note": "Success heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "renew.done.body": {
+    "note": "Success message.",
+    "maxLength": 200,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "renew.invalid.heading": {
+    "note": "Heading when link is tampered/unknown.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "renew.invalid.body": {
+    "note": "Body when link is invalid.",
+    "maxLength": 200,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "renew.expired.heading": {
+    "note": "Heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "renew.expired.body": {
+    "note": "Body.",
+    "maxLength": 200,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "renew.used.heading": {
+    "note": "Heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "renew.used.body": {
+    "note": "Body.",
+    "maxLength": 200,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "renew.rate.heading": {
+    "note": "Heading for rate limit.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "renew.rate.body": {
+    "note": "Body.",
+    "maxLength": 200,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "renew.error.missing": {
+    "note": "Form error.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "renew.error.size": {
+    "note": "Form error.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "renew.error.type": {
+    "note": "Form error.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "renew.error.date": {
+    "note": "Form error.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "renew.error.upload": {
+    "note": "Form error.",
+    "maxLength": 140,
+    "placeholders": []
+  }
+}

@@ -1,6 +1,8 @@
 import db from "../db.server";
 import { safeEqual } from "./crypto.server";
 import { areaDaily, areaHourly } from "./tasks";
+import { mutate } from "./gql.server";
+import { defaultAdminFor, type AdminFor } from "./certificates.server";
 
 // cron-job.org calls POST /jobs/hourly and /jobs/daily with the header
 // `X-Tradepass-Job-Secret`. Each run must finish in ~2 minutes, so work is
@@ -62,7 +64,26 @@ const coreHourly: Task[] = [
   },
 ];
 
-type RetentionSettings = { retention?: { months?: number } };
+type RetentionSettings = { retention?: { months?: number; deleteFiles?: boolean } };
+
+const FILE_DELETE = `#graphql
+  mutation TradepassFileDelete($ids: [ID!]!) {
+    fileDelete(fileIds: $ids) { deletedFileIds userErrors { field message code } }
+  }
+`;
+
+/** Delete the merchant's Shopify Files that belonged to removed applications. Failures are skipped (the file may already be gone). */
+export async function deleteShopifyFiles(shop: string, gids: string[], adminFor: AdminFor = defaultAdminFor): Promise<void> {
+  if (!gids.length) return;
+  try {
+    const admin = await adminFor(shop);
+    for (let i = 0; i < gids.length; i += 50) {
+      await mutate(admin, "fileDelete", FILE_DELETE, { ids: gids.slice(i, i + 50) }).catch(() => undefined);
+    }
+  } catch {
+    // No offline session (e.g. uninstalled): nothing we can delete.
+  }
+}
 
 const coreDaily: Task[] = [
   {
@@ -72,7 +93,8 @@ const coreDaily: Task[] = [
       const shops = await db.shop.findMany({ where: { uninstalledAt: null }, select: { shop: true, settings: true } });
       for (const s of shops) {
         if (Date.now() > deadline) break;
-        const months = (s.settings as RetentionSettings).retention?.months ?? 12;
+        const retention = (s.settings as RetentionSettings).retention;
+        const months = retention?.months ?? 12;
         const cutoff = new Date();
         cutoff.setMonth(cutoff.getMonth() - months);
         const old = await db.application.findMany({
@@ -82,6 +104,10 @@ const coreDaily: Task[] = [
         });
         if (!old.length) continue;
         const ids = old.map((a) => a.id);
+        if (retention?.deleteFiles ?? true) {
+          const files = await db.applicationFile.findMany({ where: { shop: s.shop, applicationId: { in: ids } }, select: { fileGid: true } });
+          await deleteShopifyFiles(s.shop, files.map((f) => f.fileGid));
+        }
         await db.$transaction([
           db.applicationFile.deleteMany({ where: { shop: s.shop, applicationId: { in: ids } } }),
           db.certificate.deleteMany({ where: { shop: s.shop, applicationId: { in: ids }, buyerId: null } }),

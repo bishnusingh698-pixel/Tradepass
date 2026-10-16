@@ -18,5 +18,318 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "notifications.quota.heading": {
+    "note": "Section heading for the daily email quota.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.quota.store": {
+    "note": "Quota line on Notifications. used/cap/left are numbers.",
+    "maxLength": 120,
+    "placeholders": [
+      "cap",
+      "left",
+      "used"
+    ]
+  },
+  "notifications.quota.explain": {
+    "note": "Plain-words explanation of the email caps.",
+    "maxLength": 400,
+    "placeholders": [
+      "globalCap",
+      "storeCap"
+    ]
+  },
+  "notifications.quota.flow": {
+    "note": "Hint under the quota explanation.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "notifications.quota.deferredHeading": {
+    "note": "Warning banner heading when emails were deferred by the daily limit.",
+    "maxLength": 90,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "notifications.quota.deferredBody": {
+    "note": "Warning banner body about deferred emails.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "notifications.merchant.heading": {
+    "note": "Section heading: notifications sent to the merchant.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.merchant.mode": {
+    "note": "Select label for merchant alert mode.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.merchant.mode.instant": {
+    "note": "Select option.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "notifications.merchant.mode.digest": {
+    "note": "Select option.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "notifications.merchant.mode.off": {
+    "note": "Select option.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "notifications.merchant.mode.instant.help": {
+    "note": "Help text for instant mode.",
+    "maxLength": 350,
+    "placeholders": []
+  },
+  "notifications.merchant.mode.digest.help": {
+    "note": "Help text for digest mode.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "notifications.merchant.mode.off.help": {
+    "note": "Help text for off mode.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "notifications.merchant.email": {
+    "note": "Email field label.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.merchant.emailHelp": {
+    "note": "Help under the alert email field. email = store contact email.",
+    "maxLength": 150,
+    "placeholders": [
+      "email"
+    ]
+  },
+  "notifications.emails.heading": {
+    "note": "Section heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "notifications.emails.intro": {
+    "note": "Section intro.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "notifications.language.label": {
+    "note": "Select label for the email language switcher.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.language.help": {
+    "note": "Help under the language switcher.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "notifications.language.store": {
+    "note": "Option group label.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.language.other": {
+    "note": "Option group label.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.welcome.label": {
+    "note": "Checkbox label.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "notifications.welcome.help": {
+    "note": "Checkbox help.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "notifications.type.received": {
+    "note": "Email name.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.type.needs_info": {
+    "note": "Email name.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.type.approved": {
+    "note": "Email name.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.type.rejected": {
+    "note": "Email name.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.type.cert_expiring": {
+    "note": "Email name.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.type.cert_expired": {
+    "note": "Email name.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.type.received.help": {
+    "note": "Help under the email name.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.type.needs_info.help": {
+    "note": "Help under the email name.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.type.approved.help": {
+    "note": "Help under the email name.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.type.rejected.help": {
+    "note": "Help under the email name.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.type.cert_expiring.help": {
+    "note": "Help under the email name.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.type.cert_expired.help": {
+    "note": "Help under the email name.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.email.enabled": {
+    "note": "Switch label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "notifications.email.subject": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "notifications.email.body": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "notifications.email.bodyHelp": {
+    "note": "Help under the message field.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.email.placeholders": {
+    "note": "Label above the placeholder list.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "notifications.email.placeholdersHelp": {
+    "note": "Help under the placeholder list.",
+    "maxLength": 180,
+    "placeholders": []
+  },
+  "notifications.email.reset": {
+    "note": "Button that restores default text.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "notifications.preview.heading": {
+    "note": "Heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "notifications.preview.subject": {
+    "note": "Preview line showing the subject.",
+    "maxLength": 200,
+    "placeholders": [
+      "subject"
+    ]
+  },
+  "notifications.preview.frameTitle": {
+    "note": "Accessible title of the preview frame.",
+    "maxLength": 80,
+    "placeholders": [
+      "email"
+    ]
+  },
+  "notifications.preview.invalid": {
+    "note": "Shown while a placeholder is half-typed. '{company}' is literal text (ICU quoted).",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.test.button": {
+    "note": "Button.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "notifications.test.sent": {
+    "note": "Toast.",
+    "maxLength": 80,
+    "placeholders": [
+      "email"
+    ]
+  },
+  "notifications.test.deferred": {
+    "note": "Toast.",
+    "maxLength": 120,
+    "placeholders": [
+      "email"
+    ]
+  },
+  "notifications.test.failed": {
+    "note": "Error toast.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "notifications.error.summary": {
+    "note": "Error summary banner heading.",
+    "maxLength": 70,
+    "placeholders": [
+      "Fix",
+      "count"
+    ]
+  },
+  "notifications.error.syntax": {
+    "note": "Inline field error. '{company}' is literal text (ICU quoted).",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "notifications.error.placeholder": {
+    "note": "Inline field error. name = the unknown placeholder.",
+    "maxLength": 150,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "notifications.error.email": {
+    "note": "Inline field error.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "notifications.field.subject": {
+    "note": "Link text in the error summary.",
+    "maxLength": 80,
+    "placeholders": [
+      "email"
+    ]
+  },
+  "notifications.field.body": {
+    "note": "Link text in the error summary.",
+    "maxLength": 80,
+    "placeholders": [
+      "email"
+    ]
   }
 }

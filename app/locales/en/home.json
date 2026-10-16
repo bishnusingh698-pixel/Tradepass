@@ -77,8 +77,8 @@
   "home.alert.tier_missing.heading": "{count, plural, one {A tier's catalog was deleted in Shopify} other {# tiers' catalogs were deleted in Shopify}}",
   "home.alert.tier_missing.body": "Buyers in \"{tier}\" may see retail prices. Open the tier to repair it.",
   "home.alert.tier_missing.action": "Open tiers",
-  "home.alert.plan_limit.heading": "{full, plural, =1 {You've used all {limit} free approvals this month} other {You've used {used} of {limit} free approvals this month}}",
-  "home.alert.plan_limit.body": "{full, plural, =1 {New applications are still collected. Upgrade to approve more this month.} other {Upgrade to Starter for unlimited approvals.}}",
+  "home.alert.plan_limit.heading": "{full, select, yes {You've used all {limit} free approvals this month} other {You've used {used} of {limit} free approvals this month}}",
+  "home.alert.plan_limit.body": "{full, select, yes {New applications are still collected. Upgrade to approve more this month.} other {Upgrade to Starter for unlimited approvals.}}",
   "home.alert.plan_limit.action": "See plans",
   "home.alert.first_buyer.heading": "Your first wholesale buyer is approved",
   "home.alert.first_buyer.body": "They can now sign in and see their wholesale prices."

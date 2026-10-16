@@ -46,7 +46,7 @@ describe("home", () => {
       });
     }
     const alerts = await serverAlerts(shop, defaultSettings(), facts(), "free");
-    expect(alerts.find((a) => a.id === "plan_limit")?.values).toMatchObject({ used: 8, limit: 10, full: 0 });
+    expect(alerts.find((a) => a.id === "plan_limit")?.values).toMatchObject({ used: 8, limit: 10, full: "no" });
     expect((await serverAlerts(shop, defaultSettings(), facts(), "starter")).map((a) => a.id)).not.toContain("plan_limit");
   });
 
