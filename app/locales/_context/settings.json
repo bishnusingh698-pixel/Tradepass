@@ -18,5 +18,258 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "settings.languages.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.languages.body": {
+    "note": "Section text. count is the number of built-in languages.",
+    "maxLength": 250,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "settings.languages.primary": {
+    "note": "Marker after the store's primary language.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.languages.unsupported": {
+    "note": "Marker for a store language Tradepass doesn't translate.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.languages.customized": {
+    "note": "Marker showing how many texts the merchant changed for a language.",
+    "maxLength": 40,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "settings.languages.editTexts": {
+    "note": "Button that opens the text editor.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.retention.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.retention.months": {
+    "note": "Select label.",
+    "maxLength": 70,
+    "placeholders": []
+  },
+  "settings.retention.monthsOption": {
+    "note": "Select option.",
+    "maxLength": 20,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "settings.retention.deleteFiles": {
+    "note": "Checkbox label.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "settings.retention.deleteFilesHelp": {
+    "note": "Checkbox help.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "settings.retention.note": {
+    "note": "Section footnote.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "settings.branding.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.branding.logo": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.branding.logoHelp": {
+    "note": "Field help.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "settings.branding.accent": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.branding.accentHelp": {
+    "note": "Field help.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "settings.plan.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.plan.current": {
+    "note": "Shows the Tradepass plan name.",
+    "maxLength": 50,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "settings.plan.devStore": {
+    "note": "Note for development stores.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "settings.plan.manage": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.danger.heading": {
+    "note": "Section heading for destructive actions.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.danger.body": {
+    "note": "Section text.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "settings.danger.button": {
+    "note": "Destructive button.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.danger.modalHeading": {
+    "note": "Modal heading.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "settings.danger.modalBody": {
+    "note": "Modal text: what gets deleted.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "settings.danger.modalKeeps": {
+    "note": "Modal text: what is kept.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "settings.danger.typeName": {
+    "note": "Text field label. name is the store name.",
+    "maxLength": 80,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "settings.danger.mismatch": {
+    "note": "Inline error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "settings.danger.confirm": {
+    "note": "Destructive confirm button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.danger.done": {
+    "note": "Toast.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.error.months": {
+    "note": "Inline error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "settings.error.logoUrl": {
+    "note": "Inline error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "settings.error.accentColor": {
+    "note": "Inline error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "settings.texts.title": {
+    "note": "Page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.texts.body": {
+    "note": "Page intro.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "settings.texts.language": {
+    "note": "Select label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.texts.area": {
+    "note": "Select label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.texts.area.storefront": {
+    "note": "Select option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.texts.area.email": {
+    "note": "Select option.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.texts.placeholders": {
+    "note": "Help listing the placeholders allowed in this text, e.g. {first_name}.",
+    "maxLength": 120,
+    "placeholders": [
+      "list"
+    ]
+  },
+  "settings.texts.tooLong": {
+    "note": "Inline error.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "settings.texts.invalid": {
+    "note": "Inline error.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "settings.texts.resetAll": {
+    "note": "Destructive button.",
+    "maxLength": 60,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "settings.texts.resetHeading": {
+    "note": "Modal heading.",
+    "maxLength": 60,
+    "placeholders": [
+      "language"
+    ]
+  },
+  "settings.texts.resetBody": {
+    "note": "Modal text.",
+    "maxLength": 150,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "settings.texts.resetConfirm": {
+    "note": "Destructive confirm button.",
+    "maxLength": 30,
+    "placeholders": []
   }
 }

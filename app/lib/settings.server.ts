@@ -11,3 +11,10 @@ export async function updateSettings(shop: string, patch: DeepPartial<Settings>)
   await db.shop.update({ where: { shop }, data: { settings: next as object, settingsVersion: SETTINGS_VERSION } });
   return next;
 }
+
+/** Replace the whole `texts` map (a deep patch can't remove keys). */
+export async function setTexts(shop: string, texts: Settings["texts"]): Promise<Settings> {
+  const next = { ...(await getSettings(shop)), texts };
+  await db.shop.update({ where: { shop }, data: { settings: next as object, settingsVersion: SETTINGS_VERSION } });
+  return next;
+}

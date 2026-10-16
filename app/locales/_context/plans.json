@@ -1,0 +1,209 @@
+{
+  "plans.title": {
+    "note": "Page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "plans.name.free": {
+    "note": "Plan name.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "plans.name.starter": {
+    "note": "Plan name.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "plans.name.pro": {
+    "note": "Plan name.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "plans.price.free": {
+    "note": "Price line for the free plan.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "plans.price.monthly": {
+    "note": "Price line, e.g. \"$9.99 per month\". price includes the currency symbol.",
+    "maxLength": 30,
+    "placeholders": [
+      "price"
+    ]
+  },
+  "plans.trial": {
+    "note": "Trial line under the price.",
+    "maxLength": 40,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "plans.summary.free": {
+    "note": "Feature list, one feature per line. Keep the line breaks (\\n).",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "plans.summary.starter": {
+    "note": "Feature list, one feature per line. Keep the line breaks.",
+    "maxLength": 400,
+    "placeholders": []
+  },
+  "plans.summary.pro": {
+    "note": "Feature list, one feature per line. Keep the line breaks.",
+    "maxLength": 400,
+    "placeholders": []
+  },
+  "plans.current": {
+    "note": "Badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "plans.upgrade": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "plans.downgrade": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "plans.freeUsage": {
+    "note": "Usage line on the free plan.",
+    "maxLength": 80,
+    "placeholders": [
+      "limit",
+      "used"
+    ]
+  },
+  "plans.footnote": {
+    "note": "Footnote.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "plans.devStore.heading": {
+    "note": "Banner heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.devStore.body": {
+    "note": "Banner text.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "plans.error.confirmWholesale": {
+    "note": "Error banner.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "plans.downgradeHeading": {
+    "note": "Modal heading.",
+    "maxLength": 50,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "plans.downgradeIntro": {
+    "note": "Modal text before a list.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.impact.tiers": {
+    "note": "Downgrade impact line.",
+    "maxLength": 120,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "plans.impact.rules": {
+    "note": "Downgrade impact line.",
+    "maxLength": 80,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "plans.impact.wholesaleHeading": {
+    "note": "Banner heading in the downgrade modal.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.impact.wholesaleBody": {
+    "note": "Explains what happens to the store.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "plans.impact.wholesaleConfirm": {
+    "note": "Checkbox the merchant must tick.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "plans.feature.unlimited_approvals": {
+    "note": "Feature name in the downgrade list.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.multiple_tiers": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.auto_tier_assignment": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.wholesale_only": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.certificate_vault": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.tax_checks": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.no_branding": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.auto_rules": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.multiple_forms": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.import": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.flow": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.activity_export": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "plans.feature.priority_support": {
+    "note": "Feature name.",
+    "maxLength": 60,
+    "placeholders": []
+  }
+}

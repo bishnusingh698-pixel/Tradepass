@@ -2,12 +2,23 @@ import "@shopify/shopify-app-react-router/adapters/node";
 import {
   ApiVersion,
   AppDistribution,
+  BillingInterval,
+  BillingReplacementBehavior,
   shopifyApp,
 } from "@shopify/shopify-app-react-router/server";
 import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
 import prisma from "./db.server";
 import { refreshShopFacts } from "./lib/shop.server";
 import { ensureDefaults } from "./lib/defaults.server";
+import { BILLING_NAMES, PLANS } from "./lib/plans";
+
+// Paid plans (feature spec §N): monthly, USD, 14-day trial. Switching plans
+// replaces the current subscription immediately (Shopify prorates).
+const paidPlan = (price: number, trialDays: number) => ({
+  trialDays,
+  replacementBehavior: BillingReplacementBehavior.ApplyImmediately,
+  lineItems: [{ amount: price, currencyCode: "USD", interval: BillingInterval.Every30Days as const }],
+});
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY,
@@ -18,6 +29,10 @@ const shopify = shopifyApp({
   authPathPrefix: "/auth",
   sessionStorage: new PrismaSessionStorage(prisma),
   distribution: AppDistribution.AppStore,
+  billing: {
+    [BILLING_NAMES.starter]: paidPlan(PLANS.starter.price, PLANS.starter.trialDays),
+    [BILLING_NAMES.pro]: paidPlan(PLANS.pro.price, PLANS.pro.trialDays),
+  },
   hooks: {
     // Runs on install and reinstall. Both steps are idempotent (upserts /
     // create-if-missing), so a reinstall never duplicates defaults.

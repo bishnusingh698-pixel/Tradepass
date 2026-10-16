@@ -60,6 +60,7 @@ model Shop {
   country           String? // store country, for tax suggestions
   placeholderCompanyGid String? // see DECISIONS D-004 (only if empty B2B markets are rejected)
   subscriptionGid   String? // active Billing API subscription
+  trialStartedAt    DateTime? // first paid-plan trial start; later subscriptions get only the remaining trial days
 }
 
 model Form {
