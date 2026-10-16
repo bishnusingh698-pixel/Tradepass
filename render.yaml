@@ -1,0 +1,36 @@
+# Render Blueprint: one free web service. Database is Neon (not Render), and
+# scheduled work is triggered by cron-job.org, so nothing here costs money.
+services:
+  - type: web
+    name: tradepass
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm run render-build
+    startCommand: npm run start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22.12.0"
+      - key: NODE_ENV
+        value: production
+      - key: SHOPIFY_API_KEY
+        sync: false
+      - key: SHOPIFY_API_SECRET
+        sync: false
+      - key: SHOPIFY_APP_URL
+        sync: false
+      - key: SCOPES
+        value: write_companies,write_markets,write_products,read_locales
+      - key: DATABASE_URL
+        sync: false
+      - key: DIRECT_DATABASE_URL
+        sync: false
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: LINK_TOKEN_SECRET
+        sync: false
+      - key: JOB_SECRET
+        sync: false
+      - key: SUPPORT_EMAIL
+        sync: false

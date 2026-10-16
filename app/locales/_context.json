@@ -1,0 +1,475 @@
+{
+  "app.name": {
+    "note": "Brand name. Never translate.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.home": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.applications": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.buyers": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.tiers": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.form": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.storefront": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.certificates": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.notifications": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.automation": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.import": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.settings": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "nav.help": {
+    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "common.back": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.save": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.discard": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.saved": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.cancel": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.retry": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.learnMore": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.comingSoon": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "common.availableOn": {
+    "note": "Shared admin button/label or short message.",
+    "maxLength": 60,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "errors.generic": {
+    "note": "Admin error message shown in a red banner.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "errors.notFound": {
+    "note": "Admin error message shown in a red banner.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "home.title": {
+    "note": "Page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "home.readiness.heading": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.plan": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "home.readiness.b2bOn": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.b2bOff": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.marketsOn": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.marketsOff": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.catalogBudget": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": [
+      "used",
+      "limit"
+    ]
+  },
+  "home.readiness.catalogUnlimited": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": [
+      "used"
+    ]
+  },
+  "home.readiness.viewPlans": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.readiness.refresh": {
+    "note": "Home page, Plan and readiness card. Full sentence status lines; {plan} is Shopify plan name, {used}/{limit} numbers.",
+    "maxLength": 140,
+    "placeholders": []
+  },
+  "home.pending.heading": {
+    "note": "Home page, Waiting for you card.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "home.pending.none": {
+    "note": "Home page, Waiting for you card.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "home.pending.applications": {
+    "note": "Home page, Waiting for you card.",
+    "maxLength": 80,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "applications.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "applications.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "buyers.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "buyers.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "buyers.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "tiers.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "tiers.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "tiers.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "form.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "form.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "form.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "storefront.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "storefront.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "storefront.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "certificates.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "certificates.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "certificates.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "notifications.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "notifications.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "notifications.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "notifications.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "automation.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "automation.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "import.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "import.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "settings.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "settings.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "help.title": {
+    "note": "Admin page title.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "help.empty.heading": {
+    "note": "Empty-state heading on an admin page that has no data yet.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "help.empty.body": {
+    "note": "Empty-state explanation, one or two sentences.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "help.empty.action": {
+    "note": "Empty-state primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "help.contact": {
+    "note": "Admin text.",
+    "maxLength": 120,
+    "placeholders": [
+      "email"
+    ]
+  },
+  "spike.title": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.intro": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.devOnly": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.run": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.cleanup": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.copy": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.running": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.passed": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "spike.failed": {
+    "note": "Internal diagnostics page for the merchant (Help > diagnostics).",
+    "maxLength": 220,
+    "placeholders": []
+  }
+}

@@ -1,0 +1,52 @@
+# Tradepass app configuration. `client_id`, `application_url` and the app
+# proxy URL are filled in by `shopify app config link` / `shopify app dev`
+# (see README.md → "Shopify Partner app setup").
+client_id = ""
+name = "Tradepass: Wholesale Signup"
+application_url = "https://example.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+
+[access_scopes]
+# Minimal scopes; each is justified in DECISIONS.md (D-007). Later phases add
+# scopes only when the feature using them lands.
+scopes = "write_companies,write_markets,write_products,read_locales"
+
+[auth]
+redirect_urls = ["https://example.com/auth/callback"]
+
+[app_proxy]
+# Storefront URL: https://{shop}/apps/tradepass/... → {application_url}/proxy/...
+url = "https://example.com/proxy"
+subpath = "tradepass"
+prefix = "apps"
+
+[webhooks]
+api_version = "2026-10"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = ["app/uninstalled"]
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  # Mandatory privacy (compliance) webhooks for App Store apps.
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/customers/data_request"
+  compliance_topics = ["customers/data_request"]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/customers/redact"
+  compliance_topics = ["customers/redact"]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/shop/redact"
+  compliance_topics = ["shop/redact"]
+
+[pos]
+embedded = false

@@ -1,0 +1,268 @@
+// Tradepass data model. Hosted on Neon free Postgres (0.5 GB), so rows are kept
+// compact: Shopify GIDs instead of copies of Shopify data, JSON for sparse
+// settings, and only the indexes that real queries use. Every table except
+// Session carries `shop` and every query filters by it (multi-tenant safety).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Neon: pooled URL for the app, direct URL for migrations.
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?
+  expires             DateTime?
+  accessToken         String
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+
+  @@index([shop])
+}
+
+/// One row per installed store. Plan/B2B facts are refreshed on install and on each Home load.
+model Shop {
+  shop              String    @id // myshopify domain
+  installedAt       DateTime  @default(now())
+  uninstalledAt     DateTime? // set by app/uninstalled; data deleted by shop/redact
+  planName          String? // ShopPlan.publicDisplayName
+  isPlus            Boolean   @default(false)
+  isDevStore        Boolean   @default(false)
+  b2bEnabled        Boolean   @default(false) // shop.entitlements.b2b.enabled
+  b2bMarketsEnabled Boolean   @default(false) // shop.entitlements.markets.b2b.enabled
+  catalogLimit      Int? // shop.entitlements.markets.b2b.catalogs.limit
+  directCatalogs    Boolean   @default(false) // shop.features.directConnectionCatalogAssignmentEnabled
+  billingPlan       String    @default("free") // free | starter | pro
+  primaryLocale     String    @default("en")
+  settings          Json      @default("{}") // versioned settings blob, see app/lib/settings.ts
+  settingsVersion   Int       @default(1)
+  welcomeDoneAt     DateTime?
+  checkedAt         DateTime? // last plan/entitlement check
+}
+
+model Form {
+  id          String   @id @default(cuid())
+  shop        String
+  name        String
+  isDefault   Boolean  @default(false)
+  suggestedTierId String?
+  definition  Json // sections, fields, conditional logic, per-language text
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+
+  @@index([shop])
+}
+
+model Application {
+  id             String    @id @default(cuid())
+  shop           String
+  formId         String?
+  status         String    @default("pending") // draft | pending | approved | rejected | needs_info | withdrawn
+  idempotencyKey String
+  companyName    String
+  email          String // lower-cased
+  countryCode    String?
+  businessType   String?
+  locale         String    @default("en")
+  customerGid    String? // linked existing customer (verified via app proxy)
+  answers        Json // everything else the form asked for
+  taxNumberEnc   String? // AES-256-GCM, see app/lib/crypto.server.ts
+  taxCheck       String    @default("na") // verified | not_verified | unavailable | na
+  taxCheckName   String? // registry-returned name, e.g. "ACME GMBH"
+  flags          String[]  @default([]) // duplicate | possible_spam
+  assignee       String?
+  approvalState  Json? // per-step progress of the approval engine (retry/undo)
+  buyerId        String?
+  submittedAt    DateTime  @default(now())
+  decidedAt      DateTime?
+
+  @@unique([shop, idempotencyKey])
+  @@index([shop, status, submittedAt])
+  @@index([shop, email])
+}
+
+model ApplicationFile {
+  id            String   @id @default(cuid())
+  shop          String
+  applicationId String
+  fileGid       String // Shopify Files GID; the file itself lives in the merchant's Shopify Files
+  kind          String // certificate | other
+  createdAt     DateTime @default(now())
+
+  @@index([shop, applicationId])
+}
+
+model Tier {
+  id             String   @id @default(cuid())
+  shop           String
+  name           String
+  buyerNames     Json     @default("{}") // { locale: name }
+  marketGid      String?
+  catalogGid     String?
+  priceListGid   String?
+  publicationGid String?
+  createdByUs    Boolean  @default(true) // only delete Shopify objects we created
+  discountPct    Int?
+  defaults       Json     @default("{}") // payment terms template, checkout behaviour, tax behaviour
+  syncState      String   @default("ok") // ok | changed_in_shopify | missing
+  position       Int      @default(0)
+  updatedAt      DateTime @updatedAt
+  createdAt      DateTime @default(now())
+
+  @@index([shop])
+}
+
+model Buyer {
+  id           String   @id @default(cuid())
+  shop         String
+  companyGid   String
+  locationGids String[]
+  contactGid   String?
+  tierId       String?
+  status       String   @default("active") // active | paused
+  source       String   @default("application") // application | import | tag
+  name         String // company name, for list display
+  approvedAt   DateTime @default(now())
+
+  @@unique([shop, companyGid])
+  @@index([shop, tierId])
+}
+
+model Certificate {
+  id            String    @id @default(cuid())
+  shop          String
+  buyerId       String?
+  applicationId String?
+  type          String // resale | vat | licence | other
+  country       String?
+  region        String? // US state / province code
+  numberEnc     String?
+  issuedOn      DateTime? @db.Date
+  expiresOn     DateTime? @db.Date
+  status        String    @default("pending") // pending | valid | expiring | expired | rejected
+  fileGid       String?
+  remindedAt    Json      @default("{}") // { "30": iso, "7": iso }
+  createdAt     DateTime  @default(now())
+
+  @@index([shop, expiresOn])
+  @@index([shop, buyerId])
+}
+
+/// Outgoing email queue + log. Doubles as the quota counter (count by quotaDay).
+model EmailLog {
+  id        String    @id @default(cuid())
+  shop      String
+  type      String
+  toHash    String // sha256 of recipient; the address itself lives in `payload` until sent
+  payload   Json? // cleared after sending (no personal data kept)
+  status    String    @default("queued") // queued | sent | failed | skipped
+  quotaDay  String // YYYY-MM-DD (UTC) the email counts against
+  sentAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([quotaDay, status])
+  @@index([shop, quotaDay])
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  shop      String
+  actor     String // staff name/id, "system", "automation", "flow"
+  action    String // e.g. application.approve, tier.assign
+  subject   String? // our id or a Shopify GID — never personal data
+  result    String   @default("ok") // ok | failed
+  detail    Json?
+  createdAt DateTime @default(now())
+
+  @@index([shop, createdAt])
+}
+
+model Job {
+  id        String   @id @default(cuid())
+  shop      String
+  type      String
+  payload   Json
+  state     String   @default("queued") // queued | running | done | failed
+  attempts  Int      @default(0)
+  runAfter  DateTime @default(now())
+  lockedAt  DateTime?
+  error     String?
+  createdAt DateTime @default(now())
+
+  @@index([state, runAfter])
+}
+
+/// Per-shop mutex for tier assignment (one market write at a time per shop).
+model ShopLock {
+  shop      String
+  name      String
+  holder    String
+  expiresAt DateTime
+
+  @@id([shop, name])
+}
+
+model ImportRun {
+  id        String   @id @default(cuid())
+  shop      String
+  kind      String // csv | tag
+  state     String   @default("draft") // draft | validated | running | done | failed
+  mapping   Json?
+  total     Int      @default(0)
+  done      Int      @default(0)
+  cursor    Int      @default(0) // resume point
+  errors    Json     @default("[]")
+  createdAt DateTime @default(now())
+
+  @@index([shop])
+}
+
+/// Single-use link tokens (more-info and certificate renewal). Token itself is never stored, only its hash.
+model TokenUse {
+  tokenHash String    @id
+  shop      String
+  purpose   String
+  subjectId String
+  expiresAt DateTime
+  usedAt    DateTime?
+
+  @@index([expiresAt])
+}
+
+model Rule {
+  id         String   @id @default(cuid())
+  shop       String
+  kind       String // approve | reject
+  enabled    Boolean  @default(true)
+  conditions Json
+  action     Json
+  position   Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  @@index([shop])
+}
+
+/// Public endpoint rate limiting (per IP hash / email hash), pruned hourly.
+model RateHit {
+  key       String
+  window    String // e.g. 2026-10-16T15
+  count     Int    @default(1)
+
+  @@id([key, window])
+}
