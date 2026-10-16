@@ -18,5 +18,853 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "applications.tabsLabel": {
+    "note": "Accessible label for the status tabs above the applications list.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.tab.pending": {
+    "note": "Tab: applications waiting for a decision.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.tab.needs_info": {
+    "note": "Tab: applications where the store asked for more information.",
+    "maxLength": 31,
+    "placeholders": []
+  },
+  "applications.tab.approved": {
+    "note": "Tab: approved applications.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.tab.rejected": {
+    "note": "Tab: rejected applications.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.tab.all": {
+    "note": "Tab: every application.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.status.pending": {
+    "note": "Status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.status.needs_info": {
+    "note": "Status badge: the store asked the applicant for more information.",
+    "maxLength": 31,
+    "placeholders": []
+  },
+  "applications.status.approved": {
+    "note": "Status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.status.rejected": {
+    "note": "Status badge.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.status.withdrawn": {
+    "note": "Status badge: the applicant withdrew.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.status.draft": {
+    "note": "Status badge: not submitted yet.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.taxCheck.verified": {
+    "note": "Badge: the official registry confirmed the tax number.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.taxCheck.not_verified": {
+    "note": "Badge: the official registry did not confirm the tax number.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.taxCheck.unavailable": {
+    "note": "Badge: the registry could not be reached.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.taxCheck.na": {
+    "note": "Badge: no automatic check exists for this country, or no number given.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.flag.duplicate": {
+    "note": "Badge: another application has the same email or tax number.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.flag.possible_spam": {
+    "note": "Badge: the application looks like spam.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.certificate.uploaded": {
+    "note": "Filter option / column value: the applicant uploaded a certificate.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.certificate.missing": {
+    "note": "Filter option / column value: no certificate uploaded.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.col.company": {
+    "note": "Table column header: business name.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.col.contact": {
+    "note": "Table column header: contact person.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.col.country": {
+    "note": "Table column header.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.col.businessType": {
+    "note": "Table column header.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.col.submitted": {
+    "note": "Table column header: when it was sent.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.col.status": {
+    "note": "Table column header.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.col.taxCheck": {
+    "note": "Table column header.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.col.certificate": {
+    "note": "Table column header.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.col.flags": {
+    "note": "Table column header: warnings like duplicate.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.filter.any": {
+    "note": "Filter option meaning no filter.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.filter.country": {
+    "note": "Filter label.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.filter.businessType": {
+    "note": "Filter label.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.filter.taxCheck": {
+    "note": "Filter label.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.filter.certificate": {
+    "note": "Filter label.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.filter.flags": {
+    "note": "Filter label.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.filter.form": {
+    "note": "Filter label: which signup form was used.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.filter.from": {
+    "note": "Date filter label: start date.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.filter.to": {
+    "note": "Date filter label: end date.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.search.label": {
+    "note": "Search field label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.search.placeholder": {
+    "note": "Search field placeholder.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "applications.sort.label": {
+    "note": "Sort select label.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.sort.newest": {
+    "note": "Sort option.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.sort.oldest": {
+    "note": "Sort option.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.sort.company": {
+    "note": "Sort option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.selectAll": {
+    "note": "Accessible label for the select-all checkbox.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.selectRow": {
+    "note": "Accessible label for a row checkbox.",
+    "maxLength": 60,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "applications.exportAll": {
+    "note": "Button: download the filtered list as a spreadsheet file.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.noResults.heading": {
+    "note": "Shown when filters hide everything.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "applications.noResults.body": {
+    "note": "Shown when filters hide everything.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "applications.noResults.clear": {
+    "note": "Button.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.bulk.selected": {
+    "note": "Bulk action bar count.",
+    "maxLength": 30,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "applications.bulk.approve": {
+    "note": "Bulk action button.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.bulk.reject": {
+    "note": "Bulk action button.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.bulk.export": {
+    "note": "Bulk action button.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.bulk.approveHeading": {
+    "note": "Modal heading.",
+    "maxLength": 50,
+    "placeholders": [
+      "Approve",
+      "count"
+    ]
+  },
+  "applications.bulk.approveExplain": {
+    "note": "Modal explanation.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "applications.bulk.tier": {
+    "note": "Select label: the wholesale price level.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.bulk.noTiers": {
+    "note": "Shown in the approve modal when no tier exists.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "applications.bulk.createTier": {
+    "note": "Button.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.bulk.approveConfirm": {
+    "note": "Modal confirm button.",
+    "maxLength": 40,
+    "placeholders": [
+      "Approve",
+      "count"
+    ]
+  },
+  "applications.bulk.approvedSummary": {
+    "note": "Banner after bulk approval.",
+    "maxLength": 80,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "applications.bulk.skippedLine": {
+    "note": "Line listing one skipped application and why.",
+    "maxLength": 200,
+    "placeholders": [
+      "company",
+      "reason"
+    ]
+  },
+  "applications.bulk.rejectHeading": {
+    "note": "Modal heading.",
+    "maxLength": 50,
+    "placeholders": [
+      "Reject",
+      "count"
+    ]
+  },
+  "applications.bulk.rejectConfirm": {
+    "note": "Modal confirm button.",
+    "maxLength": 40,
+    "placeholders": [
+      "Reject",
+      "count"
+    ]
+  },
+  "applications.bulk.rejectedToast": {
+    "note": "Toast message.",
+    "maxLength": 50,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "applications.section.business": {
+    "note": "Section heading on the application page.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.section.contact": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.section.addresses": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.section.tax": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.section.answers": {
+    "note": "Section heading: answers to the merchant's own questions.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.section.duplicates": {
+    "note": "Section heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.section.notes": {
+    "note": "Section heading: notes only staff see.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.section.activity": {
+    "note": "Section heading: history of actions.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.companyName": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.businessType": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.website": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.yearEstablished": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.locationsCount": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.monthlyOrderValue": {
+    "note": "Field label.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "applications.field.referral": {
+    "note": "Field label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.field.firstName": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.lastName": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.email": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.phone": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.jobTitle": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.preferredLanguage": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.billingAddress": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.shippingAddress": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.taxNumber": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.certificates": {
+    "note": "Field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.field.message": {
+    "note": "Field label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.businessType.retail": {
+    "note": "Business type option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.businessType.salon": {
+    "note": "Business type option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.businessType.restaurant": {
+    "note": "Business type option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.businessType.distributor": {
+    "note": "Business type option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.businessType.other": {
+    "note": "Business type option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.detail.approve": {
+    "note": "Primary button on the application page.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.detail.needsInfo": {
+    "note": "Button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.detail.reject": {
+    "note": "Button.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.detail.submitted": {
+    "note": "Text before a relative time, e.g. 'Submitted 2 days ago'.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.detail.autoDecided": {
+    "note": "Badge: an automation rule approved or rejected this.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.detail.approvalFailed": {
+    "note": "Banner heading when one approval step failed.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "applications.detail.openApproval": {
+    "note": "Button opening the approval window to retry.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.detail.waitingForApplicant": {
+    "note": "Banner heading. The banner body is the merchant's own message.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.detail.buyerHeading": {
+    "note": "Section heading after approval.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.detail.tier": {
+    "note": "Shows which tier the buyer is in.",
+    "maxLength": 60,
+    "placeholders": [
+      "tier"
+    ]
+  },
+  "applications.detail.viewBuyer": {
+    "note": "Link.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.detail.openCompany": {
+    "note": "Link to the Shopify admin company page.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.detail.changeTier": {
+    "note": "Link.",
+    "maxLength": 25,
+    "placeholders": []
+  },
+  "applications.detail.sameAsBilling": {
+    "note": "Shown instead of a shipping address.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.detail.noTaxNumber": {
+    "note": "Shown when the applicant left the tax number empty.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.detail.registryName": {
+    "note": "Name the official tax registry returned.",
+    "maxLength": 80,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "applications.detail.checkManually": {
+    "note": "Help text.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "applications.detail.document": {
+    "note": "Link to an uploaded document.",
+    "maxLength": 30,
+    "placeholders": [
+      "n"
+    ]
+  },
+  "applications.detail.expires": {
+    "note": "Certificate expiry date.",
+    "maxLength": 40,
+    "placeholders": [
+      "date"
+    ]
+  },
+  "applications.detail.yes": {
+    "note": "Answer value.",
+    "maxLength": 13,
+    "placeholders": []
+  },
+  "applications.detail.no": {
+    "note": "Answer value.",
+    "maxLength": 12,
+    "placeholders": []
+  },
+  "applications.detail.noActivity": {
+    "note": "Empty activity list.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.detail.failed": {
+    "note": "Badge on a failed activity entry.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.detail.assignee": {
+    "note": "Text field label: which staff member handles this.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.detail.assigneeHelp": {
+    "note": "Help text.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "applications.detail.addNote": {
+    "note": "Text area label. Notes are only visible to staff.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.detail.saveNote": {
+    "note": "Button.",
+    "maxLength": 20,
+    "placeholders": []
+  },
+  "applications.detail.toast.reject": {
+    "note": "Toast.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.detail.toast.needs_info": {
+    "note": "Toast.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.detail.toast.note": {
+    "note": "Toast.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.detail.toast.assign": {
+    "note": "Toast.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.needsInfo.heading": {
+    "note": "Modal heading.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "applications.needsInfo.template": {
+    "note": "Select label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.needsInfo.templateNone": {
+    "note": "Select option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.needsInfo.templateName.certificate": {
+    "note": "Template name.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.needsInfo.templateName.taxNumber": {
+    "note": "Template name.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.needsInfo.templateName.business": {
+    "note": "Template name.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.needsInfo.template.certificate": {
+    "note": "Message template sent to the applicant.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "applications.needsInfo.template.taxNumber": {
+    "note": "Message template sent to the applicant.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "applications.needsInfo.template.business": {
+    "note": "Message template sent to the applicant.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "applications.needsInfo.message": {
+    "note": "Text area label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.needsInfo.messageRequired": {
+    "note": "Inline error.",
+    "maxLength": 100,
+    "placeholders": []
+  },
+  "applications.needsInfo.fields": {
+    "note": "Checkbox list label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.needsInfo.fieldsHelp": {
+    "note": "Help text.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "applications.needsInfo.fieldsRequired": {
+    "note": "Inline error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.needsInfo.send": {
+    "note": "Modal confirm button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.reject.heading": {
+    "note": "Modal heading.",
+    "maxLength": 60,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "applications.reject.template": {
+    "note": "Select label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.reject.templateNone": {
+    "note": "Select option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.reject.templateName.notEligible": {
+    "note": "Template name.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.reject.templateName.incomplete": {
+    "note": "Template name.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.reject.templateName.region": {
+    "note": "Template name.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.reject.template.notEligible": {
+    "note": "Reason sent to the applicant.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "applications.reject.template.incomplete": {
+    "note": "Reason sent to the applicant.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "applications.reject.template.region": {
+    "note": "Reason sent to the applicant.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "applications.reject.reason": {
+    "note": "Text area label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.reject.reasonHelp": {
+    "note": "Help text.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "applications.reject.email": {
+    "note": "Checkbox label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "applications.reject.consequence": {
+    "note": "Modal explanation of what happens.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "applications.reject.confirm": {
+    "note": "Destructive confirm button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.activity.application.submit": {
+    "note": "Activity entry.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.activity.application.approve": {
+    "note": "Activity entry.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.activity.application.reject": {
+    "note": "Activity entry.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.activity.application.needs_info": {
+    "note": "Activity entry.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.activity.application.updated": {
+    "note": "Activity entry.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.activity.application.note": {
+    "note": "Activity entry.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "applications.activity.application.assign": {
+    "note": "Activity entry.",
+    "maxLength": 60,
+    "placeholders": []
   }
 }
