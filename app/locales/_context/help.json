@@ -25,5 +25,374 @@
     "placeholders": [
       "email"
     ]
+  },
+  "help.setup.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.setup.intro": {
+    "note": "Section intro.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "help.setup.tier.title": {
+    "note": "Setup step title.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.setup.tier.body": {
+    "note": "Setup step text.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "help.setup.form.title": {
+    "note": "Setup step title.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.setup.form.body": {
+    "note": "Setup step text.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "help.setup.embed.title": {
+    "note": "Setup step title.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.setup.embed.body": {
+    "note": "Setup step text.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "help.setup.page.title": {
+    "note": "Setup step title.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.setup.page.body": {
+    "note": "Setup step text.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "help.setup.storefront.title": {
+    "note": "Setup step title.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "help.setup.storefront.body": {
+    "note": "Setup step text.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "help.setup.test.title": {
+    "note": "Setup step title.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.setup.test.body": {
+    "note": "Setup step text.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "help.setup.reopenWelcome": {
+    "note": "Button that reopens the welcome card on Home.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "help.addForm.heading": {
+    "note": "Section heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "help.addForm.step1": {
+    "note": "Step 1.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "help.addForm.step2": {
+    "note": "Step 2. Keep the block name in quotes matching the theme editor.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "help.addForm.step3": {
+    "note": "Step 3.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "help.screenshotPlaceholder": {
+    "note": "Placeholder text where a screenshot will go.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "help.b2b.heading": {
+    "note": "Section heading.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "help.b2b.markets": {
+    "note": "Explainer paragraph.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.b2b.catalogs": {
+    "note": "Explainer paragraph.",
+    "maxLength": 450,
+    "placeholders": []
+  },
+  "help.b2b.plus": {
+    "note": "Explainer paragraph.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "help.b2b.signIn": {
+    "note": "Explainer paragraph.",
+    "maxLength": 250,
+    "placeholders": []
+  },
+  "help.faq.heading": {
+    "note": "Section heading.",
+    "maxLength": 50,
+    "placeholders": []
+  },
+  "help.faq.plus.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.plus.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.threeTiers.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.threeTiers.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.signIn.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.signIn.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.documents.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.documents.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.hidePrices.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.hidePrices.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.theme.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.theme.a": {
+    "note": "FAQ answer.",
+    "maxLength": 400,
+    "placeholders": []
+  },
+  "help.faq.uninstall.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.uninstall.a": {
+    "note": "FAQ answer.",
+    "maxLength": 400,
+    "placeholders": []
+  },
+  "help.faq.pos.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.pos.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.taxExemptions.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.taxExemptions.a": {
+    "note": "FAQ answer.",
+    "maxLength": 350,
+    "placeholders": []
+  },
+  "help.faq.vatFails.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.vatFails.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.import.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.import.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.languages.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.languages.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.emails.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.emails.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.approvalLimit.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.approvalLimit.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.markets.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.markets.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.privacy.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.privacy.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.faq.slowFirstLoad.q": {
+    "note": "FAQ question.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.faq.slowFirstLoad.a": {
+    "note": "FAQ answer.",
+    "maxLength": 300,
+    "placeholders": []
+  },
+  "help.diagnostics.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.diagnostics.body": {
+    "note": "Section text.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "help.diagnostics.copy": {
+    "note": "Button.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.diagnostics.copied": {
+    "note": "Toast.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "help.diagnostics.copyFailed": {
+    "note": "Error toast.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "help.debug.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.debug.body": {
+    "note": "Section text.",
+    "maxLength": 250,
+    "placeholders": [
+      "hours"
+    ]
+  },
+  "help.debug.onUntil": {
+    "note": "Status line.",
+    "maxLength": 80,
+    "placeholders": [
+      "time"
+    ]
+  },
+  "help.debug.turnOn": {
+    "note": "Button.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.debug.turnOff": {
+    "note": "Button.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.contact.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "help.contact.body": {
+    "note": "Support text.",
+    "maxLength": 120,
+    "placeholders": []
+  },
+  "help.contact.priority": {
+    "note": "Support text for Pro plan.",
+    "maxLength": 150,
+    "placeholders": []
   }
 }
