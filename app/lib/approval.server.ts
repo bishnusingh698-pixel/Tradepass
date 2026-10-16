@@ -53,3 +53,11 @@ export type ApprovalDefaults = {
 export async function approvalDefaults(_ctx: ApprovalCtx, _applicationId: string): Promise<ApprovalDefaults> {
   throw new Error("approvalDefaults not implemented yet");
 }
+
+/** Create company + location + contact + terms/tax + tier without an application (CSV import, tag conversion). Same steps and verification as approval. */
+export async function createBuyerFromInput(
+  _ctx: ApprovalCtx,
+  _input: ApproveInput & { source: "import" | "tag"; existingCompanyGid?: string },
+): Promise<{ buyerId: string; state: ApprovalState }> {
+  throw new Error("createBuyerFromInput not implemented yet");
+}

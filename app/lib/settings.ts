@@ -35,6 +35,8 @@ export type Settings = {
   };
   certificates: { expiringDays: number; autoRenewal: boolean; onExpiry: "ask" | "remove" };
   automation: { paused: boolean; dailyLimit: number };
+  /** auto = Tradepass moves locations between B2B markets; assisted = merchant does it from a checklist (Phase 0 fallback). */
+  tiers: { assignment: "auto" | "assisted" };
   retention: { months: number; deleteFiles: boolean };
   branding: { logoUrl: string | null; accentColor: string | null };
   /** Merchant overrides for any built-in text, admin/emails/storefront: { locale: { key: text } } */
@@ -72,6 +74,7 @@ export function defaultSettings(): Settings {
     },
     certificates: { expiringDays: 30, autoRenewal: true, onExpiry: "ask" },
     automation: { paused: false, dailyLimit: 25 },
+    tiers: { assignment: "auto" },
     retention: { months: 12, deleteFiles: true },
     branding: { logoUrl: null, accentColor: null },
     texts: {},
