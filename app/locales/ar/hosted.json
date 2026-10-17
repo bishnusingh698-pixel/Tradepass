@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "تحديث طلب الجملة الخاص بك",
+  "hosted.update.intro": "يحتاج {store} إلى بعض المعلومات الإضافية لمراجعة طلب الجملة الخاص بك.",
+  "hosted.update.messageLabel": "رسالة من {store}",
+  "hosted.update.submit": "إرسال التحديث",
+  "hosted.update.doneHeading": "شكرًا لك، تم تحديث طلبك",
+  "hosted.update.doneBody": "سيراجعه {store} ويرد عليك عبر البريد الإلكتروني.",
+  "hosted.link.invalidTitle": "هذا الرابط غير صالح",
+  "hosted.link.invalidBody": "تأكد من أنك فتحت الرابط كاملًا من الرسالة، أو تواصل مع {store}.",
+  "hosted.link.expiredTitle": "انتهت صلاحية هذا الرابط",
+  "hosted.link.expiredBody": "حرصًا على أمانك، تعمل روابط التحديث لفترة محدودة فقط. يُرجى التواصل مع {store} وطلب رابط جديد.",
+  "hosted.link.usedTitle": "تم استخدام هذا الرابط بالفعل",
+  "hosted.link.usedBody": "يعمل كل رابط تحديث مرة واحدة فقط. إذا احتجت إلى تغيير شيء آخر، فيُرجى التواصل مع {store}.",
+  "hosted.noscript": "يُرجى تفعيل JavaScript في متصفحك لتحديث طلبك.",
+  "hosted.error.generic": "حدث خطأ من جهتنا. يُرجى المحاولة مرة أخرى بعد بضع دقائق."
+}

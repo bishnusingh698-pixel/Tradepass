@@ -1,5 +1,4 @@
 {
-  "app.name": "Tradepass",
   "nav.home": "Acasă",
   "nav.applications": "Cereri",
   "nav.buyers": "Cumpărători",
@@ -22,5 +21,6 @@
   "common.comingSoon": "Această pagină este în construcție. O veți vedea aici în curând.",
   "common.availableOn": "Disponibil în planul {plan}",
   "errors.generic": "A apărut o problemă. Încercați din nou. Dacă problema persistă, contactați asistența din pagina Ajutor.",
-  "errors.notFound": "Nu am găsit această pagină."
+  "errors.notFound": "Nu am găsit această pagină.",
+  "app.name": "Tradepass"
 }

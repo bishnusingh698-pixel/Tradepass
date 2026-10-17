@@ -1,6 +1,14 @@
 # Phase 0 spike results
 
-**Status: not run yet.** It needs a development store on a non-Plus plan with B2B turned on. The code is ready.
+**Status: still pending (2026-10-17).** It needs a development store on a non-Plus plan with B2B turned on. The code is ready, and the rest of the app is built so that either outcome works (automatic tier assignment, or assisted assignment).
+
+## How to run it
+1. Deploy the app and install it on a non-Plus development store (README §2–4). The test refuses to run on stores that aren't development stores.
+2. In the app, open **Help** → **B2B compatibility test** (`/app/diagnostics`) → **Run test**. Wait up to a minute.
+3. Click **Copy results** and paste the JSON under "Results" below; fill in the table.
+4. Do the manual storefront price check (CHECKLIST.md §0, step 0.3).
+5. Click **Remove test data**.
+6. Write the decision below. If moves don't work, the agent switches tier assignment to **Assisted** (a stored setting; there is no button for it yet).
 
 ## What it tests
 Open the app → Help → **B2B compatibility test** → **Run test**. The test refuses to run on stores that aren't development stores. It then:

@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Nagykereskedelmi jelentkezésének frissítése",
+  "hosted.update.intro": "A(z) {store} áruháznak egy kevés további információra van szüksége nagykereskedelmi jelentkezése elbírálásához.",
+  "hosted.update.messageLabel": "Üzenet a(z) {store} áruháztól",
+  "hosted.update.submit": "Frissítés küldése",
+  "hosted.update.doneHeading": "Köszönjük, jelentkezését frissítettük",
+  "hosted.update.doneBody": "A(z) {store} áttekinti, és e-mailben válaszol Önnek.",
+  "hosted.link.invalidTitle": "Ez a link nem érvényes",
+  "hosted.link.invalidBody": "Ellenőrizze, hogy a teljes linket nyitotta-e meg az e-mailből, vagy forduljon a(z) {store} áruházhoz.",
+  "hosted.link.expiredTitle": "Ez a link lejárt",
+  "hosted.link.expiredBody": "Biztonsági okokból a frissítési linkek csak korlátozott ideig működnek. Kérjük, forduljon a(z) {store} áruházhoz, és kérjen új linket.",
+  "hosted.link.usedTitle": "Ezt a linket már felhasználták",
+  "hosted.link.usedBody": "Minden frissítési link csak egyszer használható. Ha mást is módosítana, kérjük, forduljon a(z) {store} áruházhoz.",
+  "hosted.noscript": "Kérjük, kapcsolja be a JavaScriptet a böngészőjében a jelentkezés frissítéséhez.",
+  "hosted.error.generic": "Hiba történt a mi oldalunkon. Kérjük, próbálja újra néhány perc múlva."
+}

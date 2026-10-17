@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "اپنی ہول سیل درخواست اپ ڈیٹ کریں",
+  "hosted.update.intro": "آپ کی ہول سیل درخواست کا جائزہ لینے کے لیے {store} کو کچھ مزید معلومات درکار ہیں۔",
+  "hosted.update.messageLabel": "{store} کی طرف سے پیغام",
+  "hosted.update.submit": "اپ ڈیٹ بھیجیں",
+  "hosted.update.doneHeading": "شکریہ، آپ کی درخواست اپ ڈیٹ ہو گئی ہے",
+  "hosted.update.doneBody": "{store} اس کا جائزہ لے کر آپ کو ای میل کے ذریعے جواب دے گا۔",
+  "hosted.link.invalidTitle": "یہ لنک درست نہیں ہے",
+  "hosted.link.invalidBody": "یقینی بنائیں کہ آپ نے ای میل سے پورا لنک کھولا ہے، یا {store} سے رابطہ کریں۔",
+  "hosted.link.expiredTitle": "اس لنک کی میعاد ختم ہو گئی ہے",
+  "hosted.link.expiredBody": "آپ کی حفاظت کے لیے اپ ڈیٹ لنکس محدود وقت تک ہی کام کرتے ہیں۔ براہ کرم {store} سے رابطہ کر کے نیا لنک مانگیں۔",
+  "hosted.link.usedTitle": "یہ لنک پہلے ہی استعمال ہو چکا ہے",
+  "hosted.link.usedBody": "ہر اپ ڈیٹ لنک ایک بار کام کرتا ہے۔ اگر آپ کو کچھ اور تبدیل کرنا ہے تو براہ کرم {store} سے رابطہ کریں۔",
+  "hosted.noscript": "اپنی درخواست اپ ڈیٹ کرنے کے لیے براہ کرم اپنے براؤزر میں JavaScript آن کریں۔",
+  "hosted.error.generic": "ہماری طرف سے کچھ غلط ہو گیا۔ براہ کرم چند منٹ بعد دوبارہ کوشش کریں۔"
+}

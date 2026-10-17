@@ -1,5 +1,4 @@
 {
-  "app.name": "Tradepass",
   "nav.home": "Kezdőlap",
   "nav.applications": "Jelentkezések",
   "nav.buyers": "Vásárlók",
@@ -22,5 +21,6 @@
   "common.comingSoon": "Ez az oldal fejlesztés alatt áll. Hamarosan itt találja.",
   "common.availableOn": "Elérhető a következő csomagban: {plan}",
   "errors.generic": "Hiba történt. Kérjük, próbálja újra. Ha a hiba továbbra is fennáll, forduljon az ügyfélszolgálathoz a Súgó oldalon.",
-  "errors.notFound": "Nem találtuk ezt az oldalt."
+  "errors.notFound": "Nem találtuk ezt az oldalt.",
+  "app.name": "Tradepass"
 }

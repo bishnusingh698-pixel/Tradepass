@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Actualice su solicitud mayorista",
+  "hosted.update.intro": "{store} necesita algo más de información para revisar su solicitud mayorista.",
+  "hosted.update.messageLabel": "Mensaje de {store}",
+  "hosted.update.submit": "Enviar actualización",
+  "hosted.update.doneHeading": "Gracias, su solicitud se ha actualizado",
+  "hosted.update.doneBody": "{store} la revisará y le responderá por correo electrónico.",
+  "hosted.link.invalidTitle": "Este enlace no es válido",
+  "hosted.link.invalidBody": "Compruebe que abrió el enlace completo del correo o contacte con {store}.",
+  "hosted.link.expiredTitle": "Este enlace ha caducado",
+  "hosted.link.expiredBody": "Por su seguridad, los enlaces de actualización solo funcionan durante un tiempo limitado. Contacte con {store} y pida un nuevo enlace.",
+  "hosted.link.usedTitle": "Este enlace ya se ha utilizado",
+  "hosted.link.usedBody": "Cada enlace de actualización funciona una sola vez. Si necesita cambiar algo más, contacte con {store}.",
+  "hosted.noscript": "Active JavaScript en su navegador para actualizar su solicitud.",
+  "hosted.error.generic": "Se produjo un error por nuestra parte. Vuelva a intentarlo en unos minutos."
+}

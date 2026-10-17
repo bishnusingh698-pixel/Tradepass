@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass อ่านคำขอนี้ไม่ได้",
+  "flow.action.notInstalled": "ร้านค้านี้ไม่ได้ติดตั้ง Tradepass",
+  "flow.action.planRequired": "การดำเนินการ Shopify Flow ใช้ได้ในแพ็กเกจ {plan} ของ Tradepass",
+  "flow.action.notFound": "ไม่มีใบสมัคร Tradepass ที่มีรหัสนี้ โปรดใช้รหัสใบสมัครจากทริกเกอร์ของ Tradepass",
+  "flow.action.alreadyApproved": "ใบสมัครนี้ได้รับการอนุมัติแล้ว",
+  "flow.action.notOpen": "ใบสมัครนี้ถูกปฏิเสธหรือถอนแล้ว จึงอนุมัติจาก Flow ไม่ได้",
+  "flow.action.tierNotFound": "ไม่มีระดับใน Tradepass ที่ชื่อ “{tier}” โปรดตรวจสอบชื่อระดับในการดำเนินการ",
+  "flow.action.noTier": "โปรดเลือกระดับในการดำเนินการ หรือตั้งระดับที่แนะนำไว้ในแบบฟอร์ม",
+  "flow.action.running": "การอนุมัติยังดำเนินอยู่ Shopify Flow จะตรวจสอบอีกครั้งในไม่ช้า",
+  "flow.action.stepFailed": "การอนุมัติหยุดกลางคัน โปรดเปิดใบสมัครใน Tradepass เพื่อดูว่าเกิดอะไรขึ้นและลองอีกครั้ง",
+  "flow.action.tryLater": "Tradepass ดำเนินการอนุมัติไม่สำเร็จ Shopify Flow จะลองอีกครั้ง"
+}

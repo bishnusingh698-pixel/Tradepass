@@ -1,3 +1,5 @@
+Merged into API_NOTES / DECISIONS / CHECKLIST on 2026-10-17
+
 # Emails, notifications, certificates — area notes
 
 ## API notes

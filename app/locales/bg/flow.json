@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass не успя да прочете тази заявка.",
+  "flow.action.notInstalled": "Tradepass не е инсталирано в този магазин.",
+  "flow.action.planRequired": "Действията в Shopify Flow са налични в плана {plan} на Tradepass.",
+  "flow.action.notFound": "Няма заявка в Tradepass с този ID. Използвайте ID на заявката от тригер на Tradepass.",
+  "flow.action.alreadyApproved": "Тази заявка вече е одобрена.",
+  "flow.action.notOpen": "Тази заявка е отхвърлена или оттеглена, затова не може да бъде одобрена от Flow.",
+  "flow.action.tierNotFound": "Няма ниво в Tradepass с име „{tier}“. Проверете името на нивото в действието.",
+  "flow.action.noTier": "Изберете ниво в действието или задайте препоръчано ниво във формуляра.",
+  "flow.action.running": "Одобряването все още е в ход. Shopify Flow ще провери отново скоро.",
+  "flow.action.stepFailed": "Одобряването спря по средата. Отворете заявката в Tradepass, за да видите какво се е случило, и опитайте отново.",
+  "flow.action.tryLater": "Tradepass не успя да завърши одобряването. Shopify Flow ще опита отново."
+}

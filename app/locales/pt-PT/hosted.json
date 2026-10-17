@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Atualize a sua candidatura de venda por grosso",
+  "hosted.update.intro": "A {store} precisa de mais algumas informações para analisar a sua candidatura de venda por grosso.",
+  "hosted.update.messageLabel": "Mensagem da {store}",
+  "hosted.update.submit": "Enviar atualização",
+  "hosted.update.doneHeading": "Obrigado, a sua candidatura foi atualizada",
+  "hosted.update.doneBody": "A {store} vai analisá-la e responderá por e-mail.",
+  "hosted.link.invalidTitle": "Esta ligação não é válida",
+  "hosted.link.invalidBody": "Verifique se abriu a ligação completa do e-mail ou contacte a {store}.",
+  "hosted.link.expiredTitle": "Esta ligação expirou",
+  "hosted.link.expiredBody": "Por motivos de segurança, as ligações de atualização só funcionam durante um período limitado. Contacte a {store} e peça uma nova ligação.",
+  "hosted.link.usedTitle": "Esta ligação já foi utilizada",
+  "hosted.link.usedBody": "Cada ligação de atualização funciona uma única vez. Se precisar de alterar mais alguma coisa, contacte a {store}.",
+  "hosted.noscript": "Ative o JavaScript no seu navegador para atualizar a sua candidatura.",
+  "hosted.error.generic": "Ocorreu um erro do nosso lado. Tente novamente dentro de alguns minutos."
+}

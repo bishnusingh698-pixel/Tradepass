@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "अपना होलसेल आवेदन अपडेट करें",
+  "hosted.update.intro": "आपके होलसेल आवेदन की समीक्षा के लिए {store} को थोड़ी और जानकारी चाहिए।",
+  "hosted.update.messageLabel": "{store} का संदेश",
+  "hosted.update.submit": "अपडेट भेजें",
+  "hosted.update.doneHeading": "धन्यवाद, आपका आवेदन अपडेट हो गया है",
+  "hosted.update.doneBody": "{store} इसकी समीक्षा करेगा और ईमेल से आपको जवाब देगा।",
+  "hosted.link.invalidTitle": "यह लिंक मान्य नहीं है",
+  "hosted.link.invalidBody": "पक्का करें कि आपने ईमेल से पूरा लिंक खोला है, या {store} से संपर्क करें।",
+  "hosted.link.expiredTitle": "इस लिंक की अवधि खत्म हो गई है",
+  "hosted.link.expiredBody": "आपकी सुरक्षा के लिए अपडेट लिंक सीमित समय तक ही काम करते हैं। कृपया {store} से संपर्क करें और नया लिंक माँगें।",
+  "hosted.link.usedTitle": "यह लिंक पहले ही इस्तेमाल हो चुका है",
+  "hosted.link.usedBody": "हर अपडेट लिंक एक बार ही काम करता है। अगर आपको कुछ और बदलना है, तो कृपया {store} से संपर्क करें।",
+  "hosted.noscript": "अपना आवेदन अपडेट करने के लिए कृपया अपने ब्राउज़र में JavaScript चालू करें।",
+  "hosted.error.generic": "हमारी तरफ़ से कुछ गड़बड़ हो गई। कृपया कुछ मिनट बाद फिर कोशिश करें।"
+}

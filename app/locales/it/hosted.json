@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Aggiorni la sua richiesta di accesso all’ingrosso",
+  "hosted.update.intro": "{store} ha bisogno di qualche informazione in più per esaminare la sua richiesta di accesso all’ingrosso.",
+  "hosted.update.messageLabel": "Messaggio da {store}",
+  "hosted.update.submit": "Invia aggiornamento",
+  "hosted.update.doneHeading": "Grazie, la sua richiesta è stata aggiornata",
+  "hosted.update.doneBody": "{store} la esaminerà e le risponderà via email.",
+  "hosted.link.invalidTitle": "Questo link non è valido",
+  "hosted.link.invalidBody": "Verifichi di aver aperto il link completo presente nell’email, oppure contatti {store}.",
+  "hosted.link.expiredTitle": "Questo link è scaduto",
+  "hosted.link.expiredBody": "Per la sua sicurezza, i link di aggiornamento funzionano solo per un tempo limitato. Contatti {store} e chieda un nuovo link.",
+  "hosted.link.usedTitle": "Questo link è già stato usato",
+  "hosted.link.usedBody": "Ogni link di aggiornamento funziona una sola volta. Se deve modificare altro, contatti {store}.",
+  "hosted.noscript": "Attivi JavaScript nel browser per aggiornare la sua richiesta.",
+  "hosted.error.generic": "Si è verificato un problema da parte nostra. Riprovi tra qualche minuto."
+}

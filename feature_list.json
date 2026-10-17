@@ -1,40 +1,40 @@
 {
-  "note": "Status changes only after end-to-end verification. Never remove items.",
+  "note": "Never remove items. Status: 'failing' = not done; 'built' = code-complete with unit tests (npx vitest run); 'needs-live-check' = code-complete, but only a dev store can prove it (CHECKLIST.md); 'passing' = verified end to end.",
   "features": [
     {
       "id": "P0-1",
       "phase": "P0",
       "description": "Phase 0 spike run on a non-Plus dev store: create company/location/contact, two B2B markets with −10%/−20% catalogs, add/move location with read-back",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Spike code ready (app/lib/spike.server.ts, Help → B2B compatibility test); needs a non-Plus dev store"
     },
     {
       "id": "P0-2",
       "phase": "P0",
       "description": "Spike: concurrent additions to the same market — do both land?",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Spike code ready; needs a non-Plus dev store"
     },
     {
       "id": "P0-3",
       "phase": "P0",
       "description": "Spike: buyer signs in on storefront and sees catalog prices change after each move (manual, CHECKLIST.md)",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Manual step in CHECKLIST.md §0; needs a dev store"
     },
     {
       "id": "P0-4",
       "phase": "P0",
       "description": "Spike: 4th catalog attempt records the exact error",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Spike code ready; needs a non-Plus dev store"
     },
     {
       "id": "P0-5",
       "phase": "P0",
       "description": "SPIKE_RESULTS.md written with calls, responses, timings, decision (automatic vs assisted)",
       "status": "failing",
-      "verified": null
+      "verified": "2026-10-17: SPIKE_RESULTS.md says pending; filled in after the spike runs"
     },
     {
       "id": "P0-6",
@@ -54,43 +54,43 @@
       "id": "P1-2",
       "phase": "P1",
       "description": "Session/ID-token auth; GraphQL Admin only (no REST)",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Template session-token auth; all Shopify calls go through GraphQL helpers (app/lib/gql.server.ts)"
     },
     {
       "id": "P1-3",
       "phase": "P1",
       "description": "Install creates Shop row + defaults; reinstall no loops / no duplicate defaults (acceptance 2)",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: afterAuth + idempotent ensureDefaults; needs a live install/reinstall (CHECKLIST test 2)"
     },
     {
       "id": "P1-4",
       "phase": "P1",
       "description": "Uninstall: sessions removed, data kept until shop/redact",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: webhooks.app.uninstalled.tsx; needs a live uninstall"
     },
     {
       "id": "P1-5",
       "phase": "P1",
       "description": "Privacy webhooks customers/data_request, customers/redact, shop/redact implemented and registered",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: webhooks.customers.*/shop.redact + app/lib/privacy.server.ts; registered in shopify.app.toml; needs live webhook delivery"
     },
     {
       "id": "P1-6",
       "phase": "P1",
       "description": "s-app-nav with all 12 pages, each with an empty state; sub-pages have back links",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app/routes/app.tsx s-app-nav with 12 pages; detail pages have back links; production build passes"
     },
     {
       "id": "P1-7",
       "phase": "P1",
       "description": "Render free web service deploy via render.yaml; Neon Postgres",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: render.yaml and README steps ready; not deployed yet"
     },
     {
       "id": "P1-8",
@@ -124,8 +124,8 @@
       "id": "P1-12",
       "phase": "P1",
       "description": "Plan/B2B/Markets/catalog-budget detection on install and each Home load",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: tests/shop-facts.test.ts; needs a real non-Plus and Plus store"
     },
     {
       "id": "P1-13",
@@ -138,610 +138,610 @@
       "id": "P2-1",
       "phase": "P2",
       "description": "Tiers list with catalog budget; Create tier disabled at limit on non-Plus",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.tiers._index.tsx; tests/tiers-logic.test.ts"
     },
     {
       "id": "P2-2",
       "phase": "P2",
       "description": "Tier editor: name + buyer-facing names per language, % off or existing catalog, products (all / collections), default terms, checkout behaviour, tax behaviour",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.tiers.$id.tsx; tests/tiers-logic.test.ts"
     },
     {
       "id": "P2-3",
       "phase": "P2",
       "description": "Tier backing objects: market + catalog + price list (+ publication) on non-Plus; direct catalog on Plus (Plus-only option hidden elsewhere)",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: tiers.server.ts with tests/tiers-assign.test.ts (fake Shopify); needs a dev store"
     },
     {
       "id": "P2-4",
       "phase": "P2",
       "description": "Approval engine: company → location → contact → terms & tax → tier → email, each step read back from Shopify",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: approval.server.ts with tests/tiers-approval.test.ts (fake Shopify); needs a dev store (acceptance 7)"
     },
     {
       "id": "P2-5",
       "phase": "P2",
       "description": "Approval partial failure: plain-language step error, idempotent Retry, Undo",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: tests/tiers-approval.test.ts covers retry without duplicates and undo"
     },
     {
       "id": "P2-6",
       "phase": "P2",
       "description": "Per-shop tier-assignment lock + read-back verification + retry",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: ShopLock + read-back in tiers.server.ts, unit-tested; concurrency needs a dev store (acceptance 8)"
     },
     {
       "id": "P2-7",
       "phase": "P2",
       "description": "Assisted assignment mode (if spike fails): checklist card, deep link, membership verification",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Assisted mode Job rows + Check; tests/tiers-assign.test.ts"
     },
     {
       "id": "P2-8",
       "phase": "P2",
       "description": "Bulk Move to tier with confirmation and read-back",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Buyers bulk Move; unit-tested; needs a dev store (acceptance 15)"
     },
     {
       "id": "P2-9",
       "phase": "P2",
       "description": "Tier delete blocked while buyers exist; deletes Shopify objects only if Tradepass created them",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: tests/tiers-logic.test.ts / tiers-assign.test.ts"
     },
     {
       "id": "P2-10",
       "phase": "P2",
       "description": "Sync: market/catalog changed or deleted in Shopify → 'Changed in Shopify' + fix",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Hourly tiers-sync task; tests/tiers-assign.test.ts"
     },
     {
       "id": "P2-11",
       "phase": "P2",
       "description": "Activity log entry for every Shopify-changing action",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: logActivity on Shopify-changing actions (app/lib/activity.server.ts)"
     },
     {
       "id": "P3-1",
       "phase": "P3",
       "description": "Form builder: sections, required/optional/hidden, labels/placeholders/help per language, drag reorder, custom field types, conditional logic",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.form.$id.tsx + components/form-builder; tests/form-admin-forms.test.ts"
     },
     {
       "id": "P3-2",
       "phase": "P3",
       "description": "Live preview side-by-side (stacked on mobile), device + language switcher",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Preview.tsx with device and language switcher; tests/form-admin-forms.test.ts"
     },
     {
       "id": "P3-3",
       "phase": "P3",
       "description": "Theme app extension: form block, Apply block, Tradepass app embed",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: extensions/tradepass-theme; tests/storefront-extension.test.ts; needs deploy + theme editor"
     },
     {
       "id": "P3-4",
       "phase": "P3",
       "description": "App proxy submission with signature check, Sending… state, 60s auto-retry, local draft kept, idempotency key",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: proxy.submit.tsx + intake.server.ts; tests/storefront-intake.test.ts, tests/proxy.test.ts"
     },
     {
       "id": "P3-5",
       "phase": "P3",
       "description": "Spam protection: honeypot, min time, per-IP/email rate limits, optional question, silent auto-reject",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: spam.server.ts; tests/storefront-intake.test.ts"
     },
     {
       "id": "P3-6",
       "phase": "P3",
       "description": "Certificate upload to merchant's Shopify Files via staged uploads (PDF/JPG/PNG, ≤5MB, ≤3 files)",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: uploads.server.ts; tests/storefront-uploads.test.ts; needs a dev store (acceptance 4)"
     },
     {
       "id": "P3-7",
       "phase": "P3",
       "description": "Duplicate detection (email, company, tax number) with applicant message + merchant flag",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: tests/storefront-intake.test.ts"
     },
     {
       "id": "P3-8",
       "phase": "P3",
       "description": "Tax-number checks: VIES (EU), HMRC (UK, optional), ABN (optional) with timeouts and 'Couldn't verify'",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: taxcheck.server.ts; tests/storefront-taxcheck.test.ts; VIES field names need a live check"
     },
     {
       "id": "P3-9",
       "phase": "P3",
       "description": "Logged-in customer prefill + link via logged_in_customer_id",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: proxy.prefill.tsx; needs protected customer data + a dev store"
     },
     {
       "id": "P3-10",
       "phase": "P3",
       "description": "Country-aware address + tax fields; success screen + optional redirect",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Country data from @shopify/address-mocks; tests/storefront-intake.test.ts"
     },
     {
       "id": "P3-11",
       "phase": "P3",
       "description": "Multiple forms (Pro)",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Pro-gated in forms.server.ts; tests/form-admin-forms.test.ts"
     },
     {
       "id": "P4-1",
       "phase": "P4",
       "description": "Applications queue: tabs with counts, columns, filters, search, sort",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.applications._index.tsx; production build passes"
     },
     {
       "id": "P4-2",
       "phase": "P4",
       "description": "Bulk approve/reject/export with summary",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Bulk approve/reject/CSV export in app.applications._index.tsx"
     },
     {
       "id": "P4-3",
       "phase": "P4",
       "description": "Application detail: sections, verification result, flags, activity",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.applications.$id.tsx"
     },
     {
       "id": "P4-4",
       "phase": "P4",
       "description": "Approve modal with tier, terms, tax exemption suggestion, addresses, contact link/create, welcome email toggle, live progress",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: ApproveModal.tsx + approval engine; needs a dev store (acceptance 7, 10)"
     },
     {
       "id": "P4-5",
       "phase": "P4",
       "description": "Ask for more info: secure single-use 14-day link to hosted page with only requested fields",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: 14-day single-use tokens; proxy.update.$token.tsx; tests/crypto.test.ts"
     },
     {
       "id": "P4-6",
       "phase": "P4",
       "description": "Reject with reason templates + email toggle; notes; assignee",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.applications.$id.tsx"
     },
     {
       "id": "P4-7",
       "phase": "P4",
       "description": "Applicant emails (received, needs info, approved, rejected, certificate) per language, placeholders, preview, send test",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app/lib/email/*; tests/email-render.test.ts"
     },
     {
       "id": "P4-8",
       "phase": "P4",
       "description": "Brevo sending with caps 25/store/day and 250/day global; overflow queued + notice",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Caps and overflow in tests/email-queue.test.ts; a real Brevo send needs the account"
     },
     {
       "id": "P4-9",
       "phase": "P4",
       "description": "Merchant notifications: instant (capped) or daily digest",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Instant alerts and daily digest; tests/email-queue.test.ts"
     },
     {
       "id": "P4-10",
       "phase": "P4",
       "description": "Home: setup checklist (embed/form detected via app.extensions()), pending work, numbers, alerts, welcome question",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: tests/home.test.ts; app.extensions() detection needs a dev store"
     },
     {
       "id": "P5-1",
       "phase": "P5",
       "description": "Access mode 1: show prices + optional Apply banner",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Embed + Apply block; tests/storefront-extension.test.ts, storefront-sync.test.ts"
     },
     {
       "id": "P5-2",
       "phase": "P5",
       "description": "Access mode 2: hide prices/Add to cart on product, collection, search, predictive search, quick add, cart drawer; Log in / Apply; custom selectors",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Gating CSS/JS in the embed; tests/storefront-extension.test.ts; needs real themes (acceptance 13)"
     },
     {
       "id": "P5-3",
       "phase": "P5",
       "description": "Access mode 3: wholesale-only with cart/checkout validation Function and translated message",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: extensions/tradepass-checkout-lock + checkout-lock.server.ts; tests/automation-checkout-lock.test.ts; needs deploy"
     },
     {
       "id": "P5-4",
       "phase": "P5",
       "description": "Wholesale-only must not break gift cards, POS, draft/admin orders",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Gift cards pass, B2B draft orders pass, POS not checked by Shopify; retail draft orders need an exempt tag (D-064); needs a dev store"
     },
     {
       "id": "P5-5",
       "phase": "P5",
       "description": "Preview as retail / logged-in non-wholesale / wholesale buyer (tier)",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: components/storefront/PreviewAs.tsx; tests/form-admin-storefront.test.ts"
     },
     {
       "id": "P5-6",
       "phase": "P5",
       "description": "Theme compatibility tested on Dawn, Horizon + two free themes",
       "status": "failing",
-      "verified": null
+      "verified": "2026-10-17: Not tested on Dawn, Horizon or other themes yet"
     },
     {
       "id": "P5-7",
       "phase": "P5",
       "description": "Storefront script ≤ 20 KB gzipped, deferred, no jQuery",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Embed script 2.9 KB gzipped, form script 10.6 KB gzipped (form page only), deferred, no jQuery"
     },
     {
       "id": "P6-1",
       "phase": "P6",
       "description": "Buyers list with filters and bulk actions (move, renewal request, pause, export)",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.buyers._index.tsx; production build passes"
     },
     {
       "id": "P6-2",
       "phase": "P6",
       "description": "Buyer detail: summary, tier history, certificates, renewal requests, activity, Shopify link",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.buyers.$id.tsx"
     },
     {
       "id": "P6-3",
       "phase": "P6",
       "description": "Pause/Resume access",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Pause/Resume in buyers.server.ts; prices change needs a dev store (acceptance 15)"
     },
     {
       "id": "P6-4",
       "phase": "P6",
       "description": "Certificates table, statuses, expiry rules, merchant actions, 'No expiry date' flag",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.certificates.tsx; tests/certificates.test.ts"
     },
     {
       "id": "P6-5",
       "phase": "P6",
       "description": "Automatic renewal requests at 30 and 7 days with secure upload link; expiry → merchant decision on exemption",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Daily certificate-expiry task, renewal links; tests/certificates.test.ts"
     },
     {
       "id": "P6-6",
       "phase": "P6",
       "description": "Tax exemption mapping: US state reseller, EU reverse charge (VIES-verified, other EU country)",
-      "status": "failing",
-      "verified": "Mapping logic unit-tested (tests/tax.test.ts); not yet wired to approval"
+      "status": "built",
+      "verified": "2026-10-17: app/lib/tax.ts; tests/tax.test.ts"
     },
     {
       "id": "P7-1",
       "phase": "P7",
       "description": "Auto-approve rules (Pro) with daily limit, Pause all, logged and reversible",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: rules.server.ts + app.automation.tsx; tests/automation-rules.test.ts"
     },
     {
       "id": "P7-2",
       "phase": "P7",
       "description": "Auto-reject rules (spam, blocked domains/countries)",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: tests/automation-rules.test.ts"
     },
     {
       "id": "P7-3",
       "phase": "P7",
       "description": "Flow triggers (submitted, approved, rejected, certificate expiring, expired)",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: 5 flow_trigger extensions + flow.server.ts; tests/automation-flow.test.ts; needs deploy + Flow"
     },
     {
       "id": "P7-4",
       "phase": "P7",
       "description": "Flow action: Approve wholesale application to tier",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: flow.approve.tsx (HMAC); tests/automation-flow.test.ts; needs deploy + Flow"
     },
     {
       "id": "P7-5",
       "phase": "P7",
       "description": "Flow template for Shopify B2B access email (only if needed)",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Not needed: companyContactSendWelcomeEmail exists (D-005, D-067)"
     },
     {
       "id": "P7-6",
       "phase": "P7",
       "description": "CSV import: template, mapping, validation, dry run, batched resumable import, error report",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: import.server.ts + tasks/imports.ts; tests/automation-import.test.ts"
     },
     {
       "id": "P7-7",
       "phase": "P7",
       "description": "Tag conversion: tagged customers → companies in batches",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Tag conversion in import.server.ts; unit-tested; needs a dev store"
     },
     {
       "id": "P8-1",
       "phase": "P8",
       "description": "Billing API: Free / Starter $9.99 / Pro $19.99, 14-day trial, dev stores free",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: billing.server.ts + app.plans.tsx; tests/billing.test.ts; needs Billing API on a store"
     },
     {
       "id": "P8-2",
       "phase": "P8",
       "description": "Plan gating: locked features visible+disabled+labelled; 80%/100% free approvals; downgrade confirmation for wholesale-only",
       "status": "failing",
-      "verified": null
+      "verified": "2026-10-17: Mostly built (tests/billing.test.ts): locked features labelled, 80%/100% approvals, downgrade confirmation. Gaps: tax-number checks not gated to Starter, no 'Powered by Tradepass' on Free form, no activity export (Pro)"
     },
     {
       "id": "P8-3",
       "phase": "P8",
       "description": "Help: setup guide, B2B explainer, ≥15 FAQ, Copy diagnostic info, support, storefront debug mode",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.help.tsx: guide, B2B explainer, 17 FAQs, diagnostics (theme ID, D-014), debug mode, contact"
     },
     {
       "id": "P8-4",
       "phase": "P8",
       "description": "Onboarding welcome question → form defaults + tier names; dismissible, re-openable",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: Welcome question on Home; re-openable from Help"
     },
     {
       "id": "P8-5",
       "phase": "P8",
       "description": "Settings: languages + overrides, retention, branding, plan, Delete all data",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: app.settings._index.tsx + app.settings.texts.tsx"
     },
     {
       "id": "P8-6",
       "phase": "P8",
       "description": "Full translation pass for all features in 36 languages + TRANSLATION_REVIEW.md",
       "status": "failing",
-      "verified": null
+      "verified": "2026-10-17: Translators are filling the new keys; 35 i18n tests fail until they finish"
     },
     {
       "id": "P8-7",
       "phase": "P8",
       "description": "Accessibility pass WCAG 2.1 AA (form, blocks, emails, admin)",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Accessibility pass under way in code (form error-summary focus, fieldset descriptions, readable button text, screen-reader text for hidden prices, hosted-page contrast); keyboard, screen-reader and contrast checks still need a dev store (acceptance 22)"
     },
     {
       "id": "P8-8",
       "phase": "P8",
       "description": "Performance pass: admin LCP ≤2.5s, CLS ≤0.1, INP ≤200ms; storefront Lighthouse drop ≤10",
       "status": "failing",
-      "verified": null
+      "verified": "2026-10-17: Budgets not measured yet; needs a deployed app"
     },
     {
       "id": "P8-9",
       "phase": "P8",
       "description": "LISTING_DRAFT.md complete (subtitle + description in 36 languages)",
       "status": "failing",
-      "verified": null
+      "verified": "2026-10-17: English done (LISTING_DRAFT.md, docs/listing/en.json); 35 translations being written"
     },
     {
       "id": "P8-10",
       "phase": "P8",
       "description": "REVIEWER_NOTES.md with test steps and screencast script",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: REVIEWER_NOTES.md with test steps and a 3-minute screencast script"
     },
     {
       "id": "AT-1",
       "phase": "acceptance",
       "description": "Fresh install → welcome → Home shows plan, B2B, Markets, catalog budget; checklist turns green (embed via app.extensions())",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-2",
       "phase": "acceptance",
       "description": "Reinstall right after uninstall: no redirect loop, no duplicate defaults",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-3",
       "phase": "acceptance",
       "description": "Create 3 tiers; 4th blocked with explanation; tiers made in Shopify admin count",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-4",
       "phase": "acceptance",
       "description": "Form block via theme editor; mobile applicant submits with certificate; file in Shopify Files, opens only for staff",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-5",
       "phase": "acceptance",
       "description": "Submitting while server restarts: data kept, auto-retry succeeds once, no duplicate",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-6",
       "phase": "acceptance",
       "description": "Spam: honeypot / too-fast silently rejected; rate limit on repeats",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-7",
       "phase": "acceptance",
       "description": "Approve to Retailer: company, location, contact, terms, tax in Shopify; location in Retailer market; buyer sees Retailer prices",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-8",
       "phase": "acceptance",
       "description": "Two simultaneous approvals both land in correct markets",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-9",
       "phase": "acceptance",
       "description": "Simulated tier-step failure: plain error; Retry without duplicates; Undo removes created objects",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-10",
       "phase": "acceptance",
       "description": "Texas certificate → US_TX_RESELLER_EXEMPTION; verified DE VAT for FR store → EU reverse charge; VIES down → Couldn't verify, still accepted",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-11",
       "phase": "acceptance",
       "description": "Needs info link: only requested fields; single use; expired link friendly",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-12",
       "phase": "acceptance",
       "description": "Reject with reason emails applicant; email caps queue overflow with notice",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-13",
       "phase": "acceptance",
       "description": "Access mode 2 on Dawn, Horizon + 2 free themes across product/collection/search/quick add/cart drawer",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-14",
       "phase": "acceptance",
       "description": "Wholesale-only: non-B2B checkout blocked with translated message; B2B checks out; admin draft orders work",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-15",
       "phase": "acceptance",
       "description": "Move buyer between tiers; prices change; Pause/Resume",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-16",
       "phase": "acceptance",
       "description": "Certificate expiring in 30 days → renewal email; new upload resets; expiry triggers merchant decision",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-17",
       "phase": "acceptance",
       "description": "Auto-approve rule; Pause stops; logged and reversible",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-18",
       "phase": "acceptance",
       "description": "CSV import of 200 rows with mapping, validation, dry run, resumable batches, error report; tag conversion",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-19",
       "phase": "acceptance",
       "description": "Flow triggers fire with correct payloads; Flow action approves",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-20",
       "phase": "acceptance",
       "description": "Free plan: 11th approval asks to upgrade; applications still collected; downgrade with wholesale-only needs confirmation",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-21",
       "phase": "acceptance",
       "description": "All 36 languages: no English leftovers; checks pass; RTL mirrored; pseudo-loc no overflow; TRANSLATION_REVIEW.md",
       "status": "failing",
-      "verified": null
+      "verified": "2026-10-17: Translation pass in progress; RTL and pseudo-localization checks exist"
     },
     {
       "id": "AT-22",
       "phase": "acceptance",
       "description": "Keyboard-only form; errors announced; contrast passes",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-23",
       "phase": "acceptance",
       "description": "Performance budgets met in measured run; storefront script ≤20 KB gz",
       "status": "failing",
-      "verified": null
+      "verified": "2026-10-17: Not measured yet"
     },
     {
       "id": "AT-24",
       "phase": "acceptance",
       "description": "Uninstall leaves no theme code; companies remain; privacy webhooks delete/report correctly",
-      "status": "failing",
-      "verified": null
+      "status": "needs-live-check",
+      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
     },
     {
       "id": "AT-25",
       "phase": "acceptance",
       "description": "/healthz never touches DB; capacity estimate shows 100 stores within Neon + Brevo free limits",
-      "status": "failing",
-      "verified": null
+      "status": "built",
+      "verified": "2026-10-17: tests/healthz-jobs.test.ts (no DB); capacity estimate in PLAN.md"
     }
   ]
 }

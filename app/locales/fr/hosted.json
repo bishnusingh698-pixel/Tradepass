@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Mettre à jour votre demande de compte professionnel",
+  "hosted.update.intro": "{store} a besoin de quelques informations supplémentaires pour examiner votre demande de compte professionnel.",
+  "hosted.update.messageLabel": "Message de {store}",
+  "hosted.update.submit": "Envoyer la mise à jour",
+  "hosted.update.doneHeading": "Merci, votre demande a été mise à jour",
+  "hosted.update.doneBody": "{store} va l’examiner et vous répondra par e-mail.",
+  "hosted.link.invalidTitle": "Ce lien n’est pas valide",
+  "hosted.link.invalidBody": "Vérifiez que vous avez bien ouvert le lien complet figurant dans l’e-mail, ou contactez {store}.",
+  "hosted.link.expiredTitle": "Ce lien a expiré",
+  "hosted.link.expiredBody": "Pour votre sécurité, les liens de mise à jour ne fonctionnent que pendant une durée limitée. Veuillez contacter {store} pour obtenir un nouveau lien.",
+  "hosted.link.usedTitle": "Ce lien a déjà été utilisé",
+  "hosted.link.usedBody": "Chaque lien de mise à jour ne fonctionne qu’une fois. Si vous souhaitez modifier autre chose, veuillez contacter {store}.",
+  "hosted.noscript": "Veuillez activer JavaScript dans votre navigateur pour mettre à jour votre demande.",
+  "hosted.error.generic": "Une erreur s’est produite de notre côté. Veuillez réessayer dans quelques minutes."
+}

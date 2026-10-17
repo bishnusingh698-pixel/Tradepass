@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Großhandelsantrag aktualisieren",
+  "hosted.update.intro": "{store} benötigt noch einige Angaben, um Ihren Großhandelsantrag zu prüfen.",
+  "hosted.update.messageLabel": "Nachricht von {store}",
+  "hosted.update.submit": "Aktualisierung senden",
+  "hosted.update.doneHeading": "Vielen Dank, Ihr Antrag wurde aktualisiert",
+  "hosted.update.doneBody": "{store} prüft ihn und meldet sich per E-Mail bei Ihnen.",
+  "hosted.link.invalidTitle": "Dieser Link ist ungültig",
+  "hosted.link.invalidBody": "Prüfen Sie, ob Sie den vollständigen Link aus der E-Mail geöffnet haben, oder wenden Sie sich an {store}.",
+  "hosted.link.expiredTitle": "Dieser Link ist abgelaufen",
+  "hosted.link.expiredBody": "Zu Ihrer Sicherheit sind Aktualisierungslinks nur begrenzt gültig. Bitte wenden Sie sich an {store} und fordern Sie einen neuen Link an.",
+  "hosted.link.usedTitle": "Dieser Link wurde bereits verwendet",
+  "hosted.link.usedBody": "Jeder Aktualisierungslink funktioniert nur einmal. Wenn Sie noch etwas ändern möchten, wenden Sie sich bitte an {store}.",
+  "hosted.noscript": "Bitte aktivieren Sie JavaScript in Ihrem Browser, um Ihren Antrag zu aktualisieren.",
+  "hosted.error.generic": "Bei uns ist ein Fehler aufgetreten. Bitte versuchen Sie es in einigen Minuten erneut."
+}

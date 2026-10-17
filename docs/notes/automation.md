@@ -1,3 +1,5 @@
+Merged into API_NOTES / DECISIONS / CHECKLIST on 2026-10-17
+
 # Automation, Flow, wholesale-only lock, import — area notes
 
 Covers spec P5 (validation Function) and P7: §I mode 3, §K, §L, the wholesale-only edge cases, and acceptance tests 14, 17, 18 and 19.

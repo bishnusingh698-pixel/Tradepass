@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass nu a putut citi această solicitare.",
+  "flow.action.notInstalled": "Tradepass nu este instalat în acest magazin.",
+  "flow.action.planRequired": "Acțiunile Shopify Flow sunt disponibile în planul Tradepass {plan}.",
+  "flow.action.notFound": "Nicio cerere Tradepass nu are acest ID. Folosiți ID-ul cererii dintr-un declanșator Tradepass.",
+  "flow.action.alreadyApproved": "Această cerere a fost deja aprobată.",
+  "flow.action.notOpen": "Această cerere a fost respinsă sau retrasă, deci nu poate fi aprobată din Flow.",
+  "flow.action.tierNotFound": "Nu există niciun nivel Tradepass numit „{tier}”. Verificați numele nivelului în acțiune.",
+  "flow.action.noTier": "Alegeți un nivel în acțiune sau setați un nivel sugerat în formular.",
+  "flow.action.running": "Aprobarea este încă în curs. Shopify Flow va verifica din nou în curând.",
+  "flow.action.stepFailed": "Aprobarea s-a oprit la jumătate. Deschideți cererea în Tradepass pentru a vedea ce s-a întâmplat și încercați din nou.",
+  "flow.action.tryLater": "Tradepass nu a putut finaliza aprobarea. Shopify Flow va încerca din nou."
+}

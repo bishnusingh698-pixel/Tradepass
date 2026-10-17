@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "A Tradepass nem tudta értelmezni ezt a kérést.",
+  "flow.action.notInstalled": "A Tradepass nincs telepítve ebben az áruházban.",
+  "flow.action.planRequired": "A Shopify Flow-műveletek a Tradepass {plan} csomagjában érhetők el.",
+  "flow.action.notFound": "Nincs ilyen azonosítójú Tradepass-jelentkezés. Használja a Tradepass-eseményindítóból kapott jelentkezésazonosítót.",
+  "flow.action.alreadyApproved": "Ezt a jelentkezést már jóváhagyták.",
+  "flow.action.notOpen": "Ezt a jelentkezést elutasították vagy visszavonták, ezért a Flow-ból nem hagyható jóvá.",
+  "flow.action.tierNotFound": "Nincs „{tier}” nevű Tradepass-szint. Ellenőrizze a szint nevét a műveletben.",
+  "flow.action.noTier": "Válasszon szintet a műveletben, vagy adjon meg javasolt szintet az űrlapon.",
+  "flow.action.running": "A jóváhagyás még folyamatban van. A Shopify Flow hamarosan újra ellenőrzi.",
+  "flow.action.stepFailed": "A jóváhagyás félúton megszakadt. Nyissa meg a jelentkezést a Tradepassban, nézze meg, mi történt, és próbálja újra.",
+  "flow.action.tryLater": "A Tradepass nem tudta befejezni a jóváhagyást. A Shopify Flow újra megpróbálja."
+}

@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Uw groothandelsaanvraag bijwerken",
+  "hosted.update.intro": "{store} heeft wat meer informatie nodig om uw groothandelsaanvraag te beoordelen.",
+  "hosted.update.messageLabel": "Bericht van {store}",
+  "hosted.update.submit": "Update versturen",
+  "hosted.update.doneHeading": "Bedankt, uw aanvraag is bijgewerkt",
+  "hosted.update.doneBody": "{store} bekijkt de aanvraag en neemt per e-mail contact met u op.",
+  "hosted.link.invalidTitle": "Deze link is niet geldig",
+  "hosted.link.invalidBody": "Controleer of u de volledige link uit de e-mail hebt geopend, of neem contact op met {store}.",
+  "hosted.link.expiredTitle": "Deze link is verlopen",
+  "hosted.link.expiredBody": "Voor uw veiligheid werken links om bij te werken maar een beperkte tijd. Neem contact op met {store} en vraag om een nieuwe link.",
+  "hosted.link.usedTitle": "Deze link is al gebruikt",
+  "hosted.link.usedBody": "Elke link om bij te werken werkt één keer. Wilt u nog iets anders wijzigen? Neem dan contact op met {store}.",
+  "hosted.noscript": "Zet JavaScript aan in uw browser om uw aanvraag bij te werken.",
+  "hosted.error.generic": "Er is bij ons iets misgegaan. Probeer het over een paar minuten opnieuw."
+}

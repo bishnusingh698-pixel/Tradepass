@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "อัปเดตใบสมัครขายส่งของคุณ",
+  "hosted.update.intro": "{store} ต้องการข้อมูลเพิ่มเติมเล็กน้อยเพื่อตรวจสอบใบสมัครขายส่งของคุณ",
+  "hosted.update.messageLabel": "ข้อความจาก {store}",
+  "hosted.update.submit": "ส่งการอัปเดต",
+  "hosted.update.doneHeading": "ขอบคุณ ใบสมัครของคุณได้รับการอัปเดตแล้ว",
+  "hosted.update.doneBody": "{store} จะตรวจสอบและติดต่อกลับทางอีเมล",
+  "hosted.link.invalidTitle": "ลิงก์นี้ไม่ถูกต้อง",
+  "hosted.link.invalidBody": "โปรดตรวจสอบว่าคุณเปิดลิงก์ทั้งหมดจากอีเมล หรือติดต่อ {store}",
+  "hosted.link.expiredTitle": "ลิงก์นี้หมดอายุแล้ว",
+  "hosted.link.expiredBody": "เพื่อความปลอดภัยของคุณ ลิงก์อัปเดตใช้ได้ในระยะเวลาจำกัดเท่านั้น โปรดติดต่อ {store} เพื่อขอลิงก์ใหม่",
+  "hosted.link.usedTitle": "ลิงก์นี้ถูกใช้ไปแล้ว",
+  "hosted.link.usedBody": "ลิงก์อัปเดตแต่ละลิงก์ใช้ได้ครั้งเดียว หากต้องการเปลี่ยนแปลงข้อมูลอื่น โปรดติดต่อ {store}",
+  "hosted.noscript": "โปรดเปิด JavaScript ในเบราว์เซอร์ของคุณเพื่ออัปเดตใบสมัคร",
+  "hosted.error.generic": "เกิดข้อผิดพลาดจากฝั่งของเรา โปรดลองอีกครั้งในอีกไม่กี่นาที"
+}

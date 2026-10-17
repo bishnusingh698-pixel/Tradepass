@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "تعذّر على Tradepass قراءة هذا الطلب.",
+  "flow.action.notInstalled": "Tradepass غير مثبّت على هذا المتجر.",
+  "flow.action.planRequired": "إجراءات Shopify Flow متاحة في خطة {plan} من Tradepass.",
+  "flow.action.notFound": "لا يوجد طلب في Tradepass بهذا المعرّف. استخدم معرّف الطلب الوارد من أحد مشغّلات Tradepass.",
+  "flow.action.alreadyApproved": "تمت الموافقة على هذا الطلب بالفعل.",
+  "flow.action.notOpen": "تم رفض هذا الطلب أو سحبه، لذا لا يمكن الموافقة عليه من Flow.",
+  "flow.action.tierNotFound": "لا يوجد مستوى في Tradepass باسم «{tier}». تحقّق من اسم المستوى في الإجراء.",
+  "flow.action.noTier": "اختر مستوى في الإجراء، أو حدّد مستوى مقترحًا في النموذج.",
+  "flow.action.running": "لا تزال الموافقة قيد التنفيذ. سيتحقق Shopify Flow مرة أخرى قريبًا.",
+  "flow.action.stepFailed": "توقفت الموافقة في منتصفها. افتح الطلب في Tradepass لمعرفة ما حدث وإعادة المحاولة.",
+  "flow.action.tryLater": "تعذّر على Tradepass إكمال الموافقة. سيحاول Shopify Flow مرة أخرى."
+}

@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass konnte diese Anfrage nicht lesen.",
+  "flow.action.notInstalled": "Tradepass ist in diesem Shop nicht installiert.",
+  "flow.action.planRequired": "Shopify Flow-Aktionen sind im Tradepass-Tarif {plan} verfügbar.",
+  "flow.action.notFound": "Kein Tradepass-Antrag hat diese ID. Verwenden Sie die Antrags-ID aus einem Tradepass-Trigger.",
+  "flow.action.alreadyApproved": "Dieser Antrag wurde bereits genehmigt.",
+  "flow.action.notOpen": "Dieser Antrag wurde abgelehnt oder zurückgezogen und kann daher nicht über Flow genehmigt werden.",
+  "flow.action.tierNotFound": "Es gibt keine Tradepass-Stufe namens „{tier}“. Prüfen Sie den Stufennamen in der Aktion.",
+  "flow.action.noTier": "Wählen Sie in der Aktion eine Stufe aus oder legen Sie im Formular eine vorgeschlagene Stufe fest.",
+  "flow.action.running": "Die Genehmigung läuft noch. Shopify Flow prüft in Kürze erneut.",
+  "flow.action.stepFailed": "Die Genehmigung wurde mittendrin abgebrochen. Öffnen Sie den Antrag in Tradepass, um die Ursache zu sehen und es erneut zu versuchen.",
+  "flow.action.tryLater": "Tradepass konnte die Genehmigung nicht abschließen. Shopify Flow versucht es erneut."
+}

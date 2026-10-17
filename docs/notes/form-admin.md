@@ -1,3 +1,5 @@
+Merged into API_NOTES / DECISIONS / CHECKLIST on 2026-10-17
+
 # Form builder and Storefront admin pages
 
 Code: `app/routes/app.form._index.tsx` (list of forms), `app/routes/app.form.$id.tsx` (builder), `app/routes/app.storefront.tsx`, `app/components/form-builder/*`, `app/components/storefront/*`, `app/lib/forms.server.ts`. Tests: `tests/form-admin-forms.test.ts`, `tests/form-admin-storefront.test.ts`.

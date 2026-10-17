@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass n’a pas pu lire cette requête.",
+  "flow.action.notInstalled": "Tradepass n’est pas installé sur cette boutique.",
+  "flow.action.planRequired": "Les actions Shopify Flow sont disponibles avec le forfait Tradepass {plan}.",
+  "flow.action.notFound": "Aucune demande Tradepass ne porte cet ID. Utilisez l’ID de demande fourni par un déclencheur Tradepass.",
+  "flow.action.alreadyApproved": "Cette demande a déjà été approuvée.",
+  "flow.action.notOpen": "Cette demande a été refusée ou retirée : elle ne peut donc pas être approuvée depuis Flow.",
+  "flow.action.tierNotFound": "Aucun niveau Tradepass ne s’appelle « {tier} ». Vérifiez le nom du niveau dans l’action.",
+  "flow.action.noTier": "Choisissez un niveau dans l’action ou définissez un niveau suggéré dans le formulaire.",
+  "flow.action.running": "L’approbation est toujours en cours. Shopify Flow vérifiera à nouveau sous peu.",
+  "flow.action.stepFailed": "L’approbation s’est interrompue en cours de route. Ouvrez la demande dans Tradepass pour voir ce qui s’est passé et réessayer.",
+  "flow.action.tryLater": "Tradepass n’a pas pu terminer l’approbation. Shopify Flow va réessayer."
+}

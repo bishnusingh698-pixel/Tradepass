@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Uppdatera din grossistansökan",
+  "hosted.update.intro": "{store} behöver lite mer information för att kunna granska din grossistansökan.",
+  "hosted.update.messageLabel": "Meddelande från {store}",
+  "hosted.update.submit": "Skicka uppdatering",
+  "hosted.update.doneHeading": "Tack! Din ansökan har uppdaterats",
+  "hosted.update.doneBody": "{store} granskar den och återkommer till dig via e-post.",
+  "hosted.link.invalidTitle": "Länken är inte giltig",
+  "hosted.link.invalidBody": "Kontrollera att du öppnade hela länken från mejlet, eller kontakta {store}.",
+  "hosted.link.expiredTitle": "Länken har slutat gälla",
+  "hosted.link.expiredBody": "Av säkerhetsskäl fungerar uppdateringslänkar bara under en begränsad tid. Kontakta {store} och be om en ny länk.",
+  "hosted.link.usedTitle": "Länken har redan använts",
+  "hosted.link.usedBody": "Varje uppdateringslänk fungerar en gång. Om du behöver ändra något mer kan du kontakta {store}.",
+  "hosted.noscript": "Aktivera JavaScript i webbläsaren för att uppdatera din ansökan.",
+  "hosted.error.generic": "Något gick fel hos oss. Försök igen om några minuter."
+}

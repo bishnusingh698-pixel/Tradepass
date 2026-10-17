@@ -1,3 +1,5 @@
+Merged into API_NOTES / DECISIONS / CHECKLIST on 2026-10-17
+
 # Tiers, approval engine, buyers — notes
 
 ## API notes (Admin GraphQL 2026-10, checked 2026-10-16 on shopify.dev)

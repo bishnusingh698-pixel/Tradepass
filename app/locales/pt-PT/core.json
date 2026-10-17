@@ -19,7 +19,7 @@
   "common.cancel": "Cancelar",
   "common.retry": "Tentar novamente",
   "common.learnMore": "Saber mais",
-  "common.comingSoon": "Esta página está em construção. Estará disponível aqui em breve.",
+  "common.comingSoon": "Esta página está em construção. Ficará disponível em breve.",
   "common.availableOn": "Disponível no plano {plan}",
   "errors.generic": "Ocorreu um erro. Tente novamente. Se o problema persistir, contacte o suporte através da página Ajuda.",
   "errors.notFound": "Não foi possível encontrar essa página."

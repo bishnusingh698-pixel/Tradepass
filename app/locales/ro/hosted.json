@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Actualizați cererea en-gros",
+  "hosted.update.intro": "{store} are nevoie de câteva informații suplimentare pentru a examina cererea dumneavoastră en-gros.",
+  "hosted.update.messageLabel": "Mesaj de la {store}",
+  "hosted.update.submit": "Trimiteți actualizarea",
+  "hosted.update.doneHeading": "Vă mulțumim, cererea dumneavoastră a fost actualizată",
+  "hosted.update.doneBody": "{store} o va examina și vă va răspunde prin e-mail.",
+  "hosted.link.invalidTitle": "Acest link nu este valid",
+  "hosted.link.invalidBody": "Verificați dacă ați deschis linkul complet din e-mail sau contactați {store}.",
+  "hosted.link.expiredTitle": "Acest link a expirat",
+  "hosted.link.expiredBody": "Pentru siguranța dumneavoastră, linkurile de actualizare funcționează doar o perioadă limitată. Contactați {store} și cereți un link nou.",
+  "hosted.link.usedTitle": "Acest link a fost deja folosit",
+  "hosted.link.usedBody": "Fiecare link de actualizare funcționează o singură dată. Dacă trebuie să modificați altceva, contactați {store}.",
+  "hosted.noscript": "Activați JavaScript în browser pentru a vă actualiza cererea.",
+  "hosted.error.generic": "A apărut o problemă din partea noastră. Încercați din nou peste câteva minute."
+}
