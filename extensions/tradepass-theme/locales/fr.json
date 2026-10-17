@@ -6,7 +6,7 @@
     "cart": "Certains articles de votre panier sont réservés aux clients professionnels approuvés."
   },
   "banner": {
-    "text": "Vous achetez pour une entreprise ?",
+    "text": "Vous achetez pour une entreprise ?",
     "link": "Demander un compte pro"
   },
   "hint": {
@@ -16,8 +16,11 @@
     "heading": "Réservé aux clients professionnels",
     "message": "Cette page est réservée aux clients professionnels approuvés. Connectez-vous ou demandez un compte professionnel."
   },
+  "brand": {
+    "powered_by": "Propulsé par Tradepass"
+  },
   "apply_block": {
-    "heading": "Vous achetez pour une entreprise ?",
+    "heading": "Vous achetez pour une entreprise ?",
     "text": "Demandez un compte professionnel pour voir les prix de gros et commander en grandes quantités.",
     "button": "Demander un compte pro"
   },
@@ -29,7 +32,7 @@
     "select": "Choisir…",
     "submit": "Envoyer la demande",
     "sending": "Envoi…",
-    "retrying": "Envoi toujours en cours. Nous réessayons pendant une minute au maximum ; vos réponses sont en sécurité.",
+    "retrying": "Envoi toujours en cours. Nous réessayons pendant une minute au maximum ; vos réponses sont en sécurité.",
     "failed": "Nous n’avons pas pu envoyer votre demande. Vos réponses sont enregistrées dans ce navigateur. Veuillez réessayer dans quelques minutes.",
     "retry": "Réessayer",
     "rate_limited": "Nous avons récemment reçu plusieurs demandes de votre part. Veuillez réessayer plus tard.",
@@ -47,25 +50,66 @@
       "consent": "Consentement"
     },
     "field": {
-      "companyName": { "label": "Nom de l’entreprise" },
-      "businessType": { "label": "Type d’activité" },
-      "website": { "label": "Site web", "placeholder": "https://" },
-      "yearEstablished": { "label": "Année de création" },
-      "locationsCount": { "label": "Nombre de sites" },
-      "monthlyOrderValue": { "label": "Montant mensuel de commande prévu" },
-      "referral": { "label": "Comment nous avez-vous connus ?" },
-      "firstName": { "label": "Prénom" },
-      "lastName": { "label": "Nom" },
-      "email": { "label": "E-mail", "help": "Nous vous enverrons des nouvelles de votre demande à cette adresse." },
-      "phone": { "label": "Téléphone" },
-      "jobTitle": { "label": "Fonction" },
-      "preferredLanguage": { "label": "Langue préférée" },
-      "billingAddress": { "label": "Adresse de facturation" },
-      "shippingAddress": { "label": "Adresse de livraison" },
-      "taxNumber": { "label": "Identification fiscale" },
-      "certificates": { "label": "Certificats", "help": "Par exemple un certificat de revente ou d’exonération de taxe." },
-      "message": { "label": "Message à la boutique" },
-      "consent": { "label": "J’accepte que mes informations soient utilisées pour examiner cette demande." }
+      "companyName": {
+        "label": "Nom de l’entreprise"
+      },
+      "businessType": {
+        "label": "Type d’activité"
+      },
+      "website": {
+        "label": "Site web",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Année de création"
+      },
+      "locationsCount": {
+        "label": "Nombre de sites"
+      },
+      "monthlyOrderValue": {
+        "label": "Montant mensuel de commande prévu"
+      },
+      "referral": {
+        "label": "Comment nous avez-vous connus ?"
+      },
+      "firstName": {
+        "label": "Prénom"
+      },
+      "lastName": {
+        "label": "Nom"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "Nous vous enverrons des nouvelles de votre demande à cette adresse."
+      },
+      "phone": {
+        "label": "Téléphone"
+      },
+      "jobTitle": {
+        "label": "Fonction"
+      },
+      "preferredLanguage": {
+        "label": "Langue préférée"
+      },
+      "billingAddress": {
+        "label": "Adresse de facturation"
+      },
+      "shippingAddress": {
+        "label": "Adresse de livraison"
+      },
+      "taxNumber": {
+        "label": "Identification fiscale"
+      },
+      "certificates": {
+        "label": "Certificats",
+        "help": "Par exemple un certificat de revente ou d’exonération de taxe."
+      },
+      "message": {
+        "label": "Message à la boutique"
+      },
+      "consent": {
+        "label": "J’accepte que mes informations soient utilisées pour examiner cette demande."
+      }
     },
     "business_type": {
       "retail": "Magasin de détail",
@@ -124,7 +168,7 @@
     },
     "consent_privacy": "Lire notre politique de confidentialité",
     "error": {
-      "summary": "Veuillez corriger les points suivants :",
+      "summary": "Veuillez corriger les points suivants :",
       "required": "Renseignez le champ {{ field }}.",
       "choose": "Choisissez une option pour {{ field }}.",
       "consent": "Veuillez confirmer pour continuer.",

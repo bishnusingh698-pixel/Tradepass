@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Kainos rodomos tik patvirtintiems didmeniniams pirkėjams. Prisijunkite arba pateikite paraišką didmeninės prekybos paskyrai.",
+    "login": "Prisijungti",
+    "apply": "Pateikti didmeninės prekybos paraišką",
+    "cart": "Kai kurios krepšelio prekės prieinamos tik patvirtintiems didmeniniams pirkėjams."
+  },
+  "banner": {
+    "text": "Perkate verslui?",
+    "link": "Pateikti didmeninės prekybos paraišką"
+  },
+  "hint": {
+    "text": "Didmeninės kainos prieinamos patvirtintoms įmonėms."
+  },
+  "wall": {
+    "heading": "Tik didmeniniams pirkėjams",
+    "message": "Šis puslapis prieinamas patvirtintiems didmeniniams pirkėjams. Prisijunkite arba pateikite paraišką didmeninės prekybos paskyrai."
+  },
+  "brand": {
+    "powered_by": "Veikia su Tradepass"
+  },
+  "apply_block": {
+    "heading": "Perkate verslui?",
+    "text": "Pateikite paraišką didmeninės prekybos paskyrai, kad matytumėte didmenines kainas ir užsakytumėte dideliais kiekiais.",
+    "button": "Pateikti didmeninės prekybos paraišką"
+  },
+  "form": {
+    "heading": "Didmeninės prekybos paskyros paraiška",
+    "intro": "Papasakokite apie savo įmonę. Peržiūrime kiekvieną paraišką ir atsakome el. paštu.",
+    "required_note": "Laukai, pažymėti *, yra privalomi.",
+    "optional": "(neprivaloma)",
+    "select": "Pasirinkite…",
+    "submit": "Siųsti paraišką",
+    "sending": "Siunčiama…",
+    "retrying": "Vis dar siunčiama. Bandysime iki minutės, jūsų atsakymai saugūs.",
+    "failed": "Nepavyko išsiųsti paraiškos. Jūsų atsakymai išsaugoti šioje naršyklėje. Bandykite dar kartą po kelių minučių.",
+    "retry": "Bandyti dar kartą",
+    "rate_limited": "Neseniai gavome iš jūsų kelias paraiškas. Bandykite dar kartą vėliau.",
+    "duplicate": "Paraišką jau pateikėte. Susisieksime su jumis.",
+    "draft_restored": "Atkūrėme anksčiau įvestus atsakymus.",
+    "clear_draft": "Pradėti iš naujo",
+    "honeypot": "Palikite šį lauką tuščią",
+    "unavailable": "Paraiškos forma dar nenustatyta. Susisiekite su parduotuve.",
+    "section": {
+      "business": "Įmonė",
+      "contact": "Kontaktinis asmuo",
+      "addresses": "Adresai",
+      "tax": "Mokesčiai ir dokumentai",
+      "message": "Žinutė",
+      "consent": "Sutikimas"
+    },
+    "field": {
+      "companyName": {
+        "label": "Įmonės pavadinimas"
+      },
+      "businessType": {
+        "label": "Verslo tipas"
+      },
+      "website": {
+        "label": "Svetainė",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Įkūrimo metai"
+      },
+      "locationsCount": {
+        "label": "Vietų skaičius"
+      },
+      "monthlyOrderValue": {
+        "label": "Numatoma mėnesio užsakymų vertė"
+      },
+      "referral": {
+        "label": "Kaip apie mus sužinojote?"
+      },
+      "firstName": {
+        "label": "Vardas"
+      },
+      "lastName": {
+        "label": "Pavardė"
+      },
+      "email": {
+        "label": "El. paštas",
+        "help": "Šiuo adresu siųsime naujienas apie jūsų paraišką."
+      },
+      "phone": {
+        "label": "Telefonas"
+      },
+      "jobTitle": {
+        "label": "Pareigos"
+      },
+      "preferredLanguage": {
+        "label": "Pageidaujama kalba"
+      },
+      "billingAddress": {
+        "label": "Mokėjimo adresas"
+      },
+      "shippingAddress": {
+        "label": "Pristatymo adresas"
+      },
+      "taxNumber": {
+        "label": "Mokesčių registracija"
+      },
+      "certificates": {
+        "label": "Pažymos",
+        "help": "Pavyzdžiui, perpardavimo pažyma arba pažyma apie atleidimą nuo mokesčių."
+      },
+      "message": {
+        "label": "Žinutė parduotuvei"
+      },
+      "consent": {
+        "label": "Sutinku, kad mano duomenys būtų naudojami šiai paraiškai peržiūrėti."
+      }
+    },
+    "business_type": {
+      "retail": "Mažmeninė parduotuvė",
+      "salon": "Salonas arba SPA",
+      "restaurant": "Restoranas arba kavinė",
+      "distributor": "Platintojas",
+      "other": "Kita"
+    },
+    "order_value": {
+      "lt1k": "Mažiau nei 1 000",
+      "1k-5k": "Nuo 1 000 iki 5 000",
+      "5k-20k": "Nuo 5 000 iki 20 000",
+      "gt20k": "Daugiau nei 20 000"
+    },
+    "address": {
+      "country": "Šalis / regionas",
+      "address1": "Adresas",
+      "address2": "Butas, biuras ir pan.",
+      "city": "Miestas",
+      "zone": {
+        "state": "Valstija",
+        "province": "Provincija",
+        "region": "Regionas",
+        "county": "Apygarda",
+        "prefecture": "Prefektūra",
+        "emirate": "Emyratas",
+        "governorate": "Gubernija",
+        "state_and_territory": "Valstija / teritorija"
+      },
+      "zip": {
+        "postal": "Pašto kodas",
+        "zip": "ZIP kodas",
+        "pin": "PIN kodas",
+        "postcode": "Pašto indeksas"
+      },
+      "same_as_billing": "Sutampa su mokėjimo adresu"
+    },
+    "tax": {
+      "country": "Mokesčių registracijos šalis",
+      "vat": "PVM mokėtojo kodas",
+      "vat_help": "Nurodykite su šalies prefiksu, pavyzdžiui, DE123456789.",
+      "abn": "ABN (Australijos įmonės numeris)",
+      "gst": "GST/HST numeris",
+      "us_resale": "Perpardavimo pažymos numeris",
+      "us_state": "Pažymą išdavusi valstija",
+      "tax_id": "Mokesčių mokėtojo kodas"
+    },
+    "upload": {
+      "add": "Pridėti failą",
+      "remove": "Pašalinti {{ name }}",
+      "hint": "PDF, JPG arba PNG, iki 5 MB kiekvienas, ne daugiau kaip 3 failai.",
+      "expiry": "{{ name }} galiojimo pabaigos data (neprivaloma)",
+      "uploading": "Įkeliama {{ name }}…",
+      "done": "{{ name }} įkeltas",
+      "failed": "Nepavyko įkelti {{ name }}. Bandykite dar kartą."
+    },
+    "consent_privacy": "Skaityti privatumo politiką",
+    "error": {
+      "summary": "Pataisykite šiuos dalykus:",
+      "required": "Užpildykite lauką „{{ field }}“.",
+      "choose": "Pasirinkite lauką „{{ field }}“.",
+      "consent": "Patvirtinkite, kad galėtumėte tęsti.",
+      "email": "Įveskite el. pašto adresą, pavyzdžiui, name@example.com.",
+      "url": "Įveskite žiniatinklio adresą, pavyzdžiui, https://example.com.",
+      "phone": "Įveskite tinkamą telefono numerį.",
+      "number": "Įveskite skaičių.",
+      "date": "Įveskite tinkamą datą.",
+      "too_long": "Per ilga. Naudokite ne daugiau kaip {{ max }} simbolių.",
+      "file_type": "{{ name }} nėra PDF, JPG ar PNG failas.",
+      "file_size": "{{ name }} didesnis nei 5 MB.",
+      "file_count": "Galite pridėti ne daugiau kaip 3 failus.",
+      "file_pending": "Palaukite, kol failai bus įkelti.",
+      "spam": "Atsakymas netinka. Bandykite dar kartą."
+    },
+    "success": {
+      "heading": "Ačiū, jūsų paraiška išsiųsta",
+      "body": "Ją peržiūrėsime ir atsakysime el. paštu.",
+      "email": "Išsiuntėme jums patvirtinimo laišką."
+    }
+  }
+}

@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Obnovit texty pro jazyk {language}?",
   "settings.texts.resetBody": "{count, plural, one {# změněný text se vrátí k integrovanému znění.} few {# změněné texty se vrátí k integrovanému znění.} many {# změněného textu se vrátí k integrovanému znění.} other {# změněných textů se vrátí k integrovanému znění.}}",
   "settings.texts.resetConfirm": "Obnovit texty",
-  "settings.texts.area.pages": "Stránky aktualizace žádosti a obnovení"
+  "settings.texts.area.pages": "Stránky aktualizace žádosti a obnovení",
+  "settings.assignment.heading": "Přiřazení úrovně",
+  "settings.assignment.label": "Jak se kupující zařazují do své úrovně",
+  "settings.assignment.auto": "Automaticky",
+  "settings.assignment.autoHelp": "Tradepass přidá pobočku firmy na trh B2B dané úrovně v Shopify a ověří, že se to podařilo.",
+  "settings.assignment.assisted": "S asistencí",
+  "settings.assignment.assistedHelp": "Změnu provedete v Shopify podle kontrolního seznamu na stránce Úrovně a Tradepass ji potvrdí. Použijte, pokud ve vašem obchodě nefunguje automatické přiřazení.",
+  "settings.assignment.note": "Změna se týká jen nových schválení a změn úrovní. Otevřené položky kontrolního seznamu zůstanou na stránce Úrovně, dokud je neodškrtnete.",
+  "settings.error.assignment": "Zvolte automatické přiřazení, nebo přiřazení s asistencí.",
+  "settings.activity.heading": "Historie aktivit",
+  "settings.activity.body": "Stáhněte si soubor CSV s tím, co provedl Tradepass a vaši zaměstnanci: kdo, co, kdy a s jakým výsledkem. Obsahuje posledních {max} záznamů; záznamy starší než 2 roky se automaticky odstraňují.",
+  "settings.activity.button": "Exportovat aktivity (CSV)",
+  "settings.activity.done": "Aktivity byly exportovány",
+  "settings.activity.truncated": "Exportováno posledních {max} záznamů",
+  "settings.activity.locked": "Export aktivit je k dispozici v tarifu Pro."
 }

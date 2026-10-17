@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Ascunde prețurile pentru vizitatorii obișnuiți și afișează mesajul Conectare / Solicitați acces, conform setărilor vitrinei online din Tradepass. Trebuie să fie activat pentru ascunderea prețurilor."
+  },
+  "form_block": {
+    "name": "Formular de cerere en-gros",
+    "form_id": "ID formular",
+    "form_id_info": "Lăsați gol pentru a folosi formularul implicit. Copiați ID-ul unui formular din Tradepass → Formular.",
+    "show_heading": "Afișați titlul",
+    "heading": "Titlu",
+    "heading_info": "Lăsați gol pentru a folosi textul implicit în limba vizitatorului."
+  },
+  "apply_block": {
+    "name": "Solicitați acces en-gros",
+    "style": "Stil",
+    "style_button": "Buton",
+    "style_banner": "Banner",
+    "heading": "Titlu",
+    "text": "Text",
+    "button": "Eticheta butonului",
+    "texts_info": "Lăsați gol pentru a folosi textul implicit în limba vizitatorului.",
+    "hide_for_b2b": "Ascundeți pentru cumpărătorii en-gros conectați"
+  }
+}

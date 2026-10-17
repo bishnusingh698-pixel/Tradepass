@@ -181,7 +181,7 @@
       "phase": "P2",
       "description": "Assisted assignment mode (if spike fails): checklist card, deep link, membership verification",
       "status": "built",
-      "verified": "2026-10-17: Assisted mode Job rows + Check; tests/tiers-assign.test.ts"
+      "verified": "2026-10-17: Assisted mode Job rows + Check; tests/tiers-assign.test.ts; Settings switch Automatic/Assisted: tests/plan-gaps.test.ts (D-079)"
     },
     {
       "id": "P2-8",
@@ -251,7 +251,7 @@
       "phase": "P3",
       "description": "Certificate upload to merchant's Shopify Files via staged uploads (PDF/JPG/PNG, ≤5MB, ≤3 files)",
       "status": "needs-live-check",
-      "verified": "2026-10-17: uploads.server.ts; tests/storefront-uploads.test.ts; needs a dev store (acceptance 4)"
+      "verified": "2026-10-17: uploads.server.ts; tests/storefront-uploads.test.ts; needs a dev store (acceptance 4); server-side limits (≤3 files per question at submit/update, one file per upload request): tests/plan-gaps.test.ts (D-080)"
     },
     {
       "id": "P3-7",
@@ -265,7 +265,7 @@
       "phase": "P3",
       "description": "Tax-number checks: VIES (EU), HMRC (UK, optional), ABN (optional) with timeouts and 'Couldn't verify'",
       "status": "needs-live-check",
-      "verified": "2026-10-17: taxcheck.server.ts; tests/storefront-taxcheck.test.ts; VIES field names need a live check"
+      "verified": "2026-10-17: taxcheck.server.ts; tests/storefront-taxcheck.test.ts; VIES field names need a live check; gated to Starter+ (Free stores the number unchecked): tests/plan-gaps.test.ts (D-076)"
     },
     {
       "id": "P3-9",
@@ -509,8 +509,8 @@
       "id": "P8-2",
       "phase": "P8",
       "description": "Plan gating: locked features visible+disabled+labelled; 80%/100% free approvals; downgrade confirmation for wholesale-only",
-      "status": "failing",
-      "verified": "2026-10-17: Mostly built (tests/billing.test.ts): locked features labelled, 80%/100% approvals, downgrade confirmation. Gaps: tax-number checks not gated to Starter, no 'Powered by Tradepass' on Free form, no activity export (Pro)"
+      "status": "built",
+      "verified": "2026-10-17: tests/billing.test.ts (locked features labelled, 80%/100% approvals, downgrade confirmation) + tests/plan-gaps.test.ts: tax-number checks gated to Starter (D-076), 'Powered by Tradepass' on the Free form (D-077), activity export on Pro (D-078). Billing itself needs a live store (P8-1)"
     },
     {
       "id": "P8-3",

@@ -16,6 +16,9 @@
     "heading": "Solo para clientes mayoristas",
     "message": "Esta página está disponible para clientes mayoristas aprobados. Inicie sesión o solicite una cuenta mayorista."
   },
+  "brand": {
+    "powered_by": "Con la tecnología de Tradepass"
+  },
   "apply_block": {
     "heading": "¿Compra para una empresa?",
     "text": "Solicite una cuenta mayorista para ver precios profesionales y comprar en grandes cantidades.",
@@ -47,25 +50,66 @@
       "consent": "Consentimiento"
     },
     "field": {
-      "companyName": { "label": "Nombre de la empresa" },
-      "businessType": { "label": "Tipo de negocio" },
-      "website": { "label": "Sitio web", "placeholder": "https://" },
-      "yearEstablished": { "label": "Año de fundación" },
-      "locationsCount": { "label": "Número de ubicaciones" },
-      "monthlyOrderValue": { "label": "Valor mensual de pedido previsto" },
-      "referral": { "label": "¿Cómo nos conoció?" },
-      "firstName": { "label": "Nombre" },
-      "lastName": { "label": "Apellidos" },
-      "email": { "label": "Correo electrónico", "help": "Le enviaremos novedades sobre su solicitud a esta dirección." },
-      "phone": { "label": "Teléfono" },
-      "jobTitle": { "label": "Cargo" },
-      "preferredLanguage": { "label": "Idioma preferido" },
-      "billingAddress": { "label": "Dirección de facturación" },
-      "shippingAddress": { "label": "Dirección de envío" },
-      "taxNumber": { "label": "Registro fiscal" },
-      "certificates": { "label": "Certificados", "help": "Por ejemplo, un certificado de reventa o de exención de impuestos." },
-      "message": { "label": "Mensaje para la tienda" },
-      "consent": { "label": "Acepto que se usen mis datos para revisar esta solicitud." }
+      "companyName": {
+        "label": "Nombre de la empresa"
+      },
+      "businessType": {
+        "label": "Tipo de negocio"
+      },
+      "website": {
+        "label": "Sitio web",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Año de fundación"
+      },
+      "locationsCount": {
+        "label": "Número de ubicaciones"
+      },
+      "monthlyOrderValue": {
+        "label": "Valor mensual de pedido previsto"
+      },
+      "referral": {
+        "label": "¿Cómo nos conoció?"
+      },
+      "firstName": {
+        "label": "Nombre"
+      },
+      "lastName": {
+        "label": "Apellidos"
+      },
+      "email": {
+        "label": "Correo electrónico",
+        "help": "Le enviaremos novedades sobre su solicitud a esta dirección."
+      },
+      "phone": {
+        "label": "Teléfono"
+      },
+      "jobTitle": {
+        "label": "Cargo"
+      },
+      "preferredLanguage": {
+        "label": "Idioma preferido"
+      },
+      "billingAddress": {
+        "label": "Dirección de facturación"
+      },
+      "shippingAddress": {
+        "label": "Dirección de envío"
+      },
+      "taxNumber": {
+        "label": "Registro fiscal"
+      },
+      "certificates": {
+        "label": "Certificados",
+        "help": "Por ejemplo, un certificado de reventa o de exención de impuestos."
+      },
+      "message": {
+        "label": "Mensaje para la tienda"
+      },
+      "consent": {
+        "label": "Acepto que se usen mis datos para revisar esta solicitud."
+      }
     },
     "business_type": {
       "retail": "Tienda minorista",

@@ -22,11 +22,7 @@ Ideas noted during the build (not committed):
 - A spam count in the admin (spam is currently discarded unseen, D-036).
 
 ## Deferred from the spec (not built yet)
-- "Powered by Tradepass" link on the Free-plan form.
-- Plan-gating of tax-number checks to Starter (they currently run on every plan).
-- Activity export (Pro).
-- Server-side cap of 3 files per upload question (enforced in the browser only).
-- A Settings switch between automatic and assisted tier assignment (the mode exists; the switch doesn't).
+Built on 2026-10-17 (D-076 to D-080): "Powered by Tradepass" on the Free-plan form, tax-number checks gated to Starter, activity export (Pro), server-side file limits, the Settings switch for assisted tier assignment.
 - Playwright end-to-end tests against a dev store; measured accessibility and performance passes.
 
 ## Open risks

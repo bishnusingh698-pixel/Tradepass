@@ -166,6 +166,6 @@
   "applications.activity.application.updated": "Кандидатът изпрати актуализация",
   "applications.activity.application.note": "Добавена е бележка",
   "applications.activity.application.assign": "Отговорникът е променен",
-  "applications.taxCheck.skipped": "Not checked on your plan",
-  "applications.detail.taxCheckPlan": "Tax numbers are checked against official registries on the {plan} plan and up. Check this one manually, or upgrade to check new applications automatically."
+  "applications.taxCheck.skipped": "Без проверка в плана Ви",
+  "applications.detail.taxCheckPlan": "Данъчните номера се проверяват в официалните регистри от план {plan} нагоре. Проверете този ръчно или преминете към по-висок план за автоматична проверка на новите заявки."
 }

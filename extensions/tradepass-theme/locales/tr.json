@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Fiyatlar onaylı toptan satış müşterilerine gösterilir. Oturum açın veya toptan satış hesabı için başvurun.",
+    "login": "Oturum aç",
+    "apply": "Toptan satış için başvur",
+    "cart": "Sepetinizdeki bazı ürünler yalnızca onaylı toptan satış müşterilerine açıktır."
+  },
+  "banner": {
+    "text": "Bir işletme için mi alışveriş yapıyorsunuz?",
+    "link": "Toptan satış için başvur"
+  },
+  "hint": {
+    "text": "Toptan satış fiyatları onaylı işletmelere açıktır."
+  },
+  "wall": {
+    "heading": "Yalnızca toptan satış müşterileri",
+    "message": "Bu sayfa onaylı toptan satış müşterilerine açıktır. Oturum açın veya toptan satış hesabı için başvurun."
+  },
+  "brand": {
+    "powered_by": "Tradepass ile desteklenmektedir"
+  },
+  "apply_block": {
+    "heading": "Bir işletme için mi alışveriş yapıyorsunuz?",
+    "text": "Toptan fiyatları görmek ve toplu sipariş vermek için toptan satış hesabına başvurun.",
+    "button": "Toptan satış için başvur"
+  },
+  "form": {
+    "heading": "Toptan satış hesabı için başvurun",
+    "intro": "Bize işletmenizden bahsedin. Her başvuruyu inceliyor ve e-postayla yanıt veriyoruz.",
+    "required_note": "* ile işaretli alanlar zorunludur.",
+    "optional": "(isteğe bağlı)",
+    "select": "Seçin…",
+    "submit": "Başvuruyu gönder",
+    "sending": "Gönderiliyor…",
+    "retrying": "Hâlâ gönderiliyor. Bir dakikaya kadar denemeye devam edeceğiz; yanıtlarınız güvende.",
+    "failed": "Başvurunuzu gönderemedik. Yanıtlarınız bu tarayıcıda kayıtlı. Lütfen birkaç dakika sonra tekrar deneyin.",
+    "retry": "Tekrar dene",
+    "rate_limited": "Kısa süre önce sizden birkaç başvuru aldık. Lütfen daha sonra tekrar deneyin.",
+    "duplicate": "Zaten başvurdunuz. Sizinle iletişime geçeceğiz.",
+    "draft_restored": "Daha önce girdiğiniz yanıtları geri yükledik.",
+    "clear_draft": "Baştan başla",
+    "honeypot": "Bu alanı boş bırakın",
+    "unavailable": "Başvuru formu henüz ayarlanmadı. Lütfen mağazayla iletişime geçin.",
+    "section": {
+      "business": "İşletme",
+      "contact": "İletişim",
+      "addresses": "Adresler",
+      "tax": "Vergi ve belgeler",
+      "message": "Mesaj",
+      "consent": "Onay"
+    },
+    "field": {
+      "companyName": {
+        "label": "Şirket adı"
+      },
+      "businessType": {
+        "label": "İşletme türü"
+      },
+      "website": {
+        "label": "Web sitesi",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Kuruluş yılı"
+      },
+      "locationsCount": {
+        "label": "Konum sayısı"
+      },
+      "monthlyOrderValue": {
+        "label": "Beklenen aylık sipariş tutarı"
+      },
+      "referral": {
+        "label": "Bizi nereden duydunuz?"
+      },
+      "firstName": {
+        "label": "Ad"
+      },
+      "lastName": {
+        "label": "Soyadı"
+      },
+      "email": {
+        "label": "E-posta",
+        "help": "Başvurunuzla ilgili güncellemeleri bu adrese göndereceğiz."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Unvan"
+      },
+      "preferredLanguage": {
+        "label": "Tercih edilen dil"
+      },
+      "billingAddress": {
+        "label": "Fatura adresi"
+      },
+      "shippingAddress": {
+        "label": "Teslimat adresi"
+      },
+      "taxNumber": {
+        "label": "Vergi kaydı"
+      },
+      "certificates": {
+        "label": "Sertifikalar",
+        "help": "Örneğin yeniden satış veya vergi muafiyeti sertifikası."
+      },
+      "message": {
+        "label": "Mağazaya mesaj"
+      },
+      "consent": {
+        "label": "Bilgilerimin bu başvurunun incelenmesi için kullanılmasını kabul ediyorum."
+      }
+    },
+    "business_type": {
+      "retail": "Perakende mağaza",
+      "salon": "Salon veya spa",
+      "restaurant": "Restoran veya kafe",
+      "distributor": "Distribütör",
+      "other": "Diğer"
+    },
+    "order_value": {
+      "lt1k": "1.000'den az",
+      "1k-5k": "1.000 ile 5.000 arası",
+      "5k-20k": "5.000 ile 20.000 arası",
+      "gt20k": "20.000'den fazla"
+    },
+    "address": {
+      "country": "Ülke/bölge",
+      "address1": "Adres",
+      "address2": "Daire, ofis vb.",
+      "city": "Şehir",
+      "zone": {
+        "state": "Eyalet",
+        "province": "İl",
+        "region": "Bölge",
+        "county": "İlçe",
+        "prefecture": "Prefektörlük",
+        "emirate": "Emirlik",
+        "governorate": "Valilik",
+        "state_and_territory": "Eyalet/bölge"
+      },
+      "zip": {
+        "postal": "Posta kodu",
+        "zip": "ZIP kodu",
+        "pin": "PIN kodu",
+        "postcode": "Posta kodu (UK)"
+      },
+      "same_as_billing": "Fatura adresiyle aynı"
+    },
+    "tax": {
+      "country": "Vergi kaydının yapıldığı ülke",
+      "vat": "KDV numarası",
+      "vat_help": "Ülke önekiyle birlikte girin, örneğin DE123456789.",
+      "abn": "ABN (Avustralya İşletme Numarası)",
+      "gst": "GST/HST numarası",
+      "us_resale": "Yeniden satış sertifikası numarası",
+      "us_state": "Sertifikayı veren eyalet",
+      "tax_id": "Vergi kimlik numarası"
+    },
+    "upload": {
+      "add": "Dosya ekle",
+      "remove": "{{ name }} dosyasını kaldır",
+      "hint": "PDF, JPG veya PNG, her biri en fazla 5 MB, en fazla 3 dosya.",
+      "expiry": "{{ name }} için son geçerlilik tarihi (isteğe bağlı)",
+      "uploading": "{{ name }} yükleniyor…",
+      "done": "{{ name }} yüklendi",
+      "failed": "{{ name }} yüklenemedi. Lütfen tekrar deneyin."
+    },
+    "consent_privacy": "Gizlilik politikamızı okuyun",
+    "error": {
+      "summary": "Lütfen şunları düzeltin:",
+      "required": "{{ field }} alanını doldurun.",
+      "choose": "{{ field }} için bir seçim yapın.",
+      "consent": "Devam etmek için lütfen onaylayın.",
+      "email": "name@example.com gibi bir e-posta adresi girin.",
+      "url": "https://example.com gibi bir web adresi girin.",
+      "phone": "Geçerli bir telefon numarası girin.",
+      "number": "Bir sayı girin.",
+      "date": "Geçerli bir tarih girin.",
+      "too_long": "Bu çok uzun. En fazla {{ max }} karakter kullanın.",
+      "file_type": "{{ name }} bir PDF, JPG veya PNG dosyası değil.",
+      "file_size": "{{ name }} 5 MB'tan büyük.",
+      "file_count": "En fazla 3 dosya ekleyebilirsiniz.",
+      "file_pending": "Dosyalarınızın yüklenmesinin bitmesini bekleyin.",
+      "spam": "Bu yanıt eşleşmiyor. Lütfen tekrar deneyin."
+    },
+    "success": {
+      "heading": "Teşekkürler, başvurunuz gönderildi",
+      "body": "Başvurunuzu inceleyip size e-postayla dönüş yapacağız.",
+      "email": "Size bir onay e-postası gönderdik."
+    }
+  }
+}

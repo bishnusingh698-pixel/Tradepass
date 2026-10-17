@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Cijene se prikazuju odobrenim veleprodajnim kupcima. Prijavite se ili zatražite veleprodajni račun.",
+    "login": "Prijava",
+    "apply": "Zatraži veleprodaju",
+    "cart": "Neki artikli u vašoj košarici dostupni su samo odobrenim veleprodajnim kupcima."
+  },
+  "banner": {
+    "text": "Kupujete za tvrtku?",
+    "link": "Zatraži veleprodaju"
+  },
+  "hint": {
+    "text": "Veleprodajne cijene dostupne su odobrenim tvrtkama."
+  },
+  "wall": {
+    "heading": "Samo za veleprodajne kupce",
+    "message": "Ova stranica dostupna je odobrenim veleprodajnim kupcima. Prijavite se ili zatražite veleprodajni račun."
+  },
+  "brand": {
+    "powered_by": "Pokreće Tradepass"
+  },
+  "apply_block": {
+    "heading": "Kupujete za tvrtku?",
+    "text": "Zatražite veleprodajni račun kako biste vidjeli veleprodajne cijene i naručivali na veliko.",
+    "button": "Zatraži veleprodaju"
+  },
+  "form": {
+    "heading": "Zahtjev za veleprodajni račun",
+    "intro": "Recite nam nešto o svojoj tvrtki. Pregledavamo svaki zahtjev i odgovaramo e-poštom.",
+    "required_note": "Polja označena sa * obavezna su.",
+    "optional": "(nije obavezno)",
+    "select": "Odaberite…",
+    "submit": "Pošalji zahtjev",
+    "sending": "Slanje…",
+    "retrying": "Još šaljemo. Pokušavat ćemo do jedne minute; vaši su odgovori sigurni.",
+    "failed": "Zahtjev nije moguće poslati. Vaši su odgovori spremljeni u ovom pregledniku. Pokušajte ponovno za nekoliko minuta.",
+    "retry": "Pokušaj ponovno",
+    "rate_limited": "Nedavno smo od vas primili nekoliko zahtjeva. Pokušajte ponovno kasnije.",
+    "duplicate": "Već ste poslali zahtjev. Javit ćemo vam se.",
+    "draft_restored": "Vratili smo odgovore koje ste ranije unijeli.",
+    "clear_draft": "Počni ispočetka",
+    "honeypot": "Ostavite ovo polje prazno",
+    "unavailable": "Obrazac za zahtjev još nije postavljen. Obratite se trgovini.",
+    "section": {
+      "business": "Tvrtka",
+      "contact": "Kontakt",
+      "addresses": "Adrese",
+      "tax": "Porezi i dokumenti",
+      "message": "Poruka",
+      "consent": "Privola"
+    },
+    "field": {
+      "companyName": {
+        "label": "Naziv tvrtke"
+      },
+      "businessType": {
+        "label": "Vrsta tvrtke"
+      },
+      "website": {
+        "label": "Web-mjesto",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "Godina osnivanja"
+      },
+      "locationsCount": {
+        "label": "Broj lokacija"
+      },
+      "monthlyOrderValue": {
+        "label": "Očekivana mjesečna vrijednost narudžbi"
+      },
+      "referral": {
+        "label": "Kako ste saznali za nas?"
+      },
+      "firstName": {
+        "label": "Ime"
+      },
+      "lastName": {
+        "label": "Prezime"
+      },
+      "email": {
+        "label": "E-pošta",
+        "help": "Na ovu adresu slat ćemo vam novosti o vašem zahtjevu."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Radno mjesto"
+      },
+      "preferredLanguage": {
+        "label": "Željeni jezik"
+      },
+      "billingAddress": {
+        "label": "Adresa za naplatu"
+      },
+      "shippingAddress": {
+        "label": "Adresa za dostavu"
+      },
+      "taxNumber": {
+        "label": "Porezna registracija"
+      },
+      "certificates": {
+        "label": "Potvrde",
+        "help": "Na primjer potvrda za preprodaju ili o poreznom oslobođenju."
+      },
+      "message": {
+        "label": "Poruka trgovini"
+      },
+      "consent": {
+        "label": "Slažem se da se moji podaci koriste za pregled ovog zahtjeva."
+      }
+    },
+    "business_type": {
+      "retail": "Maloprodajna trgovina",
+      "salon": "Salon ili spa",
+      "restaurant": "Restoran ili kafić",
+      "distributor": "Distributer",
+      "other": "Ostalo"
+    },
+    "order_value": {
+      "lt1k": "Manje od 1.000",
+      "1k-5k": "Od 1.000 do 5.000",
+      "5k-20k": "Od 5.000 do 20.000",
+      "gt20k": "Više od 20.000"
+    },
+    "address": {
+      "country": "Država/regija",
+      "address1": "Adresa",
+      "address2": "Stan, apartman itd.",
+      "city": "Grad",
+      "zone": {
+        "state": "Savezna država",
+        "province": "Pokrajina",
+        "region": "Regija",
+        "county": "Okrug",
+        "prefecture": "Prefektura",
+        "emirate": "Emirat",
+        "governorate": "Guvernorat",
+        "state_and_territory": "Savezna država/teritorij"
+      },
+      "zip": {
+        "postal": "Poštanski broj",
+        "zip": "Poštanski broj (ZIP)",
+        "pin": "PIN kod",
+        "postcode": "Poštanska oznaka"
+      },
+      "same_as_billing": "Ista kao adresa za naplatu"
+    },
+    "tax": {
+      "country": "Država porezne registracije",
+      "vat": "PDV ID broj",
+      "vat_help": "Uključite oznaku države, na primjer DE123456789.",
+      "abn": "ABN (australski poslovni broj)",
+      "gst": "Broj GST/HST",
+      "us_resale": "Broj potvrde za preprodaju",
+      "us_state": "Savezna država koja je izdala potvrdu",
+      "tax_id": "Porezni broj"
+    },
+    "upload": {
+      "add": "Dodaj datoteku",
+      "remove": "Ukloni {{ name }}",
+      "hint": "PDF, JPG ili PNG, svaka do 5 MB, najviše 3 datoteke.",
+      "expiry": "Datum isteka za {{ name }} (nije obavezno)",
+      "uploading": "Prijenos {{ name }}…",
+      "done": "{{ name }} – preneseno",
+      "failed": "{{ name }} nije moguće prenijeti. Pokušajte ponovno."
+    },
+    "consent_privacy": "Pročitajte naša pravila o privatnosti",
+    "error": {
+      "summary": "Ispravite sljedeće:",
+      "required": "Unesite: {{ field }}.",
+      "choose": "Odaberite: {{ field }}.",
+      "consent": "Potvrdite za nastavak.",
+      "email": "Unesite adresu e-pošte u obliku ime@example.com.",
+      "url": "Unesite web-adresu u obliku https://example.com.",
+      "phone": "Unesite valjani telefonski broj.",
+      "number": "Unesite broj.",
+      "date": "Unesite valjani datum.",
+      "too_long": "Tekst je predug. Upotrijebite najviše {{ max }} znakova.",
+      "file_type": "{{ name }} nije datoteka PDF, JPG ili PNG.",
+      "file_size": "{{ name }} veća je od 5 MB.",
+      "file_count": "Možete dodati najviše 3 datoteke.",
+      "file_pending": "Pričekajte da se datoteke prenesu.",
+      "spam": "Odgovor se ne podudara. Pokušajte ponovno."
+    },
+    "success": {
+      "heading": "Hvala, vaš je zahtjev poslan",
+      "body": "Pregledat ćemo ga i javiti vam se e-poštom.",
+      "email": "Poslali smo vam e-poruku s potvrdom."
+    }
+  }
+}

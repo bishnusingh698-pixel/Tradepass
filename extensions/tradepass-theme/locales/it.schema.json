@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Nasconde i prezzi ai visitatori al dettaglio e mostra il messaggio Accedi / Richiedi in base alle impostazioni del negozio online in Tradepass. Deve essere attivo per nascondere i prezzi."
+  },
+  "form_block": {
+    "name": "Modulo di richiesta all’ingrosso",
+    "form_id": "ID modulo",
+    "form_id_info": "Lasci vuoto per usare il modulo predefinito. Copi l’ID di un modulo da Tradepass → Modulo.",
+    "show_heading": "Mostra titolo",
+    "heading": "Titolo",
+    "heading_info": "Lasci vuoto per usare il testo predefinito nella lingua del visitatore."
+  },
+  "apply_block": {
+    "name": "Richiedi accesso all’ingrosso",
+    "style": "Stile",
+    "style_button": "Pulsante",
+    "style_banner": "Banner informativo",
+    "heading": "Titolo",
+    "text": "Testo",
+    "button": "Etichetta del pulsante",
+    "texts_info": "Lasci vuoto per usare il testo predefinito nella lingua del visitatore.",
+    "hide_for_b2b": "Nascondi agli acquirenti all’ingrosso che hanno eseguito l’accesso"
+  }
+}

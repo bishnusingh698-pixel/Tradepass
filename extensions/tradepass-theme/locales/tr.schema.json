@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass yerleştirmesi",
+    "info": "Tradepass mağaza vitrini ayarlarınıza göre fiyatları perakende ziyaretçilerden gizler ve Oturum aç / Başvur mesajını gösterir. Fiyat gizleme için açık olmalıdır."
+  },
+  "form_block": {
+    "name": "Toptan satış başvurusu",
+    "form_id": "Form kimliği",
+    "form_id_info": "Varsayılan formunuzu kullanmak için boş bırakın. Form kimliğini Tradepass → Form bölümünden kopyalayın.",
+    "show_heading": "Başlığı göster",
+    "heading": "Başlık",
+    "heading_info": "Ziyaretçinin dilindeki varsayılan metni kullanmak için boş bırakın."
+  },
+  "apply_block": {
+    "name": "Toptan satış için başvur",
+    "style": "Stil",
+    "style_button": "Düğme",
+    "style_banner": "Banner",
+    "heading": "Başlık",
+    "text": "Metin",
+    "button": "Düğme etiketi",
+    "texts_info": "Ziyaretçinin dilindeki varsayılan metni kullanmak için boş bırakın.",
+    "hide_for_b2b": "Oturum açmış toptan satış alıcılarından gizle"
+  }
+}

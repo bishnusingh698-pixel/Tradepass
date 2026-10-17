@@ -96,7 +96,7 @@ describe("config building", () => {
   it("returns built-in storefront strings with overrides", () => {
     const t = storefrontTexts("fr", { "gate.login": "Se connecter", unknown: "x" });
     expect(t["gate.login"]).toBe("Se connecter");
-    expect(t["form.submit"]).toBe("Send application"); // English underneath until translated
+    expect(t["form.submit"]).toBe("Envoyer la demande"); // built-in French translation underneath
     expect(t.unknown).toBeUndefined();
   });
 });

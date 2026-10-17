@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Vratiti tekstove za jezik {language}?",
   "settings.texts.resetBody": "{count, plural, one {# promijenjen tekst vraća se na ugrađeni tekst.} few {# promijenjena teksta vraćaju se na ugrađeni tekst.} other {# promijenjenih tekstova vraća se na ugrađeni tekst.}}",
   "settings.texts.resetConfirm": "Vrati tekstove",
-  "settings.texts.area.pages": "Stranice za ažuriranje zahtjeva i obnovu"
+  "settings.texts.area.pages": "Stranice za ažuriranje zahtjeva i obnovu",
+  "settings.assignment.heading": "Dodjela razine",
+  "settings.assignment.label": "Kako se kupci svrstavaju u svoju razinu",
+  "settings.assignment.auto": "Automatski",
+  "settings.assignment.autoHelp": "Tradepass dodaje lokaciju tvrtke na B2B tržište razine u Shopifyju i provjerava je li uspjelo.",
+  "settings.assignment.assisted": "Uz upute",
+  "settings.assignment.assistedHelp": "Promjenu izvršavate u Shopifyju prema kontrolnom popisu na stranici Razine, a Tradepass je potvrđuje. Koristite ovo ako automatska dodjela u vašoj trgovini ne radi.",
+  "settings.assignment.note": "Promjena utječe samo na nova odobrenja i promjene razina. Otvorene stavke kontrolnog popisa ostaju na stranici Razine dok ih ne označite.",
+  "settings.error.assignment": "Odaberite automatsku dodjelu ili dodjelu uz upute.",
+  "settings.activity.heading": "Povijest aktivnosti",
+  "settings.activity.body": "Preuzmite CSV datoteku s onim što su učinili Tradepass i vaši zaposlenici: tko, što, kada i s kojim ishodom. Sadrži najnovijih {max} unosa; unosi stariji od 2 godine automatski se uklanjaju.",
+  "settings.activity.button": "Izvezi aktivnosti (CSV)",
+  "settings.activity.done": "Aktivnosti su izvezene",
+  "settings.activity.truncated": "Izvezeno najnovijih {max} unosa",
+  "settings.activity.locked": "Izvoz aktivnosti dostupan je u paketu Pro."
 }

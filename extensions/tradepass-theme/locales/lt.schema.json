@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass įterpimas",
+    "info": "Slepia kainas nuo mažmeninių lankytojų ir rodo pranešimą „Prisijungti / Pateikti paraišką“ pagal jūsų Tradepass vitrinos nustatymus. Turi būti įjungta, kad kainos būtų slepiamos."
+  },
+  "form_block": {
+    "name": "Didmeninės prekybos paraiška",
+    "form_id": "Formos ID",
+    "form_id_info": "Palikite tuščią, kad būtų naudojama numatytoji forma. Formos ID nukopijuokite iš Tradepass → Forma.",
+    "show_heading": "Rodyti antraštę",
+    "heading": "Antraštė",
+    "heading_info": "Palikite tuščią, kad būtų naudojamas numatytasis tekstas lankytojo kalba."
+  },
+  "apply_block": {
+    "name": "Pateikti didmeninės prekybos paraišką",
+    "style": "Stilius",
+    "style_button": "Mygtukas",
+    "style_banner": "Reklamjuostė",
+    "heading": "Antraštė",
+    "text": "Tekstas",
+    "button": "Mygtuko tekstas",
+    "texts_info": "Palikite tuščią, kad būtų naudojamas numatytasis tekstas lankytojo kalba.",
+    "hide_for_b2b": "Slėpti prisijungusiems didmeniniams pirkėjams"
+  }
+}

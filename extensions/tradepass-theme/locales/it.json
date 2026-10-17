@@ -1,0 +1,152 @@
+{
+  "gate": {
+    "message": "I prezzi sono visibili ai clienti all’ingrosso approvati. Acceda o richieda un account all’ingrosso.",
+    "login": "Accedi",
+    "apply": "Richiedi accesso all’ingrosso",
+    "cart": "Alcuni articoli nel suo carrello sono disponibili solo per i clienti all’ingrosso approvati."
+  },
+  "banner": {
+    "text": "Acquista per un’azienda?",
+    "link": "Richiedi accesso all’ingrosso"
+  },
+  "hint": {
+    "text": "I prezzi all’ingrosso sono riservati alle aziende approvate."
+  },
+  "wall": {
+    "heading": "Solo per clienti all’ingrosso",
+    "message": "Questa pagina è disponibile per i clienti all’ingrosso approvati. Acceda o richieda un account all’ingrosso."
+  },
+  "brand": {
+    "powered_by": "Con tecnologia Tradepass"
+  },
+  "apply_block": {
+    "heading": "Acquista per un’azienda?",
+    "text": "Richieda un account all’ingrosso per vedere i prezzi riservati e ordinare grandi quantità.",
+    "button": "Richiedi accesso all’ingrosso"
+  },
+  "form": {
+    "heading": "Richieda un account all’ingrosso",
+    "intro": "Ci parli della sua attività. Esaminiamo ogni richiesta e rispondiamo via email.",
+    "required_note": "I campi contrassegnati con * sono obbligatori.",
+    "optional": "(facoltativo)",
+    "select": "Seleziona…",
+    "submit": "Invia richiesta",
+    "sending": "Invio in corso…",
+    "retrying": "Invio ancora in corso. Continueremo a provare per un minuto al massimo; le sue risposte sono al sicuro.",
+    "failed": "Non è stato possibile inviare la sua richiesta. Le risposte sono salvate in questo browser. Riprovi tra qualche minuto.",
+    "retry": "Riprova",
+    "rate_limited": "Abbiamo ricevuto di recente diverse richieste da parte sua. Riprovi più tardi.",
+    "duplicate": "Ha già inviato una richiesta. La contatteremo presto.",
+    "draft_restored": "Abbiamo ripristinato le risposte inserite in precedenza.",
+    "clear_draft": "Ricomincia",
+    "honeypot": "Lasci vuoto questo campo",
+    "unavailable": "Il modulo di richiesta non è ancora configurato. Contatti il negozio.",
+    "section": {
+      "business": "Attività",
+      "contact": "Contatto",
+      "addresses": "Indirizzi",
+      "tax": "Dati fiscali e documenti",
+      "message": "Messaggio",
+      "consent": "Consenso"
+    },
+    "field": {
+      "companyName": { "label": "Ragione sociale" },
+      "businessType": { "label": "Tipo di attività" },
+      "website": { "label": "Sito web", "placeholder": "https://" },
+      "yearEstablished": { "label": "Anno di fondazione" },
+      "locationsCount": { "label": "Numero di sedi" },
+      "monthlyOrderValue": { "label": "Valore mensile previsto degli ordini" },
+      "referral": { "label": "Come ci ha conosciuti?" },
+      "firstName": { "label": "Nome" },
+      "lastName": { "label": "Cognome" },
+      "email": { "label": "Indirizzo email", "help": "Invieremo a questo indirizzo gli aggiornamenti sulla sua richiesta." },
+      "phone": { "label": "Telefono" },
+      "jobTitle": { "label": "Ruolo" },
+      "preferredLanguage": { "label": "Lingua preferita" },
+      "billingAddress": { "label": "Indirizzo di fatturazione" },
+      "shippingAddress": { "label": "Indirizzo di spedizione" },
+      "taxNumber": { "label": "Registrazione fiscale" },
+      "certificates": { "label": "Certificati", "help": "Ad esempio un certificato di rivendita o di esenzione fiscale." },
+      "message": { "label": "Messaggio per il negozio" },
+      "consent": { "label": "Acconsento all’uso dei miei dati per l’esame di questa richiesta." }
+    },
+    "business_type": {
+      "retail": "Negozio al dettaglio",
+      "salon": "Salone o centro benessere",
+      "restaurant": "Ristorante o bar",
+      "distributor": "Distributore",
+      "other": "Altro"
+    },
+    "order_value": {
+      "lt1k": "Meno di 1.000",
+      "1k-5k": "Da 1.000 a 5.000",
+      "5k-20k": "Da 5.000 a 20.000",
+      "gt20k": "Più di 20.000"
+    },
+    "address": {
+      "country": "Paese/regione",
+      "address1": "Indirizzo",
+      "address2": "Appartamento, interno, ecc.",
+      "city": "Città",
+      "zone": {
+        "state": "Stato",
+        "province": "Provincia",
+        "region": "Regione",
+        "county": "Contea",
+        "prefecture": "Prefettura",
+        "emirate": "Emirato",
+        "governorate": "Governatorato",
+        "state_and_territory": "Stato/territorio"
+      },
+      "zip": {
+        "postal": "Codice postale",
+        "zip": "Codice ZIP",
+        "pin": "Codice PIN",
+        "postcode": "CAP"
+      },
+      "same_as_billing": "Uguale all’indirizzo di fatturazione"
+    },
+    "tax": {
+      "country": "Paese di registrazione fiscale",
+      "vat": "Partita IVA",
+      "vat_help": "Includa il prefisso del paese, ad esempio IT12345678901.",
+      "abn": "ABN (numero di impresa australiano)",
+      "gst": "Numero GST/HST",
+      "us_resale": "Numero del certificato di rivendita",
+      "us_state": "Stato che ha rilasciato il certificato",
+      "tax_id": "Codice fiscale"
+    },
+    "upload": {
+      "add": "Aggiungi file",
+      "remove": "Rimuovi {{ name }}",
+      "hint": "PDF, JPG o PNG, massimo 5 MB ciascuno, fino a 3 file.",
+      "expiry": "Data di scadenza di {{ name }} (facoltativa)",
+      "uploading": "Caricamento di {{ name }}…",
+      "done": "{{ name }} caricato",
+      "failed": "Impossibile caricare {{ name }}. Riprovi."
+    },
+    "consent_privacy": "Leggi la nostra informativa sulla privacy",
+    "error": {
+      "summary": "Correggere quanto segue:",
+      "required": "Inserisca {{ field }}.",
+      "choose": "Scelga {{ field }}.",
+      "consent": "Confermi per continuare.",
+      "email": "Inserisca un indirizzo email come nome@esempio.com.",
+      "url": "Inserisca un indirizzo web come https://esempio.com.",
+      "phone": "Inserisca un numero di telefono valido.",
+      "number": "Inserisca un numero.",
+      "date": "Inserisca una data valida.",
+      "too_long": "Il testo è troppo lungo. Usi al massimo {{ max }} caratteri.",
+      "file_type": "{{ name }} non è un file PDF, JPG o PNG.",
+      "file_size": "{{ name }} supera i 5 MB.",
+      "file_count": "Può aggiungere fino a 3 file.",
+      "file_pending": "Attenda il completamento del caricamento dei file.",
+      "spam": "La risposta non corrisponde. Riprovi."
+    },
+    "success": {
+      "heading": "Grazie, la sua richiesta è stata inviata",
+      "body": "La esamineremo e le risponderemo via email.",
+      "email": "Le abbiamo inviato un’email di conferma."
+    }
+  }
+}

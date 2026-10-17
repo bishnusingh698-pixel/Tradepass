@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Ceny vidí schválení velkoobchodní zákazníci. Přihlaste se nebo požádejte o velkoobchodní účet.",
+    "login": "Přihlásit se",
+    "apply": "Požádat o velkoobchod",
+    "cart": "Některé položky v košíku jsou dostupné pouze schváleným velkoobchodním zákazníkům."
+  },
+  "banner": {
+    "text": "Nakupujete pro firmu?",
+    "link": "Požádat o velkoobchod"
+  },
+  "hint": {
+    "text": "Velkoobchodní ceny jsou dostupné schváleným firmám."
+  },
+  "wall": {
+    "heading": "Pouze pro velkoobchodní zákazníky",
+    "message": "Tato stránka je dostupná schváleným velkoobchodním zákazníkům. Přihlaste se nebo požádejte o velkoobchodní účet."
+  },
+  "brand": {
+    "powered_by": "Využívá Tradepass"
+  },
+  "apply_block": {
+    "heading": "Nakupujete pro firmu?",
+    "text": "Požádejte o velkoobchodní účet, abyste viděli velkoobchodní ceny a mohli objednávat ve velkém.",
+    "button": "Požádat o velkoobchod"
+  },
+  "form": {
+    "heading": "Žádost o velkoobchodní účet",
+    "intro": "Řekněte nám něco o své firmě. Každou žádost posoudíme a odpovíme e-mailem.",
+    "required_note": "Pole označená * jsou povinná.",
+    "optional": "(nepovinné)",
+    "select": "Vyberte…",
+    "submit": "Odeslat žádost",
+    "sending": "Odesílání…",
+    "retrying": "Stále odesíláme. Budeme to zkoušet až minutu; vaše odpovědi jsou v bezpečí.",
+    "failed": "Žádost se nepodařilo odeslat. Vaše odpovědi jsou uložené v tomto prohlížeči. Zkuste to prosím za několik minut znovu.",
+    "retry": "Zkusit znovu",
+    "rate_limited": "V poslední době jsme od vás obdrželi několik žádostí. Zkuste to prosím později.",
+    "duplicate": "Žádost jste již podali. Ozveme se vám.",
+    "draft_restored": "Obnovili jsme odpovědi, které jste zadali dříve.",
+    "clear_draft": "Začít znovu",
+    "honeypot": "Toto pole nechte prázdné",
+    "unavailable": "Formulář žádosti zatím není nastavený. Kontaktujte prosím obchod.",
+    "section": {
+      "business": "Firma",
+      "contact": "Kontakt",
+      "addresses": "Adresy",
+      "tax": "Daně a dokumenty",
+      "message": "Zpráva",
+      "consent": "Souhlas"
+    },
+    "field": {
+      "companyName": {
+        "label": "Název firmy"
+      },
+      "businessType": {
+        "label": "Typ firmy"
+      },
+      "website": {
+        "label": "Webové stránky",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "Rok založení"
+      },
+      "locationsCount": {
+        "label": "Počet poboček"
+      },
+      "monthlyOrderValue": {
+        "label": "Očekávaná měsíční hodnota objednávek"
+      },
+      "referral": {
+        "label": "Jak jste se o nás dozvěděli?"
+      },
+      "firstName": {
+        "label": "Jméno"
+      },
+      "lastName": {
+        "label": "Příjmení"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "Na tuto adresu vám budeme posílat informace o vaší žádosti."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Pracovní pozice"
+      },
+      "preferredLanguage": {
+        "label": "Preferovaný jazyk"
+      },
+      "billingAddress": {
+        "label": "Fakturační adresa"
+      },
+      "shippingAddress": {
+        "label": "Dodací adresa"
+      },
+      "taxNumber": {
+        "label": "Daňová registrace"
+      },
+      "certificates": {
+        "label": "Certifikáty",
+        "help": "Například certifikát pro další prodej nebo o osvobození od daně."
+      },
+      "message": {
+        "label": "Zpráva pro obchod"
+      },
+      "consent": {
+        "label": "Souhlasím s tím, že mé údaje budou použity k posouzení této žádosti."
+      }
+    },
+    "business_type": {
+      "retail": "Maloobchodní prodejna",
+      "salon": "Salon nebo lázně",
+      "restaurant": "Restaurace nebo kavárna",
+      "distributor": "Distribuční firma",
+      "other": "Jiné"
+    },
+    "order_value": {
+      "lt1k": "Méně než 1 000",
+      "1k-5k": "1 000 až 5 000",
+      "5k-20k": "5 000 až 20 000",
+      "gt20k": "Více než 20 000"
+    },
+    "address": {
+      "country": "Země/oblast",
+      "address1": "Adresa",
+      "address2": "Byt, apartmá atd.",
+      "city": "Město",
+      "zone": {
+        "state": "Stát",
+        "province": "Provincie",
+        "region": "Oblast",
+        "county": "Hrabství",
+        "prefecture": "Prefektura",
+        "emirate": "Emirát",
+        "governorate": "Guvernorát",
+        "state_and_territory": "Stát/teritorium"
+      },
+      "zip": {
+        "postal": "PSČ",
+        "zip": "PSČ (ZIP)",
+        "pin": "PIN kód",
+        "postcode": "Poštovní směrovací číslo"
+      },
+      "same_as_billing": "Stejná jako fakturační adresa"
+    },
+    "tax": {
+      "country": "Země daňové registrace",
+      "vat": "DIČ",
+      "vat_help": "Uveďte i předponu země, například DE123456789.",
+      "abn": "ABN (australské obchodní číslo)",
+      "gst": "Číslo GST/HST",
+      "us_resale": "Číslo certifikátu pro další prodej",
+      "us_state": "Stát, který certifikát vydal",
+      "tax_id": "Daňové identifikační číslo"
+    },
+    "upload": {
+      "add": "Přidat soubor",
+      "remove": "Odebrat {{ name }}",
+      "hint": "PDF, JPG nebo PNG, každý do 5 MB, nejvýše 3 soubory.",
+      "expiry": "Datum platnosti pro {{ name }} (nepovinné)",
+      "uploading": "Nahrávání {{ name }}…",
+      "done": "{{ name }} – nahráno",
+      "failed": "{{ name }} se nepodařilo nahrát. Zkuste to prosím znovu."
+    },
+    "consent_privacy": "Přečtěte si naše zásady ochrany osobních údajů",
+    "error": {
+      "summary": "Opravte prosím následující:",
+      "required": "Zadejte: {{ field }}.",
+      "choose": "Vyberte: {{ field }}.",
+      "consent": "Pro pokračování prosím potvrďte souhlas.",
+      "email": "Zadejte e-mailovou adresu ve tvaru jmeno@example.com.",
+      "url": "Zadejte webovou adresu ve tvaru https://example.com.",
+      "phone": "Zadejte platné telefonní číslo.",
+      "number": "Zadejte číslo.",
+      "date": "Zadejte platné datum.",
+      "too_long": "Text je příliš dlouhý. Použijte nejvýše {{ max }} znaků.",
+      "file_type": "{{ name }} není soubor PDF, JPG ani PNG.",
+      "file_size": "{{ name }} je větší než 5 MB.",
+      "file_count": "Můžete přidat nejvýše 3 soubory.",
+      "file_pending": "Počkejte, až se soubory nahrají.",
+      "spam": "Odpověď nesouhlasí. Zkuste to prosím znovu."
+    },
+    "success": {
+      "heading": "Děkujeme, vaše žádost byla odeslána",
+      "body": "Posoudíme ji a ozveme se vám e-mailem.",
+      "email": "Poslali jsme vám potvrzovací e-mail."
+    }
+  }
+}

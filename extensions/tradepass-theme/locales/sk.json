@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Ceny vidia schválení veľkoobchodní zákazníci. Prihláste sa alebo požiadajte o veľkoobchodný účet.",
+    "login": "Prihlásiť sa",
+    "apply": "Požiadať o veľkoobchod",
+    "cart": "Niektoré položky v košíku sú dostupné iba schváleným veľkoobchodným zákazníkom."
+  },
+  "banner": {
+    "text": "Nakupujete pre firmu?",
+    "link": "Požiadať o veľkoobchod"
+  },
+  "hint": {
+    "text": "Veľkoobchodné ceny sú dostupné schváleným firmám."
+  },
+  "wall": {
+    "heading": "Iba pre veľkoobchodných zákazníkov",
+    "message": "Táto stránka je dostupná schváleným veľkoobchodným zákazníkom. Prihláste sa alebo požiadajte o veľkoobchodný účet."
+  },
+  "brand": {
+    "powered_by": "Využíva Tradepass"
+  },
+  "apply_block": {
+    "heading": "Nakupujete pre firmu?",
+    "text": "Požiadajte o veľkoobchodný účet, aby ste videli veľkoobchodné ceny a mohli objednávať vo veľkom.",
+    "button": "Požiadať o veľkoobchod"
+  },
+  "form": {
+    "heading": "Žiadosť o veľkoobchodný účet",
+    "intro": "Povedzte nám niečo o svojej firme. Každú žiadosť posúdime a odpovieme e-mailom.",
+    "required_note": "Polia označené * sú povinné.",
+    "optional": "(nepovinné)",
+    "select": "Vyberte…",
+    "submit": "Odoslať žiadosť",
+    "sending": "Odosiela sa…",
+    "retrying": "Stále odosielame. Budeme to skúšať až minútu; vaše odpovede sú v bezpečí.",
+    "failed": "Žiadosť sa nepodarilo odoslať. Vaše odpovede sú uložené v tomto prehliadači. Skúste to, prosím, znova o niekoľko minút.",
+    "retry": "Skúsiť znova",
+    "rate_limited": "V poslednom čase sme od vás dostali niekoľko žiadostí. Skúste to, prosím, neskôr.",
+    "duplicate": "Žiadosť ste už podali. Ozveme sa vám.",
+    "draft_restored": "Obnovili sme odpovede, ktoré ste zadali skôr.",
+    "clear_draft": "Začať odznova",
+    "honeypot": "Toto pole nechajte prázdne",
+    "unavailable": "Formulár žiadosti ešte nie je nastavený. Kontaktujte, prosím, obchod.",
+    "section": {
+      "business": "Firma",
+      "contact": "Kontakt",
+      "addresses": "Adresy",
+      "tax": "Dane a dokumenty",
+      "message": "Správa",
+      "consent": "Súhlas"
+    },
+    "field": {
+      "companyName": {
+        "label": "Názov firmy"
+      },
+      "businessType": {
+        "label": "Typ firmy"
+      },
+      "website": {
+        "label": "Webová stránka",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "Rok založenia"
+      },
+      "locationsCount": {
+        "label": "Počet pobočiek"
+      },
+      "monthlyOrderValue": {
+        "label": "Očakávaná mesačná hodnota objednávok"
+      },
+      "referral": {
+        "label": "Ako ste sa o nás dozvedeli?"
+      },
+      "firstName": {
+        "label": "Meno"
+      },
+      "lastName": {
+        "label": "Priezvisko"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "Na túto adresu vám budeme posielať informácie o vašej žiadosti."
+      },
+      "phone": {
+        "label": "Telefón"
+      },
+      "jobTitle": {
+        "label": "Pracovná pozícia"
+      },
+      "preferredLanguage": {
+        "label": "Preferovaný jazyk"
+      },
+      "billingAddress": {
+        "label": "Fakturačná adresa"
+      },
+      "shippingAddress": {
+        "label": "Dodacia adresa"
+      },
+      "taxNumber": {
+        "label": "Daňová registrácia"
+      },
+      "certificates": {
+        "label": "Certifikáty",
+        "help": "Napríklad certifikát na ďalší predaj alebo o oslobodení od dane."
+      },
+      "message": {
+        "label": "Správa pre obchod"
+      },
+      "consent": {
+        "label": "Súhlasím s tým, že moje údaje budú použité na posúdenie tejto žiadosti."
+      }
+    },
+    "business_type": {
+      "retail": "Maloobchodná predajňa",
+      "salon": "Salón alebo kúpele",
+      "restaurant": "Reštaurácia alebo kaviareň",
+      "distributor": "Distribútor",
+      "other": "Iné"
+    },
+    "order_value": {
+      "lt1k": "Menej ako 1 000",
+      "1k-5k": "1 000 až 5 000",
+      "5k-20k": "5 000 až 20 000",
+      "gt20k": "Viac ako 20 000"
+    },
+    "address": {
+      "country": "Krajina/oblasť",
+      "address1": "Adresa",
+      "address2": "Byt, apartmán atď.",
+      "city": "Mesto",
+      "zone": {
+        "state": "Štát",
+        "province": "Provincia",
+        "region": "Oblasť",
+        "county": "Grófstvo",
+        "prefecture": "Prefektúra",
+        "emirate": "Emirát",
+        "governorate": "Guvernorát",
+        "state_and_territory": "Štát/teritórium"
+      },
+      "zip": {
+        "postal": "PSČ",
+        "zip": "PSČ (ZIP)",
+        "pin": "PIN kód",
+        "postcode": "Poštové smerovacie číslo"
+      },
+      "same_as_billing": "Rovnaká ako fakturačná adresa"
+    },
+    "tax": {
+      "country": "Krajina daňovej registrácie",
+      "vat": "IČ DPH",
+      "vat_help": "Uveďte aj predponu krajiny, napríklad DE123456789.",
+      "abn": "ABN (austrálske obchodné číslo)",
+      "gst": "Číslo GST/HST",
+      "us_resale": "Číslo certifikátu na ďalší predaj",
+      "us_state": "Štát, ktorý certifikát vydal",
+      "tax_id": "Daňové identifikačné číslo"
+    },
+    "upload": {
+      "add": "Pridať súbor",
+      "remove": "Odstrániť {{ name }}",
+      "hint": "PDF, JPG alebo PNG, každý do 5 MB, najviac 3 súbory.",
+      "expiry": "Dátum platnosti pre {{ name }} (nepovinné)",
+      "uploading": "Nahráva sa {{ name }}…",
+      "done": "{{ name }} – nahrané",
+      "failed": "{{ name }} sa nepodarilo nahrať. Skúste to, prosím, znova."
+    },
+    "consent_privacy": "Prečítajte si naše zásady ochrany osobných údajov",
+    "error": {
+      "summary": "Opravte, prosím, nasledujúce:",
+      "required": "Zadajte: {{ field }}.",
+      "choose": "Vyberte: {{ field }}.",
+      "consent": "Ak chcete pokračovať, potvrďte, prosím, súhlas.",
+      "email": "Zadajte e-mailovú adresu v tvare meno@example.com.",
+      "url": "Zadajte webovú adresu v tvare https://example.com.",
+      "phone": "Zadajte platné telefónne číslo.",
+      "number": "Zadajte číslo.",
+      "date": "Zadajte platný dátum.",
+      "too_long": "Text je príliš dlhý. Použite najviac {{ max }} znakov.",
+      "file_type": "{{ name }} nie je súbor PDF, JPG ani PNG.",
+      "file_size": "{{ name }} je väčší ako 5 MB.",
+      "file_count": "Môžete pridať najviac 3 súbory.",
+      "file_pending": "Počkajte, kým sa súbory nahrajú.",
+      "spam": "Odpoveď nesedí. Skúste to, prosím, znova."
+    },
+    "success": {
+      "heading": "Ďakujeme, vaša žiadosť bola odoslaná",
+      "body": "Posúdime ju a ozveme sa vám e-mailom.",
+      "email": "Poslali sme vám potvrdzovací e-mail."
+    }
+  }
+}

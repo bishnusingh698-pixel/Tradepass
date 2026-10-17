@@ -166,6 +166,6 @@
   "applications.activity.application.updated": "Ο αιτών έστειλε ενημέρωση",
   "applications.activity.application.note": "Προστέθηκε σημείωση",
   "applications.activity.application.assign": "Η ανάθεση άλλαξε",
-  "applications.taxCheck.skipped": "Not checked on your plan",
-  "applications.detail.taxCheckPlan": "Tax numbers are checked against official registries on the {plan} plan and up. Check this one manually, or upgrade to check new applications automatically."
+  "applications.taxCheck.skipped": "Χωρίς έλεγχο στο πρόγραμμά σας",
+  "applications.detail.taxCheckPlan": "Οι αριθμοί ΑΦΜ ελέγχονται σε επίσημα μητρώα από το πρόγραμμα {plan} και πάνω. Ελέγξτε τον χειροκίνητα ή αναβαθμίστε για αυτόματο έλεγχο των νέων αιτήσεων."
 }

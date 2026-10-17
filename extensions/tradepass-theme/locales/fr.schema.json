@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Masque les prix aux visiteurs particuliers et affiche le message « Se connecter / Faire une demande » selon vos paramètres de boutique en ligne Tradepass. Doit être activé pour masquer les prix."
+  },
+  "form_block": {
+    "name": "Formulaire de demande professionnelle",
+    "form_id": "ID du formulaire",
+    "form_id_info": "Laissez vide pour utiliser votre formulaire par défaut. Copiez l’ID d’un formulaire depuis Tradepass → Formulaire.",
+    "show_heading": "Afficher le titre",
+    "heading": "Titre",
+    "heading_info": "Laissez vide pour utiliser le texte par défaut dans la langue du visiteur."
+  },
+  "apply_block": {
+    "name": "Demander un compte pro",
+    "style": "Style visuel",
+    "style_button": "Bouton",
+    "style_banner": "Bannière",
+    "heading": "Titre",
+    "text": "Texte",
+    "button": "Libellé du bouton",
+    "texts_info": "Laissez vide pour utiliser le texte par défaut dans la langue du visiteur.",
+    "hide_for_b2b": "Masquer pour les acheteurs professionnels connectés"
+  }
+}

@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Obnoviť texty pre jazyk {language}?",
   "settings.texts.resetBody": "{count, plural, one {# zmenený text sa vráti k integrovanému zneniu.} few {# zmenené texty sa vrátia k integrovanému zneniu.} many {# zmeneného textu sa vráti k integrovanému zneniu.} other {# zmenených textov sa vráti k integrovanému zneniu.}}",
   "settings.texts.resetConfirm": "Obnoviť texty",
-  "settings.texts.area.pages": "Stránky aktualizácie žiadosti a obnovenia"
+  "settings.texts.area.pages": "Stránky aktualizácie žiadosti a obnovenia",
+  "settings.assignment.heading": "Priradenie úrovne",
+  "settings.assignment.label": "Ako sa kupujúci zaraďujú do svojej úrovne",
+  "settings.assignment.auto": "Automaticky",
+  "settings.assignment.autoHelp": "Tradepass pridá pobočku firmy na trh B2B danej úrovne v Shopify a overí, či sa to podarilo.",
+  "settings.assignment.assisted": "S asistenciou",
+  "settings.assignment.assistedHelp": "Zmenu vykonáte v Shopify podľa kontrolného zoznamu na stránke Úrovne a Tradepass ju potvrdí. Použite, ak vo vašom obchode nefunguje automatické priradenie.",
+  "settings.assignment.note": "Zmena sa týka len nových schválení a zmien úrovní. Otvorené položky kontrolného zoznamu zostanú na stránke Úrovne, kým ich neodškrtnete.",
+  "settings.error.assignment": "Zvoľte automatické priradenie alebo priradenie s asistenciou.",
+  "settings.activity.heading": "História aktivít",
+  "settings.activity.body": "Stiahnite si súbor CSV s tým, čo vykonal Tradepass a vaši zamestnanci: kto, čo, kedy a s akým výsledkom. Obsahuje posledných {max} záznamov; záznamy staršie ako 2 roky sa automaticky odstraňujú.",
+  "settings.activity.button": "Exportovať aktivity (CSV)",
+  "settings.activity.done": "Aktivity boli exportované",
+  "settings.activity.truncated": "Exportovaných posledných {max} záznamov",
+  "settings.activity.locked": "Export aktivít je k dispozícii v pláne Pro."
 }

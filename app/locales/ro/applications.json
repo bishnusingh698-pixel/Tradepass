@@ -24,7 +24,7 @@
   "applications.certificate.uploaded": "Document încărcat",
   "applications.certificate.missing": "Fără document",
   "applications.col.company": "Firmă",
-  "applications.col.contact": "Contact",
+  "applications.col.contact": "Persoană de contact",
   "applications.col.country": "Țară",
   "applications.col.businessType": "Tipul afacerii",
   "applications.col.submitted": "Trimisă",
@@ -166,6 +166,6 @@
   "applications.activity.application.updated": "Solicitantul a trimis o actualizare",
   "applications.activity.application.note": "Notă adăugată",
   "applications.activity.application.assign": "Atribuire modificată",
-  "applications.taxCheck.skipped": "Not checked on your plan",
-  "applications.detail.taxCheckPlan": "Tax numbers are checked against official registries on the {plan} plan and up. Check this one manually, or upgrade to check new applications automatically."
+  "applications.taxCheck.skipped": "Neverificat în planul dvs.",
+  "applications.detail.taxCheckPlan": "Codurile fiscale sunt verificate în registrele oficiale începând cu planul {plan}. Verificați-l manual sau treceți la un plan superior pentru verificarea automată a cererilor noi."
 }

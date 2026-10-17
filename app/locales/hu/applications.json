@@ -166,6 +166,6 @@
   "applications.activity.application.updated": "A jelentkező frissítést küldött",
   "applications.activity.application.note": "Megjegyzés hozzáadva",
   "applications.activity.application.assign": "Felelős módosítva",
-  "applications.taxCheck.skipped": "Not checked on your plan",
-  "applications.detail.taxCheckPlan": "Tax numbers are checked against official registries on the {plan} plan and up. Check this one manually, or upgrade to check new applications automatically."
+  "applications.taxCheck.skipped": "Az Ön csomagjában nincs ellenőrzés",
+  "applications.detail.taxCheckPlan": "Az adószámokat a(z) {plan} csomagtól felfelé ellenőrizzük a hivatalos nyilvántartásokban. Ellenőrizze ezt kézzel, vagy váltson nagyobb csomagra az új jelentkezések automatikus ellenőrzéséhez."
 }

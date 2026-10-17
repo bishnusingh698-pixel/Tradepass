@@ -31,7 +31,7 @@ See the reply in the project thread. The same steps are in README.md → "Accoun
 ## 2026-10-17 — all areas built, docs merged
 
 ### What's built
-Code-complete for every phase P1–P8 (see `feature_list.json`: 40 built, 51 need a live check, 8 not done, 7 passing):
+Code-complete for every phase P1–P8 (see `feature_list.json`: 41 built, 51 need a live check, 7 not done, 7 passing):
 - **Tiers and approval** (P2, P6): tiers with B2B market + catalog + price list (+ publication), Plus direct catalogs, 3-catalog budget, per-shop lock with read-back and retry, assisted mode, "Changed in Shopify" sync with Fix; approval engine with Retry and Undo; Buyers with Move, Pause and Resume.
 - **Form and storefront** (P3, P5): form builder with live preview and languages; theme app extension (app embed, application form block, Apply block); app proxy submit/upload/prefill with retries and idempotency; spam protection and rate limits; uploads to Shopify Files; duplicates; VIES/HMRC/ABN checks; access modes 1–3 with the checkout-lock Function; preview-as.
 - **Applications and emails** (P4): queue, detail, approve/reject/needs info, bulk actions, CSV export; emails in every language with caps and next-day overflow; merchant alerts and daily digest.
@@ -47,14 +47,15 @@ Code-complete for every phase P1–P8 (see `feature_list.json`: 40 built, 51 nee
 - Storefront scripts: embed 2.9 KB gzipped, form 10.6 KB gzipped (only on the form page).
 - Nothing has run against a real store yet: no deploy, no dev store install, no spike.
 
-### Gaps against the spec (not built)
-- Free plan: the "Powered by Tradepass" link on the form isn't shown.
-- Tax-number checks run on every plan; the spec puts them on Starter.
-- Pro: activity export isn't built.
-- The 3-files-per-question limit is enforced in the browser only.
-- Assisted tier assignment works, but there's no button to switch to it; it's a stored setting (`settings.tiers.assignment`).
-- `.env.example` doesn't list the optional `HMRC_CLIENT_ID`, `HMRC_CLIENT_SECRET` and `ABN_GUID` (documented in README instead).
-Decide with the owner whether to build these or change the pricing text (LISTING_DRAFT.md).
+### Gaps against the spec — built later on 2026-10-17
+- Free plan: "Powered by Tradepass" link under the application form (`config.brand`; re-synced on plan change). D-077.
+- Tax-number checks only on Starter and up; on Free the number is stored encrypted with status "Not checked on your plan". D-076.
+- Pro: Settings → Activity history → Export activity (CSV), latest 10,000 entries, no secrets or personal data in detail. D-078.
+- Server: ≤ 3 files per upload question at submit/update, one file per upload request (type and size by content). D-080.
+- Settings → Tier assignment: Automatic / Assisted. Home counts open assisted tasks in both modes. D-079.
+- `.env.example` and `render.yaml` list `HMRC_CLIENT_ID`, `HMRC_CLIENT_SECRET`, `ABN_GUID` (empty).
+- Tests: `tests/plan-gaps.test.ts` (14). The 16 new admin strings and 1 storefront string are English only; list for translators in `docs/i18n/new-keys-gaps.tsv`. Until they're translated, `tests/i18n.test.ts` "has every English key" fails for those keys in the other locales.
+- LISTING_DRAFT.md's pricing note about these gaps can now go; confirm the App Store slug for the "Powered by" link (D-077).
 
 ### Docs updated today
 API_NOTES (area sections), DECISIONS (D-013 to D-075), CHECKLIST (full script by acceptance test), PLAN (architecture, schema, routes, jobs), README (full setup), PRIVACY, REVIEWER_NOTES (with screencast script), LISTING_DRAFT (English), ROADMAP, feature_list.json. The `docs/notes/*.md` files are merged and marked as such.

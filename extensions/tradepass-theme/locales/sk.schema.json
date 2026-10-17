@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Skryje ceny pred maloobchodnými návštevníkmi a zobrazí správu Prihlásiť sa / Požiadať podľa vašich nastavení výkladu v Tradepass. Na skrývanie cien musí byť zapnuté."
+  },
+  "form_block": {
+    "name": "Veľkoobchodná žiadosť",
+    "form_id": "ID formulára",
+    "form_id_info": "Ak chcete použiť predvolený formulár, nechajte prázdne. ID formulára skopírujete v Tradepass → Formulár.",
+    "show_heading": "Zobraziť nadpis",
+    "heading": "Nadpis",
+    "heading_info": "Ak chcete použiť predvolený text v jazyku návštevníka, nechajte prázdne."
+  },
+  "apply_block": {
+    "name": "Požiadať o veľkoobchod",
+    "style": "Štýl",
+    "style_button": "Tlačidlo",
+    "style_banner": "Pruh",
+    "heading": "Nadpis",
+    "text": "Text bloku",
+    "button": "Text tlačidla",
+    "texts_info": "Ak chcete použiť predvolený text v jazyku návštevníka, nechajte prázdne.",
+    "hide_for_b2b": "Skryť pre prihlásených veľkoobchodných kupujúcich"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "A Tradepass áruházi felületi beállításai alapján elrejti az árakat a kiskereskedelmi látogatók elől, és megjeleníti a Bejelentkezés / Jelentkezés üzenetet. Az árak elrejtéséhez bekapcsolva kell lennie."
+  },
+  "form_block": {
+    "name": "Nagykereskedelmi jelentkezési űrlap",
+    "form_id": "Űrlapazonosító",
+    "form_id_info": "Hagyja üresen az alapértelmezett űrlap használatához. Az űrlap azonosítóját a Tradepass → Űrlap oldalon másolhatja ki.",
+    "show_heading": "Címsor megjelenítése",
+    "heading": "Címsor",
+    "heading_info": "Hagyja üresen, ha a látogató nyelvén megjelenő alapértelmezett szöveget szeretné használni."
+  },
+  "apply_block": {
+    "name": "Jelentkezés nagykereskedelmi vásárlónak",
+    "style": "Stílus",
+    "style_button": "Gomb",
+    "style_banner": "Sáv",
+    "heading": "Címsor",
+    "text": "Szöveg",
+    "button": "Gomb felirata",
+    "texts_info": "Hagyja üresen, ha a látogató nyelvén megjelenő alapértelmezett szöveget szeretné használni.",
+    "hide_for_b2b": "Elrejtés a bejelentkezett nagykereskedelmi vásárlók elől"
+  }
+}

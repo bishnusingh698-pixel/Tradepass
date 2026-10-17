@@ -16,6 +16,9 @@
     "heading": "Nur für Großhandelskunden",
     "message": "Diese Seite ist nur für genehmigte Großhandelskunden verfügbar. Melden Sie sich an oder beantragen Sie ein Großhandelskonto."
   },
+  "brand": {
+    "powered_by": "Bereitgestellt von Tradepass"
+  },
   "apply_block": {
     "heading": "Sie kaufen für ein Unternehmen?",
     "text": "Beantragen Sie ein Großhandelskonto, um Händlerpreise zu sehen und in größeren Mengen zu bestellen.",
@@ -47,25 +50,66 @@
       "consent": "Einwilligung"
     },
     "field": {
-      "companyName": { "label": "Name des Unternehmens" },
-      "businessType": { "label": "Unternehmensart" },
-      "website": { "label": "Webseite", "placeholder": "https://" },
-      "yearEstablished": { "label": "Gründungsjahr" },
-      "locationsCount": { "label": "Anzahl der Standorte" },
-      "monthlyOrderValue": { "label": "Erwarteter monatlicher Bestellwert" },
-      "referral": { "label": "Wie haben Sie von uns erfahren?" },
-      "firstName": { "label": "Vorname" },
-      "lastName": { "label": "Nachname" },
-      "email": { "label": "E-Mail", "help": "An diese Adresse senden wir Neuigkeiten zu Ihrem Antrag." },
-      "phone": { "label": "Telefon" },
-      "jobTitle": { "label": "Position" },
-      "preferredLanguage": { "label": "Bevorzugte Sprache" },
-      "billingAddress": { "label": "Rechnungsadresse" },
-      "shippingAddress": { "label": "Lieferadresse" },
-      "taxNumber": { "label": "Steuerliche Registrierung" },
-      "certificates": { "label": "Zertifikate", "help": "Zum Beispiel eine Wiederverkäuferbescheinigung oder ein Nachweis der Steuerbefreiung." },
-      "message": { "label": "Nachricht an den Shop" },
-      "consent": { "label": "Ich bin damit einverstanden, dass meine Angaben zur Prüfung dieses Antrags verwendet werden." }
+      "companyName": {
+        "label": "Name des Unternehmens"
+      },
+      "businessType": {
+        "label": "Unternehmensart"
+      },
+      "website": {
+        "label": "Webseite",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Gründungsjahr"
+      },
+      "locationsCount": {
+        "label": "Anzahl der Standorte"
+      },
+      "monthlyOrderValue": {
+        "label": "Erwarteter monatlicher Bestellwert"
+      },
+      "referral": {
+        "label": "Wie haben Sie von uns erfahren?"
+      },
+      "firstName": {
+        "label": "Vorname"
+      },
+      "lastName": {
+        "label": "Nachname"
+      },
+      "email": {
+        "label": "E-Mail",
+        "help": "An diese Adresse senden wir Neuigkeiten zu Ihrem Antrag."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Position"
+      },
+      "preferredLanguage": {
+        "label": "Bevorzugte Sprache"
+      },
+      "billingAddress": {
+        "label": "Rechnungsadresse"
+      },
+      "shippingAddress": {
+        "label": "Lieferadresse"
+      },
+      "taxNumber": {
+        "label": "Steuerliche Registrierung"
+      },
+      "certificates": {
+        "label": "Zertifikate",
+        "help": "Zum Beispiel eine Wiederverkäuferbescheinigung oder ein Nachweis der Steuerbefreiung."
+      },
+      "message": {
+        "label": "Nachricht an den Shop"
+      },
+      "consent": {
+        "label": "Ich bin damit einverstanden, dass meine Angaben zur Prüfung dieses Antrags verwendet werden."
+      }
     },
     "business_type": {
       "retail": "Einzelhandelsgeschäft",

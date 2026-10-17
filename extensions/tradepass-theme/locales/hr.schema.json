@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Skriva cijene od maloprodajnih posjetitelja i prikazuje poruku Prijava / Zatraži prema vašim postavkama izloga u Tradepassu. Mora biti uključeno za skrivanje cijena."
+  },
+  "form_block": {
+    "name": "Zahtjev za veleprodaju",
+    "form_id": "ID obrasca",
+    "form_id_info": "Ostavite prazno za zadani obrazac. ID obrasca kopirajte u Tradepass → Obrazac.",
+    "show_heading": "Prikaži naslov",
+    "heading": "Naslov",
+    "heading_info": "Ostavite prazno za zadani tekst na jeziku posjetitelja."
+  },
+  "apply_block": {
+    "name": "Zatraži veleprodaju",
+    "style": "Stil",
+    "style_button": "Gumb",
+    "style_banner": "Traka",
+    "heading": "Naslov",
+    "text": "Tekst",
+    "button": "Oznaka gumba",
+    "texts_info": "Ostavite prazno za zadani tekst na jeziku posjetitelja.",
+    "hide_for_b2b": "Sakrij za prijavljene veleprodajne kupce"
+  }
+}

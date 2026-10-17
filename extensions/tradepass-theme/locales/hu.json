@@ -1,0 +1,152 @@
+{
+  "gate": {
+    "message": "Az árakat a jóváhagyott nagykereskedelmi vásárlók látják. Jelentkezzen be, vagy igényeljen nagykereskedelmi fiókot.",
+    "login": "Bejelentkezés",
+    "apply": "Jelentkezzen nagykereskedelmi vásárlónak",
+    "cart": "A kosarában lévő egyes termékek csak jóváhagyott nagykereskedelmi vásárlók számára érhetők el."
+  },
+  "banner": {
+    "text": "Vállalkozásnak vásárol?",
+    "link": "Jelentkezzen nagykereskedelmi vásárlónak"
+  },
+  "hint": {
+    "text": "A nagykereskedelmi árak jóváhagyott vállalkozások számára érhetők el."
+  },
+  "wall": {
+    "heading": "Csak nagykereskedelmi vásárlóknak",
+    "message": "Ez az oldal a jóváhagyott nagykereskedelmi vásárlók számára érhető el. Jelentkezzen be, vagy igényeljen nagykereskedelmi fiókot."
+  },
+  "brand": {
+    "powered_by": "Üzemelteti: Tradepass"
+  },
+  "apply_block": {
+    "heading": "Vállalkozásnak vásárol?",
+    "text": "Igényeljen nagykereskedelmi fiókot, hogy lássa a viszonteladói árakat, és nagy tételben rendelhessen.",
+    "button": "Jelentkezzen nagykereskedelmi vásárlónak"
+  },
+  "form": {
+    "heading": "Nagykereskedelmi fiók igénylése",
+    "intro": "Mutassa be vállalkozását. Minden jelentkezést átnézünk, és e-mailben válaszolunk.",
+    "required_note": "A *-gal jelölt mezők kitöltése kötelező.",
+    "optional": "(nem kötelező)",
+    "select": "Válasszon…",
+    "submit": "Jelentkezés elküldése",
+    "sending": "Küldés…",
+    "retrying": "A küldés még folyamatban van. Legfeljebb egy percig újrapróbáljuk; a válaszai nem vesznek el.",
+    "failed": "Nem sikerült elküldeni a jelentkezését. A válaszait ez a böngésző megőrizte. Próbálja újra néhány perc múlva.",
+    "retry": "Újrapróbálás",
+    "rate_limited": "Az utóbbi időben több jelentkezést is kaptunk Öntől. Próbálja újra később.",
+    "duplicate": "Ön már jelentkezett. Hamarosan jelentkezünk.",
+    "draft_restored": "Visszaállítottuk a korábban megadott válaszait.",
+    "clear_draft": "Újrakezdés",
+    "honeypot": "Ezt a mezőt hagyja üresen",
+    "unavailable": "A jelentkezési űrlap még nincs beállítva. Kérjük, vegye fel a kapcsolatot az áruházzal.",
+    "section": {
+      "business": "Vállalkozás",
+      "contact": "Kapcsolattartó",
+      "addresses": "Címek",
+      "tax": "Adózás és dokumentumok",
+      "message": "Üzenet",
+      "consent": "Hozzájárulás"
+    },
+    "field": {
+      "companyName": { "label": "Cégnév" },
+      "businessType": { "label": "Vállalkozás típusa" },
+      "website": { "label": "Weboldal", "placeholder": "https://" },
+      "yearEstablished": { "label": "Alapítás éve" },
+      "locationsCount": { "label": "Helyszínek száma" },
+      "monthlyOrderValue": { "label": "Várható havi rendelési érték" },
+      "referral": { "label": "Honnan hallott rólunk?" },
+      "firstName": { "label": "Keresztnév" },
+      "lastName": { "label": "Vezetéknév" },
+      "email": { "label": "E-mail-cím", "help": "A jelentkezésével kapcsolatos értesítéseket erre a címre küldjük." },
+      "phone": { "label": "Telefonszám" },
+      "jobTitle": { "label": "Beosztás" },
+      "preferredLanguage": { "label": "Előnyben részesített nyelv" },
+      "billingAddress": { "label": "Számlázási cím" },
+      "shippingAddress": { "label": "Szállítási cím" },
+      "taxNumber": { "label": "Adószám" },
+      "certificates": { "label": "Igazolások", "help": "Például viszonteladói vagy adómentességi igazolás." },
+      "message": { "label": "Üzenet az áruháznak" },
+      "consent": { "label": "Hozzájárulok, hogy adataimat a jelentkezés elbírálásához felhasználják." }
+    },
+    "business_type": {
+      "retail": "Kiskereskedelmi üzlet",
+      "salon": "Szalon vagy szépségközpont",
+      "restaurant": "Étterem vagy kávézó",
+      "distributor": "Forgalmazó",
+      "other": "Egyéb"
+    },
+    "order_value": {
+      "lt1k": "Kevesebb mint 1000",
+      "1k-5k": "1000–5000",
+      "5k-20k": "5000–20 000",
+      "gt20k": "Több mint 20 000"
+    },
+    "address": {
+      "country": "Ország/régió",
+      "address1": "Cím",
+      "address2": "Emelet, ajtó stb.",
+      "city": "Település",
+      "zone": {
+        "state": "Állam",
+        "province": "Tartomány",
+        "region": "Régió",
+        "county": "Megye",
+        "prefecture": "Prefektúra",
+        "emirate": "Emírség",
+        "governorate": "Kormányzóság",
+        "state_and_territory": "Állam/terület"
+      },
+      "zip": {
+        "postal": "Irányítószám",
+        "zip": "ZIP-kód",
+        "pin": "PIN-kód",
+        "postcode": "Postai irányítószám"
+      },
+      "same_as_billing": "Megegyezik a számlázási címmel"
+    },
+    "tax": {
+      "country": "Adóregisztráció országa",
+      "vat": "Közösségi adószám",
+      "vat_help": "Az országkóddal együtt adja meg, például HU12345678.",
+      "abn": "ABN (ausztrál cégazonosító szám)",
+      "gst": "GST/HST-szám",
+      "us_resale": "Viszonteladói igazolás száma",
+      "us_state": "Az igazolást kiállító állam",
+      "tax_id": "Adóazonosító"
+    },
+    "upload": {
+      "add": "Fájl hozzáadása",
+      "remove": "{{ name }} eltávolítása",
+      "hint": "PDF, JPG vagy PNG, fájlonként legfeljebb 5 MB, legfeljebb 3 fájl.",
+      "expiry": "{{ name }} lejárati dátuma (nem kötelező)",
+      "uploading": "{{ name }} feltöltése…",
+      "done": "{{ name }} feltöltve",
+      "failed": "{{ name }} feltöltése nem sikerült. Próbálja újra."
+    },
+    "consent_privacy": "Adatvédelmi szabályzatunk",
+    "error": {
+      "summary": "Kérjük, javítsa a következőket:",
+      "required": "Adja meg ezt: {{ field }}.",
+      "choose": "Válassza ki ezt: {{ field }}.",
+      "consent": "A folytatáshoz erősítse meg a hozzájárulását.",
+      "email": "Adjon meg egy e-mail-címet, például: nev@example.com.",
+      "url": "Adjon meg egy webcímet, például: https://example.com.",
+      "phone": "Adjon meg egy érvényes telefonszámot.",
+      "number": "Adjon meg egy számot.",
+      "date": "Adjon meg egy érvényes dátumot.",
+      "too_long": "Ez túl hosszú. Legfeljebb {{ max }} karaktert használjon.",
+      "file_type": "{{ name }} nem PDF-, JPG- vagy PNG-fájl.",
+      "file_size": "{{ name }} nagyobb 5 MB-nál.",
+      "file_count": "Legfeljebb 3 fájlt adhat hozzá.",
+      "file_pending": "Várja meg, amíg a fájlok feltöltése befejeződik.",
+      "spam": "A válasz nem egyezik. Próbálja újra."
+    },
+    "success": {
+      "heading": "Köszönjük, jelentkezését elküldtük",
+      "body": "Átnézzük, és e-mailben válaszolunk.",
+      "email": "Visszaigazoló e-mailt küldtünk Önnek."
+    }
+  }
+}

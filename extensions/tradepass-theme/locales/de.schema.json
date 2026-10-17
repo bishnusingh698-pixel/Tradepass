@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Blendet Preise für Endkunden aus und zeigt die Meldung „Anmelden / Beantragen“ gemäß Ihren Onlineshop-Einstellungen in Tradepass an. Muss für das Ausblenden von Preisen aktiviert sein."
+  },
+  "form_block": {
+    "name": "Großhandels-Antragsformular",
+    "form_id": "Formular-ID",
+    "form_id_info": "Leer lassen, um Ihr Standardformular zu verwenden. Die ID eines Formulars finden Sie unter Tradepass → Formular.",
+    "show_heading": "Überschrift anzeigen",
+    "heading": "Überschrift",
+    "heading_info": "Leer lassen, um den Standardtext in der Sprache des Besuchers zu verwenden."
+  },
+  "apply_block": {
+    "name": "Großhandelskonto beantragen",
+    "style": "Stil",
+    "style_button": "Schaltfläche",
+    "style_banner": "Hinweisleiste",
+    "heading": "Überschrift",
+    "text": "Textinhalt",
+    "button": "Beschriftung der Schaltfläche",
+    "texts_info": "Leer lassen, um den Standardtext in der Sprache des Besuchers zu verwenden.",
+    "hide_for_b2b": "Für angemeldete Großhandelskäufer ausblenden"
+  }
+}

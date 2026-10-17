@@ -194,7 +194,7 @@ For imported buyers, the renewal email address is read live from Shopify and nev
 The page stays visible with actions disabled and an "Available on Starter" banner. The daily certificate job runs only for plans with the certificate vault.
 
 ## D-061 No "Sent with Tradepass" footer on Free-plan emails — Proposed
-We haven't added a footer to Free-plan emails. Note: the spec's "Powered by Tradepass" link on the Free-plan form isn't built either (see progress.md → Gaps). Say if you want either.
+We haven't added a footer to Free-plan emails. Say if you want one. (The "Powered by Tradepass" link on the Free-plan form is now built, D-077.)
 
 ## D-062 The checkout lock blocks at checkout, not in the cart — Decided
 Errors while editing the cart make theme cart forms fail in odd ways, and hide-prices mode already hides Add to cart. Any unknown step is treated as checkout, so a wholesale-only store never silently opens.
@@ -237,3 +237,18 @@ Row data lives in the import run until it finishes or is cancelled, then it's cl
 
 ## D-075 Tag conversion — Decided
 Customers who already belong to a company are skipped, which also makes a re-run safe. Customers without a full default address are reported, not converted. The company name is the address's company, else the customer's name.
+
+## D-076 Free plan: no live tax-number checks — Proposed
+Spec §N puts tax-number checks on Starter. On Free (not on development stores, which get Pro) the number is still asked for, encrypted and used for duplicate detection, but no VIES/HMRC/ABN lookup is made. The application shows a new "Not checked on your plan" badge (status `skipped`, also a filter option) and the detail page says checks come with Starter. Consequence: on Free the EU reverse-charge exemption is never suggested automatically (it needs a verified number); the merchant can still pick it in the Approve dialog. Upgrading doesn't re-check older applications.
+
+## D-077 "Powered by Tradepass" link on the Free plan's form — Proposed
+A small centred link "Powered by Tradepass" under the application form block, Free plan only (shown when the `config` metafield's `brand` is set; dev stores and paid plans have none). It opens in a new tab so the applicant's answers stay on the page. It isn't a merchant-editable text. It points to `https://apps.shopify.com/tradepass` (`POWERED_BY_URL` in `app/lib/storefront-sync.server.ts`); **confirm the App Store slug before publishing**. The storefront config is re-synced when the plan changes (Plans page and the `app_subscriptions/update` webhook). Free-plan emails still have no footer (D-061).
+
+## D-078 Activity export (Pro) — Proposed
+Settings → Activity history → "Export activity (CSV)" downloads the shop's latest 10,000 activity entries (newest first): time, actor, action, subject, result, detail. The actor is the staff member's name as Shopify gives it (the spec's "who"); subjects are our ids or Shopify GIDs. Detail keys that could hold secrets or personal data are dropped and email addresses inside text are replaced with "[email]". Locked on Free and Starter (badge "Available on Pro"; the server refuses too). Each export writes an `activity.export` entry.
+
+## D-079 Tier assignment switch in Settings — Proposed
+Settings → Tier assignment: Automatic (default) or Assisted. The change applies to new approvals and tier changes only. Open assisted checklist items stay on the Tiers page after switching back to Automatic, and Home now counts them in either mode. The switch is on every plan (automatic assignment isn't plan-gated today, although the plans text lists it under Starter; say if Free should be assisted-only).
+
+## D-080 File limits on the server — Decided
+The submit (and needs-info update) handlers refuse more than 3 files per upload question with the same "You can add up to 3 files" error the browser shows, and count a repeated reference to the same file once. The upload endpoint accepts exactly one file per request and checks type by content and size (≤ 5 MB) as before. The limit is per upload question, as in the spec's form section and the browser; there is no separate cap across all upload questions of one application.

@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Skrije cene pred maloprodajnimi obiskovalci in prikaže sporočilo Prijava / Oddaj vlogo glede na nastavitve izložbe v Tradepassu. Za skrivanje cen mora biti vklopljeno."
+  },
+  "form_block": {
+    "name": "Vloga za veleprodajo",
+    "form_id": "ID obrazca",
+    "form_id_info": "Pustite prazno, če želite uporabiti privzeti obrazec. ID obrazca kopirate v Tradepass → Obrazec.",
+    "show_heading": "Prikaži naslov",
+    "heading": "Naslov",
+    "heading_info": "Pustite prazno, če želite uporabiti privzeto besedilo v jeziku obiskovalca."
+  },
+  "apply_block": {
+    "name": "Vloga za veleprodajo (gumb)",
+    "style": "Slog",
+    "style_button": "Gumb",
+    "style_banner": "Pasica",
+    "heading": "Naslov",
+    "text": "Besedilo",
+    "button": "Oznaka gumba",
+    "texts_info": "Pustite prazno, če želite uporabiti privzeto besedilo v jeziku obiskovalca.",
+    "hide_for_b2b": "Skrij za prijavljene veleprodajne kupce"
+  }
+}

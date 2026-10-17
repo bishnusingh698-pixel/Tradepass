@@ -1,0 +1,152 @@
+{
+  "gate": {
+    "message": "Prețurile sunt afișate clienților en-gros aprobați. Conectați-vă sau solicitați un cont en-gros.",
+    "login": "Conectare",
+    "apply": "Solicitați acces en-gros",
+    "cart": "Unele produse din coș sunt disponibile doar clienților en-gros aprobați."
+  },
+  "banner": {
+    "text": "Cumpărați pentru o firmă?",
+    "link": "Solicitați acces en-gros"
+  },
+  "hint": {
+    "text": "Prețurile en-gros sunt disponibile firmelor aprobate."
+  },
+  "wall": {
+    "heading": "Doar pentru clienți en-gros",
+    "message": "Această pagină este disponibilă clienților en-gros aprobați. Conectați-vă sau solicitați un cont en-gros."
+  },
+  "brand": {
+    "powered_by": "Oferit de Tradepass"
+  },
+  "apply_block": {
+    "heading": "Cumpărați pentru o firmă?",
+    "text": "Solicitați un cont en-gros pentru a vedea prețurile pentru revânzători și a comanda în cantități mari.",
+    "button": "Solicitați acces en-gros"
+  },
+  "form": {
+    "heading": "Solicitați un cont en-gros",
+    "intro": "Spuneți-ne despre firma dumneavoastră. Analizăm fiecare cerere și răspundem prin e-mail.",
+    "required_note": "Câmpurile marcate cu * sunt obligatorii.",
+    "optional": "(opțional)",
+    "select": "Selectați…",
+    "submit": "Trimiteți cererea",
+    "sending": "Se trimite…",
+    "retrying": "Încă se trimite. Vom reîncerca timp de cel mult un minut; răspunsurile dumneavoastră sunt în siguranță.",
+    "failed": "Nu am putut trimite cererea. Răspunsurile sunt salvate în acest browser. Încercați din nou peste câteva minute.",
+    "retry": "Încercați din nou",
+    "rate_limited": "Am primit recent mai multe cereri de la dumneavoastră. Încercați din nou mai târziu.",
+    "duplicate": "Ați trimis deja o cerere. Vă vom contacta.",
+    "draft_restored": "Am restaurat răspunsurile introduse anterior.",
+    "clear_draft": "Începeți de la capăt",
+    "honeypot": "Lăsați acest câmp gol",
+    "unavailable": "Formularul de cerere nu este încă configurat. Vă rugăm să contactați magazinul.",
+    "section": {
+      "business": "Firmă",
+      "contact": "Persoană de contact",
+      "addresses": "Adrese",
+      "tax": "Date fiscale și documente",
+      "message": "Mesaj",
+      "consent": "Consimțământ"
+    },
+    "field": {
+      "companyName": { "label": "Numele companiei" },
+      "businessType": { "label": "Tipul de activitate" },
+      "website": { "label": "Site web", "placeholder": "https://" },
+      "yearEstablished": { "label": "Anul înființării" },
+      "locationsCount": { "label": "Numărul de locații" },
+      "monthlyOrderValue": { "label": "Valoarea lunară estimată a comenzilor" },
+      "referral": { "label": "Cum ați aflat de noi?" },
+      "firstName": { "label": "Prenume" },
+      "lastName": { "label": "Nume" },
+      "email": { "label": "E-mail", "help": "Vă vom trimite noutăți despre cerere la această adresă." },
+      "phone": { "label": "Telefon" },
+      "jobTitle": { "label": "Funcție" },
+      "preferredLanguage": { "label": "Limba preferată" },
+      "billingAddress": { "label": "Adresa de facturare" },
+      "shippingAddress": { "label": "Adresa de livrare" },
+      "taxNumber": { "label": "Cod fiscal" },
+      "certificates": { "label": "Certificate", "help": "De exemplu, un certificat de revânzare sau de scutire de taxe." },
+      "message": { "label": "Mesaj pentru magazin" },
+      "consent": { "label": "Sunt de acord ca datele mele să fie folosite pentru analizarea acestei cereri." }
+    },
+    "business_type": {
+      "retail": "Magazin de vânzare cu amănuntul",
+      "salon": "Salon sau spa",
+      "restaurant": "Restaurant sau cafenea",
+      "distributor": "Distribuitor",
+      "other": "Altul"
+    },
+    "order_value": {
+      "lt1k": "Sub 1.000",
+      "1k-5k": "Între 1.000 și 5.000",
+      "5k-20k": "Între 5.000 și 20.000",
+      "gt20k": "Peste 20.000"
+    },
+    "address": {
+      "country": "Țară/regiune",
+      "address1": "Adresă",
+      "address2": "Apartament, bloc, scară etc.",
+      "city": "Localitate",
+      "zone": {
+        "state": "Stat",
+        "province": "Provincie",
+        "region": "Regiune",
+        "county": "Județ",
+        "prefecture": "Prefectură",
+        "emirate": "Emirat",
+        "governorate": "Guvernorat",
+        "state_and_territory": "Stat/teritoriu"
+      },
+      "zip": {
+        "postal": "Cod poștal",
+        "zip": "Cod ZIP",
+        "pin": "Cod PIN",
+        "postcode": "Cod poștal (postcode)"
+      },
+      "same_as_billing": "Aceeași cu adresa de facturare"
+    },
+    "tax": {
+      "country": "Țara înregistrării fiscale",
+      "vat": "Cod de TVA",
+      "vat_help": "Includeți prefixul țării, de exemplu RO12345678.",
+      "abn": "ABN (număr de afaceri australian)",
+      "gst": "Număr GST/HST",
+      "us_resale": "Numărul certificatului de revânzare",
+      "us_state": "Statul care a emis certificatul",
+      "tax_id": "Cod de identificare fiscală"
+    },
+    "upload": {
+      "add": "Adăugați un fișier",
+      "remove": "Eliminați {{ name }}",
+      "hint": "PDF, JPG sau PNG, maximum 5 MB fiecare, cel mult 3 fișiere.",
+      "expiry": "Data expirării pentru {{ name }} (opțional)",
+      "uploading": "Se încarcă {{ name }}…",
+      "done": "{{ name }} a fost încărcat",
+      "failed": "{{ name }} nu a putut fi încărcat. Încercați din nou."
+    },
+    "consent_privacy": "Citiți politica noastră de confidențialitate",
+    "error": {
+      "summary": "Vă rugăm să corectați următoarele:",
+      "required": "Introduceți: {{ field }}.",
+      "choose": "Alegeți: {{ field }}.",
+      "consent": "Confirmați pentru a continua.",
+      "email": "Introduceți o adresă de e-mail, de exemplu nume@example.com.",
+      "url": "Introduceți o adresă web, de exemplu https://example.com.",
+      "phone": "Introduceți un număr de telefon valid.",
+      "number": "Introduceți un număr.",
+      "date": "Introduceți o dată validă.",
+      "too_long": "Textul este prea lung. Folosiți cel mult {{ max }} de caractere.",
+      "file_type": "{{ name }} nu este un fișier PDF, JPG sau PNG.",
+      "file_size": "{{ name }} depășește 5 MB.",
+      "file_count": "Puteți adăuga cel mult 3 fișiere.",
+      "file_pending": "Așteptați finalizarea încărcării fișierelor.",
+      "spam": "Răspunsul nu corespunde. Încercați din nou."
+    },
+    "success": {
+      "heading": "Vă mulțumim, cererea a fost trimisă",
+      "body": "O vom analiza și vă vom răspunde prin e-mail.",
+      "email": "V-am trimis un e-mail de confirmare."
+    }
+  }
+}

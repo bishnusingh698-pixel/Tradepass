@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Želite ponastaviti besedila ({language})?",
   "settings.texts.resetBody": "{count, plural, one {# spremenjeno besedilo se vrne na vgrajeno različico.} two {# spremenjeni besedili se vrneta na vgrajeno različico.} few {# spremenjena besedila se vrnejo na vgrajeno različico.} other {# spremenjenih besedil se vrne na vgrajeno različico.}}",
   "settings.texts.resetConfirm": "Ponastavi besedila",
-  "settings.texts.area.pages": "Strani za posodobitev vloge in podaljšanje"
+  "settings.texts.area.pages": "Strani za posodobitev vloge in podaljšanje",
+  "settings.assignment.heading": "Dodelitev ravni",
+  "settings.assignment.label": "Kako so kupci uvrščeni v svojo raven",
+  "settings.assignment.auto": "Samodejno",
+  "settings.assignment.autoHelp": "Tradepass doda lokacijo podjetja na trg B2B ravni v Shopifyju in preveri, ali je uspelo.",
+  "settings.assignment.assisted": "Z navodili",
+  "settings.assignment.assistedHelp": "Spremembo izvedete v Shopifyju po kontrolnem seznamu na strani Ravni, Tradepass pa jo potrdi. To uporabite, če samodejna dodelitev v vaši trgovini ne deluje.",
+  "settings.assignment.note": "Sprememba vpliva samo na nove odobritve in spremembe ravni. Odprte postavke kontrolnega seznama ostanejo na strani Ravni, dokler jih ne označite.",
+  "settings.error.assignment": "Izberite samodejno dodelitev ali dodelitev z navodili.",
+  "settings.activity.heading": "Zgodovina dejavnosti",
+  "settings.activity.body": "Prenesite datoteko CSV s tem, kaj so naredili Tradepass in vaši zaposleni: kdo, kaj, kdaj in s kakšnim izidom. Vsebuje zadnjih {max} vnosov; vnosi, starejši od 2 let, se samodejno odstranijo.",
+  "settings.activity.button": "Izvozi dejavnosti (CSV)",
+  "settings.activity.done": "Dejavnosti so izvožene",
+  "settings.activity.truncated": "Izvoženih je zadnjih {max} vnosov",
+  "settings.activity.locked": "Izvoz dejavnosti je na voljo v paketu Pro."
 }

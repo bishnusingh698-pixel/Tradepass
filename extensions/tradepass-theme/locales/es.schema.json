@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Oculta los precios a los visitantes minoristas y muestra el mensaje Iniciar sesión / Solicitar según la configuración de tienda online de Tradepass. Debe estar activado para ocultar precios."
+  },
+  "form_block": {
+    "name": "Formulario de solicitud mayorista",
+    "form_id": "ID del formulario",
+    "form_id_info": "Déjelo vacío para usar su formulario predeterminado. Copie el ID de un formulario en Tradepass → Formulario.",
+    "show_heading": "Mostrar encabezado",
+    "heading": "Encabezado",
+    "heading_info": "Déjelo vacío para usar el texto predeterminado en el idioma del visitante."
+  },
+  "apply_block": {
+    "name": "Solicitar cuenta mayorista",
+    "style": "Estilo",
+    "style_button": "Botón",
+    "style_banner": "Franja informativa",
+    "heading": "Encabezado",
+    "text": "Texto",
+    "button": "Texto del botón",
+    "texts_info": "Déjelo vacío para usar el texto predeterminado en el idioma del visitante.",
+    "hide_for_b2b": "Ocultar a compradores mayoristas con sesión iniciada"
+  }
+}
