@@ -1,0 +1,18 @@
+namespace	key	english	note
+applications	applications.taxCheck.skipped	Not checked on your plan	Badge in the Tax check column and on the application page: a tax number was given, but the Free plan has no registry checks. Max 30 characters.
+applications	applications.detail.taxCheckPlan	Tax numbers are checked against official registries on the {plan} plan and up. Check this one manually, or upgrade to check new applications automatically.	Help text under the tax number on the application page when the check was skipped because of the plan. plan is a plan name (Starter). Max 220 characters. Placeholders: {plan}.
+settings	settings.assignment.heading	Tier assignment	Settings section heading for how buyers are put into their tier's B2B market. Max 40 characters.
+settings	settings.assignment.label	How buyers are put into their tier	Label of the radio group choosing automatic or assisted tier assignment. Max 60 characters.
+settings	settings.assignment.auto	Automatic	Radio option: Tradepass adds the company location to the tier's B2B market itself. Max 30 characters.
+settings	settings.assignment.autoHelp	Tradepass adds the company location to the tier's market in Shopify and checks that it worked.	Help text under the Automatic option. Max 160 characters.
+settings	settings.assignment.assisted	Assisted	Radio option: the merchant makes the market change in Shopify admin from a checklist. Max 30 characters.
+settings	settings.assignment.assistedHelp	You make the change in Shopify from a checklist on the Tiers page, and Tradepass confirms it. Use this if automatic assignment doesn't work on your store.	Help text under the Assisted option. Max 220 characters.
+settings	settings.assignment.note	Changing this affects new approvals and tier changes only. Open checklist items stay on the Tiers page until you check them.	Note under the tier assignment options. Max 220 characters.
+settings	settings.error.assignment	Choose automatic or assisted.	Inline error on the tier assignment radio group (invalid value). Max 80 characters.
+settings	settings.activity.heading	Activity history	Settings section heading for downloading the activity log. Max 40 characters.
+settings	settings.activity.body	Download a CSV file of what Tradepass and your staff did: who, what, when and the result. It holds the latest {max} entries; entries older than 2 years are removed automatically.	Section text above the activity export button. max is a number (10000), formatted for the locale. Max 260 characters. Placeholders: {max}.
+settings	settings.activity.button	Export activity (CSV)	Button that downloads the activity log as a CSV file. Max 40 characters.
+settings	settings.activity.done	Activity exported	Toast after the activity CSV downloaded. Max 40 characters.
+settings	settings.activity.truncated	Exported the latest {max} entries	Toast after the activity CSV downloaded but was cut at 10,000 rows. max is a number (10000), formatted for the locale. Max 60 characters. Placeholders: {max}.
+settings	settings.activity.locked	Activity export is available on the Pro plan.	Error banner if a lower plan tries to export activity. Max 100 characters.
+storefront-extension	brand.powered_by	Powered by Tradepass	Storefront theme extension (extensions/tradepass-theme/locales/<locale>.json). Small link under the wholesale application form, Free plan only. Keep the brand name Tradepass untranslated. Max 40 characters.

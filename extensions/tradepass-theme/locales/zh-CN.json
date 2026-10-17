@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "价格仅向获批的批发客户显示。请登录或申请批发账户。",
+    "login": "登录",
+    "apply": "申请批发",
+    "cart": "您购物车中的部分商品仅限获批的批发客户购买。"
+  },
+  "banner": {
+    "text": "为企业采购？",
+    "link": "申请批发"
+  },
+  "hint": {
+    "text": "获批企业可享受批发价格。"
+  },
+  "wall": {
+    "heading": "仅限批发客户",
+    "message": "此页面仅向获批的批发客户开放。请登录或申请批发账户。"
+  },
+  "brand": {
+    "powered_by": "由 Tradepass 提供支持"
+  },
+  "apply_block": {
+    "heading": "为企业采购？",
+    "text": "申请批发账户，即可查看批发价并批量订购。",
+    "button": "申请批发"
+  },
+  "form": {
+    "heading": "申请批发账户",
+    "intro": "请介绍一下您的企业。我们会审核每一份申请，并通过电子邮件回复。",
+    "required_note": "标有 * 的字段为必填项。",
+    "optional": "（可选）",
+    "select": "请选择…",
+    "submit": "提交申请",
+    "sending": "正在提交…",
+    "retrying": "仍在提交。我们会持续尝试最多一分钟，您填写的内容不会丢失。",
+    "failed": "无法提交您的申请。您填写的内容已保存在此浏览器中。请几分钟后重试。",
+    "retry": "重试",
+    "rate_limited": "我们最近已收到您的多份申请。请稍后再试。",
+    "duplicate": "您已提交过申请，我们会尽快与您联系。",
+    "draft_restored": "我们已恢复您之前填写的内容。",
+    "clear_draft": "重新填写",
+    "honeypot": "请将此字段留空",
+    "unavailable": "申请表单尚未设置。请联系商店。",
+    "section": {
+      "business": "企业信息",
+      "contact": "联系人",
+      "addresses": "地址",
+      "tax": "税务和文件",
+      "message": "留言",
+      "consent": "同意"
+    },
+    "field": {
+      "companyName": {
+        "label": "公司名称"
+      },
+      "businessType": {
+        "label": "企业类型"
+      },
+      "website": {
+        "label": "网站",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "成立年份"
+      },
+      "locationsCount": {
+        "label": "门店数量"
+      },
+      "monthlyOrderValue": {
+        "label": "预计每月订单金额"
+      },
+      "referral": {
+        "label": "您是如何了解到我们的？"
+      },
+      "firstName": {
+        "label": "名字"
+      },
+      "lastName": {
+        "label": "姓氏"
+      },
+      "email": {
+        "label": "电子邮件",
+        "help": "我们会将申请进展发送到此地址。"
+      },
+      "phone": {
+        "label": "电话"
+      },
+      "jobTitle": {
+        "label": "职位"
+      },
+      "preferredLanguage": {
+        "label": "首选语言"
+      },
+      "billingAddress": {
+        "label": "账单地址"
+      },
+      "shippingAddress": {
+        "label": "收货地址"
+      },
+      "taxNumber": {
+        "label": "税务登记"
+      },
+      "certificates": {
+        "label": "证书",
+        "help": "例如转售证明或免税证明。"
+      },
+      "message": {
+        "label": "给商店的留言"
+      },
+      "consent": {
+        "label": "我同意将我的信息用于审核此申请。"
+      }
+    },
+    "business_type": {
+      "retail": "零售店",
+      "salon": "沙龙或水疗中心",
+      "restaurant": "餐厅或咖啡馆",
+      "distributor": "分销商",
+      "other": "其他"
+    },
+    "order_value": {
+      "lt1k": "少于 1,000",
+      "1k-5k": "1,000 至 5,000",
+      "5k-20k": "5,000 至 20,000",
+      "gt20k": "超过 20,000"
+    },
+    "address": {
+      "country": "国家/地区",
+      "address1": "地址",
+      "address2": "公寓、套房等",
+      "city": "城市",
+      "zone": {
+        "state": "州",
+        "province": "省份",
+        "region": "地区",
+        "county": "郡",
+        "prefecture": "都道府县",
+        "emirate": "酋长国",
+        "governorate": "省",
+        "state_and_territory": "州/领地"
+      },
+      "zip": {
+        "postal": "邮政编码",
+        "zip": "ZIP 邮编",
+        "pin": "PIN 码",
+        "postcode": "邮编"
+      },
+      "same_as_billing": "与账单地址相同"
+    },
+    "tax": {
+      "country": "税务登记国家/地区",
+      "vat": "增值税号",
+      "vat_help": "请包含国家/地区前缀，例如 DE123456789。",
+      "abn": "ABN（澳大利亚企业编号）",
+      "gst": "GST/HST 税号",
+      "us_resale": "转售证明编号",
+      "us_state": "签发证明的州",
+      "tax_id": "纳税人识别号"
+    },
+    "upload": {
+      "add": "添加文件",
+      "remove": "移除 {{ name }}",
+      "hint": "PDF、JPG 或 PNG 格式，每个文件最大 5 MB，最多 3 个文件。",
+      "expiry": "{{ name }} 的到期日期（可选）",
+      "uploading": "正在上传 {{ name }}…",
+      "done": "{{ name }} 已上传",
+      "failed": "{{ name }} 无法上传。请重试。"
+    },
+    "consent_privacy": "阅读我们的隐私政策",
+    "error": {
+      "summary": "请更正以下内容：",
+      "required": "请输入{{ field }}。",
+      "choose": "请选择{{ field }}。",
+      "consent": "请确认以继续。",
+      "email": "请输入电子邮件地址，例如 name@example.com。",
+      "url": "请输入网址，例如 https://example.com。",
+      "phone": "请输入有效的电话号码。",
+      "number": "请输入数字。",
+      "date": "请输入有效日期。",
+      "too_long": "内容过长。最多可使用 {{ max }} 个字符。",
+      "file_type": "{{ name }} 不是 PDF、JPG 或 PNG 文件。",
+      "file_size": "{{ name }} 超过 5 MB。",
+      "file_count": "最多可添加 3 个文件。",
+      "file_pending": "请等待文件上传完成。",
+      "spam": "答案不正确。请重试。"
+    },
+    "success": {
+      "heading": "谢谢，您的申请已提交",
+      "body": "我们会进行审核，并通过电子邮件回复您。",
+      "email": "我们已向您发送确认邮件。"
+    }
+  }
+}

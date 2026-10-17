@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Oculta os preços para visitantes de varejo e mostra a mensagem Fazer login / Solicitar, conforme as configurações de loja virtual do Tradepass. Precisa estar ativado para ocultar preços."
+  },
+  "form_block": {
+    "name": "Solicitação de atacado",
+    "form_id": "ID do formulário",
+    "form_id_info": "Deixe em branco para usar o formulário padrão. Copie o ID de um formulário em Tradepass → Formulário.",
+    "show_heading": "Mostrar título",
+    "heading": "Título",
+    "heading_info": "Deixe em branco para usar o texto padrão no idioma do visitante."
+  },
+  "apply_block": {
+    "name": "Solicitar atacado",
+    "style": "Estilo",
+    "style_button": "Botão",
+    "style_banner": "Banner",
+    "heading": "Título",
+    "text": "Texto",
+    "button": "Texto do botão",
+    "texts_info": "Deixe em branco para usar o texto padrão no idioma do visitante.",
+    "hide_for_b2b": "Ocultar para compradores atacadistas com login"
+  }
+}

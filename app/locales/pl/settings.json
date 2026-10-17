@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Przywrócić teksty: {language}?",
   "settings.texts.resetBody": "{count, plural, one {# zmieniony tekst wróci do wbudowanej treści.} few {# zmienione teksty wrócą do wbudowanej treści.} many {# zmienionych tekstów wróci do wbudowanej treści.} other {# zmienionego tekstu wróci do wbudowanej treści.}}",
   "settings.texts.resetConfirm": "Przywróć teksty",
-  "settings.texts.area.pages": "Strony uzupełnienia wniosku i odnowienia"
+  "settings.texts.area.pages": "Strony uzupełnienia wniosku i odnowienia",
+  "settings.assignment.heading": "Przypisywanie poziomów",
+  "settings.assignment.label": "Sposób przypisywania kupujących do poziomu",
+  "settings.assignment.auto": "Automatyczne",
+  "settings.assignment.autoHelp": "Tradepass dodaje lokalizację firmy do rynku poziomu w Shopify i sprawdza, czy się udało.",
+  "settings.assignment.assisted": "Półautomatyczne",
+  "settings.assignment.assistedHelp": "Zmianę wprowadzasz w Shopify według listy kontrolnej na stronie Poziomy, a Tradepass ją potwierdza. Użyj tej opcji, jeśli automatyczne przypisywanie nie działa w Twoim sklepie.",
+  "settings.assignment.note": "Zmiana dotyczy tylko nowych zatwierdzeń i zmian poziomów. Otwarte pozycje listy kontrolnej pozostaną na stronie Poziomy, dopóki ich nie sprawdzisz.",
+  "settings.error.assignment": "Wybierz automatyczne lub półautomatyczne.",
+  "settings.activity.heading": "Historia aktywności",
+  "settings.activity.body": "Pobierz plik CSV z działaniami Tradepass i pracowników: kto, co, kiedy i z jakim wynikiem. Zawiera {max} najnowszych wpisów; wpisy starsze niż 2 lata są usuwane automatycznie.",
+  "settings.activity.button": "Eksportuj aktywność (CSV)",
+  "settings.activity.done": "Wyeksportowano aktywność",
+  "settings.activity.truncated": "Wyeksportowano {max} najnowszych wpisów",
+  "settings.activity.locked": "Eksport aktywności jest dostępny w planie Pro."
 }

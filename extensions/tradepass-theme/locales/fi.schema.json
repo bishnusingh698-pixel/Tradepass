@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Piilottaa hinnat kuluttaja-asiakkailta ja näyttää Kirjaudu/Hae-viestin Tradepassin kauppanäkymäasetusten mukaan. Oltava käytössä hintojen piilotusta varten."
+  },
+  "form_block": {
+    "name": "Tukkuasiakashakemus",
+    "form_id": "Lomakkeen tunnus",
+    "form_id_info": "Jätä tyhjäksi, niin käytetään oletuslomaketta. Kopioi lomakkeen tunnus kohdasta Tradepass → Lomake.",
+    "show_heading": "Näytä otsikko",
+    "heading": "Otsikko",
+    "heading_info": "Jätä tyhjäksi, niin käytetään oletustekstiä vierailijan kielellä."
+  },
+  "apply_block": {
+    "name": "Hae tukkuasiakkaaksi",
+    "style": "Tyyli",
+    "style_button": "Painike",
+    "style_banner": "Banneri",
+    "heading": "Otsikko",
+    "text": "Teksti",
+    "button": "Painikkeen teksti",
+    "texts_info": "Jätä tyhjäksi, niin käytetään oletustekstiä vierailijan kielellä.",
+    "hide_for_b2b": "Piilota kirjautuneilta tukkuostajilta"
+  }
+}

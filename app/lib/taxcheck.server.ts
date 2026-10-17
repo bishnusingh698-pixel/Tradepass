@@ -7,7 +7,8 @@
 // Malformed numbers are "not_verified" without a network call.
 import { EU_COUNTRIES } from "./tax";
 
-export type TaxCheck = { status: "verified" | "not_verified" | "unavailable" | "na"; name?: string; registry?: string };
+/** "skipped": a number was given but the plan has no live checks (Free). */
+export type TaxCheck = { status: "verified" | "not_verified" | "unavailable" | "na" | "skipped"; name?: string; registry?: string };
 
 export const TAX_TIMEOUT_MS = 5000;
 

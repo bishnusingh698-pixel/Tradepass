@@ -42,6 +42,11 @@
       <p>{{ 'form.unavailable' | t }}</p>
     {%- endif -%}
   </div>
+  {%- comment -%} Free plan only: config.brand is the link URL, null on paid plans. {%- endcomment -%}
+  {%- assign tp_brand = app.metafields.tradepass.config.value.brand -%}
+  {%- if tp_form != blank and tp_brand != blank -%}
+    <p class="tradepass-form__brand"><a href="{{ tp_brand | escape }}" target="_blank" rel="noopener">{{ 'brand.powered_by' | t }}</a></p>
+  {%- endif -%}
   {%- if tp_form != blank -%}
   <script type="application/json">
     {

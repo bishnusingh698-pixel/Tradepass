@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "לאפס את הטקסטים בשפה {language}?",
   "settings.texts.resetBody": "{count, plural, one {# טקסט ששונה יחזור לניסוח המובנה.} two {# טקסטים ששונו יחזרו לניסוח המובנה.} other {# טקסטים ששונו יחזרו לניסוח המובנה.}}",
   "settings.texts.resetConfirm": "איפוס הטקסטים",
-  "settings.texts.area.pages": "דפי עדכון בקשה וחידוש אישור"
+  "settings.texts.area.pages": "דפי עדכון בקשה וחידוש אישור",
+  "settings.assignment.heading": "שיוך לרמות",
+  "settings.assignment.label": "איך קונים משויכים לרמה שלהם",
+  "settings.assignment.auto": "אוטומטי",
+  "settings.assignment.autoHelp": "Tradepass מוסיף בעצמו את מיקום החברה לשוק של הרמה ב-Shopify ובודק שזה הצליח.",
+  "settings.assignment.assisted": "בסיוע ידני",
+  "settings.assignment.assistedHelp": "השינוי מתבצע על ידך ב-Shopify לפי רשימת משימות בדף ״רמות״, ו-Tradepass מאמת אותו. כדאי לבחור באפשרות הזו אם השיוך האוטומטי לא עובד בחנות שלך.",
+  "settings.assignment.note": "השינוי משפיע רק על אישורים חדשים ועל שינויי רמה. משימות פתוחות נשארות בדף ״רמות״ עד שבודקים אותן.",
+  "settings.error.assignment": "יש לבחור באפשרות ״אוטומטי״ או ״בסיוע ידני״.",
+  "settings.activity.heading": "היסטוריית פעילות",
+  "settings.activity.body": "אפשר להוריד קובץ CSV של הפעולות של Tradepass ושל הצוות: מי, מה, מתי ומה התוצאה. הקובץ כולל את {max} הרשומות האחרונות; רשומות בנות יותר משנתיים מוסרות אוטומטית.",
+  "settings.activity.button": "ייצוא פעילות (CSV)",
+  "settings.activity.done": "הפעילות יוצאה",
+  "settings.activity.truncated": "יוצאו {max} הרשומות האחרונות",
+  "settings.activity.locked": "ייצוא פעילות זמין בתוכנית ״Pro״."
 }

@@ -1,10 +1,10 @@
 import type { ActionFunctionArgs } from "react-router";
 import { json, proxyContext } from "../lib/intake.server";
 import { clientIp, hashKey, hit, LIMITS } from "../lib/spam.server";
-import { MAX_UPLOAD_BYTES, signFileRef, uploadToShopifyFiles, UploadError, validateUpload } from "../lib/uploads.server";
+import { MAX_UPLOAD_BYTES, readUploadForm, signFileRef, uploadToShopifyFiles, UploadError } from "../lib/uploads.server";
 import { unauthenticated } from "../shopify.server";
 
-// POST /apps/tradepass/upload: one certificate (PDF/JPG/PNG ≤ 5 MB). The file
+// POST /apps/tradepass/upload: one certificate (PDF/JPG/PNG ≤ 5 MB, one file per request). The file
 // goes straight to the merchant's Shopify Files; the browser gets a signed
 // reference that the later submit turns back into the File GID.
 export const loader = () => json({ ok: false, error: "method_not_allowed" }, 405);
@@ -16,18 +16,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (Number(request.headers.get("content-length") ?? 0) > MAX_UPLOAD_BYTES + 64 * 1024) return json({ ok: false, error: "file_size" }, 400);
   if (!(await hit(`upload:${hashKey("ip", clientIp(request))}`, LIMITS.uploadPerIp)).allowed) return json({ ok: false, error: "rate_limited" }, 429);
 
-  let file: File | null = null;
+  let read: Awaited<ReturnType<typeof readUploadForm>>;
   try {
-    const form = await request.formData();
-    const f = form.get("file");
-    file = f instanceof File ? f : null;
+    read = await readUploadForm(await request.formData());
   } catch {
-    file = null;
+    read = { ok: false, error: "file_type" };
   }
-  if (!file) return json({ ok: false, error: "file_type" }, 400);
-  const input = { filename: file.name, mimeType: file.type, bytes: new Uint8Array(await file.arrayBuffer()) };
-  const check = validateUpload(input);
-  if (!check.ok) return json({ ok: false, error: check.error }, 400);
+  if (!read.ok) return json({ ok: false, error: read.error }, 400);
+  const input = read.file;
 
   try {
     const { admin } = await unauthenticated.admin(ctx.shop);

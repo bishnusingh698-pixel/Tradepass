@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "{language} metinleri sıfırlansın mı?",
   "settings.texts.resetBody": "{count, plural, one {Değiştirilen # metin yerleşik metne geri döner.} other {Değiştirilen # metin yerleşik metinlere geri döner.}}",
   "settings.texts.resetConfirm": "Metinleri sıfırla",
-  "settings.texts.area.pages": "Başvuru güncelleme ve yenileme sayfaları"
+  "settings.texts.area.pages": "Başvuru güncelleme ve yenileme sayfaları",
+  "settings.assignment.heading": "Seviye ataması",
+  "settings.assignment.label": "Alıcıların seviyelerine yerleştirilme şekli",
+  "settings.assignment.auto": "Otomatik",
+  "settings.assignment.autoHelp": "Tradepass şirket konumunu Shopify'da seviyenin pazarına kendisi ekler ve işlemin başarılı olduğunu kontrol eder.",
+  "settings.assignment.assisted": "Destekli",
+  "settings.assignment.assistedHelp": "Değişikliği Seviyeler sayfasındaki kontrol listesinden Shopify'da siz yaparsınız, Tradepass da doğrular. Otomatik atama mağazanızda çalışmıyorsa bunu kullanın.",
+  "settings.assignment.note": "Bu değişiklik yalnızca yeni onayları ve seviye değişikliklerini etkiler. Açık kontrol listesi öğeleri siz kontrol edene kadar Seviyeler sayfasında kalır.",
+  "settings.error.assignment": "Otomatik veya destekli seçeneğini belirleyin.",
+  "settings.activity.heading": "Etkinlik geçmişi",
+  "settings.activity.body": "Tradepass'in ve personelinizin yaptıklarını içeren bir CSV dosyası indirin: kim, ne, ne zaman ve sonuç. Dosya en son {max} kaydı içerir; 2 yıldan eski kayıtlar otomatik olarak kaldırılır.",
+  "settings.activity.button": "Etkinliği dışa aktar (CSV)",
+  "settings.activity.done": "Etkinlik dışa aktarıldı",
+  "settings.activity.truncated": "En son {max} kayıt dışa aktarıldı",
+  "settings.activity.locked": "Etkinlik dışa aktarma “Pro” planında kullanılabilir."
 }

@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "根據您的 Tradepass 店面設定，對零售訪客隱藏價格，並顯示「登入/申請」訊息。必須開啟才能隱藏價格。"
+  },
+  "form_block": {
+    "name": "批發申請表單",
+    "form_id": "表單 ID",
+    "form_id_info": "留空則使用預設表單。可在 Tradepass →「表單」中複製表單 ID。",
+    "show_heading": "顯示標題",
+    "heading": "標題",
+    "heading_info": "留空則使用訪客語言的預設文字。"
+  },
+  "apply_block": {
+    "name": "申請批發",
+    "style": "樣式",
+    "style_button": "按鈕",
+    "style_banner": "橫幅",
+    "heading": "標題",
+    "text": "文字",
+    "button": "按鈕標籤",
+    "texts_info": "留空則使用訪客語言的預設文字。",
+    "hide_for_b2b": "對已登入的批發買家隱藏"
+  }
+}

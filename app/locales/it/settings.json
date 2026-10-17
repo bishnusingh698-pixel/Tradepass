@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Ripristinare i testi in {language}?",
   "settings.texts.resetBody": "{count, plural, one {# testo modificato torna al testo predefinito.} many {# di testi modificati tornano al testo predefinito.} other {# testi modificati tornano al testo predefinito.}}",
   "settings.texts.resetConfirm": "Ripristina testi",
-  "settings.texts.area.pages": "Pagine di aggiornamento richiesta e rinnovo"
+  "settings.texts.area.pages": "Pagine di aggiornamento richiesta e rinnovo",
+  "settings.assignment.heading": "Assegnazione dei livelli",
+  "settings.assignment.label": "Come gli acquirenti vengono inseriti nel livello",
+  "settings.assignment.auto": "Automatica",
+  "settings.assignment.autoHelp": "Tradepass aggiunge la sede aziendale al mercato del livello in Shopify e verifica che l’operazione sia riuscita.",
+  "settings.assignment.assisted": "Assistita",
+  "settings.assignment.assistedHelp": "Lei apporta la modifica in Shopify seguendo un elenco di attività nella pagina Livelli e Tradepass la conferma. Usi questa opzione se l’assegnazione automatica non funziona nel suo negozio.",
+  "settings.assignment.note": "La modifica vale solo per le nuove approvazioni e i cambi di livello. Le attività aperte restano nella pagina Livelli finché non le verifica.",
+  "settings.error.assignment": "Scelga automatica o assistita.",
+  "settings.activity.heading": "Cronologia attività",
+  "settings.activity.body": "Scarichi un file CSV con ciò che hanno fatto Tradepass e il suo staff: chi, cosa, quando e con quale esito. Contiene le {max} voci più recenti; le voci più vecchie di 2 anni vengono rimosse automaticamente.",
+  "settings.activity.button": "Esporta attività (CSV)",
+  "settings.activity.done": "Attività esportata",
+  "settings.activity.truncated": "Esportate le ultime {max} voci",
+  "settings.activity.locked": "L’esportazione delle attività è disponibile con il piano Pro."
 }

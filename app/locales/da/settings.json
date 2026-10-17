@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Vil du nulstille tekster på {language}?",
   "settings.texts.resetBody": "{count, plural, one {# ændret tekst får den indbyggede ordlyd igen.} other {# ændrede tekster får den indbyggede ordlyd igen.}}",
   "settings.texts.resetConfirm": "Nulstil tekster",
-  "settings.texts.area.pages": "Sider til opdatering og fornyelse af ansøgning"
+  "settings.texts.area.pages": "Sider til opdatering og fornyelse af ansøgning",
+  "settings.assignment.heading": "Niveautildeling",
+  "settings.assignment.label": "Sådan placeres købere i deres niveau",
+  "settings.assignment.auto": "Automatisk",
+  "settings.assignment.autoHelp": "Tradepass føjer virksomhedens lokation til niveauets marked i Shopify og kontrollerer, at det lykkedes.",
+  "settings.assignment.assisted": "Assisteret",
+  "settings.assignment.assistedHelp": "Du foretager ændringen i Shopify ud fra en tjekliste på siden Niveauer, og Tradepass bekræfter den. Brug dette, hvis automatisk tildeling ikke virker i din butik.",
+  "settings.assignment.note": "Ændringen påvirker kun nye godkendelser og niveauændringer. Åbne punkter på tjeklisten bliver på siden Niveauer, indtil du tjekker dem.",
+  "settings.error.assignment": "Vælg automatisk eller assisteret.",
+  "settings.activity.heading": "Aktivitetshistorik",
+  "settings.activity.body": "Download en CSV-fil over, hvad Tradepass og dine medarbejdere har gjort: hvem, hvad, hvornår og resultatet. Den indeholder de seneste {max} poster. Poster, der er ældre end 2 år, fjernes automatisk.",
+  "settings.activity.button": "Eksportér aktivitet (CSV)",
+  "settings.activity.done": "Aktiviteten er eksporteret",
+  "settings.activity.truncated": "De seneste {max} poster er eksporteret",
+  "settings.activity.locked": "Eksport af aktivitet er tilgængelig med Pro-abonnementet."
 }

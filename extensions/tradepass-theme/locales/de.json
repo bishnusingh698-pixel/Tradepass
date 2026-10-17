@@ -1,0 +1,149 @@
+{
+  "gate": {
+    "message": "Preise sehen nur genehmigte Großhandelskunden. Melden Sie sich an oder beantragen Sie ein Großhandelskonto.",
+    "login": "Anmelden",
+    "apply": "Großhandelskonto beantragen",
+    "cart": "Einige Artikel in Ihrem Warenkorb sind nur für genehmigte Großhandelskunden erhältlich."
+  },
+  "banner": {
+    "text": "Sie kaufen für ein Unternehmen?",
+    "link": "Großhandelskonto beantragen"
+  },
+  "hint": {
+    "text": "Für genehmigte Unternehmen gibt es Großhandelspreise."
+  },
+  "wall": {
+    "heading": "Nur für Großhandelskunden",
+    "message": "Diese Seite ist nur für genehmigte Großhandelskunden verfügbar. Melden Sie sich an oder beantragen Sie ein Großhandelskonto."
+  },
+  "apply_block": {
+    "heading": "Sie kaufen für ein Unternehmen?",
+    "text": "Beantragen Sie ein Großhandelskonto, um Händlerpreise zu sehen und in größeren Mengen zu bestellen.",
+    "button": "Großhandelskonto beantragen"
+  },
+  "form": {
+    "heading": "Großhandelskonto beantragen",
+    "intro": "Erzählen Sie uns von Ihrem Unternehmen. Wir prüfen jeden Antrag und antworten per E-Mail.",
+    "required_note": "Mit * markierte Felder sind Pflichtfelder.",
+    "optional": "(optional)",
+    "select": "Auswählen…",
+    "submit": "Antrag senden",
+    "sending": "Wird gesendet…",
+    "retrying": "Wird noch gesendet. Wir versuchen es bis zu einer Minute lang weiter; Ihre Antworten sind sicher.",
+    "failed": "Ihr Antrag konnte nicht gesendet werden. Ihre Antworten sind in diesem Browser gespeichert. Bitte versuchen Sie es in einigen Minuten erneut.",
+    "retry": "Erneut versuchen",
+    "rate_limited": "Wir haben in letzter Zeit mehrere Anträge von Ihnen erhalten. Bitte versuchen Sie es später erneut.",
+    "duplicate": "Sie haben bereits einen Antrag gestellt. Wir melden uns bei Ihnen.",
+    "draft_restored": "Wir haben Ihre früheren Antworten wiederhergestellt.",
+    "clear_draft": "Neu beginnen",
+    "honeypot": "Dieses Feld leer lassen",
+    "unavailable": "Das Antragsformular ist noch nicht eingerichtet. Bitte wenden Sie sich an den Shop.",
+    "section": {
+      "business": "Unternehmen",
+      "contact": "Kontakt",
+      "addresses": "Adressen",
+      "tax": "Steuern und Dokumente",
+      "message": "Nachricht",
+      "consent": "Einwilligung"
+    },
+    "field": {
+      "companyName": { "label": "Name des Unternehmens" },
+      "businessType": { "label": "Unternehmensart" },
+      "website": { "label": "Webseite", "placeholder": "https://" },
+      "yearEstablished": { "label": "Gründungsjahr" },
+      "locationsCount": { "label": "Anzahl der Standorte" },
+      "monthlyOrderValue": { "label": "Erwarteter monatlicher Bestellwert" },
+      "referral": { "label": "Wie haben Sie von uns erfahren?" },
+      "firstName": { "label": "Vorname" },
+      "lastName": { "label": "Nachname" },
+      "email": { "label": "E-Mail", "help": "An diese Adresse senden wir Neuigkeiten zu Ihrem Antrag." },
+      "phone": { "label": "Telefon" },
+      "jobTitle": { "label": "Position" },
+      "preferredLanguage": { "label": "Bevorzugte Sprache" },
+      "billingAddress": { "label": "Rechnungsadresse" },
+      "shippingAddress": { "label": "Lieferadresse" },
+      "taxNumber": { "label": "Steuerliche Registrierung" },
+      "certificates": { "label": "Zertifikate", "help": "Zum Beispiel eine Wiederverkäuferbescheinigung oder ein Nachweis der Steuerbefreiung." },
+      "message": { "label": "Nachricht an den Shop" },
+      "consent": { "label": "Ich bin damit einverstanden, dass meine Angaben zur Prüfung dieses Antrags verwendet werden." }
+    },
+    "business_type": {
+      "retail": "Einzelhandelsgeschäft",
+      "salon": "Salon oder Spa",
+      "restaurant": "Restaurant oder Café",
+      "distributor": "Distributor oder Händler",
+      "other": "Sonstiges"
+    },
+    "order_value": {
+      "lt1k": "Weniger als 1.000",
+      "1k-5k": "1.000 bis 5.000",
+      "5k-20k": "5.000 bis 20.000",
+      "gt20k": "Mehr als 20.000"
+    },
+    "address": {
+      "country": "Land/Region",
+      "address1": "Adresse",
+      "address2": "Wohnung, Etage usw.",
+      "city": "Stadt",
+      "zone": {
+        "state": "Bundesstaat",
+        "province": "Provinz",
+        "region": "Region",
+        "county": "County",
+        "prefecture": "Präfektur",
+        "emirate": "Emirat",
+        "governorate": "Gouvernement",
+        "state_and_territory": "Bundesstaat/Territorium"
+      },
+      "zip": {
+        "postal": "Postleitzahl",
+        "zip": "ZIP-Code",
+        "pin": "PIN-Code",
+        "postcode": "Postleitzahl"
+      },
+      "same_as_billing": "Wie Rechnungsadresse"
+    },
+    "tax": {
+      "country": "Land der steuerlichen Registrierung",
+      "vat": "USt-IdNr.",
+      "vat_help": "Mit Länderkennung, zum Beispiel DE123456789.",
+      "abn": "ABN (Australian Business Number)",
+      "gst": "GST/HST-Nummer",
+      "us_resale": "Nummer der Wiederverkäuferbescheinigung",
+      "us_state": "Ausstellender Bundesstaat",
+      "tax_id": "Steuernummer"
+    },
+    "upload": {
+      "add": "Datei hinzufügen",
+      "remove": "{{ name }} entfernen",
+      "hint": "PDF, JPG oder PNG, jeweils bis 5 MB, bis zu 3 Dateien.",
+      "expiry": "Ablaufdatum für {{ name }} (optional)",
+      "uploading": "{{ name }} wird hochgeladen…",
+      "done": "{{ name }} hochgeladen",
+      "failed": "{{ name }} konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut."
+    },
+    "consent_privacy": "Unsere Datenschutzerklärung lesen",
+    "error": {
+      "summary": "Bitte korrigieren Sie Folgendes:",
+      "required": "Geben Sie {{ field }} ein.",
+      "choose": "Wählen Sie {{ field }}.",
+      "consent": "Bitte bestätigen Sie, um fortzufahren.",
+      "email": "Geben Sie eine E-Mail-Adresse wie name@example.com ein.",
+      "url": "Geben Sie eine Webadresse wie https://example.com ein.",
+      "phone": "Geben Sie eine gültige Telefonnummer ein.",
+      "number": "Geben Sie eine Zahl ein.",
+      "date": "Geben Sie ein gültiges Datum ein.",
+      "too_long": "Das ist zu lang. Verwenden Sie höchstens {{ max }} Zeichen.",
+      "file_type": "{{ name }} ist keine PDF-, JPG- oder PNG-Datei.",
+      "file_size": "{{ name }} ist größer als 5 MB.",
+      "file_count": "Sie können bis zu 3 Dateien hinzufügen.",
+      "file_pending": "Warten Sie, bis Ihre Dateien hochgeladen sind.",
+      "spam": "Diese Antwort stimmt nicht. Bitte versuchen Sie es erneut."
+    },
+    "success": {
+      "heading": "Vielen Dank, Ihr Antrag wurde gesendet",
+      "body": "Wir prüfen ihn und melden uns per E-Mail bei Ihnen.",
+      "email": "Wir haben Ihnen eine Bestätigung per E-Mail gesendet."
+    }
+  }
+}

@@ -43,6 +43,23 @@ export function validateUpload(file: UploadInput): UploadCheck {
   return { ok: true, mimeType: sniffed, ext: sniffed === "application/pdf" ? "pdf" : sniffed === "image/png" ? "png" : "jpg" };
 }
 
+/**
+ * Server-side checks for one POST /proxy/upload body (the browser checks the
+ * same, but anyone can call the proxy): exactly one file part per request,
+ * PDF/JPG/PNG by content, ≤ 5 MB. The per-question cap of MAX_UPLOAD_FILES is
+ * enforced when the references are submitted (cleanAnswers in intake.server).
+ */
+export async function readUploadForm(form: FormData): Promise<{ ok: true; file: UploadInput } | { ok: false; error: "file_type" | "file_size" | "file_count" }> {
+  const parts = [...form.values()].filter((v): v is File => typeof v === "object" && v !== null && "arrayBuffer" in v);
+  if (parts.length > 1) return { ok: false, error: "file_count" };
+  const f = form.get("file");
+  if (!parts.length || typeof f !== "object" || f === null) return { ok: false, error: "file_type" };
+  if (f.size > MAX_UPLOAD_BYTES) return { ok: false, error: "file_size" };
+  const file = { filename: f.name, mimeType: f.type, bytes: new Uint8Array(await f.arrayBuffer()) };
+  const check = validateUpload(file);
+  return check.ok ? { ok: true, file } : { ok: false, error: check.error };
+}
+
 /** Random, unguessable name: the Shopify CDN URL is public, so the name must not be predictable (D-006). */
 export function randomFilename(ext: string): string {
   return `tradepass-${randomBytes(16).toString("hex")}.${ext}`;

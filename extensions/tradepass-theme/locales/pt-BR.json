@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Os preços são exibidos para clientes atacadistas aprovados. Faça login ou solicite uma conta de atacado.",
+    "login": "Fazer login",
+    "apply": "Solicitar atacado",
+    "cart": "Alguns itens do seu carrinho estão disponíveis apenas para clientes atacadistas aprovados."
+  },
+  "banner": {
+    "text": "Compra para uma empresa?",
+    "link": "Solicitar atacado"
+  },
+  "hint": {
+    "text": "Preços de atacado disponíveis para empresas aprovadas."
+  },
+  "wall": {
+    "heading": "Somente clientes atacadistas",
+    "message": "Esta página está disponível para clientes atacadistas aprovados. Faça login ou solicite uma conta de atacado."
+  },
+  "brand": {
+    "powered_by": "Com tecnologia Tradepass"
+  },
+  "apply_block": {
+    "heading": "Compra para uma empresa?",
+    "text": "Solicite uma conta de atacado para ver preços especiais e comprar em grandes quantidades.",
+    "button": "Solicitar atacado"
+  },
+  "form": {
+    "heading": "Solicite uma conta de atacado",
+    "intro": "Conte sobre sua empresa. Analisamos cada solicitação e respondemos por e-mail.",
+    "required_note": "Os campos marcados com * são obrigatórios.",
+    "optional": "(opcional)",
+    "select": "Selecione…",
+    "submit": "Enviar solicitação",
+    "sending": "Enviando…",
+    "retrying": "Ainda enviando. Vamos continuar tentando por até um minuto; suas respostas estão seguras.",
+    "failed": "Não conseguimos enviar sua solicitação. Suas respostas foram salvas neste navegador. Tente novamente em alguns minutos.",
+    "retry": "Tentar novamente",
+    "rate_limited": "Recebemos várias solicitações suas recentemente. Tente novamente mais tarde.",
+    "duplicate": "Você já enviou uma solicitação. Entraremos em contato.",
+    "draft_restored": "Restauramos as respostas que você preencheu antes.",
+    "clear_draft": "Começar de novo",
+    "honeypot": "Deixe este campo em branco",
+    "unavailable": "O formulário de solicitação ainda não está configurado. Entre em contato com a loja.",
+    "section": {
+      "business": "Empresa",
+      "contact": "Contato",
+      "addresses": "Endereços",
+      "tax": "Impostos e documentos",
+      "message": "Mensagem",
+      "consent": "Consentimento"
+    },
+    "field": {
+      "companyName": {
+        "label": "Nome da empresa"
+      },
+      "businessType": {
+        "label": "Tipo de empresa"
+      },
+      "website": {
+        "label": "Site",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Ano de fundação"
+      },
+      "locationsCount": {
+        "label": "Número de locais"
+      },
+      "monthlyOrderValue": {
+        "label": "Valor mensal previsto dos pedidos"
+      },
+      "referral": {
+        "label": "Como você conheceu a gente?"
+      },
+      "firstName": {
+        "label": "Nome"
+      },
+      "lastName": {
+        "label": "Sobrenome"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "Enviaremos atualizações sobre sua solicitação para este endereço."
+      },
+      "phone": {
+        "label": "Telefone"
+      },
+      "jobTitle": {
+        "label": "Cargo"
+      },
+      "preferredLanguage": {
+        "label": "Idioma preferido"
+      },
+      "billingAddress": {
+        "label": "Endereço de cobrança"
+      },
+      "shippingAddress": {
+        "label": "Endereço de entrega"
+      },
+      "taxNumber": {
+        "label": "Registro fiscal"
+      },
+      "certificates": {
+        "label": "Certificados",
+        "help": "Por exemplo, um certificado de revenda ou de isenção fiscal."
+      },
+      "message": {
+        "label": "Mensagem para a loja"
+      },
+      "consent": {
+        "label": "Concordo que meus dados sejam usados para analisar esta solicitação."
+      }
+    },
+    "business_type": {
+      "retail": "Loja de varejo",
+      "salon": "Salão ou spa",
+      "restaurant": "Restaurante ou café",
+      "distributor": "Distribuidor",
+      "other": "Outro"
+    },
+    "order_value": {
+      "lt1k": "Menos de 1.000",
+      "1k-5k": "De 1.000 a 5.000",
+      "5k-20k": "De 5.000 a 20.000",
+      "gt20k": "Mais de 20.000"
+    },
+    "address": {
+      "country": "País/região",
+      "address1": "Endereço",
+      "address2": "Apartamento, sala etc.",
+      "city": "Cidade",
+      "zone": {
+        "state": "Estado",
+        "province": "Província",
+        "region": "Região",
+        "county": "Condado",
+        "prefecture": "Prefeitura",
+        "emirate": "Emirado",
+        "governorate": "Governadoria",
+        "state_and_territory": "Estado/território"
+      },
+      "zip": {
+        "postal": "Código postal",
+        "zip": "CEP",
+        "pin": "Código PIN",
+        "postcode": "Código postal"
+      },
+      "same_as_billing": "Igual ao endereço de cobrança"
+    },
+    "tax": {
+      "country": "País do registro fiscal",
+      "vat": "Número de IVA",
+      "vat_help": "Inclua o prefixo do país, por exemplo DE123456789.",
+      "abn": "ABN (Australian Business Number)",
+      "gst": "Número de GST/HST",
+      "us_resale": "Número do certificado de revenda",
+      "us_state": "Estado que emitiu o certificado",
+      "tax_id": "Identificação fiscal"
+    },
+    "upload": {
+      "add": "Adicionar arquivo",
+      "remove": "Remover {{ name }}",
+      "hint": "PDF, JPG ou PNG, até 5 MB cada, até 3 arquivos.",
+      "expiry": "Data de vencimento de {{ name }} (opcional)",
+      "uploading": "Enviando {{ name }}…",
+      "done": "{{ name }} enviado",
+      "failed": "Não foi possível enviar {{ name }}. Tente novamente."
+    },
+    "consent_privacy": "Leia nossa política de privacidade",
+    "error": {
+      "summary": "Corrija o seguinte:",
+      "required": "Preencha {{ field }}.",
+      "choose": "Escolha {{ field }}.",
+      "consent": "Confirme para continuar.",
+      "email": "Digite um e-mail como nome@exemplo.com.",
+      "url": "Digite um endereço web como https://exemplo.com.",
+      "phone": "Digite um telefone válido.",
+      "number": "Digite um número.",
+      "date": "Digite uma data válida.",
+      "too_long": "Texto longo demais. Use até {{ max }} caracteres.",
+      "file_type": "{{ name }} não é um arquivo PDF, JPG ou PNG.",
+      "file_size": "{{ name }} tem mais de 5 MB.",
+      "file_count": "Você pode adicionar até 3 arquivos.",
+      "file_pending": "Aguarde o envio dos seus arquivos terminar.",
+      "spam": "Essa resposta não confere. Tente novamente."
+    },
+    "success": {
+      "heading": "Obrigado! Sua solicitação foi enviada",
+      "body": "Vamos analisá-la e responderemos por e-mail.",
+      "email": "Enviamos um e-mail de confirmação para você."
+    }
+  }
+}

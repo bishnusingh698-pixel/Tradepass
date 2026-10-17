@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Ukrywa ceny przed odwiedzającymi detalicznymi i pokazuje komunikat Zaloguj się/Złóż wniosek zgodnie z ustawieniami witryny w Tradepass. Musi być włączone, aby ukrywać ceny."
+  },
+  "form_block": {
+    "name": "Wniosek hurtowy",
+    "form_id": "Identyfikator formularza",
+    "form_id_info": "Pozostaw puste, aby użyć formularza domyślnego. Skopiuj identyfikator z Tradepass → Formularz.",
+    "show_heading": "Pokaż nagłówek",
+    "heading": "Nagłówek",
+    "heading_info": "Pozostaw puste, aby użyć domyślnego tekstu w języku odwiedzającego."
+  },
+  "apply_block": {
+    "name": "Złóż wniosek o hurt",
+    "style": "Styl",
+    "style_button": "Przycisk",
+    "style_banner": "Baner",
+    "heading": "Nagłówek",
+    "text": "Tekst",
+    "button": "Etykieta przycisku",
+    "texts_info": "Pozostaw puste, aby użyć domyślnego tekstu w języku odwiedzającego.",
+    "hide_for_b2b": "Ukryj dla zalogowanych kupujących hurtowych"
+  }
+}

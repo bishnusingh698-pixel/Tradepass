@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "가격은 승인된 도매 고객에게 표시됩니다. 로그인하거나 도매 계정을 신청해 주십시오.",
+    "login": "로그인",
+    "apply": "도매 신청하기",
+    "cart": "장바구니의 일부 상품은 승인된 도매 고객만 구매할 수 있습니다."
+  },
+  "banner": {
+    "text": "사업용으로 구매하시나요?",
+    "link": "도매 신청하기"
+  },
+  "hint": {
+    "text": "승인된 사업자에게는 도매 가격이 제공됩니다."
+  },
+  "wall": {
+    "heading": "도매 고객 전용",
+    "message": "이 페이지는 승인된 도매 고객만 이용할 수 있습니다. 로그인하거나 도매 계정을 신청해 주십시오."
+  },
+  "brand": {
+    "powered_by": "Tradepass 제공"
+  },
+  "apply_block": {
+    "heading": "사업용으로 구매하시나요?",
+    "text": "도매 계정을 신청하시면 거래처 가격을 확인하고 대량으로 주문하실 수 있습니다.",
+    "button": "도매 신청하기"
+  },
+  "form": {
+    "heading": "도매 계정 신청",
+    "intro": "귀사에 대해 알려 주십시오. 모든 신청서를 검토한 후 이메일로 답변해 드립니다.",
+    "required_note": "*로 표시된 필드는 필수입니다.",
+    "optional": "(선택 사항)",
+    "select": "선택…",
+    "submit": "신청서 보내기",
+    "sending": "보내는 중…",
+    "retrying": "아직 보내는 중입니다. 최대 1분 동안 계속 시도하며, 입력하신 내용은 안전합니다.",
+    "failed": "신청서를 보낼 수 없습니다. 입력하신 내용은 이 브라우저에 저장되어 있습니다. 몇 분 후 다시 시도해 주십시오.",
+    "retry": "다시 시도",
+    "rate_limited": "최근 고객님으로부터 여러 건의 신청서가 접수되었습니다. 나중에 다시 시도해 주십시오.",
+    "duplicate": "이미 신청하셨습니다. 곧 연락드리겠습니다.",
+    "draft_restored": "이전에 입력하신 내용을 복원했습니다.",
+    "clear_draft": "처음부터 다시 작성",
+    "honeypot": "이 필드는 비워 두십시오",
+    "unavailable": "신청서 양식이 아직 설정되지 않았습니다. 스토어에 문의해 주십시오.",
+    "section": {
+      "business": "기업 정보",
+      "contact": "연락처",
+      "addresses": "주소",
+      "tax": "세금 및 문서",
+      "message": "메시지",
+      "consent": "동의"
+    },
+    "field": {
+      "companyName": {
+        "label": "회사 이름"
+      },
+      "businessType": {
+        "label": "업종"
+      },
+      "website": {
+        "label": "웹사이트",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "설립 연도"
+      },
+      "locationsCount": {
+        "label": "지점 수"
+      },
+      "monthlyOrderValue": {
+        "label": "예상 월 주문액"
+      },
+      "referral": {
+        "label": "저희를 어떻게 알게 되셨나요?"
+      },
+      "firstName": {
+        "label": "이름"
+      },
+      "lastName": {
+        "label": "성"
+      },
+      "email": {
+        "label": "이메일",
+        "help": "신청 관련 소식을 이 주소로 보내 드립니다."
+      },
+      "phone": {
+        "label": "전화번호"
+      },
+      "jobTitle": {
+        "label": "직함"
+      },
+      "preferredLanguage": {
+        "label": "선호 언어"
+      },
+      "billingAddress": {
+        "label": "청구지 주소"
+      },
+      "shippingAddress": {
+        "label": "배송지 주소"
+      },
+      "taxNumber": {
+        "label": "세금 등록"
+      },
+      "certificates": {
+        "label": "증명서",
+        "help": "예: 재판매 증명서 또는 세금 면제 증명서."
+      },
+      "message": {
+        "label": "스토어에 보내는 메시지"
+      },
+      "consent": {
+        "label": "이 신청서 검토를 위해 제 정보가 사용되는 것에 동의합니다."
+      }
+    },
+    "business_type": {
+      "retail": "소매점",
+      "salon": "살롱 또는 스파",
+      "restaurant": "레스토랑 또는 카페",
+      "distributor": "유통업체",
+      "other": "기타"
+    },
+    "order_value": {
+      "lt1k": "1,000 미만",
+      "1k-5k": "1,000~5,000",
+      "5k-20k": "5,000~20,000",
+      "gt20k": "20,000 초과"
+    },
+    "address": {
+      "country": "국가/지역",
+      "address1": "주소",
+      "address2": "아파트, 호수 등",
+      "city": "시/군/구",
+      "zone": {
+        "state": "주",
+        "province": "도/주",
+        "region": "지역",
+        "county": "카운티",
+        "prefecture": "현",
+        "emirate": "토후국",
+        "governorate": "주(州)",
+        "state_and_territory": "주/준주"
+      },
+      "zip": {
+        "postal": "우편번호",
+        "zip": "ZIP 코드",
+        "pin": "PIN 코드",
+        "postcode": "우편 코드"
+      },
+      "same_as_billing": "청구지 주소와 동일"
+    },
+    "tax": {
+      "country": "세금 등록 국가",
+      "vat": "VAT 번호",
+      "vat_help": "국가 접두사를 포함하십시오(예: DE123456789).",
+      "abn": "ABN(호주 사업자 번호)",
+      "gst": "GST/HST 번호",
+      "us_resale": "재판매 증명서 번호",
+      "us_state": "증명서를 발급한 주",
+      "tax_id": "납세자 번호"
+    },
+    "upload": {
+      "add": "파일 추가",
+      "remove": "{{ name }} 제거",
+      "hint": "PDF, JPG 또는 PNG, 파일당 최대 5MB, 최대 3개.",
+      "expiry": "{{ name }} 만료일(선택 사항)",
+      "uploading": "{{ name }} 업로드 중…",
+      "done": "{{ name }} 업로드 완료",
+      "failed": "{{ name }}을(를) 업로드할 수 없습니다. 다시 시도해 주십시오."
+    },
+    "consent_privacy": "개인정보 처리방침 읽기",
+    "error": {
+      "summary": "다음 항목을 수정해 주십시오.",
+      "required": "{{ field }}을(를) 입력하십시오.",
+      "choose": "{{ field }}을(를) 선택하십시오.",
+      "consent": "계속하려면 동의해 주십시오.",
+      "email": "name@example.com과 같은 형식으로 이메일 주소를 입력하십시오.",
+      "url": "https://example.com과 같은 형식으로 웹 주소를 입력하십시오.",
+      "phone": "올바른 전화번호를 입력하십시오.",
+      "number": "숫자를 입력하십시오.",
+      "date": "올바른 날짜를 입력하십시오.",
+      "too_long": "너무 깁니다. 최대 {{ max }}자까지 입력하십시오.",
+      "file_type": "{{ name }}은(는) PDF, JPG 또는 PNG 파일이 아닙니다.",
+      "file_size": "{{ name }}이(가) 5MB를 초과합니다.",
+      "file_count": "파일은 최대 3개까지 추가할 수 있습니다.",
+      "file_pending": "파일 업로드가 끝날 때까지 기다려 주십시오.",
+      "spam": "답변이 일치하지 않습니다. 다시 시도해 주십시오."
+    },
+    "success": {
+      "heading": "감사합니다. 신청서가 전송되었습니다",
+      "body": "검토한 후 이메일로 연락드리겠습니다.",
+      "email": "확인 이메일을 보내 드렸습니다."
+    }
+  }
+}

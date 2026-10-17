@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Verbergt prijzen voor particuliere bezoekers en toont de melding Inloggen / Aanvragen, op basis van uw webshopinstellingen in Tradepass. Moet aanstaan om prijzen te verbergen."
+  },
+  "form_block": {
+    "name": "Groothandelsaanvraag",
+    "form_id": "Formulier-ID",
+    "form_id_info": "Laat leeg om uw standaardformulier te gebruiken. Kopieer de ID van een formulier via Tradepass → Formulier.",
+    "show_heading": "Kop tonen",
+    "heading": "Kop",
+    "heading_info": "Laat leeg om de standaardtekst in de taal van de bezoeker te gebruiken."
+  },
+  "apply_block": {
+    "name": "Groothandel aanvragen",
+    "style": "Stijl",
+    "style_button": "Knop",
+    "style_banner": "Banner",
+    "heading": "Kop",
+    "text": "Tekst",
+    "button": "Knoptekst",
+    "texts_info": "Laat leeg om de standaardtekst in de taal van de bezoeker te gebruiken.",
+    "hide_for_b2b": "Verbergen voor ingelogde groothandelskopers"
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Prisene vises for godkjente engroskunder. Logg inn eller søk om en engroskonto.",
+    "login": "Logg inn",
+    "apply": "Søk om engroskjøp",
+    "cart": "Noen varer i handlekurven er bare tilgjengelige for godkjente engroskunder."
+  },
+  "banner": {
+    "text": "Kjøper du for en bedrift?",
+    "link": "Søk om engroskjøp"
+  },
+  "hint": {
+    "text": "Engrospriser er tilgjengelige for godkjente bedrifter."
+  },
+  "wall": {
+    "heading": "Kun for engroskunder",
+    "message": "Denne siden er tilgjengelig for godkjente engroskunder. Logg inn eller søk om en engroskonto."
+  },
+  "brand": {
+    "powered_by": "Drevet av Tradepass"
+  },
+  "apply_block": {
+    "heading": "Kjøper du for en bedrift?",
+    "text": "Søk om en engroskonto for å se forhandlerpriser og bestille i større mengder.",
+    "button": "Søk om engroskjøp"
+  },
+  "form": {
+    "heading": "Søk om en engroskonto",
+    "intro": "Fortell oss om bedriften din. Vi går gjennom alle søknader og svarer på e-post.",
+    "required_note": "Felt merket med * er obligatoriske.",
+    "optional": "(valgfritt)",
+    "select": "Velg …",
+    "submit": "Send søknad",
+    "sending": "Sender …",
+    "retrying": "Sender fortsatt. Vi prøver i opptil ett minutt. Svarene dine er trygge.",
+    "failed": "Vi kunne ikke sende søknaden din. Svarene dine er lagret i denne nettleseren. Prøv igjen om noen minutter.",
+    "retry": "Prøv igjen",
+    "rate_limited": "Vi har nylig mottatt flere søknader fra deg. Prøv igjen senere.",
+    "duplicate": "Du har allerede søkt. Vi tar kontakt.",
+    "draft_restored": "Vi har gjenopprettet svarene du skrev inn tidligere.",
+    "clear_draft": "Start på nytt",
+    "honeypot": "La dette feltet stå tomt",
+    "unavailable": "Søknadsskjemaet er ikke konfigurert ennå. Kontakt butikken.",
+    "section": {
+      "business": "Bedrift",
+      "contact": "Kontakt",
+      "addresses": "Adresser",
+      "tax": "Avgift og dokumenter",
+      "message": "Melding",
+      "consent": "Samtykke"
+    },
+    "field": {
+      "companyName": {
+        "label": "Bedriftsnavn"
+      },
+      "businessType": {
+        "label": "Bedriftstype"
+      },
+      "website": {
+        "label": "Nettsted",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "Etableringsår"
+      },
+      "locationsCount": {
+        "label": "Antall lokasjoner"
+      },
+      "monthlyOrderValue": {
+        "label": "Forventet månedlig bestillingsverdi"
+      },
+      "referral": {
+        "label": "Hvordan hørte du om oss?"
+      },
+      "firstName": {
+        "label": "Fornavn"
+      },
+      "lastName": {
+        "label": "Etternavn"
+      },
+      "email": {
+        "label": "E-post",
+        "help": "Vi sender oppdateringer om søknaden til denne adressen."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Stillingstittel"
+      },
+      "preferredLanguage": {
+        "label": "Foretrukket språk"
+      },
+      "billingAddress": {
+        "label": "Fakturaadresse"
+      },
+      "shippingAddress": {
+        "label": "Leveringsadresse"
+      },
+      "taxNumber": {
+        "label": "Avgiftsregistrering"
+      },
+      "certificates": {
+        "label": "Sertifikater",
+        "help": "For eksempel et videresalgssertifikat eller et sertifikat for avgiftsfritak."
+      },
+      "message": {
+        "label": "Melding til butikken"
+      },
+      "consent": {
+        "label": "Jeg godtar at opplysningene mine brukes til å behandle denne søknaden."
+      }
+    },
+    "business_type": {
+      "retail": "Detaljbutikk",
+      "salon": "Salong eller spa",
+      "restaurant": "Restaurant eller kafé",
+      "distributor": "Distributør",
+      "other": "Annet"
+    },
+    "order_value": {
+      "lt1k": "Under 1000",
+      "1k-5k": "1000 til 5000",
+      "5k-20k": "5000 til 20 000",
+      "gt20k": "Over 20 000"
+    },
+    "address": {
+      "country": "Land/region",
+      "address1": "Adresse",
+      "address2": "Leilighet, suite osv.",
+      "city": "Sted",
+      "zone": {
+        "state": "Delstat",
+        "province": "Provins",
+        "region": "Landsdel",
+        "county": "Fylke",
+        "prefecture": "Prefektur",
+        "emirate": "Emirat",
+        "governorate": "Guvernement",
+        "state_and_territory": "Delstat/territorium"
+      },
+      "zip": {
+        "postal": "Postnummer",
+        "zip": "Postnummer (ZIP)",
+        "pin": "PIN-kode",
+        "postcode": "Postnr."
+      },
+      "same_as_billing": "Samme som fakturaadressen"
+    },
+    "tax": {
+      "country": "Land for avgiftsregistrering",
+      "vat": "MVA-nummer",
+      "vat_help": "Ta med landprefikset, for eksempel NO123456789MVA.",
+      "abn": "ABN (australsk organisasjonsnummer)",
+      "gst": "GST/HST-nummer",
+      "us_resale": "Nummer på videresalgssertifikat",
+      "us_state": "Delstat som utstedte sertifikatet",
+      "tax_id": "Skatte-ID"
+    },
+    "upload": {
+      "add": "Legg til fil",
+      "remove": "Fjern {{ name }}",
+      "hint": "PDF, JPG eller PNG, opptil 5 MB per fil, maks. 3 filer.",
+      "expiry": "Utløpsdato for {{ name }} (valgfritt)",
+      "uploading": "Laster opp {{ name }} …",
+      "done": "{{ name }} er lastet opp",
+      "failed": "{{ name }} kunne ikke lastes opp. Prøv igjen."
+    },
+    "consent_privacy": "Les personvernerklæringen vår",
+    "error": {
+      "summary": "Rett følgende:",
+      "required": "Fyll ut {{ field }}.",
+      "choose": "Velg {{ field }}.",
+      "consent": "Bekreft for å fortsette.",
+      "email": "Skriv inn en e-postadresse som navn@eksempel.no.",
+      "url": "Skriv inn en nettadresse som https://eksempel.no.",
+      "phone": "Skriv inn et gyldig telefonnummer.",
+      "number": "Skriv inn et tall.",
+      "date": "Skriv inn en gyldig dato.",
+      "too_long": "Teksten er for lang. Bruk høyst {{ max }} tegn.",
+      "file_type": "{{ name }} er ikke en PDF-, JPG- eller PNG-fil.",
+      "file_size": "{{ name }} er større enn 5 MB.",
+      "file_count": "Du kan legge til opptil 3 filer.",
+      "file_pending": "Vent til filene er ferdig lastet opp.",
+      "spam": "Svaret stemmer ikke. Prøv igjen."
+    },
+    "success": {
+      "heading": "Takk! Søknaden din er sendt",
+      "body": "Vi går gjennom den og svarer deg på e-post.",
+      "email": "Vi har sendt deg en bekreftelse på e-post."
+    }
+  }
+}

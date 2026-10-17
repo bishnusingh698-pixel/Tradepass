@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Rétablir les textes en {language} ?",
   "settings.texts.resetBody": "{count, plural, one {# texte modifié retrouvera la formulation intégrée.} many {# de textes modifiés retrouveront la formulation intégrée.} other {# textes modifiés retrouveront la formulation intégrée.}}",
   "settings.texts.resetConfirm": "Rétablir les textes",
-  "settings.texts.area.pages": "Pages de mise à jour et de renouvellement"
+  "settings.texts.area.pages": "Pages de mise à jour et de renouvellement",
+  "settings.assignment.heading": "Attribution des niveaux",
+  "settings.assignment.label": "Comment les acheteurs sont placés dans leur niveau",
+  "settings.assignment.auto": "Automatique",
+  "settings.assignment.autoHelp": "Tradepass ajoute le site de l’entreprise au marché du niveau dans Shopify et vérifie que cela a fonctionné.",
+  "settings.assignment.assisted": "Assistée",
+  "settings.assignment.assistedHelp": "Vous effectuez la modification dans Shopify à partir d’une liste de tâches sur la page Niveaux, et Tradepass la confirme. Utilisez cette option si l’attribution automatique ne fonctionne pas sur votre boutique.",
+  "settings.assignment.note": "Ce changement ne concerne que les nouvelles approbations et les changements de niveau. Les tâches en cours restent sur la page Niveaux jusqu’à ce que vous les vérifiiez.",
+  "settings.error.assignment": "Choisissez Automatique ou Assistée.",
+  "settings.activity.heading": "Historique d’activité",
+  "settings.activity.body": "Téléchargez un fichier CSV de ce que Tradepass et votre personnel ont fait : qui, quoi, quand et avec quel résultat. Il contient les {max} entrées les plus récentes ; les entrées de plus de 2 ans sont supprimées automatiquement.",
+  "settings.activity.button": "Exporter l’activité (CSV)",
+  "settings.activity.done": "Activité exportée",
+  "settings.activity.truncated": "Les {max} dernières entrées ont été exportées",
+  "settings.activity.locked": "L’exportation de l’activité est disponible avec le forfait Pro."
 }

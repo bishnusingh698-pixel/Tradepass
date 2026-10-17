@@ -866,5 +866,17 @@
     "note": "Activity entry.",
     "maxLength": 60,
     "placeholders": []
+  },
+  "applications.taxCheck.skipped": {
+    "note": "Badge in the Tax check column and on the application page: a tax number was given, but the Free plan has no registry checks.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "applications.detail.taxCheckPlan": {
+    "note": "Help text under the tax number on the application page when the check was skipped because of the plan. plan is a plan name (Starter).",
+    "maxLength": 220,
+    "placeholders": [
+      "plan"
+    ]
   }
 }

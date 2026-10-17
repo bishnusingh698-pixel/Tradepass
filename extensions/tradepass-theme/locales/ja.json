@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "価格は承認済みの卸売顧客に表示されます。ログインするか、卸売アカウントをお申し込みください。",
+    "login": "ログイン",
+    "apply": "卸売を申し込む",
+    "cart": "カート内の一部の商品は、承認済みの卸売顧客のみご購入いただけます。"
+  },
+  "banner": {
+    "text": "事業用のご購入ですか？",
+    "link": "卸売を申し込む"
+  },
+  "hint": {
+    "text": "承認済みの事業者様には卸売価格をご用意しています。"
+  },
+  "wall": {
+    "heading": "卸売顧客専用",
+    "message": "このページは承認済みの卸売顧客のみご覧いただけます。ログインするか、卸売アカウントをお申し込みください。"
+  },
+  "brand": {
+    "powered_by": "Tradepassで作成"
+  },
+  "apply_block": {
+    "heading": "事業用のご購入ですか？",
+    "text": "卸売アカウントをお申し込みいただくと、業者向け価格での閲覧やまとめ買いができます。",
+    "button": "卸売を申し込む"
+  },
+  "form": {
+    "heading": "卸売アカウントのお申し込み",
+    "intro": "貴社の事業についてお聞かせください。すべての申請を確認し、メールでご返信します。",
+    "required_note": "*の項目は必須です。",
+    "optional": "（任意）",
+    "select": "選択してください…",
+    "submit": "申請を送信",
+    "sending": "送信中…",
+    "retrying": "送信を続けています。最大1分間再試行しますので、入力内容は失われません。",
+    "failed": "申請を送信できませんでした。入力内容はこのブラウザに保存されています。数分後にもう一度お試しください。",
+    "retry": "再試行",
+    "rate_limited": "最近、お客様から複数の申請を受け付けています。しばらくしてからもう一度お試しください。",
+    "duplicate": "すでにお申し込みいただいています。追ってご連絡いたします。",
+    "draft_restored": "以前に入力された内容を復元しました。",
+    "clear_draft": "最初からやり直す",
+    "honeypot": "この欄は空欄のままにしてください",
+    "unavailable": "申請フォームはまだ設定されていません。ストアにお問い合わせください。",
+    "section": {
+      "business": "事業者情報",
+      "contact": "連絡先",
+      "addresses": "住所",
+      "tax": "税金と書類",
+      "message": "メッセージ",
+      "consent": "同意"
+    },
+    "field": {
+      "companyName": {
+        "label": "会社名"
+      },
+      "businessType": {
+        "label": "業種"
+      },
+      "website": {
+        "label": "ウェブサイト",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "設立年"
+      },
+      "locationsCount": {
+        "label": "拠点数"
+      },
+      "monthlyOrderValue": {
+        "label": "想定月間注文額"
+      },
+      "referral": {
+        "label": "当店を何でお知りになりましたか？"
+      },
+      "firstName": {
+        "label": "名"
+      },
+      "lastName": {
+        "label": "姓"
+      },
+      "email": {
+        "label": "メールアドレス",
+        "help": "申請に関するお知らせをこのアドレスにお送りします。"
+      },
+      "phone": {
+        "label": "電話番号"
+      },
+      "jobTitle": {
+        "label": "役職"
+      },
+      "preferredLanguage": {
+        "label": "希望言語"
+      },
+      "billingAddress": {
+        "label": "請求先住所"
+      },
+      "shippingAddress": {
+        "label": "配送先住所"
+      },
+      "taxNumber": {
+        "label": "税登録"
+      },
+      "certificates": {
+        "label": "証明書",
+        "help": "再販証明書や免税証明書など。"
+      },
+      "message": {
+        "label": "ストアへのメッセージ"
+      },
+      "consent": {
+        "label": "この申請の審査のために私の情報が使用されることに同意します。"
+      }
+    },
+    "business_type": {
+      "retail": "小売店",
+      "salon": "サロン・スパ",
+      "restaurant": "レストラン・カフェ",
+      "distributor": "代理店・卸売業者",
+      "other": "その他"
+    },
+    "order_value": {
+      "lt1k": "1,000未満",
+      "1k-5k": "1,000～5,000",
+      "5k-20k": "5,000～20,000",
+      "gt20k": "20,000超"
+    },
+    "address": {
+      "country": "国/地域",
+      "address1": "住所",
+      "address2": "建物名、部屋番号など",
+      "city": "市区町村",
+      "zone": {
+        "state": "州",
+        "province": "州・省",
+        "region": "地域",
+        "county": "郡",
+        "prefecture": "都道府県",
+        "emirate": "首長国",
+        "governorate": "県",
+        "state_and_territory": "州/準州"
+      },
+      "zip": {
+        "postal": "郵便番号",
+        "zip": "ZIPコード",
+        "pin": "PINコード",
+        "postcode": "郵便番号"
+      },
+      "same_as_billing": "請求先住所と同じ"
+    },
+    "tax": {
+      "country": "税登録の国",
+      "vat": "VAT番号",
+      "vat_help": "国コードを含めて入力してください（例：DE123456789）。",
+      "abn": "ABN（オーストラリア事業者番号）",
+      "gst": "GST/HST番号",
+      "us_resale": "再販証明書番号",
+      "us_state": "証明書を発行した州",
+      "tax_id": "納税者番号"
+    },
+    "upload": {
+      "add": "ファイルを追加",
+      "remove": "{{ name }}を削除",
+      "hint": "PDF、JPG、PNG形式、1ファイル5 MBまで、最大3ファイル。",
+      "expiry": "{{ name }}の有効期限（任意）",
+      "uploading": "{{ name }}をアップロード中…",
+      "done": "{{ name }}をアップロードしました",
+      "failed": "{{ name }}をアップロードできませんでした。もう一度お試しください。"
+    },
+    "consent_privacy": "プライバシーポリシーを読む",
+    "error": {
+      "summary": "以下の内容を修正してください：",
+      "required": "{{ field }}を入力してください。",
+      "choose": "{{ field }}を選択してください。",
+      "consent": "続行するには同意してください。",
+      "email": "name@example.comのような形式でメールアドレスを入力してください。",
+      "url": "https://example.comのような形式でウェブアドレスを入力してください。",
+      "phone": "有効な電話番号を入力してください。",
+      "number": "数値を入力してください。",
+      "date": "有効な日付を入力してください。",
+      "too_long": "長すぎます。{{ max }}文字以内で入力してください。",
+      "file_type": "{{ name }}はPDF、JPG、PNGファイルではありません。",
+      "file_size": "{{ name }}は5 MBを超えています。",
+      "file_count": "追加できるファイルは3つまでです。",
+      "file_pending": "ファイルのアップロードが完了するまでお待ちください。",
+      "spam": "回答が一致しません。もう一度お試しください。"
+    },
+    "success": {
+      "heading": "ありがとうございます。申請を送信しました",
+      "body": "内容を確認のうえ、メールでご連絡いたします。",
+      "email": "確認メールをお送りしました。"
+    }
+  }
+}

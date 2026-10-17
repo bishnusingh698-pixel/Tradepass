@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Palautetaanko tekstit: {language}?",
   "settings.texts.resetBody": "{count, plural, one {# muutettu teksti palautuu oletussanamuotoon.} other {# muutettua tekstiä palautuu oletussanamuotoon.}}",
   "settings.texts.resetConfirm": "Palauta tekstit",
-  "settings.texts.area.pages": "Hakemuksen päivitys- ja uusimissivut"
+  "settings.texts.area.pages": "Hakemuksen päivitys- ja uusimissivut",
+  "settings.assignment.heading": "Tasojen määritys",
+  "settings.assignment.label": "Miten ostajat sijoitetaan tasolleen",
+  "settings.assignment.auto": "Automaattinen",
+  "settings.assignment.autoHelp": "Tradepass lisää yrityksen sijainnin tason markkina-alueelle Shopifyssa ja tarkistaa, että lisäys onnistui.",
+  "settings.assignment.assisted": "Avustettu",
+  "settings.assignment.assistedHelp": "Teet muutoksen Shopifyssa Tasot-sivun tarkistuslistan avulla, ja Tradepass vahvistaa sen. Käytä tätä, jos automaattinen määritys ei toimi kaupassasi.",
+  "settings.assignment.note": "Muutos koskee vain uusia hyväksyntöjä ja tasomuutoksia. Avoimet tarkistuslistan kohdat pysyvät Tasot-sivulla, kunnes tarkistat ne.",
+  "settings.error.assignment": "Valitse automaattinen tai avustettu.",
+  "settings.activity.heading": "Toimintahistoria",
+  "settings.activity.body": "Lataa CSV-tiedosto siitä, mitä Tradepass ja henkilökuntasi ovat tehneet: kuka, mitä, milloin ja tulos. Tiedostossa on viimeisimmät {max} merkintää; yli 2 vuotta vanhat merkinnät poistetaan automaattisesti.",
+  "settings.activity.button": "Vie toiminta (CSV)",
+  "settings.activity.done": "Toiminta viety",
+  "settings.activity.truncated": "Viety viimeisimmät {max} merkintää",
+  "settings.activity.locked": "Toimintalokin vienti on käytettävissä Pro-paketissa."
 }

@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Döljer priser för privatkunder och visar meddelandet Logga in / Ansök, enligt dina inställningar för butiksfront i Tradepass. Måste vara på för att dölja priser."
+  },
+  "form_block": {
+    "name": "Grossistansökan",
+    "form_id": "Formulär-ID",
+    "form_id_info": "Lämna tomt för att använda ditt standardformulär. Kopiera ett formulärs ID från Tradepass → Formulär.",
+    "show_heading": "Visa rubrik",
+    "heading": "Rubrik",
+    "heading_info": "Lämna tomt för att använda standardtexten på besökarens språk."
+  },
+  "apply_block": {
+    "name": "Ansök om grossistköp",
+    "style": "Stil",
+    "style_button": "Knapp",
+    "style_banner": "Banner",
+    "heading": "Rubrik",
+    "text": "Text",
+    "button": "Knapptext",
+    "texts_info": "Lämna tomt för att använda standardtexten på besökarens språk.",
+    "hide_for_b2b": "Dölj för inloggade grossistköpare"
+  }
+}

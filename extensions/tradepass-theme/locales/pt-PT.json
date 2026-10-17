@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Os preços são apresentados a clientes grossistas aprovados. Inicie sessão ou candidate-se a uma conta de venda por grosso.",
+    "login": "Iniciar sessão",
+    "apply": "Candidatar-se a grosso",
+    "cart": "Alguns artigos do seu carrinho só estão disponíveis para clientes grossistas aprovados."
+  },
+  "banner": {
+    "text": "Compra para uma empresa?",
+    "link": "Candidatar-se a grosso"
+  },
+  "hint": {
+    "text": "Preços por grosso disponíveis para empresas aprovadas."
+  },
+  "wall": {
+    "heading": "Apenas clientes grossistas",
+    "message": "Esta página está disponível para clientes grossistas aprovados. Inicie sessão ou candidate-se a uma conta de venda por grosso."
+  },
+  "brand": {
+    "powered_by": "Com tecnologia Tradepass"
+  },
+  "apply_block": {
+    "heading": "Compra para uma empresa?",
+    "text": "Candidate-se a uma conta de venda por grosso para ver preços profissionais e encomendar em grandes quantidades.",
+    "button": "Candidatar-se a grosso"
+  },
+  "form": {
+    "heading": "Candidate-se a uma conta de venda por grosso",
+    "intro": "Fale-nos da sua empresa. Analisamos todas as candidaturas e respondemos por e-mail.",
+    "required_note": "Os campos marcados com * são obrigatórios.",
+    "optional": "(opcional)",
+    "select": "Selecione…",
+    "submit": "Enviar candidatura",
+    "sending": "A enviar…",
+    "retrying": "Ainda a enviar. Vamos continuar a tentar durante até um minuto; as suas respostas estão seguras.",
+    "failed": "Não foi possível enviar a sua candidatura. As suas respostas estão guardadas neste navegador. Tente novamente dentro de alguns minutos.",
+    "retry": "Tentar novamente",
+    "rate_limited": "Recebemos recentemente várias candidaturas suas. Tente novamente mais tarde.",
+    "duplicate": "Já se candidatou. Entraremos em contacto.",
+    "draft_restored": "Recuperámos as respostas que introduziu anteriormente.",
+    "clear_draft": "Recomeçar",
+    "honeypot": "Deixe este campo vazio",
+    "unavailable": "O formulário de candidatura ainda não está configurado. Contacte a loja.",
+    "section": {
+      "business": "Empresa",
+      "contact": "Contacto",
+      "addresses": "Moradas",
+      "tax": "Impostos e documentos",
+      "message": "Mensagem",
+      "consent": "Consentimento"
+    },
+    "field": {
+      "companyName": {
+        "label": "Nome da empresa"
+      },
+      "businessType": {
+        "label": "Tipo de empresa"
+      },
+      "website": {
+        "label": "Sítio web",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Ano de fundação"
+      },
+      "locationsCount": {
+        "label": "Número de localizações"
+      },
+      "monthlyOrderValue": {
+        "label": "Valor mensal previsto das encomendas"
+      },
+      "referral": {
+        "label": "Como nos conheceu?"
+      },
+      "firstName": {
+        "label": "Nome próprio"
+      },
+      "lastName": {
+        "label": "Apelido"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "Enviaremos atualizações sobre a sua candidatura para este endereço."
+      },
+      "phone": {
+        "label": "Telefone"
+      },
+      "jobTitle": {
+        "label": "Cargo"
+      },
+      "preferredLanguage": {
+        "label": "Idioma preferido"
+      },
+      "billingAddress": {
+        "label": "Morada de faturação"
+      },
+      "shippingAddress": {
+        "label": "Morada de envio"
+      },
+      "taxNumber": {
+        "label": "Registo fiscal"
+      },
+      "certificates": {
+        "label": "Certificados",
+        "help": "Por exemplo, um certificado de revenda ou de isenção fiscal."
+      },
+      "message": {
+        "label": "Mensagem para a loja"
+      },
+      "consent": {
+        "label": "Aceito que os meus dados sejam utilizados para analisar esta candidatura."
+      }
+    },
+    "business_type": {
+      "retail": "Loja de retalho",
+      "salon": "Salão ou spa",
+      "restaurant": "Restaurante ou café",
+      "distributor": "Distribuidor",
+      "other": "Outro"
+    },
+    "order_value": {
+      "lt1k": "Menos de 1000",
+      "1k-5k": "De 1000 a 5000",
+      "5k-20k": "De 5000 a 20 000",
+      "gt20k": "Mais de 20 000"
+    },
+    "address": {
+      "country": "País/região",
+      "address1": "Morada",
+      "address2": "Apartamento, andar, etc.",
+      "city": "Localidade",
+      "zone": {
+        "state": "Estado",
+        "province": "Província",
+        "region": "Região",
+        "county": "Condado",
+        "prefecture": "Prefeitura",
+        "emirate": "Emirado",
+        "governorate": "Governadoria",
+        "state_and_territory": "Estado/território"
+      },
+      "zip": {
+        "postal": "Código postal",
+        "zip": "Código ZIP",
+        "pin": "Código PIN",
+        "postcode": "Código postal"
+      },
+      "same_as_billing": "Igual à morada de faturação"
+    },
+    "tax": {
+      "country": "País do registo fiscal",
+      "vat": "Número de IVA",
+      "vat_help": "Inclua o prefixo do país, por exemplo PT123456789.",
+      "abn": "ABN (Australian Business Number)",
+      "gst": "Número GST/HST",
+      "us_resale": "Número do certificado de revenda",
+      "us_state": "Estado que emitiu o certificado",
+      "tax_id": "Número de identificação fiscal"
+    },
+    "upload": {
+      "add": "Adicionar ficheiro",
+      "remove": "Remover {{ name }}",
+      "hint": "PDF, JPG ou PNG, até 5 MB cada, até 3 ficheiros.",
+      "expiry": "Data de validade de {{ name }} (opcional)",
+      "uploading": "A carregar {{ name }}…",
+      "done": "{{ name }} carregado",
+      "failed": "Não foi possível carregar {{ name }}. Tente novamente."
+    },
+    "consent_privacy": "Leia a nossa política de privacidade",
+    "error": {
+      "summary": "Corrija o seguinte:",
+      "required": "Preencha {{ field }}.",
+      "choose": "Escolha {{ field }}.",
+      "consent": "Confirme para continuar.",
+      "email": "Introduza um e-mail como nome@exemplo.pt.",
+      "url": "Introduza um endereço web como https://exemplo.pt.",
+      "phone": "Introduza um número de telefone válido.",
+      "number": "Introduza um número.",
+      "date": "Introduza uma data válida.",
+      "too_long": "Texto demasiado longo. Use até {{ max }} caracteres.",
+      "file_type": "{{ name }} não é um ficheiro PDF, JPG ou PNG.",
+      "file_size": "{{ name }} tem mais de 5 MB.",
+      "file_count": "Pode adicionar até 3 ficheiros.",
+      "file_pending": "Aguarde que os seus ficheiros terminem de carregar.",
+      "spam": "Essa resposta não está correta. Tente novamente."
+    },
+    "success": {
+      "heading": "Obrigado, a sua candidatura foi enviada",
+      "body": "Vamos analisá-la e responderemos por e-mail.",
+      "email": "Enviámos-lhe um e-mail de confirmação."
+    }
+  }
+}

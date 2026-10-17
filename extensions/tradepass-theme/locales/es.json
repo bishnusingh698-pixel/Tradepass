@@ -1,0 +1,149 @@
+{
+  "gate": {
+    "message": "Los precios se muestran a clientes mayoristas aprobados. Inicie sesión o solicite una cuenta mayorista.",
+    "login": "Iniciar sesión",
+    "apply": "Solicitar cuenta mayorista",
+    "cart": "Algunos artículos de su carrito solo están disponibles para clientes mayoristas aprobados."
+  },
+  "banner": {
+    "text": "¿Compra para una empresa?",
+    "link": "Solicitar cuenta mayorista"
+  },
+  "hint": {
+    "text": "Hay precios mayoristas para empresas aprobadas."
+  },
+  "wall": {
+    "heading": "Solo para clientes mayoristas",
+    "message": "Esta página está disponible para clientes mayoristas aprobados. Inicie sesión o solicite una cuenta mayorista."
+  },
+  "apply_block": {
+    "heading": "¿Compra para una empresa?",
+    "text": "Solicite una cuenta mayorista para ver precios profesionales y comprar en grandes cantidades.",
+    "button": "Solicitar cuenta mayorista"
+  },
+  "form": {
+    "heading": "Solicite una cuenta mayorista",
+    "intro": "Cuéntenos sobre su negocio. Revisamos cada solicitud y respondemos por correo electrónico.",
+    "required_note": "Los campos marcados con * son obligatorios.",
+    "optional": "(opcional)",
+    "select": "Seleccionar…",
+    "submit": "Enviar solicitud",
+    "sending": "Enviando…",
+    "retrying": "Seguimos enviando. Lo intentaremos durante un minuto como máximo; sus respuestas están a salvo.",
+    "failed": "No pudimos enviar su solicitud. Sus respuestas se han guardado en este navegador. Vuelva a intentarlo en unos minutos.",
+    "retry": "Volver a intentar",
+    "rate_limited": "Hemos recibido varias solicitudes suyas recientemente. Vuelva a intentarlo más tarde.",
+    "duplicate": "Ya ha enviado una solicitud. Nos pondremos en contacto con usted.",
+    "draft_restored": "Hemos recuperado las respuestas que introdujo antes.",
+    "clear_draft": "Empezar de nuevo",
+    "honeypot": "Deje este campo vacío",
+    "unavailable": "El formulario de solicitud aún no está configurado. Contacte con la tienda.",
+    "section": {
+      "business": "Negocio",
+      "contact": "Contacto",
+      "addresses": "Direcciones",
+      "tax": "Impuestos y documentos",
+      "message": "Mensaje",
+      "consent": "Consentimiento"
+    },
+    "field": {
+      "companyName": { "label": "Nombre de la empresa" },
+      "businessType": { "label": "Tipo de negocio" },
+      "website": { "label": "Sitio web", "placeholder": "https://" },
+      "yearEstablished": { "label": "Año de fundación" },
+      "locationsCount": { "label": "Número de ubicaciones" },
+      "monthlyOrderValue": { "label": "Valor mensual de pedido previsto" },
+      "referral": { "label": "¿Cómo nos conoció?" },
+      "firstName": { "label": "Nombre" },
+      "lastName": { "label": "Apellidos" },
+      "email": { "label": "Correo electrónico", "help": "Le enviaremos novedades sobre su solicitud a esta dirección." },
+      "phone": { "label": "Teléfono" },
+      "jobTitle": { "label": "Cargo" },
+      "preferredLanguage": { "label": "Idioma preferido" },
+      "billingAddress": { "label": "Dirección de facturación" },
+      "shippingAddress": { "label": "Dirección de envío" },
+      "taxNumber": { "label": "Registro fiscal" },
+      "certificates": { "label": "Certificados", "help": "Por ejemplo, un certificado de reventa o de exención de impuestos." },
+      "message": { "label": "Mensaje para la tienda" },
+      "consent": { "label": "Acepto que se usen mis datos para revisar esta solicitud." }
+    },
+    "business_type": {
+      "retail": "Tienda minorista",
+      "salon": "Salón o spa",
+      "restaurant": "Restaurante o cafetería",
+      "distributor": "Distribuidor",
+      "other": "Otro"
+    },
+    "order_value": {
+      "lt1k": "Menos de 1000",
+      "1k-5k": "De 1000 a 5000",
+      "5k-20k": "De 5000 a 20 000",
+      "gt20k": "Más de 20 000"
+    },
+    "address": {
+      "country": "País/región",
+      "address1": "Dirección",
+      "address2": "Apartamento, local, etc.",
+      "city": "Ciudad",
+      "zone": {
+        "state": "Estado",
+        "province": "Provincia",
+        "region": "Región",
+        "county": "Condado",
+        "prefecture": "Prefectura",
+        "emirate": "Emirato",
+        "governorate": "Gobernación",
+        "state_and_territory": "Estado/territorio"
+      },
+      "zip": {
+        "postal": "Código postal",
+        "zip": "Código ZIP",
+        "pin": "Código PIN",
+        "postcode": "Código postal"
+      },
+      "same_as_billing": "Igual que la dirección de facturación"
+    },
+    "tax": {
+      "country": "País de registro fiscal",
+      "vat": "Número de IVA",
+      "vat_help": "Incluya el prefijo del país, por ejemplo ESB12345678.",
+      "abn": "ABN (número de empresa australiano)",
+      "gst": "Número de GST/HST",
+      "us_resale": "Número del certificado de reventa",
+      "us_state": "Estado que emitió el certificado",
+      "tax_id": "Número de identificación fiscal"
+    },
+    "upload": {
+      "add": "Añadir archivo",
+      "remove": "Quitar {{ name }}",
+      "hint": "PDF, JPG o PNG, hasta 5 MB cada uno, hasta 3 archivos.",
+      "expiry": "Fecha de vencimiento de {{ name }} (opcional)",
+      "uploading": "Subiendo {{ name }}…",
+      "done": "{{ name }} subido",
+      "failed": "No se pudo subir {{ name }}. Vuelva a intentarlo."
+    },
+    "consent_privacy": "Leer nuestra política de privacidad",
+    "error": {
+      "summary": "Corrija lo siguiente:",
+      "required": "Introduzca {{ field }}.",
+      "choose": "Elija {{ field }}.",
+      "consent": "Confirme para continuar.",
+      "email": "Introduzca una dirección de correo como nombre@ejemplo.com.",
+      "url": "Introduzca una dirección web como https://ejemplo.com.",
+      "phone": "Introduzca un número de teléfono válido.",
+      "number": "Introduzca un número.",
+      "date": "Introduzca una fecha válida.",
+      "too_long": "Es demasiado largo. Use {{ max }} caracteres como máximo.",
+      "file_type": "{{ name }} no es un archivo PDF, JPG o PNG.",
+      "file_size": "{{ name }} supera los 5 MB.",
+      "file_count": "Puede añadir hasta 3 archivos.",
+      "file_pending": "Espere a que terminen de subirse sus archivos.",
+      "spam": "La respuesta no coincide. Vuelva a intentarlo."
+    },
+    "success": {
+      "heading": "Gracias, su solicitud se ha enviado",
+      "body": "La revisaremos y le responderemos por correo electrónico.",
+      "email": "Le hemos enviado un correo de confirmación."
+    }
+  }
+}

@@ -7,15 +7,17 @@ import { adminContext } from "../lib/context.server";
 import { gql } from "../lib/gql.server";
 import { updateSettings } from "../lib/settings.server";
 import { resetShopData } from "../lib/privacy.server";
-import { logActivity } from "../lib/activity.server";
+import { ACTIVITY_EXPORT_MAX_ROWS, exportActivityCsv, logActivity } from "../lib/activity.server";
 import { ensureDefaults } from "../lib/defaults.server";
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { LOCALES, matchLocale } from "../lib/i18n/locales";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
+import { can } from "../lib/plans";
 
 const RETENTION_MONTHS = [3, 6, 12, 24, 36] as const;
 const HEX = /^#[0-9a-f]{6}$/i;
+const ASSIGNMENT_MODES = ["auto", "assisted"] as const;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -34,6 +36,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     supportedCount: LOCALES.length,
     retention: ctx.settings.retention,
     branding: ctx.settings.branding,
+    assignment: ctx.settings.tiers.assignment,
+    canExportActivity: can(ctx.plan, "activity_export"),
+    exportMax: ACTIVITY_EXPORT_MAX_ROWS,
     plan: ctx.plan,
     isDevStore: Boolean(ctx.shopRow?.isDevStore),
     shopName: ctx.shopRow?.name ?? ctx.shop.replace(".myshopify.com", ""),
@@ -53,12 +58,27 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     if (!(RETENTION_MONTHS as readonly number[]).includes(months)) errors.months = "settings.error.months";
     if (logoUrl && !/^https:\/\/\S+$/i.test(logoUrl)) errors.logoUrl = "settings.error.logoUrl";
     if (accent && !HEX.test(accent)) errors.accentColor = "settings.error.accentColor";
+    const assignmentRaw = form.get("assignment");
+    const assignment = assignmentRaw == null || assignmentRaw === "" ? ctx.settings.tiers.assignment : String(assignmentRaw);
+    if (!(ASSIGNMENT_MODES as readonly string[]).includes(assignment)) errors.assignment = "settings.error.assignment";
     if (Object.keys(errors).length) return { ok: false as const, intent, errors };
     await updateSettings(ctx.shop, {
       retention: { months, deleteFiles: form.get("deleteFiles") === "on" },
       branding: { logoUrl: logoUrl || null, accentColor: accent || null },
+      tiers: { assignment: assignment as (typeof ASSIGNMENT_MODES)[number] },
     });
+    if (assignment !== ctx.settings.tiers.assignment) {
+      await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "settings.tier_assignment", subject: null, detail: { to: assignment } });
+    }
     return { ok: true as const, intent, savedAt: Date.now() };
+  }
+
+  if (intent === "export_activity") {
+    // Pro: locked on lower plans, also on the server.
+    if (!can(ctx.plan, "activity_export")) return { ok: false as const, intent, errors: { export: "settings.activity.locked" } };
+    const out = await exportActivityCsv(ctx.shop);
+    await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "activity.export", subject: null, detail: { rows: out.rows } });
+    return { ok: true as const, intent, csv: out.csv, truncated: out.truncated };
   }
 
   if (intent === "delete_all") {
@@ -90,6 +110,10 @@ export default function SettingsPage() {
     const r = fetcher.data;
     if (r?.ok && r.intent === "save") {
       shopify.toast.show(t("common.saved"));
+    }
+    if (r?.ok && r.intent === "export_activity" && "csv" in r) {
+      download(r.csv ?? "", "activity.csv");
+      shopify.toast.show(r.truncated ? t("settings.activity.truncated", { max: d.exportMax }) : t("settings.activity.done"));
     }
     if (r?.ok && r.intent === "delete_all") {
       shopify.toast.show(t("settings.danger.done"));
@@ -165,7 +189,38 @@ export default function SettingsPage() {
             />
           </s-stack>
         </s-section>
+
+        <s-section heading={t("settings.assignment.heading")}>
+          <s-stack direction="block" gap="base">
+            <s-choice-list name="assignment" label={t("settings.assignment.label")} error={errors.assignment ? t(errors.assignment) : undefined}>
+              <s-choice value="auto" defaultSelected={d.assignment === "auto"}>
+                {t("settings.assignment.auto")}
+                <s-text slot="details">{t("settings.assignment.autoHelp")}</s-text>
+              </s-choice>
+              <s-choice value="assisted" defaultSelected={d.assignment === "assisted"}>
+                {t("settings.assignment.assisted")}
+                <s-text slot="details">{t("settings.assignment.assistedHelp")}</s-text>
+              </s-choice>
+            </s-choice-list>
+            <s-paragraph color="subdued">{t("settings.assignment.note")}</s-paragraph>
+          </s-stack>
+        </s-section>
       </form>
+
+      <s-section heading={t("settings.activity.heading")}>
+        <s-stack direction="block" gap="base">
+          <s-paragraph>{t("settings.activity.body", { max: d.exportMax })}</s-paragraph>
+          {!d.canExportActivity && <s-badge tone="info">{t("common.availableOn", { plan: "Pro" })}</s-badge>}
+          {errors.export && <s-banner tone="critical"><s-paragraph>{t(errors.export)}</s-paragraph></s-banner>}
+          <s-button
+            disabled={!d.canExportActivity}
+            loading={fetcher.state !== "idle" && fetcher.formData?.get("intent") === "export_activity"}
+            onClick={() => fetcher.submit({ intent: "export_activity" }, { method: "POST" })}
+          >
+            {t("settings.activity.button")}
+          </s-button>
+        </s-stack>
+      </s-section>
 
       <s-section heading={t("settings.plan.heading")}>
         <s-stack direction="block" gap="base">
@@ -185,6 +240,15 @@ export default function SettingsPage() {
       <DeleteAllModal shopName={d.shopName} error={errors.confirm ? t(errors.confirm) : undefined} onConfirm={(confirm) => fetcher.submit({ intent: "delete_all", confirm }, { method: "POST" })} />
     </s-page>
   );
+}
+
+function download(text: string, name: string) {
+  const url = URL.createObjectURL(new Blob([text], { type: "text/csv;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function DeleteAllModal({ shopName, error, onConfirm }: { shopName: string; error?: string; onConfirm: (typed: string) => void }) {

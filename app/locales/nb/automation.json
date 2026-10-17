@@ -4,7 +4,7 @@
   "automation.empty.body": "Opprett regler som godkjenner eller avslår søknader som oppfyller betingelsene dine, og koble til Shopify Flow.",
   "automation.empty.action": "Opprett regel",
   "automation.checkoutLock.message": "Denne butikken selger bare til godkjente engroskunder. Logg inn eller søk om en konto.",
-  "automation.settings.heading": "Innstillinger for automatisering",
+  "automation.settings.heading": "Automatiseringsinnstillinger",
   "automation.settings.paused": "Sett all automatisering på pause",
   "automation.settings.pausedHelp": "Nye søknader venter på at du går gjennom dem. Reglene dine beholdes.",
   "automation.settings.dailyLimit": "Maks. antall automatiske godkjenninger per dag",

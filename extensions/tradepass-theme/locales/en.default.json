@@ -16,6 +16,9 @@
     "heading": "Wholesale customers only",
     "message": "This page is available to approved wholesale customers. Log in or apply for a wholesale account."
   },
+  "brand": {
+    "powered_by": "Powered by Tradepass"
+  },
   "apply_block": {
     "heading": "Buying for a business?",
     "text": "Apply for a wholesale account to see trade prices and order in bulk.",

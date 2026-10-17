@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Сбросить тексты ({language})?",
   "settings.texts.resetBody": "{count, plural, one {# изменённый текст вернётся к встроенной формулировке.} few {# изменённых текста вернутся к встроенным формулировкам.} many {# изменённых текстов вернутся к встроенным формулировкам.} other {# изменённого текста вернутся к встроенным формулировкам.}}",
   "settings.texts.resetConfirm": "Сбросить тексты",
-  "settings.texts.area.pages": "Страницы обновления заявки и продления"
+  "settings.texts.area.pages": "Страницы обновления заявки и продления",
+  "settings.assignment.heading": "Назначение уровней",
+  "settings.assignment.label": "Как покупатели попадают в свой уровень",
+  "settings.assignment.auto": "Автоматически",
+  "settings.assignment.autoHelp": "Tradepass сам добавляет местоположение компании в рынок уровня в Shopify и проверяет результат.",
+  "settings.assignment.assisted": "С вашей помощью",
+  "settings.assignment.assistedHelp": "Вы вносите изменение в Shopify по списку задач на странице «Уровни», а Tradepass его подтверждает. Используйте этот вариант, если автоматическое назначение не работает в вашем магазине.",
+  "settings.assignment.note": "Изменение затрагивает только новые одобрения и смены уровней. Открытые задачи остаются на странице «Уровни», пока вы их не проверите.",
+  "settings.error.assignment": "Выберите автоматическое назначение или назначение с вашей помощью.",
+  "settings.activity.heading": "История активности",
+  "settings.activity.body": "Скачайте файл CSV с действиями Tradepass и ваших сотрудников: кто, что, когда и с каким результатом. В нём последние {max} записей; записи старше 2 лет удаляются автоматически.",
+  "settings.activity.button": "Экспорт активности (CSV)",
+  "settings.activity.done": "Активность экспортирована",
+  "settings.activity.truncated": "Экспортированы последние {max} записей",
+  "settings.activity.locked": "Экспорт активности доступен в тарифе «Pro»."
 }

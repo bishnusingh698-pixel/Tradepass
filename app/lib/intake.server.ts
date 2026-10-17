@@ -15,6 +15,7 @@ import { hashKey, hit, LIMITS, looksLikeBot, peek } from "./spam.server";
 import { checkTaxNumber as realCheckTax, type TaxCheck } from "./taxcheck.server";
 import { MAX_UPLOAD_FILES, verifyFileRef } from "./uploads.server";
 import type { Admin } from "./gql.server";
+import { can, effectivePlan } from "./plans";
 
 export type IntakeDeps = {
   getAdmin: (shop: string) => Promise<Admin | null>;
@@ -135,12 +136,13 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
         break;
       }
       case "file": {
+        // Server-side cap (the browser has the same one): at most MAX_UPLOAD_FILES per upload question.
         const list = Array.isArray(v) ? v.slice(0, MAX_UPLOAD_FILES + 1) : [];
         if (list.length > MAX_UPLOAD_FILES) { fail("form.error.file_count"); break; }
         const files: FileAnswer[] = [];
         for (const item of list) {
           const gid = isObj(item) ? verifyFileRef(item.ref, shop) : null;
-          if (!gid) continue; // expired or forged reference: drop silently
+          if (!gid || files.some((x) => x.fileGid === gid)) continue; // expired, forged or repeated reference: drop silently
           const exp = isObj(item) ? str(item.expiresOn, 10) : "";
           files.push({ fileGid: gid, name: isObj(item) ? str(item.name, 120).replace(/[<>]/g, "") : "", expiresOn: DATE_RE.test(exp) ? exp : null });
         }
@@ -196,6 +198,18 @@ function spamAnswerOk(def: FormDefinition, locale: string, given: unknown): bool
   const accepted = own ? [own, ...answers] : answers;
   return accepted.some((a) => a.trim().toLowerCase() === g);
 }
+
+/**
+ * Live registry checks (VIES, HMRC, ABN) are a Starter feature (spec §N). On
+ * Free the number is still stored (encrypted) and used for duplicate checks,
+ * but no lookup is made: the application shows "skipped".
+ */
+export async function taxChecksEnabled(shop: string): Promise<boolean> {
+  const row = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true, isDevStore: true } });
+  return can(effectivePlan(row?.billingPlan ?? "free", Boolean(row?.isDevStore)), "tax_checks");
+}
+
+const SKIPPED: TaxCheck = { status: "skipped" };
 
 async function loadForm(shop: string, formId: unknown) {
   const id = typeof formId === "string" && formId.length < 40 ? formId : null;
@@ -278,7 +292,9 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
     taxNumberEnc = encrypt(clean.tax.number);
     taxHash = sha256(normaliseTaxNumber(clean.tax.number));
     clean.answers.taxNumberHash = taxHash;
-    taxCheck = await deps.checkTaxNumber(clean.tax.country || countryCode || "", clean.tax.number).catch(() => ({ status: "unavailable" as const }));
+    taxCheck = (await taxChecksEnabled(shop))
+      ? await deps.checkTaxNumber(clean.tax.country || countryCode || "", clean.tax.number).catch(() => ({ status: "unavailable" as const }))
+      : SKIPPED;
   }
   const certs = clean.files.certificates ?? [];
   if (certs.length) clean.answers.certificateMeta = certs.map((c) => ({ fileGid: c.fileGid, expiresOn: c.expiresOn }));
@@ -430,7 +446,9 @@ export async function applyUpdate(
   if (clean.tax) {
     answers.taxNumberHash = sha256(normaliseTaxNumber(clean.tax.number));
     data.taxNumberEnc = encrypt(clean.tax.number);
-    const check = await deps.checkTaxNumber(clean.tax.country || app.countryCode || "", clean.tax.number).catch(() => ({ status: "unavailable" as const, name: undefined }));
+    const check: TaxCheck = (await taxChecksEnabled(shop))
+      ? await deps.checkTaxNumber(clean.tax.country || app.countryCode || "", clean.tax.number).catch(() => ({ status: "unavailable" as const, name: undefined }))
+      : SKIPPED;
     data.taxCheck = check.status;
     data.taxCheckName = check.name ?? null;
   }

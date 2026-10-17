@@ -21,6 +21,7 @@ const TAX_TONE: Record<string, "success" | "warning" | "neutral" | "critical"> =
   not_verified: "warning",
   unavailable: "neutral",
   na: "neutral",
+  skipped: "neutral",
 };
 
 export function TaxCheckBadge({ value }: { value: string }) {

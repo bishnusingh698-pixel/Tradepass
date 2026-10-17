@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Hinnat näytetään hyväksytyille tukkuasiakkaille. Kirjaudu sisään tai hae tukkuasiakastiliä.",
+    "login": "Kirjaudu sisään",
+    "apply": "Hae tukkuasiakkaaksi",
+    "cart": "Osa ostoskorin tuotteista on vain hyväksyttyjen tukkuasiakkaiden saatavilla."
+  },
+  "banner": {
+    "text": "Ostatko yritykselle?",
+    "link": "Hae tukkuasiakkaaksi"
+  },
+  "hint": {
+    "text": "Tukkuhinnat ovat hyväksyttyjen yritysten saatavilla."
+  },
+  "wall": {
+    "heading": "Vain tukkuasiakkaille",
+    "message": "Tämä sivu on hyväksyttyjen tukkuasiakkaiden käytettävissä. Kirjaudu sisään tai hae tukkuasiakastiliä."
+  },
+  "brand": {
+    "powered_by": "Palvelun tarjoaa Tradepass"
+  },
+  "apply_block": {
+    "heading": "Ostatko yritykselle?",
+    "text": "Hae tukkuasiakastiliä, niin näet jälleenmyyjähinnat ja voit tilata suuria määriä.",
+    "button": "Hae tukkuasiakkaaksi"
+  },
+  "form": {
+    "heading": "Hae tukkuasiakastiliä",
+    "intro": "Kerro meille yrityksestäsi. Käsittelemme jokaisen hakemuksen ja vastaamme sähköpostitse.",
+    "required_note": "Tähdellä * merkityt kentät ovat pakollisia.",
+    "optional": "(valinnainen)",
+    "select": "Valitse…",
+    "submit": "Lähetä hakemus",
+    "sending": "Lähetetään…",
+    "retrying": "Lähetys jatkuu. Yritämme enintään minuutin ajan; vastauksesi ovat tallessa.",
+    "failed": "Hakemusta ei voitu lähettää. Vastauksesi on tallennettu tähän selaimeen. Yritä uudelleen muutaman minuutin kuluttua.",
+    "retry": "Yritä uudelleen",
+    "rate_limited": "Olemme saaneet sinulta äskettäin useita hakemuksia. Yritä myöhemmin uudelleen.",
+    "duplicate": "Olet jo hakenut. Otamme yhteyttä.",
+    "draft_restored": "Palautimme aiemmin antamasi vastaukset.",
+    "clear_draft": "Aloita alusta",
+    "honeypot": "Jätä tämä kenttä tyhjäksi",
+    "unavailable": "Hakulomaketta ei ole vielä otettu käyttöön. Ota yhteyttä kauppaan.",
+    "section": {
+      "business": "Yritys",
+      "contact": "Yhteystiedot",
+      "addresses": "Osoitteet",
+      "tax": "Verotus ja asiakirjat",
+      "message": "Viesti",
+      "consent": "Suostumus"
+    },
+    "field": {
+      "companyName": {
+        "label": "Yrityksen nimi"
+      },
+      "businessType": {
+        "label": "Yritystyyppi"
+      },
+      "website": {
+        "label": "Verkkosivusto",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "Perustamisvuosi"
+      },
+      "locationsCount": {
+        "label": "Toimipisteiden määrä"
+      },
+      "monthlyOrderValue": {
+        "label": "Arvioitu kuukausittainen tilausarvo"
+      },
+      "referral": {
+        "label": "Mistä kuulit meistä?"
+      },
+      "firstName": {
+        "label": "Etunimi"
+      },
+      "lastName": {
+        "label": "Sukunimi"
+      },
+      "email": {
+        "label": "Sähköposti",
+        "help": "Lähetämme hakemusta koskevat tiedot tähän osoitteeseen."
+      },
+      "phone": {
+        "label": "Puhelin"
+      },
+      "jobTitle": {
+        "label": "Tehtävänimike"
+      },
+      "preferredLanguage": {
+        "label": "Ensisijainen kieli"
+      },
+      "billingAddress": {
+        "label": "Laskutusosoite"
+      },
+      "shippingAddress": {
+        "label": "Toimitusosoite"
+      },
+      "taxNumber": {
+        "label": "Verorekisteröinti"
+      },
+      "certificates": {
+        "label": "Todistukset",
+        "help": "Esimerkiksi jälleenmyynti- tai verovapaustodistus."
+      },
+      "message": {
+        "label": "Viesti kaupalle"
+      },
+      "consent": {
+        "label": "Hyväksyn, että tietojani käytetään tämän hakemuksen käsittelyyn."
+      }
+    },
+    "business_type": {
+      "retail": "Vähittäiskauppa",
+      "salon": "Salonki tai kylpylä",
+      "restaurant": "Ravintola tai kahvila",
+      "distributor": "Jakelija",
+      "other": "Muu"
+    },
+    "order_value": {
+      "lt1k": "Alle 1 000",
+      "1k-5k": "1 000–5 000",
+      "5k-20k": "5 000–20 000",
+      "gt20k": "Yli 20 000"
+    },
+    "address": {
+      "country": "Maa/alue",
+      "address1": "Osoite",
+      "address2": "Huoneisto, porras tms.",
+      "city": "Kaupunki",
+      "zone": {
+        "state": "Osavaltio",
+        "province": "Provinssi",
+        "region": "Alue",
+        "county": "Lääni",
+        "prefecture": "Prefektuuri",
+        "emirate": "Emiraatti",
+        "governorate": "Kuvernementti",
+        "state_and_territory": "Osavaltio/territorio"
+      },
+      "zip": {
+        "postal": "Postinumero",
+        "zip": "ZIP-koodi",
+        "pin": "PIN-koodi",
+        "postcode": "Postinro"
+      },
+      "same_as_billing": "Sama kuin laskutusosoite"
+    },
+    "tax": {
+      "country": "Verorekisteröintimaa",
+      "vat": "ALV-tunnus",
+      "vat_help": "Lisää maatunnus alkuun, esimerkiksi FI12345678.",
+      "abn": "ABN (Australian yritystunnus)",
+      "gst": "GST/HST-numero",
+      "us_resale": "Jälleenmyyntitodistuksen numero",
+      "us_state": "Todistuksen myöntänyt osavaltio",
+      "tax_id": "Verotunniste"
+    },
+    "upload": {
+      "add": "Lisää tiedosto",
+      "remove": "Poista {{ name }}",
+      "hint": "PDF, JPG tai PNG, enintään 5 Mt/tiedosto, enintään 3 tiedostoa.",
+      "expiry": "Tiedoston {{ name }} voimassaolon päättymispäivä (valinnainen)",
+      "uploading": "Ladataan {{ name }}…",
+      "done": "{{ name }} ladattu",
+      "failed": "Tiedostoa {{ name }} ei voitu ladata. Yritä uudelleen."
+    },
+    "consent_privacy": "Lue tietosuojaselosteemme",
+    "error": {
+      "summary": "Korjaa seuraavat:",
+      "required": "Täytä kenttä {{ field }}.",
+      "choose": "Valitse {{ field }}.",
+      "consent": "Vahvista jatkaaksesi.",
+      "email": "Anna sähköpostiosoite muodossa nimi@esimerkki.fi.",
+      "url": "Anna verkko-osoite muodossa https://esimerkki.fi.",
+      "phone": "Anna kelvollinen puhelinnumero.",
+      "number": "Anna numero.",
+      "date": "Anna kelvollinen päivämäärä.",
+      "too_long": "Teksti on liian pitkä. Käytä enintään {{ max }} merkkiä.",
+      "file_type": "{{ name }} ei ole PDF-, JPG- tai PNG-tiedosto.",
+      "file_size": "{{ name }} on yli 5 Mt.",
+      "file_count": "Voit lisätä enintään 3 tiedostoa.",
+      "file_pending": "Odota, kunnes tiedostot on ladattu.",
+      "spam": "Vastaus ei täsmää. Yritä uudelleen."
+    },
+    "success": {
+      "heading": "Kiitos, hakemuksesi on lähetetty",
+      "body": "Käsittelemme sen ja vastaamme sähköpostitse.",
+      "email": "Lähetimme sinulle vahvistusviestin."
+    }
+  }
+}

@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Weitere Angaben angefordert",
   "applications.activity.application.updated": "Antragsteller hat eine Aktualisierung gesendet",
   "applications.activity.application.note": "Notiz hinzugefügt",
-  "applications.activity.application.assign": "Zuweisung geändert"
+  "applications.activity.application.assign": "Zuweisung geändert",
+  "applications.taxCheck.skipped": "In Ihrem Tarif nicht geprüft",
+  "applications.detail.taxCheckPlan": "Steuernummern werden ab dem Tarif {plan} mit amtlichen Registern abgeglichen. Prüfen Sie diese Nummer selbst oder führen Sie ein Upgrade durch, um neue Anträge automatisch zu prüfen."
 }

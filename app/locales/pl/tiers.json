@@ -63,7 +63,7 @@
   "tiers.editor.terms": "Domyślne warunki płatności",
   "tiers.editor.checkout": "Realizacja zakupu",
   "tiers.editor.checkout.pay": "Kupujący finalizują zakup i płacą",
-  "tiers.editor.checkout.draft": "Zamówienia trafiają do Ciebie jako wersje robocze do sprawdzenia",
+  "tiers.editor.checkout.draft": "Zamówienia trafiają do Ciebie jako szkice do sprawdzenia",
   "tiers.editor.tax": "Podatek",
   "tiers.editor.tax.charge": "Naliczaj podatek",
   "tiers.editor.tax.exempt": "Zwolnienie, gdy jest ważne zaświadczenie lub numer VAT",

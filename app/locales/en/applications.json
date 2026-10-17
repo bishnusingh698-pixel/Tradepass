@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "More information requested",
   "applications.activity.application.updated": "Applicant sent an update",
   "applications.activity.application.note": "Note added",
-  "applications.activity.application.assign": "Assignment changed"
+  "applications.activity.application.assign": "Assignment changed",
+  "applications.taxCheck.skipped": "Not checked on your plan",
+  "applications.detail.taxCheckPlan": "Tax numbers are checked against official registries on the {plan} plan and up. Check this one manually, or upgrade to check new applications automatically."
 }

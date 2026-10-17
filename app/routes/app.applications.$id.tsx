@@ -231,6 +231,7 @@ export default function ApplicationDetail() {
             {a.taxCheckName && <s-text color="subdued">{t("applications.detail.registryName", { name: a.taxCheckName })}</s-text>}
           </s-stack>
           {a.taxCheck === "unavailable" && <s-paragraph color="subdued">{t("applications.detail.checkManually")}</s-paragraph>}
+          {a.taxCheck === "skipped" && <s-paragraph color="subdued">{t("applications.detail.taxCheckPlan", { plan: "Starter" })}</s-paragraph>}
           {d.files.length === 0 ? (
             <s-text color="subdued">{t("applications.certificate.missing")}</s-text>
           ) : (

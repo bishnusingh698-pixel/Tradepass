@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Atkurti tekstus ({language})?",
   "settings.texts.resetBody": "{count, plural, one {# pakeistam tekstui bus grąžinta integruota formuluotė.} few {# pakeistiems tekstams bus grąžintos integruotos formuluotės.} many {# pakeisto teksto bus grąžinta integruota formuluotė.} other {# pakeistų tekstų bus grąžintos integruotos formuluotės.}}",
   "settings.texts.resetConfirm": "Atkurti tekstus",
-  "settings.texts.area.pages": "Paraiškos papildymo ir pažymos atnaujinimo puslapiai"
+  "settings.texts.area.pages": "Paraiškos papildymo ir pažymos atnaujinimo puslapiai",
+  "settings.assignment.heading": "Lygių priskyrimas",
+  "settings.assignment.label": "Kaip pirkėjai priskiriami savo lygiui",
+  "settings.assignment.auto": "Automatiškai",
+  "settings.assignment.autoHelp": "Tradepass pati prideda įmonės vietą į lygio rinką Shopify ir patikrina, ar pavyko.",
+  "settings.assignment.assisted": "Su jūsų pagalba",
+  "settings.assignment.assistedHelp": "Pakeitimą Shopify atliekate patys pagal užduočių sąrašą puslapyje „Lygiai“, o Tradepass jį patvirtina. Naudokite, jei automatinis priskyrimas jūsų parduotuvėje neveikia.",
+  "settings.assignment.note": "Šis pakeitimas taikomas tik naujiems patvirtinimams ir lygių keitimams. Atviros užduotys lieka puslapyje „Lygiai“, kol jas patikrinsite.",
+  "settings.error.assignment": "Pasirinkite automatinį priskyrimą arba su jūsų pagalba.",
+  "settings.activity.heading": "Veiklos istorija",
+  "settings.activity.body": "Atsisiųskite CSV failą su tuo, ką atliko Tradepass ir jūsų darbuotojai: kas, ką, kada ir koks rezultatas. Jame yra naujausi {max} įrašai; senesni nei 2 metų įrašai pašalinami automatiškai.",
+  "settings.activity.button": "Eksportuoti veiklą (CSV)",
+  "settings.activity.done": "Veikla eksportuota",
+  "settings.activity.truncated": "Eksportuoti naujausi {max} įrašai",
+  "settings.activity.locked": "Veiklos eksportas pasiekiamas „Pro“ plane."
 }

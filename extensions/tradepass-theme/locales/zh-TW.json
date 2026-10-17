@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "價格僅向獲准的批發顧客顯示。請登入或申請批發帳戶。",
+    "login": "登入",
+    "apply": "申請批發",
+    "cart": "您購物車中的部分商品僅限獲准的批發顧客購買。"
+  },
+  "banner": {
+    "text": "為企業採購嗎？",
+    "link": "申請批發"
+  },
+  "hint": {
+    "text": "獲准的企業可享有批發價格。"
+  },
+  "wall": {
+    "heading": "僅限批發顧客",
+    "message": "此網頁僅向獲准的批發顧客開放。請登入或申請批發帳戶。"
+  },
+  "brand": {
+    "powered_by": "由 Tradepass 提供技術支援"
+  },
+  "apply_block": {
+    "heading": "為企業採購嗎？",
+    "text": "申請批發帳戶，即可查看批發價並大量訂購。",
+    "button": "申請批發"
+  },
+  "form": {
+    "heading": "申請批發帳戶",
+    "intro": "請介紹一下您的企業。我們會審核每一份申請，並以電子郵件回覆。",
+    "required_note": "標有 * 的欄位為必填。",
+    "optional": "（選填）",
+    "select": "請選擇…",
+    "submit": "送出申請",
+    "sending": "正在送出…",
+    "retrying": "仍在送出。我們會持續嘗試最多一分鐘，您填寫的內容不會遺失。",
+    "failed": "無法送出您的申請。您填寫的內容已儲存在此瀏覽器中。請幾分鐘後再試一次。",
+    "retry": "再試一次",
+    "rate_limited": "我們最近已收到您的多份申請。請稍後再試。",
+    "duplicate": "您已提出過申請，我們會儘快與您聯絡。",
+    "draft_restored": "我們已恢復您先前填寫的內容。",
+    "clear_draft": "重新填寫",
+    "honeypot": "請將此欄位留空",
+    "unavailable": "申請表單尚未設定。請與商店聯絡。",
+    "section": {
+      "business": "企業資訊",
+      "contact": "聯絡人",
+      "addresses": "地址",
+      "tax": "稅務與文件",
+      "message": "留言",
+      "consent": "同意"
+    },
+    "field": {
+      "companyName": {
+        "label": "公司名稱"
+      },
+      "businessType": {
+        "label": "企業類型"
+      },
+      "website": {
+        "label": "網站",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "成立年份"
+      },
+      "locationsCount": {
+        "label": "據點數量"
+      },
+      "monthlyOrderValue": {
+        "label": "預計每月訂單金額"
+      },
+      "referral": {
+        "label": "您是如何得知我們的？"
+      },
+      "firstName": {
+        "label": "名字"
+      },
+      "lastName": {
+        "label": "姓氏"
+      },
+      "email": {
+        "label": "電子郵件",
+        "help": "我們會將申請進度寄送至此地址。"
+      },
+      "phone": {
+        "label": "電話"
+      },
+      "jobTitle": {
+        "label": "職稱"
+      },
+      "preferredLanguage": {
+        "label": "偏好語言"
+      },
+      "billingAddress": {
+        "label": "帳單地址"
+      },
+      "shippingAddress": {
+        "label": "運送地址"
+      },
+      "taxNumber": {
+        "label": "稅籍登記"
+      },
+      "certificates": {
+        "label": "證明文件",
+        "help": "例如轉售證明或免稅證明。"
+      },
+      "message": {
+        "label": "給商店的留言"
+      },
+      "consent": {
+        "label": "我同意將我的資料用於審核此申請。"
+      }
+    },
+    "business_type": {
+      "retail": "零售店",
+      "salon": "沙龍或水療中心",
+      "restaurant": "餐廳或咖啡廳",
+      "distributor": "經銷商",
+      "other": "其他"
+    },
+    "order_value": {
+      "lt1k": "少於 1,000",
+      "1k-5k": "1,000 至 5,000",
+      "5k-20k": "5,000 至 20,000",
+      "gt20k": "超過 20,000"
+    },
+    "address": {
+      "country": "國家/地區",
+      "address1": "地址",
+      "address2": "公寓、樓層、室等",
+      "city": "城市",
+      "zone": {
+        "state": "州",
+        "province": "省",
+        "region": "地區",
+        "county": "郡",
+        "prefecture": "都道府縣",
+        "emirate": "酋長國",
+        "governorate": "省份",
+        "state_and_territory": "州/領地"
+      },
+      "zip": {
+        "postal": "郵遞區號",
+        "zip": "ZIP 郵遞區號",
+        "pin": "PIN 碼",
+        "postcode": "郵編"
+      },
+      "same_as_billing": "與帳單地址相同"
+    },
+    "tax": {
+      "country": "稅籍登記國家/地區",
+      "vat": "VAT 號碼",
+      "vat_help": "請包含國家/地區字首，例如 DE123456789。",
+      "abn": "ABN（澳洲商業號碼）",
+      "gst": "GST/HST 號碼",
+      "us_resale": "轉售證明號碼",
+      "us_state": "核發證明的州",
+      "tax_id": "稅籍編號"
+    },
+    "upload": {
+      "add": "新增檔案",
+      "remove": "移除 {{ name }}",
+      "hint": "PDF、JPG 或 PNG 格式，每個檔案最大 5 MB，最多 3 個檔案。",
+      "expiry": "{{ name }} 的到期日（選填）",
+      "uploading": "正在上傳 {{ name }}…",
+      "done": "{{ name }} 已上傳",
+      "failed": "{{ name }} 無法上傳。請再試一次。"
+    },
+    "consent_privacy": "閱讀我們的隱私權政策",
+    "error": {
+      "summary": "請修正以下內容：",
+      "required": "請輸入{{ field }}。",
+      "choose": "請選擇{{ field }}。",
+      "consent": "請確認以繼續。",
+      "email": "請輸入電子郵件地址，例如 name@example.com。",
+      "url": "請輸入網址，例如 https://example.com。",
+      "phone": "請輸入有效的電話號碼。",
+      "number": "請輸入數字。",
+      "date": "請輸入有效日期。",
+      "too_long": "內容過長。最多可使用 {{ max }} 個字元。",
+      "file_type": "{{ name }} 不是 PDF、JPG 或 PNG 檔案。",
+      "file_size": "{{ name }} 超過 5 MB。",
+      "file_count": "最多可新增 3 個檔案。",
+      "file_pending": "請等候檔案上傳完成。",
+      "spam": "答案不正確。請再試一次。"
+    },
+    "success": {
+      "heading": "謝謝，您的申請已送出",
+      "body": "我們會進行審核，並以電子郵件回覆您。",
+      "email": "我們已寄送確認郵件給您。"
+    }
+  }
+}

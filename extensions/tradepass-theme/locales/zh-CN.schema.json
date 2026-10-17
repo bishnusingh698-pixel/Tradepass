@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "根据您的 Tradepass 店面设置，对零售访客隐藏价格，并显示“登录/申请”消息。必须开启才能隐藏价格。"
+  },
+  "form_block": {
+    "name": "批发申请表单",
+    "form_id": "表单 ID",
+    "form_id_info": "留空则使用默认表单。可在 Tradepass →“表单”中复制表单 ID。",
+    "show_heading": "显示标题",
+    "heading": "标题",
+    "heading_info": "留空则使用访客语言的默认文本。"
+  },
+  "apply_block": {
+    "name": "申请批发",
+    "style": "样式",
+    "style_button": "按钮",
+    "style_banner": "横幅",
+    "heading": "标题",
+    "text": "文本",
+    "button": "按钮标签",
+    "texts_info": "留空则使用访客语言的默认文本。",
+    "hide_for_b2b": "对已登录的批发买家隐藏"
+  }
+}

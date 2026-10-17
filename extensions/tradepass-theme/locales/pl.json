@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Ceny są widoczne dla zatwierdzonych klientów hurtowych. Zaloguj się lub złóż wniosek o konto hurtowe.",
+    "login": "Zaloguj się",
+    "apply": "Złóż wniosek o hurt",
+    "cart": "Niektóre produkty w koszyku są dostępne tylko dla zatwierdzonych klientów hurtowych."
+  },
+  "banner": {
+    "text": "Kupujesz dla firmy?",
+    "link": "Złóż wniosek o hurt"
+  },
+  "hint": {
+    "text": "Ceny hurtowe są dostępne dla zatwierdzonych firm."
+  },
+  "wall": {
+    "heading": "Tylko dla klientów hurtowych",
+    "message": "Ta strona jest dostępna dla zatwierdzonych klientów hurtowych. Zaloguj się lub złóż wniosek o konto hurtowe."
+  },
+  "brand": {
+    "powered_by": "Obsługiwane przez Tradepass"
+  },
+  "apply_block": {
+    "heading": "Kupujesz dla firmy?",
+    "text": "Złóż wniosek o konto hurtowe, aby zobaczyć ceny hurtowe i zamawiać większe ilości.",
+    "button": "Złóż wniosek o hurt"
+  },
+  "form": {
+    "heading": "Wniosek o konto hurtowe",
+    "intro": "Opowiedz nam o swojej firmie. Rozpatrujemy każdy wniosek i odpowiadamy e-mailem.",
+    "required_note": "Pola oznaczone * są wymagane.",
+    "optional": "(opcjonalnie)",
+    "select": "Wybierz…",
+    "submit": "Wyślij wniosek",
+    "sending": "Wysyłanie…",
+    "retrying": "Nadal wysyłamy. Będziemy próbować do minuty – odpowiedzi są bezpieczne.",
+    "failed": "Nie udało się wysłać wniosku. Odpowiedzi zapisano w tej przeglądarce. Spróbuj ponownie za kilka minut.",
+    "retry": "Spróbuj ponownie",
+    "rate_limited": "Niedawno otrzymaliśmy od Ciebie kilka wniosków. Spróbuj ponownie później.",
+    "duplicate": "Wniosek został już złożony. Skontaktujemy się.",
+    "draft_restored": "Przywróciliśmy wcześniej wpisane odpowiedzi.",
+    "clear_draft": "Zacznij od nowa",
+    "honeypot": "Pozostaw to pole puste",
+    "unavailable": "Formularz wniosku nie jest jeszcze skonfigurowany. Skontaktuj się ze sklepem.",
+    "section": {
+      "business": "Firma",
+      "contact": "Kontakt",
+      "addresses": "Adresy",
+      "tax": "Podatki i dokumenty",
+      "message": "Wiadomość",
+      "consent": "Zgoda"
+    },
+    "field": {
+      "companyName": {
+        "label": "Nazwa firmy"
+      },
+      "businessType": {
+        "label": "Rodzaj działalności"
+      },
+      "website": {
+        "label": "Strona internetowa",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "Rok założenia"
+      },
+      "locationsCount": {
+        "label": "Liczba lokalizacji"
+      },
+      "monthlyOrderValue": {
+        "label": "Przewidywana miesięczna wartość zamówień"
+      },
+      "referral": {
+        "label": "Skąd wiadomo o naszym sklepie?"
+      },
+      "firstName": {
+        "label": "Imię"
+      },
+      "lastName": {
+        "label": "Nazwisko"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "Na ten adres wyślemy informacje o wniosku."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Stanowisko"
+      },
+      "preferredLanguage": {
+        "label": "Preferowany język"
+      },
+      "billingAddress": {
+        "label": "Adres rozliczeniowy"
+      },
+      "shippingAddress": {
+        "label": "Adres wysyłki"
+      },
+      "taxNumber": {
+        "label": "Rejestracja podatkowa"
+      },
+      "certificates": {
+        "label": "Zaświadczenia",
+        "help": "Na przykład zaświadczenie o odsprzedaży lub zwolnieniu z podatku."
+      },
+      "message": {
+        "label": "Wiadomość do sklepu"
+      },
+      "consent": {
+        "label": "Wyrażam zgodę na wykorzystanie moich danych do rozpatrzenia tego wniosku."
+      }
+    },
+    "business_type": {
+      "retail": "Sklep detaliczny",
+      "salon": "Salon lub spa",
+      "restaurant": "Restauracja lub kawiarnia",
+      "distributor": "Dystrybutor",
+      "other": "Inne"
+    },
+    "order_value": {
+      "lt1k": "Poniżej 1000",
+      "1k-5k": "Od 1000 do 5000",
+      "5k-20k": "Od 5000 do 20 000",
+      "gt20k": "Powyżej 20 000"
+    },
+    "address": {
+      "country": "Kraj/region",
+      "address1": "Adres",
+      "address2": "Mieszkanie, lokal itp.",
+      "city": "Miasto",
+      "zone": {
+        "state": "Stan",
+        "province": "Prowincja",
+        "region": "Obszar",
+        "county": "Hrabstwo",
+        "prefecture": "Prefektura",
+        "emirate": "Emirat",
+        "governorate": "Gubernatorstwo",
+        "state_and_territory": "Stan/terytorium"
+      },
+      "zip": {
+        "postal": "Kod pocztowy",
+        "zip": "Kod ZIP",
+        "pin": "Kod PIN",
+        "postcode": "Kod poczt."
+      },
+      "same_as_billing": "Taki sam jak adres rozliczeniowy"
+    },
+    "tax": {
+      "country": "Kraj rejestracji podatkowej",
+      "vat": "Numer VAT",
+      "vat_help": "Podaj z prefiksem kraju, np. PL1234567890.",
+      "abn": "ABN (australijski numer firmy)",
+      "gst": "Numer GST/HST",
+      "us_resale": "Numer zaświadczenia o odsprzedaży",
+      "us_state": "Stan, który wydał zaświadczenie",
+      "tax_id": "Identyfikator podatkowy"
+    },
+    "upload": {
+      "add": "Dodaj plik",
+      "remove": "Usuń {{ name }}",
+      "hint": "PDF, JPG lub PNG, do 5 MB każdy, maksymalnie 3 pliki.",
+      "expiry": "Data ważności: {{ name }} (opcjonalnie)",
+      "uploading": "Przesyłanie {{ name }}…",
+      "done": "Przesłano {{ name }}",
+      "failed": "Nie udało się przesłać {{ name }}. Spróbuj ponownie."
+    },
+    "consent_privacy": "Przeczytaj politykę prywatności",
+    "error": {
+      "summary": "Popraw następujące elementy:",
+      "required": "Uzupełnij pole {{ field }}.",
+      "choose": "Wybierz: {{ field }}.",
+      "consent": "Potwierdź, aby kontynuować.",
+      "email": "Podaj adres e-mail w formacie nazwa@przyklad.pl.",
+      "url": "Podaj adres strony w formacie https://przyklad.pl.",
+      "phone": "Podaj prawidłowy numer telefonu.",
+      "number": "Podaj liczbę.",
+      "date": "Podaj prawidłową datę.",
+      "too_long": "Tekst jest za długi. Użyj maksymalnie {{ max }} znaków.",
+      "file_type": "{{ name }} nie jest plikiem PDF, JPG ani PNG.",
+      "file_size": "{{ name }} jest większy niż 5 MB.",
+      "file_count": "Można dodać maksymalnie 3 pliki.",
+      "file_pending": "Poczekaj na zakończenie przesyłania plików.",
+      "spam": "Odpowiedź się nie zgadza. Spróbuj ponownie."
+    },
+    "success": {
+      "heading": "Dziękujemy, wniosek został wysłany",
+      "body": "Rozpatrzymy go i odpowiemy e-mailem.",
+      "email": "Wysłaliśmy e-mail z potwierdzeniem."
+    }
+  }
+}

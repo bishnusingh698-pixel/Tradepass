@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Resetați textele în {language}?",
   "settings.texts.resetBody": "{count, plural, one {# text modificat revine la formularea inclusă.} few {# texte modificate revin la formularea inclusă.} other {# de texte modificate revin la formularea inclusă.}}",
   "settings.texts.resetConfirm": "Resetați textele",
-  "settings.texts.area.pages": "Paginile de actualizare a cererii și de reînnoire"
+  "settings.texts.area.pages": "Paginile de actualizare a cererii și de reînnoire",
+  "settings.assignment.heading": "Tier assignment",
+  "settings.assignment.label": "How buyers are put into their tier",
+  "settings.assignment.auto": "Automatic",
+  "settings.assignment.autoHelp": "Tradepass adds the company location to the tier's market in Shopify and checks that it worked.",
+  "settings.assignment.assisted": "Assisted",
+  "settings.assignment.assistedHelp": "You make the change in Shopify from a checklist on the Tiers page, and Tradepass confirms it. Use this if automatic assignment doesn't work on your store.",
+  "settings.assignment.note": "Changing this affects new approvals and tier changes only. Open checklist items stay on the Tiers page until you check them.",
+  "settings.error.assignment": "Choose automatic or assisted.",
+  "settings.activity.heading": "Activity history",
+  "settings.activity.body": "Download a CSV file of what Tradepass and your staff did: who, what, when and the result. It holds the latest {max} entries; entries older than 2 years are removed automatically.",
+  "settings.activity.button": "Export activity (CSV)",
+  "settings.activity.done": "Activity exported",
+  "settings.activity.truncated": "Exported the latest {max} entries",
+  "settings.activity.locked": "Activity export is available on the Pro plan."
 }

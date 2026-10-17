@@ -64,7 +64,8 @@ function body(over: Record<string, unknown> = {}, answers: Record<string, unknow
 const ctx = (ip = `10.0.${n % 250}.${Math.floor(Math.random() * 250)}`) => ({ shop: SHOP, loggedInCustomerId: null, ip: `${ip}#${rnd}` });
 
 beforeAll(async () => {
-  for (const shop of [SHOP, OTHER]) await db.shop.create({ data: { shop, name: "Test Store", settings: defaultSettings() as object } });
+  // Starter: these tests cover live tax-number checks, which the Free plan doesn't include (tests/plan-gaps.test.ts).
+  for (const shop of [SHOP, OTHER]) await db.shop.create({ data: { shop, name: "Test Store", settings: defaultSettings() as object, billingPlan: "starter" } });
   const f = await db.form.create({ data: { shop: SHOP, name: "Default", isDefault: true, definition: definition() as object } });
   formId = f.id;
 });

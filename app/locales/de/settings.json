@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "{language}-Texte zurücksetzen?",
   "settings.texts.resetBody": "{count, plural, one {# geänderter Text erhält wieder den integrierten Wortlaut.} other {# geänderte Texte erhalten wieder den integrierten Wortlaut.}}",
   "settings.texts.resetConfirm": "Texte zurücksetzen",
-  "settings.texts.area.pages": "Seiten für Antragsaktualisierung und Verlängerung"
+  "settings.texts.area.pages": "Seiten für Antragsaktualisierung und Verlängerung",
+  "settings.assignment.heading": "Stufenzuweisung",
+  "settings.assignment.label": "So werden Käufer ihrer Stufe zugeordnet",
+  "settings.assignment.auto": "Automatisch",
+  "settings.assignment.autoHelp": "Tradepass fügt den Unternehmensstandort in Shopify dem Markt der Stufe hinzu und prüft, ob es geklappt hat.",
+  "settings.assignment.assisted": "Unterstützt",
+  "settings.assignment.assistedHelp": "Sie nehmen die Änderung anhand einer Checkliste auf der Seite „Stufen“ in Shopify vor, und Tradepass bestätigt sie. Nutzen Sie dies, wenn die automatische Zuweisung in Ihrem Shop nicht funktioniert.",
+  "settings.assignment.note": "Eine Änderung wirkt sich nur auf neue Genehmigungen und Stufenwechsel aus. Offene Checklistenpunkte bleiben auf der Seite „Stufen“, bis Sie sie prüfen.",
+  "settings.error.assignment": "Wählen Sie „Automatisch“ oder „Unterstützt“.",
+  "settings.activity.heading": "Aktivitätsverlauf",
+  "settings.activity.body": "Laden Sie eine CSV-Datei mit allen Aktionen von Tradepass und Ihren Mitarbeitern herunter: wer, was, wann und mit welchem Ergebnis. Sie enthält die neuesten {max} Einträge; Einträge, die älter als 2 Jahre sind, werden automatisch entfernt.",
+  "settings.activity.button": "Aktivität exportieren (CSV)",
+  "settings.activity.done": "Aktivität exportiert",
+  "settings.activity.truncated": "Die neuesten {max} Einträge wurden exportiert",
+  "settings.activity.locked": "Der Aktivitätsexport ist im Pro-Tarif verfügbar."
 }

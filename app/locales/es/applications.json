@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Se pidió más información",
   "applications.activity.application.updated": "El solicitante envió una actualización",
   "applications.activity.application.note": "Nota añadida",
-  "applications.activity.application.assign": "Asignación cambiada"
+  "applications.activity.application.assign": "Asignación cambiada",
+  "applications.taxCheck.skipped": "Sin verificar en su plan",
+  "applications.detail.taxCheckPlan": "Los números fiscales se verifican en registros oficiales a partir del plan {plan}. Compruebe este número manualmente o mejore su plan para verificar automáticamente las nuevas solicitudes."
 }

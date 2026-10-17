@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Skjuler priser for detailbesøgende og viser beskeden Log ind/Ansøg ud fra dine Tradepass-indstillinger for butiksfacaden. Skal være slået til, for at priser kan skjules."
+  },
+  "form_block": {
+    "name": "Engrosansøgning",
+    "form_id": "Formular-id",
+    "form_id_info": "Lad feltet være tomt for at bruge din standardformular. Kopiér en formulars id fra Tradepass → Formular.",
+    "show_heading": "Vis overskrift",
+    "heading": "Overskrift",
+    "heading_info": "Lad feltet være tomt for at bruge standardteksten på den besøgendes sprog."
+  },
+  "apply_block": {
+    "name": "Ansøg om engroskøb",
+    "style": "Stil",
+    "style_button": "Som knap",
+    "style_banner": "Som banner",
+    "heading": "Overskrift",
+    "text": "Tekst",
+    "button": "Knaptekst",
+    "texts_info": "Lad feltet være tomt for at bruge standardteksten på den besøgendes sprog.",
+    "hide_for_b2b": "Skjul for engroskøbere, der er logget ind"
+  }
+}

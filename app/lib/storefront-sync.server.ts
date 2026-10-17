@@ -3,7 +3,8 @@
 // json), so price gating, the Apply buttons and the form render while our
 // server sleeps (hard constraint 2). Liquid reads them as
 // `app.metafields.tradepass.<key>.value`.
-//   config — access mode, scope, colours, selectors, URLs, hidden pages, debug
+//   config — access mode, scope, colours, selectors, URLs, hidden pages, debug,
+//            brand (the "Powered by Tradepass" link URL on Free, otherwise null)
 //   gated  — { h: product handles, more: bool } for collections/products/tags scope
 //   texts  — merchant overrides of the extension's locale keys, per locale
 //   forms  — { default, forms: { id: { name, tier, def } } } (spam answers removed)
@@ -11,7 +12,7 @@
 import db from "../db.server";
 import { gql, mutate, type Admin } from "./gql.server";
 import { readSettings, type Settings } from "./settings";
-import { effectivePlan, can } from "./plans";
+import { effectivePlan, can, type PlanId } from "./plans";
 import { readDefinition } from "./forms.server";
 import type { FormDefinition } from "./form-defaults";
 import { ensureCheckoutLock } from "./checkout-lock.server";
@@ -21,6 +22,8 @@ export const NAMESPACE = "tradepass";
 /** Handles listed for card/quick-add gating. Each costs ~30 bytes on every storefront page. */
 export const GATED_HANDLE_CAP = 1000;
 export const JSON_LIMIT_BYTES = 128 * 1024;
+/** Where the Free plan's "Powered by Tradepass" link on the application form points (the App Store listing). */
+export const POWERED_BY_URL = "https://apps.shopify.com/tradepass";
 const NODES_BATCH = 100;
 
 type Json = Record<string, unknown>;
@@ -75,6 +78,7 @@ export type StorefrontConfig = {
   hidePages: string[];
   debugUntil: string | null;
   tiers: Record<string, Record<string, string>>; // tier id → buyer-facing names per locale
+  brand: string | null; // "Powered by Tradepass" link URL; null on plans with "no_branding"
 };
 
 const COLOR = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
@@ -113,7 +117,13 @@ function deepClean<T>(v: T): T {
   return v;
 }
 
-export function buildConfig(settings: Settings, collectionHandles: string[], tiers: { id: string; buyerNames: unknown }[], now = new Date()): StorefrontConfig {
+export function buildConfig(
+  settings: Settings,
+  collectionHandles: string[],
+  tiers: { id: string; buyerNames: unknown }[],
+  now = new Date(),
+  plan: PlanId = "free",
+): StorefrontConfig {
   const sf = settings.storefront;
   const until = settings.debug.storefrontUntil;
   const tierNames: StorefrontConfig["tiers"] = {};
@@ -143,6 +153,7 @@ export function buildConfig(settings: Settings, collectionHandles: string[], tie
     hidePages: sf.accessMode === "wholesale_only" ? sf.hidePages.map((h) => h.trim().toLowerCase()).filter((h) => HANDLE.test(h)).slice(0, 50) : [],
     debugUntil: until && new Date(until) > now ? until : null,
     tiers: tierNames,
+    brand: can(plan, "no_branding") ? null : POWERED_BY_URL,
   };
 }
 
@@ -302,7 +313,7 @@ export async function syncStorefrontConfig(admin: Admin, shop: string): Promise<
   const collectionHandles = sf.scope.type === "collections" ? await handlesOf(admin, sf.scope.ids.filter((x) => x.startsWith("gid://shopify/Collection/"))) : [];
   const gated = await resolveGatedHandles(admin, settings);
   await writeMetafields(admin, ownerId, {
-    config: buildConfig(settings, collectionHandles, tiers),
+    config: buildConfig(settings, collectionHandles, tiers, new Date(), plan),
     gated,
     texts: buildTexts(settings),
     forms: buildForms(forms, can(plan, "multiple_forms")),

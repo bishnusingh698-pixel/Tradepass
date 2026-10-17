@@ -16,6 +16,9 @@
     "heading": "Alleen voor groothandelsklanten",
     "message": "Deze pagina is beschikbaar voor goedgekeurde groothandelsklanten. Log in of vraag een groothandelsaccount aan."
   },
+  "brand": {
+    "powered_by": "Mogelijk gemaakt door Tradepass"
+  },
   "apply_block": {
     "heading": "Koopt u voor een bedrijf?",
     "text": "Vraag een groothandelsaccount aan om handelsprijzen te zien en in grote aantallen te bestellen.",
@@ -47,25 +50,66 @@
       "consent": "Toestemming"
     },
     "field": {
-      "companyName": { "label": "Bedrijfsnaam" },
-      "businessType": { "label": "Type bedrijf" },
-      "website": { "label": "Website", "placeholder": "https://" },
-      "yearEstablished": { "label": "Oprichtingsjaar" },
-      "locationsCount": { "label": "Aantal locaties" },
-      "monthlyOrderValue": { "label": "Verwachte bestelwaarde per maand" },
-      "referral": { "label": "Hoe hebt u ons gevonden?" },
-      "firstName": { "label": "Voornaam" },
-      "lastName": { "label": "Achternaam" },
-      "email": { "label": "E-mail", "help": "We sturen updates over uw aanvraag naar dit adres." },
-      "phone": { "label": "Telefoon" },
-      "jobTitle": { "label": "Functie" },
-      "preferredLanguage": { "label": "Voorkeurstaal" },
-      "billingAddress": { "label": "Factuuradres" },
-      "shippingAddress": { "label": "Verzendadres" },
-      "taxNumber": { "label": "Fiscale registratie" },
-      "certificates": { "label": "Certificaten", "help": "Bijvoorbeeld een wederverkoopcertificaat of certificaat van belastingvrijstelling." },
-      "message": { "label": "Bericht aan de winkel" },
-      "consent": { "label": "Ik ga ermee akkoord dat mijn gegevens worden gebruikt om deze aanvraag te beoordelen." }
+      "companyName": {
+        "label": "Bedrijfsnaam"
+      },
+      "businessType": {
+        "label": "Type bedrijf"
+      },
+      "website": {
+        "label": "Website",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Oprichtingsjaar"
+      },
+      "locationsCount": {
+        "label": "Aantal locaties"
+      },
+      "monthlyOrderValue": {
+        "label": "Verwachte bestelwaarde per maand"
+      },
+      "referral": {
+        "label": "Hoe hebt u ons gevonden?"
+      },
+      "firstName": {
+        "label": "Voornaam"
+      },
+      "lastName": {
+        "label": "Achternaam"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "We sturen updates over uw aanvraag naar dit adres."
+      },
+      "phone": {
+        "label": "Telefoon"
+      },
+      "jobTitle": {
+        "label": "Functie"
+      },
+      "preferredLanguage": {
+        "label": "Voorkeurstaal"
+      },
+      "billingAddress": {
+        "label": "Factuuradres"
+      },
+      "shippingAddress": {
+        "label": "Verzendadres"
+      },
+      "taxNumber": {
+        "label": "Fiscale registratie"
+      },
+      "certificates": {
+        "label": "Certificaten",
+        "help": "Bijvoorbeeld een wederverkoopcertificaat of certificaat van belastingvrijstelling."
+      },
+      "message": {
+        "label": "Bericht aan de winkel"
+      },
+      "consent": {
+        "label": "Ik ga ermee akkoord dat mijn gegevens worden gebruikt om deze aanvraag te beoordelen."
+      }
     },
     "business_type": {
       "retail": "Winkel",

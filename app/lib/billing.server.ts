@@ -32,7 +32,7 @@ export function remainingTrialDays(plan: Exclude<PlanId, "free">, trialStartedAt
   return Math.max(0, full - used);
 }
 
-type BillingCtx = Pick<AdminContext, "billing" | "shop" | "shopRow">;
+type BillingCtx = Pick<AdminContext, "billing" | "shop" | "shopRow"> & Partial<Pick<AdminContext, "admin">>;
 
 /** Read the active subscription from Shopify and store it. */
 export async function syncBilling(ctx: BillingCtx): Promise<PlanId> {
@@ -44,6 +44,8 @@ export async function syncBilling(ctx: BillingCtx): Promise<PlanId> {
     where: { shop: ctx.shop },
     data: { billingPlan: plan, subscriptionGid: active?.id ?? null, ...(trialStart ? { trialStartedAt: trialStart } : {}) },
   });
+  // The storefront config carries plan-dependent parts (the Free plan's "Powered by Tradepass" link).
+  if (ctx.admin && plan !== (ctx.shopRow?.billingPlan ?? "free")) await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
   return plan;
 }
 

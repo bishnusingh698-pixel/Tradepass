@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Priser visas för godkända grossistkunder. Logga in eller ansök om ett grossistkonto.",
+    "login": "Logga in",
+    "apply": "Ansök om grossistköp",
+    "cart": "Vissa artiklar i din varukorg är bara tillgängliga för godkända grossistkunder."
+  },
+  "banner": {
+    "text": "Handlar du för ett företag?",
+    "link": "Ansök om grossistköp"
+  },
+  "hint": {
+    "text": "Grossistpriser finns för godkända företag."
+  },
+  "wall": {
+    "heading": "Endast för grossistkunder",
+    "message": "Den här sidan är tillgänglig för godkända grossistkunder. Logga in eller ansök om ett grossistkonto."
+  },
+  "brand": {
+    "powered_by": "Drivs av Tradepass"
+  },
+  "apply_block": {
+    "heading": "Handlar du för ett företag?",
+    "text": "Ansök om ett grossistkonto för att se handelspriser och beställa i större mängder.",
+    "button": "Ansök om grossistköp"
+  },
+  "form": {
+    "heading": "Ansök om ett grossistkonto",
+    "intro": "Berätta om din verksamhet. Vi granskar varje ansökan och svarar via e-post.",
+    "required_note": "Fält markerade med * är obligatoriska.",
+    "optional": "(valfritt)",
+    "select": "Välj…",
+    "submit": "Skicka ansökan",
+    "sending": "Skickar…",
+    "retrying": "Skickar fortfarande. Vi fortsätter att försöka i upp till en minut – dina svar är sparade.",
+    "failed": "Vi kunde inte skicka din ansökan. Dina svar är sparade i den här webbläsaren. Försök igen om några minuter.",
+    "retry": "Försök igen",
+    "rate_limited": "Vi har nyligen fått flera ansökningar från dig. Försök igen senare.",
+    "duplicate": "Du har redan ansökt. Vi hör av oss.",
+    "draft_restored": "Vi har återställt svaren du fyllde i tidigare.",
+    "clear_draft": "Börja om",
+    "honeypot": "Lämna fältet tomt",
+    "unavailable": "Ansökningsformuläret är inte konfigurerat än. Kontakta butiken.",
+    "section": {
+      "business": "Företag",
+      "contact": "Kontaktuppgifter",
+      "addresses": "Adresser",
+      "tax": "Skatt och dokument",
+      "message": "Meddelande",
+      "consent": "Samtycke"
+    },
+    "field": {
+      "companyName": {
+        "label": "Företagsnamn"
+      },
+      "businessType": {
+        "label": "Verksamhetstyp"
+      },
+      "website": {
+        "label": "Webbplats",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Grundat år"
+      },
+      "locationsCount": {
+        "label": "Antal platser"
+      },
+      "monthlyOrderValue": {
+        "label": "Förväntat ordervärde per månad"
+      },
+      "referral": {
+        "label": "Hur hittade du oss?"
+      },
+      "firstName": {
+        "label": "Förnamn"
+      },
+      "lastName": {
+        "label": "Efternamn"
+      },
+      "email": {
+        "label": "E-post",
+        "help": "Vi skickar uppdateringar om din ansökan till den här adressen."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Befattning"
+      },
+      "preferredLanguage": {
+        "label": "Önskat språk"
+      },
+      "billingAddress": {
+        "label": "Faktureringsadress"
+      },
+      "shippingAddress": {
+        "label": "Leveransadress"
+      },
+      "taxNumber": {
+        "label": "Skatteregistrering"
+      },
+      "certificates": {
+        "label": "Certifikat",
+        "help": "Till exempel ett återförsäljarintyg eller intyg om skattebefrielse."
+      },
+      "message": {
+        "label": "Meddelande till butiken"
+      },
+      "consent": {
+        "label": "Jag godkänner att mina uppgifter används för att granska ansökan."
+      }
+    },
+    "business_type": {
+      "retail": "Butik",
+      "salon": "Salong eller spa",
+      "restaurant": "Restaurang eller kafé",
+      "distributor": "Distributör",
+      "other": "Annat"
+    },
+    "order_value": {
+      "lt1k": "Mindre än 1 000",
+      "1k-5k": "1 000 till 5 000",
+      "5k-20k": "5 000 till 20 000",
+      "gt20k": "Mer än 20 000"
+    },
+    "address": {
+      "country": "Land/region",
+      "address1": "Adress",
+      "address2": "Lägenhet, våning osv.",
+      "city": "Ort",
+      "zone": {
+        "state": "Delstat",
+        "province": "Provins",
+        "region": "Region",
+        "county": "Län",
+        "prefecture": "Prefektur",
+        "emirate": "Emirat",
+        "governorate": "Guvernement",
+        "state_and_territory": "Delstat/territorium"
+      },
+      "zip": {
+        "postal": "Postnummer",
+        "zip": "Postnummer (ZIP)",
+        "pin": "PIN-kod",
+        "postcode": "Postnummer"
+      },
+      "same_as_billing": "Samma som faktureringsadress"
+    },
+    "tax": {
+      "country": "Land för skatteregistrering",
+      "vat": "Momsregistreringsnummer",
+      "vat_help": "Ta med landsprefixet, till exempel SE123456789001.",
+      "abn": "ABN (Australian Business Number)",
+      "gst": "GST/HST-nummer",
+      "us_resale": "Nummer på återförsäljarintyg",
+      "us_state": "Delstat som utfärdade intyget",
+      "tax_id": "Skatte-ID"
+    },
+    "upload": {
+      "add": "Lägg till fil",
+      "remove": "Ta bort {{ name }}",
+      "hint": "PDF, JPG eller PNG, högst 5 MB per fil, högst 3 filer.",
+      "expiry": "Utgångsdatum för {{ name }} (valfritt)",
+      "uploading": "Laddar upp {{ name }}…",
+      "done": "{{ name }} har laddats upp",
+      "failed": "{{ name }} kunde inte laddas upp. Försök igen."
+    },
+    "consent_privacy": "Läs vår integritetspolicy",
+    "error": {
+      "summary": "Rätta följande:",
+      "required": "Ange {{ field }}.",
+      "choose": "Välj {{ field }}.",
+      "consent": "Bekräfta för att fortsätta.",
+      "email": "Ange en e-postadress som namn@exempel.se.",
+      "url": "Ange en webbadress som https://exempel.se.",
+      "phone": "Ange ett giltigt telefonnummer.",
+      "number": "Ange ett tal.",
+      "date": "Ange ett giltigt datum.",
+      "too_long": "Texten är för lång. Använd högst {{ max }} tecken.",
+      "file_type": "{{ name }} är inte en PDF-, JPG- eller PNG-fil.",
+      "file_size": "{{ name }} är större än 5 MB.",
+      "file_count": "Du kan lägga till högst 3 filer.",
+      "file_pending": "Vänta tills dina filer har laddats upp.",
+      "spam": "Svaret stämmer inte. Försök igen."
+    },
+    "success": {
+      "heading": "Tack! Din ansökan har skickats",
+      "body": "Vi granskar den och återkommer till dig via e-post.",
+      "email": "Vi har skickat ett bekräftelsemejl till dig."
+    }
+  }
+}

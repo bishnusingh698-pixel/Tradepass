@@ -271,5 +271,79 @@
     "note": "Select option: texts of hosted pages applicants open from emails.",
     "maxLength": 50,
     "placeholders": []
+  },
+  "settings.assignment.heading": {
+    "note": "Settings section heading for how buyers are put into their tier's B2B market.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.assignment.label": {
+    "note": "Label of the radio group choosing automatic or assisted tier assignment.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "settings.assignment.auto": {
+    "note": "Radio option: Tradepass adds the company location to the tier's B2B market itself.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.assignment.autoHelp": {
+    "note": "Help text under the Automatic option.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "settings.assignment.assisted": {
+    "note": "Radio option: the merchant makes the market change in Shopify admin from a checklist.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.assignment.assistedHelp": {
+    "note": "Help text under the Assisted option.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "settings.assignment.note": {
+    "note": "Note under the tier assignment options.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "settings.error.assignment": {
+    "note": "Inline error on the tier assignment radio group (invalid value).",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "settings.activity.heading": {
+    "note": "Settings section heading for downloading the activity log.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.activity.body": {
+    "note": "Section text above the activity export button. max is a number (10000), formatted for the locale.",
+    "maxLength": 260,
+    "placeholders": [
+      "max"
+    ]
+  },
+  "settings.activity.button": {
+    "note": "Button that downloads the activity log as a CSV file.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.activity.done": {
+    "note": "Toast after the activity CSV downloaded.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "settings.activity.truncated": {
+    "note": "Toast after the activity CSV downloaded but was cut at 10,000 rows. max is a number (10000), formatted for the locale.",
+    "maxLength": 60,
+    "placeholders": [
+      "max"
+    ]
+  },
+  "settings.activity.locked": {
+    "note": "Error banner if a lower plan tries to export activity.",
+    "maxLength": 100,
+    "placeholders": []
   }
 }

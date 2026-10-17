@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Skjuler priser for besøkende fra detaljhandelen og viser meldingen Logg inn/Søk basert på Tradepass-innstillingene for butikkfronten. Må være på for at priser skal skjules."
+  },
+  "form_block": {
+    "name": "Engrossøknad",
+    "form_id": "Skjema-ID",
+    "form_id_info": "La feltet stå tomt for å bruke standardskjemaet. Kopier ID-en til et skjema fra Tradepass → Skjema.",
+    "show_heading": "Vis overskrift",
+    "heading": "Overskrift",
+    "heading_info": "La feltet stå tomt for å bruke standardteksten på den besøkendes språk."
+  },
+  "apply_block": {
+    "name": "Søk om engroskjøp",
+    "style": "Stil",
+    "style_button": "Som knapp",
+    "style_banner": "Som banner",
+    "heading": "Overskrift",
+    "text": "Tekst",
+    "button": "Knappetekst",
+    "texts_info": "La feltet stå tomt for å bruke standardteksten på den besøkendes språk.",
+    "hide_for_b2b": "Skjul for innloggede engroskjøpere"
+  }
+}

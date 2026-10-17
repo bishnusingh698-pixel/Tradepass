@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Informations supplémentaires demandées",
   "applications.activity.application.updated": "Le demandeur a envoyé une mise à jour",
   "applications.activity.application.note": "Note ajoutée",
-  "applications.activity.application.assign": "Attribution modifiée"
+  "applications.activity.application.assign": "Attribution modifiée",
+  "applications.taxCheck.skipped": "Non vérifié avec votre forfait",
+  "applications.detail.taxCheckPlan": "Les numéros fiscaux sont vérifiés auprès des registres officiels à partir du forfait {plan}. Vérifiez celui-ci manuellement, ou passez à un forfait supérieur pour vérifier automatiquement les nouvelles demandes."
 }

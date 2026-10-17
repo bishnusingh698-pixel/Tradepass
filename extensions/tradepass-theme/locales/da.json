@@ -1,0 +1,193 @@
+{
+  "gate": {
+    "message": "Priser vises for godkendte engroskunder. Log ind, eller ansøg om en engroskonto.",
+    "login": "Log ind",
+    "apply": "Ansøg om engroskøb",
+    "cart": "Nogle varer i din kurv er kun tilgængelige for godkendte engroskunder."
+  },
+  "banner": {
+    "text": "Køber du til en virksomhed?",
+    "link": "Ansøg om engroskøb"
+  },
+  "hint": {
+    "text": "Engrospriser er tilgængelige for godkendte virksomheder."
+  },
+  "wall": {
+    "heading": "Kun for engroskunder",
+    "message": "Denne side er tilgængelig for godkendte engroskunder. Log ind, eller ansøg om en engroskonto."
+  },
+  "brand": {
+    "powered_by": "Drevet af Tradepass"
+  },
+  "apply_block": {
+    "heading": "Køber du til en virksomhed?",
+    "text": "Ansøg om en engroskonto for at se forhandlerpriser og bestille i større mængder.",
+    "button": "Ansøg om engroskøb"
+  },
+  "form": {
+    "heading": "Ansøg om en engroskonto",
+    "intro": "Fortæl os om din virksomhed. Vi gennemgår alle ansøgninger og svarer via e-mail.",
+    "required_note": "Felter markeret med * skal udfyldes.",
+    "optional": "(valgfrit)",
+    "select": "Vælg…",
+    "submit": "Send ansøgning",
+    "sending": "Sender…",
+    "retrying": "Sender stadig. Vi bliver ved med at prøve i op til et minut. Dine svar er i sikkerhed.",
+    "failed": "Vi kunne ikke sende din ansøgning. Dine svar er gemt i denne browser. Prøv igen om et par minutter.",
+    "retry": "Prøv igen",
+    "rate_limited": "Vi har for nylig modtaget flere ansøgninger fra dig. Prøv igen senere.",
+    "duplicate": "Du har allerede ansøgt. Vi vender tilbage.",
+    "draft_restored": "Vi har gendannet de svar, du indtastede tidligere.",
+    "clear_draft": "Start forfra",
+    "honeypot": "Lad dette felt være tomt",
+    "unavailable": "Ansøgningsformularen er ikke sat op endnu. Kontakt butikken.",
+    "section": {
+      "business": "Virksomhed",
+      "contact": "Kontakt",
+      "addresses": "Adresser",
+      "tax": "Moms og dokumenter",
+      "message": "Besked",
+      "consent": "Samtykke"
+    },
+    "field": {
+      "companyName": {
+        "label": "Virksomhedsnavn"
+      },
+      "businessType": {
+        "label": "Virksomhedstype"
+      },
+      "website": {
+        "label": "Websted",
+        "placeholder": "https://…"
+      },
+      "yearEstablished": {
+        "label": "Etableringsår"
+      },
+      "locationsCount": {
+        "label": "Antal lokationer"
+      },
+      "monthlyOrderValue": {
+        "label": "Forventet månedlig ordreværdi"
+      },
+      "referral": {
+        "label": "Hvordan hørte du om os?"
+      },
+      "firstName": {
+        "label": "Fornavn"
+      },
+      "lastName": {
+        "label": "Efternavn"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "Vi sender opdateringer om din ansøgning til denne adresse."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Stillingsbetegnelse"
+      },
+      "preferredLanguage": {
+        "label": "Foretrukket sprog"
+      },
+      "billingAddress": {
+        "label": "Faktureringsadresse"
+      },
+      "shippingAddress": {
+        "label": "Leveringsadresse"
+      },
+      "taxNumber": {
+        "label": "Momsregistrering"
+      },
+      "certificates": {
+        "label": "Certifikater",
+        "help": "F.eks. et videresalgscertifikat eller et certifikat for afgiftsfritagelse."
+      },
+      "message": {
+        "label": "Besked til butikken"
+      },
+      "consent": {
+        "label": "Jeg accepterer, at mine oplysninger bruges til at behandle denne ansøgning."
+      }
+    },
+    "business_type": {
+      "retail": "Detailbutik",
+      "salon": "Salon eller spa",
+      "restaurant": "Restaurant eller café",
+      "distributor": "Distributør",
+      "other": "Andet"
+    },
+    "order_value": {
+      "lt1k": "Under 1.000",
+      "1k-5k": "1.000 til 5.000",
+      "5k-20k": "5.000 til 20.000",
+      "gt20k": "Over 20.000"
+    },
+    "address": {
+      "country": "Land/område",
+      "address1": "Adresse",
+      "address2": "Lejlighed, suite osv.",
+      "city": "By",
+      "zone": {
+        "state": "Stat",
+        "province": "Provins",
+        "region": "Landsdel",
+        "county": "Amt",
+        "prefecture": "Præfektur",
+        "emirate": "Emirat",
+        "governorate": "Guvernement",
+        "state_and_territory": "Stat/territorium"
+      },
+      "zip": {
+        "postal": "Postnummer",
+        "zip": "Postnummer (ZIP)",
+        "pin": "PIN-kode",
+        "postcode": "Postnr."
+      },
+      "same_as_billing": "Samme som faktureringsadressen"
+    },
+    "tax": {
+      "country": "Land for momsregistrering",
+      "vat": "Momsnummer",
+      "vat_help": "Medtag landepræfikset, f.eks. DK12345678.",
+      "abn": "ABN (australsk virksomhedsnummer)",
+      "gst": "GST/HST-nummer",
+      "us_resale": "Nummer på videresalgscertifikat",
+      "us_state": "Stat, der udstedte certifikatet",
+      "tax_id": "Skatte-id"
+    },
+    "upload": {
+      "add": "Tilføj fil",
+      "remove": "Fjern {{ name }}",
+      "hint": "PDF, JPG eller PNG, op til 5 MB pr. fil, højst 3 filer.",
+      "expiry": "Udløbsdato for {{ name }} (valgfri)",
+      "uploading": "Uploader {{ name }}…",
+      "done": "{{ name }} er uploadet",
+      "failed": "{{ name }} kunne ikke uploades. Prøv igen."
+    },
+    "consent_privacy": "Læs vores privatlivspolitik",
+    "error": {
+      "summary": "Ret følgende:",
+      "required": "Udfyld {{ field }}.",
+      "choose": "Vælg {{ field }}.",
+      "consent": "Bekræft for at fortsætte.",
+      "email": "Angiv en e-mailadresse som navn@eksempel.dk.",
+      "url": "Angiv en webadresse som https://eksempel.dk.",
+      "phone": "Angiv et gyldigt telefonnummer.",
+      "number": "Angiv et tal.",
+      "date": "Angiv en gyldig dato.",
+      "too_long": "Teksten er for lang. Brug højst {{ max }} tegn.",
+      "file_type": "{{ name }} er ikke en PDF-, JPG- eller PNG-fil.",
+      "file_size": "{{ name }} er større end 5 MB.",
+      "file_count": "Du kan tilføje op til 3 filer.",
+      "file_pending": "Vent, til dine filer er uploadet.",
+      "spam": "Svaret passer ikke. Prøv igen."
+    },
+    "success": {
+      "heading": "Tak! Din ansøgning er sendt",
+      "body": "Vi gennemgår den og vender tilbage til dig via e-mail.",
+      "email": "Vi har sendt dig en bekræftelse via e-mail."
+    }
+  }
+}

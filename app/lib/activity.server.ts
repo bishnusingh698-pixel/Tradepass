@@ -39,7 +39,7 @@ export const ACTIVITY_CSV_COLUMNS = ["createdAt", "actor", "action", "subject", 
 
 // Detail is meant to hold ids and codes only; these are dropped anyway in case an entry ever carried them.
 const SECRET_KEY = /secret|token|password|passwd|apikey|api_key|signature|hmac|cookie|authorization/i;
-const PERSONAL_KEY = /email|phone|address|taxnumber|tax_number|firstname|lastname|first_name|last_name|ip/i;
+const PERSONAL_KEY = /^(e-?mail|phone|address\d?|billingAddress|shippingAddress|taxNumber|tax_number|firstName|lastName|first_name|last_name|name|contactName|company|companyName|ip|ipHash)$/i;
 const EMAIL_IN_TEXT = /[^\s@<>()"',;]+@[^\s@<>()"',;]+\.[A-Za-z]{2,}/g;
 
 function cleanValue(v: unknown, depth: number): unknown {

@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Tradepass 스토어프론트 설정에 따라 일반 방문자에게 가격을 숨기고 로그인/신청 메시지를 표시합니다. 가격을 숨기려면 켜야 합니다."
+  },
+  "form_block": {
+    "name": "도매 신청서 양식",
+    "form_id": "양식 ID",
+    "form_id_info": "비워 두면 기본 양식이 사용됩니다. 양식 ID는 Tradepass → 양식에서 복사하십시오.",
+    "show_heading": "제목 표시",
+    "heading": "제목",
+    "heading_info": "비워 두면 방문자 언어의 기본 텍스트가 사용됩니다."
+  },
+  "apply_block": {
+    "name": "도매 신청하기",
+    "style": "스타일",
+    "style_button": "버튼",
+    "style_banner": "배너",
+    "heading": "제목",
+    "text": "텍스트",
+    "button": "버튼 레이블",
+    "texts_info": "비워 두면 방문자 언어의 기본 텍스트가 사용됩니다.",
+    "hide_for_b2b": "로그인한 도매 구매자에게는 숨기기"
+  }
+}

@@ -163,7 +163,7 @@ export default function Applications() {
             </s-select>
             <s-select label={t("applications.filter.taxCheck")} value={data.filters.taxCheck ?? ""} onChange={(e) => setParam("taxCheck", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
               <s-option value="">{t("applications.filter.any")}</s-option>
-              {["verified", "not_verified", "unavailable", "na"].map((v) => (
+              {["verified", "not_verified", "unavailable", "skipped", "na"].map((v) => (
                 <s-option key={v} value={v}>{t(`applications.taxCheck.${v}`)}</s-option>
               ))}
             </s-select>
