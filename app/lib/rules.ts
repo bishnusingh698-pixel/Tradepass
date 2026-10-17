@@ -109,3 +109,5 @@ export function errorCodeOf(e: unknown): string {
   if (x.step) return `step:${x.step}`;
   return x.name && x.name !== "Error" ? x.name : String(x.message ?? "error").split(":")[0].slice(0, 60);
 }
+
+export const MAX_RULES = 50;

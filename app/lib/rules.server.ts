@@ -6,7 +6,7 @@ import { readSettings } from "./settings";
 import { APPROVAL_STEPS, approvalDefaults, approveApplication, undoApproval, type ApprovalCtx } from "./approval.server";
 import { rejectApplication } from "./applications.server";
 import { pauseBuyers } from "./buyers.server";
-import { domainOf, errorCodeOf, pickRule, type ApproveAction, type RejectAction, type RuleConditions, type RuleDef, type ApplicationFacts } from "./rules";
+import { domainOf, errorCodeOf, MAX_RULES, pickRule, type ApproveAction, type RejectAction, type RuleConditions, type RuleDef, type ApplicationFacts } from "./rules";
 
 export * from "./rules";
 
@@ -145,7 +145,6 @@ export async function reverseAutoDecision(ctx: ApprovalCtx, applicationId: strin
 // ---------------------------------------------------------------------------
 // Rule storage for the Automation page.
 
-export const MAX_RULES = 50;
 
 export async function listRules(shop: string): Promise<(RuleDef & { id: string })[]> {
   const rows = await db.rule.findMany({ where: { shop }, orderBy: [{ kind: "asc" }, { position: "asc" }] });

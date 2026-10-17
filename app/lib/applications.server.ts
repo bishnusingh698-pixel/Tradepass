@@ -10,8 +10,8 @@ import type { Admin } from "./gql.server";
 // needs info, notes). Intake lives in intake.server.ts; approval in
 // approval.server.ts.
 
-export const TABS = ["pending", "needs_info", "approved", "rejected", "all"] as const;
-export type Tab = (typeof TABS)[number];
+import { TABS, type Tab } from "./applications";
+export { TABS, type Tab };
 export const PAGE_SIZE = 25;
 export const MORE_INFO_DAYS = 14;
 

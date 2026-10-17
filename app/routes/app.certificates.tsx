@@ -8,9 +8,9 @@ import db from "../db.server";
 import { adminContext } from "../lib/context.server";
 import { can, requiredPlan } from "../lib/plans";
 import {
-  approveCertificate, certificateFlags, certificateStatus, CERTIFICATE_TYPES, decideOnExpiry, exemptionForCertificate,
-  maskedNumber, rejectCertificate, sendRenewalRequest, setCertificateExpiry, daysUntil,
+  approveCertificate, decideOnExpiry, exemptionForCertificate, maskedNumber, rejectCertificate, sendRenewalRequest, setCertificateExpiry,
 } from "../lib/certificates.server";
+import { certificateFlags, certificateStatus, CERTIFICATE_TYPES, daysUntil } from "../lib/certificates";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 

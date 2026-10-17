@@ -8,7 +8,6 @@ import { adminContext } from "../lib/context.server";
 import { addNote, getApplication, rejectApplication, requestMoreInfo, setAssignee } from "../lib/applications.server";
 import type { FormDefinition } from "../lib/form-defaults";
 import { defaultFormDefinition } from "../lib/form-defaults";
-import { numericId } from "../lib/gql.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CountryName, RelativeTime, StatusBadge, TaxCheckBadge } from "../components/applications";
@@ -185,7 +184,7 @@ export default function ApplicationDetail() {
             <s-text>{t("applications.detail.tier", { tier: d.tier?.name ?? "—" })}</s-text>
             <s-stack direction="inline" gap="base">
               <s-link href={href(`/app/buyers/${d.buyer.id}`)}>{t("applications.detail.viewBuyer")}</s-link>
-              <s-link href={`https://admin.shopify.com/store/${d.shopHandle}/companies/${numericId(d.buyer.companyGid)}`} target="_blank">
+              <s-link href={`shopify://admin/companies/${d.buyer.companyGid.split("/").pop()}`} target="_top">
                 {t("applications.detail.openCompany")}
               </s-link>
               <s-link href={href(`/app/buyers/${d.buyer.id}`)}>{t("applications.detail.changeTier")}</s-link>
