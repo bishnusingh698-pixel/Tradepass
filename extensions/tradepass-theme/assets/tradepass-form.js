@@ -303,7 +303,7 @@
     }
 
     function checkboxesControl(f) {
-      return function (id, describedBy) {
+      return function (id) {
         var box = h("div", { className: "tpf-choices" });
         var first = null;
         var boxes = [];
