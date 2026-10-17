@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "更新您的批发申请",
+  "hosted.update.intro": "{store} 需要您补充一些信息，以便审核您的批发申请。",
+  "hosted.update.messageLabel": "来自 {store} 的消息",
+  "hosted.update.submit": "提交更新",
+  "hosted.update.doneHeading": "谢谢，您的申请已更新",
+  "hosted.update.doneBody": "{store} 将进行审核，并通过电子邮件回复您。",
+  "hosted.link.invalidTitle": "此链接无效",
+  "hosted.link.invalidBody": "请确认您打开的是邮件中的完整链接，或联系 {store}。",
+  "hosted.link.expiredTitle": "此链接已失效",
+  "hosted.link.expiredBody": "为保障您的安全，更新链接仅在有限时间内有效。请联系 {store} 获取新链接。",
+  "hosted.link.usedTitle": "此链接已被使用",
+  "hosted.link.usedBody": "每个更新链接仅可使用一次。如需修改其他内容，请联系 {store}。",
+  "hosted.noscript": "请在浏览器中启用 JavaScript 以更新您的申请。",
+  "hosted.error.generic": "我们这边出现了问题，请几分钟后重试。"
+}

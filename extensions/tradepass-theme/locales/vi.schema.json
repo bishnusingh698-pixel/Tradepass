@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Ẩn giá với khách lẻ và hiển thị thông báo Đăng nhập / Đăng ký, theo cài đặt cửa hàng trong Tradepass. Phải bật để ẩn giá."
+  },
+  "form_block": {
+    "name": "Đơn đăng ký bán buôn",
+    "form_id": "ID biểu mẫu",
+    "form_id_info": "Để trống để dùng biểu mẫu mặc định. Sao chép ID biểu mẫu từ Tradepass → Biểu mẫu.",
+    "show_heading": "Hiển thị tiêu đề",
+    "heading": "Tiêu đề",
+    "heading_info": "Để trống để dùng văn bản mặc định theo ngôn ngữ của khách."
+  },
+  "apply_block": {
+    "name": "Đăng ký bán buôn",
+    "style": "Kiểu",
+    "style_button": "Nút",
+    "style_banner": "Biểu ngữ",
+    "heading": "Tiêu đề",
+    "text": "Nội dung",
+    "button": "Nhãn nút",
+    "texts_info": "Để trống để dùng văn bản mặc định theo ngôn ngữ của khách.",
+    "hide_for_b2b": "Ẩn với người mua bán buôn đã đăng nhập"
+  }
+}

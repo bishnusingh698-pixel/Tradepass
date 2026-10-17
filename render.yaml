@@ -38,3 +38,9 @@ services:
         sync: false
       - key: BREVO_SENDER_EMAIL
         sync: false
+      - key: HMRC_CLIENT_ID
+        sync: false
+      - key: HMRC_CLIENT_SECRET
+        sync: false
+      - key: ABN_GUID
+        sync: false

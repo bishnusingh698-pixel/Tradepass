@@ -1,7 +1,7 @@
 {
   "flow.action.badRequest": "Tradepass یہ درخواست نہیں پڑھ سکا۔",
   "flow.action.notInstalled": "اس اسٹور پر Tradepass انسٹال نہیں ہے۔",
-  "flow.action.planRequired": "Shopify Flow ایکشنز Tradepass کے {plan} پلان پر دستیاب ہیں۔",
+  "flow.action.planRequired": "Shopify Flow ایکشنز Tradepass کے {plan} میں دستیاب ہیں۔",
   "flow.action.notFound": "اس ID کی کوئی Tradepass درخواست نہیں ہے۔ Tradepass ٹریگر سے ملنے والی درخواست ID استعمال کریں۔",
   "flow.action.alreadyApproved": "یہ درخواست پہلے ہی منظور ہو چکی ہے۔",
   "flow.action.notOpen": "یہ درخواست مسترد یا واپس لی جا چکی ہے، اس لیے اسے Flow سے منظور نہیں کیا جا سکتا۔",

@@ -1,0 +1,149 @@
+{
+  "gate": {
+    "message": "Prijzen zijn zichtbaar voor goedgekeurde groothandelsklanten. Log in of vraag een groothandelsaccount aan.",
+    "login": "Inloggen",
+    "apply": "Groothandel aanvragen",
+    "cart": "Sommige artikelen in uw winkelwagen zijn alleen beschikbaar voor goedgekeurde groothandelsklanten."
+  },
+  "banner": {
+    "text": "Koopt u voor een bedrijf?",
+    "link": "Groothandel aanvragen"
+  },
+  "hint": {
+    "text": "Groothandelsprijzen zijn beschikbaar voor goedgekeurde bedrijven."
+  },
+  "wall": {
+    "heading": "Alleen voor groothandelsklanten",
+    "message": "Deze pagina is beschikbaar voor goedgekeurde groothandelsklanten. Log in of vraag een groothandelsaccount aan."
+  },
+  "apply_block": {
+    "heading": "Koopt u voor een bedrijf?",
+    "text": "Vraag een groothandelsaccount aan om handelsprijzen te zien en in grote aantallen te bestellen.",
+    "button": "Groothandel aanvragen"
+  },
+  "form": {
+    "heading": "Groothandelsaccount aanvragen",
+    "intro": "Vertel ons over uw bedrijf. We beoordelen elke aanvraag en antwoorden per e-mail.",
+    "required_note": "Velden met * zijn verplicht.",
+    "optional": "(optioneel)",
+    "select": "Selecteer…",
+    "submit": "Aanvraag versturen",
+    "sending": "Bezig met versturen…",
+    "retrying": "Nog bezig met versturen. We blijven het tot een minuut proberen; uw antwoorden zijn veilig.",
+    "failed": "We konden uw aanvraag niet versturen. Uw antwoorden zijn opgeslagen in deze browser. Probeer het over een paar minuten opnieuw.",
+    "retry": "Opnieuw proberen",
+    "rate_limited": "We hebben onlangs meerdere aanvragen van u ontvangen. Probeer het later opnieuw.",
+    "duplicate": "U hebt al een aanvraag gedaan. We nemen contact met u op.",
+    "draft_restored": "We hebben de antwoorden hersteld die u eerder hebt ingevuld.",
+    "clear_draft": "Opnieuw beginnen",
+    "honeypot": "Laat dit veld leeg",
+    "unavailable": "Het aanvraagformulier is nog niet ingesteld. Neem contact op met de winkel.",
+    "section": {
+      "business": "Bedrijf",
+      "contact": "Contactgegevens",
+      "addresses": "Adressen",
+      "tax": "Belasting en documenten",
+      "message": "Bericht",
+      "consent": "Toestemming"
+    },
+    "field": {
+      "companyName": { "label": "Bedrijfsnaam" },
+      "businessType": { "label": "Type bedrijf" },
+      "website": { "label": "Website", "placeholder": "https://" },
+      "yearEstablished": { "label": "Oprichtingsjaar" },
+      "locationsCount": { "label": "Aantal locaties" },
+      "monthlyOrderValue": { "label": "Verwachte bestelwaarde per maand" },
+      "referral": { "label": "Hoe hebt u ons gevonden?" },
+      "firstName": { "label": "Voornaam" },
+      "lastName": { "label": "Achternaam" },
+      "email": { "label": "E-mail", "help": "We sturen updates over uw aanvraag naar dit adres." },
+      "phone": { "label": "Telefoon" },
+      "jobTitle": { "label": "Functie" },
+      "preferredLanguage": { "label": "Voorkeurstaal" },
+      "billingAddress": { "label": "Factuuradres" },
+      "shippingAddress": { "label": "Verzendadres" },
+      "taxNumber": { "label": "Fiscale registratie" },
+      "certificates": { "label": "Certificaten", "help": "Bijvoorbeeld een wederverkoopcertificaat of certificaat van belastingvrijstelling." },
+      "message": { "label": "Bericht aan de winkel" },
+      "consent": { "label": "Ik ga ermee akkoord dat mijn gegevens worden gebruikt om deze aanvraag te beoordelen." }
+    },
+    "business_type": {
+      "retail": "Winkel",
+      "salon": "Salon of spa",
+      "restaurant": "Restaurant of café",
+      "distributor": "Distributeur",
+      "other": "Anders"
+    },
+    "order_value": {
+      "lt1k": "Minder dan 1.000",
+      "1k-5k": "1.000 tot 5.000",
+      "5k-20k": "5.000 tot 20.000",
+      "gt20k": "Meer dan 20.000"
+    },
+    "address": {
+      "country": "Land/regio",
+      "address1": "Adres",
+      "address2": "Appartement, suite, enz.",
+      "city": "Plaats",
+      "zone": {
+        "state": "Staat",
+        "province": "Provincie",
+        "region": "Regio",
+        "county": "County",
+        "prefecture": "Prefectuur",
+        "emirate": "Emiraat",
+        "governorate": "Gouvernement",
+        "state_and_territory": "Staat/territorium"
+      },
+      "zip": {
+        "postal": "Postcode",
+        "zip": "Zipcode",
+        "pin": "Pincode",
+        "postcode": "Postcode"
+      },
+      "same_as_billing": "Zelfde als factuuradres"
+    },
+    "tax": {
+      "country": "Land van fiscale registratie",
+      "vat": "Btw-nummer",
+      "vat_help": "Neem de landcode op, bijvoorbeeld NL123456789B01.",
+      "abn": "ABN (Australian Business Number)",
+      "gst": "GST/HST-nummer",
+      "us_resale": "Nummer van wederverkoopcertificaat",
+      "us_state": "Staat die het certificaat heeft afgegeven",
+      "tax_id": "Fiscaal nummer"
+    },
+    "upload": {
+      "add": "Bestand toevoegen",
+      "remove": "{{ name }} verwijderen",
+      "hint": "PDF, JPG of PNG, maximaal 5 MB per bestand, maximaal 3 bestanden.",
+      "expiry": "Vervaldatum van {{ name }} (optioneel)",
+      "uploading": "{{ name }} uploaden…",
+      "done": "{{ name }} geüpload",
+      "failed": "{{ name }} kon niet worden geüpload. Probeer het opnieuw."
+    },
+    "consent_privacy": "Lees ons privacybeleid",
+    "error": {
+      "summary": "Corrigeer het volgende:",
+      "required": "Vul {{ field }} in.",
+      "choose": "Kies {{ field }}.",
+      "consent": "Bevestig om door te gaan.",
+      "email": "Voer een e-mailadres in zoals naam@voorbeeld.nl.",
+      "url": "Voer een webadres in zoals https://voorbeeld.nl.",
+      "phone": "Voer een geldig telefoonnummer in.",
+      "number": "Voer een getal in.",
+      "date": "Voer een geldige datum in.",
+      "too_long": "Dit is te lang. Gebruik maximaal {{ max }} tekens.",
+      "file_type": "{{ name }} is geen PDF-, JPG- of PNG-bestand.",
+      "file_size": "{{ name }} is groter dan 5 MB.",
+      "file_count": "U kunt maximaal 3 bestanden toevoegen.",
+      "file_pending": "Wacht tot uw bestanden zijn geüpload.",
+      "spam": "Dat antwoord klopt niet. Probeer het opnieuw."
+    },
+    "success": {
+      "heading": "Bedankt, uw aanvraag is verstuurd",
+      "body": "We beoordelen de aanvraag en nemen per e-mail contact met u op.",
+      "email": "We hebben u een bevestigingsmail gestuurd."
+    }
+  }
+}

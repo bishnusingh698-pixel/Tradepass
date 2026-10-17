@@ -42,7 +42,7 @@ Code-complete for every phase P1–P8 (see `feature_list.json`: 40 built, 51 nee
 - Accessibility pass under way in the storefront form and hosted pages (error-summary focus, fieldset descriptions, readable button text, screen-reader text for hidden prices, contrast).
 
 ### What's tested
-- `npx vitest run`: **319 tests in 26 files: 284 pass, 35 fail.** All 35 failures are the same i18n check ("has every English key and no extras"), one per non-English locale, because the translators are still adding the new keys. Expected until they finish.
+- `npx vitest run`: **319 tests in 26 files.** First run today: 284 pass, 35 fail. Latest run (with translators' files half-written): **281 pass, 38 fail**. Every failure is in `tests/i18n.test.ts`: 31 × "has every English key and no extras", 5 × "has no untranslated strings", 1 × "valid ICU, matching placeholders and complete plurals". All other 25 test files pass. Expected until the translators finish; the ICU one should be checked when they do.
 - `npx react-router build` passes.
 - Storefront scripts: embed 2.9 KB gzipped, form 10.6 KB gzipped (only on the form page).
 - Nothing has run against a real store yet: no deploy, no dev store install, no spike.

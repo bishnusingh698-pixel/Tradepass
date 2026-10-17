@@ -4,7 +4,7 @@ import type { Settings } from "./settings";
 import type { ShopFacts } from "./shop.server";
 import { approvalQuota, type PlanId } from "./plans";
 import { emailQuotaToday } from "./email/index.server";
-import { pendingAssignments } from "./tiers.server";
+import { pendingAssignmentCount } from "./tiers.server";
 import { approvalsThisMonth, pendingSummary } from "./applications.server";
 import { formForAudience } from "./form-defaults";
 
@@ -37,7 +37,8 @@ export async function pendingWork(shop: string, settings: Settings) {
   const [apps, expiring, assignments] = await Promise.all([
     pendingSummary(shop),
     db.certificate.count({ where: { shop, buyerId: { not: null }, status: { in: ["valid", "expiring"] }, expiresOn: { lte: soon, gte: new Date() } } }),
-    settings.tiers.assignment === "assisted" ? pendingAssignments(shop).then((a) => a.length) : Promise.resolve(0),
+    // Counted in both modes: tasks created in assisted mode stay open after switching back to automatic.
+    pendingAssignmentCount(shop),
   ]);
   return { applications: apps.count, oldestAt: apps.oldestAt, expiring, assignments };
 }

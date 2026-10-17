@@ -1,0 +1,190 @@
+{
+  "gate": {
+    "message": "Harga dipaparkan kepada pelanggan borong yang diluluskan. Log masuk atau mohon akaun borong.",
+    "login": "Log masuk",
+    "apply": "Mohon akaun borong",
+    "cart": "Sesetengah item dalam troli anda hanya tersedia untuk pelanggan borong yang diluluskan."
+  },
+  "banner": {
+    "text": "Membeli untuk perniagaan?",
+    "link": "Mohon akaun borong"
+  },
+  "hint": {
+    "text": "Harga borong tersedia untuk perniagaan yang diluluskan."
+  },
+  "wall": {
+    "heading": "Untuk pelanggan borong sahaja",
+    "message": "Halaman ini tersedia untuk pelanggan borong yang diluluskan. Log masuk atau mohon akaun borong."
+  },
+  "apply_block": {
+    "heading": "Membeli untuk perniagaan?",
+    "text": "Mohon akaun borong untuk melihat harga dagangan dan membuat pesanan secara pukal.",
+    "button": "Mohon akaun borong"
+  },
+  "form": {
+    "heading": "Mohon akaun borong",
+    "intro": "Beritahu kami tentang perniagaan anda. Kami menyemak setiap permohonan dan membalas melalui e-mel.",
+    "required_note": "Medan bertanda * adalah wajib.",
+    "optional": "(pilihan)",
+    "select": "Pilih…",
+    "submit": "Hantar permohonan",
+    "sending": "Sedang menghantar…",
+    "retrying": "Masih menghantar. Kami akan terus mencuba sehingga seminit; jawapan anda selamat.",
+    "failed": "Kami tidak dapat menghantar permohonan anda. Jawapan anda disimpan dalam pelayar ini. Sila cuba lagi dalam beberapa minit.",
+    "retry": "Cuba lagi",
+    "rate_limited": "Kami telah menerima beberapa permohonan daripada anda baru-baru ini. Sila cuba lagi kemudian.",
+    "duplicate": "Anda sudah memohon. Kami akan menghubungi anda.",
+    "draft_restored": "Kami telah memulihkan jawapan yang anda masukkan sebelum ini.",
+    "clear_draft": "Mula semula",
+    "honeypot": "Biarkan medan ini kosong",
+    "unavailable": "Borang permohonan belum disediakan. Sila hubungi kedai.",
+    "section": {
+      "business": "Perniagaan",
+      "contact": "Hubungan",
+      "addresses": "Alamat",
+      "tax": "Cukai dan dokumen",
+      "message": "Mesej",
+      "consent": "Persetujuan"
+    },
+    "field": {
+      "companyName": {
+        "label": "Nama syarikat"
+      },
+      "businessType": {
+        "label": "Jenis perniagaan"
+      },
+      "website": {
+        "label": "Laman web",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Tahun ditubuhkan"
+      },
+      "locationsCount": {
+        "label": "Bilangan lokasi"
+      },
+      "monthlyOrderValue": {
+        "label": "Jangkaan nilai pesanan bulanan"
+      },
+      "referral": {
+        "label": "Bagaimana anda mengetahui tentang kami?"
+      },
+      "firstName": {
+        "label": "Nama pertama"
+      },
+      "lastName": {
+        "label": "Nama akhir"
+      },
+      "email": {
+        "label": "E-mel",
+        "help": "Kami akan menghantar maklumat terkini tentang permohonan anda ke alamat ini."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Jawatan"
+      },
+      "preferredLanguage": {
+        "label": "Bahasa pilihan"
+      },
+      "billingAddress": {
+        "label": "Alamat pengebilan"
+      },
+      "shippingAddress": {
+        "label": "Alamat penghantaran"
+      },
+      "taxNumber": {
+        "label": "Pendaftaran cukai"
+      },
+      "certificates": {
+        "label": "Sijil",
+        "help": "Contohnya sijil jualan semula atau sijil pengecualian cukai."
+      },
+      "message": {
+        "label": "Mesej kepada kedai"
+      },
+      "consent": {
+        "label": "Saya bersetuju butiran saya digunakan untuk menyemak permohonan ini."
+      }
+    },
+    "business_type": {
+      "retail": "Kedai runcit",
+      "salon": "Salun atau spa",
+      "restaurant": "Restoran atau kafe",
+      "distributor": "Pengedar",
+      "other": "Lain-lain"
+    },
+    "order_value": {
+      "lt1k": "Kurang daripada 1,000",
+      "1k-5k": "1,000 hingga 5,000",
+      "5k-20k": "5,000 hingga 20,000",
+      "gt20k": "Lebih daripada 20,000"
+    },
+    "address": {
+      "country": "Negara/rantau",
+      "address1": "Alamat",
+      "address2": "Pangsapuri, suite, dsb.",
+      "city": "Bandar",
+      "zone": {
+        "state": "Negeri",
+        "province": "Wilayah",
+        "region": "Rantau",
+        "county": "Daerah",
+        "prefecture": "Wilayah (prefektur)",
+        "emirate": "Emiriah",
+        "governorate": "Kegabenoran",
+        "state_and_territory": "Negeri/wilayah"
+      },
+      "zip": {
+        "postal": "Poskod",
+        "zip": "Kod ZIP",
+        "pin": "Kod PIN",
+        "postcode": "Poskod"
+      },
+      "same_as_billing": "Sama dengan alamat pengebilan"
+    },
+    "tax": {
+      "country": "Negara pendaftaran cukai",
+      "vat": "Nombor VAT",
+      "vat_help": "Sertakan awalan negara, contohnya DE123456789.",
+      "abn": "ABN (Nombor Perniagaan Australia)",
+      "gst": "Nombor GST/HST",
+      "us_resale": "Nombor sijil jualan semula",
+      "us_state": "Negeri yang mengeluarkan sijil",
+      "tax_id": "ID cukai"
+    },
+    "upload": {
+      "add": "Tambah fail",
+      "remove": "Alih keluar {{ name }}",
+      "hint": "PDF, JPG atau PNG, maksimum 5 MB setiap satu, sehingga 3 fail.",
+      "expiry": "Tarikh tamat tempoh {{ name }} (pilihan)",
+      "uploading": "Memuat naik {{ name }}…",
+      "done": "{{ name }} telah dimuat naik",
+      "failed": "{{ name }} tidak dapat dimuat naik. Sila cuba lagi."
+    },
+    "consent_privacy": "Baca dasar privasi kami",
+    "error": {
+      "summary": "Sila betulkan perkara berikut:",
+      "required": "Masukkan {{ field }}.",
+      "choose": "Pilih {{ field }}.",
+      "consent": "Sila sahkan untuk meneruskan.",
+      "email": "Masukkan alamat e-mel seperti nama@contoh.com.",
+      "url": "Masukkan alamat web seperti https://contoh.com.",
+      "phone": "Masukkan nombor telefon yang sah.",
+      "number": "Masukkan nombor.",
+      "date": "Masukkan tarikh yang sah.",
+      "too_long": "Ini terlalu panjang. Gunakan sehingga {{ max }} aksara.",
+      "file_type": "{{ name }} bukan fail PDF, JPG atau PNG.",
+      "file_size": "{{ name }} melebihi 5 MB.",
+      "file_count": "Anda boleh menambah sehingga 3 fail.",
+      "file_pending": "Tunggu sehingga fail anda selesai dimuat naik.",
+      "spam": "Jawapan itu tidak sepadan. Sila cuba lagi."
+    },
+    "success": {
+      "heading": "Terima kasih, permohonan anda telah dihantar",
+      "body": "Kami akan menyemaknya dan menghubungi anda melalui e-mel.",
+      "email": "Kami telah menghantar e-mel pengesahan kepada anda."
+    }
+  }
+}

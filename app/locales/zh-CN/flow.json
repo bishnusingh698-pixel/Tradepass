@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass 无法读取此请求。",
+  "flow.action.notInstalled": "此商店未安装 Tradepass。",
+  "flow.action.planRequired": "Tradepass {plan}支持 Shopify Flow 操作。",
+  "flow.action.notFound": "没有与此 ID 对应的 Tradepass 申请。请使用 Tradepass 触发器中的申请 ID。",
+  "flow.action.alreadyApproved": "此申请已获批准。",
+  "flow.action.notOpen": "此申请已被拒绝或撤回，因此无法通过 Flow 批准。",
+  "flow.action.tierNotFound": "不存在名为“{tier}”的 Tradepass 等级。请检查操作中的等级名称。",
+  "flow.action.noTier": "请在操作中选择一个等级，或在表单上设置建议等级。",
+  "flow.action.running": "批准仍在进行中。Shopify Flow 稍后将再次检查。",
+  "flow.action.stepFailed": "批准中途停止。请在 Tradepass 中打开该申请，查看原因并重试。",
+  "flow.action.tryLater": "Tradepass 未能完成批准。Shopify Flow 将重试。"
+}

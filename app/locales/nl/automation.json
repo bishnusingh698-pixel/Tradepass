@@ -32,7 +32,7 @@
   "automation.condition.custom_field": "Formulierveld is gelijk aan",
   "automation.condition.spam": "Gemarkeerd als mogelijke spam",
   "automation.condition.op": "Regel",
-  "automation.condition.is": "is",
+  "automation.condition.is": "is gelijk aan",
   "automation.condition.isNot": "is niet",
   "automation.condition.values.country": "Landcodes",
   "automation.condition.values.business_type": "Bedrijfstypen",

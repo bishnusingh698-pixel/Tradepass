@@ -100,7 +100,7 @@
   "import.issue.invalid_phone": "O número de telefone não é válido, pelo que foi deixado de fora. Utilize o formato internacional, como +351912345678.",
   "import.issue.unknown_tier": "Nenhum nível tem este nome.",
   "import.issue.no_tier": "Adicione um nome de nível ou escolha um nível para linhas sem nível.",
-  "import.issue.unknown_terms": "Não existem condições de pagamento com este nome, pelo que nenhuma foi definida.",
+  "import.issue.unknown_terms": "Não há condições de pagamento com este nome; nenhuma foi definida.",
   "import.issue.invalid_exemption": "Um dos códigos de isenção fiscal não é uma isenção da Shopify.",
   "import.issue.duplicate_in_file": "Isto aparece antes no ficheiro.",
   "import.issue.existing_company": "Já existe uma empresa com este nome na Shopify.",

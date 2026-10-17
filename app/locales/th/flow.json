@@ -1,7 +1,7 @@
 {
   "flow.action.badRequest": "Tradepass อ่านคำขอนี้ไม่ได้",
   "flow.action.notInstalled": "ร้านค้านี้ไม่ได้ติดตั้ง Tradepass",
-  "flow.action.planRequired": "การดำเนินการ Shopify Flow ใช้ได้ในแพ็กเกจ {plan} ของ Tradepass",
+  "flow.action.planRequired": "การดำเนินการ Shopify Flow ใช้ได้กับ {plan} ของ Tradepass",
   "flow.action.notFound": "ไม่มีใบสมัคร Tradepass ที่มีรหัสนี้ โปรดใช้รหัสใบสมัครจากทริกเกอร์ของ Tradepass",
   "flow.action.alreadyApproved": "ใบสมัครนี้ได้รับการอนุมัติแล้ว",
   "flow.action.notOpen": "ใบสมัครนี้ถูกปฏิเสธหรือถอนแล้ว จึงอนุมัติจาก Flow ไม่ได้",

@@ -20,7 +20,7 @@
   "common.retry": "重试",
   "common.learnMore": "了解详情",
   "common.comingSoon": "此页面正在建设中，很快即可在此查看。",
-  "common.availableOn": "{plan} 套餐可用",
+  "common.availableOn": "{plan}可用",
   "errors.generic": "出现问题，请重试。如果问题持续出现，请通过帮助页面联系支持团队。",
   "errors.notFound": "找不到该页面。"
 }

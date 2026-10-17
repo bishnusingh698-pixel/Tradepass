@@ -30,7 +30,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     welcome: ctx.settings.welcome,
     checklistDismissed: ctx.settings.onboarding.checklistDismissed,
     dismissedEmbedKey: ctx.settings.onboarding.dismissedAlerts.embed_off ?? null,
-    assisted: ctx.settings.tiers.assignment === "assisted",
     currency: ctx.shopRow?.currency ?? null,
   };
 };
@@ -158,7 +157,7 @@ export default function Home() {
         </s-section>
       )}
 
-      <PendingWork pending={d.pending} assisted={d.assisted} />
+      <PendingWork pending={d.pending} />
 
       <Numbers30 currency={d.currency} />
 
@@ -268,7 +267,7 @@ function ChecklistRow({ step, embedLink, blockLink, onRecheck }: { step: Checkli
   );
 }
 
-function PendingWork({ pending, assisted }: { pending: { applications: number; oldestAt: string | null; expiring: number; assignments: number }; assisted: boolean }) {
+function PendingWork({ pending }: { pending: { applications: number; oldestAt: string | null; expiring: number; assignments: number } }) {
   const { t } = useI18n();
   const href = useLocaleHref();
   const nothing = !pending.applications && !pending.expiring && !pending.assignments;
@@ -290,7 +289,7 @@ function PendingWork({ pending, assisted }: { pending: { applications: number; o
             </s-link>
           )}
           {pending.expiring > 0 && <s-link href={href("/app/certificates?status=expiring")}>{t("home.pending.certificates", { count: pending.expiring })}</s-link>}
-          {assisted && pending.assignments > 0 && <s-link href={href("/app/tiers?assist=1")}>{t("home.pending.assignments", { count: pending.assignments })}</s-link>}
+          {pending.assignments > 0 && <s-link href={href("/app/tiers?assist=1")}>{t("home.pending.assignments", { count: pending.assignments })}</s-link>}
         </s-stack>
       )}
     </s-section>

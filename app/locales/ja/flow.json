@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepassはこのリクエストを読み取れませんでした。",
+  "flow.action.notInstalled": "このストアにはTradepassがインストールされていません。",
+  "flow.action.planRequired": "Shopify Flowのアクションは、Tradepassの{plan}でご利用いただけます。",
+  "flow.action.notFound": "このIDのTradepass申請はありません。Tradepassトリガーの「申請ID」を使用してください。",
+  "flow.action.alreadyApproved": "この申請はすでに承認されています。",
+  "flow.action.notOpen": "この申請は却下または取り下げ済みのため、Flowから承認できません。",
+  "flow.action.tierNotFound": "「{tier}」という名前のTradepass価格ランクはありません。アクションの価格ランク名をご確認ください。",
+  "flow.action.noTier": "アクションで価格ランクを選択するか、フォームに推奨価格ランクを設定してください。",
+  "flow.action.running": "承認処理はまだ実行中です。Shopify Flowがまもなく再確認します。",
+  "flow.action.stepFailed": "承認処理が途中で停止しました。Tradepassで申請を開き、状況を確認して再試行してください。",
+  "flow.action.tryLater": "Tradepassは承認処理を完了できませんでした。Shopify Flowが再試行します。"
+}

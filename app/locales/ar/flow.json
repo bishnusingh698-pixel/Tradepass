@@ -1,7 +1,7 @@
 {
   "flow.action.badRequest": "تعذّر على Tradepass قراءة هذا الطلب.",
   "flow.action.notInstalled": "Tradepass غير مثبّت على هذا المتجر.",
-  "flow.action.planRequired": "إجراءات Shopify Flow متاحة في خطة {plan} من Tradepass.",
+  "flow.action.planRequired": "إجراءات Shopify Flow متاحة في Tradepass ضمن {plan}.",
   "flow.action.notFound": "لا يوجد طلب في Tradepass بهذا المعرّف. استخدم معرّف الطلب الوارد من أحد مشغّلات Tradepass.",
   "flow.action.alreadyApproved": "تمت الموافقة على هذا الطلب بالفعل.",
   "flow.action.notOpen": "تم رفض هذا الطلب أو سحبه، لذا لا يمكن الموافقة عليه من Flow.",

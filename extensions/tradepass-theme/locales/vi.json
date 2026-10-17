@@ -1,0 +1,190 @@
+{
+  "gate": {
+    "message": "Giá chỉ hiển thị cho khách hàng bán buôn đã được phê duyệt. Hãy đăng nhập hoặc đăng ký tài khoản bán buôn.",
+    "login": "Đăng nhập",
+    "apply": "Đăng ký bán buôn",
+    "cart": "Một số sản phẩm trong giỏ hàng chỉ dành cho khách hàng bán buôn đã được phê duyệt."
+  },
+  "banner": {
+    "text": "Bạn mua hàng cho doanh nghiệp?",
+    "link": "Đăng ký bán buôn"
+  },
+  "hint": {
+    "text": "Giá bán buôn dành cho các doanh nghiệp đã được phê duyệt."
+  },
+  "wall": {
+    "heading": "Chỉ dành cho khách hàng bán buôn",
+    "message": "Trang này dành cho khách hàng bán buôn đã được phê duyệt. Hãy đăng nhập hoặc đăng ký tài khoản bán buôn."
+  },
+  "apply_block": {
+    "heading": "Bạn mua hàng cho doanh nghiệp?",
+    "text": "Đăng ký tài khoản bán buôn để xem giá sỉ và đặt hàng số lượng lớn.",
+    "button": "Đăng ký bán buôn"
+  },
+  "form": {
+    "heading": "Đăng ký tài khoản bán buôn",
+    "intro": "Hãy cho chúng tôi biết về doanh nghiệp của bạn. Chúng tôi xem xét từng đơn đăng ký và phản hồi qua email.",
+    "required_note": "Các trường có dấu * là bắt buộc.",
+    "optional": "(không bắt buộc)",
+    "select": "Chọn…",
+    "submit": "Gửi đơn đăng ký",
+    "sending": "Đang gửi…",
+    "retrying": "Vẫn đang gửi. Chúng tôi sẽ tiếp tục thử trong tối đa một phút; câu trả lời của bạn vẫn an toàn.",
+    "failed": "Chúng tôi không gửi được đơn đăng ký của bạn. Câu trả lời đã được lưu trong trình duyệt này. Vui lòng thử lại sau vài phút.",
+    "retry": "Thử lại",
+    "rate_limited": "Gần đây chúng tôi đã nhận được nhiều đơn đăng ký từ bạn. Vui lòng thử lại sau.",
+    "duplicate": "Bạn đã đăng ký rồi. Chúng tôi sẽ sớm liên hệ với bạn.",
+    "draft_restored": "Chúng tôi đã khôi phục các câu trả lời bạn nhập trước đó.",
+    "clear_draft": "Bắt đầu lại",
+    "honeypot": "Để trống trường này",
+    "unavailable": "Biểu mẫu đăng ký chưa được thiết lập. Vui lòng liên hệ cửa hàng.",
+    "section": {
+      "business": "Doanh nghiệp",
+      "contact": "Liên hệ",
+      "addresses": "Địa chỉ",
+      "tax": "Thuế và tài liệu",
+      "message": "Lời nhắn",
+      "consent": "Đồng ý"
+    },
+    "field": {
+      "companyName": {
+        "label": "Tên công ty"
+      },
+      "businessType": {
+        "label": "Loại hình doanh nghiệp"
+      },
+      "website": {
+        "label": "Trang web",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Năm thành lập"
+      },
+      "locationsCount": {
+        "label": "Số địa điểm"
+      },
+      "monthlyOrderValue": {
+        "label": "Giá trị đơn hàng dự kiến mỗi tháng"
+      },
+      "referral": {
+        "label": "Bạn biết đến chúng tôi qua đâu?"
+      },
+      "firstName": {
+        "label": "Tên"
+      },
+      "lastName": {
+        "label": "Họ"
+      },
+      "email": {
+        "label": "Email",
+        "help": "Chúng tôi sẽ gửi thông tin cập nhật về đơn đăng ký đến địa chỉ này."
+      },
+      "phone": {
+        "label": "Điện thoại"
+      },
+      "jobTitle": {
+        "label": "Chức danh"
+      },
+      "preferredLanguage": {
+        "label": "Ngôn ngữ ưu tiên"
+      },
+      "billingAddress": {
+        "label": "Địa chỉ thanh toán"
+      },
+      "shippingAddress": {
+        "label": "Địa chỉ giao hàng"
+      },
+      "taxNumber": {
+        "label": "Đăng ký thuế"
+      },
+      "certificates": {
+        "label": "Giấy chứng nhận",
+        "help": "Ví dụ giấy chứng nhận bán lại hoặc giấy chứng nhận miễn thuế."
+      },
+      "message": {
+        "label": "Lời nhắn gửi cửa hàng"
+      },
+      "consent": {
+        "label": "Tôi đồng ý để thông tin của mình được dùng để xem xét đơn đăng ký này."
+      }
+    },
+    "business_type": {
+      "retail": "Cửa hàng bán lẻ",
+      "salon": "Salon hoặc spa",
+      "restaurant": "Nhà hàng hoặc quán cà phê",
+      "distributor": "Nhà phân phối",
+      "other": "Khác"
+    },
+    "order_value": {
+      "lt1k": "Dưới 1.000",
+      "1k-5k": "Từ 1.000 đến 5.000",
+      "5k-20k": "Từ 5.000 đến 20.000",
+      "gt20k": "Trên 20.000"
+    },
+    "address": {
+      "country": "Quốc gia/khu vực",
+      "address1": "Địa chỉ",
+      "address2": "Căn hộ, phòng, v.v.",
+      "city": "Thành phố",
+      "zone": {
+        "state": "Bang",
+        "province": "Tỉnh",
+        "region": "Vùng",
+        "county": "Hạt",
+        "prefecture": "Tỉnh (prefecture)",
+        "emirate": "Tiểu vương quốc",
+        "governorate": "Tỉnh (governorate)",
+        "state_and_territory": "Bang/lãnh thổ"
+      },
+      "zip": {
+        "postal": "Mã bưu chính",
+        "zip": "Mã ZIP",
+        "pin": "Mã PIN",
+        "postcode": "Mã bưu điện"
+      },
+      "same_as_billing": "Giống địa chỉ thanh toán"
+    },
+    "tax": {
+      "country": "Quốc gia đăng ký thuế",
+      "vat": "Mã số VAT",
+      "vat_help": "Bao gồm tiền tố quốc gia, ví dụ DE123456789.",
+      "abn": "ABN (Mã số doanh nghiệp Úc)",
+      "gst": "Mã số GST/HST",
+      "us_resale": "Số giấy chứng nhận bán lại",
+      "us_state": "Bang cấp giấy chứng nhận",
+      "tax_id": "Mã số thuế"
+    },
+    "upload": {
+      "add": "Thêm tệp",
+      "remove": "Xóa {{ name }}",
+      "hint": "PDF, JPG hoặc PNG, mỗi tệp tối đa 5 MB, tối đa 3 tệp.",
+      "expiry": "Ngày hết hạn của {{ name }} (không bắt buộc)",
+      "uploading": "Đang tải lên {{ name }}…",
+      "done": "Đã tải lên {{ name }}",
+      "failed": "Không thể tải lên {{ name }}. Vui lòng thử lại."
+    },
+    "consent_privacy": "Đọc chính sách quyền riêng tư của chúng tôi",
+    "error": {
+      "summary": "Vui lòng sửa các mục sau:",
+      "required": "Nhập {{ field }}.",
+      "choose": "Chọn {{ field }}.",
+      "consent": "Vui lòng xác nhận để tiếp tục.",
+      "email": "Nhập địa chỉ email dạng name@example.com.",
+      "url": "Nhập địa chỉ web dạng https://example.com.",
+      "phone": "Nhập số điện thoại hợp lệ.",
+      "number": "Nhập một số.",
+      "date": "Nhập ngày hợp lệ.",
+      "too_long": "Nội dung quá dài. Hãy dùng tối đa {{ max }} ký tự.",
+      "file_type": "{{ name }} không phải tệp PDF, JPG hoặc PNG.",
+      "file_size": "{{ name }} lớn hơn 5 MB.",
+      "file_count": "Bạn có thể thêm tối đa 3 tệp.",
+      "file_pending": "Vui lòng đợi tệp tải lên xong.",
+      "spam": "Câu trả lời không khớp. Vui lòng thử lại."
+    },
+    "success": {
+      "heading": "Cảm ơn bạn, đơn đăng ký của bạn đã được gửi",
+      "body": "Chúng tôi sẽ xem xét và phản hồi bạn qua email.",
+      "email": "Chúng tôi đã gửi cho bạn email xác nhận."
+    }
+  }
+}

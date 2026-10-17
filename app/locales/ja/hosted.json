@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "卸売申請を更新する",
+  "hosted.update.intro": "卸売申請を審査するため、{store}より追加の情報をお願いしております。",
+  "hosted.update.messageLabel": "{store}からのメッセージ",
+  "hosted.update.submit": "更新内容を送信",
+  "hosted.update.doneHeading": "ありがとうございます。申請内容が更新されました",
+  "hosted.update.doneBody": "{store}が内容を確認し、メールでご連絡します。",
+  "hosted.link.invalidTitle": "このリンクは無効です",
+  "hosted.link.invalidBody": "メールのリンクを最後まで正しく開いたかご確認いただくか、{store}にお問い合わせください。",
+  "hosted.link.expiredTitle": "このリンクは有効期限切れです",
+  "hosted.link.expiredBody": "セキュリティ保護のため、更新用リンクの有効期間は限られています。{store}にお問い合わせのうえ、新しいリンクをご依頼ください。",
+  "hosted.link.usedTitle": "このリンクはすでに使用されています",
+  "hosted.link.usedBody": "更新用リンクは1回のみ有効です。ほかに変更が必要な場合は、{store}にお問い合わせください。",
+  "hosted.noscript": "申請内容を更新するには、ブラウザでJavaScriptを有効にしてください。",
+  "hosted.error.generic": "システムで問題が発生しました。数分後にもう一度お試しください。"
+}

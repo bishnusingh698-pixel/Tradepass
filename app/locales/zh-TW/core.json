@@ -20,7 +20,7 @@
   "common.retry": "再試一次",
   "common.learnMore": "瞭解詳情",
   "common.comingSoon": "此頁面正在建置中，很快就會在這裡提供。",
-  "common.availableOn": "適用於 {plan} 方案",
+  "common.availableOn": "適用於{plan}",
   "errors.generic": "發生錯誤，請再試一次。如果問題持續發生，請透過說明頁面聯絡支援團隊。",
   "errors.notFound": "找不到該頁面。"
 }

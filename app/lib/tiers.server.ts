@@ -395,6 +395,10 @@ export async function pendingAssignments(shop: string): Promise<PendingAssignmen
   });
 }
 
+export function pendingAssignmentCount(shop: string): Promise<number> {
+  return db.job.count({ where: { shop, type: ASSISTED_JOB, state: "waiting" } });
+}
+
 /** Read membership back; marks the task done when Shopify shows the change. */
 export async function verifyAssignment(ctx: Ctx, jobId: string): Promise<boolean> {
   const job = await db.job.findFirst({ where: { id: jobId, shop: ctx.shop, type: ASSISTED_JOB } });

@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass에서 이 요청을 읽을 수 없습니다.",
+  "flow.action.notInstalled": "이 스토어에 Tradepass가 설치되어 있지 않습니다.",
+  "flow.action.planRequired": "Shopify Flow 작업은 Tradepass {plan}에서 사용할 수 있습니다.",
+  "flow.action.notFound": "이 ID에 해당하는 Tradepass 신청서가 없습니다. Tradepass 트리거의 신청서 ID를 사용하십시오.",
+  "flow.action.alreadyApproved": "이 신청서는 이미 승인되었습니다.",
+  "flow.action.notOpen": "이 신청서는 거부되었거나 철회되어 Flow에서 승인할 수 없습니다.",
+  "flow.action.tierNotFound": "“{tier}”(이)라는 Tradepass 등급이 없습니다. 작업에 입력한 등급 이름을 확인하십시오.",
+  "flow.action.noTier": "작업에서 등급을 선택하거나 양식에 추천 등급을 설정하십시오.",
+  "flow.action.running": "승인이 아직 진행 중입니다. Shopify Flow에서 곧 다시 확인합니다.",
+  "flow.action.stepFailed": "승인이 중간에 중단되었습니다. Tradepass에서 신청서를 열어 원인을 확인하고 다시 시도하십시오.",
+  "flow.action.tryLater": "Tradepass에서 승인을 완료하지 못했습니다. Shopify Flow에서 다시 시도합니다."
+}

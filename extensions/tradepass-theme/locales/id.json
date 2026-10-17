@@ -1,0 +1,190 @@
+{
+  "gate": {
+    "message": "Harga ditampilkan untuk pelanggan grosir yang disetujui. Masuk atau ajukan permohonan akun grosir.",
+    "login": "Masuk",
+    "apply": "Ajukan akun grosir",
+    "cart": "Beberapa item di keranjang Anda hanya tersedia untuk pelanggan grosir yang disetujui."
+  },
+  "banner": {
+    "text": "Membeli untuk bisnis?",
+    "link": "Ajukan akun grosir"
+  },
+  "hint": {
+    "text": "Harga grosir tersedia untuk bisnis yang disetujui."
+  },
+  "wall": {
+    "heading": "Khusus pelanggan grosir",
+    "message": "Halaman ini tersedia untuk pelanggan grosir yang disetujui. Masuk atau ajukan permohonan akun grosir."
+  },
+  "apply_block": {
+    "heading": "Membeli untuk bisnis?",
+    "text": "Ajukan akun grosir untuk melihat harga khusus dan memesan dalam jumlah besar.",
+    "button": "Ajukan akun grosir"
+  },
+  "form": {
+    "heading": "Ajukan akun grosir",
+    "intro": "Ceritakan tentang bisnis Anda. Kami meninjau setiap pengajuan dan membalas melalui email.",
+    "required_note": "Kolom bertanda * wajib diisi.",
+    "optional": "(opsional)",
+    "select": "Pilih…",
+    "submit": "Kirim pengajuan",
+    "sending": "Mengirim…",
+    "retrying": "Masih mengirim. Kami akan terus mencoba hingga satu menit; jawaban Anda aman.",
+    "failed": "Kami tidak dapat mengirim pengajuan Anda. Jawaban Anda tersimpan di browser ini. Silakan coba lagi dalam beberapa menit.",
+    "retry": "Coba lagi",
+    "rate_limited": "Kami baru saja menerima beberapa pengajuan dari Anda. Silakan coba lagi nanti.",
+    "duplicate": "Anda sudah mengajukan permohonan. Kami akan segera menghubungi Anda.",
+    "draft_restored": "Kami memulihkan jawaban yang Anda isi sebelumnya.",
+    "clear_draft": "Mulai dari awal",
+    "honeypot": "Biarkan kolom ini kosong",
+    "unavailable": "Formulir pengajuan belum disiapkan. Silakan hubungi toko.",
+    "section": {
+      "business": "Bisnis",
+      "contact": "Kontak",
+      "addresses": "Alamat",
+      "tax": "Pajak dan dokumen",
+      "message": "Pesan",
+      "consent": "Persetujuan"
+    },
+    "field": {
+      "companyName": {
+        "label": "Nama perusahaan"
+      },
+      "businessType": {
+        "label": "Jenis bisnis"
+      },
+      "website": {
+        "label": "Situs web",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Tahun berdiri"
+      },
+      "locationsCount": {
+        "label": "Jumlah lokasi"
+      },
+      "monthlyOrderValue": {
+        "label": "Perkiraan nilai pesanan bulanan"
+      },
+      "referral": {
+        "label": "Dari mana Anda mengetahui kami?"
+      },
+      "firstName": {
+        "label": "Nama depan"
+      },
+      "lastName": {
+        "label": "Nama belakang"
+      },
+      "email": {
+        "label": "Email",
+        "help": "Kami akan mengirim kabar tentang pengajuan Anda ke alamat ini."
+      },
+      "phone": {
+        "label": "Telepon"
+      },
+      "jobTitle": {
+        "label": "Jabatan"
+      },
+      "preferredLanguage": {
+        "label": "Bahasa pilihan"
+      },
+      "billingAddress": {
+        "label": "Alamat penagihan"
+      },
+      "shippingAddress": {
+        "label": "Alamat pengiriman"
+      },
+      "taxNumber": {
+        "label": "Registrasi pajak"
+      },
+      "certificates": {
+        "label": "Sertifikat",
+        "help": "Misalnya sertifikat penjualan kembali atau sertifikat pembebasan pajak."
+      },
+      "message": {
+        "label": "Pesan untuk toko"
+      },
+      "consent": {
+        "label": "Saya setuju data saya digunakan untuk meninjau pengajuan ini."
+      }
+    },
+    "business_type": {
+      "retail": "Toko ritel",
+      "salon": "Salon atau spa",
+      "restaurant": "Restoran atau kafe",
+      "distributor": "Distributor",
+      "other": "Lainnya"
+    },
+    "order_value": {
+      "lt1k": "Kurang dari 1.000",
+      "1k-5k": "1.000 hingga 5.000",
+      "5k-20k": "5.000 hingga 20.000",
+      "gt20k": "Lebih dari 20.000"
+    },
+    "address": {
+      "country": "Negara/wilayah",
+      "address1": "Alamat",
+      "address2": "Apartemen, unit, dll.",
+      "city": "Kota",
+      "zone": {
+        "state": "Negara bagian",
+        "province": "Provinsi",
+        "region": "Wilayah",
+        "county": "County",
+        "prefecture": "Prefektur",
+        "emirate": "Emirat",
+        "governorate": "Kegubernuran",
+        "state_and_territory": "Negara bagian/teritori"
+      },
+      "zip": {
+        "postal": "Kode pos",
+        "zip": "Kode ZIP",
+        "pin": "Kode PIN",
+        "postcode": "Kode pos"
+      },
+      "same_as_billing": "Sama dengan alamat penagihan"
+    },
+    "tax": {
+      "country": "Negara registrasi pajak",
+      "vat": "Nomor PPN (VAT)",
+      "vat_help": "Sertakan awalan negara, misalnya DE123456789.",
+      "abn": "ABN (Nomor Bisnis Australia)",
+      "gst": "Nomor GST/HST",
+      "us_resale": "Nomor sertifikat penjualan kembali",
+      "us_state": "Negara bagian penerbit sertifikat",
+      "tax_id": "NPWP / ID pajak"
+    },
+    "upload": {
+      "add": "Tambah file",
+      "remove": "Hapus {{ name }}",
+      "hint": "PDF, JPG, atau PNG, maksimal 5 MB per file, hingga 3 file.",
+      "expiry": "Tanggal kedaluwarsa {{ name }} (opsional)",
+      "uploading": "Mengunggah {{ name }}…",
+      "done": "{{ name }} berhasil diunggah",
+      "failed": "{{ name }} tidak dapat diunggah. Silakan coba lagi."
+    },
+    "consent_privacy": "Baca kebijakan privasi kami",
+    "error": {
+      "summary": "Harap perbaiki hal berikut:",
+      "required": "Masukkan {{ field }}.",
+      "choose": "Pilih {{ field }}.",
+      "consent": "Harap konfirmasi untuk melanjutkan.",
+      "email": "Masukkan alamat email seperti nama@contoh.com.",
+      "url": "Masukkan alamat web seperti https://contoh.com.",
+      "phone": "Masukkan nomor telepon yang valid.",
+      "number": "Masukkan angka.",
+      "date": "Masukkan tanggal yang valid.",
+      "too_long": "Terlalu panjang. Gunakan maksimal {{ max }} karakter.",
+      "file_type": "{{ name }} bukan file PDF, JPG, atau PNG.",
+      "file_size": "{{ name }} lebih dari 5 MB.",
+      "file_count": "Anda dapat menambahkan hingga 3 file.",
+      "file_pending": "Tunggu hingga file selesai diunggah.",
+      "spam": "Jawaban tidak cocok. Silakan coba lagi."
+    },
+    "success": {
+      "heading": "Terima kasih, pengajuan Anda sudah terkirim",
+      "body": "Kami akan meninjaunya dan menghubungi Anda melalui email.",
+      "email": "Kami telah mengirimkan email konfirmasi kepada Anda."
+    }
+  }
+}

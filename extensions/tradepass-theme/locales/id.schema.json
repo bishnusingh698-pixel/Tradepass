@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Menyembunyikan harga dari pengunjung ritel dan menampilkan pesan Masuk / Ajukan, sesuai pengaturan etalase Tradepass. Harus aktif agar harga tersembunyi."
+  },
+  "form_block": {
+    "name": "Pengajuan grosir",
+    "form_id": "ID formulir",
+    "form_id_info": "Kosongkan untuk memakai formulir bawaan. Salin ID formulir dari Tradepass → Formulir.",
+    "show_heading": "Tampilkan judul",
+    "heading": "Judul",
+    "heading_info": "Kosongkan untuk memakai teks bawaan dalam bahasa pengunjung."
+  },
+  "apply_block": {
+    "name": "Ajukan akun grosir",
+    "style": "Gaya",
+    "style_button": "Tombol",
+    "style_banner": "Banner",
+    "heading": "Judul",
+    "text": "Teks",
+    "button": "Label tombol",
+    "texts_info": "Kosongkan untuk memakai teks bawaan dalam bahasa pengunjung.",
+    "hide_for_b2b": "Sembunyikan untuk pembeli grosir yang sudah masuk"
+  }
+}

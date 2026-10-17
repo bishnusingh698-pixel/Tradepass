@@ -1,0 +1,25 @@
+{
+  "embed": {
+    "name": "Tradepass",
+    "info": "Menyembunyikan harga daripada pelawat runcit dan memaparkan mesej Log masuk / Mohon, berdasarkan tetapan kedai Tradepass anda. Mesti dihidupkan untuk menyembunyikan harga."
+  },
+  "form_block": {
+    "name": "Permohonan borong",
+    "form_id": "ID borang",
+    "form_id_info": "Biarkan kosong untuk menggunakan borang lalai. Salin ID borang daripada Tradepass → Borang.",
+    "show_heading": "Paparkan tajuk",
+    "heading": "Tajuk",
+    "heading_info": "Biarkan kosong untuk menggunakan teks lalai dalam bahasa pelawat."
+  },
+  "apply_block": {
+    "name": "Mohon akaun borong",
+    "style": "Gaya",
+    "style_button": "Butang",
+    "style_banner": "Sepanduk",
+    "heading": "Tajuk",
+    "text": "Teks",
+    "button": "Label butang",
+    "texts_info": "Biarkan kosong untuk menggunakan teks lalai dalam bahasa pelawat.",
+    "hide_for_b2b": "Sembunyikan untuk pembeli borong yang telah log masuk"
+  }
+}

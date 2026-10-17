@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "更新您的批發申請",
+  "hosted.update.intro": "{store} 需要您補充一些資訊，以便審核您的批發申請。",
+  "hosted.update.messageLabel": "來自 {store} 的訊息",
+  "hosted.update.submit": "送出更新",
+  "hosted.update.doneHeading": "謝謝，您的申請已更新",
+  "hosted.update.doneBody": "{store} 將進行審核，並以電子郵件回覆您。",
+  "hosted.link.invalidTitle": "此連結無效",
+  "hosted.link.invalidBody": "請確認您開啟的是郵件中的完整連結，或聯絡 {store}。",
+  "hosted.link.expiredTitle": "此連結已失效",
+  "hosted.link.expiredBody": "為了保障您的安全，更新連結僅在有限時間內有效。請聯絡 {store} 索取新連結。",
+  "hosted.link.usedTitle": "此連結已使用過",
+  "hosted.link.usedBody": "每個更新連結僅能使用一次。如需修改其他內容，請聯絡 {store}。",
+  "hosted.noscript": "請在瀏覽器中啟用 JavaScript 以更新您的申請。",
+  "hosted.error.generic": "我們這邊發生問題，請幾分鐘後再試一次。"
+}
