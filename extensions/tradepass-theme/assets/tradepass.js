@@ -46,7 +46,9 @@
   function message(cfg, key, compact) {
     var box = el("div", "tp-gate" + (compact ? " tp-gate--compact" : ""));
     box.setAttribute(mark, "msg");
-    if (!compact) box.appendChild(el("p", "tp-gate__text", t(cfg, key)));
+    // Compact (product cards): the message stays for screen readers so the
+    // "Log in / Apply" links say why the price is missing.
+    box.appendChild(el(compact ? "span" : "p", compact ? "tp-sr" : "tp-gate__text", t(cfg, key)));
     box.appendChild(buttons(cfg, compact));
     return box;
   }
@@ -119,7 +121,10 @@
     if (!main || first(main, ".tp-wall")) return;
     var box = el("section", "tp-wall");
     box.setAttribute(mark, "msg");
-    box.appendChild(el("h1", "tp-wall__heading", t(cfg, "wall.heading")));
+    box.setAttribute("aria-labelledby", "tp-wall-heading");
+    var hd = el("h1", "tp-wall__heading", t(cfg, "wall.heading"));
+    hd.id = "tp-wall-heading";
+    box.appendChild(hd);
     box.appendChild(el("p", "tp-gate__text", t(cfg, "wall.message")));
     box.appendChild(buttons(cfg, false));
     main.insertBefore(box, main.firstChild);

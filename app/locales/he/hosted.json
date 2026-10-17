@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "עדכון בקשת החשבון הסיטונאי",
+  "hosted.update.intro": "כדי לבדוק את בקשת החשבון הסיטונאי, {store} צריכים עוד קצת מידע.",
+  "hosted.update.messageLabel": "הודעה מ-{store}",
+  "hosted.update.submit": "שליחת העדכון",
+  "hosted.update.doneHeading": "תודה, הבקשה עודכנה",
+  "hosted.update.doneBody": "{store} יבדקו אותה ויחזרו אליך באימייל.",
+  "hosted.link.invalidTitle": "הקישור הזה לא תקין",
+  "hosted.link.invalidBody": "כדאי לוודא שנפתח הקישור המלא מהאימייל, או לפנות אל {store}.",
+  "hosted.link.expiredTitle": "תוקף הקישור הזה פג",
+  "hosted.link.expiredBody": "מטעמי אבטחה, קישורי עדכון פועלים לזמן מוגבל בלבד. אפשר לפנות אל {store} ולבקש קישור חדש.",
+  "hosted.link.usedTitle": "כבר נעשה שימוש בקישור הזה",
+  "hosted.link.usedBody": "כל קישור עדכון פועל פעם אחת בלבד. כדי לשנות משהו נוסף, אפשר לפנות אל {store}.",
+  "hosted.noscript": "כדי לעדכן את הבקשה, יש להפעיל JavaScript בדפדפן.",
+  "hosted.error.generic": "משהו השתבש אצלנו. אפשר לנסות שוב בעוד כמה דקות."
+}

@@ -55,6 +55,9 @@ function html(c: { storeName: string; i18n: Translator }, page: Page, status = 2
   let main: string;
   if (page.kind === "form") {
     const err = page.error ? `<p id="err" class="error" role="alert">${e(`renew.error.${page.error}`)}</p>` : "";
+    // The error belongs to the expiry date for "date", to the file otherwise.
+    const onFile = page.error && page.error !== "date";
+    const onDate = page.error === "date";
     main = `<h1>${e("renew.form.heading")}</h1>
 <p>${e("renew.form.intro", { store_name: c.storeName })}</p>
 ${err}
@@ -62,12 +65,12 @@ ${err}
   <div class="field">
     <label for="file">${e("renew.form.file")}</label>
     <p class="hint" id="file-hint">${e("renew.form.fileHint")}</p>
-    <input type="file" id="file" name="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" required aria-describedby="file-hint${page.error ? " err" : ""}"${page.error ? ' aria-invalid="true"' : ""}>
+    <input type="file" id="file" name="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" required aria-describedby="file-hint${onFile ? " err" : ""}"${onFile ? ' aria-invalid="true"' : ""}>
   </div>
   <div class="field">
     <label for="expiresOn">${e("renew.form.expiry")}</label>
     <p class="hint" id="exp-hint">${e("renew.form.expiryHint")}</p>
-    <input type="date" id="expiresOn" name="expiresOn" aria-describedby="exp-hint">
+    <input type="date" id="expiresOn" name="expiresOn" aria-describedby="exp-hint${onDate ? " err" : ""}"${onDate ? ' aria-invalid="true"' : ""}>
   </div>
   <button type="submit" id="submit">${e("renew.form.submit")}</button>
   <p class="hint" id="status" role="status" aria-live="polite"></p>

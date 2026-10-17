@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass לא הצליח לקרוא את הבקשה הזו.",
+  "flow.action.notInstalled": "Tradepass לא מותקן בחנות הזו.",
+  "flow.action.planRequired": "פעולות Shopify Flow זמינות בתוכנית {plan} של Tradepass.",
+  "flow.action.notFound": "אין בקשה ב-Tradepass עם המזהה הזה. יש להשתמש במזהה הבקשה מטריגר של Tradepass.",
+  "flow.action.alreadyApproved": "הבקשה הזו כבר אושרה.",
+  "flow.action.notOpen": "הבקשה הזו נדחתה או בוטלה, ולכן אי אפשר לאשר אותה מ-Flow.",
+  "flow.action.tierNotFound": "אין ב-Tradepass רמה בשם “{tier}”. יש לבדוק את שם הרמה בפעולה.",
+  "flow.action.noTier": "יש לבחור רמה בפעולה, או להגדיר רמה מומלצת בטופס.",
+  "flow.action.running": "האישור עדיין מתבצע. Shopify Flow יבדוק שוב בקרוב.",
+  "flow.action.stepFailed": "האישור נעצר באמצע. יש לפתוח את הבקשה ב-Tradepass כדי לראות מה קרה ולנסות שוב.",
+  "flow.action.tryLater": "Tradepass לא הצליח להשלים את האישור. Shopify Flow ינסה שוב."
+}

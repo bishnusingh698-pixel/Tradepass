@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass nepavyko perskaityti šios užklausos.",
+  "flow.action.notInstalled": "Tradepass šioje parduotuvėje neįdiegta.",
+  "flow.action.planRequired": "Shopify Flow veiksmai pasiekiami Tradepass plane {plan}.",
+  "flow.action.notFound": "Tradepass paraiškos su tokiu ID nėra. Naudokite paraiškos ID iš Tradepass paleidiklio.",
+  "flow.action.alreadyApproved": "Ši paraiška jau patvirtinta.",
+  "flow.action.notOpen": "Ši paraiška atmesta arba atšaukta, todėl jos negalima patvirtinti per Flow.",
+  "flow.action.tierNotFound": "Tradepass lygio „{tier}“ nėra. Patikrinkite lygio pavadinimą veiksme.",
+  "flow.action.noTier": "Pasirinkite lygį veiksme arba formoje nustatykite siūlomą lygį.",
+  "flow.action.running": "Patvirtinimas dar vykdomas. Shopify Flow netrukus patikrins dar kartą.",
+  "flow.action.stepFailed": "Patvirtinimas sustojo pusiaukelėje. Atidarykite paraišką Tradepass, kad pamatytumėte, kas nutiko, ir bandykite dar kartą.",
+  "flow.action.tryLater": "Tradepass nepavyko užbaigti patvirtinimo. Shopify Flow bandys dar kartą."
+}

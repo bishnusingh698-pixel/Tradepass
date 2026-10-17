@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Aktualizácia žiadosti o veľkoobchodný účet",
+  "hosted.update.intro": "Obchod {store} potrebuje na posúdenie vašej žiadosti o veľkoobchodný účet ešte niekoľko informácií.",
+  "hosted.update.messageLabel": "Správa od obchodu {store}",
+  "hosted.update.submit": "Odoslať aktualizáciu",
+  "hosted.update.doneHeading": "Ďakujeme, vaša žiadosť bola aktualizovaná",
+  "hosted.update.doneBody": "Obchod {store} ju posúdi a ozve sa vám e-mailom.",
+  "hosted.link.invalidTitle": "Tento odkaz nie je platný",
+  "hosted.link.invalidBody": "Skontrolujte, či ste z e-mailu otvorili celý odkaz, alebo kontaktujte obchod {store}.",
+  "hosted.link.expiredTitle": "Platnosť odkazu vypršala",
+  "hosted.link.expiredBody": "Z bezpečnostných dôvodov fungujú odkazy na aktualizáciu iba obmedzený čas. Kontaktujte, prosím, obchod {store} a požiadajte o nový odkaz.",
+  "hosted.link.usedTitle": "Tento odkaz už bol použitý",
+  "hosted.link.usedBody": "Každý odkaz na aktualizáciu funguje iba raz. Ak potrebujete zmeniť ešte niečo, kontaktujte, prosím, obchod {store}.",
+  "hosted.noscript": "Ak chcete aktualizovať svoju žiadosť, zapnite, prosím, v prehliadači JavaScript.",
+  "hosted.error.generic": "Na našej strane sa niečo pokazilo. Skúste to, prosím, znova o niekoľko minút."
+}

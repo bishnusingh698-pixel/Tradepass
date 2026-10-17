@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Uzupełnij wniosek hurtowy",
+  "hosted.update.intro": "Sklep {store} potrzebuje kilku dodatkowych informacji, aby rozpatrzyć wniosek hurtowy.",
+  "hosted.update.messageLabel": "Wiadomość od {store}",
+  "hosted.update.submit": "Wyślij uzupełnienie",
+  "hosted.update.doneHeading": "Dziękujemy, wniosek został zaktualizowany",
+  "hosted.update.doneBody": "Sklep {store} zapozna się z nim i odpowie e-mailem.",
+  "hosted.link.invalidTitle": "Ten link jest nieprawidłowy",
+  "hosted.link.invalidBody": "Sprawdź, czy otwarto cały link z e-maila, lub skontaktuj się ze sklepem {store}.",
+  "hosted.link.expiredTitle": "Ten link wygasł",
+  "hosted.link.expiredBody": "Ze względów bezpieczeństwa linki do uzupełnienia działają tylko przez ograniczony czas. Skontaktuj się ze sklepem {store} i poproś o nowy link.",
+  "hosted.link.usedTitle": "Ten link został już użyty",
+  "hosted.link.usedBody": "Każdy link do uzupełnienia działa jeden raz. Aby zmienić coś jeszcze, skontaktuj się ze sklepem {store}.",
+  "hosted.noscript": "Włącz JavaScript w przeglądarce, aby uzupełnić wniosek.",
+  "hosted.error.generic": "Po naszej stronie wystąpił błąd. Spróbuj ponownie za kilka minut."
+}

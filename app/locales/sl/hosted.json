@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Posodobite vlogo za veleprodajni račun",
+  "hosted.update.intro": "Trgovina {store} za pregled vaše vloge za veleprodajni račun potrebuje še nekaj podatkov.",
+  "hosted.update.messageLabel": "Sporočilo trgovine {store}",
+  "hosted.update.submit": "Pošlji posodobitev",
+  "hosted.update.doneHeading": "Hvala, vaša vloga je posodobljena",
+  "hosted.update.doneBody": "Trgovina {store} jo bo pregledala in vam odgovorila po e-pošti.",
+  "hosted.link.invalidTitle": "Ta povezava ni veljavna",
+  "hosted.link.invalidBody": "Preverite, ali ste iz e-poštnega sporočila odprli celotno povezavo, ali pa se obrnite na trgovino {store}.",
+  "hosted.link.expiredTitle": "Ta povezava je potekla",
+  "hosted.link.expiredBody": "Zaradi varnosti povezave za posodobitev delujejo le omejen čas. Obrnite se na trgovino {store} in prosite za novo povezavo.",
+  "hosted.link.usedTitle": "Ta povezava je že bila uporabljena",
+  "hosted.link.usedBody": "Vsaka povezava za posodobitev deluje samo enkrat. Če morate spremeniti še kaj, se obrnite na trgovino {store}.",
+  "hosted.noscript": "Če želite posodobiti vlogo, v brskalniku vklopite JavaScript.",
+  "hosted.error.generic": "Na naši strani je prišlo do napake. Poskusite znova čez nekaj minut."
+}

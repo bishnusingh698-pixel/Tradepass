@@ -55,7 +55,9 @@ h1{font-size:1.5rem;line-height:1.3;margin-block:0 1rem}
 .msg{padding:1rem;border:1px solid #c9cccf;border-radius:4px;white-space:pre-wrap;overflow-wrap:anywhere}
 .msg-label{font-weight:600;margin-block-end:.25rem}
 .tpf-submit{background:#1a1a1a;color:#fff;border:0;border-radius:4px}
-@media (prefers-color-scheme:dark){body{background:#111;color:#f1f1f1}.tpf-submit{background:#f1f1f1;color:#111}}
+a{color:#005bd3}
+@media (prefers-color-scheme:dark){body{background:#111;color:#f1f1f1}.tpf-submit{background:#f1f1f1;color:#111}
+a{color:#8ab4f8}.hosted .tpf-error,.hosted .tpf-summary a{color:#ff8a80}.hosted .tpf-summary,.hosted .tpf [aria-invalid=true]{border-color:#ff8a80}.msg{border-color:#5c5f62}}
 </style>
 ${opts.head ?? ""}
 </head>

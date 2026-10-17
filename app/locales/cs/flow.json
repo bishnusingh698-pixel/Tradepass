@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass nedokázal tento požadavek přečíst.",
+  "flow.action.notInstalled": "Tradepass není v tomto obchodě nainstalován.",
+  "flow.action.planRequired": "Akce Shopify Flow jsou dostupné v tarifu Tradepass {plan}.",
+  "flow.action.notFound": "Žádná žádost v Tradepass nemá toto ID. Použijte ID žádosti ze spouštěče Tradepass.",
+  "flow.action.alreadyApproved": "Tato žádost už byla schválena.",
+  "flow.action.notOpen": "Tato žádost byla zamítnuta nebo stažena, takže ji nelze schválit z Flow.",
+  "flow.action.tierNotFound": "V Tradepass neexistuje úroveň s názvem „{tier}“. Zkontrolujte název úrovně v akci.",
+  "flow.action.noTier": "Vyberte úroveň v akci, nebo nastavte navrhovanou úroveň ve formuláři.",
+  "flow.action.running": "Schvalování stále probíhá. Shopify Flow to brzy zkontroluje znovu.",
+  "flow.action.stepFailed": "Schvalování se zastavilo v polovině. Otevřete žádost v Tradepass, zjistěte, co se stalo, a zkuste to znovu.",
+  "flow.action.tryLater": "Tradepass nedokázal schválení dokončit. Shopify Flow to zkusí znovu."
+}

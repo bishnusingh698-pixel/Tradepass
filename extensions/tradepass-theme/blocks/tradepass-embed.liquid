@@ -62,6 +62,14 @@
     if tp_first == '/'
       assign tp_apply = tp_root | append: tp_apply
     endif
+    # Readable text on the merchant's button colour: white unless under 4.5:1, then black.
+    assign tp_btn_fg = '#ffffff'
+    if tp.colors.button != blank
+      assign tp_btn_cr = tp.colors.button | color_contrast: '#ffffff'
+      if tp_btn_cr < 4.5
+        assign tp_btn_fg = '#000000'
+      endif
+    endif
     assign tp_login = tp.loginUrl
     if tp_login == blank or tp_login == '/account/login'
       assign tp_login = routes.account_login_url
@@ -96,11 +104,12 @@
     .tp-gate__text{margin:0;line-height:1.5}
     .tp-actions{display:flex;flex-wrap:wrap;gap:.5rem}
     .tp-btn{display:inline-flex;align-items:center;justify-content:center;min-block-size:44px;padding-inline:1rem;text-decoration:none;border:1px solid currentColor;border-radius:4px;overflow-wrap:anywhere;text-align:center}
-    .tp-btn--primary{{% if tp.colors.button != blank %}background:{{ tp.colors.button }};border-color:{{ tp.colors.button }};color:#fff;{% endif %}}
+    .tp-btn--primary{{% if tp.colors.button != blank %}background:{{ tp.colors.button }};border-color:{{ tp.colors.button }};color:{{ tp_btn_fg }};{% endif %}}
     .tp-gate--compact{margin-block:.25rem}
     .tp-gate--compact .tp-btn{min-block-size:32px;padding-inline:.6rem;font-size:.875em}
     .tp-banner{padding:.75rem 1rem;text-align:center;border-block-end:1px solid rgba(0,0,0,.1)}
-    .tp-hint{margin-block:.25rem;font-size:.9em;opacity:.85}
+    .tp-hint{margin-block:.25rem;font-size:.9em}
+    .tp-sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
     .tp-wall{padding:3rem 1rem;max-inline-size:40rem;margin-inline:auto}
     .tp-gated {{ tp_hide }}{display:none!important}
     {%- if tp_gate and tp.scope == 'all' %}

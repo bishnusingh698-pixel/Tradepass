@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Cập nhật đơn đăng ký bán buôn của bạn",
+  "hosted.update.intro": "{store} cần thêm một chút thông tin để xem xét đơn đăng ký bán buôn của bạn.",
+  "hosted.update.messageLabel": "Lời nhắn từ {store}",
+  "hosted.update.submit": "Gửi cập nhật",
+  "hosted.update.doneHeading": "Cảm ơn bạn, đơn đăng ký của bạn đã được cập nhật",
+  "hosted.update.doneBody": "{store} sẽ xem xét và phản hồi bạn qua email.",
+  "hosted.link.invalidTitle": "Liên kết này không hợp lệ",
+  "hosted.link.invalidBody": "Hãy kiểm tra xem bạn đã mở đầy đủ liên kết trong email chưa, hoặc liên hệ với {store}.",
+  "hosted.link.expiredTitle": "Liên kết này đã hết hạn",
+  "hosted.link.expiredBody": "Để bảo mật, liên kết cập nhật chỉ có hiệu lực trong thời gian giới hạn. Vui lòng liên hệ với {store} để xin liên kết mới.",
+  "hosted.link.usedTitle": "Liên kết này đã được sử dụng",
+  "hosted.link.usedBody": "Mỗi liên kết cập nhật chỉ dùng được một lần. Nếu bạn cần thay đổi thêm, vui lòng liên hệ với {store}.",
+  "hosted.noscript": "Vui lòng bật JavaScript trong trình duyệt để cập nhật đơn đăng ký của bạn.",
+  "hosted.error.generic": "Đã xảy ra lỗi từ phía chúng tôi. Vui lòng thử lại sau vài phút."
+}

@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass không đọc được yêu cầu này.",
+  "flow.action.notInstalled": "Tradepass chưa được cài đặt trên cửa hàng này.",
+  "flow.action.planRequired": "Hành động Shopify Flow có trên gói Tradepass {plan}.",
+  "flow.action.notFound": "Không có đơn đăng ký Tradepass nào có ID này. Hãy dùng ID đơn đăng ký từ một trình kích hoạt Tradepass.",
+  "flow.action.alreadyApproved": "Đơn đăng ký này đã được phê duyệt trước đó.",
+  "flow.action.notOpen": "Đơn đăng ký này đã bị từ chối hoặc rút lại nên không thể phê duyệt từ Flow.",
+  "flow.action.tierNotFound": "Không có cấp giá Tradepass nào tên “{tier}”. Hãy kiểm tra tên cấp giá trong hành động.",
+  "flow.action.noTier": "Hãy chọn cấp giá trong hành động hoặc đặt cấp giá đề xuất trên biểu mẫu.",
+  "flow.action.running": "Quá trình phê duyệt vẫn đang chạy. Shopify Flow sẽ sớm kiểm tra lại.",
+  "flow.action.stepFailed": "Quá trình phê duyệt dừng giữa chừng. Hãy mở đơn đăng ký trong Tradepass để xem chuyện gì đã xảy ra và thử lại.",
+  "flow.action.tryLater": "Tradepass không thể hoàn tất việc phê duyệt. Shopify Flow sẽ thử lại."
+}

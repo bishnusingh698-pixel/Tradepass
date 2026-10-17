@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass bu isteği okuyamadı.",
+  "flow.action.notInstalled": "Tradepass bu mağazada yüklü değil.",
+  "flow.action.planRequired": "Shopify Flow işlemleri Tradepass {plan} planında kullanılabilir.",
+  "flow.action.notFound": "Bu kimliğe sahip bir Tradepass başvurusu yok. Bir Tradepass tetikleyicisindeki Başvuru kimliğini kullanın.",
+  "flow.action.alreadyApproved": "Bu başvuru zaten onaylanmış.",
+  "flow.action.notOpen": "Bu başvuru reddedildiği veya geri çekildiği için Flow üzerinden onaylanamaz.",
+  "flow.action.tierNotFound": "“{tier}” adlı bir Tradepass seviyesi yok. İşlemdeki seviye adını kontrol edin.",
+  "flow.action.noTier": "İşlemde bir seviye seçin veya formda önerilen bir seviye belirleyin.",
+  "flow.action.running": "Onay işlemi devam ediyor. Shopify Flow kısa süre sonra tekrar kontrol edecek.",
+  "flow.action.stepFailed": "Onay işlemi yarıda kaldı. Ne olduğunu görmek ve yeniden denemek için başvuruyu Tradepass'te açın.",
+  "flow.action.tryLater": "Tradepass onay işlemini tamamlayamadı. Shopify Flow yeniden deneyecek."
+}

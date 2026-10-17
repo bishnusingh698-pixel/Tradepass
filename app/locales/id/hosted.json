@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Perbarui pengajuan grosir Anda",
+  "hosted.update.intro": "{store} memerlukan sedikit informasi tambahan untuk meninjau pengajuan grosir Anda.",
+  "hosted.update.messageLabel": "Pesan dari {store}",
+  "hosted.update.submit": "Kirim pembaruan",
+  "hosted.update.doneHeading": "Terima kasih, pengajuan Anda sudah diperbarui",
+  "hosted.update.doneBody": "{store} akan meninjaunya dan menghubungi Anda melalui email.",
+  "hosted.link.invalidTitle": "Tautan ini tidak valid",
+  "hosted.link.invalidBody": "Pastikan Anda membuka tautan lengkap dari email, atau hubungi {store}.",
+  "hosted.link.expiredTitle": "Tautan ini sudah kedaluwarsa",
+  "hosted.link.expiredBody": "Demi keamanan Anda, tautan pembaruan hanya berlaku untuk waktu terbatas. Silakan hubungi {store} dan minta tautan baru.",
+  "hosted.link.usedTitle": "Tautan ini sudah digunakan",
+  "hosted.link.usedBody": "Setiap tautan pembaruan hanya berlaku satu kali. Jika Anda perlu mengubah hal lain, silakan hubungi {store}.",
+  "hosted.noscript": "Aktifkan JavaScript di browser Anda untuk memperbarui pengajuan.",
+  "hosted.error.generic": "Terjadi kesalahan di sistem kami. Silakan coba lagi dalam beberapa menit."
+}

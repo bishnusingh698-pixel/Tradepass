@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Kemas kini permohonan borong anda",
+  "hosted.update.intro": "{store} memerlukan sedikit maklumat tambahan untuk menyemak permohonan borong anda.",
+  "hosted.update.messageLabel": "Mesej daripada {store}",
+  "hosted.update.submit": "Hantar kemas kini",
+  "hosted.update.doneHeading": "Terima kasih, permohonan anda telah dikemas kini",
+  "hosted.update.doneBody": "{store} akan menyemaknya dan menghubungi anda melalui e-mel.",
+  "hosted.link.invalidTitle": "Pautan ini tidak sah",
+  "hosted.link.invalidBody": "Pastikan anda membuka keseluruhan pautan daripada e-mel, atau hubungi {store}.",
+  "hosted.link.expiredTitle": "Pautan ini telah tamat tempoh",
+  "hosted.link.expiredBody": "Demi keselamatan anda, pautan kemas kini hanya berfungsi untuk tempoh terhad. Sila hubungi {store} dan minta pautan baharu.",
+  "hosted.link.usedTitle": "Pautan ini telah digunakan",
+  "hosted.link.usedBody": "Setiap pautan kemas kini hanya berfungsi sekali. Jika anda perlu menukar perkara lain, sila hubungi {store}.",
+  "hosted.noscript": "Sila hidupkan JavaScript dalam pelayar anda untuk mengemas kini permohonan.",
+  "hosted.error.generic": "Berlaku ralat di pihak kami. Sila cuba lagi dalam beberapa minit."
+}

@@ -18,6 +18,14 @@
   if tp_first == '/'
     assign tp_apply = tp_root | append: tp_apply
   endif
+  # Readable text on the merchant's button colour: white unless under 4.5:1, then black.
+  assign tp_btn_fg = '#ffffff'
+  if tp.colors.button != blank
+    assign tp_btn_cr = tp.colors.button | color_contrast: '#ffffff'
+    if tp_btn_cr < 4.5
+      assign tp_btn_fg = '#000000'
+    endif
+  endif
   assign tp_heading = block.settings.heading | default: tp_over['apply_block.heading']
   if tp_heading == blank
     assign tp_heading = 'apply_block.heading' | t
@@ -37,7 +45,7 @@
     .tp-apply--banner{flex-direction:column;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(0,0,0,.15);border-radius:4px}
     .tp-apply__heading{margin:0;font-weight:600;font-size:1.1em}
     .tp-apply__text{margin:0}
-    .tp-apply__btn{display:inline-flex;align-items:center;justify-content:center;min-block-size:44px;padding-inline:1.25rem;text-decoration:none;overflow-wrap:anywhere;text-align:center{% if tp.colors.button != blank %};background:{{ tp.colors.button }};color:#fff;border-color:{{ tp.colors.button }}{% endif %}}
+    .tp-apply__btn{display:inline-flex;align-items:center;justify-content:center;min-block-size:44px;padding-inline:1.25rem;text-decoration:none;overflow-wrap:anywhere;text-align:center{% if tp.colors.button != blank %};background:{{ tp.colors.button }};color:{{ tp_btn_fg }};border-color:{{ tp.colors.button }}{% endif %}}
   </style>
   <div class="tp-apply tp-apply--{{ block.settings.style }}" {{ block.shopify_attributes }}>
     {%- if block.settings.style == 'banner' -%}

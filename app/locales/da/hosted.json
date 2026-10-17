@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Opdater din engrosansøgning",
+  "hosted.update.intro": "{store} har brug for lidt flere oplysninger for at kunne behandle din engrosansøgning.",
+  "hosted.update.messageLabel": "Besked fra {store}",
+  "hosted.update.submit": "Send opdatering",
+  "hosted.update.doneHeading": "Tak! Din ansøgning er opdateret",
+  "hosted.update.doneBody": "{store} gennemgår den og vender tilbage til dig via e-mail.",
+  "hosted.link.invalidTitle": "Linket er ikke gyldigt",
+  "hosted.link.invalidBody": "Tjek, at du har åbnet hele linket fra e-mailen, eller kontakt {store}.",
+  "hosted.link.expiredTitle": "Linket er udløbet",
+  "hosted.link.expiredBody": "Af sikkerhedshensyn virker opdateringslinks kun i begrænset tid. Kontakt {store}, og bed om et nyt link.",
+  "hosted.link.usedTitle": "Linket er allerede brugt",
+  "hosted.link.usedBody": "Hvert opdateringslink virker én gang. Hvis du skal ændre noget andet, kan du kontakte {store}.",
+  "hosted.noscript": "Slå JavaScript til i din browser for at opdatere din ansøgning.",
+  "hosted.error.generic": "Noget gik galt hos os. Prøv igen om et par minutter."
+}

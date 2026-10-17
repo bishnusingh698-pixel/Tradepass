@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass tidak dapat membaca permintaan ini.",
+  "flow.action.notInstalled": "Tradepass tidak dipasang di kedai ini.",
+  "flow.action.planRequired": "Tindakan Shopify Flow tersedia pada pelan Tradepass {plan}.",
+  "flow.action.notFound": "Tiada permohonan Tradepass dengan ID ini. Gunakan ID Permohonan daripada pencetus Tradepass.",
+  "flow.action.alreadyApproved": "Permohonan ini telah pun diluluskan.",
+  "flow.action.notOpen": "Permohonan ini telah ditolak atau ditarik balik, jadi tidak boleh diluluskan daripada Flow.",
+  "flow.action.tierNotFound": "Tiada peringkat harga Tradepass bernama “{tier}”. Semak nama peringkat harga dalam tindakan.",
+  "flow.action.noTier": "Pilih peringkat harga dalam tindakan, atau tetapkan peringkat harga cadangan pada borang.",
+  "flow.action.running": "Kelulusan masih berjalan. Shopify Flow akan menyemak semula sebentar lagi.",
+  "flow.action.stepFailed": "Kelulusan terhenti separuh jalan. Buka permohonan dalam Tradepass untuk melihat perkara yang berlaku dan cuba semula.",
+  "flow.action.tryLater": "Tradepass tidak dapat menyelesaikan kelulusan. Shopify Flow akan mencuba semula."
+}

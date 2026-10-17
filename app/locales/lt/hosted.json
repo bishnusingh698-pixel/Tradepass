@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Papildykite didmeninės prekybos paraišką",
+  "hosted.update.intro": "Parduotuvei {store} reikia šiek tiek daugiau informacijos, kad galėtų įvertinti jūsų didmeninės prekybos paraišką.",
+  "hosted.update.messageLabel": "Parduotuvės {store} žinutė",
+  "hosted.update.submit": "Siųsti papildymą",
+  "hosted.update.doneHeading": "Ačiū, jūsų paraiška atnaujinta",
+  "hosted.update.doneBody": "Parduotuvė {store} ją peržiūrės ir atsakys jums el. paštu.",
+  "hosted.link.invalidTitle": "Ši nuoroda negalioja",
+  "hosted.link.invalidBody": "Patikrinkite, ar atidarėte visą nuorodą iš el. laiško, arba susisiekite su parduotuve {store}.",
+  "hosted.link.expiredTitle": "Šios nuorodos galiojimas baigėsi",
+  "hosted.link.expiredBody": "Saugumo sumetimais atnaujinimo nuorodos galioja ribotą laiką. Susisiekite su parduotuve {store} ir paprašykite naujos nuorodos.",
+  "hosted.link.usedTitle": "Ši nuoroda jau panaudota",
+  "hosted.link.usedBody": "Kiekviena atnaujinimo nuoroda veikia vieną kartą. Jei reikia pakeisti ką nors kita, susisiekite su parduotuve {store}.",
+  "hosted.noscript": "Įjunkite JavaScript savo naršyklėje, kad galėtumėte atnaujinti paraišką.",
+  "hosted.error.generic": "Mūsų sistemoje įvyko klaida. Bandykite dar kartą po kelių minučių."
+}

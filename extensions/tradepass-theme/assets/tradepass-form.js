@@ -217,13 +217,16 @@
       var lab = label(f);
       var req = f.state === "required";
       var labelEl = h(opt && opt.legend ? "legend" : "label", { className: "tpf-label", "for": opt && opt.legend ? null : id }, [
-        lab, req ? h("span", { className: "tpf-req", "aria-hidden": "true", text: " *" }) : h("span", { className: "tpf-opt", text: " " + tx("form.optional") })
+        lab, req ? h("span", { className: "tpf-req", "aria-hidden": opt && opt.legend ? null : "true", text: " *" }) : h("span", { className: "tpf-opt", text: " " + tx("form.optional") })
       ]);
       var err = h("p", { className: "tpf-error", id: errId, hidden: true });
       var wrap = h(opt && opt.legend ? "fieldset" : "div", { className: "tpf-field tpf-field--" + f.type, "data-field": f.id }, [
         labelEl, helpId ? h("p", { className: "tpf-help", id: helpId, text: help }) : null
       ]);
-      var built = control(id, [helpId, errId].filter(Boolean).join(" "));
+      var described = [helpId, errId].filter(Boolean).join(" ");
+      // Groups: the fieldset carries the help and error text for its legend.
+      if (opt && opt.legend) wrap.setAttribute("aria-describedby", described);
+      var built = control(id, described);
       wrap.appendChild(built.el);
       wrap.appendChild(err);
       nodes[f.id] = {
@@ -301,8 +304,9 @@
 
     function checkboxesControl(f) {
       return function (id, describedBy) {
-        var box = h("div", { className: "tpf-choices", "aria-describedby": describedBy });
+        var box = h("div", { className: "tpf-choices" });
         var first = null;
+        var boxes = [];
         (f.options || []).forEach(function (o, i) {
           var cid = id + "-" + i;
           var cb = h("input", { type: "checkbox", id: cid, value: o.value });
@@ -313,9 +317,12 @@
             onChange(f, cur, true);
           });
           if (!first) first = cb;
+          boxes.push(cb);
           box.appendChild(h("div", { className: "tpf-check" }, [cb, h("label", { "for": cid, text: optLabel(f, o) })]));
         });
-        return { el: box, focus: function () { if (first) first.focus(); } };
+        return { el: box, focus: function () { if (first) first.focus(); }, paint: function (e) {
+          boxes.forEach(function (cb) { if (e) cb.setAttribute("aria-invalid", "true"); else cb.removeAttribute("aria-invalid"); });
+        } };
       };
     }
 
@@ -354,9 +361,10 @@
       return s;
     }
 
-    function sub(id, text, control) {
+    function sub(id, text, control, req) {
       var e = h("p", { className: "tpf-error", id: id + "-err", hidden: true });
       control.setAttribute("aria-describedby", id + "-err");
+      if (req) control.setAttribute("aria-required", "true");
       var w = h("div", { className: "tpf-sub" }, [h("label", { "for": id, className: "tpf-sublabel", text: text }), control, e]);
       return { el: w, paint: function (msg) {
         e.hidden = !msg; e.textContent = msg || "";
@@ -397,10 +405,11 @@
           var cs = countrySelect(id + "-country", a.countryCode, section + " country", function (v) {
             a.countryCode = v; a.zoneCode = ""; onChange(f, a); build(); var n = document.getElementById(id + "-country"); if (n) n.focus();
           });
-          parts.countryCode = sub(id + "-country", tx("form.address.country"), cs);
-          parts.address1 = sub(id + "-address1", tx("form.address.address1"), input("address1", "address-line1"));
+          var rq = f.state === "required";
+          parts.countryCode = sub(id + "-country", tx("form.address.country"), cs, rq);
+          parts.address1 = sub(id + "-address1", tx("form.address.address1"), input("address1", "address-line1"), rq);
           parts.address2 = sub(id + "-address2", tx("form.address.address2") + " " + tx("form.optional"), input("address2", "address-line2"));
-          parts.city = sub(id + "-city", tx("form.address.city"), input("city", "address-level2"));
+          parts.city = sub(id + "-city", tx("form.address.city"), input("city", "address-level2"), rq);
           [parts.countryCode, parts.address1, parts.address2, parts.city].forEach(function (p) { inner.appendChild(p.el); });
           delete parts.zoneCode; delete parts.zip;
           if (c && c.r) {
@@ -409,11 +418,11 @@
             ));
             zs.value = a.zoneCode || "";
             zs.addEventListener("change", function () { set("zoneCode", zs.value); });
-            parts.zoneCode = sub(id + "-zone", zoneLabel(c), zs);
+            parts.zoneCode = sub(id + "-zone", zoneLabel(c), zs, rq);
             inner.appendChild(parts.zoneCode.el);
           }
           if (!c || c.z !== 0) {
-            parts.zip = sub(id + "-zip", zipLabel(c), input("zip", "postal-code"));
+            parts.zip = sub(id + "-zip", zipLabel(c), input("zip", "postal-code"), rq && !!c);
             inner.appendChild(parts.zip.el);
           }
           if (state.errors[f.id]) paint(state.errors[f.id]);
@@ -530,8 +539,8 @@
         });
         box.appendChild(hint);
         box.appendChild(list);
-        box.appendChild(h("label", { "for": id, className: "tpf-filebtn", text: tx("form.upload.add") }));
         box.appendChild(input);
+        box.appendChild(h("label", { "for": id, className: "tpf-filebtn", text: tx("form.upload.add") }));
         box.appendChild(live);
         draw();
         return { el: box, input: input, focus: function () { input.focus(); } };
@@ -593,6 +602,8 @@
       draftNote.appendChild(h("button", { type: "button", className: "tpf-link", text: tx("form.clear_draft"), onclick: function () {
         clearDraft();
         render(container, opts);
+        var first = container.querySelector("input:not([tabindex='-1']):not([type=file]),select,textarea");
+        if (first) first.focus();
       } }));
     }
     var pre = opts.prefill || {};
@@ -674,7 +685,9 @@
     function showSummary(errs) {
       summary.innerHTML = "";
       if (!errs.length) { summary.hidden = true; return; }
-      summary.appendChild(h("p", { className: "tpf-summary__title", text: tx("form.error.summary") }));
+      var sid = "tpf-sum-" + (++uid);
+      summary.setAttribute("aria-labelledby", sid);
+      summary.appendChild(h("p", { className: "tpf-summary__title", id: sid, text: tx("form.error.summary") }));
       var ul = h("ul");
       errs.forEach(function (e) {
         ul.appendChild(h("li", {}, [h("a", { href: "#", text: e.text, onclick: function (ev) { ev.preventDefault(); nodes[e.id].focus(); } })]));
@@ -723,7 +736,7 @@
         });
       });
       showSummary(errs);
-      if (errs.length) { nodes[errs[0].id].focus(); return; }
+      if (errs.length) { summary.focus(); return; }
       if (preview) { success(false); return; }
       if (!state.idem) { state.idem = newKey(); saveDraft(); }
       var payload = {
@@ -753,7 +766,7 @@
             }
             if (j.errors.spam && spamInput) { status.textContent = tx("form.error.spam"); spamInput.focus(); }
             showSummary(list);
-            if (list.length) nodes[list[0].id].focus();
+            if (list.length) summary.focus();
             return;
           }
           status.textContent = tx("form.failed");

@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass ei pystynyt lukemaan tätä pyyntöä.",
+  "flow.action.notInstalled": "Tradepass ei ole asennettuna tähän kauppaan.",
+  "flow.action.planRequired": "Shopify Flow -toiminnot ovat käytettävissä Tradepassin {plan}-paketissa.",
+  "flow.action.notFound": "Tällä tunnuksella ei löydy Tradepass-hakemusta. Käytä Tradepass-käynnistimen hakemustunnusta.",
+  "flow.action.alreadyApproved": "Tämä hakemus on jo hyväksytty.",
+  "flow.action.notOpen": "Tämä hakemus on hylätty tai peruttu, joten sitä ei voi hyväksyä Flow’sta.",
+  "flow.action.tierNotFound": "Tradepassissa ei ole tasoa nimeltä ”{tier}”. Tarkista tason nimi toiminnosta.",
+  "flow.action.noTier": "Valitse taso toiminnossa tai määritä lomakkeelle ehdotettu taso.",
+  "flow.action.running": "Hyväksyntä on vielä käynnissä. Shopify Flow tarkistaa tilanteen pian uudelleen.",
+  "flow.action.stepFailed": "Hyväksyntä keskeytyi kesken. Avaa hakemus Tradepassissa, tarkista mitä tapahtui ja yritä uudelleen.",
+  "flow.action.tryLater": "Tradepass ei saanut hyväksyntää valmiiksi. Shopify Flow yrittää uudelleen."
+}

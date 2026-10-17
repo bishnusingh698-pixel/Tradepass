@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass nije mogao pročitati ovaj zahtjev.",
+  "flow.action.notInstalled": "Tradepass nije instaliran u ovoj trgovini.",
+  "flow.action.planRequired": "Radnje Shopify Flow dostupne su u paketu Tradepass {plan}.",
+  "flow.action.notFound": "Nijedan zahtjev u Tradepassu nema ovaj ID. Upotrijebite ID zahtjeva iz okidača Tradepass.",
+  "flow.action.alreadyApproved": "Ovaj je zahtjev već odobren.",
+  "flow.action.notOpen": "Ovaj je zahtjev odbijen ili povučen pa ga nije moguće odobriti iz Flowa.",
+  "flow.action.tierNotFound": "U Tradepassu ne postoji razina pod nazivom „{tier}”. Provjerite naziv razine u radnji.",
+  "flow.action.noTier": "Odaberite razinu u radnji ili postavite predloženu razinu u obrascu.",
+  "flow.action.running": "Odobravanje je još u tijeku. Shopify Flow uskoro će ponovno provjeriti.",
+  "flow.action.stepFailed": "Odobravanje je stalo na pola puta. Otvorite zahtjev u Tradepassu da biste vidjeli što se dogodilo i pokušali ponovno.",
+  "flow.action.tryLater": "Tradepass nije mogao dovršiti odobravanje. Shopify Flow pokušat će ponovno."
+}

@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass te zahteve ni mogel prebrati.",
+  "flow.action.notInstalled": "Tradepass v tej trgovini ni nameščen.",
+  "flow.action.planRequired": "Dejanja Shopify Flow so na voljo v paketu Tradepass {plan}.",
+  "flow.action.notFound": "Nobena vloga v Tradepass nima tega ID-ja. Uporabite ID vloge iz sprožilca Tradepass.",
+  "flow.action.alreadyApproved": "Ta vloga je že bila odobrena.",
+  "flow.action.notOpen": "Ta vloga je bila zavrnjena ali umaknjena, zato je v Flow ni mogoče odobriti.",
+  "flow.action.tierNotFound": "V Tradepass ni ravni z imenom »{tier}«. Preverite ime ravni v dejanju.",
+  "flow.action.noTier": "V dejanju izberite raven ali v obrazcu nastavite predlagano raven.",
+  "flow.action.running": "Odobritev še poteka. Shopify Flow bo kmalu znova preveril.",
+  "flow.action.stepFailed": "Odobritev se je ustavila na polovici. Odprite vlogo v Tradepass, preverite, kaj se je zgodilo, in poskusite znova.",
+  "flow.action.tryLater": "Tradepass odobritve ni mogel dokončati. Shopify Flow bo poskusil znova."
+}

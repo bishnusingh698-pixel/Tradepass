@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Toptan satış başvurunuzu güncelleyin",
+  "hosted.update.intro": "{store} mağazasının toptan satış başvurunuzu değerlendirebilmek için biraz daha bilgiye ihtiyacı var.",
+  "hosted.update.messageLabel": "{store} mağazasından mesaj",
+  "hosted.update.submit": "Güncellemeyi gönder",
+  "hosted.update.doneHeading": "Teşekkürler, başvurunuz güncellendi",
+  "hosted.update.doneBody": "{store} mağazası başvurunuzu inceleyip size e-postayla dönüş yapacak.",
+  "hosted.link.invalidTitle": "Bu bağlantı geçerli değil",
+  "hosted.link.invalidBody": "E-postadaki bağlantının tamamını açtığınızdan emin olun veya {store} mağazasıyla iletişime geçin.",
+  "hosted.link.expiredTitle": "Bu bağlantının süresi doldu",
+  "hosted.link.expiredBody": "Güvenliğiniz için güncelleme bağlantıları yalnızca sınırlı bir süre çalışır. Lütfen {store} mağazasıyla iletişime geçip yeni bir bağlantı isteyin.",
+  "hosted.link.usedTitle": "Bu bağlantı zaten kullanıldı",
+  "hosted.link.usedBody": "Her güncelleme bağlantısı yalnızca bir kez çalışır. Başka bir şeyi değiştirmeniz gerekiyorsa lütfen {store} mağazasıyla iletişime geçin.",
+  "hosted.noscript": "Başvurunuzu güncellemek için lütfen tarayıcınızda JavaScript'i açın.",
+  "hosted.error.generic": "Bizim tarafımızda bir sorun oluştu. Lütfen birkaç dakika sonra tekrar deneyin."
+}

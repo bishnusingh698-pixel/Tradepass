@@ -15,6 +15,19 @@ type Tier = { id: string; name: string; discountPct: number | null };
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
+/** Same rule as the theme blocks (Liquid color_contrast): white text unless under 4.5:1, then black. */
+function readableOn(hex: string): string {
+  const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(hex.trim());
+  if (!m) return "#ffffff";
+  const h = m[1].length === 3 ? m[1].replace(/./g, (c) => c + c) : m[1];
+  const lin = (i: number) => {
+    const c = parseInt(h.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  const lum = 0.2126 * lin(0) + 0.7152 * lin(2) + 0.0722 * lin(4);
+  return 1.05 / (lum + 0.05) < 4.5 ? "#000000" : "#ffffff";
+}
+
 function mockDoc(opts: {
   script: string;
   cfg: Record<string, unknown>;
@@ -23,7 +36,7 @@ function mockDoc(opts: {
   colors: Settings["storefront"]["colors"];
 }): string {
   const { labels, colors } = opts;
-  const btn = colors.button ? `background:${colors.button};border-color:${colors.button};` : "";
+  const btn = colors.button ? `background:${colors.button};border-color:${colors.button};color:${readableOn(colors.button)};` : "";
   const txt = colors.text ? `color:${colors.text};` : "";
   const price = labels.tierPrice
     ? `<span style="text-decoration:line-through;color:#6d7175">${esc(labels.price)}</span> <strong>${esc(labels.tierPrice)}</strong>`
@@ -45,6 +58,7 @@ main{padding:12px;display:grid;gap:12px}
 .tp-btn--primary{background:#1a1a1a;color:#fff;${btn}}
 .tp-btn--secondary{background:#fff;color:#1a1a1a;${colors.button ? `border-color:${colors.button};color:${colors.button};` : ""}}
 .tp-banner,.tp-hint{background:#f1f2f4;padding:8px 12px;border-radius:6px;${txt}}
+.tp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .tp-banner__link{${colors.button ? `color:${colors.button};` : ""}font-weight:600}
 </style></head><body>
 <main id="MainContent">

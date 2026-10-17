@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Päivitä tukkuasiakashakemus",
+  "hosted.update.intro": "{store} tarvitsee hieman lisätietoja tukkuasiakashakemuksen käsittelyä varten.",
+  "hosted.update.messageLabel": "Viesti kaupalta {store}",
+  "hosted.update.submit": "Lähetä päivitys",
+  "hosted.update.doneHeading": "Kiitos, hakemus on päivitetty",
+  "hosted.update.doneBody": "{store} käsittelee sen ja vastaa sähköpostitse.",
+  "hosted.link.invalidTitle": "Linkki ei ole kelvollinen",
+  "hosted.link.invalidBody": "Varmista, että avasit sähköpostin linkin kokonaan, tai ota yhteyttä kauppaan {store}.",
+  "hosted.link.expiredTitle": "Linkki on vanhentunut",
+  "hosted.link.expiredBody": "Turvallisuussyistä päivityslinkit toimivat vain rajoitetun ajan. Ota yhteyttä kauppaan {store} ja pyydä uusi linkki.",
+  "hosted.link.usedTitle": "Linkkiä on jo käytetty",
+  "hosted.link.usedBody": "Jokainen päivityslinkki toimii kerran. Jos haluat muuttaa jotain muuta, ota yhteyttä kauppaan {store}.",
+  "hosted.noscript": "Ota JavaScript käyttöön selaimessa, jotta voit päivittää hakemuksen.",
+  "hosted.error.generic": "Meillä tapahtui virhe. Yritä uudelleen muutaman minuutin kuluttua."
+}

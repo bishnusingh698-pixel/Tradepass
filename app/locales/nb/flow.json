@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass kunne ikke lese denne forespørselen.",
+  "flow.action.notInstalled": "Tradepass er ikke installert i denne butikken.",
+  "flow.action.planRequired": "Shopify Flow-handlinger er tilgjengelige med Tradepass-abonnementet {plan}.",
+  "flow.action.notFound": "Ingen Tradepass-søknad har denne ID-en. Bruk søknads-ID-en fra en Tradepass-trigger.",
+  "flow.action.alreadyApproved": "Denne søknaden er allerede godkjent.",
+  "flow.action.notOpen": "Denne søknaden er avslått eller trukket tilbake og kan derfor ikke godkjennes fra Flow.",
+  "flow.action.tierNotFound": "Det finnes ikke noe Tradepass-nivå som heter «{tier}». Sjekk nivånavnet i handlingen.",
+  "flow.action.noTier": "Velg et nivå i handlingen, eller angi et foreslått nivå i skjemaet.",
+  "flow.action.running": "Godkjenningen pågår fortsatt. Shopify Flow sjekker igjen om litt.",
+  "flow.action.stepFailed": "Godkjenningen stoppet underveis. Åpne søknaden i Tradepass for å se hva som skjedde, og prøv igjen.",
+  "flow.action.tryLater": "Tradepass kunne ikke fullføre godkjenningen. Shopify Flow prøver igjen."
+}

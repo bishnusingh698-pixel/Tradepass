@@ -1,0 +1,16 @@
+{
+  "hosted.update.title": "Ažurirajte zahtjev za veleprodajni račun",
+  "hosted.update.intro": "Trgovini {store} potrebno je još nekoliko podataka za pregled vašeg zahtjeva za veleprodajni račun.",
+  "hosted.update.messageLabel": "Poruka trgovine {store}",
+  "hosted.update.submit": "Pošalji ažuriranje",
+  "hosted.update.doneHeading": "Hvala, vaš je zahtjev ažuriran",
+  "hosted.update.doneBody": "Trgovina {store} pregledat će ga i javiti vam se e-poštom.",
+  "hosted.link.invalidTitle": "Ova poveznica nije valjana",
+  "hosted.link.invalidBody": "Provjerite jeste li iz poruke e-pošte otvorili cijelu poveznicu ili se obratite trgovini {store}.",
+  "hosted.link.expiredTitle": "Ova je poveznica istekla",
+  "hosted.link.expiredBody": "Radi vaše sigurnosti poveznice za ažuriranje rade samo ograničeno vrijeme. Obratite se trgovini {store} i zatražite novu poveznicu.",
+  "hosted.link.usedTitle": "Ova je poveznica već iskorištena",
+  "hosted.link.usedBody": "Svaka poveznica za ažuriranje radi samo jednom. Ako trebate promijeniti još nešto, obratite se trgovini {store}.",
+  "hosted.noscript": "Za ažuriranje zahtjeva uključite JavaScript u pregledniku.",
+  "hosted.error.generic": "Došlo je do pogreške na našoj strani. Pokušajte ponovno za nekoliko minuta."
+}
