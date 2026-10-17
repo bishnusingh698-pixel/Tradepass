@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Đặt lại văn bản {language}?",
   "settings.texts.resetBody": "{count, plural, other {# văn bản đã đổi sẽ trở về nội dung có sẵn.}}",
   "settings.texts.resetConfirm": "Đặt lại văn bản",
-  "settings.texts.area.pages": "Trang cập nhật đơn đăng ký và gia hạn"
+  "settings.texts.area.pages": "Trang cập nhật đơn đăng ký và gia hạn",
+  "settings.assignment.heading": "Chỉ định cấp giá",
+  "settings.assignment.label": "Cách đưa người mua vào cấp giá",
+  "settings.assignment.auto": "Tự động",
+  "settings.assignment.autoHelp": "Tradepass thêm địa điểm công ty vào thị trường của cấp giá trong Shopify và kiểm tra xem đã thành công chưa.",
+  "settings.assignment.assisted": "Có hỗ trợ",
+  "settings.assignment.assistedHelp": "Bạn tự thực hiện thay đổi trong Shopify theo danh sách việc cần làm ở trang Cấp giá, và Tradepass sẽ xác nhận. Hãy dùng tùy chọn này nếu chỉ định tự động không hoạt động trên cửa hàng của bạn.",
+  "settings.assignment.note": "Thay đổi này chỉ ảnh hưởng đến các lượt phê duyệt và thay đổi cấp giá mới. Các mục đang mở trong danh sách việc cần làm vẫn ở trang Cấp giá cho đến khi bạn kiểm tra.",
+  "settings.error.assignment": "Hãy chọn tự động hoặc có hỗ trợ.",
+  "settings.activity.heading": "Lịch sử hoạt động",
+  "settings.activity.body": "Tải xuống tệp CSV ghi lại những gì Tradepass và nhân viên của bạn đã làm: ai, làm gì, khi nào và kết quả. Tệp chứa {max} mục gần nhất; các mục cũ hơn 2 năm sẽ tự động bị xóa.",
+  "settings.activity.button": "Xuất nhật ký hoạt động (CSV)",
+  "settings.activity.done": "Đã xuất nhật ký hoạt động",
+  "settings.activity.truncated": "Đã xuất {max} mục gần nhất",
+  "settings.activity.locked": "Xuất nhật ký hoạt động có trên gói Pro."
 }

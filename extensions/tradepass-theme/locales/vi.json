@@ -16,6 +16,9 @@
     "heading": "Chỉ dành cho khách hàng bán buôn",
     "message": "Trang này dành cho khách hàng bán buôn đã được phê duyệt. Hãy đăng nhập hoặc đăng ký tài khoản bán buôn."
   },
+  "brand": {
+    "powered_by": "Cung cấp bởi Tradepass"
+  },
   "apply_block": {
     "heading": "Bạn mua hàng cho doanh nghiệp?",
     "text": "Đăng ký tài khoản bán buôn để xem giá sỉ và đặt hàng số lượng lớn.",

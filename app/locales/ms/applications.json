@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Maklumat tambahan diminta",
   "applications.activity.application.updated": "Pemohon menghantar kemas kini",
   "applications.activity.application.note": "Nota ditambah",
-  "applications.activity.application.assign": "Tugasan ditukar"
+  "applications.activity.application.assign": "Tugasan ditukar",
+  "applications.taxCheck.skipped": "Tidak disemak pada pelan ini",
+  "applications.detail.taxCheckPlan": "Nombor cukai disemak dengan daftar rasmi pada pelan {plan} dan ke atas. Semak nombor ini secara manual, atau naik taraf untuk menyemak permohonan baharu secara automatik."
 }

@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Mer information begärd",
   "applications.activity.application.updated": "Den sökande skickade en uppdatering",
   "applications.activity.application.note": "Anteckning tillagd",
-  "applications.activity.application.assign": "Tilldelningen ändrades"
+  "applications.activity.application.assign": "Tilldelningen ändrades",
+  "applications.taxCheck.skipped": "Ingår inte i abonnemanget",
+  "applications.detail.taxCheckPlan": "Skattenummer kontrolleras mot officiella register från abonnemanget {plan} och uppåt. Kontrollera det här numret själv, eller uppgradera för att kontrollera nya ansökningar automatiskt."
 }

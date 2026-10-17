@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "追加情報を依頼しました",
   "applications.activity.application.updated": "申請者が更新内容を送信しました",
   "applications.activity.application.note": "メモを追加しました",
-  "applications.activity.application.assign": "担当者を変更しました"
+  "applications.activity.application.assign": "担当者を変更しました",
+  "applications.taxCheck.skipped": "ご利用のプランでは未確認",
+  "applications.detail.taxCheckPlan": "{plan}以上では、税番号が公的な登録機関で確認されます。この番号はご自身で確認するか、アップグレードして新しい申請を自動で確認してください。"
 }

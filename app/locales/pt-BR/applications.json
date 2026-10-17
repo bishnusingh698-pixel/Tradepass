@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Mais informações solicitadas",
   "applications.activity.application.updated": "O solicitante enviou uma atualização",
   "applications.activity.application.note": "Observação adicionada",
-  "applications.activity.application.assign": "Atribuição alterada"
+  "applications.activity.application.assign": "Atribuição alterada",
+  "applications.taxCheck.skipped": "Não verificado no seu plano",
+  "applications.detail.taxCheckPlan": "Os números fiscais são verificados em registros oficiais a partir do plano {plan}. Verifique este número manualmente ou faça upgrade para verificar novas solicitações automaticamente."
 }

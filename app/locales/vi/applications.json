@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Đã yêu cầu thêm thông tin",
   "applications.activity.application.updated": "Người đăng ký đã gửi cập nhật",
   "applications.activity.application.note": "Đã thêm ghi chú",
-  "applications.activity.application.assign": "Đã đổi người được giao"
+  "applications.activity.application.assign": "Đã đổi người được giao",
+  "applications.taxCheck.skipped": "Chưa kiểm tra trên gói này",
+  "applications.detail.taxCheckPlan": "Mã số thuế được đối chiếu với cơ quan đăng ký chính thức từ gói {plan} trở lên. Hãy tự kiểm tra mã số này, hoặc nâng cấp để tự động kiểm tra các đơn đăng ký mới."
 }

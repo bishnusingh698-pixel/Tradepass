@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Redefinir os textos em {language}?",
   "settings.texts.resetBody": "{count, plural, one {# texto alterado volta ao texto integrado.} many {# de textos alterados voltam ao texto integrado.} other {# textos alterados voltam ao texto integrado.}}",
   "settings.texts.resetConfirm": "Redefinir textos",
-  "settings.texts.area.pages": "Páginas de atualização de solicitação e renovação"
+  "settings.texts.area.pages": "Páginas de atualização de solicitação e renovação",
+  "settings.assignment.heading": "Atribuição de nível",
+  "settings.assignment.label": "Como os compradores entram no nível",
+  "settings.assignment.auto": "Automática",
+  "settings.assignment.autoHelp": "O Tradepass adiciona o local da empresa ao mercado do nível na Shopify e verifica se deu certo.",
+  "settings.assignment.assisted": "Assistida",
+  "settings.assignment.assistedHelp": "Você faz a alteração na Shopify a partir de uma lista de verificação na página Níveis, e o Tradepass a confirma. Use esta opção se a atribuição automática não funcionar na sua loja.",
+  "settings.assignment.note": "A alteração vale só para novas aprovações e mudanças de nível. Itens pendentes da lista de verificação continuam na página Níveis até você verificá-los.",
+  "settings.error.assignment": "Escolha automática ou assistida.",
+  "settings.activity.heading": "Histórico de atividades",
+  "settings.activity.body": "Baixe um arquivo CSV com o que o Tradepass e sua equipe fizeram: quem, o quê, quando e o resultado. Ele contém as últimas {max} entradas; entradas com mais de 2 anos são removidas automaticamente.",
+  "settings.activity.button": "Exportar atividades (CSV)",
+  "settings.activity.done": "Atividades exportadas",
+  "settings.activity.truncated": "As últimas {max} entradas foram exportadas",
+  "settings.activity.locked": "A exportação de atividades está disponível no plano Pro."
 }

@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "{language} 텍스트를 재설정하시겠습니까?",
   "settings.texts.resetBody": "{count, plural, other {변경된 텍스트 #개가 기본 문구로 돌아갑니다.}}",
   "settings.texts.resetConfirm": "텍스트 재설정",
-  "settings.texts.area.pages": "신청서 업데이트 및 갱신 페이지"
+  "settings.texts.area.pages": "신청서 업데이트 및 갱신 페이지",
+  "settings.assignment.heading": "등급 할당",
+  "settings.assignment.label": "구매자를 등급에 배정하는 방식",
+  "settings.assignment.auto": "자동",
+  "settings.assignment.autoHelp": "Tradepass가 Shopify에서 회사 위치를 등급의 마켓에 추가하고 제대로 적용되었는지 확인합니다.",
+  "settings.assignment.assisted": "보조",
+  "settings.assignment.assistedHelp": "등급 페이지의 체크리스트에 따라 Shopify에서 직접 변경하면 Tradepass가 이를 확인합니다. 스토어에서 자동 할당이 작동하지 않을 때 사용하십시오.",
+  "settings.assignment.note": "이 설정 변경은 새 승인과 등급 변경에만 적용됩니다. 미완료 체크리스트 항목은 확인할 때까지 등급 페이지에 남아 있습니다.",
+  "settings.error.assignment": "자동 또는 보조를 선택하십시오.",
+  "settings.activity.heading": "활동 기록",
+  "settings.activity.body": "Tradepass와 직원이 수행한 작업(누가, 무엇을, 언제, 결과)을 CSV 파일로 다운로드합니다. 최근 {max}개 항목이 포함되며, 2년이 지난 항목은 자동으로 삭제됩니다.",
+  "settings.activity.button": "활동 내보내기(CSV)",
+  "settings.activity.done": "활동을 내보냈습니다",
+  "settings.activity.truncated": "최근 {max}개 항목을 내보냈습니다",
+  "settings.activity.locked": "활동 내보내기는 Pro 요금제에서 사용할 수 있습니다."
 }

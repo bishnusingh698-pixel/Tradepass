@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Tetapkan semula teks {language}?",
   "settings.texts.resetBody": "{count, plural, other {# teks yang diubah akan kembali kepada perkataan terbina dalam.}}",
   "settings.texts.resetConfirm": "Tetapkan semula teks",
-  "settings.texts.area.pages": "Halaman kemas kini permohonan dan pembaharuan"
+  "settings.texts.area.pages": "Halaman kemas kini permohonan dan pembaharuan",
+  "settings.assignment.heading": "Penetapan peringkat harga",
+  "settings.assignment.label": "Cara pembeli dimasukkan ke peringkat harga mereka",
+  "settings.assignment.auto": "Automatik",
+  "settings.assignment.autoHelp": "Tradepass menambah lokasi syarikat ke pasaran peringkat harga dalam Shopify dan menyemak bahawa ia berjaya.",
+  "settings.assignment.assisted": "Berbantu",
+  "settings.assignment.assistedHelp": "Anda membuat perubahan dalam Shopify daripada senarai semak di halaman Peringkat Harga, dan Tradepass mengesahkannya. Gunakan pilihan ini jika penetapan automatik tidak berfungsi di kedai anda.",
+  "settings.assignment.note": "Perubahan ini hanya menjejaskan kelulusan dan perubahan peringkat harga yang baharu. Item senarai semak yang terbuka kekal di halaman Peringkat Harga sehingga anda menyemaknya.",
+  "settings.error.assignment": "Pilih automatik atau berbantu.",
+  "settings.activity.heading": "Sejarah aktiviti",
+  "settings.activity.body": "Muat turun fail CSV tentang perkara yang dilakukan oleh Tradepass dan kakitangan anda: siapa, apa, bila dan hasilnya. Ia mengandungi {max} entri terkini; entri yang lebih lama daripada 2 tahun dipadamkan secara automatik.",
+  "settings.activity.button": "Eksport aktiviti (CSV)",
+  "settings.activity.done": "Aktiviti dieksport",
+  "settings.activity.truncated": "{max} entri terkini dieksport",
+  "settings.activity.locked": "Eksport aktiviti tersedia pada pelan Pro."
 }

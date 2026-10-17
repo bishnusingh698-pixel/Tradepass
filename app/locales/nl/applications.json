@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Meer informatie gevraagd",
   "applications.activity.application.updated": "Aanvrager heeft een update gestuurd",
   "applications.activity.application.note": "Notitie toegevoegd",
-  "applications.activity.application.assign": "Toewijzing gewijzigd"
+  "applications.activity.application.assign": "Toewijzing gewijzigd",
+  "applications.taxCheck.skipped": "Niet in uw abonnement",
+  "applications.detail.taxCheckPlan": "Belastingnummers worden vanaf het abonnement {plan} gecontroleerd in officiële registers. Controleer dit nummer zelf, of upgrade om nieuwe aanvragen automatisch te laten controleren."
 }

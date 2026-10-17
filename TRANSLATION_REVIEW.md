@@ -1,219 +1,245 @@
 # Translation review list
 
-Strings a native speaker should check, per language. Everything else passed back-translation review. Ask a reviewer to look only at these. (Batch: P1 admin strings, 92 keys, 2026-10-16.)
+Strings a native speaker should check, per language. Everything else passed the automated checks (`node scripts/i18n-check.mjs`, `tests/i18n.test.ts`) and a back-translation check. Ask a reviewer to look only at these. (All admin, email, storefront and listing strings, 2026-10-17.)
 
 ## Arabic (ar)
 
-- `home.readiness.catalogBudget`: to avoid noun-number agreement problems, all six plural branches use the neutral pattern "B2B catalogs used: # of {limit}". A native speaker may prefer separate agreement forms for each branch.
-- `home.pending.applications` / `home.readiness.catalogUnlimited`: the zero and one branches use a numeral with a singular noun ("0 طلب"، "1 طلب"), which is common in UIs but stiff; check that this is acceptable.
-- `spike.failed`: "التعيين المساعَد" (assisted assignment) is a coined term.
-- `import.empty.body`: the example tag is translated as «جملة», but merchants may actually use the English tag "wholesale".
+- `*.plural` (فروع zero): صياغات مثل "لا توجد مشكلات" أُضيفت لأن الإنجليزية لا تحتوي على حالة الصفر.
+- `plans.name.*`، `tiers.plan.*`، `certificates.plan.*`: أسماء الخطط بين «» ("خطة Starter"، «Pro»، "الخطة المجانية") حتى لا تطابق الإنجليزية.
+- `applications.flag.possible_spam`: أطول من النص الإنجليزي لكنه ضمن الحد المسموح.
+- `help.*`، `settings.*` مع مسارات القوائم: أسماء قوائم مسؤول Shopify بالعربية لم تُراجع على الواجهة الفعلية.
+- `applications.detail.taxCheckPlan`: صيغة "ضمن {plan} والخطط الأعلى" لتجنب تكرار كلمة "خطة".
 
 ## Bulgarian (bg)
 
-- `nav.storefront` / `storefront.title`: "Витрина" was chosen over Shopify's sales-channel name "Онлайн магазин".
-- `spike.failed`: "асистирано присвояване на нива" (assisted tier assignment) is a coined term.
-- `common.discard`: "Отхвърляне" vs. Shopify's possible "Отмяна на промените"; check against the admin's own save bar.
+- `plans.name.starter`, `plans.name.pro` („План Starter“, „План Pro“), `tiers.plan.*`, `certificates.plan.*` („„Starter““): възможно е двойно „план“, ако `{plan}` получава преведеното име.
+- `email.sample.terms` („Нето 30 дни“): да се сравни с българското име в Shopify.
+- `storefront.scope.tagsHelp`: примерните етикети са на латиница (samo-za-targovci, na-edro).
+- Тема `form.field.consent.label`: използва „Съгласен/съгласна“, тъй като родът на подателя е неизвестен.
 
 ## Czech (cs)
 
-- nav.storefront / storefront.title: "Výloha" is my own choice. Shopify Czech may use "Online obchod".
-- nav.certificates: I chose "Certifikáty" over "Osvědčení". Please check which term Czech merchants expect.
-- spike.failed: I translated "assisted tier assignment" as "poloautomaticky" (semi-automatically).
+- `plans.name.starter`, `plans.name.pro`, `tiers.plan.*`, `certificates.plan.*` – názvy tarifů s předponou „Tarif“ kvůli zákazu shody s angličtinou; ověřte, že znějí přirozeně ve všech větách s {plan}.
+- Plurály v kategorii `many` (desetinná čísla) – málo používaný tvar, ověřte v uživatelském rozhraní.
+- Motiv `form.field.website.placeholder` – „https://…“ místo „https://“, aby se řetězec lišil od angličtiny.
+- `storefront` jako „výloha“ – Shopify někdy používá „online obchod“; zvoleno kvůli odlišení od celého obchodu.
 
-## Register
+## Danish (da)
 
-- `home.readiness.heading`: "klarhed" for "readiness" is an approximation, and "parathed" or "status" may read more naturally.
-- `nav.storefront` / `storefront.title`: "Butiksfacade" vs "Webshop", please confirm against the current Shopify Danish admin.
-- `import.empty.body`: the localized example tag "engros" assumes merchants tag in Danish.
+- `plans.name.starter` / `plans.name.pro` / `certificates.plan.*` / `tiers.plan.*` – plannavne med »-abonnement(et)« for at undgå engelsk-identiske strenge; tjek, at de læses naturligt i alle {plan}-sætninger.
+- `storefront.mode.wholesaleOnly` vs. tilstandsnavnet »Kun engros« i andre strenge – to formuleringer af samme tilstand.
+- `tiers.editor.checkout` – »Betaling« som etiket for checkout; kan forveksles med betalingsbetingelser.
 
 ## German (de)
 
-- nav.storefront / storefront.title: "Onlineshop" follows the Shopify sales channel name. Check whether "Storefront" is preferred.
-- nav.import / import.title: "Importieren" (a verb) is used because "Import" would be identical to English.
-- import.empty.body: the example tag "Großhandel" is localized. Merchants may actually use the English tag "wholesale".
-- spike.failed: "unterstützte Stufenzuweisung" for "assisted tier assignment" may need a better product term.
+- `applications.col.status`, `buyers.col.status` u. a. („Zustand“): nur gewählt, weil „Status“ dem Englischen gleicht; „Status“ wäre natürlicher.
+- `tiers.plan.*`, `certificates.plan.*`, `plans.name.*`: Tarifnamen in Anführungszeichen („Starter“) bzw. „Starter-Tarif“, damit sie nicht dem Englischen gleichen.
+- `form_block.name` / Hilfetexte: Im Englischen heißt der Block „Wholesale application“, in einigen Hilfetexten aber „Wholesale application form“; einheitlich „Großhandels-Antragsformular“ verwendet.
+- Leicht über maxLength (unter 10 %): `automation.settings.paused`, `automation.recent.reverseFailed`, `import.dry.note`, `renew.error.upload`.
 
 ## Greek (el)
 
-- `spike.failed`: "υποβοηθούμενη ανάθεση επιπέδων" (assisted tier assignment) is a coined term.
-- `notifications.empty.heading` / `notifications.empty.action`: these use the loanword "email", which is common in Greek UIs; "μήνυμα ηλεκτρονικού ταχυδρομείου" would be too long.
-- `settings.empty.body`: "εταιρική εμφάνιση email" for "email branding".
+- `plans.name.starter`, `plans.name.pro` («Πρόγραμμα Starter», «Πρόγραμμα Pro»), `tiers.plan.*`, `certificates.plan.*` («Starter» σε εισαγωγικά): πιθανή διπλή λέξη «πρόγραμμα» αν το `{plan}` λαμβάνει το μεταφρασμένο όνομα.
+- `email.sample.terms` («Πληρωμή σε 30 ημέρες»): να ελεγχθεί έναντι της ελληνικής ονομασίας του Shopify για το Net 30.
+- `storefront.scope.tagsHelp`: παραδείγματα ετικετών σε λατινικούς χαρακτήρες (mono-emporoi, xondriki).
+- `import.issue.unknown_tier`: 6% πάνω από το maxLength.
 
 ## Spanish (es)
 
-- home.readiness.catalogBudget: the one-branch uses the plural "catálogos" ("1 de 5 catálogos B2B en uso"). Confirm this reads naturally.
-- spike.intro: "sucursal" for company location. Shopify ES may use "ubicación".
-- nav.storefront: "Tienda online". Shopify LatAm vs Spain wording may differ.
+- `applications.detail.no` («No.»): el punto solo evita la identidad con el inglés.
+- `import.level.error` («Con error»): «Error» sería más natural.
+- `tiers.plan.*`, `certificates.plan.*`, `plans.name.*`: nombres de plan entre comillas («Starter») o «Plan Starter».
+- `form_block.name`: el inglés usa «Wholesale application» y «Wholesale application form»; se usa «Formulario de solicitud mayorista» en todo.
+- Ligeramente por encima de maxLength (menos del 10 %): `buyers.source.tag`.
 
-## Register
+## Finnish (fi)
 
-- `home.readiness.catalogBudget`: the slash format "# / {limit}" is a workaround for case agreement, so please confirm it reads well.
-- `nav.storefront` / `storefront.title`: "Kauppanäkymä" is an approximation, because Shopify Finnish may use "Verkkokauppa".
-- `common.discard`: "Hylkää muutokset" is longer than the bare "Hylkää", which was chosen to avoid confusion with "reject".
-- `help.contact`: rendered as "Sähköposti: {email}" (label form) rather than a sentence.
+- `certificates.plan.*`, `tiers.plan.*` – lainausmerkeissä ”Starter”/”Pro” ydinlauseeseen ”Saatavilla paketissa {plan}”; tarkista luontevuus.
+- `email.*` – teksteissä on paikoin sinä-muotoa (”hakemuksesi”); tarkista, sopiiko tyyliin.
+- `storefront.mode.wholesaleOnly` – ”Vain tukkuasiakkaille”, muualla tilan nimi ”Vain tukku”.
 
 ## French (fr)
 
-- nav.notifications / notifications.title: "E-mails et alertes" is used because "Notifications" would be identical to English. A native speaker may prefer to accept "Notifications".
-- common.discard: "Ignorer" matches Shopify's save bar as far as I know. Verify.
-- import.empty.body: the example tag « gros » is localized.
-- spike.intro: "site d'entreprise" for company location. Verify it matches Shopify FR B2B wording.
+- `*.col.type` (« Nature ») et colonnes d’actions (« Opérations ») : choisis pour éviter l’identité avec l’anglais ; « Type » et « Actions » seraient plus naturels.
+- `tiers.plan.*`, `certificates.plan.*`, `plans.name.*` : noms de forfait entre guillemets (« Starter ») ou « Forfait Starter ».
+- `form_block.name` : l’anglais emploie à la fois « Wholesale application » et « Wholesale application form » ; « Formulaire de demande professionnelle » partout.
+- Légèrement au-delà de maxLength (moins de 10 %) : `automation.rules.addApprove`, `buyers.source.tag`, `form.consent.privacyUrl`.
 
 ## Hebrew (he)
 
-- `spike.failed`: "שיוך רמות בסיוע ידני" (manually assisted tier assignment) is our wording for "assisted tier assignment"; check that it is clear.
-- `home.readiness.catalogUnlimited`: the "one" branch reads "1 קטלוג B2B בשימוש"; some editors prefer "קטלוג B2B אחד".
-- `settings.empty.body`: keeps "התוכנית שלך", which is gender-neutral in writing but second person.
+- `plans.name.*`, `tiers.plan.*`, `certificates.plan.*`: שמות התוכניות במירכאות (״Starter״, ״Pro״, ״חינם״) כדי שלא יהיו זהים לאנגלית.
+- `help.*`, `settings.*` עם נתיבי תפריט: חץ ← במקום →, ושמות התפריטים של Shopify בעברית לא נבדקו מול הממשק החי.
+- מגדר של Shopify (נקבה) ושל Tradepass (זכר) בכל המחרוזות.
+- `email.sample.*`: ערכי דוגמה שנבחרו ידנית.
 
 ## Hindi (hi)
 
-- `spike.failed`: "सहायता-आधारित टियर असाइनमेंट" (assisted tier assignment) is a coined phrase.
-- `home.pending.applications`: in Hindi the "one" category also covers 0, so 0 shows "0 आवेदन इंतज़ार में है". This is grammatical but a native speaker may want to check it.
-- `nav.tiers` / tier: "टियर" is a loanword. "स्तर" would be more native, but it is also used for "level" inside the tier definition.
+- `certificates.jurisdiction`: "{country} ({region})" क्रम, ताकि यह अंग्रेज़ी के बराबर न हो।
+- `plans.name.*`, `tiers.plan.*`, `certificates.plan.*`: प्लान के नाम “Starter” / “Pro” और “मुफ़्त प्लान”।
+- `form.list.fieldCount`: one और other दोनों में "# सवाल" (हिन्दी में संज्ञा नहीं बदलती)।
+- `home.numbers.tierLine`: बहुवचन की बनावट थोड़ी अलग है।
 
 ## Croatian (hr)
 
-- nav.storefront / storefront.title: "Izlog" is my own choice.
-- nav.certificates: I chose "Potvrde". Please check whether "Certifikati" is what Croatian merchants expect.
-- spike.failed: I translated "assisted tier assignment" as "poluautomatski" (semi-automatically).
+- `plans.name.starter`, `plans.name.pro`, `tiers.plan.*`, `certificates.plan.*` – nazivi paketa s prefiksom „Paket“; provjerite prirodnost u svim rečenicama s {plan}.
+- `email.*.body` – pozdrav „Dobar dan, {first_name},“ uz ime u nominativu; provjerite ton.
+- `applications.taxCheck.skipped` – skraćeno na „Nije provjereno u vašem paketu“ zbog ograničenja od 30 znakova.
+- `tiers.col.status` – „Stanje“ umjesto uobičajenog „Status“ (izbjegnuta jednakost s engleskim).
 
-## Register
+## Hungarian (hu)
 
-- `nav.storefront` / `storefront.title`: "Áruházi felület" is descriptive, so please check what Shopify Hungarian uses ("Webáruház", "Online áruház").
-- `nav.applications`: "jelentkezés" vs "igénylés" for a wholesale application, please confirm.
-- `import.empty.body`: the localized example tag "nagyker" is informal shorthand.
+- `plans.name.starter`, `plans.name.pro`, `tiers.plan.*`, `certificates.plan.*`: a „csomag” szó hozzáadva; ha a kód a lefordított csomagnevet illeszti be a `{plan}` helyére (pl. `applications.detail.taxCheckPlan`, `flow.action.planRequired`), a „csomag” szó kétszer szerepelhet.
+- `email.sample.terms` („Nettó 30 nap”): ellenőrizni kell a Shopify magyar fizetési feltétel elnevezésével.
+- `storefront.scope.tagsHelp`: a példacímkék ékezet nélküliek (csak-viszonteladoknak, nagytetel), mert a címkék gyakran így szerepelnek.
+- `import.options.noDefaultTier`: 4%-kal hosszabb a maxLength-nél.
 
 ## Indonesian (id)
 
-- nav.storefront / storefront.title : "Etalase" vs "Toko online". Shopify ID's own label may differ.
-- certificates.empty.body : "sertifikat penjualan kembali" is a literal rendering, because Indonesia has no exact equivalent.
-- storefront.empty.body : "checkout" is left as a loanword, as in Shopify ID; please confirm.
+- `approval.exemption.euReverseCharge`, `approval.tax.reason.*`, `help.faq.taxExemptions.a`: "reverse charge UE" dibiarkan sebagai istilah pajak; perlu dicek apakah ada padanan yang lebih umum.
+- `help.addForm.step1`, `help.addForm.step2`: nama menu admin Shopify (Toko Online → Tema → Sesuaikan, Tambahkan blok → Aplikasi).
+- `tiers.plan.starter`, `tiers.plan.pro`: nama paket dalam tanda kutip agar tidak sama dengan bahasa Inggris.
+- Theme `form.tax.tax_id` ("NPWP / ID pajak") dan `form.address.zone.county`.
 
 ## Italian (it)
 
-- nav.home / home.title: "Pagina iniziale". Shopify IT itself uses "Home", which is excluded here because it is identical to English.
-- home.readiness.heading: "operatività" for "readiness".
-- tiers.empty.heading / automation.empty.heading: one uses a formal imperative ("Crei") and the other an infinitive-style label ("Approva"). Check for consistency.
+- `applications.detail.no` («No.»): il punto serve solo a evitare l’identità con l’inglese.
+- `tiers.plan.*`, `certificates.plan.*`, `plans.name.*`: nomi dei piani tra virgolette (“Starter”) o «Piano Starter».
+- `form_block.name`: l’inglese usa sia «Wholesale application» sia «Wholesale application form»; ovunque «Modulo di richiesta all’ingrosso».
+- Leggermente oltre maxLength (meno del 10 %): `applications.taxCheck.skipped`, `approval.field.sameShipping`, `automation.settings.dailyLimit`, `automation.rules.addApprove`, `import.tag.taxCharge`, `import.run.csvTitle`, `import.issue.unknown_terms`.
 
 ## Japanese (ja)
 
-- nav.buyers / buyers.* : バイヤー vs 購入者. Shopify JA B2B screens may use 顧客 or 購入者; check against the current admin.
-- nav.tiers / tiers.* : 価格ランク is my own choice; Shopify has no native "tier" term.
-- import.empty.body : the tag example 「wholesale」 is left in English because it is a literal tag value.
-- spike.failed : the wording of "assisted tier assignment" (補助付きの価格ランク割り当て) needs a native speaker to confirm it sounds natural.
+- email.sample.firstName / email.received.body etc.: {first_name}様 uses the given name with 様; some merchants may prefer the family name.
+- email.sample.terms / glossary net 30: 支払期限30日 chosen; Shopify admin may show a different Net 30 label.
+- applications.detail.submitted: 送信日： precedes a relative time; word order depends on how the UI renders it.
+- brand.powered_by (theme): Tradepassで作成 is a free rendering of Powered by Tradepass.
 
 ## Korean (ko)
 
-- nav.storefront / storefront.title : 스토어프론트 is a transliteration; 온라인 스토어 may be more familiar to Korean merchants.
-- nav.tiers / tiers.* : 등급 could also be read as a customer loyalty grade. 가격 등급 would be clearer but is longer.
-- spike.failed : the phrase 보조 등급 할당 방식 ("assisted assignment") needs a native speaker to check it.
+- approval.exemption.euReverseCharge / approval.tax.reason.*: 역발행 for EU reverse charge is the common term but a tax-literate reviewer should confirm.
+- buyers.bulk.failedLine, applications.bulk.skippedLine: "{company} - {reason}" uses a dash instead of a colon only to differ from English.
+- certificates.jurisdiction: "{country} {region}" without a comma.
+- automation.condition.is / isNot: 다음과 일치 / 다음과 일치하지 않음 read as operators; check in the UI.
 
 ## Lithuanian (lt)
 
-- home.pending.none: the meaning shifted slightly, to "nothing needs to be done right now".
-- nav.storefront / storefront.title: "Vitrina" is my own choice. Shopify may use "Internetinė parduotuvė".
-- Glossary "location": "vieta" is generic. Shopify B2B may use "padalinys" for company locations.
+- `plans.name.*`, `tiers.plan.*`, `certificates.plan.*`: planų pavadinimai kabutėse („Starter“, „Pro“, „Nemokamas“), kad nesutaptų su anglų kalba.
+- Daugiskaitos `many` formos (kilmininkas, pvz., „pirkėjų“, „paraiškų“) ir trupmeniniai skaičiai: verta patikrinti gimtakalbiui.
+- `help.*` meniu keliai: lietuviški Shopify administratoriaus meniu pavadinimai nesutikrinti su gyva sąsaja.
+- `email.sample.*`: pavyzdinės reikšmės parinktos rankiniu būdu.
 
 ## Malay (ms)
 
-- nav.import / import.title : "Pengimportan" is less common than the loanword "Import".
-- nav.storefront / storefront.title : "Kedai dalam talian" vs Shopify MS's own label.
-- home.readiness.* (VAT) : Malaysia uses SST rather than VAT, so the "nombor VAT" glossary entry may need local adaptation.
+- `help.debug.*`: "nyahpepijat" untuk debug mungkin terlalu teknikal; mungkin "mod debug" lebih biasa.
+- `form.type.select`: "Senarai juntai bawah" untuk dropdown.
+- `help.addForm.step1`, `help.addForm.step2`: nama menu pentadbir Shopify (Kedai Dalam Talian → Tema → Sesuaikan).
+- `tiers.plan.starter`, `tiers.plan.pro`: nama pelan dalam tanda petik supaya tidak sama dengan bahasa Inggeris.
+- Theme `form.address.zone.emirate`, `form.address.zone.governorate`: label pentadbiran luar negara.
 
-## Register
+## Norwegian Bokmål (nb)
 
-- `home.readiness.heading`: "klarstatus" is a coined compound, so please check whether it reads naturally.
-- `settings.empty.body`: "e-postprofil" for "email branding" is an approximation.
-- `nav.storefront`: "Butikkfront", please confirm against the Shopify Norwegian admin.
+- `plans.name.*`, `certificates.plan.*`, `tiers.plan.*` – plannavn med «-abonnement(et)»; sjekk flyt i {plan}-setninger.
+- `help.addForm.step2`, `home.checklist.block.body` – blokknavnet «Engrossøknad» må samsvare med navnet i temaredigeringsprogrammet.
+- `automation.condition.spam` – «søppelpost» for spam; noen foretrekker «spam».
 
 ## Dutch (nl)
 
-- nav.help / help.title: "Hulp" is used because Shopify NL's "Help" would be identical to English.
-- spike.failed: "ondersteunde niveautoewijzing" for "assisted tier assignment".
-- tiers.empty.body: "niveau" is used both as the term and in the definition.
+- `certificates.plan.starter`, `certificates.plan.pro`, `tiers.plan.*`, `plans.name.starter`, `plans.name.pro`: plannamen staan tussen aanhalingstekens (‘Starter’) omdat ze niet gelijk aan het Engels mogen zijn; controleer of dit er goed uitziet in "Beschikbaar met abonnement {plan}".
+- `email.sample.terms` ("Netto 30 dagen"): controleer tegen de exacte naam die Shopify in het Nederlands voor Net 30 gebruikt.
+- `common.discard` ("Negeren", bestaand): Shopify gebruikt in de opslagbalk mogelijk een andere term.
+- `storefront.wall.pagesHelp`: "handles" is onvertaald gelaten zoals in Shopify; controleer.
 
 ## Polish (pl)
 
-- common.retry, form.empty.body and other strings that use the imperative singular: this follows Shopify convention, but please check that it fits the impersonal register.
-- nav.storefront: I chose "Witryna sklepu". Shopify may use "Sklep online" instead.
-- spike.failed: I translated "assisted tier assignment" as "półautomatycznie" (semi-automatically).
+- `certificates.plan.*`, `tiers.plan.*` – nazwy w cudzysłowie („Pro”) wstawiane do „Dostępne w planie {plan}”.
+- `*.col.status` / `*.filter.status` – „Stan” zamiast „Status”; sprawdź, czy brzmi naturalnie.
+- Odmiany liczebników w kategorii `other` (ułamki) – np. „# wniosku”; warto sprawdzić kilka wybranych.
 
-## Portuguese, Brazil (pt-BR)
+## Brazilian Portuguese (pt-BR)
 
-- nav.storefront / storefront.title: "Loja virtual". Shopify BR may use "Loja on-line".
-- storefront.empty.body: "se cadastrem" for "apply".
-- Glossary "VAT number": Brazil has no VAT. The real fields are CNPJ / Inscrição Estadual.
+- `certificates.plan.*`, `tiers.plan.*`, `plans.name.starter`, `plans.name.pro`: nomes de plano entre aspas (“Starter”) para não ficarem idênticos ao inglês; confira a aparência em "Disponível no plano {plan}".
+- `email.sample.terms` ("30 dias líquidos"): conferir o termo exato que a Shopify usa para Net 30.
+- `approval.exemption.euReverseCharge` / `approval.tax.reason.*` ("autoliquidação da UE"): conceito europeu pouco usado no Brasil; conferir com um contador.
+- E-mails usam "na {store_name}" (feminino, "a loja"); nomes de loja masculinos podem soar estranhos.
 
-## Portuguese, Portugal (pt-PT)
+## European Portuguese (pt-PT)
 
-- common.comingSoon: 64 characters against a 60-character limit (within tolerance).
-- nav.applications: "Candidaturas" for wholesale applications. "Pedidos" is an alternative, but it collides with "orders".
-- import.empty.body: the example tag "grosso" is localized.
+- `certificates.plan.*`, `tiers.plan.*`, `plans.name.starter`, `plans.name.pro`: nomes de plano entre aspas angulares («Starter») para não serem idênticos ao inglês; confirmar a aparência em "Disponível no plano {plan}".
+- `email.sample.terms` ("A 30 dias"): confirmar com o termo da Shopify para Net 30.
+- `storefront.mode.wholesaleOnly` e afins ("exclusiva para grosso"): abreviado para caber no limite; um nativo deve confirmar que soa natural.
+- `form.option.monthlyOrderValue.*`: números sem separador de milhares abaixo de 10 000 (norma portuguesa); confirmar.
 
-## Register
+## Romanian (ro)
 
-- `home.readiness.heading`: "Plan și pregătire" for "Plan and readiness" may read stiffly.
-- `nav.storefront`: "Vitrină online", please confirm against the Shopify Romanian admin.
-- `common.comingSoon`: 64 characters, slightly over the 60 limit (within tolerance).
+- `plans.name.starter`, `plans.name.pro` („Plan Starter”, „Plan Pro”) și `tiers.plan.*`, `certificates.plan.*` („„Starter””): dacă `{plan}` primește numele tradus, `applications.detail.taxCheckPlan` poate afișa „planul Plan Starter”.
+- `email.sample.terms` („Net 30 de zile”): de verificat cu denumirea din Shopify în română.
+- `storefront.scope.tagsHelp`: etichete de exemplu fără diacritice (doar-revanzatori, vrac).
+- Tema `form.error.too_long`: „{{ max }} de caractere” este corect doar pentru valori ≥ 20.
 
 ## Russian (ru)
 
-- home.readiness.catalogBudget, home.readiness.catalogUnlimited: the `other` branch only covers fractional numbers, so please check the agreement.
-- spike.failed: I translated "assisted tier assignment" as "полуавтоматически" (semi-automatically), which may not match the product's meaning.
-- import.empty.body: I localized the example tag "wholesale" as «опт». Please confirm that merchants should see a localized tag value here.
+- `plans.name.*`, `tiers.plan.*`, `certificates.plan.*`: названия тарифов в кавычках («Starter», «Pro», «Бесплатный»), чтобы строки не совпадали с английскими.
+- `help.addForm.*`, `help.*` с путями меню («Интернет-магазин → Темы → Настроить»): названия пунктов русского админ-интерфейса Shopify не сверены с живым интерфейсом.
+- `email.sample.*`: условные примеры (название компании, имя), подобраны вручную.
+- `schema embed.name`: «Tradepass — встраивание» вместо простого «Tradepass».
 
 ## Slovak (sk)
 
-- home.readiness.catalogBudget: please check the `many` branch (fractions), "Využité # katalógu".
-- nav.storefront / storefront.title: "Výklad" is my own choice and may not match Shopify's Slovak term.
-- Glossary "company": Shopify's Slovak admin may use "spoločnosť" rather than "firma".
+- `plans.name.starter`, `plans.name.pro`, `tiers.plan.*`, `certificates.plan.*` – názvy plánov s predponou „Plán“ kvôli zákazu zhody s angličtinou; overte prirodzenosť vo všetkých vetách s {plan}.
+- Plurály v kategórii `many` (desatinné čísla) – zriedkavý tvar, overte v rozhraní.
+- `tiers.editor.section.defaults` – skrátené na „Predvolené pre nových kupujúcich“, aby sa zmestilo do limitu.
+- `storefront` ako „výklad“ – Shopify niekedy používa „online obchod“.
 
 ## Slovenian (sl)
 
-- home.readiness.catalogBudget, home.readiness.catalogUnlimited, home.pending.applications: fractional numbers fall into `few` (for example "1,5 katalogi"), which reads awkwardly.
-- nav.storefront / storefront.title: "Izložba" is my own choice. Shopify may use "Spletna trgovina".
-- common.retry: the button uses the imperative "Poskusi znova", while body text uses the formal "Poskusite".
+- `plans.name.starter`, `plans.name.pro`, `tiers.plan.*`, `certificates.plan.*` – imena paketov s predpono „Paket“; preverite naravnost v vseh stavkih s {plan}.
+- `applications.businessType.distributor`, `form.option.businessType.distributor`, motiv `form.business_type.distributor` – „Distributer“; preverite, ali je zaželen zapis „distributor“.
+- Motiv `apply_block.name` – „Poziv k veleprodajni vlogi“ je opisno ime, ne dobesedni prevod.
+- Dvojina (`two`) v plural nizih – preverite v vmesniku.
 
-## Register
+## Swedish (sv)
 
-- `home.readiness.heading`: "beredskap" for "readiness" is slightly formal, and a native speaker may prefer "status".
-- `certificates.empty.body`: "återförsäljarintyg" is the descriptive term for resale certificate, and Sweden has no exact legal equivalent.
+- `certificates.plan.*`, `tiers.plan.*`, `plans.name.starter`, `plans.name.pro`: abonnemangsnamn inom citattecken (”Starter”) så att de inte är identiska med engelskan; kontrollera i "Tillgänglig med {plan}".
+- `nav.storefront` / "butiksfront" (befintlig): Shopify använder "Webbutik" för Online Store; bekräfta att termen känns naturlig.
+- `applications.col.status` ("Läge"): omformulerat för att inte vara lika med engelskan; "Status" vore mer naturligt.
+- `import.report.message` ("Beskrivning"): samma skäl som ovan.
 
 ## Thai (th)
 
-- `spike.failed`: "แบบกึ่งอัตโนมัติ" (semi-automatic) was chosen for "assisted"; check that it matches the product's meaning.
-- `storefront.empty.body`: "ผู้เยี่ยมชมทั่วไป" for "retail visitors"; a native speaker might prefer "ลูกค้าปลีก".
-- `settings.empty.body`: "แบรนด์ของอีเมล" for "email branding".
+- `email.sample.terms` และเงื่อนไข net 30: "เครดิต 30 วัน" แทน net 30 ซึ่งเป็นคำที่ใช้กันทั่วไปในไทย
+- `approval.exemption.euReverseCharge`, `approval.tax.reason.*`: คงคำว่า "Reverse Charge" เป็นภาษาอังกฤษ
+- `plans.name.*`, `tiers.plan.*`, `certificates.plan.*`: “Starter” / “Pro” และ “แพ็กเกจฟรี”
+- `home.numbers.tierLine`: โครงสร้างประโยคต่างจากต้นฉบับเล็กน้อย
 
-## Register
+## Turkish (tr)
 
-- `storefront.empty.body`: a long "mı ... mı ... yoksa" construction, so please check readability.
-- `nav.storefront`: "Mağaza vitrini" vs "Vitrin", please confirm against Shopify Turkish.
-- `common.discard`: "Vazgeç" vs Shopify's exact label for discarding unsaved changes.
+- `plans.name.*`, `tiers.plan.*`, `certificates.plan.*`: plan adları tırnak içinde (“Starter”, “Pro”, “Ücretsiz”), İngilizceyle aynı olmasın diye.
+- `applications.filter.form`: "Form" İngilizceyle aynı olacağından "Başvuru formu" kullanıldı.
+- `import.progress.count`: maxLength için "{done}/{total} tamamlandı" biçimine kısaltıldı.
+- `help.*` menü yolları ve `email.sample.*` örnek değerleri canlı arayüzle karşılaştırılmadı.
 
 ## Urdu (ur)
 
-- `spike.failed`: "درجوں کی معاون تفویض" (assisted tier assignment) is a coined phrase.
-- `settings.empty.body`: "ڈیٹا محفوظ رکھنے کی مدت" for "data retention" should match the term used in the actual settings screen.
-- `nav.import` / `import.title`: "امپورٹ" is a loanword; "درآمد" is the more formal alternative.
+- `help.*`، `settings.*`: Shopify ایڈمن کے مینو راستے انگریزی میں رکھے گئے کیونکہ Shopify ایڈمن اردو میں دستیاب نہیں۔
+- `plans.name.*`، `tiers.plan.*`، `certificates.plan.*`: پلان کے نام “Starter” / “Pro” اور “مفت پلان”۔
+- `settings.assignment.assisted`: “معاونت کے ساتھ” ایک نئی اصطلاح ہے۔
+- `home.numbers.tierLine`: جمع اور ترتیب کی ساخت قدرے مختلف ہے۔
 
 ## Vietnamese (vi)
 
-- Register : "bạn" vs the more formal "Quý khách"/"quý vị". I followed Shopify admin.
-- home.readiness.* (catalog) : "danh mục" is Shopify VI's word for catalog, but it can be confused with "collection" or "category".
-- nav.storefront : "Cửa hàng trực tuyến" is 19 characters; check that it fits the nav.
-- spike.failed : "chỉ định cấp giá có hỗ trợ" ("assisted assignment") needs a native speaker to check it.
+- `help.addForm.step1`, `help.addForm.step2`, `help.faq.documents.a`, `settings.branding.logoHelp`: tên menu của trang quản trị Shopify (Cửa hàng trực tuyến → Chủ đề → Tùy chỉnh, Nội dung → Tệp) cần đối chiếu với giao diện Shopify tiếng Việt hiện tại.
+- `tiers.plan.starter`, `tiers.plan.pro`: tên gói được đặt trong ngoặc kép để không trùng tiếng Anh.
+- `approval.exemption.euReverseCharge`, `approval.tax.reason.*`: thuật ngữ "đảo ngược thuế" cho EU reverse charge.
+- Theme `form.address.zone.county`, `form.address.zone.governorate`, `form.address.zone.prefecture`: nhãn đơn vị hành chính nước ngoài.
 
-## Simplified Chinese (zh-CN)
+## Chinese (China) (zh-CN)
 
-- nav.certificates / certificates.* : 证书 vs 证明文件. Tax documents are not strictly certificates.
-- common.availableOn : "{plan} 套餐可用" depends on {plan} being a bare plan name such as "Basic".
-- spike.failed : the phrase 辅助方式分配等级 ("assisted assignment") needs a native speaker to check it.
+- help.faq.taxExemptions.a / approval.exemption.euReverseCharge: 反向征税 for EU reverse charge.
+- storefront.wall.pagesHelp: handle rendered as 标识; Shopify zh-CN sometimes shows 句柄.
+- brand.powered_by (theme): 由 Tradepass 提供支持.
 
-## Traditional Chinese (zh-TW)
+## Chinese (Taiwan) (zh-TW)
 
-- nav.help / help.* : 說明 follows Shopify TW, but 幫助中心 would also work.
-- nav.certificates / certificates.* : 證明文件 is a broad term for "certificates"; please confirm it is acceptable.
-- spike.failed : the phrase 輔助方式指派等級 ("assisted assignment") needs a native speaker to check it.
-
+- certificates.* uses 證明文件 for certificate (from the existing nav) while resale certificate is 轉售證明; a reviewer may prefer 證書.
+- approval.exemption.euReverseCharge: 歐盟反向課稅.
+- storefront.wall.pagesHelp: handle rendered as 代碼.

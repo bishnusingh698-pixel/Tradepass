@@ -39,10 +39,11 @@ Code-complete for every phase P1–P8 (see `feature_list.json`: 41 built, 51 nee
 - **Automation and import** (P7): auto-approve/reject rules with pause, daily limit and Reverse; 5 Flow triggers and the approval action; CSV import with dry run and resume; tag conversion.
 - **Plans, Help, Settings** (P8): Billing API plans with trial once per store, plan gating, downgrade confirmation; Help (guide, 17 FAQs, diagnostics, debug mode); Settings (languages and text overrides, retention, branding, delete all data); Home (welcome, checklist, pending work, alerts, numbers).
 - Moved to React 19 (D-013). Scopes final (D-016).
-- Accessibility pass under way in the storefront form and hosted pages (error-summary focus, fieldset descriptions, readable button text, screen-reader text for hidden prices, contrast).
+- Accessibility pass done in the storefront form, hosted pages and Home checklist (error-summary focus, fieldset descriptions, readable button text, screen-reader text for hidden prices and step status, contrast). Not yet done: error red on dark themes, admin performance measurement.
+- All 36 languages translated for every admin, email, storefront and listing string (TRANSLATIONS.md, TRANSLATION_REVIEW.md).
 
 ### What's tested
-- `npx vitest run`: **319 tests in 26 files.** First run today: 284 pass, 35 fail. Latest run (with translators' files half-written): **281 pass, 38 fail**. Every failure is in `tests/i18n.test.ts`: 31 × "has every English key and no extras", 5 × "has no untranslated strings", 1 × "valid ICU, matching placeholders and complete plurals". All other 25 test files pass. Expected until the translators finish; the ICU one should be checked when they do.
+- `npx vitest run`: **333 tests in 27 files, all pass** (2026-10-17). `npx tsc --noEmit` and `npx eslint app` clean. `node scripts/i18n-check.mjs` OK for all 35 locales.
 - `npx react-router build` passes.
 - Storefront scripts: embed 2.9 KB gzipped, form 10.6 KB gzipped (only on the form page).
 - Nothing has run against a real store yet: no deploy, no dev store install, no spike.
@@ -54,15 +55,14 @@ Code-complete for every phase P1–P8 (see `feature_list.json`: 41 built, 51 nee
 - Server: ≤ 3 files per upload question at submit/update, one file per upload request (type and size by content). D-080.
 - Settings → Tier assignment: Automatic / Assisted. Home counts open assisted tasks in both modes. D-079.
 - `.env.example` and `render.yaml` list `HMRC_CLIENT_ID`, `HMRC_CLIENT_SECRET`, `ABN_GUID` (empty).
-- Tests: `tests/plan-gaps.test.ts` (14). The 16 new admin strings and 1 storefront string are English only; list for translators in `docs/i18n/new-keys-gaps.tsv`. Until they're translated, `tests/i18n.test.ts` "has every English key" fails for those keys in the other locales.
-- LISTING_DRAFT.md's pricing note about these gaps can now go; confirm the App Store slug for the "Powered by" link (D-077).
+- Tests: `tests/plan-gaps.test.ts` (14). The new strings are translated in all languages. Confirm the App Store slug for the "Powered by" link (D-077).
 
 ### Docs updated today
-API_NOTES (area sections), DECISIONS (D-013 to D-075), CHECKLIST (full script by acceptance test), PLAN (architecture, schema, routes, jobs), README (full setup), PRIVACY, REVIEWER_NOTES (with screencast script), LISTING_DRAFT (English), ROADMAP, feature_list.json. The `docs/notes/*.md` files are merged and marked as such.
+API_NOTES (area sections), DECISIONS (D-013 to D-075), CHECKLIST (full script by acceptance test), PLAN (architecture, schema, routes, jobs), README (full setup), PRIVACY, REVIEWER_NOTES (with screencast script), LISTING_DRAFT (all 36 languages in docs/listing), ROADMAP, feature_list.json. The `docs/notes/*.md` files are merged and marked as such.
 
 ### Next
-1. Translators finish the locale files and `docs/listing/<locale>.json`; re-run `npx vitest run` until all pass.
-2. Owner decisions on the Proposed items in DECISIONS.md and the gaps above.
+1. Owner decisions on the Proposed items in DECISIONS.md.
+2. Native-speaker check of the short lists in TRANSLATION_REVIEW.md (optional before launch).
 3. Accounts and deploy (README §2–6): link the app, request protected customer data, deploy to Render + Neon, set up cron-job.org and Brevo, `shopify app deploy`.
 4. Run the spike on a non-Plus dev store and fill in SPIKE_RESULTS.md; settle D-004.
 5. Work through CHECKLIST.md on store A (non-Plus) and store B (Plus); fix what fails and add selectors for themes.

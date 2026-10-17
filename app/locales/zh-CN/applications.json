@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "已要求补充信息",
   "applications.activity.application.updated": "申请人已提交更新",
   "applications.activity.application.note": "已添加备注",
-  "applications.activity.application.assign": "负责人已更改"
+  "applications.activity.application.assign": "负责人已更改",
+  "applications.taxCheck.skipped": "当前套餐不核验",
+  "applications.detail.taxCheckPlan": "{plan}及以上会通过官方登记机构核验税号。请自行核实此号码，或升级以自动核验新申请。"
 }

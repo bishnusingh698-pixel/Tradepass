@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Teksten voor {language} terugzetten?",
   "settings.texts.resetBody": "{count, plural, one {# gewijzigde tekst gaat terug naar de ingebouwde tekst.} other {# gewijzigde teksten gaan terug naar de ingebouwde tekst.}}",
   "settings.texts.resetConfirm": "Teksten terugzetten",
-  "settings.texts.area.pages": "Pagina’s voor bijwerken en vernieuwen"
+  "settings.texts.area.pages": "Pagina’s voor bijwerken en vernieuwen",
+  "settings.assignment.heading": "Niveautoewijzing",
+  "settings.assignment.label": "Hoe kopers in hun niveau worden geplaatst",
+  "settings.assignment.auto": "Automatisch",
+  "settings.assignment.autoHelp": "Tradepass voegt de bedrijfslocatie toe aan de markt van het niveau in Shopify en controleert of dat is gelukt.",
+  "settings.assignment.assisted": "Begeleid",
+  "settings.assignment.assistedHelp": "U voert de wijziging zelf in Shopify door via een checklist op de pagina Niveaus, en Tradepass bevestigt die. Gebruik dit als automatische toewijzing in uw winkel niet werkt.",
+  "settings.assignment.note": "Een wijziging hier geldt alleen voor nieuwe goedkeuringen en niveauwijzigingen. Openstaande checklistitems blijven op de pagina Niveaus staan tot u ze controleert.",
+  "settings.error.assignment": "Kies automatisch of begeleid.",
+  "settings.activity.heading": "Activiteitengeschiedenis",
+  "settings.activity.body": "Download een CSV-bestand van wat Tradepass en uw medewerkers hebben gedaan: wie, wat, wanneer en het resultaat. Het bevat de laatste {max} items; items ouder dan 2 jaar worden automatisch verwijderd.",
+  "settings.activity.button": "Activiteit exporteren (CSV)",
+  "settings.activity.done": "Activiteit geëxporteerd",
+  "settings.activity.truncated": "De laatste {max} items geëxporteerd",
+  "settings.activity.locked": "Activiteit exporteren is beschikbaar met het abonnement Pro."
 }

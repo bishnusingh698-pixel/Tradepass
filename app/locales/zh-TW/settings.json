@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "要重設{language}文字嗎？",
   "settings.texts.resetBody": "{count, plural, other {# 則已變更的文字將恢復為內建文字。}}",
   "settings.texts.resetConfirm": "重設文字",
-  "settings.texts.area.pages": "申請更新與續期頁面"
+  "settings.texts.area.pages": "申請更新與續期頁面",
+  "settings.assignment.heading": "等級指派",
+  "settings.assignment.label": "將買家放入等級的方式",
+  "settings.assignment.auto": "自動",
+  "settings.assignment.autoHelp": "Tradepass 會在 Shopify 中將公司地點新增至該等級的市場，並確認操作成功。",
+  "settings.assignment.assisted": "輔助",
+  "settings.assignment.assistedHelp": "您依照「等級」頁面上的檢查清單在 Shopify 中自行變更，Tradepass 會進行確認。如果自動指派在您的商店中無法運作，請選擇此項。",
+  "settings.assignment.note": "變更此設定僅影響新的核准和等級變更。未完成的檢查清單項目會保留在「等級」頁面上，直到您檢查為止。",
+  "settings.error.assignment": "請選擇「自動」或「輔助」。",
+  "settings.activity.heading": "活動記錄",
+  "settings.activity.body": "下載 CSV 檔案，查看 Tradepass 和您的員工執行的操作：執行者、內容、時間和結果。檔案包含最近 {max} 筆記錄；超過 2 年的記錄會自動刪除。",
+  "settings.activity.button": "匯出活動（CSV）",
+  "settings.activity.done": "已匯出活動",
+  "settings.activity.truncated": "已匯出最近 {max} 筆記錄",
+  "settings.activity.locked": "Pro 方案支援活動匯出。"
 }

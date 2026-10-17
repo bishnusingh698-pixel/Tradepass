@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "Atur ulang teks {language}?",
   "settings.texts.resetBody": "{count, plural, other {# teks yang diubah akan kembali ke kata-kata bawaan.}}",
   "settings.texts.resetConfirm": "Atur ulang teks",
-  "settings.texts.area.pages": "Halaman pembaruan pengajuan dan perpanjangan"
+  "settings.texts.area.pages": "Halaman pembaruan pengajuan dan perpanjangan",
+  "settings.assignment.heading": "Penetapan tingkat harga",
+  "settings.assignment.label": "Cara pembeli dimasukkan ke tingkat harganya",
+  "settings.assignment.auto": "Otomatis",
+  "settings.assignment.autoHelp": "Tradepass menambahkan lokasi perusahaan ke pasar tingkat harga di Shopify dan memeriksa apakah berhasil.",
+  "settings.assignment.assisted": "Berbantuan",
+  "settings.assignment.assistedHelp": "Anda melakukan perubahan di Shopify dari daftar periksa di halaman Tingkat Harga, lalu Tradepass mengonfirmasinya. Gunakan opsi ini jika penetapan otomatis tidak berfungsi di toko Anda.",
+  "settings.assignment.note": "Perubahan ini hanya memengaruhi persetujuan dan perubahan tingkat harga yang baru. Item daftar periksa yang terbuka tetap ada di halaman Tingkat Harga sampai Anda memeriksanya.",
+  "settings.error.assignment": "Pilih otomatis atau berbantuan.",
+  "settings.activity.heading": "Riwayat aktivitas",
+  "settings.activity.body": "Unduh file CSV berisi apa yang dilakukan Tradepass dan staf Anda: siapa, apa, kapan, dan hasilnya. File ini memuat {max} entri terbaru; entri yang lebih dari 2 tahun dihapus otomatis.",
+  "settings.activity.button": "Ekspor aktivitas (CSV)",
+  "settings.activity.done": "Aktivitas diekspor",
+  "settings.activity.truncated": "{max} entri terbaru diekspor",
+  "settings.activity.locked": "Ekspor aktivitas tersedia di paket Pro."
 }

@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "추가 정보 요청됨",
   "applications.activity.application.updated": "신청자가 업데이트를 보냄",
   "applications.activity.application.note": "메모 추가됨",
-  "applications.activity.application.assign": "담당자 변경됨"
+  "applications.activity.application.assign": "담당자 변경됨",
+  "applications.taxCheck.skipped": "현재 요금제에서는 확인 안 함",
+  "applications.detail.taxCheckPlan": "{plan} 이상에서는 세금 번호를 공식 등록 기관과 대조하여 확인합니다. 이 번호를 직접 확인하거나, 업그레이드하여 새 신청서를 자동으로 확인하십시오."
 }

@@ -88,7 +88,7 @@ Yes, on the Pro plan. Upload a CSV file, or convert customers that already have 
 
 Paid plans include a 14-day free trial (once per store). Charges are billed by Shopify in USD. Applications are always collected, even when the Free plan's approvals are used up.
 
-> Before publishing, check the pricing text against what's built: the Free plan's "Powered by Tradepass" link, activity export (Pro) and plan-gating of tax-number checks (Starter) aren't built yet (progress.md → Gaps). Remove or build them first.
+> Before publishing, confirm the App Store address used by the Free plan's "Powered by Tradepass" link (DECISIONS D-077).
 
 ## Translations
-The translated subtitle and description for all 36 languages are in `docs/listing/<locale>.json` (for example `docs/listing/de.json`, `docs/listing/pt-BR.json`), one file per locale with the same `subtitle` and `description` keys as `en.json`. Translators are adding them now; `en.json` is the source.
+The translated subtitle and description for all 36 languages are in `docs/listing/<locale>.json` (for example `docs/listing/de.json`, `docs/listing/pt-BR.json`), one file per locale with the same `subtitle` and `description` keys as `en.json`. All 35 translations are done and checked (`node scripts/i18n-check.mjs`); `en.json` is the source. Paste each language's subtitle and description into the matching Partner Dashboard listing language.

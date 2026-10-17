@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "{language}のテキストをリセットしますか？",
   "settings.texts.resetBody": "{count, plural, other {変更した#件のテキストが標準の文言に戻ります。}}",
   "settings.texts.resetConfirm": "テキストをリセット",
-  "settings.texts.area.pages": "申請の更新ページと更新手続きページ"
+  "settings.texts.area.pages": "申請の更新ページと更新手続きページ",
+  "settings.assignment.heading": "価格ランクの割り当て",
+  "settings.assignment.label": "バイヤーを価格ランクに追加する方法",
+  "settings.assignment.auto": "自動",
+  "settings.assignment.autoHelp": "TradepassがShopifyで会社のロケーションを価格ランクのマーケットに追加し、反映されたことを確認します。",
+  "settings.assignment.assisted": "補助付き",
+  "settings.assignment.assistedHelp": "「価格ランク」ページのチェックリストに沿ってご自身でShopifyで変更し、Tradepassがそれを確認します。自動割り当てがストアで機能しない場合にご利用ください。",
+  "settings.assignment.note": "この変更は、新しい承認と価格ランクの変更にのみ適用されます。未完了のチェックリスト項目は、確認するまで「価格ランク」ページに残ります。",
+  "settings.error.assignment": "「自動」または「補助付き」を選択してください。",
+  "settings.activity.heading": "アクティビティ履歴",
+  "settings.activity.body": "Tradepassとスタッフが行った操作（実行者、内容、日時、結果）をCSVファイルでダウンロードします。最新の{max}件が含まれます。2年以上前の記録は自動的に削除されます。",
+  "settings.activity.button": "アクティビティをエクスポート（CSV）",
+  "settings.activity.done": "アクティビティをエクスポートしました",
+  "settings.activity.truncated": "最新の{max}件をエクスポートしました",
+  "settings.activity.locked": "アクティビティのエクスポートはProプランでご利用いただけます。"
 }

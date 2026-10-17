@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "Informasi tambahan diminta",
   "applications.activity.application.updated": "Pemohon mengirim pembaruan",
   "applications.activity.application.note": "Catatan ditambahkan",
-  "applications.activity.application.assign": "Penugasan diubah"
+  "applications.activity.application.assign": "Penugasan diubah",
+  "applications.taxCheck.skipped": "Tidak diperiksa di paket ini",
+  "applications.detail.taxCheckPlan": "Nomor pajak diperiksa dengan registri resmi mulai paket {plan}. Periksa nomor ini secara manual, atau tingkatkan paket untuk memeriksa pengajuan baru secara otomatis."
 }

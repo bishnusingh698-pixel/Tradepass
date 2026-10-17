@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "要重置{language}文本吗？",
   "settings.texts.resetBody": "{count, plural, other {# 条已更改的文本将恢复为内置措辞。}}",
   "settings.texts.resetConfirm": "重置文本",
-  "settings.texts.area.pages": "申请更新和续期页面"
+  "settings.texts.area.pages": "申请更新和续期页面",
+  "settings.assignment.heading": "等级分配",
+  "settings.assignment.label": "将买家放入等级的方式",
+  "settings.assignment.auto": "自动",
+  "settings.assignment.autoHelp": "Tradepass 会在 Shopify 中将公司地点添加到该等级的市场，并确认操作成功。",
+  "settings.assignment.assisted": "辅助",
+  "settings.assignment.assistedHelp": "您根据“等级”页面上的清单在 Shopify 中自行更改，Tradepass 会进行确认。如果自动分配在您的商店中无法使用，请选择此项。",
+  "settings.assignment.note": "更改此设置仅影响新的批准和等级更改。未完成的清单项目会保留在“等级”页面上，直到您检查为止。",
+  "settings.error.assignment": "请选择“自动”或“辅助”。",
+  "settings.activity.heading": "活动记录",
+  "settings.activity.body": "下载 CSV 文件，查看 Tradepass 和您的员工执行的操作：执行者、内容、时间和结果。文件包含最近 {max} 条记录；超过 2 年的记录会被自动删除。",
+  "settings.activity.button": "导出活动（CSV）",
+  "settings.activity.done": "已导出活动",
+  "settings.activity.truncated": "已导出最近 {max} 条记录",
+  "settings.activity.locked": "Pro 套餐支持活动导出。"
 }

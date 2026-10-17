@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "已要求補充資訊",
   "applications.activity.application.updated": "申請人已提交更新",
   "applications.activity.application.note": "已新增備註",
-  "applications.activity.application.assign": "負責人已變更"
+  "applications.activity.application.assign": "負責人已變更",
+  "applications.taxCheck.skipped": "目前方案不檢查",
+  "applications.detail.taxCheckPlan": "{plan}及以上會透過官方登記機構驗證稅號。請自行確認此號碼，或升級以自動驗證新申請。"
 }
