@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {ระบบยังคงรับใบสมัครใหม่อยู่ อัปเกรดเพื่ออนุมัติเพิ่มในเดือนนี้} other {อัปเกรดเป็นแพ็กเกจ Starter เพื่ออนุมัติได้ไม่จำกัด}}",
   "home.alert.plan_limit.action": "ดูแพ็กเกจ",
   "home.alert.first_buyer.heading": "ผู้ซื้อขายส่งรายแรกของคุณได้รับการอนุมัติแล้ว",
-  "home.alert.first_buyer.body": "ผู้ซื้อสามารถเข้าสู่ระบบและดูราคาขายส่งของตนได้แล้ว"
+  "home.alert.first_buyer.body": "ผู้ซื้อสามารถเข้าสู่ระบบและดูราคาขายส่งของตนได้แล้ว",
+  "home.checklist.stepDone": "เสร็จแล้ว",
+  "home.checklist.stepTodo": "ยังไม่เสร็จ",
+  "home.checklist.stepChecking": "กำลังตรวจสอบ"
 }

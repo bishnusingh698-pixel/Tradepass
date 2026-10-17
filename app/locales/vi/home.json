@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Đơn đăng ký mới vẫn được thu thập. Hãy nâng cấp để phê duyệt thêm trong tháng này.} other {Nâng cấp lên gói Starter để phê duyệt không giới hạn.}}",
   "home.alert.plan_limit.action": "Xem các gói",
   "home.alert.first_buyer.heading": "Người mua bán buôn đầu tiên của bạn đã được phê duyệt",
-  "home.alert.first_buyer.body": "Giờ đây họ có thể đăng nhập và xem giá bán buôn của mình."
+  "home.alert.first_buyer.body": "Giờ đây họ có thể đăng nhập và xem giá bán buôn của mình.",
+  "home.checklist.stepDone": "Đã xong",
+  "home.checklist.stepTodo": "Chưa xong",
+  "home.checklist.stepChecking": "Đang kiểm tra"
 }

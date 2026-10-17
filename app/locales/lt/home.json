@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Naujos paraiškos vis tiek renkamos. Pasirinkite aukštesnį planą, kad šį mėnesį patvirtintumėte daugiau.} other {Pereikite į „Starter“ planą ir tvirtinkite be apribojimų.}}",
   "home.alert.plan_limit.action": "Peržiūrėti planus",
   "home.alert.first_buyer.heading": "Jūsų pirmasis didmeninis pirkėjas patvirtintas",
-  "home.alert.first_buyer.body": "Dabar jis gali prisijungti ir matyti savo didmenines kainas."
+  "home.alert.first_buyer.body": "Dabar jis gali prisijungti ir matyti savo didmenines kainas.",
+  "home.checklist.stepDone": "Atlikta",
+  "home.checklist.stepTodo": "Dar neatlikta",
+  "home.checklist.stepChecking": "Tikrinama"
 }

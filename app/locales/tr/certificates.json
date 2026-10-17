@@ -58,7 +58,7 @@
   "certificates.action.reject": "Sertifikayı reddet",
   "certificates.action.request": "Yeni sertifika iste",
   "certificates.action.setExpiry": "Son geçerlilik tarihi ekle",
-  "certificates.action.editExpiry": "Son geçerlilik tarihini değiştir",
+  "certificates.action.editExpiry": "Bitiş tarihini değiştir",
   "certificates.manage.heading": "Sertifika: {name}",
   "certificates.manage.rejectedBecause": "Reddedildi: {reason}",
   "certificates.reject.heading": "{name} için sertifika reddedilsin mi?",

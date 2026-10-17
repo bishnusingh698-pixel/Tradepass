@@ -166,6 +166,6 @@
   "applications.activity.application.updated": "A jelentkező frissítést küldött",
   "applications.activity.application.note": "Megjegyzés hozzáadva",
   "applications.activity.application.assign": "Felelős módosítva",
-  "applications.taxCheck.skipped": "Az Ön csomagjában nincs ellenőrzés",
+  "applications.taxCheck.skipped": "Csomagja nem ellenőrzi",
   "applications.detail.taxCheckPlan": "Az adószámokat a(z) {plan} csomagtól felfelé ellenőrizzük a hivatalos nyilvántartásokban. Ellenőrizze ezt kézzel, vagy váltson nagyobb csomagra az új jelentkezések automatikus ellenőrzéséhez."
 }

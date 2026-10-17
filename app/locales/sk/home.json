@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Nové žiadosti sa naďalej zhromažďujú. Ak chcete tento mesiac schváliť ďalšie, prejdite na vyšší plán.} other {Prejdite na plán Starter a získajte neobmedzený počet schválení.}}",
   "home.alert.plan_limit.action": "Zobraziť plány",
   "home.alert.first_buyer.heading": "Váš prvý veľkoobchodný kupujúci je schválený",
-  "home.alert.first_buyer.body": "Teraz sa môže prihlásiť a vidieť svoje veľkoobchodné ceny."
+  "home.alert.first_buyer.body": "Teraz sa môže prihlásiť a vidieť svoje veľkoobchodné ceny.",
+  "home.checklist.stepDone": "Hotovo",
+  "home.checklist.stepTodo": "Zatiaľ nehotové",
+  "home.checklist.stepChecking": "Kontroluje sa"
 }

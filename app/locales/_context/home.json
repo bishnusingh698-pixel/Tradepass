@@ -459,5 +459,20 @@
     "note": "Celebration banner text.",
     "maxLength": 160,
     "placeholders": []
+  },
+  "home.checklist.stepDone": {
+    "note": "Screen-reader text for a setup step that is complete (shown as a check icon).",
+    "maxLength": 24,
+    "placeholders": []
+  },
+  "home.checklist.stepTodo": {
+    "note": "Screen-reader text for a setup step that still needs doing (shown as a warning icon).",
+    "maxLength": 24,
+    "placeholders": []
+  },
+  "home.checklist.stepChecking": {
+    "note": "Screen-reader text while the app checks whether a theme step is done (shown as a clock icon).",
+    "maxLength": 24,
+    "placeholders": []
   }
 }

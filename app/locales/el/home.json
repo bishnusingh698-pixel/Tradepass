@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Οι νέες αιτήσεις συνεχίζουν να συλλέγονται. Αναβαθμίστε για να εγκρίνετε περισσότερες αυτόν τον μήνα.} other {Αναβαθμίστε σε Starter για απεριόριστες εγκρίσεις.}}",
   "home.alert.plan_limit.action": "Δείτε τα προγράμματα",
   "home.alert.first_buyer.heading": "Ο πρώτος σας αγοραστής χονδρικής εγκρίθηκε",
-  "home.alert.first_buyer.body": "Μπορεί πλέον να συνδεθεί και να δει τις τιμές χονδρικής του."
+  "home.alert.first_buyer.body": "Μπορεί πλέον να συνδεθεί και να δει τις τιμές χονδρικής του.",
+  "home.checklist.stepDone": "Ολοκληρώθηκε",
+  "home.checklist.stepTodo": "Δεν έχει γίνει ακόμα",
+  "home.checklist.stepChecking": "Έλεγχος"
 }

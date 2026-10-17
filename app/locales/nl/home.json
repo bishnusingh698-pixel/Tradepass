@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Nieuwe aanvragen worden nog steeds verzameld. Upgrade om deze maand meer goed te keuren.} other {Upgrade naar Starter voor onbeperkt goedkeuren.}}",
   "home.alert.plan_limit.action": "Abonnementen bekijken",
   "home.alert.first_buyer.heading": "Uw eerste groothandelskoper is goedgekeurd",
-  "home.alert.first_buyer.body": "De koper kan nu inloggen en zijn groothandelsprijzen zien."
+  "home.alert.first_buyer.body": "De koper kan nu inloggen en zijn groothandelsprijzen zien.",
+  "home.checklist.stepDone": "Klaar",
+  "home.checklist.stepTodo": "Nog niet gedaan",
+  "home.checklist.stepChecking": "Controleren"
 }

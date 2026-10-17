@@ -49,7 +49,7 @@
   "settings.texts.resetHeading": "Atkurti tekstus ({language})?",
   "settings.texts.resetBody": "{count, plural, one {# pakeistam tekstui bus grąžinta integruota formuluotė.} few {# pakeistiems tekstams bus grąžintos integruotos formuluotės.} many {# pakeisto teksto bus grąžinta integruota formuluotė.} other {# pakeistų tekstų bus grąžintos integruotos formuluotės.}}",
   "settings.texts.resetConfirm": "Atkurti tekstus",
-  "settings.texts.area.pages": "Paraiškos papildymo ir pažymos atnaujinimo puslapiai",
+  "settings.texts.area.pages": "Paraiškos papildymo ir atnaujinimo puslapiai",
   "settings.assignment.heading": "Lygių priskyrimas",
   "settings.assignment.label": "Kaip pirkėjai priskiriami savo lygiui",
   "settings.assignment.auto": "Automatiškai",

@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {नए आवेदन अब भी जमा हो रहे हैं। इस महीने और मंज़ूर करने के लिए अपग्रेड करें।} other {असीमित मंज़ूरियों के लिए Starter पर अपग्रेड करें।}}",
   "home.alert.plan_limit.action": "प्लान देखें",
   "home.alert.first_buyer.heading": "आपके पहले होलसेल खरीदार को मंज़ूरी मिल गई",
-  "home.alert.first_buyer.body": "वे अब साइन इन करके अपनी होलसेल कीमतें देख सकते हैं।"
+  "home.alert.first_buyer.body": "वे अब साइन इन करके अपनी होलसेल कीमतें देख सकते हैं।",
+  "home.checklist.stepDone": "पूरा हुआ",
+  "home.checklist.stepTodo": "अभी पूरा नहीं",
+  "home.checklist.stepChecking": "जाँच हो रही है"
 }

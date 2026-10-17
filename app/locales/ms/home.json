@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Permohonan baharu masih dikumpul. Naik taraf untuk meluluskan lebih banyak bulan ini.} other {Naik taraf kepada pelan Starter untuk kelulusan tanpa had.}}",
   "home.alert.plan_limit.action": "Lihat pelan",
   "home.alert.first_buyer.heading": "Pembeli borong pertama anda telah diluluskan",
-  "home.alert.first_buyer.body": "Kini mereka boleh log masuk dan melihat harga borong mereka."
+  "home.alert.first_buyer.body": "Kini mereka boleh log masuk dan melihat harga borong mereka.",
+  "home.checklist.stepDone": "Selesai",
+  "home.checklist.stepTodo": "Belum selesai",
+  "home.checklist.stepChecking": "Menyemak"
 }

@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {As novas candidaturas continuam a ser recebidas. Faça upgrade para aprovar mais este mês.} other {Faça upgrade para o Starter para ter aprovações ilimitadas.}}",
   "home.alert.plan_limit.action": "Ver planos",
   "home.alert.first_buyer.heading": "O seu primeiro comprador grossista foi aprovado",
-  "home.alert.first_buyer.body": "Já pode iniciar sessão e ver os respetivos preços por grosso."
+  "home.alert.first_buyer.body": "Já pode iniciar sessão e ver os respetivos preços por grosso.",
+  "home.checklist.stepDone": "Concluído",
+  "home.checklist.stepTodo": "Ainda por fazer",
+  "home.checklist.stepChecking": "A verificar"
 }

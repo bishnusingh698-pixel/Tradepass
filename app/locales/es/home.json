@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Las nuevas solicitudes se siguen recibiendo. Mejore su plan para aprobar más este mes.} other {Cambie al plan Starter para tener aprobaciones ilimitadas.}}",
   "home.alert.plan_limit.action": "Ver planes",
   "home.alert.first_buyer.heading": "Su primer comprador mayorista está aprobado",
-  "home.alert.first_buyer.body": "Ya puede iniciar sesión y ver sus precios mayoristas."
+  "home.alert.first_buyer.body": "Ya puede iniciar sesión y ver sus precios mayoristas.",
+  "home.checklist.stepDone": "Hecho",
+  "home.checklist.stepTodo": "Aún pendiente",
+  "home.checklist.stepChecking": "Comprobando"
 }

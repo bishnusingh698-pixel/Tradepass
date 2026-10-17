@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {نئی درخواستیں اب بھی جمع ہو رہی ہیں۔ اس ماہ مزید منظور کرنے کے لیے اپ گریڈ کریں۔} other {لامحدود منظوریوں کے لیے Starter پر اپ گریڈ کریں۔}}",
   "home.alert.plan_limit.action": "پلانز دیکھیں",
   "home.alert.first_buyer.heading": "آپ کا پہلا ہول سیل خریدار منظور ہو گیا",
-  "home.alert.first_buyer.body": "وہ اب سائن ان کر کے اپنی ہول سیل قیمتیں دیکھ سکتے ہیں۔"
+  "home.alert.first_buyer.body": "وہ اب سائن ان کر کے اپنی ہول سیل قیمتیں دیکھ سکتے ہیں۔",
+  "home.checklist.stepDone": "مکمل",
+  "home.checklist.stepTodo": "ابھی مکمل نہیں",
+  "home.checklist.stepChecking": "جانچ ہو رہی ہے"
 }

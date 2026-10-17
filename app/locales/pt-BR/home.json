@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Novas solicitações continuam sendo recebidas. Faça upgrade para aprovar mais neste mês.} other {Faça upgrade para o Starter e tenha aprovações ilimitadas.}}",
   "home.alert.plan_limit.action": "Ver planos",
   "home.alert.first_buyer.heading": "Seu primeiro comprador atacadista foi aprovado",
-  "home.alert.first_buyer.body": "Agora ele pode fazer login e ver os preços de atacado."
+  "home.alert.first_buyer.body": "Agora ele pode fazer login e ver os preços de atacado.",
+  "home.checklist.stepDone": "Concluído",
+  "home.checklist.stepTodo": "Ainda não feito",
+  "home.checklist.stepChecking": "Verificando"
 }

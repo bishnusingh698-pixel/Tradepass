@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Nya ansökningar tas fortfarande emot. Uppgradera för att godkänna fler den här månaden.} other {Uppgradera till Starter för obegränsat antal godkännanden.}}",
   "home.alert.plan_limit.action": "Visa abonnemang",
   "home.alert.first_buyer.heading": "Din första grossistköpare är godkänd",
-  "home.alert.first_buyer.body": "Köparen kan nu logga in och se sina grossistpriser."
+  "home.alert.first_buyer.body": "Köparen kan nu logga in och se sina grossistpriser.",
+  "home.checklist.stepDone": "Klart",
+  "home.checklist.stepTodo": "Inte klart än",
+  "home.checklist.stepChecking": "Kontrollerar"
 }

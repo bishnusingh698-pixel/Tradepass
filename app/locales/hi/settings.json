@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "{language} के टेक्स्ट रीसेट करें?",
   "settings.texts.resetBody": "{count, plural, one {# बदला गया टेक्स्ट पहले से मौजूद शब्दों पर लौट जाएगा।} other {# बदले गए टेक्स्ट पहले से मौजूद शब्दों पर लौट जाएँगे।}}",
   "settings.texts.resetConfirm": "टेक्स्ट रीसेट करें",
-  "settings.texts.area.pages": "आवेदन अपडेट और रिन्यूअल पेज"
+  "settings.texts.area.pages": "आवेदन अपडेट और रिन्यूअल पेज",
+  "settings.assignment.heading": "टियर असाइनमेंट",
+  "settings.assignment.label": "खरीदारों को उनके टियर में कैसे जोड़ा जाए",
+  "settings.assignment.auto": "अपने-आप",
+  "settings.assignment.autoHelp": "Tradepass कंपनी की लोकेशन को Shopify में टियर के मार्केट में जोड़ता है और जाँचता है कि यह हो गया।",
+  "settings.assignment.assisted": "सहायता के साथ",
+  "settings.assignment.assistedHelp": "आप टियर पेज की चेकलिस्ट के हिसाब से Shopify में खुद बदलाव करते हैं और Tradepass उसकी पुष्टि करता है। अगर आपके स्टोर पर अपने-आप असाइनमेंट काम न करे तो इसे इस्तेमाल करें।",
+  "settings.assignment.note": "इसे बदलने से सिर्फ़ नई मंज़ूरियों और टियर बदलावों पर असर पड़ता है। चेकलिस्ट के खुले आइटम टियर पेज पर तब तक रहते हैं जब तक आप उन्हें टिक न करें।",
+  "settings.error.assignment": "अपने-आप या सहायता के साथ चुनें।",
+  "settings.activity.heading": "गतिविधि इतिहास",
+  "settings.activity.body": "Tradepass और आपके स्टाफ़ ने जो किया उसकी CSV फ़ाइल डाउनलोड करें: किसने, क्या, कब और नतीजा। इसमें नवीनतम {max} एंट्री होती हैं; 2 साल से पुरानी एंट्री अपने-आप हटा दी जाती हैं।",
+  "settings.activity.button": "गतिविधि एक्सपोर्ट करें (CSV)",
+  "settings.activity.done": "गतिविधि एक्सपोर्ट हो गई",
+  "settings.activity.truncated": "नवीनतम {max} एंट्री एक्सपोर्ट की गईं",
+  "settings.activity.locked": "गतिविधि एक्सपोर्ट Pro प्लान में उपलब्ध है।"
 }

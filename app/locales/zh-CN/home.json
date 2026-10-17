@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {新申请仍会照常收集。如需本月继续批准，请升级套餐。} other {升级到 Starter 套餐即可无限次批准。}}",
   "home.alert.plan_limit.action": "查看套餐",
   "home.alert.first_buyer.heading": "您的第一位批发买家已获批准",
-  "home.alert.first_buyer.body": "对方现在可以登录并查看批发价格了。"
+  "home.alert.first_buyer.body": "对方现在可以登录并查看批发价格了。",
+  "home.checklist.stepDone": "已完成",
+  "home.checklist.stepTodo": "尚未完成",
+  "home.checklist.stepChecking": "正在检查"
 }

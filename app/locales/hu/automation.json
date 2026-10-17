@@ -5,7 +5,7 @@
   "automation.empty.action": "Szabály létrehozása",
   "automation.checkoutLock.message": "Ez az áruház csak jóváhagyott nagykereskedelmi ügyfeleknek értékesít. Jelentkezzen be, vagy igényeljen fiókot.",
   "automation.settings.heading": "Automatizálási beállítások",
-  "automation.settings.paused": "Minden automatizálás szüneteltetése",
+  "automation.settings.paused": "Automatizálások szüneteltetése",
   "automation.settings.pausedHelp": "Az új jelentkezések az Ön elbírálására várnak. A szabályok megmaradnak.",
   "automation.settings.dailyLimit": "Automatikus jóváhagyások napi maximuma",
   "automation.settings.dailyLimitHelp": "{count, plural, one {Ma # jelentkezést hagytunk jóvá automatikusan.} other {Ma # jelentkezést hagytunk jóvá automatikusan.}} A korlát elérése után a többi Önre vár.",

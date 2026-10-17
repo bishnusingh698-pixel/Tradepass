@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Новите заявки продължават да се събират. Преминете към по-висок план, за да одобрите още този месец.} other {Преминете към Starter за неограничени одобрения.}}",
   "home.alert.plan_limit.action": "Преглед на плановете",
   "home.alert.first_buyer.heading": "Първият Ви купувач на едро е одобрен",
-  "home.alert.first_buyer.body": "Вече може да влезе и да вижда цените си на едро."
+  "home.alert.first_buyer.body": "Вече може да влезе и да вижда цените си на едро.",
+  "home.checklist.stepDone": "Готово",
+  "home.checklist.stepTodo": "Още не е готово",
+  "home.checklist.stepChecking": "Проверява се"
 }

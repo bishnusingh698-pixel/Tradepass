@@ -30,7 +30,7 @@
   "buyers.selectAll": "Pasirinkti visus šio puslapio pirkėjus",
   "buyers.select": "Pasirinkti {company}",
   "buyers.col.company": "Įmonė",
-  "buyers.col.contact": "Pagrindinis kontaktas",
+  "buyers.col.contact": "Kontaktinis asmuo",
   "buyers.col.tier": "Lygis",
   "buyers.col.terms": "Sąlygos",
   "buyers.col.tax": "Mokesčiai",

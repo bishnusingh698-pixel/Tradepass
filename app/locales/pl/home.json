@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Nowe wnioski są nadal zbierane. Przejdź na wyższy plan, aby zatwierdzić więcej w tym miesiącu.} other {Przejdź na plan Starter, aby mieć nielimitowane zatwierdzenia.}}",
   "home.alert.plan_limit.action": "Zobacz plany",
   "home.alert.first_buyer.heading": "Pierwszy kupujący hurtowy został zatwierdzony",
-  "home.alert.first_buyer.body": "Kupujący może się teraz zalogować i zobaczyć swoje ceny hurtowe."
+  "home.alert.first_buyer.body": "Kupujący może się teraz zalogować i zobaczyć swoje ceny hurtowe.",
+  "home.checklist.stepDone": "Gotowe",
+  "home.checklist.stepTodo": "Jeszcze nie",
+  "home.checklist.stepChecking": "Sprawdzanie"
 }

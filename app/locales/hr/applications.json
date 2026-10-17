@@ -166,6 +166,6 @@
   "applications.activity.application.updated": "Podnositelj je poslao ažuriranje",
   "applications.activity.application.note": "Bilješka dodana",
   "applications.activity.application.assign": "Dodjela promijenjena",
-  "applications.taxCheck.skipped": "Ne provjerava se u vašem paketu",
+  "applications.taxCheck.skipped": "Nije provjereno u vašem paketu",
   "applications.detail.taxCheckPlan": "Porezni brojevi provjeravaju se u službenim registrima u paketu {plan} i višima. Provjerite ovaj broj ručno ili nadogradite paket za automatsku provjeru novih zahtjeva."
 }

@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {New applications are still collected. Upgrade to approve more this month.} other {Upgrade to Starter for unlimited approvals.}}",
   "home.alert.plan_limit.action": "See plans",
   "home.alert.first_buyer.heading": "Your first wholesale buyer is approved",
-  "home.alert.first_buyer.body": "They can now sign in and see their wholesale prices."
+  "home.alert.first_buyer.body": "They can now sign in and see their wholesale prices.",
+  "home.checklist.stepDone": "Done",
+  "home.checklist.stepTodo": "Not done yet",
+  "home.checklist.stepChecking": "Checking"
 }

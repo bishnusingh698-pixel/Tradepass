@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "مزید معلومات طلب کی گئیں",
   "applications.activity.application.updated": "درخواست گزار نے اپ ڈیٹ بھیجی",
   "applications.activity.application.note": "نوٹ شامل کیا گیا",
-  "applications.activity.application.assign": "تفویض تبدیل ہوئی"
+  "applications.activity.application.assign": "تفویض تبدیل ہوئی",
+  "applications.taxCheck.skipped": "آپ کے پلان میں جانچ نہیں ہوتی",
+  "applications.detail.taxCheckPlan": "{plan} اور اس سے اوپر کے پلانز میں ٹیکس نمبرز کو سرکاری رجسٹریوں سے جانچا جاتا ہے۔ اسے خود جانچیں، یا نئی درخواستوں کی خودکار جانچ کے لیے اپ گریڈ کریں۔"
 }

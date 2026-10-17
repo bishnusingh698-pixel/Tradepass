@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {בקשות חדשות ממשיכות להיאסף. כדי לאשר עוד החודש, אפשר לשדרג.} other {שדרוג ל-״Starter״ מאפשר אישורים ללא הגבלה.}}",
   "home.alert.plan_limit.action": "הצגת התוכניות",
   "home.alert.first_buyer.heading": "הקונה הסיטונאי הראשון שלך אושר",
-  "home.alert.first_buyer.body": "עכשיו הקונה יכול להתחבר ולראות את המחירים הסיטונאיים שלו."
+  "home.alert.first_buyer.body": "עכשיו הקונה יכול להתחבר ולראות את המחירים הסיטונאיים שלו.",
+  "home.checklist.stepDone": "הושלם",
+  "home.checklist.stepTodo": "עדיין לא בוצע",
+  "home.checklist.stepChecking": "בבדיקה"
 }

@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {新申請仍會照常收集。如要在本月核准更多申請，請升級方案。} other {升級至 Starter 方案即可無限次核准。}}",
   "home.alert.plan_limit.action": "查看方案",
   "home.alert.first_buyer.heading": "您的第一位批發買家已獲核准",
-  "home.alert.first_buyer.body": "對方現在可以登入並查看批發價格了。"
+  "home.alert.first_buyer.body": "對方現在可以登入並查看批發價格了。",
+  "home.checklist.stepDone": "已完成",
+  "home.checklist.stepTodo": "尚未完成",
+  "home.checklist.stepChecking": "正在檢查"
 }

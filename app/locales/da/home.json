@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Nye ansøgninger modtages stadig. Opgrader for at godkende flere i denne måned.} other {Opgrader til Starter for at få ubegrænsede godkendelser.}}",
   "home.alert.plan_limit.action": "Se abonnementer",
   "home.alert.first_buyer.heading": "Din første engroskøber er godkendt",
-  "home.alert.first_buyer.body": "Køberen kan nu logge ind og se sine engrospriser."
+  "home.alert.first_buyer.body": "Køberen kan nu logge ind og se sine engrospriser.",
+  "home.checklist.stepDone": "Færdig",
+  "home.checklist.stepTodo": "Ikke gjort endnu",
+  "home.checklist.stepChecking": "Tjekker"
 }

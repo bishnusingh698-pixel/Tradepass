@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Uusia hakemuksia kerätään edelleen. Päivitä paketti, jos haluat hyväksyä lisää tässä kuussa.} other {Päivitä Starter-pakettiin, niin saat rajattomasti hyväksyntöjä.}}",
   "home.alert.plan_limit.action": "Näytä paketit",
   "home.alert.first_buyer.heading": "Ensimmäinen tukkuostajasi on hyväksytty",
-  "home.alert.first_buyer.body": "Ostaja voi nyt kirjautua sisään ja nähdä tukkuhintansa."
+  "home.alert.first_buyer.body": "Ostaja voi nyt kirjautua sisään ja nähdä tukkuhintansa.",
+  "home.checklist.stepDone": "Valmis",
+  "home.checklist.stepTodo": "Ei vielä tehty",
+  "home.checklist.stepChecking": "Tarkistetaan"
 }

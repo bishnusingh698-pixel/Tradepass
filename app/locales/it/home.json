@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Le nuove richieste continuano a essere raccolte. Passi a un piano superiore per approvarne altre questo mese.} other {Passi al piano Starter per avere approvazioni illimitate.}}",
   "home.alert.plan_limit.action": "Vedi piani",
   "home.alert.first_buyer.heading": "Il suo primo acquirente all’ingrosso è approvato",
-  "home.alert.first_buyer.body": "Ora può accedere e vedere i suoi prezzi all’ingrosso."
+  "home.alert.first_buyer.body": "Ora può accedere e vedere i suoi prezzi all’ingrosso.",
+  "home.checklist.stepDone": "Fatto",
+  "home.checklist.stepTodo": "Non ancora fatto",
+  "home.checklist.stepChecking": "Verifica in corso"
 }

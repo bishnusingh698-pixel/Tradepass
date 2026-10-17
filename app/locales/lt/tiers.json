@@ -38,7 +38,7 @@
   "tiers.editor.section.name": "Pavadinimas",
   "tiers.editor.section.pricing": "Kainodara",
   "tiers.editor.section.products": "Produktai",
-  "tiers.editor.section.defaults": "Numatytieji nustatymai naujiems pirkėjams",
+  "tiers.editor.section.defaults": "Numatytieji naujiems pirkėjams",
   "tiers.editor.name": "Lygio pavadinimas",
   "tiers.editor.nameHelp": "Šį pavadinimą matote tik jūs, pavyzdžiui, Mažmenininkas ar Platintojas.",
   "tiers.editor.buyerNames": "Pirkėjams rodomas pavadinimas",

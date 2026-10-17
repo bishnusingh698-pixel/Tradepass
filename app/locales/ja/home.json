@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {新しい申請は引き続き受け付けられます。今月さらに承認するにはアップグレードしてください。} other {Starterプランにアップグレードすると、承認数が無制限になります。}}",
   "home.alert.plan_limit.action": "プランを見る",
   "home.alert.first_buyer.heading": "最初の卸売バイヤーが承認されました",
-  "home.alert.first_buyer.body": "このバイヤーはログインして卸売価格を確認できるようになりました。"
+  "home.alert.first_buyer.body": "このバイヤーはログインして卸売価格を確認できるようになりました。",
+  "home.checklist.stepDone": "完了",
+  "home.checklist.stepTodo": "未完了",
+  "home.checklist.stepChecking": "確認中"
 }

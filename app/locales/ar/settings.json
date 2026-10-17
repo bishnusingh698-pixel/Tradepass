@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "هل تريد إعادة تعيين نصوص {language}؟",
   "settings.texts.resetBody": "{count, plural, zero {لا توجد نصوص معدّلة.} one {سيعود نص معدّل واحد إلى الصياغة المدمجة.} two {سيعود نصان معدّلان إلى الصياغة المدمجة.} few {ستعود # نصوص معدّلة إلى الصياغة المدمجة.} many {سيعود # نصًا معدّلًا إلى الصياغة المدمجة.} other {سيعود # نص معدّل إلى الصياغة المدمجة.}}",
   "settings.texts.resetConfirm": "إعادة تعيين النصوص",
-  "settings.texts.area.pages": "صفحات تحديث الطلب والتجديد"
+  "settings.texts.area.pages": "صفحات تحديث الطلب والتجديد",
+  "settings.assignment.heading": "تعيين المستوى",
+  "settings.assignment.label": "كيفية إضافة المشترين إلى مستواهم",
+  "settings.assignment.auto": "تلقائي",
+  "settings.assignment.autoHelp": "يضيف Tradepass موقع الشركة إلى سوق المستوى في Shopify ويتحقق من نجاح ذلك.",
+  "settings.assignment.assisted": "بمساعدة",
+  "settings.assignment.assistedHelp": "تُجري التغيير بنفسك في Shopify باتباع قائمة مهام في صفحة المستويات، ويؤكده Tradepass. استخدم هذا الخيار إذا لم يعمل التعيين التلقائي في متجرك.",
+  "settings.assignment.note": "يؤثر تغيير هذا الإعداد في الموافقات الجديدة وتغييرات المستوى فقط. تبقى عناصر قائمة المهام المفتوحة في صفحة المستويات حتى تحددها.",
+  "settings.error.assignment": "اختر «تلقائي» أو «بمساعدة».",
+  "settings.activity.heading": "سجل النشاط",
+  "settings.activity.body": "نزّل ملف CSV بما قام به Tradepass وموظفوك: مَن وماذا ومتى والنتيجة. يتضمن أحدث {max} إدخال، وتُحذف الإدخالات التي يزيد عمرها على سنتين تلقائيًا.",
+  "settings.activity.button": "تصدير النشاط (CSV)",
+  "settings.activity.done": "تم تصدير النشاط",
+  "settings.activity.truncated": "تم تصدير أحدث {max} إدخال",
+  "settings.activity.locked": "تصدير النشاط متاح ضمن خطة Pro."
 }

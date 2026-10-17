@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Az új jelentkezéseket továbbra is gyűjtjük. Váltson nagyobb csomagra, ha még ebben a hónapban többet hagyna jóvá.} other {Váltson a Starter csomagra a korlátlan jóváhagyásért.}}",
   "home.alert.plan_limit.action": "Csomagok megtekintése",
   "home.alert.first_buyer.heading": "Jóváhagyta az első nagykereskedelmi vásárlóját",
-  "home.alert.first_buyer.body": "Mostantól bejelentkezhet, és láthatja a nagykereskedelmi árait."
+  "home.alert.first_buyer.body": "Mostantól bejelentkezhet, és láthatja a nagykereskedelmi árait.",
+  "home.checklist.stepDone": "Kész",
+  "home.checklist.stepTodo": "Még nincs kész",
+  "home.checklist.stepChecking": "Ellenőrzés"
 }

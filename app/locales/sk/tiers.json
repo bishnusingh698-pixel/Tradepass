@@ -38,7 +38,7 @@
   "tiers.editor.section.name": "Názov",
   "tiers.editor.section.pricing": "Ceny",
   "tiers.editor.section.products": "Produkty",
-  "tiers.editor.section.defaults": "Predvolené nastavenia pre nových kupujúcich",
+  "tiers.editor.section.defaults": "Predvolené pre nových kupujúcich",
   "tiers.editor.name": "Názov úrovne",
   "tiers.editor.nameHelp": "Tento názov vidíte iba vy, napríklad Maloobchodník alebo Distribútor.",
   "tiers.editor.buyerNames": "Názov, ktorý vidia kupujúci",

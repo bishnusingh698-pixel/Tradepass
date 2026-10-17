@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Pengajuan baru tetap dikumpulkan. Tingkatkan paket untuk menyetujui lebih banyak bulan ini.} other {Tingkatkan ke paket Starter untuk persetujuan tanpa batas.}}",
   "home.alert.plan_limit.action": "Lihat paket",
   "home.alert.first_buyer.heading": "Pembeli grosir pertama Anda telah disetujui",
-  "home.alert.first_buyer.body": "Kini mereka dapat masuk dan melihat harga grosir mereka."
+  "home.alert.first_buyer.body": "Kini mereka dapat masuk dan melihat harga grosir mereka.",
+  "home.checklist.stepDone": "Selesai",
+  "home.checklist.stepTodo": "Belum selesai",
+  "home.checklist.stepChecking": "Memeriksa"
 }

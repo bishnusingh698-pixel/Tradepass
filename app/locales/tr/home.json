@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Yeni başvurular toplanmaya devam ediyor. Bu ay daha fazla onay vermek için planınızı yükseltin.} other {Sınırsız onay için “Starter” planına geçin.}}",
   "home.alert.plan_limit.action": "Planları görüntüle",
   "home.alert.first_buyer.heading": "İlk toptan alıcınız onaylandı",
-  "home.alert.first_buyer.body": "Artık oturum açıp toptan fiyatlarını görebilirler."
+  "home.alert.first_buyer.body": "Artık oturum açıp toptan fiyatlarını görebilirler.",
+  "home.checklist.stepDone": "Tamamlandı",
+  "home.checklist.stepTodo": "Henüz yapılmadı",
+  "home.checklist.stepChecking": "Kontrol ediliyor"
 }

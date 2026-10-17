@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Les nouvelles demandes sont toujours enregistrées. Passez à un forfait supérieur pour en approuver davantage ce mois-ci.} other {Passez au forfait Starter pour des approbations illimitées.}}",
   "home.alert.plan_limit.action": "Voir les forfaits",
   "home.alert.first_buyer.heading": "Votre premier acheteur professionnel est approuvé",
-  "home.alert.first_buyer.body": "Il peut désormais se connecter et voir ses prix de gros."
+  "home.alert.first_buyer.body": "Il peut désormais se connecter et voir ses prix de gros.",
+  "home.checklist.stepDone": "Terminé",
+  "home.checklist.stepTodo": "Pas encore fait",
+  "home.checklist.stepChecking": "Vérification"
 }

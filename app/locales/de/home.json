@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Neue Anträge werden weiterhin erfasst. Führen Sie ein Upgrade durch, um diesen Monat weitere zu genehmigen.} other {Mit einem Upgrade auf Starter erhalten Sie unbegrenzt viele Genehmigungen.}}",
   "home.alert.plan_limit.action": "Tarife ansehen",
   "home.alert.first_buyer.heading": "Ihr erster Großhandelskäufer ist genehmigt",
-  "home.alert.first_buyer.body": "Er kann sich jetzt anmelden und seine Großhandelspreise sehen."
+  "home.alert.first_buyer.body": "Er kann sich jetzt anmelden und seine Großhandelspreise sehen.",
+  "home.checklist.stepDone": "Erledigt",
+  "home.checklist.stepTodo": "Noch offen",
+  "home.checklist.stepChecking": "Wird geprüft"
 }

@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "और जानकारी माँगी गई",
   "applications.activity.application.updated": "आवेदक ने अपडेट भेजा",
   "applications.activity.application.note": "नोट जोड़ा गया",
-  "applications.activity.application.assign": "असाइनमेंट बदला गया"
+  "applications.activity.application.assign": "असाइनमेंट बदला गया",
+  "applications.taxCheck.skipped": "आपके प्लान में जाँच नहीं होती",
+  "applications.detail.taxCheckPlan": "{plan} और उससे ऊपर के प्लान में टैक्स नंबर आधिकारिक रजिस्ट्री से जाँचे जाते हैं। इसे खुद जाँचें, या नए आवेदनों की अपने-आप जाँच के लिए अपग्रेड करें।"
 }

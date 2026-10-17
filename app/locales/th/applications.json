@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "ขอข้อมูลเพิ่มเติมแล้ว",
   "applications.activity.application.updated": "ผู้สมัครส่งข้อมูลอัปเดต",
   "applications.activity.application.note": "เพิ่มบันทึกแล้ว",
-  "applications.activity.application.assign": "เปลี่ยนการมอบหมายแล้ว"
+  "applications.activity.application.assign": "เปลี่ยนการมอบหมายแล้ว",
+  "applications.taxCheck.skipped": "แพ็กเกจของคุณไม่มีการตรวจสอบ",
+  "applications.detail.taxCheckPlan": "เลขประจำตัวผู้เสียภาษีจะได้รับการตรวจสอบกับทะเบียนทางการใน {plan} ขึ้นไป โปรดตรวจสอบรายการนี้ด้วยตนเอง หรืออัปเกรดเพื่อตรวจสอบใบสมัครใหม่โดยอัตโนมัติ"
 }

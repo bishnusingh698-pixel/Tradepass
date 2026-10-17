@@ -165,5 +165,7 @@
   "applications.activity.application.needs_info": "طُلبت معلومات إضافية",
   "applications.activity.application.updated": "أرسل مقدّم الطلب تحديثًا",
   "applications.activity.application.note": "تمت إضافة ملاحظة",
-  "applications.activity.application.assign": "تم تغيير الإسناد"
+  "applications.activity.application.assign": "تم تغيير الإسناد",
+  "applications.taxCheck.skipped": "لم يُتحقق منه ضمن خطتك",
+  "applications.detail.taxCheckPlan": "يُتحقق من الأرقام الضريبية في السجلات الرسمية ضمن {plan} والخطط الأعلى. تحقّق من هذا الرقم يدويًا، أو قم بالترقية للتحقق من الطلبات الجديدة تلقائيًا."
 }

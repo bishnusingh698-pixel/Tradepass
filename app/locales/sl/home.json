@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Nove vloge se še vedno zbirajo. Za več odobritev ta mesec nadgradite paket.} other {Nadgradite na paket Starter za neomejeno število odobritev.}}",
   "home.alert.plan_limit.action": "Ogled paketov",
   "home.alert.first_buyer.heading": "Vaš prvi veleprodajni kupec je odobren",
-  "home.alert.first_buyer.body": "Zdaj se lahko prijavi in vidi svoje veleprodajne cene."
+  "home.alert.first_buyer.body": "Zdaj se lahko prijavi in vidi svoje veleprodajne cene.",
+  "home.checklist.stepDone": "Končano",
+  "home.checklist.stepTodo": "Še ni končano",
+  "home.checklist.stepChecking": "Preverjanje"
 }

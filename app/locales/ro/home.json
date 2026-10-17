@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Cererile noi sunt în continuare colectate. Treceți la un plan superior pentru a aproba mai multe luna aceasta.} other {Treceți la Starter pentru aprobări nelimitate.}}",
   "home.alert.plan_limit.action": "Vedeți planurile",
   "home.alert.first_buyer.heading": "Primul cumpărător en-gros a fost aprobat",
-  "home.alert.first_buyer.body": "Acum se poate conecta și își poate vedea prețurile en-gros."
+  "home.alert.first_buyer.body": "Acum se poate conecta și își poate vedea prețurile en-gros.",
+  "home.checklist.stepDone": "Gata",
+  "home.checklist.stepTodo": "Încă nefinalizat",
+  "home.checklist.stepChecking": "Se verifică"
 }

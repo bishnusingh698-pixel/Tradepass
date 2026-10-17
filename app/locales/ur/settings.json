@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "{language} کے متن ری سیٹ کریں؟",
   "settings.texts.resetBody": "{count, plural, one {# تبدیل شدہ متن پہلے سے موجود الفاظ پر واپس آ جائے گا۔} other {# تبدیل شدہ متن پہلے سے موجود الفاظ پر واپس آ جائیں گے۔}}",
   "settings.texts.resetConfirm": "متن ری سیٹ کریں",
-  "settings.texts.area.pages": "درخواست اپ ڈیٹ اور تجدید کے صفحات"
+  "settings.texts.area.pages": "درخواست اپ ڈیٹ اور تجدید کے صفحات",
+  "settings.assignment.heading": "درجہ تفویض کرنا",
+  "settings.assignment.label": "خریداروں کو ان کے درجے میں کیسے شامل کیا جائے",
+  "settings.assignment.auto": "خودکار",
+  "settings.assignment.autoHelp": "Tradepass کمپنی کی لوکیشن کو Shopify میں درجے کی مارکیٹ میں شامل کرتا ہے اور تصدیق کرتا ہے کہ یہ کام کر گیا۔",
+  "settings.assignment.assisted": "معاونت کے ساتھ",
+  "settings.assignment.assistedHelp": "آپ درجات کے صفحے کی چیک لسٹ کے مطابق Shopify میں خود تبدیلی کرتے ہیں اور Tradepass اس کی تصدیق کرتا ہے۔ اگر آپ کے اسٹور پر خودکار طریقہ کام نہ کرے تو یہ استعمال کریں۔",
+  "settings.assignment.note": "اس تبدیلی کا اثر صرف نئی منظوریوں اور درجے کی تبدیلیوں پر ہوگا۔ چیک لسٹ کے کھلے آئٹمز درجات کے صفحے پر رہیں گے جب تک آپ انہیں نشان زد نہ کریں۔",
+  "settings.error.assignment": "خودکار یا معاونت کے ساتھ منتخب کریں۔",
+  "settings.activity.heading": "سرگرمی کی تاریخ",
+  "settings.activity.body": "Tradepass اور آپ کے عملے نے جو کیا اس کی CSV فائل ڈاؤن لوڈ کریں: کس نے، کیا، کب اور نتیجہ۔ اس میں تازہ ترین {max} اندراجات ہوتے ہیں؛ 2 سال سے پرانے اندراجات خود بخود ہٹا دیے جاتے ہیں۔",
+  "settings.activity.button": "سرگرمی ایکسپورٹ کریں (CSV)",
+  "settings.activity.done": "سرگرمی ایکسپورٹ ہو گئی",
+  "settings.activity.truncated": "تازہ ترین {max} اندراجات ایکسپورٹ ہو گئے",
+  "settings.activity.locked": "سرگرمی کی ایکسپورٹ Pro پلان میں دستیاب ہے۔"
 }

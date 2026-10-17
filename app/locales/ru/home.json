@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {Новые заявки по-прежнему собираются. Перейдите на другой тариф, чтобы одобрить больше в этом месяце.} other {Перейдите на тариф «Starter», чтобы одобрять без ограничений.}}",
   "home.alert.plan_limit.action": "Посмотреть тарифы",
   "home.alert.first_buyer.heading": "Ваш первый оптовый покупатель одобрен",
-  "home.alert.first_buyer.body": "Теперь он может войти и увидеть свои оптовые цены."
+  "home.alert.first_buyer.body": "Теперь он может войти и увидеть свои оптовые цены.",
+  "home.checklist.stepDone": "Готово",
+  "home.checklist.stepTodo": "Ещё не выполнено",
+  "home.checklist.stepChecking": "Проверка"
 }

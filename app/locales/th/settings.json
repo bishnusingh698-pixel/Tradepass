@@ -49,5 +49,19 @@
   "settings.texts.resetHeading": "รีเซ็ตข้อความภาษา{language}ใช่ไหม",
   "settings.texts.resetBody": "{count, plural, other {ข้อความที่เปลี่ยนแล้ว # รายการจะกลับไปใช้ถ้อยคำในตัว}}",
   "settings.texts.resetConfirm": "รีเซ็ตข้อความ",
-  "settings.texts.area.pages": "หน้าอัปเดตใบสมัครและหน้าต่ออายุ"
+  "settings.texts.area.pages": "หน้าอัปเดตใบสมัครและหน้าต่ออายุ",
+  "settings.assignment.heading": "การกำหนดระดับ",
+  "settings.assignment.label": "วิธีเพิ่มผู้ซื้อเข้าในระดับของตน",
+  "settings.assignment.auto": "อัตโนมัติ",
+  "settings.assignment.autoHelp": "Tradepass จะเพิ่มสถานที่ตั้งของบริษัทเข้าในตลาดของระดับใน Shopify และตรวจสอบว่าสำเร็จ",
+  "settings.assignment.assisted": "แบบมีผู้ช่วย",
+  "settings.assignment.assistedHelp": "คุณทำการเปลี่ยนแปลงใน Shopify เองตามรายการตรวจสอบในหน้าระดับ แล้ว Tradepass จะยืนยันให้ ใช้ตัวเลือกนี้หากการกำหนดอัตโนมัติไม่ทำงานในร้านค้าของคุณ",
+  "settings.assignment.note": "การเปลี่ยนค่านี้มีผลเฉพาะกับการอนุมัติใหม่และการเปลี่ยนระดับเท่านั้น รายการตรวจสอบที่ยังเปิดอยู่จะยังคงอยู่ในหน้าระดับจนกว่าคุณจะทำเครื่องหมาย",
+  "settings.error.assignment": "โปรดเลือกอัตโนมัติหรือแบบมีผู้ช่วย",
+  "settings.activity.heading": "ประวัติกิจกรรม",
+  "settings.activity.body": "ดาวน์โหลดไฟล์ CSV ของสิ่งที่ Tradepass และพนักงานของคุณทำ ได้แก่ ใคร ทำอะไร เมื่อใด และผลลัพธ์ ไฟล์จะมีรายการล่าสุด {max} รายการ และรายการที่เก่ากว่า 2 ปีจะถูกลบโดยอัตโนมัติ",
+  "settings.activity.button": "ส่งออกกิจกรรม (CSV)",
+  "settings.activity.done": "ส่งออกกิจกรรมแล้ว",
+  "settings.activity.truncated": "ส่งออกรายการล่าสุด {max} รายการแล้ว",
+  "settings.activity.locked": "การส่งออกกิจกรรมใช้ได้ในแพ็กเกจ Pro"
 }

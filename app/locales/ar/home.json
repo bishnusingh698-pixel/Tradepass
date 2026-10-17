@@ -81,5 +81,8 @@
   "home.alert.plan_limit.body": "{full, select, yes {سيستمر استلام الطلبات الجديدة. قم بالترقية للموافقة على المزيد هذا الشهر.} other {قم بالترقية إلى خطة Starter للحصول على موافقات غير محدودة.}}",
   "home.alert.plan_limit.action": "عرض الخطط",
   "home.alert.first_buyer.heading": "تمت الموافقة على أول مشترٍ بالجملة لديك",
-  "home.alert.first_buyer.body": "يمكنه الآن تسجيل الدخول ورؤية أسعار الجملة الخاصة به."
+  "home.alert.first_buyer.body": "يمكنه الآن تسجيل الدخول ورؤية أسعار الجملة الخاصة به.",
+  "home.checklist.stepDone": "تم",
+  "home.checklist.stepTodo": "لم يكتمل بعد",
+  "home.checklist.stepChecking": "جارٍ التحقق"
 }

@@ -88,9 +88,12 @@ function useThemeStatus(): [ThemeStatus, () => void] {
 type ExtensionInfo = { handle: string; type: string; activations?: { handle: string; status: string }[] };
 
 function Status({ ok, children }: { ok: boolean | null; children: React.ReactNode }) {
+  const { t } = useI18n();
   return (
     <s-stack direction="inline" gap="small-200" alignItems="center">
-      <s-badge tone={ok ? "success" : ok === null ? "neutral" : "warning"} icon={ok ? "check" : ok === null ? "clock" : "alert-triangle"} />
+      <s-badge tone={ok ? "success" : ok === null ? "neutral" : "warning"} icon={ok ? "check" : ok === null ? "clock" : "alert-triangle"}>
+        <s-text accessibilityVisibility="exclusive">{t(ok ? "home.checklist.stepDone" : ok === null ? "home.checklist.stepChecking" : "home.checklist.stepTodo")}</s-text>
+      </s-badge>
       <s-text>{children}</s-text>
     </s-stack>
   );
