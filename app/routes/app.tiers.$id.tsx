@@ -8,8 +8,9 @@ import { adminContext } from "../lib/context.server";
 import { gql } from "../lib/gql.server";
 import {
   catalogBudget, createBlockReason, createTier, deleteTier, listB2bCatalogs, paymentTermsOptions, readDefaults,
-  TierError, tierBuyerCount, updateTier, validateTierInput, type TierInput,
+  TierError, tierBuyerCount, updateTier,
 } from "../lib/tiers.server";
+import { validateTierInput, type TierInput } from "../lib/tiers";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 

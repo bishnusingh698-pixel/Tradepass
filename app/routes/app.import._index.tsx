@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { redirect, useFetcher, useLoaderData } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
@@ -97,17 +97,17 @@ export default function ImportPage() {
   const [tax, setTax] = useState<"charge" | "exempt">("charge");
   const [exemptions, setExemptions] = useState("");
   const [sendWelcome, setSendWelcome] = useState(true);
-  const [preview, setPreview] = useState<{ count: number; capped: boolean } | null>(null);
+  // The preview belongs to the tags it was counted for; editing the tags hides it.
+  const [previewedTags, setPreviewedTags] = useState<string | null>(null);
 
   const uploadError = upload.data && !upload.data.ok ? t(upload.data.error) : undefined;
   const tagError = tag.data && !tag.data.ok ? t(tag.data.error) : undefined;
-  useEffect(() => {
-    if (tag.state === "idle" && tag.data?.ok && tag.data.intent === "preview") setPreview({ count: tag.data.count, capped: tag.data.capped });
-  }, [tag.state, tag.data]);
-  useEffect(() => setPreview(null), [tags]);
+  const preview = tag.state === "idle" && tag.data?.ok && tag.data.intent === "preview" && previewedTags === tags ? tag.data : null;
 
-  const submitTag = (intent: "preview" | "convert") =>
+  const submitTag = (intent: "preview" | "convert") => {
+    if (intent === "preview") setPreviewedTags(tags);
     tag.submit({ intent, tags, tierId, termsId, tax, exemptions, sendWelcome: sendWelcome ? "on" : "", preview: String(preview?.count ?? 0) }, { method: "POST" });
+  };
 
   return (
     <s-page heading={t("import.title")}>

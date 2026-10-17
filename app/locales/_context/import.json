@@ -18,5 +18,719 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "import.locked": {
+    "note": "Banner body when the plan doesn't include import.",
+    "maxLength": 88,
+    "placeholders": []
+  },
+  "import.csv.heading": {
+    "note": "Section heading.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "import.csv.body": {
+    "note": "Explains CSV import. {max} = row limit.",
+    "maxLength": 220,
+    "placeholders": [
+      "max"
+    ]
+  },
+  "import.csv.template": {
+    "note": "Link to the template file.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "import.csv.file": {
+    "note": "Drop zone label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.csv.chosen": {
+    "note": "Shows the chosen file name.",
+    "maxLength": 33,
+    "placeholders": [
+      "name"
+    ]
+  },
+  "import.csv.upload": {
+    "note": "Button: upload the file and continue to mapping.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "import.tag.heading": {
+    "note": "Section heading for tag conversion.",
+    "maxLength": 57,
+    "placeholders": []
+  },
+  "import.tag.body": {
+    "note": "Explains tag conversion.",
+    "maxLength": 260,
+    "placeholders": []
+  },
+  "import.tag.noTiers": {
+    "note": "Warning when no tier exists.",
+    "maxLength": 104,
+    "placeholders": []
+  },
+  "import.tag.tags": {
+    "note": "Text field label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.tag.tagsHelp": {
+    "note": "Help under the tags field. Keep the example tag translated naturally.",
+    "maxLength": 92,
+    "placeholders": []
+  },
+  "import.tag.tier": {
+    "note": "Select label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.tag.terms": {
+    "note": "Select label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.tag.noTerms": {
+    "note": "Default option.",
+    "maxLength": 44,
+    "placeholders": []
+  },
+  "import.tag.tax": {
+    "note": "Select label: tax behaviour for converted companies.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.tag.taxCharge": {
+    "note": "Option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.tag.taxExempt": {
+    "note": "Option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.tag.exemptions": {
+    "note": "Text field label: comma-separated Shopify tax exemption codes.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.tag.exemptionsHelp": {
+    "note": "Help under the exemptions field. Keep the code unchanged.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "import.tag.sendWelcome": {
+    "note": "Checkbox.",
+    "maxLength": 67,
+    "placeholders": []
+  },
+  "import.tag.previewButton": {
+    "note": "Button that counts matching customers before converting.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.tag.preview": {
+    "note": "Preview result.",
+    "maxLength": 137,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.tag.previewCapped": {
+    "note": "Preview result when counting stopped at the cap.",
+    "maxLength": 160,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.tag.convert": {
+    "note": "Primary button.",
+    "maxLength": 110,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.tag.confirmHeading": {
+    "note": "Confirmation modal heading.",
+    "maxLength": 161,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.tag.confirmBody": {
+    "note": "Confirmation modal body.",
+    "maxLength": 320,
+    "placeholders": [
+      "tags",
+      "tier"
+    ]
+  },
+  "import.tag.confirm": {
+    "note": "Modal primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.runs.heading": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.runs.none": {
+    "note": "Empty text for the list of imports.",
+    "maxLength": 54,
+    "placeholders": []
+  },
+  "import.runs.kind": {
+    "note": "Table column header: kind of import.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.runs.started": {
+    "note": "Table column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.runs.state": {
+    "note": "Table column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.runs.progress": {
+    "note": "Table column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.runs.count": {
+    "note": "Progress text. {done}/{total} = rows.",
+    "maxLength": 30,
+    "placeholders": [
+      "done",
+      "total"
+    ]
+  },
+  "import.kind.csv": {
+    "note": "Import kind label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.kind.tag": {
+    "note": "Import kind label.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.state.draft": {
+    "note": "Import status badge.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.state.validated": {
+    "note": "Import status badge: dry run done, not started.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.state.running": {
+    "note": "Import status badge.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.state.done": {
+    "note": "Import status badge.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.state.failed": {
+    "note": "Import status badge: cancelled or stopped.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.run.csvTitle": {
+    "note": "Page title of one CSV import.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.run.tagTitle": {
+    "note": "Page title of one tag conversion.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.run.cancel": {
+    "note": "Destructive secondary action.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.map.heading": {
+    "note": "Section heading for column mapping.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.map.body": {
+    "note": "Explains mapping.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "import.map.required": {
+    "note": "Label for a required mapping field.",
+    "maxLength": 30,
+    "placeholders": [
+      "field"
+    ]
+  },
+  "import.map.requiredError": {
+    "note": "Inline error for an unmapped required field.",
+    "maxLength": 65,
+    "placeholders": []
+  },
+  "import.map.missing": {
+    "note": "Error banner heading.",
+    "maxLength": 156,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.map.skip": {
+    "note": "Mapping option: field not present.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.map.column": {
+    "note": "Fallback name for a column without a header.",
+    "maxLength": 30,
+    "placeholders": [
+      "number"
+    ]
+  },
+  "import.map.example": {
+    "note": "Help under a mapping select showing the first row's value.",
+    "maxLength": 30,
+    "placeholders": [
+      "value"
+    ]
+  },
+  "import.map.check": {
+    "note": "Button: run the dry run (validation).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.map.checked": {
+    "note": "Toast after the dry run.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.options.heading": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.options.defaultTier": {
+    "note": "Select label.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "import.options.defaultTierHelp": {
+    "note": "Help text.",
+    "maxLength": 70,
+    "placeholders": []
+  },
+  "import.options.noDefaultTier": {
+    "note": "Option.",
+    "maxLength": 54,
+    "placeholders": []
+  },
+  "import.options.existing": {
+    "note": "Select label.",
+    "maxLength": 67,
+    "placeholders": []
+  },
+  "import.options.existingSkip": {
+    "note": "Option.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.options.existingLink": {
+    "note": "Option.",
+    "maxLength": 62,
+    "placeholders": []
+  },
+  "import.options.sendWelcome": {
+    "note": "Checkbox.",
+    "maxLength": 67,
+    "placeholders": []
+  },
+  "import.dry.heading": {
+    "note": "Section heading: validation summary.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.dry.ready": {
+    "note": "Summary line.",
+    "maxLength": 131,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.dry.errors": {
+    "note": "Summary line.",
+    "maxLength": 172,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.dry.skipped": {
+    "note": "Summary line.",
+    "maxLength": 160,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.dry.warnings": {
+    "note": "Summary line.",
+    "maxLength": 112,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.dry.note": {
+    "note": "Note under the summary.",
+    "maxLength": 118,
+    "placeholders": []
+  },
+  "import.dry.start": {
+    "note": "Primary button.",
+    "maxLength": 105,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.start.heading": {
+    "note": "Confirmation modal heading.",
+    "maxLength": 108,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.start.body": {
+    "note": "Confirmation modal body.",
+    "maxLength": 320,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.start.confirm": {
+    "note": "Modal primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.progress.heading": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.progress.label": {
+    "note": "Accessible label of the progress bar.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.progress.count": {
+    "note": "Progress text.",
+    "maxLength": 35,
+    "placeholders": [
+      "done",
+      "total"
+    ]
+  },
+  "import.progress.resume": {
+    "note": "Note while running.",
+    "maxLength": 200,
+    "placeholders": []
+  },
+  "import.cancel.heading": {
+    "note": "Destructive modal heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.cancel.body": {
+    "note": "Destructive modal body.",
+    "maxLength": 220,
+    "placeholders": [
+      "done"
+    ]
+  },
+  "import.cancel.confirm": {
+    "note": "Destructive modal primary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.cancel.keep": {
+    "note": "Modal secondary button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.issues.heading": {
+    "note": "Section heading for row issues.",
+    "maxLength": 75,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.issues.download": {
+    "note": "Link to the CSV error report.",
+    "maxLength": 33,
+    "placeholders": []
+  },
+  "import.issues.more": {
+    "note": "Text under the truncated issue table.",
+    "maxLength": 169,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "import.report.row": {
+    "note": "Column header (table and CSV report): file line number.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.report.column": {
+    "note": "Column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.report.level": {
+    "note": "Column header in the CSV report: error or warning.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.report.message": {
+    "note": "Column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.level.error": {
+    "note": "Badge / report value.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.level.warning": {
+    "note": "Badge / report value.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.issue.required": {
+    "note": "Row issue.",
+    "maxLength": 38,
+    "placeholders": []
+  },
+  "import.issue.invalid_email": {
+    "note": "Row issue.",
+    "maxLength": 49,
+    "placeholders": []
+  },
+  "import.issue.invalid_country": {
+    "note": "Row issue.",
+    "maxLength": 73,
+    "placeholders": []
+  },
+  "import.issue.zone_required": {
+    "note": "Row issue.",
+    "maxLength": 76,
+    "placeholders": []
+  },
+  "import.issue.invalid_phone": {
+    "note": "Row issue (warning).",
+    "maxLength": 180,
+    "placeholders": []
+  },
+  "import.issue.unknown_tier": {
+    "note": "Row issue.",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "import.issue.no_tier": {
+    "note": "Row issue.",
+    "maxLength": 88,
+    "placeholders": []
+  },
+  "import.issue.unknown_terms": {
+    "note": "Row issue (warning).",
+    "maxLength": 78,
+    "placeholders": []
+  },
+  "import.issue.invalid_exemption": {
+    "note": "Row issue.",
+    "maxLength": 91,
+    "placeholders": []
+  },
+  "import.issue.duplicate_in_file": {
+    "note": "Row issue.",
+    "maxLength": 52,
+    "placeholders": []
+  },
+  "import.issue.existing_company": {
+    "note": "Row issue (warning).",
+    "maxLength": 81,
+    "placeholders": []
+  },
+  "import.issue.existing_customer": {
+    "note": "Row issue (warning).",
+    "maxLength": 105,
+    "placeholders": []
+  },
+  "import.issue.customer_in_company": {
+    "note": "Row issue (warning).",
+    "maxLength": 68,
+    "placeholders": []
+  },
+  "import.issue.already_buyer": {
+    "note": "Row issue (warning).",
+    "maxLength": 94,
+    "placeholders": []
+  },
+  "import.issue.no_address": {
+    "note": "Row issue (tag conversion).",
+    "maxLength": 180,
+    "placeholders": []
+  },
+  "import.issue.step_failed": {
+    "note": "Row issue.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "import.issue.failed": {
+    "note": "Row issue.",
+    "maxLength": 86,
+    "placeholders": []
+  },
+  "import.error.plan": {
+    "note": "Error message.",
+    "maxLength": 56,
+    "placeholders": []
+  },
+  "import.error.noFile": {
+    "note": "Inline error.",
+    "maxLength": 44,
+    "placeholders": []
+  },
+  "import.error.file.too_large": {
+    "note": "Inline error.",
+    "maxLength": 92,
+    "placeholders": []
+  },
+  "import.error.file.too_many_rows": {
+    "note": "Inline error.",
+    "maxLength": 107,
+    "placeholders": []
+  },
+  "import.error.file.empty": {
+    "note": "Inline error.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "import.error.file.no_header": {
+    "note": "Inline error.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.error.tagsRequired": {
+    "note": "Inline error.",
+    "maxLength": 36,
+    "placeholders": []
+  },
+  "import.error.tierRequired": {
+    "note": "Inline error.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.error.exemption": {
+    "note": "Inline error.",
+    "maxLength": 99,
+    "placeholders": []
+  },
+  "import.error.generic": {
+    "note": "Generic error.",
+    "maxLength": 51,
+    "placeholders": []
+  },
+  "import.field.company_name": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.email": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.first_name": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.last_name": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.phone": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.address1": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.address2": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "import.field.city": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.zone_code": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 35,
+    "placeholders": []
+  },
+  "import.field.zip": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.country_code": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.location_name": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.tier": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.payment_terms": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.tax_registration_id": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "import.field.tax_exemptions": {
+    "note": "Import field name (mapping labels, issue table).",
+    "maxLength": 30,
+    "placeholders": []
   }
 }

@@ -211,6 +211,19 @@ export default function FormEditor() {
       ),
     [data.shopLocales, adminLocale, t],
   );
+  const previewOverrides = useMemo(() => data.textOverrides[lang] ?? {}, [data.textOverrides, lang]);
+  // Published store languages, named in the applicant's language, for "Preferred language".
+  const previewLanguages = useMemo(() => {
+    const codes = data.shopLocales.filter((l) => l.published).map((l) => l.locale);
+    const names = (() => {
+      try {
+        return new Intl.DisplayNames([lang], { type: "language" });
+      } catch {
+        return null;
+      }
+    })();
+    return (codes.length ? codes : [lang]).map((code) => ({ code, name: names?.of(code) ?? code }));
+  }, [data.shopLocales, lang]);
   const setDefinition = useCallback((definition: FormDefinition) => setDraft((d) => ({ ...d, definition })), []);
   const busy = save.state !== "idle";
 
@@ -299,7 +312,7 @@ export default function FormEditor() {
             <FormExtras definition={draft.definition} onChange={setDefinition} locale={lang} defaults={defaults} errAt={errAt} onTouch={touch} />
           </s-stack>
           <div style={{ position: "sticky", top: 16, alignSelf: "start" }}>
-            <FormPreview definition={draft.definition} locale={lang} overrides={data.textOverrides[lang] ?? {}} />
+            <FormPreview definition={draft.definition} locale={lang} overrides={previewOverrides} languages={previewLanguages} />
           </div>
         </s-grid>
       </s-query-container>

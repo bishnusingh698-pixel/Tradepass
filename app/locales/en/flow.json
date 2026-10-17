@@ -1,0 +1,13 @@
+{
+  "flow.action.badRequest": "Tradepass couldn't read this request.",
+  "flow.action.notInstalled": "Tradepass is not installed on this store.",
+  "flow.action.planRequired": "Shopify Flow actions are available on the Tradepass {plan} plan.",
+  "flow.action.notFound": "No Tradepass application has this ID. Use the Application ID from a Tradepass trigger.",
+  "flow.action.alreadyApproved": "This application was already approved.",
+  "flow.action.notOpen": "This application was rejected or withdrawn, so it can't be approved from Flow.",
+  "flow.action.tierNotFound": "There's no Tradepass tier called “{tier}”. Check the tier name in the action.",
+  "flow.action.noTier": "Choose a tier in the action, or set a suggested tier on the form.",
+  "flow.action.running": "The approval is still running. Shopify Flow will check again shortly.",
+  "flow.action.stepFailed": "The approval stopped part-way. Open the application in Tradepass to see what happened and retry.",
+  "flow.action.tryLater": "Tradepass couldn't finish the approval. Shopify Flow will try again."
+}

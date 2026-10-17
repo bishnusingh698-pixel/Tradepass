@@ -10,8 +10,8 @@ import { moveLocations, type Ctx } from "./tiers.server";
 // from Shopify per page. Tradepass never deletes companies or customers.
 
 export const BUYER_PAGE_SIZE = 25;
-export const CERT_FILTERS = ["valid", "expiring", "expired", "pending", "none"] as const;
-export type CertSummary = (typeof CERT_FILTERS)[number];
+import { CERT_FILTERS, type CertSummary } from "./buyers";
+export { CERT_FILTERS, type CertSummary };
 
 export type BuyerFilters = { tier?: string; cert?: CertSummary; country?: string; source?: string; status?: string; q?: string; page: number };
 

@@ -107,7 +107,8 @@ export function readSettings(stored: unknown): Settings {
 
 /** Apply a partial update (deep) and return the full settings. */
 export function patchSettings(current: Settings, patch: DeepPartial<Settings>): Settings {
-  return mergeDefaults(current, deepAssign(structuredClone(current) as unknown as Obj, patch as Obj));
+  // Merge against the defaults (not `current`), so free-form maps like `texts` keep new keys.
+  return mergeDefaults(defaultSettings(), deepAssign(structuredClone(current) as unknown as Obj, patch as Obj));
 }
 
 function deepAssign(target: Obj, patch: Obj): Obj {

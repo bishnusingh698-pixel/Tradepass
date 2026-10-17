@@ -55,3 +55,12 @@ describe("billing", () => {
     expect(await db.rule.count({ where: { shop, enabled: true } })).toBe(0);
   });
 });
+
+import { patchSettings, readSettings } from "../app/lib/settings";
+describe("settings patch", () => {
+  it("adds new languages and keys to free-form maps", () => {
+    const cur = readSettings({ texts: { de: { a: "1" } } });
+    const next = patchSettings(cur, { texts: { fr: { b: "2" }, de: { c: "3" } } });
+    expect(next.texts).toEqual({ de: { a: "1", c: "3" }, fr: { b: "2" } });
+  });
+});

@@ -13,6 +13,7 @@ const styleModules = import.meta.glob<string>("/extensions/tradepass-theme/asset
   query: "?raw",
   import: "default",
 });
+const countryModules = import.meta.glob<Json>("/extensions/tradepass-theme/assets/tradepass-countries.json", { import: "default" });
 const localeModules = import.meta.glob<Json>("/extensions/tradepass-theme/locales/*.json", { import: "default" });
 
 export const rendererAvailable = Object.keys(rendererModules).length > 0;
@@ -23,6 +24,12 @@ export async function loadRenderer(): Promise<{ script: string; style: string } 
   const loadStyle = Object.values(styleModules)[0];
   const [script, style] = await Promise.all([load(), loadStyle ? loadStyle() : Promise.resolve("")]);
   return { script, style };
+}
+
+/** Shopify country/province data the renderer uses for address fields (it can't fetch it in preview mode). */
+export async function loadCountries(): Promise<Json | null> {
+  const load = Object.values(countryModules)[0];
+  return load ? load().catch(() => null) : null;
 }
 
 /** Theme locale files are nested JSON; the renderer and our editors use flat dotted keys. */

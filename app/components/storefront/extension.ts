@@ -8,7 +8,7 @@ import { useAppBridge } from "@shopify/app-bridge-react";
 
 export const EXTENSION_HANDLE = "tradepass-theme";
 /** Fallback file handles if app.extensions() can't tell us (blocks/<handle>.liquid). */
-export const FALLBACK_HANDLES = { embed: "tradepass-embed", formBlock: "wholesale-form" };
+export const FALLBACK_HANDLES = { embed: "tradepass-embed", formBlock: "application-form" };
 
 const id = (apiKey: string, handle: string) => `${encodeURIComponent(apiKey)}/${encodeURIComponent(handle)}`;
 

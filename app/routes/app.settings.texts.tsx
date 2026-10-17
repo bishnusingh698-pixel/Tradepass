@@ -5,7 +5,6 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
 import { setTexts } from "../lib/settings.server";
-import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { messagesFor } from "../lib/i18n/server";
 import { context as notes } from "../lib/i18n/catalog";
 import { LOCALES, matchLocale, type Locale } from "../lib/i18n/locales";
@@ -13,16 +12,18 @@ import { IntlMessageFormat } from "intl-messageformat";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 
-// Merchant text overrides per language (Settings → Languages). Only texts that
-// buyers and applicants read can be changed: storefront messages and emails.
-const AREAS = { storefront: "storefront.", email: "email." } as const;
+// Merchant text overrides per language (Settings → Languages): emails and the
+// hosted pages (needs-info update, certificate renewal). Storefront messages are
+// edited on the Storefront page, under the theme's own keys.
+const AREAS = { email: ["email."], pages: ["hosted.", "renew."] } as const;
 type Area = keyof typeof AREAS;
 
 const MAX_OVERRIDE = 2000;
 
 function parseArea(v: string | null): Area {
-  return v === "email" ? "email" : "storefront";
+  return v === "pages" ? "pages" : "email";
 }
+const inArea = (area: Area, key: string) => AREAS[area].some((p) => key.startsWith(p));
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -30,10 +31,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const lang: Locale = matchLocale(url.searchParams.get("lang")) ?? matchLocale(ctx.shopRow?.primaryLocale) ?? "en";
   const area = parseArea(url.searchParams.get("area"));
   const defaults = messagesFor(lang);
-  const prefix = AREAS[area];
   const current = ctx.settings.texts[lang] ?? {};
   const rows = Object.keys(defaults)
-    .filter((k) => k.startsWith(prefix))
+    .filter((k) => inArea(area, k))
     .sort()
     .map((key) => ({ key, text: defaults[key], override: current[key] ?? "", note: notes[key]?.note ?? "", placeholders: notes[key]?.placeholders ?? [] }));
   return { lang, area, rows, customized: Object.keys(current).length };
@@ -52,13 +52,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     delete texts[lang];
     await setTexts(ctx.shop, texts);
   } else {
-    const prefix = AREAS[parseArea(String(form.get("area")))];
+    const area = parseArea(String(form.get("area")));
     const errors: Record<string, string> = {};
     const defaults = messagesFor(lang);
     for (const [k, v] of form.entries()) {
       if (!k.startsWith("t:")) continue;
       const key = k.slice(2);
-      if (!key.startsWith(prefix) || !(key in defaults)) continue;
+      if (!inArea(area, key) || !(key in defaults)) continue;
       const text = String(v).trim();
       if (!text) {
         delete next[key];
@@ -71,8 +71,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     if (Object.keys(errors).length) return { ok: false as const, errors, savedAt: 0 };
     await setTexts(ctx.shop, { ...ctx.settings.texts, [lang]: next });
   }
-  // Storefront texts are read from app-data metafields, so push them.
-  await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
   return { ok: true as const, errors: {} as Record<string, string>, savedAt: Date.now() };
 };
 
@@ -131,8 +129,8 @@ export default function TextOverrides() {
               ))}
             </s-select>
             <s-select label={t("settings.texts.area")} value={d.area} onChange={(e) => setParam("area", (e.currentTarget as unknown as HTMLSelectElement).value)}>
-              <s-option value="storefront">{t("settings.texts.area.storefront")}</s-option>
               <s-option value="email">{t("settings.texts.area.email")}</s-option>
+              <s-option value="pages">{t("settings.texts.area.pages")}</s-option>
             </s-select>
           </s-grid>
           {d.customized > 0 && (

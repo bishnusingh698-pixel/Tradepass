@@ -13,7 +13,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     { message: (i) => ctx.t(`import.issue.${i.code}`), level: (i) => ctx.t(`import.level.${i.level}`) },
     [ctx.t("import.report.row"), ctx.t("import.report.column"), ctx.t("import.report.level"), ctx.t("import.report.message")],
   );
-  return new Response(`﻿${csv}`, {
+  return new Response(`\uFEFF${csv}`, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
       "Content-Disposition": `attachment; filename="tradepass-import-errors-${run.id}.csv"`,

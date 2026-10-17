@@ -1,9 +1,12 @@
 import type { ImportRun } from "@prisma/client";
 import db from "../db.server";
-import { gql, mutate, type Admin } from "./gql.server";
+import { gql, type Admin } from "./gql.server";
 import { logActivity } from "./activity.server";
 import { tryLock, unlock } from "./lock.server";
 import { createBuyerFromInput, TAX_EXEMPTIONS, type Address, type ApproveInput } from "./approval.server";
+import { IMPORT_FIELDS, REQUIRED_FIELDS, type ColumnMap, type CsvOptions, type ExistingOption, type ImportField, type Issue, type IssueCode } from "./import";
+
+export * from "./import";
 
 // CSV import and tag conversion (spec §L, Pro). A run is an ImportRun row:
 //   draft      → file parsed, waiting for column mapping
@@ -18,6 +21,7 @@ export const MAX_FILE_BYTES = 2_000_000;
 export const MAX_ROWS = 5000;
 /** Leave room for one buyer creation (several Shopify calls) before the deadline. */
 const ROW_MARGIN_MS = 15_000;
+const SAVE_EVERY = 10;
 
 // ---------------------------------------------------------------------------
 // CSV parsing (RFC 4180: quoted fields, "" escapes, CRLF/LF, BOM; `,` or `;`).
@@ -57,23 +61,14 @@ export function parseCsv(text: string): string[][] {
   return rows;
 }
 
-/** Quote a value for CSV output, neutralising spreadsheet formulas. */
+/** Quote a value for CSV output. (Our CSVs hold only our own text and the template, never applicant input.) */
 export function csvCell(v: string | number): string {
-  let s = String(v);
-  if (/^[=+\-@]/.test(s)) s = `'${s}`;
+  const s = String(v);
   return /[",\n\r;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 }
 
 // ---------------------------------------------------------------------------
 // Columns and mapping.
-
-export const IMPORT_FIELDS = [
-  "company_name", "email", "first_name", "last_name", "phone",
-  "address1", "address2", "city", "zone_code", "zip", "country_code",
-  "location_name", "tier", "payment_terms", "tax_registration_id", "tax_exemptions",
-] as const;
-export type ImportField = (typeof IMPORT_FIELDS)[number];
-export const REQUIRED_FIELDS: ImportField[] = ["company_name", "email", "address1", "city", "country_code"];
 
 const SYNONYMS: Record<ImportField, string[]> = {
   company_name: ["company", "companyname", "business", "businessname", "organization", "organisation"],
@@ -94,7 +89,6 @@ const SYNONYMS: Record<ImportField, string[]> = {
   tax_exemptions: ["taxexemptions", "exemptions", "taxexemption", "exemption"],
 };
 
-export type ColumnMap = Partial<Record<ImportField, number | null>>;
 
 const key = (h: string) => h.toLowerCase().replace(/[^a-z0-9]/g, "");
 
@@ -121,20 +115,13 @@ export function templateCsv(): string {
 // ---------------------------------------------------------------------------
 // Row validation (pure; Shopify duplicate lookups are added by checkShopify).
 
-export type IssueCode =
-  | "required" | "invalid_email" | "invalid_country" | "zone_required" | "invalid_phone"
-  | "unknown_tier" | "no_tier" | "unknown_terms" | "invalid_exemption"
-  | "duplicate_in_file" | "existing_company" | "existing_customer" | "customer_in_company"
-  | "already_buyer" | "no_address" | "step_failed" | "failed";
-export type Issue = { row: number; field: ImportField | null; level: "error" | "warning"; code: IssueCode };
-
 export type PreparedRow = {
   n: number; // 1-based line number in the file, header = 1
   values: Partial<Record<ImportField, string>>;
   tierId: string | null;
   paymentTermsTemplateId: string | null;
   exemptions: string[];
-  status: "ready" | "error" | "skip" | "started" | "done" | "failed";
+  status: "ready" | "error" | "skip" | "done" | "failed";
   customerGid?: string | null;
   companyGid?: string | null;
 };
@@ -235,7 +222,6 @@ export function validateRows(data: string[][], map: ColumnMap, refs: ValidationR
 const quote = (s: string) => `"${s.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
 const BATCH = 20;
 
-export type ExistingOption = "skip" | "link";
 
 /**
  * Mark rows whose company or customer already exists in Shopify.
@@ -287,7 +273,6 @@ export async function checkShopify(admin: Admin, shop: string, rows: PreparedRow
 // ---------------------------------------------------------------------------
 // Runs.
 
-export type CsvOptions = { defaultTierId: string | null; onExisting: ExistingOption; sendWelcome: boolean };
 export type CsvData = { kind: "csv"; headers: string[]; map: ColumnMap; options: CsvOptions; raw?: string[][]; rows?: PreparedRow[] };
 export type TagData = {
   kind: "tag";
@@ -451,30 +436,34 @@ export async function processImportRun(admin: Admin, shop: string, id: string, d
     const rows = data.rows ?? [];
     const issues = (run.errors ?? []) as Issue[];
     let { cursor, done } = run;
+    // Progress is saved every few rows (each save rewrites the run's row JSON, so not after every
+    // row). Rows after the last save are run again on resume, which is safe: createBuyerFromInput
+    // finds what it already created by externalId.
+    const save = () => db.importRun.update({ where: { id }, data: { cursor, done, errors: issues as object, mapping: { ...data, rows } as object } });
+    let unsaved = 0;
     while (cursor < rows.length && Date.now() + ROW_MARGIN_MS < deadline) {
       const row = rows[cursor];
-      if (row.status === "ready" || row.status === "started") {
-        // Mark before calling Shopify, so an interruption is detected on resume.
-        if (row.status === "ready") {
-          row.status = "started";
-          await db.importRun.update({ where: { id }, data: { mapping: { ...data, rows } as object } });
-        }
+      if (row.status === "ready") {
         let issue: Issue | null = null;
         try {
           await processCsvRow(admin, shop, row, data.options, create);
         } catch (e) {
-          const step = failedStep(e);
           issue = { row: row.n, field: null, level: "error", code: (e as { step?: string }).step ? "step_failed" : "failed" };
-          await logActivity({ shop, actor: "import", action: "import.row", subject: id, result: "failed", detail: { row: row.n, step } }).catch(() => undefined);
+          await logActivity({ shop, actor: "import", action: "import.row", subject: id, result: "failed", detail: { row: row.n, step: failedStep(e) } }).catch(() => undefined);
         }
         row.status = issue ? "failed" : "done";
         if (issue) issues.push(issue);
         done++;
         processed++;
+        unsaved++;
       }
       cursor++;
-      run = await db.importRun.update({ where: { id }, data: { cursor, done, errors: issues as object, mapping: { ...data, rows } as object } });
+      if (unsaved >= SAVE_EVERY) {
+        run = await save();
+        unsaved = 0;
+      }
     }
+    run = await save();
     if (cursor >= rows.length) {
       await finish(run, "done");
       const failed = rows.filter((r) => r.status === "failed").length;

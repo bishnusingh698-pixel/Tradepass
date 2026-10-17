@@ -1,0 +1,61 @@
+{
+  "flow.action.badRequest": {
+    "note": "Shown in Shopify Flow when the action request is malformed.",
+    "maxLength": 59,
+    "placeholders": []
+  },
+  "flow.action.notInstalled": {
+    "note": "Shown in Shopify Flow when the app is uninstalled.",
+    "maxLength": 65,
+    "placeholders": []
+  },
+  "flow.action.planRequired": {
+    "note": "Shown in Shopify Flow on lower plans. {plan} = plan name.",
+    "maxLength": 102,
+    "placeholders": [
+      "plan"
+    ]
+  },
+  "flow.action.notFound": {
+    "note": "Shown in Shopify Flow when the application ID is wrong.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "flow.action.alreadyApproved": {
+    "note": "Shown in Shopify Flow when nothing needed doing.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "flow.action.notOpen": {
+    "note": "Shown in Shopify Flow.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "flow.action.tierNotFound": {
+    "note": "Shown in Shopify Flow. {tier} = name entered in the action.",
+    "maxLength": 160,
+    "placeholders": [
+      "tier"
+    ]
+  },
+  "flow.action.noTier": {
+    "note": "Shown in Shopify Flow when no tier can be chosen.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "flow.action.running": {
+    "note": "Shown in Shopify Flow while the approval runs.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "flow.action.stepFailed": {
+    "note": "Shown in Shopify Flow when the approval fails.",
+    "maxLength": 180,
+    "placeholders": []
+  },
+  "flow.action.tryLater": {
+    "note": "Shown in Shopify Flow on a temporary error.",
+    "maxLength": 160,
+    "placeholders": []
+  }
+}

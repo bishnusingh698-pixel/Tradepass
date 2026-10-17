@@ -6,8 +6,9 @@ import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
 import {
   buyerFilterOptions, exportBuyersCsv, listBuyers, moveBuyers, parseBuyerFilters, pauseBuyers, resumeBuyers, shopifyInfo,
-  CERT_FILTERS, type MoveSummary,
+  type MoveSummary,
 } from "../lib/buyers.server";
+import { CERT_FILTERS } from "../lib/buyers";
 import { requestRenewalForBuyers } from "../lib/certificates.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";

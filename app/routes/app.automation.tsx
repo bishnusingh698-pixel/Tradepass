@@ -89,18 +89,31 @@ const newCondition = (type: Condition["type"]): Condition => {
   }
 };
 
+const SAVE_FETCHER = "automation-save";
+
 export default function Automation() {
   const d = useLoaderData<typeof loader>();
+  const { t } = useI18n();
+  const shopify = useAppBridge();
+  const save = useFetcher<typeof action>({ key: SAVE_FETCHER });
+  useEffect(() => {
+    if (save.state === "idle" && save.data?.ok && save.data.intent === "save") shopify.toast.show(t("common.saved"));
+  }, [save.state, save.data, shopify, t]);
+  // Saving revalidates the loader; a new key remounts the editor on the saved data (clean, not dirty).
+  return <AutomationEditor key={JSON.stringify([d.rules, d.automation])} d={d} />;
+}
+
+function AutomationEditor({ d }: { d: ReturnType<typeof useLoaderData<typeof loader>> }) {
   const { t, i18n } = useI18n();
   const href = useLocaleHref();
   const shopify = useAppBridge();
   const navigate = useNavigate();
-  const save = useFetcher<typeof action>();
+  const save = useFetcher<typeof action>({ key: SAVE_FETCHER });
   const other = useFetcher<typeof action>();
 
   const initial = (): Draft => ({ rules: d.rules, paused: d.automation.paused, dailyLimit: String(d.automation.dailyLimit) });
   const [draft, setDraft] = useState<Draft>(initial);
-  const [baseline, setBaseline] = useState(() => JSON.stringify(initial()));
+  const [baseline] = useState(() => JSON.stringify(initial()));
   const [submitted, setSubmitted] = useState(false);
   const dirty = JSON.stringify(draft) !== baseline;
   const busy = save.state !== "idle";
@@ -112,16 +125,6 @@ export default function Automation() {
     const p = problems.find((x) => x.index === index && x.field === field);
     return p ? t(`automation.error.${p.code}`) : undefined;
   };
-
-  useEffect(() => {
-    if (save.state !== "idle" || !save.data) return;
-    if (save.data.ok) {
-      setBaseline(JSON.stringify(draft));
-      setSubmitted(false);
-      shopify.toast.show(t("common.saved"));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- react to the save result only
-  }, [save.state, save.data]);
 
   useEffect(() => {
     if (other.state !== "idle" || !other.data || other.data.intent !== "reverse") return;

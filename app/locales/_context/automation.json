@@ -18,5 +18,443 @@
     "note": "Empty-state primary button.",
     "maxLength": 30,
     "placeholders": []
+  },
+  "automation.checkoutLock.message": {
+    "note": "Checkout error shown to shoppers who are not buying for an approved B2B company when the store is wholesale-only. Shown at checkout by Shopify.",
+    "maxLength": 160,
+    "placeholders": []
+  },
+  "automation.settings.heading": {
+    "note": "Section heading on the Automation page.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.settings.paused": {
+    "note": "Switch label. When on, no rule approves or rejects anything.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "automation.settings.pausedHelp": {
+    "note": "Help text under the Pause all automation switch.",
+    "maxLength": 105,
+    "placeholders": []
+  },
+  "automation.settings.dailyLimit": {
+    "note": "Number field label: daily cap on auto-approvals.",
+    "maxLength": 51,
+    "placeholders": []
+  },
+  "automation.settings.dailyLimitHelp": {
+    "note": "Help text under the daily limit field. {count} = auto-approvals today.",
+    "maxLength": 220,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "automation.rules.heading": {
+    "note": "Section heading for the list of automation rules.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.rules.body": {
+    "note": "Explains rule order on the Automation page.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "automation.rules.noTiers": {
+    "note": "Warning when no tier exists yet.",
+    "maxLength": 108,
+    "placeholders": []
+  },
+  "automation.rules.addApprove": {
+    "note": "Button that adds an auto-approve rule.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.rules.addReject": {
+    "note": "Button that adds an auto-reject rule.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.rule.approveTitle": {
+    "note": "Heading of one auto-approve rule card. {number} = position.",
+    "maxLength": 35,
+    "placeholders": [
+      "number"
+    ]
+  },
+  "automation.rule.rejectTitle": {
+    "note": "Heading of one auto-reject rule card. {number} = position.",
+    "maxLength": 36,
+    "placeholders": [
+      "number"
+    ]
+  },
+  "automation.rule.enabled": {
+    "note": "Switch label to turn a single rule on or off.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.rule.remove": {
+    "note": "Button that removes a rule (saved only when the merchant saves).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.rule.removeLabel": {
+    "note": "Accessible label for the remove-rule button. {rule} = rule title.",
+    "maxLength": 30,
+    "placeholders": [
+      "rule"
+    ]
+  },
+  "automation.rule.match": {
+    "note": "Select label: whether all or any conditions must match.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.rule.matchAll": {
+    "note": "Option: every condition must match.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.rule.matchAny": {
+    "note": "Option: one matching condition is enough.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.rule.addCondition": {
+    "note": "Button that adds a condition to a rule.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.type": {
+    "note": "Select label for the condition type.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.country": {
+    "note": "Condition type: applicant's country.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.business_type": {
+    "note": "Condition type: business type chosen on the form.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.email_domain": {
+    "note": "Condition type: the part of the email after @.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.tax_verified": {
+    "note": "Condition type: the tax/VAT number was verified with an official registry.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.certificate_uploaded": {
+    "note": "Condition type: the applicant uploaded a certificate.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "automation.condition.custom_field": {
+    "note": "Condition type: a form field has a given answer.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.spam": {
+    "note": "Condition type: the application was flagged as possible spam.",
+    "maxLength": 36,
+    "placeholders": []
+  },
+  "automation.condition.op": {
+    "note": "Select label: is / is not.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.is": {
+    "note": "Operator option, e.g. Country is US.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.isNot": {
+    "note": "Operator option, e.g. Country is not US.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.values.country": {
+    "note": "Text field label for a comma-separated list of 2-letter country codes.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.values.business_type": {
+    "note": "Text field label for a comma-separated list of business types.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.values.email_domain": {
+    "note": "Text field label for a comma-separated list of domains like example.com.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.valuesHelp": {
+    "note": "Help text under a list-of-values field.",
+    "maxLength": 57,
+    "placeholders": []
+  },
+  "automation.condition.field": {
+    "note": "Text field label: the form field to check (e.g. custom_1).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.fieldHelp": {
+    "note": "Help text under Field ID.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "automation.condition.equals": {
+    "note": "Text field label: the answer the field must have.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.remove": {
+    "note": "Button that removes one condition.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.condition.removeLabel": {
+    "note": "Accessible label of the remove-condition button.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.action.tier": {
+    "note": "Select label: which tier auto-approved buyers go to.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.action.chooseTier": {
+    "note": "Empty option of the tier select.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.action.terms": {
+    "note": "Select label for payment terms on auto-approval.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.action.tierTerms": {
+    "note": "Default option: take payment terms from the tier.",
+    "maxLength": 44,
+    "placeholders": []
+  },
+  "automation.action.sendWelcome": {
+    "note": "Checkbox on approval rules.",
+    "maxLength": 65,
+    "placeholders": []
+  },
+  "automation.action.emailApplicant": {
+    "note": "Checkbox on rejection rules.",
+    "maxLength": 75,
+    "placeholders": []
+  },
+  "automation.action.reason": {
+    "note": "Text area label: reason included in the rejection email.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.action.reasonHelp": {
+    "note": "Help text under the reason field.",
+    "maxLength": 76,
+    "placeholders": []
+  },
+  "automation.error.summary": {
+    "note": "Error summary banner heading at the top of the Automation page.",
+    "maxLength": 142,
+    "placeholders": [
+      "count"
+    ]
+  },
+  "automation.error.conditions_required": {
+    "note": "Inline error: rule has no conditions.",
+    "maxLength": 43,
+    "placeholders": []
+  },
+  "automation.error.values_required": {
+    "note": "Inline error: list condition is empty.",
+    "maxLength": 40,
+    "placeholders": []
+  },
+  "automation.error.field_required": {
+    "note": "Inline error: form-field condition incomplete.",
+    "maxLength": 62,
+    "placeholders": []
+  },
+  "automation.error.tier_required": {
+    "note": "Inline error: approval rule without tier.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.error.dailyLimit": {
+    "note": "Inline error under the daily limit field. {max} = 500.",
+    "maxLength": 59,
+    "placeholders": [
+      "max"
+    ]
+  },
+  "automation.recent.heading": {
+    "note": "Section heading: applications decided by rules.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.none": {
+    "note": "Empty text for the automatic decisions list.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "automation.recent.company": {
+    "note": "Table column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.decision": {
+    "note": "Table column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.when": {
+    "note": "Table column header: when the decision was made.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.actions": {
+    "note": "Table column header.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.status.approved": {
+    "note": "Badge: auto-approved.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.status.rejected": {
+    "note": "Badge: auto-rejected.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.status.other": {
+    "note": "Badge: rule matched but the application is still open (for example the approval stopped).",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.reverse": {
+    "note": "Button that undoes an automatic decision.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.recent.reversed.undone": {
+    "note": "Toast after reversing a partial auto-approval.",
+    "maxLength": 97,
+    "placeholders": []
+  },
+  "automation.recent.reversed.paused": {
+    "note": "Toast after reversing a finished auto-approval.",
+    "maxLength": 65,
+    "placeholders": []
+  },
+  "automation.recent.reversed.reopened": {
+    "note": "Toast after reversing an auto-rejection.",
+    "maxLength": 102,
+    "placeholders": []
+  },
+  "automation.recent.reverseFailed": {
+    "note": "Error toast when reversing fails.",
+    "maxLength": 110,
+    "placeholders": []
+  },
+  "automation.reverse.heading": {
+    "note": "Confirmation modal heading. {company} = company name.",
+    "maxLength": 56,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "automation.reverse.approvedBody": {
+    "note": "Modal body when reversing an auto-approval.",
+    "maxLength": 260,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "automation.reverse.rejectedBody": {
+    "note": "Modal body when reversing an auto-rejection.",
+    "maxLength": 220,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "automation.reverse.confirm": {
+    "note": "Primary (destructive) button in the reverse modal.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.flow.heading": {
+    "note": "Section heading.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.flow.body": {
+    "note": "Explains Flow integration.",
+    "maxLength": 240,
+    "placeholders": []
+  },
+  "automation.flow.triggers": {
+    "note": "Sub-heading: list of Flow triggers.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.flow.actions": {
+    "note": "Sub-heading: list of Flow actions.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.flow.trigger.application_submitted": {
+    "note": "Flow trigger name.",
+    "maxLength": 49,
+    "placeholders": []
+  },
+  "automation.flow.trigger.application_approved": {
+    "note": "Flow trigger name.",
+    "maxLength": 48,
+    "placeholders": []
+  },
+  "automation.flow.trigger.application_rejected": {
+    "note": "Flow trigger name.",
+    "maxLength": 48,
+    "placeholders": []
+  },
+  "automation.flow.trigger.certificate_expiring": {
+    "note": "Flow trigger name.",
+    "maxLength": 32,
+    "placeholders": []
+  },
+  "automation.flow.trigger.certificate_expired": {
+    "note": "Flow trigger name.",
+    "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.flow.action.approve": {
+    "note": "Flow action name.",
+    "maxLength": 59,
+    "placeholders": []
+  },
+  "automation.flow.welcomeNote": {
+    "note": "Note under the Flow section.",
+    "maxLength": 220,
+    "placeholders": []
+  },
+  "automation.flow.open": {
+    "note": "Button linking to the Flow app.",
+    "maxLength": 30,
+    "placeholders": []
   }
 }

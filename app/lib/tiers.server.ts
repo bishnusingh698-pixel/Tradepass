@@ -7,6 +7,9 @@ import { withLock } from "./lock.server";
 import { countB2bCatalogs } from "./shop.server";
 import { maxTiers, type PlanId } from "./plans";
 import { readSettings } from "./settings";
+import type { TierInput } from "./tiers";
+
+export { validateTierInput, type TierFieldErrors, type TierInput } from "./tiers";
 
 // Tiers = a B2B market + catalog + price list (+ publication) on non-Plus
 // stores, or a catalog assigned straight to company locations on Plus
@@ -44,18 +47,6 @@ export function readDefaults(raw: unknown): TierDefaults {
     created: d.created ?? {},
   };
 }
-
-export type TierInput = {
-  name: string;
-  buyerNames: Record<string, string>;
-  pricing: { kind: "percent"; pct: number } | { kind: "existing"; catalogGid: string };
-  products: { kind: "all" } | { kind: "collections"; ids: string[] };
-  paymentTermsTemplateId: string | null;
-  checkoutToDraft: boolean;
-  tax: "charge" | "exempt_on_file";
-  /** Plus only: assign the catalog straight to company locations (no market). */
-  direct: boolean;
-};
 
 export type TierErrorCode =
   | "plan_limit" | "catalog_limit" | "no_b2b" | "markets_unavailable" | "volume_pricing"
@@ -170,21 +161,6 @@ export function createBlockReason(
   if (pricing === "existing") return null;
   if (budget.limit !== null && budget.used !== null && budget.used >= budget.limit) return "catalog_limit";
   return null;
-}
-
-export type TierFieldErrors = Partial<Record<"name" | "pct" | "catalog" | "collections", string>>;
-
-/** Field errors as i18n keys (shown next to the field after interaction). */
-export function validateTierInput(i: TierInput): TierFieldErrors {
-  const e: TierFieldErrors = {};
-  if (!i.name.trim()) e.name = "tiers.editor.error.nameRequired";
-  else if (i.name.trim().length > 60) e.name = "tiers.editor.error.nameTooLong";
-  if (i.pricing.kind === "percent") {
-    const p = i.pricing.pct;
-    if (!Number.isInteger(p) || p < 1 || p > 90) e.pct = "tiers.editor.error.pctRange";
-  } else if (!i.pricing.catalogGid) e.catalog = "tiers.editor.error.catalogRequired";
-  if (i.products.kind === "collections" && i.products.ids.length === 0) e.collections = "tiers.editor.error.collectionsRequired";
-  return e;
 }
 
 /** Shopify's catalog-cap and entitlement errors → our codes. */

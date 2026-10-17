@@ -206,7 +206,7 @@
   },
   "settings.texts.body": {
     "note": "Page intro.",
-    "maxLength": 200,
+    "maxLength": 300,
     "placeholders": []
   },
   "settings.texts.language": {
@@ -217,11 +217,6 @@
   "settings.texts.area": {
     "note": "Select label.",
     "maxLength": 30,
-    "placeholders": []
-  },
-  "settings.texts.area.storefront": {
-    "note": "Select option.",
-    "maxLength": 40,
     "placeholders": []
   },
   "settings.texts.area.email": {
@@ -270,6 +265,11 @@
   "settings.texts.resetConfirm": {
     "note": "Destructive confirm button.",
     "maxLength": 30,
+    "placeholders": []
+  },
+  "settings.texts.area.pages": {
+    "note": "Select option: texts of hosted pages applicants open from emails.",
+    "maxLength": 50,
     "placeholders": []
   }
 }

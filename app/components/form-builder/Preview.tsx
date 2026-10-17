@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { FormDefinition } from "../../lib/form-defaults";
 import { useI18n } from "../../lib/i18n/react";
 import { isRtl } from "../../lib/i18n/locales";
-import { loadRenderer, loadStorefrontTexts, rendererAvailable } from "./storefront-assets";
+import { loadCountries, loadRenderer, loadStorefrontTexts, rendererAvailable } from "./storefront-assets";
 
 // The preview runs the storefront renderer inside a sandboxed srcdoc iframe
 // (scripts only, opaque origin), so theme-like CSS and the renderer's own code
@@ -38,11 +38,14 @@ export function FormPreview({
   definition,
   locale,
   overrides,
+  languages,
 }: {
   definition: FormDefinition;
   locale: string;
   /** Merchant overrides of storefront strings for this language (Settings → Languages). */
   overrides: Record<string, string>;
+  /** Store languages for the "Preferred language" question. */
+  languages: { code: string; name: string }[];
 }) {
   const { t } = useI18n();
   const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
@@ -51,11 +54,13 @@ export function FormPreview({
   const [ready, setReady] = useState(false);
   const [height, setHeight] = useState(640);
   const [texts, setTexts] = useState<Record<string, string> | null>(null);
+  const [countries, setCountries] = useState<Record<string, unknown> | null>(null);
   const frame = useRef<HTMLIFrameElement>(null);
   const dir = isRtl(locale) ? "rtl" : "ltr";
 
   useEffect(() => {
     let live = true;
+    loadCountries().then((c) => live && setCountries(c));
     loadRenderer()
       .then((r) => {
         if (!live) return;
@@ -90,8 +95,8 @@ export function FormPreview({
   }, []);
 
   const payload = useMemo(
-    () => (texts ? { definition, texts: { ...texts, ...overrides }, locale, dir, preview: true } : null),
-    [definition, texts, overrides, locale, dir],
+    () => (texts ? { definition, texts: { ...texts, ...overrides }, locale, dir, preview: true, languages, ...(countries ? { countries } : {}) } : null),
+    [definition, texts, overrides, locale, dir, languages, countries],
   );
 
   useEffect(() => {
