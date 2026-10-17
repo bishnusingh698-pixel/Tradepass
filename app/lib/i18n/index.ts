@@ -1,6 +1,5 @@
 import { IntlMessageFormat } from "intl-messageformat";
 import { LOCALES, SOURCE_LOCALE, isRtl, matchLocale, type Locale } from "./locales";
-import type { Messages } from "./catalog";
 import { catalogs } from "./catalog";
 
 export { LOCALES, isRtl, matchLocale, type Locale };
