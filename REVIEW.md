@@ -1,0 +1,69 @@
+# Code review — Tradepass (2026-10-30)
+
+Scope: every file in `app/`, `extensions/`, `prisma/`, `tests/` and the docs, at commit `ef68f90`.
+Baseline before fixes: typecheck, lint, 333 tests and the production build all passed, and the
+migrations applied cleanly to an empty Postgres 16 database with no drift from `schema.prisma`.
+None of the bugs below were caught by the existing tests.
+
+Line numbers point at the reviewed commit (`ef68f90`). Severity: **critical** = data loss,
+money, security, a whole flow broken or a store wrongly opened/closed; **major** = a feature
+broken or wrong in a common case; **minor** = edge cases, polish, wasted work.
+
+Status: ✅ fixed · ⚠️ not fixed (reason given).
+
+## Critical
+
+| # | File:line | Bug and root cause | Status |
+|---|---|---|---|
+| C1 | `app/lib/shop.server.ts:7` | The shop facts query never read the store's name, email, currency or country, and nothing else wrote `Shop.name/email/country`. Effects: merchant alerts and the daily digest had no recipient unless the merchant typed one (every digest silently dropped), applicant emails had no reply-to, and `suggestExemption` always saw `storeCountry = ""`, so the EU reverse charge was never suggested. | ✅ query reads `name contactEmail email currencyCode billingAddress.countryCodeV2`; stored on install and every Home load. |
+| C2 | `app/shopify.server.ts:41` | On install the default form was created in our DB but the storefront metafields (`config`, `forms`, `texts`) were never written. On a brand-new store the "Wholesale application" block showed "This form isn't available" and the embed did nothing until the merchant happened to save the Form or Storefront page. Same for the welcome question (it rewrites the default form) and for creating a form. | ✅ `afterAuth`, the welcome answer and form creation sync the storefront config. |
+| C3 | `app/lib/storefront-sync.server.ts:308` | When pushing settings to Shopify failed, the DB kept the new access mode but the metafields / checkout lock kept the old one, and nothing ever retried — although the UI says "Your storefront will update within an hour". Turning wholesale-only **off** could leave retail customers locked out indefinitely; turning it **on** could leave the store open. | ✅ a failed sync leaves a `storefront_sync` job; a new hourly task retries it; any successful sync clears it. |
+| C4 | `app/lib/applications.server.ts:194`, `:225` | Reject / Ask for more info didn't take the approval lock and didn't check the approval state. Rejecting during or after a half-finished approval left a company, location and contact (with B2B access) in Shopify for a rejected applicant, and a running approval could then flip the rejected application to "approved". Two staff rejecting at once sent two emails and two Flow triggers (non-conditional update). | ✅ both run under the approval lock with a conditional update; Reject first undoes what an unfinished approval created; "more info" is refused once an approval has created something; the page shows why. |
+| C5 | `app/lib/lock.server.ts:14`, `app/lib/approval.server.ts:621`, `app/lib/tiers.server.ts:364` | Every lock expired after 30 s, but an approval (many Shopify calls, up to 25 s waiting for the market lock, retries with backoff) and a market write with read-back can take longer. After 30 s a second click or a second staff member took over the lock and ran the same steps concurrently → duplicate contacts / role assignments and racing market writes. | ✅ `withLock` takes a TTL; approvals hold their lock 10 min, market writes 3 min (released as soon as they finish). |
+| C6 | `app/routes/webhooks.app.uninstalled.tsx:10` | Uninstall kept `billingPlan = starter/pro`. Shopify cancels the subscription on uninstall, so reinstalling within 48 h gave paid features without a charge until someone opened the Plans page. | ✅ uninstall resets the plan to Free and clears the subscription id. |
+| C7 | `app/lib/rules.server.ts:78` | Auto-approve rules approved applications flagged **duplicate**. The approval engine keys Shopify objects by application id, so a second application from an approved company created a second company in Shopify. | ✅ approve rules skip duplicates (logged as `automation.skipped_duplicate`); reject rules still apply. |
+
+## Major
+
+| # | File:line | Bug and root cause | Status |
+|---|---|---|---|
+| M1 | `app/lib/approval.server.ts:863` | The hourly "retry stuck approvals" query took the first 50 applications that had any approval state. Finished approvals keep their state forever, so once 50 approvals existed (all shops together) the stuck ones were never reached. | ✅ filtered in SQL (`finishedAt` missing, fewer than 3 auto-retries), oldest first. |
+| M2 | `app/lib/approval.server.ts:601` | Retry replaced the stored input with whatever the modal sent. Changing the tier on a retry after the tier step had finished recorded the new tier on the buyer while the location stayed in the old tier's market (same for company name, addresses, contact, terms). | ✅ `mergeRetryInput` keeps the inputs of finished steps. |
+| M3 | `app/routes/app.applications.$id.approve.tsx:35` | The approve action trusted the posted JSON: unknown exemption codes made Shopify reject the whole tax call, a missing `contact` crashed the run, an empty company name reached `companyCreate`. | ✅ `normalizeInput` validates shape, exemptions and strings server-side. |
+| M4 | `app/lib/approval.server.ts:379` | Tax step verification compared the tax registration id exactly; Shopify may store it with different spacing/case, so the step failed with "Shopify didn't confirm" forever. | ✅ compared normalised. |
+| M5 | `app/routes/app.applications._index.tsx:116`, `app/routes/app.buyers._index.tsx:121`, `app/routes/app.applications.$id.tsx:243`, `app/routes/app.import._index.tsx:123`, `app/routes/app.import.$id.tsx:232` | "Export all" (applications, buyers), opening an applicant's document, the import template and the import error report used plain links / new tabs. In an embedded app these requests carry no session token, so they hit the login redirect instead of the file. Dead buttons. | ✅ all go through `fetch` (App Bridge adds the token) or an action, then a blob download (`app/components/download.ts`). |
+| M6 | `app/lib/intake.server.ts:402` | Auto-approval rules ran inside the applicant's submit request. An approval makes 10–20 Shopify calls, so the storefront request could exceed the app proxy timeout; the form showed "retrying" and the applicant waited for the merchant's automation. | ✅ rules start after the response (still invoked during the request, errors logged). |
+| M7 | `app/lib/intake.server.ts:416`, `app/routes/app.applications.$id.tsx:55` | "Ask for more info" offered the consent checkbox. The hosted page hides consent but the server still required it, so the applicant could never submit the update. | ✅ consent is never requestable and `requestedDefinition` drops it on both sides. |
+| M8 | `app/lib/rules.ts:61` | The "Looks like spam" rule condition and the "Possible spam" queue filter depended on a `possible_spam` flag that nothing ever set. | ✅ intake flags submissions from an IP that sent bot-like submissions in the same hour. |
+| M9 | `app/routes/app.applications.$id.tsx:368` (+ reject modal, notes) | The Reject / More info / Notes forms used their own fetchers, but only the page's fetcher showed toasts, so these actions gave no feedback and failures (already decided, approval running) were silent. | ✅ each shows a success or error toast. |
+| M10 | `app/lib/flow.server.ts:184`, `app/lib/rules.server.ts:98` | A failed welcome email (buyer fully approved) made the Flow action answer "step failed" and the automation log "failed". | ✅ only steps before the email count. |
+| M11 | `app/lib/approval.server.ts:791` | Bulk approve applied the chosen tier's terms but the *first* tier's tax default. | ✅ tax default follows the chosen tier. |
+| M12 | `app/lib/shop.server.ts:69` | A non-Plus store without the B2B catalogs entitlement was reported as "B2B markets on" and "unlimited catalogs", and tier creation said "catalog limit reached". | ✅ markets count as unavailable without catalogs; the readiness card hides the misleading catalog line. |
+| M13 | `app/lib/privacy.server.ts:70` | `customers/redact` deleted our rows but left the applicant's uploaded documents in the merchant's Shopify Files. | see Group B |
+| M14 | `app/lib/certificates.server.ts:352` | In the daily certificate job, one certificate whose reminder failed (e.g. contact lookup error) aborted the shop's whole pass, and the next day it failed first again, so no other certificate of that shop was ever processed. | see Group B |
+| M15 | `app/lib/email/index.server.ts:266` | Emails stuck in "sending" were requeued based on `createdAt`, not on when sending started. An old queued email being sent by one job run was requeued by an overlapping run and sent twice (Brevo's custom header is not an API idempotency key). | see Group B |
+| M16 | `app/lib/tiers.server.ts:537` | If `marketCreate` failed after `priceListCreate`, the cleanup only deleted catalogs and markets, leaving a "Tradepass …" price list in Shopify on every failed attempt. | see Group B |
+| M17 | `app/routes/app.plans.tsx:58` | Downgrading Pro → Starter switched every automation rule off *before* the merchant approved the new charge; cancelling on Shopify's page left them on Pro with all rules disabled. | see Group B |
+| M18 | `app/components/form-builder/model.ts:255`, `Builder.tsx:288` | Locked fields (company name, email, names, billing address, consent) could be made optional. An application without an email or company name can't be approved (no contact, empty company) and matches every other empty-email application as a duplicate. | see Group B |
+
+## Minor
+
+| # | File:line | Bug and root cause | Status |
+|---|---|---|---|
+| m1 | `app/lib/intake.server.ts:460` | Asking again for the email field deleted the original email from the answers (the email is intentionally not changeable via the link). | ✅ original kept. |
+| m2 | `app/lib/applications.server.ts:46` | A malformed `from`/`to` date in the queue URL became an Invalid Date and crashed the page. | ✅ validated. |
+| m3 | `app/routes/app.applications.$id.tsx:240` | Document expiry dates were paired with files by list position, so the wrong date showed next to a file; dates also showed a day early west of UTC. | ✅ matched by file, shown as a calendar date. |
+| m4 | `app/routes/app.applications.$id.tsx:55` | Custom field labels were read from English only, so a field labelled only in another language showed as `custom_1`. | ✅ |
+| m5 | `app/routes/app.applications._index.tsx:353` | `countryLabel` read `document` during server render → hydration mismatch warning. | ✅ uses the admin locale. |
+| m6 | `app/routes/app.files.$id.tsx:33` | The upstream `Content-Length` was forwarded with a body `fetch` had already decompressed → truncated/hanging downloads for gzip responses. | ✅ |
+| m7 | `app/routes/app.applications._index.tsx` | Bulk action buttons stayed active while a bulk approve was running (no feedback; a second click was only stopped by the lock). | ✅ |
+| m8 | `app/routes/app.import._index.tsx` | The uploaded CSV was read fully into memory before the 2 MB check. | ✅ size checked first. |
+| m9 | `app/lib/import.server.ts:442` | Every 10 rows the import rewrote the whole row JSON (up to ~2 MB) to Neon. | see Group B |
+| m10 | `app/lib/approval.server.ts:815` | Linking an existing company in an import used the raw GID (with `:` and `/`) inside the location's external ID. | see Group B |
+| m11 | `app/lib/buyers.server.ts:138` | Unknown error codes (e.g. Prisma `P2025`) were shown as raw translation keys. | see Group B |
+| m12 | `app/routes/app.buyers.$id.tsx:74` | Certificate expiry dates showed a day early west of UTC. | see Group B |
+| m13 | `app/routes/_index/route.tsx:24` | Template placeholder text ("A short heading about [your app]") on the public landing page. | see Group B |
+| m14 | `app/routes/webhooks.app.scopes_update.tsx:7` | Leftover `console.log`. | see Group B |
+| m15 | `app/lib/import.server.ts:348` | A CSV run could be started from "draft" (no validation) and finished with nothing imported. | see Group B |
+| m16 | `app/routes/proxy.renew.$token.tsx:147` | The renewal page rejected files the browser sent with an empty type (common for PDFs on some systems) and accepted impossible dates like 2026-02-31. | see Group B |
+| m17 | `app/lib/rules.server.ts:162`, `app/routes/app.automation.tsx:64` | Rules were saved as posted (unknown kinds, condition types, actions). | see Group B |

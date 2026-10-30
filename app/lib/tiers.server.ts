@@ -361,7 +361,8 @@ export async function moveLocations(
       if (!(await check())) throw new AssignmentError("verify_failed");
     }
     return { mode: "auto" as const, verified: true, jobIds: [] };
-  }, 25_000).catch((e) => {
+    // Writes retry with backoff and read back paginated members: allow well over 30 s before the lock can be taken over.
+  }, 25_000, 3 * 60_000).catch((e) => {
     if (e?.name === "LockBusyError") throw new AssignmentError("busy");
     throw e;
   });

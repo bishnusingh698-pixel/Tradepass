@@ -75,6 +75,11 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
       return { decided: "rejected", ruleId: rule.id };
     }
 
+    // A duplicate of an earlier application would get a second company in Shopify: leave it for a person.
+    if (found.app.flags.includes("duplicate")) {
+      await logActivity({ shop, actor: ACTOR, action: "automation.skipped_duplicate", subject: applicationId, detail: { ruleId: rule.id } });
+      return { decided: null };
+    }
     if ((await autoApprovalsToday(shop)) >= settings.automation.dailyLimit) {
       await logActivity({ shop, actor: ACTOR, action: "automation.limit_reached", subject: applicationId, detail: { ruleId: rule.id, limit: settings.automation.dailyLimit } });
       return { decided: null };
@@ -95,7 +100,7 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
     // Mark first, so a partial approval can still be found and reversed.
     await db.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: rule.id } });
     const state = await approveApplication(ctx, applicationId, input);
-    const failed = APPROVAL_STEPS.find((s) => state.steps[s]?.status === "failed");
+    const failed = APPROVAL_STEPS.find((s) => s !== "email" && state.steps[s]?.status === "failed");
     await logActivity({
       shop, actor: ACTOR, action: "automation.approve", subject: applicationId,
       result: failed ? "failed" : "ok", detail: { ruleId: rule.id, ...(failed ? { step: failed } : {}) },

@@ -27,12 +27,15 @@ export async function unlock(shop: string, name: string, holder: string): Promis
   await db.shopLock.deleteMany({ where: { shop, name, holder } });
 }
 
-/** Run `fn` holding the lock; waits up to `waitMs` for it, polling. */
-export async function withLock<T>(shop: string, name: string, fn: () => Promise<T>, waitMs = 20_000): Promise<T> {
+/**
+ * Run `fn` holding the lock; waits up to `waitMs` for it, polling. `ttlMs` must
+ * outlast `fn`: an expired lock can be taken by someone else while `fn` still runs.
+ */
+export async function withLock<T>(shop: string, name: string, fn: () => Promise<T>, waitMs = 20_000, ttlMs = 30_000): Promise<T> {
   const deadline = Date.now() + waitMs;
   let holder: string | null = null;
   let delay = 150;
-  while (!(holder = await tryLock(shop, name))) {
+  while (!(holder = await tryLock(shop, name, ttlMs))) {
     if (Date.now() > deadline) throw new LockBusyError(shop, name);
     await new Promise((r) => setTimeout(r, delay + Math.random() * 100));
     delay = Math.min(delay * 2, 1500);

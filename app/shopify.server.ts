@@ -10,6 +10,7 @@ import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prism
 import prisma from "./db.server";
 import { refreshShopFacts } from "./lib/shop.server";
 import { ensureDefaults } from "./lib/defaults.server";
+import { syncStorefrontConfig } from "./lib/storefront-sync.server";
 import { BILLING_NAMES, PLANS } from "./lib/plans";
 
 // Paid plans (feature spec §N): monthly, USD, 14-day trial. Switching plans
@@ -39,6 +40,10 @@ const shopify = shopifyApp({
     afterAuth: async ({ session, admin }) => {
       await refreshShopFacts(session.shop, admin);
       await ensureDefaults(session.shop);
+      // The theme extension reads the form and access mode from app metafields, so write them now:
+      // without this the form block says "not available" until the merchant saves a page.
+      // A failure is queued and retried by the hourly job.
+      await syncStorefrontConfig(admin, session.shop).catch(() => undefined);
     },
   },
   future: {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { useFetcher, useLoaderData, useSearchParams } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
@@ -11,17 +11,12 @@ import { approveMany } from "../lib/approval.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CountryName, TaxCheckBadge, StatusBadge, RelativeTime } from "../components/applications";
+import { saveText } from "../components/download";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
   const url = new URL(request.url);
   const filters = parseFilters(url);
-  if (url.searchParams.get("export") === "csv") {
-    const csv = await exportCsv(ctx.shop, null, filters);
-    return new Response(csv, {
-      headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="applications.csv"` },
-    });
-  }
   const [list, tiers, forms, countries, businessTypes] = await Promise.all([
     listApplications(ctx.shop, filters),
     db.tier.findMany({ where: { shop: ctx.shop }, select: { id: true, name: true }, orderBy: { position: "asc" } }),
@@ -43,6 +38,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const ctx = await adminContext(request);
   const form = await request.formData();
   const intent = String(form.get("intent"));
+  if (intent === "export_all") {
+    // Every application matching the page's filters (a new-tab link would have no session token).
+    const filters = parseFilters(new URL(`https://app.local/?${String(form.get("query") ?? "")}`));
+    return { ok: true as const, intent, csv: await exportCsv(ctx.shop, null, filters) };
+  }
   const ids = form.getAll("ids").map(String).slice(0, 100);
   if (!ids.length) return { ok: false as const, error: "none_selected" };
   const dctx = { admin: ctx.admin, shop: ctx.shop, actor: ctx.actor };
@@ -71,7 +71,7 @@ type LoaderData = ReturnType<typeof useLoaderData<typeof loader>>;
 
 export default function Applications() {
   const data = useLoaderData<typeof loader>() as Exclude<LoaderData, Response>;
-  const { t, number } = useI18nNumber();
+  const { t, number, locale } = useI18nNumber();
   const href = useLocaleHref();
   const [params, setParams] = useSearchParams();
   const shopify = useAppBridge();
@@ -89,7 +89,7 @@ export default function Applications() {
   useEffect(() => {
     const d = fetcher.data;
     if (!d || !d.ok) return;
-    if (d.intent === "bulk_export" && "csv" in d) download(d.csv ?? "", "applications.csv");
+    if ((d.intent === "bulk_export" || d.intent === "export_all") && "csv" in d) saveText(d.csv ?? "", "applications.csv");
     if (d.intent === "bulk_reject" && "rejected" in d) shopify.toast.show(t("applications.bulk.rejectedToast", { count: d.rejected ?? 0 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetcher.data]);
@@ -113,15 +113,17 @@ export default function Applications() {
   };
 
   const summary = fetcher.data && fetcher.data.ok && fetcher.data.intent === "bulk_approve" && "summary" in fetcher.data ? fetcher.data.summary : null;
-  const csvHref = useMemo(() => {
-    const p = new URLSearchParams(params);
-    p.set("export", "csv");
-    return `?${p}`;
-  }, [params]);
+  const exportAll = () => {
+    const fd = new FormData();
+    fd.set("intent", "export_all");
+    fd.set("query", params.toString());
+    fetcher.submit(fd, { method: "POST" });
+  };
+  const busy = fetcher.state !== "idle";
 
   return (
     <s-page heading={t("applications.title")}>
-      <s-button slot="secondary-actions" href={csvHref} target="_blank">
+      <s-button slot="secondary-actions" onClick={exportAll} {...(busy ? { loading: true } : {})}>
         {t("applications.exportAll")}
       </s-button>
 
@@ -152,7 +154,7 @@ export default function Applications() {
             <s-select label={t("applications.filter.country")} value={data.filters.country ?? ""} onChange={(e) => setParam("country", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
               <s-option value="">{t("applications.filter.any")}</s-option>
               {data.countries.map((c) => (
-                <s-option key={c} value={c}>{countryLabel(c)}</s-option>
+                <s-option key={c} value={c}>{countryLabel(c, locale)}</s-option>
               ))}
             </s-select>
             <s-select label={t("applications.filter.businessType")} value={data.filters.businessType ?? ""} onChange={(e) => setParam("businessType", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
@@ -197,9 +199,9 @@ export default function Applications() {
           {selected.length > 0 && (
             <s-stack direction="inline" gap="small-200" alignItems="center">
               <s-text>{t("applications.bulk.selected", { count: selected.length })}</s-text>
-              <s-button commandFor="bulk-approve" command="--show">{t("applications.bulk.approve")}</s-button>
-              <s-button commandFor="bulk-reject" command="--show">{t("applications.bulk.reject")}</s-button>
-              <s-button variant="tertiary" onClick={() => submitBulk("bulk_export")}>{t("applications.bulk.export")}</s-button>
+              <s-button commandFor="bulk-approve" command="--show" {...(busy ? { loading: true, disabled: true } : {})}>{t("applications.bulk.approve")}</s-button>
+              <s-button commandFor="bulk-reject" command="--show" {...(busy ? { disabled: true } : {})}>{t("applications.bulk.reject")}</s-button>
+              <s-button variant="tertiary" onClick={() => submitBulk("bulk_export")} {...(busy ? { disabled: true } : {})}>{t("applications.bulk.export")}</s-button>
             </s-stack>
           )}
 
@@ -345,24 +347,16 @@ function BulkRejectModal({ count, onConfirm }: { count: number; onConfirm: (reas
 
 function useI18nNumber() {
   const { t, locale } = useI18n();
-  return { t, number: (n: number) => new Intl.NumberFormat(locale).format(n) };
+  return { t, locale, number: (n: number) => new Intl.NumberFormat(locale).format(n) };
 }
 
-function countryLabel(code: string) {
+function countryLabel(code: string, locale: string) {
   try {
-    return new Intl.DisplayNames([document.documentElement.lang || "en"], { type: "region" }).of(code) ?? code;
+    return new Intl.DisplayNames([locale], { type: "region" }).of(code) ?? code;
   } catch {
     return code;
   }
 }
 
-function download(text: string, filename: string) {
-  const url = URL.createObjectURL(new Blob([text], { type: "text/csv;charset=utf-8" }));
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
-}
 
 export const headers: HeadersFunction = (headersArgs) => boundary.headers(headersArgs);

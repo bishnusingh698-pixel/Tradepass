@@ -242,6 +242,9 @@ async function companyNode(admin: Admin, id: string) {
   return (await gql(admin, Q.company, { id })).company as { id: string; mainContact: { id: string } | null; locations: { nodes: { id: string; externalId: string | null }[] } } | null;
 }
 
+// Shopify may store the registration number with different spacing or case than typed.
+const normId = (v: unknown) => (typeof v === "string" ? v.replace(/[\s.\-/]/g, "").toUpperCase() : "");
+
 const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
   async company(r) {
     const st = r.state.steps.company;
@@ -376,7 +379,7 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
       const ts = l.taxSettings ?? {};
       const have: string[] = ts.taxExemptions ?? [];
       return Boolean(ts.taxExempt) === Boolean(i.taxExempt) && have.length === want.length && want.every((x) => have.includes(x)) &&
-        (i.taxRegistrationId ? ts.taxRegistrationId === i.taxRegistrationId : true);
+        (i.taxRegistrationId ? normId(ts.taxRegistrationId) === normId(i.taxRegistrationId) : true);
     };
     if (!termsOk(loc)) {
       await mutate(admin, "companyLocationUpdate", Q.locationUpdate, {
@@ -587,19 +590,83 @@ function checkInput(input: ApproveInput) {
   if (!validAddress(input.billingAddress) || (input.shippingAddress && !validAddress(input.shippingAddress))) throw new ApprovalError("missing_address");
 }
 
+const isDone = (st: StepState | undefined) => st?.status === "done" || st?.status === "skipped";
+
+/** For a retry: inputs of finished steps stay as they were applied; the rest take the new values. */
+export function mergeRetryInput(prev: ApprovalState, next: ApproveInput): ApproveInput {
+  const p = prev.input;
+  const s = prev.steps;
+  return {
+    ...next,
+    ...(s.company.gid ? { companyName: p.companyName } : {}),
+    ...(s.location.gid ? { locationName: p.locationName, billingAddress: p.billingAddress, shippingAddress: p.shippingAddress } : {}),
+    ...(isDone(s.contact) ? { contact: p.contact } : {}),
+    ...(isDone(s.terms_tax)
+      ? { paymentTermsTemplateId: p.paymentTermsTemplateId, checkoutToDraft: p.checkoutToDraft, taxExempt: p.taxExempt, exemptions: p.exemptions, taxRegistrationId: p.taxRegistrationId }
+      : {}),
+    ...(isDone(s.tier) || s.tier.pendingAssignment ? { tierId: p.tierId } : {}),
+  };
+}
+
+const trim = (v: unknown, max = 255) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+const cleanAddress = (a: Partial<Address> | null | undefined): Address | null =>
+  a && typeof a === "object"
+    ? {
+        firstName: trim(a.firstName) || undefined, lastName: trim(a.lastName) || undefined, company: trim(a.company) || undefined,
+        address1: trim(a.address1), address2: trim(a.address2) || undefined, city: trim(a.city),
+        zoneCode: trim(a.zoneCode, 10).toUpperCase() || undefined, zip: trim(a.zip, 20) || undefined,
+        countryCode: trim(a.countryCode, 2).toUpperCase(), phone: trim(a.phone, 40) || undefined,
+      }
+    : null;
+
+/** The modal posts JSON; never trust its shape. Unknown exemptions are dropped (Shopify would reject the whole call). */
+export function normalizeInput(raw: ApproveInput, app?: Pick<Application, "companyName">): ApproveInput {
+  const i = (raw ?? {}) as Partial<ApproveInput>;
+  const contact: ApproveInput["contact"] =
+    i.contact && i.contact.mode === "existing" && typeof i.contact.customerGid === "string" && i.contact.customerGid.startsWith("gid://shopify/Customer/")
+      ? { mode: "existing", customerGid: i.contact.customerGid }
+      : {
+          mode: "new",
+          ...(i.contact && i.contact.mode === "new"
+            ? {
+                email: trim(i.contact.email) || undefined, firstName: trim(i.contact.firstName) || undefined,
+                lastName: trim(i.contact.lastName) || undefined, phone: trim(i.contact.phone, 40) || undefined, locale: trim(i.contact.locale, 20) || undefined,
+              }
+            : {}),
+        };
+  const exemptions = Array.isArray(i.exemptions) ? [...new Set(i.exemptions.filter((x) => TAX_EXEMPTIONS.includes(x)))] : [];
+  const companyName = trim(i.companyName) || app?.companyName || "";
+  return {
+    tierId: trim(i.tierId, 60),
+    paymentTermsTemplateId: trim(i.paymentTermsTemplateId) || null,
+    taxExempt: i.taxExempt === true,
+    exemptions,
+    taxRegistrationId: trim(i.taxRegistrationId, 100) || null,
+    companyName,
+    locationName: trim(i.locationName) || companyName,
+    billingAddress: cleanAddress(i.billingAddress) ?? { address1: "", city: "", countryCode: "" },
+    shippingAddress: cleanAddress(i.shippingAddress),
+    contact,
+    sendWelcome: i.sendWelcome !== false,
+    checkoutToDraft: i.checkoutToDraft === true,
+  };
+}
+
 /** Run (or continue) an approval. Idempotent: completed steps are skipped, so calling again = Retry. */
 export async function approveApplication(ctx: ApprovalCtx, applicationId: string, input: ApproveInput): Promise<ApprovalState> {
-  checkInput(input);
+  checkInput(normalizeInput(input));
   return lockApp(ctx, applicationId, async () => {
     const app = await loadApp(ctx, applicationId);
     const prev = readState(app.approvalState);
     if (app.status === "approved" && prev?.finishedAt) return prev;
     if (!["pending", "needs_info", "approved"].includes(app.status)) throw new ApprovalError("not_pending");
     if (!prev || !prev.steps.company.gid) await checkQuota(ctx.shop);
-    // Keep GIDs from an earlier attempt; take the merchant's latest choices for what's left.
+    // Keep GIDs from an earlier attempt; take the merchant's latest choices only for steps not done yet,
+    // so the stored input always describes what exists in Shopify (e.g. the buyer's tier = the market it's in).
+    const clean = normalizeInput(input, app);
     const state: ApprovalState = prev
-      ? { ...prev, input }
-      : { input, steps: emptySteps(), startedAt: new Date().toISOString() };
+      ? { ...prev, input: mergeRetryInput(prev, clean) }
+      : { input: clean, steps: emptySteps(), startedAt: new Date().toISOString() };
     const r = appRun(ctx, app, state);
     return runSteps(r, (run) => finalizeApplication(app, run));
   });
@@ -616,9 +683,14 @@ export async function retryApproval(ctx: ApprovalCtx, applicationId: string): Pr
   });
 }
 
+const APPROVAL_LOCK_TTL_MS = 10 * 60_000;
+export const approvalLockName = (applicationId: string) => `approval:${applicationId}`;
+
 async function lockApp<T>(ctx: ApprovalCtx, id: string, fn: () => Promise<T>): Promise<T> {
   try {
-    return await withLock(ctx.shop, `approval:${id}`, fn, 3_000);
+    // An approval makes many Shopify calls and may wait for the market lock; keep the lock for its whole run
+    // so a second click (or a second staff member) can't run the same steps at the same time.
+    return await withLock(ctx.shop, approvalLockName(id), fn, 3_000, APPROVAL_LOCK_TTL_MS);
   } catch (e) {
     if (e instanceof LockBusyError) throw new ApprovalError("busy");
     throw e;
@@ -628,14 +700,29 @@ async function lockApp<T>(ctx: ApprovalCtx, id: string, fn: () => Promise<T>): P
 /** Remove what a partial approval created in Shopify (never touches pre-existing customers). */
 export async function undoApproval(ctx: ApprovalCtx, applicationId: string): Promise<void> {
   await lockApp(ctx, applicationId, async () => {
-    const app = await loadApp(ctx, applicationId);
-    const state = readState(app.approvalState);
-    if (!state) return;
-    if (app.status === "approved" || state.buyerId) throw new ApprovalError("finished");
-    await undoState(ctx, state, applicationId);
-    await db.application.updateMany({ where: { id: app.id, shop: ctx.shop }, data: { approvalState: Prisma.DbNull } });
-    await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "approval.undo", subject: app.id });
+    await discardUnfinishedApproval(ctx, await loadApp(ctx, applicationId));
   });
+}
+
+/** Run `fn` while no approval, retry or undo of this application can run (reject / needs info use it). */
+export function withApprovalLock<T>(ctx: ApprovalCtx, applicationId: string, fn: () => Promise<T>): Promise<T> {
+  return lockApp(ctx, applicationId, fn);
+}
+
+/** Undo an unfinished approval and clear its state. The caller holds the approval lock. */
+export async function discardUnfinishedApproval(ctx: ApprovalCtx, app: Pick<Application, "id" | "status" | "approvalState">): Promise<void> {
+  const state = readState(app.approvalState);
+  if (!state) return;
+  if (app.status === "approved" || state.buyerId) throw new ApprovalError("finished");
+  await undoState(ctx, state, app.id);
+  await db.application.updateMany({ where: { id: app.id, shop: ctx.shop }, data: { approvalState: Prisma.DbNull } });
+  await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "approval.undo", subject: app.id });
+}
+
+/** Whether an approval has already created something in Shopify for this application. */
+export function approvalStarted(raw: unknown): boolean {
+  const s = readState(raw);
+  return Boolean(s && APPROVAL_STEPS.some((k) => s.steps[k]?.gid || s.steps[k]?.status === "running" || s.steps[k]?.status === "done"));
 }
 
 async function undoState(ctx: ApprovalCtx, state: ApprovalState, subject: string) {
@@ -788,7 +875,12 @@ export async function approveMany(ctx: ApprovalCtx, ids: string[], tierId: strin
       const d = await approvalDefaults(ctx, id);
       const td = d.tierDefaults[tierId];
       if (!td) { skip("tier_missing"); continue; }
-      const input: ApproveInput = { ...d.input, tierId, paymentTermsTemplateId: td.paymentTermsTemplateId, checkoutToDraft: td.checkoutToDraft };
+      const exempt = td.tax === "exempt_on_file" && Boolean(d.suggestedExemption.exemption);
+      const input: ApproveInput = {
+        ...d.input, tierId, paymentTermsTemplateId: td.paymentTermsTemplateId, checkoutToDraft: td.checkoutToDraft,
+        // Tax follows the chosen tier's default, not the first tier's.
+        ...(d.state ? {} : { taxExempt: exempt, exemptions: exempt ? [d.suggestedExemption.exemption!] : [] }),
+      };
       const state = await approveApplication(ctx, id, input);
       const failed = APPROVAL_STEPS.find((s) => state.steps[s].status === "failed");
       if (failed && failed !== "email") skip("step_failed", { step: t(`approval.step.${failed}`), error: state.steps[failed].error ?? "" });
@@ -859,11 +951,16 @@ export function isSafeToRetry(state: ApprovalState | null, now = Date.now()): bo
 }
 
 export async function retryStuckApprovals(deadline: number, adminFor: (shop: string) => Promise<Admin>): Promise<number> {
-  const rows = await db.application.findMany({
-    where: { status: { in: ["pending", "needs_info", "approved"] }, approvalState: { not: Prisma.DbNull } },
-    select: { id: true, shop: true, approvalState: true },
-    take: 50,
-  });
+  // Finished approvals keep their state forever, so filter in SQL: a plain "has a state" query would
+  // fill its 50 rows with finished ones and never reach the stuck approvals.
+  const rows = await db.$queryRaw<{ id: string; shop: string; approvalState: unknown }[]>`
+    SELECT "id", "shop", "approvalState" FROM "Application"
+    WHERE "status" IN ('pending', 'needs_info', 'approved')
+      AND "approvalState" IS NOT NULL
+      AND ("approvalState"->>'finishedAt') IS NULL
+      AND COALESCE(("approvalState"->>'autoRetries')::int, 0) < 3
+    ORDER BY "submittedAt" ASC
+    LIMIT 50`;
   let n = 0;
   for (const row of rows) {
     if (Date.now() > deadline) break;

@@ -6,6 +6,7 @@ import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
 import { refreshShopFacts } from "../lib/shop.server";
 import { updateSettings } from "../lib/settings.server";
+import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { applyWelcome, checklist, pendingWork, serverAlerts, type AlertId, type ChecklistStep, type Numbers } from "../lib/home.server";
 import { BUSINESS_TYPES, SUGGESTED_TIER_NAMES } from "../lib/form-defaults";
 import { EMBED_HANDLE, FORM_BLOCK_HANDLE, THEME_EXTENSION_HANDLE } from "../lib/theme";
@@ -42,6 +43,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const audience = String(form.get("audience") ?? "");
     if ((BUSINESS_TYPES as readonly string[]).includes(audience)) {
       await applyWelcome(ctx.shop, audience);
+      // The welcome answer may change the default form, which the storefront reads from metafields.
+      await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
       await updateSettings(ctx.shop, { welcome: { audience: audience as (typeof BUSINESS_TYPES)[number], done: true } });
     }
     return { ok: true };
@@ -361,7 +364,7 @@ function Readiness({ facts, onRefresh, loading }: { facts: Facts; onRefresh: () 
   const { t } = useI18n();
   const limit = facts.catalogLimit ?? 0;
   const used = facts.catalogsUsed ?? 0;
-  const budgetOk = facts.isPlus || limit === 0 || used < limit;
+  const budgetOk = facts.isPlus || used < limit;
   return (
     <s-stack direction="block" gap="base">
       <s-text>{t("home.readiness.plan", { plan: facts.planName })}</s-text>
@@ -371,9 +374,10 @@ function Readiness({ facts, onRefresh, loading }: { facts: Facts; onRefresh: () 
           {facts.b2bMarketsEnabled ? t("home.readiness.marketsOn") : t("home.readiness.marketsOff")}
         </Status>
       )}
-      {facts.b2bEnabled && (
+      {/* Non-Plus without a catalog allowance: the "B2B markets" line above already explains it. */}
+      {facts.b2bEnabled && (facts.isPlus || limit > 0) && (
         <Status ok={budgetOk}>
-          {facts.isPlus || limit === 0 ? t("home.readiness.catalogUnlimited", { used }) : t("home.readiness.catalogBudget", { used, limit })}
+          {facts.isPlus ? t("home.readiness.catalogUnlimited", { used }) : t("home.readiness.catalogBudget", { used, limit })}
         </Status>
       )}
       <s-stack direction="inline" gap="base">

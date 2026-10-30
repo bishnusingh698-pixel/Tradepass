@@ -5,13 +5,14 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import db from "../db.server";
 import { adminContext } from "../lib/context.server";
-import { addNote, getApplication, rejectApplication, requestMoreInfo, setAssignee } from "../lib/applications.server";
+import { addNote, getApplication, rejectApplicationResult, requestMoreInfo, setAssignee, type DecisionReason } from "../lib/applications.server";
 import type { FormDefinition } from "../lib/form-defaults";
 import { defaultFormDefinition } from "../lib/form-defaults";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CountryName, RelativeTime, StatusBadge, TaxCheckBadge } from "../components/applications";
 import { ApproveModal } from "../components/ApproveModal";
+import { dateOnly, openStaffFile } from "../components/download";
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -44,7 +45,10 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       approvalState: app.approvalState as { steps?: Record<string, { status: string; error?: string }> } | null,
     },
     taxNumber,
-    files: files.map((f) => ({ id: f.id, kind: f.kind, createdAt: f.createdAt.toISOString() })),
+    files: files.map((f) => ({
+      id: f.id, kind: f.kind, createdAt: f.createdAt.toISOString(),
+      expiresOn: certificates.find((c) => c.fileGid === f.fileGid)?.expiresOn?.toISOString().slice(0, 10) ?? null,
+    })),
     certificates: certificates.map((c) => ({
       id: c.id, type: c.type, country: c.country, region: c.region, expiresOn: c.expiresOn?.toISOString().slice(0, 10) ?? null, status: c.status,
     })),
@@ -52,7 +56,12 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     duplicates: duplicates.map((d) => ({ ...d, submittedAt: d.submittedAt.toISOString() })),
     buyer: buyer ? { id: buyer.id, companyGid: buyer.companyGid, status: buyer.status } : null,
     tier,
-    fields: definition.sections.flatMap((s) => s.fields.filter((f) => f.state !== "hidden").map((f) => ({ id: f.id, custom: Boolean(f.custom), label: f.texts?.en?.label ?? null }))),
+    // Consent can't be asked again through the "more info" page, so it isn't offered.
+    fields: definition.sections.flatMap((s) =>
+      s.fields
+        .filter((f) => f.state !== "hidden" && f.type !== "consent")
+        .map((f) => ({ id: f.id, custom: Boolean(f.custom), label: f.texts?.[ctx.i18n.locale]?.label ?? f.texts?.en?.label ?? Object.values(f.texts ?? {}).find((x) => x?.label)?.label ?? null })),
+    ),
     shopHandle: ctx.shop.replace(".myshopify.com", ""),
   };
 };
@@ -63,26 +72,34 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const form = await request.formData();
   const intent = String(form.get("intent"));
   const dctx = { admin: ctx.admin, shop: ctx.shop, actor: ctx.actor };
+  // Plain-language reason when a decision didn't go through (already decided, approval running or half-done).
+  const why = (reason?: DecisionReason) =>
+    ctx.t(
+      reason === "busy" ? "approval.blocked.busy"
+      : reason === "not_pending" ? "approval.blocked.not_pending"
+      : reason === "approval_started" ? "applications.detail.approvalFailed"
+      : "errors.generic",
+    );
   switch (intent) {
     case "reject": {
-      const ok = await rejectApplication(dctx, id, {
-        reason: String(form.get("reason") ?? "").trim() || null,
+      const res = await rejectApplicationResult(dctx, id, {
+        reason: String(form.get("reason") ?? "").trim().slice(0, 2000) || null,
         email: form.get("email") === "on",
       });
-      return { ok, intent };
+      return res.ok ? { ok: true, intent } : { ok: false, intent, message: why(res.reason) };
     }
     case "needs_info": {
       const message = String(form.get("message") ?? "").trim();
       const fields = form.getAll("fields").map(String);
-      if (!message) return { ok: false, intent, error: "message_required" };
-      if (!fields.length) return { ok: false, intent, error: "fields_required" };
+      if (!message) return { ok: false, intent, error: "message_required", message: ctx.t("applications.needsInfo.messageRequired") };
+      if (!fields.length) return { ok: false, intent, error: "fields_required", message: ctx.t("applications.needsInfo.fieldsRequired") };
       const res = await requestMoreInfo(dctx, id, { message, fields });
-      return { ok: res.ok, intent };
+      return res.ok ? { ok: true, intent } : { ok: false, intent, message: why(res.reason) };
     }
     case "note": {
       const text = String(form.get("text") ?? "").trim();
       if (!text) return { ok: false, intent, error: "note_required" };
-      await addNote(ctx.shop, id, ctx.actor, text);
+      await addNote(ctx.shop, id, ctx.actor, text.slice(0, 2000));
       return { ok: true, intent };
     }
     case "assign": {
@@ -236,17 +253,15 @@ export default function ApplicationDetail() {
             <s-text color="subdued">{t("applications.certificate.missing")}</s-text>
           ) : (
             <s-unordered-list>
-              {d.files.map((f, i) => {
-                const cert = d.certificates[i];
-                return (
-                  <s-list-item key={f.id}>
-                    <s-link href={`/app/files/${f.id}`} target="_blank">
-                      {t("applications.detail.document", { n: i + 1 })}
-                    </s-link>
-                    {cert?.expiresOn && <s-text color="subdued"> · {t("applications.detail.expires", { date: new Date(cert.expiresOn) })}</s-text>}
-                  </s-list-item>
-                );
-              })}
+              {d.files.map((f, i) => (
+                <s-list-item key={f.id}>
+                  {/* Opened through fetch so App Bridge adds the session token; a plain link has none. */}
+                  <s-link href="#" onClick={(e) => { e.preventDefault(); void openStaffFile(f.id, () => shopify.toast.show(t("errors.generic"), { isError: true })); }}>
+                    {t("applications.detail.document", { n: i + 1 })}
+                  </s-link>
+                  {f.expiresOn && <s-text color="subdued"> · {t("applications.detail.expires", { date: dateOnly(f.expiresOn) })}</s-text>}
+                </s-list-item>
+              ))}
             </s-unordered-list>
           )}
         </s-stack>
@@ -331,7 +346,8 @@ function formatAddress(a: Record<string, string>, locale: string): string {
 
 function NotesAndAssignee({ notes, assignee }: { notes: { at: string; by: string; text: string }[]; assignee: string | null }) {
   const { t } = useI18n();
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<typeof action>();
+  useResultToast(fetcher as Parameters<typeof useResultToast>[0]);
   const [text, setText] = useState("");
   const [who, setWho] = useState(assignee ?? "");
   return (
@@ -365,9 +381,23 @@ function NotesAndAssignee({ notes, assignee }: { notes: { at: string; by: string
 const INFO_TEMPLATES = ["certificate", "taxNumber", "business"] as const;
 const REJECT_TEMPLATES = ["notEligible", "incomplete", "region"] as const;
 
+/** Toast the result of a modal's own fetcher (the page's fetcher never sees it). */
+function useResultToast(fetcher: { state: string; data?: { ok: boolean; intent: string; message?: string } }) {
+  const { t } = useI18n();
+  const shopify = useAppBridge();
+  useEffect(() => {
+    const r = fetcher.data;
+    if (fetcher.state !== "idle" || !r) return;
+    if (r.ok) shopify.toast.show(t(`applications.detail.toast.${r.intent}`));
+    else shopify.toast.show(r.message ?? t("errors.generic"), { isError: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetcher.state, fetcher.data]);
+}
+
 function NeedsInfoModal({ fields }: { fields: { id: string; label: string }[] }) {
   const { t } = useI18n();
   const fetcher = useFetcher<typeof action>();
+  useResultToast(fetcher as Parameters<typeof useResultToast>[0]);
   const [message, setMessage] = useState("");
   const [picked, setPicked] = useState<string[]>([]);
   const [touched, setTouched] = useState(false);
@@ -421,6 +451,7 @@ function NeedsInfoModal({ fields }: { fields: { id: string; label: string }[] })
 function RejectModal({ company }: { company: string }) {
   const { t } = useI18n();
   const fetcher = useFetcher<typeof action>();
+  useResultToast(fetcher as Parameters<typeof useResultToast>[0]);
   const [reason, setReason] = useState("");
   const [email, setEmail] = useState(true);
   return (

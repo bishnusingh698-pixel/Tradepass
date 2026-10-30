@@ -306,6 +306,46 @@ async function loadInputs(shop: string) {
  * Call after any change to storefront settings, forms, texts or tiers.
  */
 export async function syncStorefrontConfig(admin: Admin, shop: string): Promise<void> {
+  try {
+    await writeStorefrontConfig(admin, shop);
+  } catch (e) {
+    // Settings are already saved in our database; the hourly job pushes them to Shopify later.
+    await markSyncPending(shop).catch(() => undefined);
+    throw e;
+  }
+  await db.job.deleteMany({ where: { shop, type: SYNC_JOB } }).catch(() => undefined);
+}
+
+/** Job row that marks "our settings and the storefront metafields / checkout lock may differ". */
+export const SYNC_JOB = "storefront_sync";
+
+export async function markSyncPending(shop: string): Promise<void> {
+  const open = await db.job.findFirst({ where: { shop, type: SYNC_JOB }, select: { id: true } });
+  if (!open) await db.job.create({ data: { shop, type: SYNC_JOB, state: "queued", payload: {} } });
+}
+
+/** Hourly: retry storefront syncs that failed (a saved access mode must reach Shopify). */
+export async function retryPendingSyncs(deadline: number, adminFor: (shop: string) => Promise<Admin>): Promise<number> {
+  const jobs = await db.job.findMany({ where: { type: SYNC_JOB }, orderBy: { createdAt: "asc" }, take: 50, select: { id: true, shop: true, attempts: true } });
+  let n = 0;
+  for (const j of jobs) {
+    if (Date.now() > deadline) break;
+    const row = await db.shop.findUnique({ where: { shop: j.shop }, select: { uninstalledAt: true } });
+    if (!row || row.uninstalledAt) {
+      await db.job.deleteMany({ where: { id: j.id } });
+      continue;
+    }
+    try {
+      await syncStorefrontConfig(await adminFor(j.shop), j.shop);
+      n++;
+    } catch (e) {
+      await db.job.updateMany({ where: { id: j.id }, data: { attempts: { increment: 1 }, error: String((e as Error).name).slice(0, 60) } });
+    }
+  }
+  return n;
+}
+
+async function writeStorefrontConfig(admin: Admin, shop: string): Promise<void> {
   const { settings, plan, forms, tiers } = await loadInputs(shop);
   const inst = await gql<{ currentAppInstallation: { id: string } }>(admin, INSTALLATION);
   const ownerId = inst.currentAppInstallation.id;

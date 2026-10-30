@@ -30,6 +30,9 @@ export type QueueFilters = {
   page?: number;
 };
 
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+const day = (v: string | null) => (v && ISO_DAY.test(v) && !Number.isNaN(Date.parse(`${v}T00:00:00Z`)) ? v : undefined);
+
 export function parseFilters(url: URL): QueueFilters {
   const p = url.searchParams;
   const tab = (TABS as readonly string[]).includes(p.get("tab") ?? "") ? (p.get("tab") as Tab) : "pending";
@@ -43,8 +46,9 @@ export function parseFilters(url: URL): QueueFilters {
     taxCheck: p.get("taxCheck") || undefined,
     hasCertificate: p.get("hasCertificate") === "yes" ? "yes" : p.get("hasCertificate") === "no" ? "no" : undefined,
     flag: p.get("flag") || undefined,
-    from: p.get("from") || undefined,
-    to: p.get("to") || undefined,
+    // Anything but YYYY-MM-DD would become an Invalid Date and fail the query.
+    from: day(p.get("from")),
+    to: day(p.get("to")),
     sort: sort === "oldest" || sort === "company" ? sort : "newest",
     page: Math.max(1, Number(p.get("page")) || 1),
   };
@@ -191,14 +195,46 @@ async function shopInfo(shop: string) {
   return { storeName: row?.name ?? shop.replace(".myshopify.com", "") };
 }
 
+export type DecisionReason = "not_pending" | "busy" | "approval_started" | "failed";
+export type DecisionResult = { ok: true } | { ok: false; reason: DecisionReason };
+
+/**
+ * Reject, holding the approval lock so it can't interleave with an approval of
+ * the same application. If an earlier approval stopped half-way, what it created
+ * in Shopify is removed first (a rejected applicant must not keep a company).
+ */
 export async function rejectApplication(
   ctx: DecisionCtx,
   id: string,
   opts: { reason: string | null; email: boolean },
 ): Promise<boolean> {
-  const app = await db.application.findFirst({ where: { shop: ctx.shop, id, status: { in: ["pending", "needs_info"] } } });
-  if (!app) return false;
-  await db.application.update({ where: { id }, data: { status: "rejected", decidedAt: new Date() } });
+  return (await rejectApplicationResult(ctx, id, opts)).ok;
+}
+
+export async function rejectApplicationResult(
+  ctx: DecisionCtx,
+  id: string,
+  opts: { reason: string | null; email: boolean },
+): Promise<DecisionResult> {
+  const { withApprovalLock, discardUnfinishedApproval, ApprovalError } = await import("./approval.server");
+  let app: Awaited<ReturnType<typeof db.application.findFirst>>;
+  try {
+    app = await withApprovalLock(ctx, id, async () => {
+      const current = await db.application.findFirst({ where: { shop: ctx.shop, id, status: { in: ["pending", "needs_info"] } } });
+      if (!current) return null;
+      if (current.approvalState) await discardUnfinishedApproval(ctx, current);
+      const n = await db.application.updateMany({
+        where: { shop: ctx.shop, id, status: { in: ["pending", "needs_info"] } },
+        data: { status: "rejected", decidedAt: new Date() },
+      });
+      return n.count === 1 ? current : null;
+    });
+  } catch (e) {
+    if (e instanceof ApprovalError && e.code === "busy") return { ok: false, reason: "busy" };
+    if (e instanceof ApprovalError && e.code === "finished") return { ok: false, reason: "not_pending" };
+    return { ok: false, reason: "failed" };
+  }
+  if (!app) return { ok: false, reason: "not_pending" };
   await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.reject", subject: id, detail: { emailed: opts.email, hasReason: Boolean(opts.reason) } });
   if (opts.email) {
     const { storeName } = await shopInfo(ctx.shop);
@@ -214,7 +250,7 @@ export async function rejectApplication(
   await emitFlowTrigger(ctx.admin, ctx.shop, "application_rejected", {
     applicationId: id, companyName: app.companyName, contactEmail: app.email, country: app.countryCode ?? undefined,
   });
-  return true;
+  return { ok: true };
 }
 
 function firstName(answers: unknown): string {
@@ -226,23 +262,41 @@ export async function requestMoreInfo(
   ctx: DecisionCtx,
   id: string,
   opts: { message: string; fields: string[] },
-): Promise<{ ok: boolean; link?: string }> {
-  const app = await db.application.findFirst({ where: { shop: ctx.shop, id, status: { in: ["pending", "needs_info"] } } });
-  if (!app) return { ok: false };
-  const exp = Math.floor(Date.now() / 1000) + MORE_INFO_DAYS * 86400;
-  const token = signToken({ shop: ctx.shop, purpose: "more_info", subject: id, exp });
-  await db.tokenUse.create({
-    data: { tokenHash: sha256(token), shop: ctx.shop, purpose: "more_info", subjectId: id, expiresAt: new Date(exp * 1000) },
-  });
-  // Earlier unused links for this application stop working: only the newest request counts.
-  await db.tokenUse.updateMany({
-    where: { shop: ctx.shop, subjectId: id, purpose: "more_info", usedAt: null, tokenHash: { not: sha256(token) } },
-    data: { usedAt: new Date() },
-  });
-  await db.application.update({
-    where: { id },
-    data: { status: "needs_info", requested: { fields: opts.fields, message: opts.message, at: new Date().toISOString() } },
-  });
+): Promise<{ ok: boolean; link?: string; reason?: DecisionReason }> {
+  const { withApprovalLock, approvalStarted, ApprovalError } = await import("./approval.server");
+  const fields = [...new Set(opts.fields.filter((f) => typeof f === "string" && f && f !== "consent"))].slice(0, 60);
+  if (!fields.length) return { ok: false, reason: "failed" };
+  let out: { app: Awaited<ReturnType<typeof db.application.findFirst>>; token: string; exp: number } | "not_pending" | "approval_started";
+  try {
+    out = await withApprovalLock(ctx, id, async () => {
+      const app = await db.application.findFirst({ where: { shop: ctx.shop, id, status: { in: ["pending", "needs_info"] } } });
+      if (!app) return "not_pending" as const;
+      // The approval already created the company: finish or undo it first, or the buyer would be approved
+      // while being asked for more information.
+      if (approvalStarted(app.approvalState)) return "approval_started" as const;
+      const exp = Math.floor(Date.now() / 1000) + MORE_INFO_DAYS * 86400;
+      const token = signToken({ shop: ctx.shop, purpose: "more_info", subject: id, exp });
+      await db.tokenUse.create({
+        data: { tokenHash: sha256(token), shop: ctx.shop, purpose: "more_info", subjectId: id, expiresAt: new Date(exp * 1000) },
+      });
+      // Earlier unused links for this application stop working: only the newest request counts.
+      await db.tokenUse.updateMany({
+        where: { shop: ctx.shop, subjectId: id, purpose: "more_info", usedAt: null, tokenHash: { not: sha256(token) } },
+        data: { usedAt: new Date() },
+      });
+      await db.application.update({
+        where: { id },
+        data: { status: "needs_info", requested: { fields, message: opts.message.slice(0, 5000), at: new Date().toISOString() } },
+      });
+      return { app, token, exp };
+    });
+  } catch (e) {
+    if (e instanceof ApprovalError && e.code === "busy") return { ok: false, reason: "busy" };
+    throw e;
+  }
+  if (out === "not_pending" || out === "approval_started") return { ok: false, reason: out };
+  const { app, token } = out;
+  if (!app) return { ok: false, reason: "not_pending" };
   const link = `https://${ctx.shop}/apps/tradepass/update/${encodeURIComponent(token)}`;
   const { storeName } = await shopInfo(ctx.shop);
   await queueEmail({
@@ -253,7 +307,7 @@ export async function requestMoreInfo(
     vars: { company: app.companyName, first_name: firstName(app.answers), store_name: storeName, update_link: link, message: opts.message },
     subjectId: id,
   }).catch(() => undefined);
-  await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.needs_info", subject: id, detail: { fields: opts.fields } });
+  await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.needs_info", subject: id, detail: { fields } });
   return { ok: true, link };
 }
 

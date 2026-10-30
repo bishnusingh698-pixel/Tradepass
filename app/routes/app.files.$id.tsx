@@ -30,7 +30,8 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       "X-Content-Type-Options": "nosniff",
       "Content-Security-Policy": "sandbox; default-src 'none'; img-src 'self' data: blob:; style-src 'unsafe-inline'",
       "Cache-Control": "private, no-store",
-      ...(length ? { "Content-Length": String(length) } : {}),
+      // fetch() decompresses gzip/br bodies, so the upstream length only fits when there was no encoding.
+      ...(length && !upstream.headers.get("content-encoding") ? { "Content-Length": String(length) } : {}),
     },
   });
 };

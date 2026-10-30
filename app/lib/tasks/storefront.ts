@@ -40,5 +40,17 @@ const refreshGated: Task = {
   },
 };
 
-export const hourly: Task[] = [refreshGated];
+/** Saves whose push to Shopify failed (network, Shopify error) are retried here. */
+const retrySync: Task = {
+  name: "storefront-retry-sync",
+  run: async (deadline) => {
+    const { retryPendingSyncs } = await import("../storefront-sync.server");
+    return retryPendingSyncs(deadline, async (shop) => {
+      const { unauthenticated } = await import("../../shopify.server");
+      return (await unauthenticated.admin(shop)).admin;
+    });
+  },
+};
+
+export const hourly: Task[] = [retrySync, refreshGated];
 export const daily: Task[] = [];

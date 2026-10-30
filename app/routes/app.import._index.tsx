@@ -6,11 +6,13 @@ import db from "../db.server";
 import { adminContext } from "../lib/context.server";
 import { can } from "../lib/plans";
 import { paymentTermsOptions } from "../lib/tiers.server";
-import { createCsvRun, createTagRun, ImportFileError, MAX_ROWS, previewTagCount, startRun, TAX_EXEMPTION_SET } from "../lib/import.server";
+import { createCsvRun, createTagRun, ImportFileError, MAX_FILE_BYTES, MAX_ROWS, previewTagCount, startRun, TAX_EXEMPTION_SET } from "../lib/import.server";
 import { logActivity } from "../lib/activity.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { ImportRunBadge as RunBadge } from "../components/ImportRunBadge";
+import { downloadFrom } from "../components/download";
+import { useAppBridge } from "@shopify/app-bridge-react";
 
 const flag = (name: string, on: boolean | undefined) => (on ? { [name]: true } : {});
 const splitList = (v: FormDataEntryValue | null) => String(v ?? "").split(",").map((x) => x.trim()).filter(Boolean);
@@ -43,6 +45,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (intent === "upload") {
     const file = form.get("file");
     if (!(file instanceof File) || !file.size) return { ok: false, intent, error: "import.error.noFile" } satisfies ActionData;
+    if (file.size > MAX_FILE_BYTES) return { ok: false, intent, error: "import.error.file.too_large" } satisfies ActionData;
     try {
       const run = await createCsvRun(ctx.shop, await file.text());
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "import.upload", subject: run.id, detail: { rows: run.total } });
@@ -86,6 +89,7 @@ export default function ImportPage() {
   const d = useLoaderData<typeof loader>();
   const { t, i18n } = useI18n();
   const href = useLocaleHref();
+  const shopify = useAppBridge();
   const upload = useFetcher<typeof action>();
   const tag = useFetcher<typeof action>();
   const locked = !d.allowed;
@@ -120,7 +124,16 @@ export default function ImportPage() {
       <s-section heading={t("import.csv.heading")}>
         <s-stack direction="block" gap="base">
           <s-paragraph>{t("import.csv.body", { max: d.maxRows })}</s-paragraph>
-          <s-link href="/app/import/template" download="tradepass-import-template.csv">{t("import.csv.template")}</s-link>
+          <s-link
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              // fetch carries the App Bridge session token; a plain download link doesn't.
+              void downloadFrom("/app/import/template", "tradepass-import-template.csv").catch(() => shopify.toast.show(t("errors.generic"), { isError: true }));
+            }}
+          >
+            {t("import.csv.template")}
+          </s-link>
           <s-drop-zone
             accept=".csv,text/csv"
             label={t("import.csv.file")}

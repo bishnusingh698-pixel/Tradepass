@@ -262,7 +262,8 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
 
   const ipKey = hashKey("ip", ctx.ip);
   // Bots: pretend success, store nothing. Repeat offenders get the same silent treatment.
-  if (looksLikeBot(body) || (await peek(`spam:${ipKey}`)) >= LIMITS.spamPerIp) {
+  const spamHits = await peek(`spam:${ipKey}`);
+  if (looksLikeBot(body) || spamHits >= LIMITS.spamPerIp) {
     await hit(`spam:${ipKey}`, LIMITS.spamPerIp);
     return { http: 200, body: { ok: true, status: "received" } };
   }
@@ -302,6 +303,8 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
   const dups = email || companyName || taxHash ? await findDuplicates(shop, email, companyName, taxHash) : [];
   const flags: string[] = [];
   if (dups.length) flags.push("duplicate");
+  // Same network sent bot-like submissions this hour: keep it, but mark it for review (and for "Looks like spam" rules).
+  if (spamHits > 0) flags.push("possible_spam");
   // The applicant hears "You've already applied" only while an earlier one is open or approved.
   const tellApplicant = dups.some((d) => OPEN.includes(d.status));
 
@@ -399,7 +402,9 @@ async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
     await safe("flow", () => deps.emitFlowTrigger(admin, shop, "application_submitted", {
       applicationId: a.id, companyName: a.companyName, contactEmail: a.email, country: a.countryCode ?? undefined,
     }));
-    await safe("rules", () => deps.evaluateRules(admin, shop, a.id));
+    // An auto-approval makes many Shopify calls; the applicant's request must not wait for it
+    // (the app proxy would time out). It runs on after the response; failures are logged by `safe`.
+    void safe("rules", () => deps.evaluateRules(admin, shop, a.id));
   }
 }
 
@@ -413,7 +418,7 @@ export function requestedDefinition(def: FormDefinition, fields: string[]): Form
   return {
     ...def,
     sections: def.sections
-      .map((s) => ({ ...s, fields: s.fields.filter((f) => want.has(f.id)).map((f) => ({ ...f, showIf: undefined, state: f.state === "hidden" ? "optional" as const : f.state })) }))
+      .map((s) => ({ ...s, fields: s.fields.filter((f) => want.has(f.id) && f.type !== "consent").map((f) => ({ ...f, showIf: undefined, state: f.state === "hidden" ? "optional" as const : f.state })) }))
       .filter((s) => s.fields.length),
     spamQuestion: { enabled: false, texts: {} },
   };
@@ -457,7 +462,11 @@ export async function applyUpdate(
   const billing = clean.answers.billingAddress;
   if (isObj(billing) && typeof billing.countryCode === "string") data.countryCode = billing.countryCode;
   // Email stays as submitted: changing it via a link would let anyone holding the link redirect the account.
-  if ("email" in clean.answers) delete answers.email;
+  if ("email" in clean.answers) {
+    const original = isObj(app.answers) ? app.answers.email : undefined;
+    if (original === undefined) delete answers.email;
+    else answers.email = original;
+  }
 
   const certs = clean.files.certificates ?? [];
   if (certs.length) {

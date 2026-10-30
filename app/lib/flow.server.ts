@@ -181,7 +181,8 @@ export async function handleFlowApprove(admin: Admin, shop: string, req: FlowAct
       if (typeof sendWelcome === "boolean") input.sendWelcome = sendWelcome;
       if (!input.tierId) return { status: 422, body: { message: t("flow.action.noTier") } };
       const state = await approveApplication(ctx, app.id, input);
-      const failed = APPROVAL_STEPS.find((s) => state.steps[s]?.status === "failed");
+      // The buyer exists once every step before the email is done; a failed email is retried later and isn't a failed approval.
+      const failed = APPROVAL_STEPS.find((s) => s !== "email" && state.steps[s]?.status === "failed");
       await logActivity({ shop, actor: "flow", action: "flow.approve", subject: app.id, result: failed ? "failed" : "ok", detail: failed ? { step: failed } : undefined });
       if (failed) return { status: 422, body: { message: t("flow.action.stepFailed") } };
       return { status: 200, body: {} };

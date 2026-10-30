@@ -5,6 +5,7 @@ import db from "../db.server";
 export const SHOP_FACTS_QUERY = `#graphql
   query TradepassShopFacts {
     shop {
+      name email contactEmail currencyCode billingAddress { countryCodeV2 }
       plan { publicDisplayName partnerDevelopment shopifyPlus }
       features { directConnectionCatalogAssignmentEnabled }
       entitlements {
@@ -30,11 +31,20 @@ export type ShopFacts = {
   primaryLocale: string;
   publishedLocales: string[];
   catalogsUsed: number | null;
+  name: string | null;
+  email: string | null;
+  currency: string | null;
+  country: string | null;
 };
 
 type FactsResponse = {
   data?: {
     shop: {
+      name?: string | null;
+      email?: string | null;
+      contactEmail?: string | null;
+      currencyCode?: string | null;
+      billingAddress?: { countryCodeV2?: string | null } | null;
       plan: { publicDisplayName: string; partnerDevelopment: boolean; shopifyPlus: boolean };
       features: { directConnectionCatalogAssignmentEnabled: boolean };
       entitlements: {
@@ -66,13 +76,19 @@ export function parseShopFacts(json: FactsResponse): ShopFacts {
     isPlus: s.plan.shopifyPlus,
     isDevStore: s.plan.partnerDevelopment,
     b2bEnabled: s.entitlements.b2b.enabled,
-    b2bMarketsEnabled: b2bMarkets.enabled,
+    // Without the B2B catalogs entitlement a B2B market can't carry tier prices, so it counts as unavailable.
+    b2bMarketsEnabled: b2bMarkets.enabled && b2bMarkets.catalogs.enabled,
     // On Plus the limit is not meaningful for direct assignment; we still record it.
     catalogLimit: b2bMarkets.catalogs.enabled ? b2bMarkets.catalogs.limit : 0,
     directCatalogs: s.features.directConnectionCatalogAssignmentEnabled,
     primaryLocale: locales.find((l) => l.primary)?.locale ?? "en",
     publishedLocales: locales.filter((l) => l.published).map((l) => l.locale),
     catalogsUsed: countB2bCatalogs(json.data?.b2bMarkets?.nodes),
+    name: s.name ?? null,
+    // contactEmail is the address customers see; it is the reply-to and the default for merchant alerts.
+    email: s.contactEmail || s.email || null,
+    currency: s.currencyCode ?? null,
+    country: s.billingAddress?.countryCodeV2 ?? null,
   };
 }
 
@@ -90,6 +106,10 @@ export async function refreshShopFacts(shop: string, admin: AdminApiContext): Pr
     directCatalogs: facts.directCatalogs,
     primaryLocale: facts.primaryLocale,
     checkedAt: new Date(),
+    ...(facts.name ? { name: facts.name } : {}),
+    ...(facts.email ? { email: facts.email } : {}),
+    ...(facts.currency ? { currency: facts.currency } : {}),
+    ...(facts.country ? { country: facts.country } : {}),
   };
   // Upsert keeps reinstall clean: the row and its settings survive if shop/redact hasn't run yet.
   await db.shop.upsert({

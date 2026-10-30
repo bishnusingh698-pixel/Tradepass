@@ -12,6 +12,7 @@ import { IMPORT_FIELDS, REQUIRED_FIELDS, type ColumnMap, type CsvOptions, type I
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { ImportRunBadge as RunBadge } from "../components/ImportRunBadge";
+import { downloadFrom } from "../components/download";
 
 const flag = (name: string, on: boolean | undefined) => (on ? { [name]: true } : {});
 const ISSUES_SHOWN = 100;
@@ -229,7 +230,15 @@ export default function ImportRunPage() {
       {d.issueCount > 0 && (
         <s-section heading={t("import.issues.heading", { count: d.issueCount })}>
           <s-stack direction="block" gap="base">
-            <s-link href={href(`/app/import/${d.run.id}/errors`)} download={`tradepass-import-errors-${d.run.id}.csv`}>{t("import.issues.download")}</s-link>
+            <s-link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                void downloadFrom(href(`/app/import/${d.run.id}/errors`), `tradepass-import-errors-${d.run.id}.csv`).catch(() => shopify.toast.show(t("errors.generic"), { isError: true }));
+              }}
+            >
+              {t("import.issues.download")}
+            </s-link>
             <s-table>
               <s-table-header-row>
                 <s-table-header>{t("import.report.row")}</s-table-header>
