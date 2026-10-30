@@ -116,7 +116,8 @@
       "salon": "Salonki tai kylpylä",
       "restaurant": "Ravintola tai kahvila",
       "distributor": "Jakelija",
-      "other": "Muu"
+      "other": "Muu",
+      "reseller": "Jälleenmyyjä"
     },
     "order_value": {
       "lt1k": "Alle 1 000",
@@ -155,7 +156,8 @@
       "gst": "GST/HST-numero",
       "us_resale": "Jälleenmyyntitodistuksen numero",
       "us_state": "Todistuksen myöntänyt osavaltio",
-      "tax_id": "Verotunniste"
+      "tax_id": "Verotunniste",
+      "example": "Esimerkki: {{ example }}"
     },
     "upload": {
       "add": "Lisää tiedosto",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} on yli 5 Mt.",
       "file_count": "Voit lisätä enintään 3 tiedostoa.",
       "file_pending": "Odota, kunnes tiedostot on ladattu.",
-      "spam": "Vastaus ei täsmää. Yritä uudelleen."
+      "spam": "Vastaus ei täsmää. Yritä uudelleen.",
+      "tax_format": "Tämä ei näytä kelvolliselta tunnukselta ({{ name }}). Tarkista se.",
+      "country_blocked": "Emme voi ottaa vastaan tukkumyyntihakemuksia tästä maasta tai alueelta."
     },
     "success": {
       "heading": "Kiitos, hakemuksesi on lähetetty",

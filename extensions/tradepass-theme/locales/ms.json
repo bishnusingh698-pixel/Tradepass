@@ -116,7 +116,8 @@
       "salon": "Salun atau spa",
       "restaurant": "Restoran atau kafe",
       "distributor": "Pengedar",
-      "other": "Lain-lain"
+      "other": "Lain-lain",
+      "reseller": "Penjual semula"
     },
     "order_value": {
       "lt1k": "Kurang daripada 1,000",
@@ -155,7 +156,8 @@
       "gst": "Nombor GST/HST",
       "us_resale": "Nombor sijil jualan semula",
       "us_state": "Negeri yang mengeluarkan sijil",
-      "tax_id": "ID cukai"
+      "tax_id": "ID cukai",
+      "example": "Contoh: {{ example }}"
     },
     "upload": {
       "add": "Tambah fail",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} melebihi 5 MB.",
       "file_count": "Anda boleh menambah sehingga 3 fail.",
       "file_pending": "Tunggu sehingga fail anda selesai dimuat naik.",
-      "spam": "Jawapan itu tidak sepadan. Sila cuba lagi."
+      "spam": "Jawapan itu tidak sepadan. Sila cuba lagi.",
+      "tax_format": "Ini nampaknya bukan {{ name }} yang sah. Sila semak.",
+      "country_blocked": "Kami tidak dapat menerima permohonan borong dari negara atau wilayah ini."
     },
     "success": {
       "heading": "Terima kasih, permohonan anda telah dihantar",

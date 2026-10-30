@@ -7,7 +7,9 @@ export const SETTINGS_VERSION = 1;
 
 export type AccessMode = "show" | "hide" | "wholesale_only";
 export type ScopeType = "all" | "collections" | "products" | "tags";
-export type Audience = "retail" | "salon" | "restaurant" | "distributor" | "other";
+export type Audience = "retail" | "salon" | "restaurant" | "distributor" | "reseller" | "other";
+/** all = anyone; allow = only the listed countries; block = everyone except the listed countries. */
+export type CountryRule = { mode: "all" | "allow" | "block"; list: string[] };
 export type EmailType =
   | "received" | "needs_info" | "approved" | "rejected" | "cert_expiring" | "cert_expired";
 
@@ -16,6 +18,8 @@ export type LocalizedTexts = Record<string, Record<string, string>>;
 
 export type Settings = {
   welcome: { audience: Audience | null; done: boolean };
+  /** Who may apply, by billing country. Enforced by the storefront form and again on the server. */
+  applications: { countries: CountryRule };
   storefront: {
     accessMode: AccessMode;
     scope: { type: ScopeType; ids: string[]; tags: string[] };
@@ -31,7 +35,8 @@ export type Settings = {
   notifications: {
     emails: Record<EmailType, { enabled: boolean }>;
     useShopifyWelcome: boolean;
-    merchant: { mode: "instant" | "digest" | "off"; email: string | null };
+    /** digest = daily summary; weekly = one summary on Mondays (UTC). Instant also gets the daily summary. */
+    merchant: { mode: "instant" | "digest" | "weekly" | "off"; email: string | null };
   };
   certificates: { expiringDays: number; autoRenewal: boolean; onExpiry: "ask" | "remove" };
   automation: { paused: boolean; dailyLimit: number };
@@ -49,6 +54,7 @@ export type Settings = {
 export function defaultSettings(): Settings {
   return {
     welcome: { audience: null, done: false },
+    applications: { countries: { mode: "all", list: [] } },
     storefront: {
       accessMode: "show",
       scope: { type: "all", ids: [], tags: [] },
@@ -120,3 +126,10 @@ function deepAssign(target: Obj, patch: Obj): Obj {
 }
 
 export type DeepPartial<T> = { [K in keyof T]?: T[K] extends object ? (T[K] extends unknown[] ? T[K] : DeepPartial<T[K]>) : T[K] };
+
+/** Whether an applicant's billing country may apply under the merchant's country rule. Unknown country: allowed (the form asks for it). */
+export function countryAllowed(rule: CountryRule, country: string | null | undefined): boolean {
+  if (!country || rule.mode === "all") return true;
+  const listed = rule.list.includes(country.toUpperCase());
+  return rule.mode === "allow" ? listed : !listed;
+}

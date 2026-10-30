@@ -50,32 +50,74 @@
       "consent": "Consenso"
     },
     "field": {
-      "companyName": { "label": "Ragione sociale" },
-      "businessType": { "label": "Tipo di attività" },
-      "website": { "label": "Sito web", "placeholder": "https://" },
-      "yearEstablished": { "label": "Anno di fondazione" },
-      "locationsCount": { "label": "Numero di sedi" },
-      "monthlyOrderValue": { "label": "Valore mensile previsto degli ordini" },
-      "referral": { "label": "Come ci ha conosciuti?" },
-      "firstName": { "label": "Nome" },
-      "lastName": { "label": "Cognome" },
-      "email": { "label": "Indirizzo email", "help": "Invieremo a questo indirizzo gli aggiornamenti sulla sua richiesta." },
-      "phone": { "label": "Telefono" },
-      "jobTitle": { "label": "Ruolo" },
-      "preferredLanguage": { "label": "Lingua preferita" },
-      "billingAddress": { "label": "Indirizzo di fatturazione" },
-      "shippingAddress": { "label": "Indirizzo di spedizione" },
-      "taxNumber": { "label": "Registrazione fiscale" },
-      "certificates": { "label": "Certificati", "help": "Ad esempio un certificato di rivendita o di esenzione fiscale." },
-      "message": { "label": "Messaggio per il negozio" },
-      "consent": { "label": "Acconsento all’uso dei miei dati per l’esame di questa richiesta." }
+      "companyName": {
+        "label": "Ragione sociale"
+      },
+      "businessType": {
+        "label": "Tipo di attività"
+      },
+      "website": {
+        "label": "Sito web",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Anno di fondazione"
+      },
+      "locationsCount": {
+        "label": "Numero di sedi"
+      },
+      "monthlyOrderValue": {
+        "label": "Valore mensile previsto degli ordini"
+      },
+      "referral": {
+        "label": "Come ci ha conosciuti?"
+      },
+      "firstName": {
+        "label": "Nome"
+      },
+      "lastName": {
+        "label": "Cognome"
+      },
+      "email": {
+        "label": "Indirizzo email",
+        "help": "Invieremo a questo indirizzo gli aggiornamenti sulla sua richiesta."
+      },
+      "phone": {
+        "label": "Telefono"
+      },
+      "jobTitle": {
+        "label": "Ruolo"
+      },
+      "preferredLanguage": {
+        "label": "Lingua preferita"
+      },
+      "billingAddress": {
+        "label": "Indirizzo di fatturazione"
+      },
+      "shippingAddress": {
+        "label": "Indirizzo di spedizione"
+      },
+      "taxNumber": {
+        "label": "Registrazione fiscale"
+      },
+      "certificates": {
+        "label": "Certificati",
+        "help": "Ad esempio un certificato di rivendita o di esenzione fiscale."
+      },
+      "message": {
+        "label": "Messaggio per il negozio"
+      },
+      "consent": {
+        "label": "Acconsento all’uso dei miei dati per l’esame di questa richiesta."
+      }
     },
     "business_type": {
       "retail": "Negozio al dettaglio",
       "salon": "Salone o centro benessere",
       "restaurant": "Ristorante o bar",
       "distributor": "Distributore",
-      "other": "Altro"
+      "other": "Altro",
+      "reseller": "Rivenditore"
     },
     "order_value": {
       "lt1k": "Meno di 1.000",
@@ -114,7 +156,8 @@
       "gst": "Numero GST/HST",
       "us_resale": "Numero del certificato di rivendita",
       "us_state": "Stato che ha rilasciato il certificato",
-      "tax_id": "Codice fiscale"
+      "tax_id": "Codice fiscale",
+      "example": "Esempio: {{ example }}"
     },
     "upload": {
       "add": "Aggiungi file",
@@ -141,7 +184,9 @@
       "file_size": "{{ name }} supera i 5 MB.",
       "file_count": "Può aggiungere fino a 3 file.",
       "file_pending": "Attenda il completamento del caricamento dei file.",
-      "spam": "La risposta non corrisponde. Riprovi."
+      "spam": "La risposta non corrisponde. Riprovi.",
+      "tax_format": "Non sembra un {{ name }} valido. Controllalo.",
+      "country_blocked": "Non possiamo accettare richieste all'ingrosso da questo paese o area geografica."
     },
     "success": {
       "heading": "Grazie, la sua richiesta è stata inviata",

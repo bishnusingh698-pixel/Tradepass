@@ -116,7 +116,8 @@
       "salon": "Salon oder Spa",
       "restaurant": "Restaurant oder Café",
       "distributor": "Distributor oder Händler",
-      "other": "Sonstiges"
+      "other": "Sonstiges",
+      "reseller": "Wiederverkäufer"
     },
     "order_value": {
       "lt1k": "Weniger als 1.000",
@@ -155,7 +156,8 @@
       "gst": "GST/HST-Nummer",
       "us_resale": "Nummer der Wiederverkäuferbescheinigung",
       "us_state": "Ausstellender Bundesstaat",
-      "tax_id": "Steuernummer"
+      "tax_id": "Steuernummer",
+      "example": "Beispiel: {{ example }}"
     },
     "upload": {
       "add": "Datei hinzufügen",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} ist größer als 5 MB.",
       "file_count": "Sie können bis zu 3 Dateien hinzufügen.",
       "file_pending": "Warten Sie, bis Ihre Dateien hochgeladen sind.",
-      "spam": "Diese Antwort stimmt nicht. Bitte versuchen Sie es erneut."
+      "spam": "Diese Antwort stimmt nicht. Bitte versuchen Sie es erneut.",
+      "tax_format": "Das sieht nicht nach einer gültigen {{ name }} aus. Bitte prüfen Sie die Angabe.",
+      "country_blocked": "Aus diesem Land bzw. dieser Region können wir keine Großhandelsanträge annehmen."
     },
     "success": {
       "heading": "Vielen Dank, Ihr Antrag wurde gesendet",

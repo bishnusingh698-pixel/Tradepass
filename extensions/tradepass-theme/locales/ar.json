@@ -50,32 +50,74 @@
       "consent": "الموافقة"
     },
     "field": {
-      "companyName": { "label": "اسم الشركة" },
-      "businessType": { "label": "نوع النشاط التجاري" },
-      "website": { "label": "الموقع الإلكتروني", "placeholder": "https://" },
-      "yearEstablished": { "label": "سنة التأسيس" },
-      "locationsCount": { "label": "عدد المواقع" },
-      "monthlyOrderValue": { "label": "قيمة الطلبات الشهرية المتوقعة" },
-      "referral": { "label": "كيف عرفت عنا؟" },
-      "firstName": { "label": "الاسم الأول" },
-      "lastName": { "label": "اسم العائلة" },
-      "email": { "label": "البريد الإلكتروني", "help": "سنرسل إلى هذا العنوان آخر المستجدات بشأن طلبك." },
-      "phone": { "label": "الهاتف" },
-      "jobTitle": { "label": "المسمى الوظيفي" },
-      "preferredLanguage": { "label": "اللغة المفضلة" },
-      "billingAddress": { "label": "عنوان الفوترة" },
-      "shippingAddress": { "label": "عنوان الشحن" },
-      "taxNumber": { "label": "التسجيل الضريبي" },
-      "certificates": { "label": "الشهادات", "help": "مثل شهادة إعادة البيع أو شهادة الإعفاء الضريبي." },
-      "message": { "label": "رسالة إلى المتجر" },
-      "consent": { "label": "أوافق على استخدام بياناتي لمراجعة هذا الطلب." }
+      "companyName": {
+        "label": "اسم الشركة"
+      },
+      "businessType": {
+        "label": "نوع النشاط التجاري"
+      },
+      "website": {
+        "label": "الموقع الإلكتروني",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "سنة التأسيس"
+      },
+      "locationsCount": {
+        "label": "عدد المواقع"
+      },
+      "monthlyOrderValue": {
+        "label": "قيمة الطلبات الشهرية المتوقعة"
+      },
+      "referral": {
+        "label": "كيف عرفت عنا؟"
+      },
+      "firstName": {
+        "label": "الاسم الأول"
+      },
+      "lastName": {
+        "label": "اسم العائلة"
+      },
+      "email": {
+        "label": "البريد الإلكتروني",
+        "help": "سنرسل إلى هذا العنوان آخر المستجدات بشأن طلبك."
+      },
+      "phone": {
+        "label": "الهاتف"
+      },
+      "jobTitle": {
+        "label": "المسمى الوظيفي"
+      },
+      "preferredLanguage": {
+        "label": "اللغة المفضلة"
+      },
+      "billingAddress": {
+        "label": "عنوان الفوترة"
+      },
+      "shippingAddress": {
+        "label": "عنوان الشحن"
+      },
+      "taxNumber": {
+        "label": "التسجيل الضريبي"
+      },
+      "certificates": {
+        "label": "الشهادات",
+        "help": "مثل شهادة إعادة البيع أو شهادة الإعفاء الضريبي."
+      },
+      "message": {
+        "label": "رسالة إلى المتجر"
+      },
+      "consent": {
+        "label": "أوافق على استخدام بياناتي لمراجعة هذا الطلب."
+      }
     },
     "business_type": {
       "retail": "متجر بيع بالتجزئة",
       "salon": "صالون أو منتجع صحي",
       "restaurant": "مطعم أو مقهى",
       "distributor": "موزع",
-      "other": "أخرى"
+      "other": "أخرى",
+      "reseller": "موزّع بالتجزئة"
     },
     "order_value": {
       "lt1k": "أقل من 1,000",
@@ -114,7 +156,8 @@
       "gst": "رقم GST/HST",
       "us_resale": "رقم شهادة إعادة البيع",
       "us_state": "الولاية التي أصدرت الشهادة",
-      "tax_id": "الرقم الضريبي"
+      "tax_id": "الرقم الضريبي",
+      "example": "مثال: {{ example }}"
     },
     "upload": {
       "add": "إضافة ملف",
@@ -141,7 +184,9 @@
       "file_size": "حجم {{ name }} أكبر من 5 ميغابايت.",
       "file_count": "يمكنك إضافة 3 ملفات كحد أقصى.",
       "file_pending": "انتظر حتى يكتمل رفع ملفاتك.",
-      "spam": "هذه الإجابة غير مطابقة. يُرجى المحاولة مرة أخرى."
+      "spam": "هذه الإجابة غير مطابقة. يُرجى المحاولة مرة أخرى.",
+      "tax_format": "لا يبدو أن هذا {{ name }} صالح. يُرجى التحقق منه.",
+      "country_blocked": "لا يمكننا قبول طلبات البيع بالجملة من هذا البلد أو المنطقة."
     },
     "success": {
       "heading": "شكرًا لك، تم إرسال طلبك",

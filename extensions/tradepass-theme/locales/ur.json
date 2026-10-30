@@ -50,32 +50,74 @@
       "consent": "رضامندی"
     },
     "field": {
-      "companyName": { "label": "کمپنی کا نام" },
-      "businessType": { "label": "کاروبار کی قسم" },
-      "website": { "label": "ویب سائٹ", "placeholder": "https://" },
-      "yearEstablished": { "label": "قیام کا سال" },
-      "locationsCount": { "label": "لوکیشنز کی تعداد" },
-      "monthlyOrderValue": { "label": "متوقع ماہانہ آرڈر ویلیو" },
-      "referral": { "label": "آپ کو ہمارے بارے میں کیسے پتہ چلا؟" },
-      "firstName": { "label": "پہلا نام" },
-      "lastName": { "label": "آخری نام" },
-      "email": { "label": "ای میل", "help": "ہم آپ کی درخواست کے بارے میں اپ ڈیٹس اس پتے پر بھیجیں گے۔" },
-      "phone": { "label": "فون" },
-      "jobTitle": { "label": "عہدہ" },
-      "preferredLanguage": { "label": "ترجیحی زبان" },
-      "billingAddress": { "label": "بلنگ کا پتہ" },
-      "shippingAddress": { "label": "شپنگ کا پتہ" },
-      "taxNumber": { "label": "ٹیکس رجسٹریشن" },
-      "certificates": { "label": "سرٹیفکیٹس", "help": "مثلاً ری سیل یا ٹیکس استثنیٰ کا سرٹیفکیٹ۔" },
-      "message": { "label": "اسٹور کے لیے پیغام" },
-      "consent": { "label": "میں متفق ہوں کہ اس درخواست کے جائزے کے لیے میری تفصیلات استعمال کی جائیں۔" }
+      "companyName": {
+        "label": "کمپنی کا نام"
+      },
+      "businessType": {
+        "label": "کاروبار کی قسم"
+      },
+      "website": {
+        "label": "ویب سائٹ",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "قیام کا سال"
+      },
+      "locationsCount": {
+        "label": "لوکیشنز کی تعداد"
+      },
+      "monthlyOrderValue": {
+        "label": "متوقع ماہانہ آرڈر ویلیو"
+      },
+      "referral": {
+        "label": "آپ کو ہمارے بارے میں کیسے پتہ چلا؟"
+      },
+      "firstName": {
+        "label": "پہلا نام"
+      },
+      "lastName": {
+        "label": "آخری نام"
+      },
+      "email": {
+        "label": "ای میل",
+        "help": "ہم آپ کی درخواست کے بارے میں اپ ڈیٹس اس پتے پر بھیجیں گے۔"
+      },
+      "phone": {
+        "label": "فون"
+      },
+      "jobTitle": {
+        "label": "عہدہ"
+      },
+      "preferredLanguage": {
+        "label": "ترجیحی زبان"
+      },
+      "billingAddress": {
+        "label": "بلنگ کا پتہ"
+      },
+      "shippingAddress": {
+        "label": "شپنگ کا پتہ"
+      },
+      "taxNumber": {
+        "label": "ٹیکس رجسٹریشن"
+      },
+      "certificates": {
+        "label": "سرٹیفکیٹس",
+        "help": "مثلاً ری سیل یا ٹیکس استثنیٰ کا سرٹیفکیٹ۔"
+      },
+      "message": {
+        "label": "اسٹور کے لیے پیغام"
+      },
+      "consent": {
+        "label": "میں متفق ہوں کہ اس درخواست کے جائزے کے لیے میری تفصیلات استعمال کی جائیں۔"
+      }
     },
     "business_type": {
       "retail": "ریٹیل اسٹور",
       "salon": "سیلون یا اسپا",
       "restaurant": "ریستوران یا کیفے",
       "distributor": "ڈسٹری بیوٹر",
-      "other": "دیگر"
+      "other": "دیگر",
+      "reseller": "ری سیلر"
     },
     "order_value": {
       "lt1k": "1,000 سے کم",
@@ -114,7 +156,8 @@
       "gst": "GST/HST نمبر",
       "us_resale": "ری سیل سرٹیفکیٹ نمبر",
       "us_state": "سرٹیفکیٹ جاری کرنے والی ریاست",
-      "tax_id": "ٹیکس ID"
+      "tax_id": "ٹیکس ID",
+      "example": "مثال: {{ example }}"
     },
     "upload": {
       "add": "فائل شامل کریں",
@@ -141,7 +184,9 @@
       "file_size": "{{ name }} کا سائز 5 MB سے زیادہ ہے۔",
       "file_count": "آپ زیادہ سے زیادہ 3 فائلیں شامل کر سکتے ہیں۔",
       "file_pending": "اپنی فائلوں کے اپ لوڈ مکمل ہونے کا انتظار کریں۔",
-      "spam": "یہ جواب درست نہیں۔ براہ کرم دوبارہ کوشش کریں۔"
+      "spam": "یہ جواب درست نہیں۔ براہ کرم دوبارہ کوشش کریں۔",
+      "tax_format": "یہ درست {{ name }} نہیں لگتا۔ براہ کرم اسے چیک کریں۔",
+      "country_blocked": "ہم اس ملک یا علاقے سے ہول سیل درخواستیں قبول نہیں کر سکتے۔"
     },
     "success": {
       "heading": "شکریہ، آپ کی درخواست بھیج دی گئی ہے",

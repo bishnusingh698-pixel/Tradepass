@@ -116,7 +116,8 @@
       "salon": "Salón o spa",
       "restaurant": "Restaurante o cafetería",
       "distributor": "Distribuidor",
-      "other": "Otro"
+      "other": "Otro",
+      "reseller": "Revendedor"
     },
     "order_value": {
       "lt1k": "Menos de 1000",
@@ -155,7 +156,8 @@
       "gst": "Número de GST/HST",
       "us_resale": "Número del certificado de reventa",
       "us_state": "Estado que emitió el certificado",
-      "tax_id": "Número de identificación fiscal"
+      "tax_id": "Número de identificación fiscal",
+      "example": "Ejemplo: {{ example }}"
     },
     "upload": {
       "add": "Añadir archivo",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} supera los 5 MB.",
       "file_count": "Puede añadir hasta 3 archivos.",
       "file_pending": "Espere a que terminen de subirse sus archivos.",
-      "spam": "La respuesta no coincide. Vuelva a intentarlo."
+      "spam": "La respuesta no coincide. Vuelva a intentarlo.",
+      "tax_format": "Esto no parece un {{ name }} válido. Revísalo, por favor.",
+      "country_blocked": "No podemos aceptar solicitudes mayoristas de este país o región."
     },
     "success": {
       "heading": "Gracias, su solicitud se ha enviado",

@@ -101,7 +101,7 @@ type ActionData =
   | { intent: "save"; ok: false; errors: FieldErrors; problem?: Record<string, string> }
   | { intent: "test"; ok: boolean; to?: string; deferred?: boolean };
 
-const MODES = ["instant", "digest", "off"] as const;
+const MODES = ["instant", "digest", "weekly", "off"] as const;
 const EMAIL_RE = /^[^\s@<>()]+@[^\s@<>()]+\.[^\s@<>()]+$/;
 
 export const action = async ({ request }: ActionFunctionArgs): Promise<ActionData> => {

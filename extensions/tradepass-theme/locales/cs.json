@@ -116,7 +116,8 @@
       "salon": "Salon nebo lázně",
       "restaurant": "Restaurace nebo kavárna",
       "distributor": "Distribuční firma",
-      "other": "Jiné"
+      "other": "Jiné",
+      "reseller": "Přeprodejce"
     },
     "order_value": {
       "lt1k": "Méně než 1 000",
@@ -155,7 +156,8 @@
       "gst": "Číslo GST/HST",
       "us_resale": "Číslo certifikátu pro další prodej",
       "us_state": "Stát, který certifikát vydal",
-      "tax_id": "Daňové identifikační číslo"
+      "tax_id": "Daňové identifikační číslo",
+      "example": "Příklad: {{ example }}"
     },
     "upload": {
       "add": "Přidat soubor",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} je větší než 5 MB.",
       "file_count": "Můžete přidat nejvýše 3 soubory.",
       "file_pending": "Počkejte, až se soubory nahrají.",
-      "spam": "Odpověď nesouhlasí. Zkuste to prosím znovu."
+      "spam": "Odpověď nesouhlasí. Zkuste to prosím znovu.",
+      "tax_format": "Toto nevypadá jako platné {{ name }}. Zkontrolujte to prosím.",
+      "country_blocked": "Z této země nebo oblasti nemůžeme přijímat velkoobchodní žádosti."
     },
     "success": {
       "heading": "Děkujeme, vaše žádost byla odeslána",

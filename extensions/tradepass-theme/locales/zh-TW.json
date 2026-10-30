@@ -116,7 +116,8 @@
       "salon": "沙龍或水療中心",
       "restaurant": "餐廳或咖啡廳",
       "distributor": "經銷商",
-      "other": "其他"
+      "other": "其他",
+      "reseller": "轉售商"
     },
     "order_value": {
       "lt1k": "少於 1,000",
@@ -155,7 +156,8 @@
       "gst": "GST/HST 號碼",
       "us_resale": "轉售證明號碼",
       "us_state": "核發證明的州",
-      "tax_id": "稅籍編號"
+      "tax_id": "稅籍編號",
+      "example": "範例：{{ example }}"
     },
     "upload": {
       "add": "新增檔案",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} 超過 5 MB。",
       "file_count": "最多可新增 3 個檔案。",
       "file_pending": "請等候檔案上傳完成。",
-      "spam": "答案不正確。請再試一次。"
+      "spam": "答案不正確。請再試一次。",
+      "tax_format": "這似乎不是有效的{{ name }}。請檢查。",
+      "country_blocked": "我們無法接受來自此國家或地區的批發申請。"
     },
     "success": {
       "heading": "謝謝，您的申請已送出",

@@ -116,7 +116,8 @@
       "salon": "Salon ili spa",
       "restaurant": "Restoran ili kafić",
       "distributor": "Distributer",
-      "other": "Ostalo"
+      "other": "Ostalo",
+      "reseller": "Preprodavač"
     },
     "order_value": {
       "lt1k": "Manje od 1.000",
@@ -155,7 +156,8 @@
       "gst": "Broj GST/HST",
       "us_resale": "Broj potvrde za preprodaju",
       "us_state": "Savezna država koja je izdala potvrdu",
-      "tax_id": "Porezni broj"
+      "tax_id": "Porezni broj",
+      "example": "Primjer: {{ example }}"
     },
     "upload": {
       "add": "Dodaj datoteku",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} veća je od 5 MB.",
       "file_count": "Možete dodati najviše 3 datoteke.",
       "file_pending": "Pričekajte da se datoteke prenesu.",
-      "spam": "Odgovor se ne podudara. Pokušajte ponovno."
+      "spam": "Odgovor se ne podudara. Pokušajte ponovno.",
+      "tax_format": "Ovo ne izgleda kao valjan {{ name }}. Provjerite ga.",
+      "country_blocked": "Ne možemo primati veleprodajne zahtjeve iz ove zemlje ili regije."
     },
     "success": {
       "heading": "Hvala, vaš je zahtjev poslan",

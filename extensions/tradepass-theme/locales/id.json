@@ -116,7 +116,8 @@
       "salon": "Salon atau spa",
       "restaurant": "Restoran atau kafe",
       "distributor": "Distributor",
-      "other": "Lainnya"
+      "other": "Lainnya",
+      "reseller": "Pengecer ulang"
     },
     "order_value": {
       "lt1k": "Kurang dari 1.000",
@@ -155,7 +156,8 @@
       "gst": "Nomor GST/HST",
       "us_resale": "Nomor sertifikat penjualan kembali",
       "us_state": "Negara bagian penerbit sertifikat",
-      "tax_id": "NPWP / ID pajak"
+      "tax_id": "NPWP / ID pajak",
+      "example": "Contoh: {{ example }}"
     },
     "upload": {
       "add": "Tambah file",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} lebih dari 5 MB.",
       "file_count": "Anda dapat menambahkan hingga 3 file.",
       "file_pending": "Tunggu hingga file selesai diunggah.",
-      "spam": "Jawaban tidak cocok. Silakan coba lagi."
+      "spam": "Jawaban tidak cocok. Silakan coba lagi.",
+      "tax_format": "Ini tampaknya bukan {{ name }} yang valid. Harap periksa kembali.",
+      "country_blocked": "Kami tidak dapat menerima pengajuan grosir dari negara atau wilayah ini."
     },
     "success": {
       "heading": "Terima kasih, pengajuan Anda sudah terkirim",

@@ -116,7 +116,8 @@
       "salon": "Salong eller spa",
       "restaurant": "Restaurang eller kafé",
       "distributor": "Distributör",
-      "other": "Annat"
+      "other": "Annat",
+      "reseller": "Återförsäljare"
     },
     "order_value": {
       "lt1k": "Mindre än 1 000",
@@ -155,7 +156,8 @@
       "gst": "GST/HST-nummer",
       "us_resale": "Nummer på återförsäljarintyg",
       "us_state": "Delstat som utfärdade intyget",
-      "tax_id": "Skatte-ID"
+      "tax_id": "Skatte-ID",
+      "example": "Exempel: {{ example }}"
     },
     "upload": {
       "add": "Lägg till fil",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} är större än 5 MB.",
       "file_count": "Du kan lägga till högst 3 filer.",
       "file_pending": "Vänta tills dina filer har laddats upp.",
-      "spam": "Svaret stämmer inte. Försök igen."
+      "spam": "Svaret stämmer inte. Försök igen.",
+      "tax_format": "Det här ser inte ut som ett giltigt {{ name }}. Kontrollera det.",
+      "country_blocked": "Vi kan inte ta emot grossistansökningar från det här landet eller området."
     },
     "success": {
       "heading": "Tack! Din ansökan har skickats",

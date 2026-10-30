@@ -50,32 +50,74 @@
       "consent": "सहमति"
     },
     "field": {
-      "companyName": { "label": "कंपनी का नाम" },
-      "businessType": { "label": "कारोबार का प्रकार" },
-      "website": { "label": "वेबसाइट", "placeholder": "https://" },
-      "yearEstablished": { "label": "स्थापना का वर्ष" },
-      "locationsCount": { "label": "लोकेशन की संख्या" },
-      "monthlyOrderValue": { "label": "अनुमानित मासिक ऑर्डर वैल्यू" },
-      "referral": { "label": "आपको हमारे बारे में कैसे पता चला?" },
-      "firstName": { "label": "पहला नाम" },
-      "lastName": { "label": "उपनाम" },
-      "email": { "label": "ईमेल", "help": "हम आपके आवेदन से जुड़ी जानकारी इसी पते पर भेजेंगे।" },
-      "phone": { "label": "फ़ोन" },
-      "jobTitle": { "label": "पद" },
-      "preferredLanguage": { "label": "पसंदीदा भाषा" },
-      "billingAddress": { "label": "बिलिंग पता" },
-      "shippingAddress": { "label": "शिपिंग पता" },
-      "taxNumber": { "label": "टैक्स रजिस्ट्रेशन" },
-      "certificates": { "label": "सर्टिफ़िकेट", "help": "जैसे रीसेल या टैक्स छूट का सर्टिफ़िकेट।" },
-      "message": { "label": "स्टोर के लिए संदेश" },
-      "consent": { "label": "मैं सहमत हूँ कि इस आवेदन की समीक्षा के लिए मेरी जानकारी इस्तेमाल की जाए।" }
+      "companyName": {
+        "label": "कंपनी का नाम"
+      },
+      "businessType": {
+        "label": "कारोबार का प्रकार"
+      },
+      "website": {
+        "label": "वेबसाइट",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "स्थापना का वर्ष"
+      },
+      "locationsCount": {
+        "label": "लोकेशन की संख्या"
+      },
+      "monthlyOrderValue": {
+        "label": "अनुमानित मासिक ऑर्डर वैल्यू"
+      },
+      "referral": {
+        "label": "आपको हमारे बारे में कैसे पता चला?"
+      },
+      "firstName": {
+        "label": "पहला नाम"
+      },
+      "lastName": {
+        "label": "उपनाम"
+      },
+      "email": {
+        "label": "ईमेल",
+        "help": "हम आपके आवेदन से जुड़ी जानकारी इसी पते पर भेजेंगे।"
+      },
+      "phone": {
+        "label": "फ़ोन"
+      },
+      "jobTitle": {
+        "label": "पद"
+      },
+      "preferredLanguage": {
+        "label": "पसंदीदा भाषा"
+      },
+      "billingAddress": {
+        "label": "बिलिंग पता"
+      },
+      "shippingAddress": {
+        "label": "शिपिंग पता"
+      },
+      "taxNumber": {
+        "label": "टैक्स रजिस्ट्रेशन"
+      },
+      "certificates": {
+        "label": "सर्टिफ़िकेट",
+        "help": "जैसे रीसेल या टैक्स छूट का सर्टिफ़िकेट।"
+      },
+      "message": {
+        "label": "स्टोर के लिए संदेश"
+      },
+      "consent": {
+        "label": "मैं सहमत हूँ कि इस आवेदन की समीक्षा के लिए मेरी जानकारी इस्तेमाल की जाए।"
+      }
     },
     "business_type": {
       "retail": "रिटेल स्टोर",
       "salon": "सैलून या स्पा",
       "restaurant": "रेस्टोरेंट या कैफ़े",
       "distributor": "डिस्ट्रीब्यूटर",
-      "other": "अन्य"
+      "other": "अन्य",
+      "reseller": "पुनर्विक्रेता"
     },
     "order_value": {
       "lt1k": "1,000 से कम",
@@ -114,7 +156,8 @@
       "gst": "GST/HST नंबर",
       "us_resale": "रीसेल सर्टिफ़िकेट नंबर",
       "us_state": "सर्टिफ़िकेट जारी करने वाला राज्य",
-      "tax_id": "टैक्स ID"
+      "tax_id": "टैक्स ID",
+      "example": "उदाहरण: {{ example }}"
     },
     "upload": {
       "add": "फ़ाइल जोड़ें",
@@ -141,7 +184,9 @@
       "file_size": "{{ name }} का साइज़ 5 MB से ज़्यादा है।",
       "file_count": "आप ज़्यादा से ज़्यादा 3 फ़ाइलें जोड़ सकते हैं।",
       "file_pending": "अपनी फ़ाइलों का अपलोड पूरा होने तक रुकें।",
-      "spam": "यह जवाब मेल नहीं खाता। कृपया फिर कोशिश करें।"
+      "spam": "यह जवाब मेल नहीं खाता। कृपया फिर कोशिश करें।",
+      "tax_format": "यह मान्य {{ name }} नहीं लगता। कृपया इसे जाँचें।",
+      "country_blocked": "हम इस देश या क्षेत्र से थोक आवेदन स्वीकार नहीं कर सकते।"
     },
     "success": {
       "heading": "धन्यवाद, आपका आवेदन भेज दिया गया है",

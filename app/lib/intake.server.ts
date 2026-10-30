@@ -16,6 +16,8 @@ import { checkTaxNumber as realCheckTax, type TaxCheck } from "./taxcheck.server
 import { MAX_UPLOAD_FILES, verifyFileRef } from "./uploads.server";
 import type { Admin } from "./gql.server";
 import { can, effectivePlan } from "./plans";
+import { checkTaxIdFormat } from "./tax-ids";
+import { countryAllowed, readSettings } from "./settings";
 
 export type IntakeDeps = {
   getAdmin: (shop: string) => Promise<Admin | null>;
@@ -25,7 +27,18 @@ export type IntakeDeps = {
   emitFlowTrigger: typeof import("./flow.server").emitFlowTrigger;
   evaluateRules: typeof import("./rules.server").evaluateRules;
   recordApplicationCertificates: typeof import("./certificates.server").recordApplicationCertificates;
+  /**
+   * Run slow follow-ups (merchant alert, Flow, auto-approval rules) without
+   * holding up the applicant: the app proxy gives a request ~10 s, and an
+   * auto-approval alone can take longer. The default stores a durable job first
+   * so the hourly run finishes the work if this process stops.
+   */
+  defer: (shop: string, applicationId: string, run: () => Promise<void>) => Promise<void>;
 };
+
+export const INTAKE_JOB = "intake_followup";
+/** The background run normally finishes in seconds; only after this does the hourly job take over. */
+const INTAKE_JOB_GRACE_MS = 15 * 60_000;
 
 /** Real dependencies, loaded lazily so tests and the proxy loader stay light. */
 export const defaultDeps: IntakeDeps = {
@@ -43,6 +56,15 @@ export const defaultDeps: IntakeDeps = {
   emitFlowTrigger: async (...a) => (await import("./flow.server")).emitFlowTrigger(...a),
   evaluateRules: async (...a) => (await import("./rules.server")).evaluateRules(...a),
   recordApplicationCertificates: async (...a) => (await import("./certificates.server")).recordApplicationCertificates(...a),
+  defer: async (shop, applicationId, run) => {
+    const job = await db.job.create({
+      data: { shop, type: INTAKE_JOB, payload: { applicationId }, runAfter: new Date(Date.now() + INTAKE_JOB_GRACE_MS) },
+      select: { id: true },
+    });
+    void run()
+      .then(() => db.job.updateMany({ where: { id: job.id, state: "queued" }, data: { state: "done" } }))
+      .catch(() => undefined); // the job stays queued; the hourly run retries it
+  },
 };
 
 export type IntakeContext = { shop: string; loggedInCustomerId: string | null; ip: string };
@@ -131,6 +153,9 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
         if (!number) { if (required) fail("form.error.required"); break; }
         const country = str(t.country, 2).toUpperCase();
         const region = str(t.region, 3).toUpperCase();
+        // Same check as the storefront: only formats we know for certain are refused.
+        const billingCountry = isObj(input.billingAddress) ? str(input.billingAddress.countryCode, 2).toUpperCase() : "";
+        if (checkTaxIdFormat(country || billingCountry, number) === "invalid") { fail("form.error.tax_format"); break; }
         out.tax = { country: COUNTRY_RE.test(country) ? country : "", number, region: /^[A-Z]{2,3}$/.test(region) ? region : "" };
         out.answers[f.id] = { country: out.tax.country, region: out.tax.region || undefined }; // the number itself is encrypted, never in answers
         break;
@@ -276,6 +301,10 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
 
   const clean = cleanAnswers(form.definition, body.answers, shop);
   if (Object.keys(clean.errors).length) return { http: 400, body: { ok: false, errors: clean.errors } };
+  // The merchant's country rule (the form says so too; this is the authoritative check).
+  const billingCountry = isObj(clean.answers.billingAddress) ? (clean.answers.billingAddress.countryCode as string | undefined) : undefined;
+  const rule = readSettings((await db.shop.findUnique({ where: { shop }, select: { settings: true } }))?.settings ?? {}).applications.countries;
+  if (!countryAllowed(rule, billingCountry)) return { http: 400, body: { ok: false, errors: { billingAddress: "form.error.country_blocked" } } };
 
   const email = typeof clean.answers.email === "string" ? clean.answers.email : "";
   if (email && !(await hit(`submit:${hashKey("email", email)}`, LIMITS.submitPerEmail)).allowed) {
@@ -393,14 +422,31 @@ async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
       subjectId: a.id,
     }));
   }
-  await safe("notify_merchant", () => deps.notifyMerchant(shop, { applicationId: a.id, company: a.companyName }));
+  await safe("followups", () => deps.defer(shop, a.id, () => intakeFollowups(shop, a.id, deps)));
+}
+
+/**
+ * Merchant alert, Flow "submitted" trigger and automation rules for a stored
+ * application. Runs in the background after submit, or from the hourly job
+ * (tasks/background.ts) if that run was interrupted. Each part is isolated.
+ */
+export async function intakeFollowups(shop: string, applicationId: string, deps: Pick<IntakeDeps, "getAdmin" | "notifyMerchant" | "emitFlowTrigger" | "evaluateRules"> = defaultDeps): Promise<void> {
+  const app = await db.application.findFirst({ where: { shop, id: applicationId }, select: { id: true, email: true, companyName: true, countryCode: true } });
+  if (!app) return;
+  const safe = async (what: string, fn: () => Promise<unknown>) => {
+    try {
+      await fn();
+    } catch (e) {
+      await logActivity({ shop, actor: "system", action: `application.${what}`, subject: app.id, result: "failed", detail: { error: (e as Error).name } }).catch(() => undefined);
+    }
+  };
+  await safe("notify_merchant", () => deps.notifyMerchant(shop, { applicationId: app.id, company: app.companyName }));
   const admin = await deps.getAdmin(shop);
-  if (admin) {
-    await safe("flow", () => deps.emitFlowTrigger(admin, shop, "application_submitted", {
-      applicationId: a.id, companyName: a.companyName, contactEmail: a.email, country: a.countryCode ?? undefined,
-    }));
-    await safe("rules", () => deps.evaluateRules(admin, shop, a.id));
-  }
+  if (!admin) return;
+  await safe("flow", () => deps.emitFlowTrigger(admin, shop, "application_submitted", {
+    applicationId: app.id, companyName: app.companyName, contactEmail: app.email, country: app.countryCode ?? undefined,
+  }));
+  await safe("rules", () => deps.evaluateRules(admin, shop, app.id));
 }
 
 // ---------------------------------------------------------------- needs info
@@ -481,6 +527,8 @@ export async function applyUpdate(
     }))).catch(() => undefined);
   }
   await logActivity({ shop, actor: "applicant", action: "application.updated", subject: app.id, detail: { fields: Object.keys(clean.answers) } }).catch(() => undefined);
+  // Tell the merchant the ball is back in their court (instant alerts; the digest counts these too).
+  await (await import("./email/index.server")).notifyMerchantInfoReceived(shop, { applicationId: app.id, company: app.companyName }).catch(() => undefined);
   return { ok: true };
 }
 

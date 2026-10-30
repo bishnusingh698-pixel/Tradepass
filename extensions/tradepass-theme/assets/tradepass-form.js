@@ -157,12 +157,16 @@
           if (c && c.r && !a.zoneCode) errs.zoneCode = tx("form.error.choose", { field: zoneLabel(c) });
           if (c && c.z !== 0 && !a.zip) errs.zip = tx("form.error.required", { field: zipLabel(c) });
         }
+        if (f.id === "billingAddress" && countryBlocked(a.countryCode)) errs.countryCode = tx("form.error.country_blocked");
         return Object.keys(errs).length ? errs : null;
       }
       if (f.type === "country_tax") {
         var tv = v || {};
         if (req && !tv.number) return tx("form.error.required", { field: taxLabel(tv.country) });
         if (tv.number && tv.number.length > 40) return tx("form.error.too_long", { max: 40 });
+        var bill0 = state.values.billingAddress;
+        var tc = tv.country || (bill0 && bill0.countryCode) || opts.country || "";
+        if (tv.number && taxFormatBad(tc, tv.number)) return tx("form.error.tax_format", { name: taxLabel(tc) });
         return null;
       }
       if (f.type === "file") {
@@ -206,7 +210,28 @@
       if (country === "US") return "us_resale";
       return "tax_id";
     }
-    function taxLabel(country) { return tx("form.tax." + taxKind(country)); }
+    // Country tax-ID rule from the country data: [name, example, pattern, prefix, strict].
+    function taxRule(country) { var c = countries && countries[country]; return c && c.t ? c.t : null; }
+    function taxLabel(country) {
+      var base = tx("form.tax." + taxKind(country));
+      var r = taxRule(country);
+      return r && r[0] && base.indexOf(r[0]) < 0 ? base + " (" + r[0] + ")" : base;
+    }
+    /** True when a strict rule says the number can't be right (same check as the server). */
+    function taxFormatBad(country, number) {
+      var r = taxRule(country);
+      if (!r || !r[2] || !r[4] || !number) return false;
+      var n = String(number).replace(/[\s.\-\/]/g, "").toUpperCase();
+      if (r[3] && n.indexOf(r[3]) !== 0 && !/^[A-Z]{2}/.test(n)) n = r[3] + n;
+      try { return !new RegExp(r[2]).test(n); } catch (e) { return false; }
+    }
+    // Countries the merchant accepts applications from (Settings → Countries).
+    var countryRule = opts.countryRule || null;
+    function countryBlocked(code) {
+      if (!code || !countryRule || !countryRule.list) return false;
+      var listed = countryRule.list.indexOf(code) >= 0;
+      return countryRule.mode === "allow" ? !listed : countryRule.mode === "block" ? listed : false;
+    }
 
     // ---------- controls ----------
     function fieldShell(f, control, opt) {
@@ -456,13 +481,15 @@
           var cs = countrySelect(id + "-country", country, null, function (c) { v.country = c; onChange(f, v); build(); var n = document.getElementById(id + "-country"); if (n) n.focus(); });
           box.appendChild(sub(id + "-country", tx("form.tax.country"), cs).el);
           var kind = taxKind(country);
-          numberInput = h("input", { id: id, type: "text", maxlength: 40, autocomplete: "off", spellcheck: "false", "aria-describedby": describedBy, "aria-required": f.state === "required" ? "true" : null });
+          var rule = taxRule(country);
+          numberInput = h("input", { id: id, type: "text", maxlength: 40, autocomplete: "off", spellcheck: "false", placeholder: rule && rule[1] ? rule[1] : null, "aria-describedby": describedBy, "aria-required": f.state === "required" ? "true" : null });
           numberInput.value = v.number || "";
           numberInput.addEventListener("input", function () { v.number = numberInput.value.trim(); if (!v.country) v.country = country; onChange(f, v); });
           numberInput.addEventListener("blur", blur(f));
           box.appendChild(h("div", { className: "tpf-sub" }, [
             h("label", { "for": id, className: "tpf-sublabel", text: tx("form.tax." + kind) }),
-            kind === "vat" ? h("p", { className: "tpf-help", text: tx("form.tax.vat_help") }) : null,
+            rule && rule[1] ? h("p", { className: "tpf-help", text: tx("form.tax.example", { example: rule[1] }) })
+              : kind === "vat" ? h("p", { className: "tpf-help", text: tx("form.tax.vat_help") }) : null,
             numberInput
           ]));
           if (kind === "us_resale") {
@@ -760,8 +787,10 @@
             var list = [];
             for (var id in j.errors) {
               if (!nodes[id]) continue;
-              var msg = tx(j.errors[id], { field: label(fieldsById[id]), max: 255 }) || tx("form.error.required", { field: label(fieldsById[id]) });
-              showError(fieldsById[id], msg);
+              var tv1 = state.values.taxNumber || {};
+              var msg = tx(j.errors[id], { field: label(fieldsById[id]), max: 255, name: taxLabel(tv1.country || "") }) || tx("form.error.required", { field: label(fieldsById[id]) });
+              // Server errors on an address are about its country (e.g. not accepted): show them there.
+              showError(fieldsById[id], fieldsById[id].type === "address" ? { countryCode: msg } : msg);
               list.push({ id: id, text: msg });
             }
             if (j.errors.spam && spamInput) { status.textContent = tx("form.error.spam"); spamInput.focus(); }
@@ -797,7 +826,7 @@
         definition: cfg.definition, texts: texts, locale: cfg.locale, dir: cfg.dir,
         endpoint: cfg.endpoint, formId: cfg.formId, country: cfg.country, prefill: cfg.prefill,
         languages: cfg.languages, countriesUrl: cfg.countriesUrl, submitUrl: cfg.submitUrl, uploadUrl: cfg.uploadUrl,
-        successEmail: cfg.successEmail
+        successEmail: cfg.successEmail, countryRule: cfg.countryRule
       });
     });
   }
