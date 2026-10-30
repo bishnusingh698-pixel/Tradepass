@@ -14,6 +14,9 @@ export const LIMITS = {
   uploadPerIp: 30,
   updatePerIp: 20,
   spamPerIp: 5, // after this many spam hits in an hour, everything from that IP is discarded
+  // Backstop for the whole store: X-Forwarded-For's first entry can be set by the client,
+  // so per-IP limits alone can't stop a flood that rotates fake IPs.
+  submitPerShop: 120,
 } as const;
 
 export function hourWindow(now = new Date()): string {
@@ -31,7 +34,9 @@ export function hashKey(kind: string, value: string): string {
 
 /**
  * Client IP as seen behind Shopify's app proxy and Render's load balancer.
- * The left-most X-Forwarded-For entry is the original client.
+ * The left-most X-Forwarded-For entry is the original client as reported
+ * upstream; a client can prepend its own value, which is why intake also has a
+ * per-store hourly cap (LIMITS.submitPerShop) and per-email limits.
  */
 export function clientIp(request: Request): string {
   const xff = request.headers.get("x-forwarded-for");

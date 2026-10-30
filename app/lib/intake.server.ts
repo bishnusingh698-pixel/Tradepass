@@ -292,6 +292,7 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
     return { http: 200, body: { ok: true, status: "received" } };
   }
   if (!(await hit(`submit:${ipKey}`, LIMITS.submitPerIp)).allowed) return { http: 429, body: { ok: false, error: "rate_limited" } };
+  if (!(await hit(`submit-shop:${hashKey("shop", shop)}`, LIMITS.submitPerShop)).allowed) return { http: 429, body: { ok: false, error: "rate_limited" } };
 
   const form = await loadForm(shop, body.formId);
   if (!form) return { http: 400, body: { ok: false, error: "no_form" } };

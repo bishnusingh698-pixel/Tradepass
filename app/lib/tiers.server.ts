@@ -103,6 +103,8 @@ const Q = {
   publicationCreate: `#graphql
     mutation TierPublication($input: PublicationCreateInput!) { publicationCreate(input: $input) {
       publication { id } userErrors { field message code } } }`,
+  publicationDelete: `#graphql
+    mutation TierPublicationDelete($id: ID!) { publicationDelete(id: $id) { deletedId userErrors { field message } } }`,
   publicationUpdate: `#graphql
     mutation TierPublicationUpdate($id: ID!, $input: PublicationUpdateInput!) { publicationUpdate(id: $id, input: $input) {
       publication { id } userErrors { field message code } } }`,
@@ -582,6 +584,10 @@ export async function updateTier(ctx: Ctx, tierId: string, input: TierInput): Pr
       // Rebuild the publication: simplest way to get exactly the chosen products, and catalogDelete cleans old ones.
       const fresh = await createPublication(ctx.admin, tier.catalogGid!, input.products);
       await mutate(ctx.admin, "catalogUpdate", Q.catalogUpdate, { id: tier.catalogGid, input: { publicationId: fresh } });
+      // The old publication is no longer attached to anything; remove it so they don't pile up in the store.
+      if (tier.publicationGid && tier.publicationGid !== fresh && d.created.publication) {
+        await mutate(ctx.admin, "publicationDelete", Q.publicationDelete, { id: tier.publicationGid }).catch(() => undefined);
+      }
       publicationGid = fresh;
     }
     if (input.name.trim() !== tier.name && d.created.catalog && tier.catalogGid)
