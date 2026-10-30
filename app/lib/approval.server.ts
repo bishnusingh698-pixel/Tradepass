@@ -81,7 +81,7 @@ export function approvalStatusOf(s: ApprovalState | null): "running" | "failed" 
 
 export type ApprovalCtx = { admin: Admin; shop: string; actor: string; t?: (key: string, values?: Record<string, string | number | Date>) => string };
 
-export type ApprovalErrorCode = "plan_limit" | "not_found" | "not_pending" | "busy" | "no_state" | "finished" | "missing_address" | "tier_required";
+export type ApprovalErrorCode = "plan_limit" | "not_found" | "not_pending" | "busy" | "no_state" | "finished" | "missing_address" | "tier_required" | "no_b2b";
 export class ApprovalError extends Error {
   constructor(readonly code: ApprovalErrorCode) {
     super(code);
@@ -541,7 +541,9 @@ function contactFromApp(app: Application, input: ApproveInput) {
 }
 
 async function checkQuota(shop: string) {
-  const row = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true, isDevStore: true } });
+  const row = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true, isDevStore: true, b2bEnabled: true } });
+  // Without B2B Shopify refuses companies; say so in plain words before creating anything.
+  if (row && !row.b2bEnabled) throw new ApprovalError("no_b2b");
   const plan = effectivePlan(row?.billingPlan ?? "free", Boolean(row?.isDevStore));
   if (approvalQuota(plan, await approvalsThisMonth(shop)).blocked) throw new ApprovalError("plan_limit");
 }

@@ -36,7 +36,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const privacyRequests = await listDataRequests(ctx.shop);
   return {
     countries: ctx.settings.applications.countries,
-    storeCountry: ctx.shopRow?.country ?? null,
     privacyRequests,
     languages,
     overrides,
@@ -206,7 +205,7 @@ export default function SettingsPage() {
             <CountryPicker
               name="countryList"
               label={t("settings.countries.list")}
-              selected={d.countries.list.length ? d.countries.list : d.storeCountry ? [d.storeCountry] : []}
+              selected={d.countries.list}
               error={errors.countryList ? t(errors.countryList) : undefined}
             />
             <s-paragraph color="subdued">{t("settings.countries.note")}</s-paragraph>

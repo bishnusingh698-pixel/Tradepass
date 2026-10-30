@@ -283,3 +283,22 @@ describe("B8: privacy", () => {
     expect(await db.application.count({ where: { shop: SHOP, email } })).toBe(0);
   });
 });
+
+describe("plan without B2B", () => {
+  it("approval is refused in plain words before anything is created in Shopify", async () => {
+    const { approveApplication, ApprovalError } = await import("../app/lib/approval.server");
+    const NOB2B = `test-audit-nob2b-${rnd}.myshopify.com`;
+    await db.shop.create({ data: { shop: NOB2B, settings: defaultSettings() as object, billingPlan: "pro", b2bEnabled: false } });
+    const a = await db.application.create({ data: { shop: NOB2B, idempotencyKey: `nb-${rnd}`, companyName: "No B2B Co", email: "nb@example.com", answers: {} } });
+    const graphql = vi.fn();
+    const input = {
+      tierId: "t1", paymentTermsTemplateId: null, taxExempt: false, exemptions: [], taxRegistrationId: null, companyName: "No B2B Co", locationName: "HQ",
+      billingAddress: { address1: "1 Main", city: "Austin", countryCode: "US" }, shippingAddress: null, contact: { mode: "new" as const }, sendWelcome: false,
+    };
+    await expect(approveApplication({ admin: { graphql }, shop: NOB2B, actor: "staff" }, a.id, input)).rejects.toBeInstanceOf(ApprovalError);
+    expect(graphql).not.toHaveBeenCalled();
+    await db.shopLock.deleteMany({ where: { shop: NOB2B } });
+    await db.application.deleteMany({ where: { shop: NOB2B } });
+    await db.shop.deleteMany({ where: { shop: NOB2B } });
+  });
+});

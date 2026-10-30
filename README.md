@@ -10,6 +10,17 @@ Built on Shopify's React Router app template (React Router 7, React 19, Polaris 
 
 Everything below is free. Do the sections in order. Where it says "the agent", the coding agent does that step for you.
 
+## First deployment at a glance
+
+1. **Neon** (§4): create the project, copy the pooled and direct connection strings.
+2. **Shopify Partner app** (§2.1–2.2): create/link the app; copy the client ID and secret.
+3. **Render** (§3): Blueprint from this repo, paste every environment variable (§7). The first build creates the database tables.
+4. **Point Shopify at Render** (§2.6): put the Render URL in `shopify.app.toml` (`application_url`, `auth.redirect_urls`, `app_proxy.url`) and run `npm run deploy`.
+5. **Protected customer data** (§2.4): request access in the Partner Dashboard (needed for real stores).
+6. **cron-job.org** (§5): health check every 10 minutes, hourly and daily jobs.
+7. **Brevo** (§6): API key and verified sender (emails queue safely until this is done).
+8. **Install** on a development store, open the app and follow **Set up Tradepass** (the setup wizard on Home): it checks the plan, sets up the form, creates the first tier and adds the form to the theme.
+
 ## 1. Local development (for the coding agent)
 
 Requirements: Node 22.12+, Postgres 16, Shopify CLI (comes with `npm install`), and a Shopify Partner account.
@@ -84,7 +95,7 @@ Plans are created through Shopify's Billing API when a merchant picks one. No Pa
 2. **New** → **Blueprint** → choose the `tradepass` repository → **Apply**. Render reads `render.yaml` and creates one **free** web service named `tradepass` (region Oregon, health check `/healthz`).
 3. Open the service → **Environment** and fill in every value marked "sync: false" (see section 7 for each one).
 4. Copy the service URL Render shows (e.g. `https://tradepass.onrender.com`) into `SHOPIFY_APP_URL`. Tell the agent, who updates `shopify.app.toml` and runs `shopify app deploy` again.
-5. Each deploy runs `npm run render-build`: install, build, `prisma generate` and `prisma migrate deploy` (database migrations run automatically).
+5. Each deploy runs `npm run render-build`: install, `prisma generate`, `prisma migrate deploy` (migrations run automatically, before the new code starts) and the production build. Start command: `npm run start` (listens on Render's `PORT`).
 
 Only one free service can stay awake all month, so there's no separate staging service.
 
@@ -92,7 +103,8 @@ Only one free service can stay awake all month, so there's no separate staging s
 1. Go to https://neon.tech → **Sign up** (GitHub is easiest).
 2. **Create project**: name `tradepass`, Postgres 16, region closest to Render (**US West (Oregon)**, or Frankfurt if you moved Render to Frankfurt).
 3. On the project dashboard click **Connect**. With **Connection pooling** ON, copy the string → `DATABASE_URL`. Switch pooling OFF and copy again → `DIRECT_DATABASE_URL`. Paste both into Render.
-4. Nothing else: tables are created by the first Render deploy. The database sleeps when idle; `/healthz` never wakes it.
+4. Add `&connect_timeout=15` to the end of **both** strings (after `?sslmode=require`). Neon's free database sleeps when idle and takes a few seconds to wake; without this the first request after a quiet spell can fail with "Can't reach database server" (Prisma P1001).
+5. Nothing else: tables are created by the first Render deploy from one migration (`prisma/migrations/20261030000000_init`). `/healthz` never touches the database, so the keep-awake ping doesn't use Neon compute.
 
 ## 5. Scheduled jobs: cron-job.org
 1. Sign up at https://cron-job.org → **Dashboard** → **Create cronjob**. Make three:
@@ -126,8 +138,8 @@ All of these are in `.env.example`. On Render, set them in the service's **Envir
 | `SHOPIFY_API_SECRET` | App client secret (also checks webhooks, the app proxy and Flow requests) | Same place |
 | `SHOPIFY_APP_URL` | Public URL of the app, e.g. `https://tradepass.onrender.com` | Render (the CLI sets it during `shopify app dev`) |
 | `SCOPES` | `write_companies,write_customers,write_markets,write_products,write_publications,write_files,write_validations,read_orders,read_locales` | Already filled in; must match `shopify.app.toml` |
-| `DATABASE_URL` | Neon **pooled** connection string (host contains `-pooler`) | Neon → Connect |
-| `DIRECT_DATABASE_URL` | Neon **direct** connection string (used for migrations) | Neon → Connect, pooling off |
+| `DATABASE_URL` | Neon **pooled** connection string (host contains `-pooler`), ending in `?sslmode=require&connect_timeout=15` | Neon → Connect |
+| `DIRECT_DATABASE_URL` | Neon **direct** connection string (used for migrations), same ending | Neon → Connect, pooling off |
 | `ENCRYPTION_KEY` | 32 random bytes, base64: `openssl rand -base64 32`. Encrypts tax numbers. **Never change it** once there's data (old numbers would become unreadable) | The agent generates it |
 | `LINK_TOKEN_SECRET` | Long random string: `openssl rand -hex 32`. Signs more-info and renewal links, and salts spam-protection hashes | The agent generates it |
 | `JOB_SECRET` | Long random string. cron-job.org sends it as `X-Tradepass-Job-Secret` | The agent generates it |
@@ -136,12 +148,18 @@ All of these are in `.env.example`. On Render, set them in the service's **Envir
 | `BILLING_TEST` | `false` in production; `true` on a staging app so charges are test charges | — |
 | `SUPPORT_EMAIL` | The support address shown in Help | Your email |
 
-`render.yaml` also sets `NODE_VERSION=22.12.0` and `NODE_ENV=production`.
+| `HMRC_CLIENT_ID`, `HMRC_CLIENT_SECRET` | Optional. UK VAT checks: register an application on the HMRC Developer Hub (https://developer.service.hmrc.gov.uk) and subscribe it to "Check a UK VAT number". Without them, UK numbers show "Couldn't check" (the format is still checked) | HMRC Developer Hub |
+| `ABN_GUID` | Optional. Australian ABN checks: free GUID from https://abr.business.gov.au/Tools/WebServices. Without it a mistyped ABN is still caught by the checksum | ABN Lookup |
 
-Optional variables the code reads that aren't in `.env.example` yet:
-- `HMRC_CLIENT_ID`, `HMRC_CLIENT_SECRET`: UK VAT checks. Register an application on the HMRC Developer Hub (https://developer.service.hmrc.gov.uk) and subscribe it to "Check a UK VAT number". Without them, UK numbers show "Couldn't check".
-- `ABN_GUID`: Australian ABN checks. Register for a free GUID at https://abr.business.gov.au/Tools/WebServices. Without it, a mistyped ABN is still caught by a local checksum, and valid-looking ones show "Couldn't check".
-- `SHOP_CUSTOM_DOMAIN`: template option for a custom shop domain; not needed.
+`render.yaml` also sets `NODE_VERSION=22.12.0` and `NODE_ENV=production`. `SHOP_CUSTOM_DOMAIN` (template option for a custom shop domain) is not needed.
+
+Generate the three secrets on your own computer:
+
+```bash
+openssl rand -base64 32   # ENCRYPTION_KEY
+openssl rand -hex 32      # LINK_TOKEN_SECRET
+openssl rand -hex 32      # JOB_SECRET
+```
 
 ## Endpoints
 - `GET /healthz` returns `ok` instantly and never uses the database.
