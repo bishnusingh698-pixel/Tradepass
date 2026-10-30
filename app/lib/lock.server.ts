@@ -27,12 +27,16 @@ export async function unlock(shop: string, name: string, holder: string): Promis
   await db.shopLock.deleteMany({ where: { shop, name, holder } });
 }
 
-/** Run `fn` holding the lock; waits up to `waitMs` for it, polling. */
-export async function withLock<T>(shop: string, name: string, fn: () => Promise<T>, waitMs = 20_000): Promise<T> {
+/**
+ * Run `fn` holding the lock; waits up to `waitMs` for it, polling. `ttlMs` must
+ * be longer than `fn` can take: an expired lock can be taken over by another
+ * request, which is exactly the double-run the lock exists to prevent.
+ */
+export async function withLock<T>(shop: string, name: string, fn: () => Promise<T>, waitMs = 20_000, ttlMs = 30_000): Promise<T> {
   const deadline = Date.now() + waitMs;
   let holder: string | null = null;
   let delay = 150;
-  while (!(holder = await tryLock(shop, name))) {
+  while (!(holder = await tryLock(shop, name, ttlMs))) {
     if (Date.now() > deadline) throw new LockBusyError(shop, name);
     await new Promise((r) => setTimeout(r, delay + Math.random() * 100));
     delay = Math.min(delay * 2, 1500);
@@ -42,4 +46,10 @@ export async function withLock<T>(shop: string, name: string, fn: () => Promise<
   } finally {
     await unlock(shop, name, holder);
   }
+}
+
+/** Approve, reject, "needs info" and Undo on one application never run at the same time. */
+export const APPLICATION_LOCK_TTL_MS = 10 * 60_000;
+export function withApplicationLock<T>(shop: string, applicationId: string, fn: () => Promise<T>, waitMs = 3_000): Promise<T> {
+  return withLock(shop, `approval:${applicationId}`, fn, waitMs, APPLICATION_LOCK_TTL_MS);
 }

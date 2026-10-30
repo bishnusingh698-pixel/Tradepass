@@ -6,7 +6,8 @@ import { parse, TYPE } from "@formatjs/icu-messageformat-parser";
 
 const SAME_OK = new Set(["app.name"]);
 const read = (p) => JSON.parse(readFileSync(p, "utf8"));
-const nsFiles = readdirSync("app/locales/en").filter((f) => f.endsWith(".json"));
+// pending.json holds strings added after the translation pass (English fallback until translated).
+const nsFiles = readdirSync("app/locales/en").filter((f) => f.endsWith(".json") && f !== "pending.json");
 
 function walk(els, out) {
   for (const el of els) {

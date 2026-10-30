@@ -16,11 +16,12 @@ import { decrypt, sha256 } from "./crypto.server";
 import { queueEmail } from "./email/index.server";
 import { emitFlowTrigger } from "./flow.server";
 import { createT } from "./i18n";
-import { LockBusyError, withLock } from "./lock.server";
+import { LockBusyError, withApplicationLock } from "./lock.server";
 import { approvalQuota, effectivePlan } from "./plans";
 import { approvalsThisMonth } from "./applications.server";
 import { readSettings } from "./settings";
 import { suggestExemption, US_RESELLER_STATES } from "./tax";
+import { storefrontUrl } from "./shop.server";
 import {
   AssignmentError, ASSISTED_JOB, catalogBudget, moveLocations, paymentTermsOptions, readDefaults, TierError,
 } from "./tiers.server";
@@ -67,7 +68,16 @@ export type ApprovalState = {
   finishedAt?: string;
   buyerId?: string;
   autoRetries?: number;
+  /** The "approved" Flow trigger was sent (it must fire once, even if finalise runs again after a crash). */
+  flowSent?: boolean;
 };
+
+/** Indexed summary of an approval's progress (Application.approvalStatus). */
+export function approvalStatusOf(s: ApprovalState | null): "running" | "failed" | "done" | null {
+  if (!s) return null;
+  if (s.finishedAt) return "done";
+  return APPROVAL_STEPS.some((k) => s.steps[k]?.status === "failed") ? "failed" : "running";
+}
 
 export type ApprovalCtx = { admin: Admin; shop: string; actor: string; t?: (key: string, values?: Record<string, string | number | Date>) => string };
 
@@ -438,7 +448,11 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
     const tierName = ((tier?.buyerNames ?? {}) as Record<string, string>)[r.locale] || tier?.name || "";
     const res = await queueEmail({
       shop: r.ctx.shop, type: "approved", to: r.email, locale: r.locale, subjectId: r.state.buyerId,
-      vars: { company: i.companyName, first_name: r.firstName ?? "", store_name: row?.name ?? "", tier_name: tierName, login_url: settings.storefront.loginUrl },
+      vars: {
+        company: i.companyName, first_name: r.firstName ?? "", store_name: row?.name || r.ctx.shop.replace(/\.myshopify\.com$/, ""), tier_name: tierName,
+        // Emails need an absolute link: the setting is a storefront path like "/account/login".
+        login_url: storefrontUrl(row, settings.storefront.loginUrl, r.ctx.shop),
+      },
     });
     if (!res.queued && res.reason === "disabled") {
       st.status = "skipped";
@@ -537,7 +551,10 @@ function appRun(ctx: ApprovalCtx, app: Application, state: ApprovalState): Run {
   return {
     ctx, state, externalId: `tradepass-${app.id}`, ...c,
     save: async (s) => {
-      await db.application.updateMany({ where: { id: app.id, shop: ctx.shop }, data: { approvalState: s as unknown as Prisma.InputJsonValue } });
+      await db.application.updateMany({
+        where: { id: app.id, shop: ctx.shop },
+        data: { approvalState: s as unknown as Prisma.InputJsonValue, approvalStatus: approvalStatusOf(s) },
+      });
     },
   };
 }
@@ -562,6 +579,10 @@ async function finalizeApplication(app: Application, r: Run, source: "applicatio
   await db.application.updateMany({ where: { id: app.id, shop: ctx.shop }, data: { status: "approved", decidedAt: new Date(), buyerId: buyer.id } });
   await db.certificate.updateMany({ where: { shop: ctx.shop, applicationId: app.id, buyerId: null }, data: { buyerId: buyer.id } });
   await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.approve", subject: app.id, detail: { buyerId: buyer.id, tierId: i.tierId, companyGid } });
+  if (state.flowSent) return;
+  // Recorded before sending, so a crash right after can't make Flow run the workflow twice.
+  state.flowSent = true;
+  await r.save(state);
   const tier = await db.tier.findFirst({ where: { id: i.tierId, shop: ctx.shop }, select: { name: true } });
   await emitFlowTrigger(ctx.admin, ctx.shop, "application_approved", {
     applicationId: app.id, buyerId: buyer.id, companyGid, companyName: i.companyName,
@@ -618,7 +639,7 @@ export async function retryApproval(ctx: ApprovalCtx, applicationId: string): Pr
 
 async function lockApp<T>(ctx: ApprovalCtx, id: string, fn: () => Promise<T>): Promise<T> {
   try {
-    return await withLock(ctx.shop, `approval:${id}`, fn, 3_000);
+    return await withApplicationLock(ctx.shop, id, fn);
   } catch (e) {
     if (e instanceof LockBusyError) throw new ApprovalError("busy");
     throw e;
@@ -633,7 +654,7 @@ export async function undoApproval(ctx: ApprovalCtx, applicationId: string): Pro
     if (!state) return;
     if (app.status === "approved" || state.buyerId) throw new ApprovalError("finished");
     await undoState(ctx, state, applicationId);
-    await db.application.updateMany({ where: { id: app.id, shop: ctx.shop }, data: { approvalState: Prisma.DbNull } });
+    await db.application.updateMany({ where: { id: app.id, shop: ctx.shop }, data: { approvalState: Prisma.DbNull, approvalStatus: null } });
     await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "approval.undo", subject: app.id });
   });
 }
@@ -859,9 +880,11 @@ export function isSafeToRetry(state: ApprovalState | null, now = Date.now()): bo
 }
 
 export async function retryStuckApprovals(deadline: number, adminFor: (shop: string) => Promise<Admin>): Promise<number> {
+  // Only approvals that stopped part-way (finished ones are "done" and never scanned).
   const rows = await db.application.findMany({
-    where: { status: { in: ["pending", "needs_info", "approved"] }, approvalState: { not: Prisma.DbNull } },
+    where: { approvalStatus: { in: ["running", "failed"] }, status: { in: ["pending", "needs_info", "approved"] } },
     select: { id: true, shop: true, approvalState: true },
+    orderBy: { submittedAt: "asc" },
     take: 50,
   });
   let n = 0;
@@ -869,7 +892,7 @@ export async function retryStuckApprovals(deadline: number, adminFor: (shop: str
     if (Date.now() > deadline) break;
     const state = readState(row.approvalState);
     if (!isSafeToRetry(state)) continue;
-    await db.application.update({ where: { id: row.id }, data: { approvalState: { ...state!, autoRetries: (state!.autoRetries ?? 0) + 1 } as unknown as Prisma.InputJsonValue } });
+    await db.application.updateMany({ where: { id: row.id, shop: row.shop }, data: { approvalState: { ...state!, autoRetries: (state!.autoRetries ?? 0) + 1 } as unknown as Prisma.InputJsonValue } });
     try {
       await retryApproval({ admin: await adminFor(row.shop), shop: row.shop, actor: "system" }, row.id);
       n++;

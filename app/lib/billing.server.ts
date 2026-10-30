@@ -1,6 +1,6 @@
 import db from "../db.server";
 import type { AdminContext } from "./context.server";
-import { BILLING_NAMES, can, FEATURES, PLANS, type Feature, type PlanId } from "./plans";
+import { can, FEATURES, isTestBilling, PLANS, planForSubscriptionName, type Feature, type PlanId } from "./plans";
 import { updateSettings } from "./settings.server";
 import { ensureCheckoutLock } from "./checkout-lock.server";
 import { syncStorefrontConfig } from "./storefront-sync.server";
@@ -13,16 +13,7 @@ import { logActivity } from "./activity.server";
 
 const DAY = 86_400_000;
 
-export function planForSubscriptionName(name: string | null | undefined): PlanId {
-  if (name === BILLING_NAMES.pro) return "pro";
-  if (name === BILLING_NAMES.starter) return "starter";
-  return "free";
-}
-
-/** Test charges on development stores and when BILLING_TEST=true (staging). */
-export function isTestBilling(isDevStore: boolean): boolean {
-  return isDevStore || process.env.BILLING_TEST === "true";
-}
+export { isTestBilling, planForSubscriptionName };
 
 /** Remaining trial days: a trial is given once per store; switching plans keeps counting from the first start. */
 export function remainingTrialDays(plan: Exclude<PlanId, "free">, trialStartedAt: Date | null, now = new Date()): number {

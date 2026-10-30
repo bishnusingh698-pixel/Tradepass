@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parse, TYPE, type MessageFormatElement } from "@formatjs/icu-messageformat-parser";
 import { catalogs } from "../app/lib/i18n/catalog";
@@ -6,6 +7,10 @@ import { createT } from "../app/lib/i18n";
 import { pseudoLocalize } from "../app/lib/i18n/pseudo";
 
 const en = catalogs.en as Record<string, string>;
+// app/locales/en/pending.json: strings added after the full translation pass.
+// They fall back to English at runtime until a translator adds them to the
+// locale's own pending.json; every other key must be present in every locale.
+const pending = new Set(Object.keys(JSON.parse(readFileSync("app/locales/en/pending.json", "utf8")) as Record<string, string>));
 // Strings allowed to equal English in every language (brand names, units).
 const SAME_AS_ENGLISH_OK = new Set(["app.name"]);
 
@@ -35,8 +40,9 @@ describe("translation catalogs", () => {
       const cat = catalogs[locale] as Record<string, string>;
       const required = new Intl.PluralRules(locale).resolvedOptions().pluralCategories;
 
-      it("has every English key and no extras", () => {
-        expect(Object.keys(cat).sort()).toEqual(Object.keys(en).sort());
+      it("has every English key (except pending ones) and no extras", () => {
+        const want = Object.keys(en).filter((k) => !pending.has(k) || k in cat);
+        expect(Object.keys(cat).sort()).toEqual(want.sort());
       });
 
       it("has valid ICU, matching placeholders and complete plurals", () => {

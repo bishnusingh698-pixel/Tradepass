@@ -389,7 +389,7 @@ async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
   if (!a.tellApplicant && a.email) {
     await safe("email_received", () => deps.queueEmail({
       shop, type: "received", to: a.email, locale: a.locale,
-      vars: { company: a.companyName, first_name: a.firstName, store_name: shopRow?.name ?? shop },
+      vars: { company: a.companyName, first_name: a.firstName, store_name: shopRow?.name || shop.replace(/\.myshopify\.com$/, "") },
       subjectId: a.id,
     }));
   }

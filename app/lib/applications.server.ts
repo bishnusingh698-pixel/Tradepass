@@ -5,6 +5,8 @@ import { decrypt, sha256, signToken } from "./crypto.server";
 import { queueEmail } from "./email/index.server";
 import { emitFlowTrigger } from "./flow.server";
 import type { Admin } from "./gql.server";
+import { storefrontUrl } from "./shop.server";
+import { LockBusyError, withApplicationLock } from "./lock.server";
 
 // Merchant-side reads and decisions on applications (queue, detail, reject,
 // needs info, notes). Intake lives in intake.server.ts; approval in
@@ -187,8 +189,32 @@ export async function findDuplicates(
 type DecisionCtx = { admin: Admin; shop: string; actor: string };
 
 async function shopInfo(shop: string) {
-  const row = await db.shop.findUnique({ where: { shop }, select: { name: true } });
-  return { storeName: row?.name ?? shop.replace(".myshopify.com", "") };
+  const row = await db.shop.findUnique({ where: { shop }, select: { shop: true, name: true, domainUrl: true } });
+  return { storeName: row?.name || shop.replace(".myshopify.com", ""), row };
+}
+
+/**
+ * Why a decision can't be made right now: the application is no longer open,
+ * an approval already created things in Shopify (Undo it first, or the company
+ * would be left behind), or someone else is deciding it this very moment.
+ */
+export type DecisionBlock = "not_open" | "approval_started" | "busy";
+
+/** Statuses a decision may move an application out of, and only while no approval has started. */
+const OPEN_FOR_DECISION: Prisma.ApplicationWhereInput = { status: { in: ["pending", "needs_info"] }, approvalStatus: null };
+
+async function decisionLock<T>(shop: string, id: string, fn: () => Promise<T>): Promise<T | "busy"> {
+  try {
+    return await withApplicationLock(shop, id, fn);
+  } catch (e) {
+    if (e instanceof LockBusyError) return "busy";
+    throw e;
+  }
+}
+
+async function blockReason(shop: string, id: string): Promise<DecisionBlock> {
+  const app = await db.application.findFirst({ where: { shop, id }, select: { status: true, approvalStatus: true } });
+  return app && ["pending", "needs_info"].includes(app.status) && app.approvalStatus ? "approval_started" : "not_open";
 }
 
 export async function rejectApplication(
@@ -196,9 +222,25 @@ export async function rejectApplication(
   id: string,
   opts: { reason: string | null; email: boolean },
 ): Promise<boolean> {
-  const app = await db.application.findFirst({ where: { shop: ctx.shop, id, status: { in: ["pending", "needs_info"] } } });
-  if (!app) return false;
-  await db.application.update({ where: { id }, data: { status: "rejected", decidedAt: new Date() } });
+  return (await rejectApplicationWithReason(ctx, id, opts)) === true;
+}
+
+/** Reject; returns true, or why it couldn't (shown to the merchant). Safe against a concurrent approve/reject. */
+export async function rejectApplicationWithReason(
+  ctx: DecisionCtx,
+  id: string,
+  opts: { reason: string | null; email: boolean },
+): Promise<true | DecisionBlock> {
+  const res = await decisionLock(ctx.shop, id, async () => {
+    const app = await db.application.findFirst({ where: { shop: ctx.shop, id, ...OPEN_FOR_DECISION } });
+    if (!app) return blockReason(ctx.shop, id);
+    // Guarded write: only one decision wins even without the lock (e.g. a lock that expired).
+    const won = await db.application.updateMany({ where: { shop: ctx.shop, id, ...OPEN_FOR_DECISION }, data: { status: "rejected", decidedAt: new Date() } });
+    if (won.count !== 1) return blockReason(ctx.shop, id);
+    return app;
+  });
+  if (res === "busy" || typeof res === "string") return res;
+  const app = res;
   await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.reject", subject: id, detail: { emailed: opts.email, hasReason: Boolean(opts.reason) } });
   if (opts.email) {
     const { storeName } = await shopInfo(ctx.shop);
@@ -226,9 +268,18 @@ export async function requestMoreInfo(
   ctx: DecisionCtx,
   id: string,
   opts: { message: string; fields: string[] },
-): Promise<{ ok: boolean; link?: string }> {
-  const app = await db.application.findFirst({ where: { shop: ctx.shop, id, status: { in: ["pending", "needs_info"] } } });
-  if (!app) return { ok: false };
+): Promise<{ ok: boolean; link?: string; error?: DecisionBlock }> {
+  const res = await decisionLock(ctx.shop, id, () => requestMoreInfoLocked(ctx, id, opts));
+  return res === "busy" ? { ok: false, error: "busy" } : res;
+}
+
+async function requestMoreInfoLocked(
+  ctx: DecisionCtx,
+  id: string,
+  opts: { message: string; fields: string[] },
+): Promise<{ ok: boolean; link?: string; error?: DecisionBlock }> {
+  const app = await db.application.findFirst({ where: { shop: ctx.shop, id, ...OPEN_FOR_DECISION } });
+  if (!app) return { ok: false, error: await blockReason(ctx.shop, id) };
   const exp = Math.floor(Date.now() / 1000) + MORE_INFO_DAYS * 86400;
   const token = signToken({ shop: ctx.shop, purpose: "more_info", subject: id, exp });
   await db.tokenUse.create({
@@ -239,12 +290,12 @@ export async function requestMoreInfo(
     where: { shop: ctx.shop, subjectId: id, purpose: "more_info", usedAt: null, tokenHash: { not: sha256(token) } },
     data: { usedAt: new Date() },
   });
-  await db.application.update({
-    where: { id },
-    data: { status: "needs_info", requested: { fields: opts.fields, message: opts.message, at: new Date().toISOString() } },
+  await db.application.updateMany({
+    where: { shop: ctx.shop, id },
+    data: { status: "needs_info", requested: { fields: opts.fields, message: opts.message.slice(0, 2000), at: new Date().toISOString() } },
   });
-  const link = `https://${ctx.shop}/apps/tradepass/update/${encodeURIComponent(token)}`;
-  const { storeName } = await shopInfo(ctx.shop);
+  const { storeName, row } = await shopInfo(ctx.shop);
+  const link = storefrontUrl(row, `/apps/tradepass/update/${encodeURIComponent(token)}`, ctx.shop);
   await queueEmail({
     shop: ctx.shop,
     type: "needs_info",

@@ -84,7 +84,7 @@ export function merchantAddress(settings: Settings, shopEmail: string | null | u
 async function shopFor(shop: string) {
   return db.shop.findUnique({
     where: { shop },
-    select: { shop: true, settings: true, email: true, name: true, primaryLocale: true, uninstalledAt: true },
+    select: { shop: true, settings: true, email: true, contactEmail: true, name: true, primaryLocale: true, uninstalledAt: true },
   });
 }
 
@@ -232,7 +232,8 @@ export async function sendOne(id: string, send: Sender = sendViaBrevo, cache = n
     return "skipped" as const;
   }
   const email = render(row, p!, s!);
-  const replyTo = isMerchantType(row.type) || row.type === "test" ? null : s!.email;
+  // Applicants reply to the store's customer-facing address (falls back to the owner's).
+  const replyTo = isMerchantType(row.type) || row.type === "test" ? null : s!.contactEmail || s!.email;
   const result = await send({
     to: p!.to,
     senderName: isMerchantType(row.type) ? "Tradepass" : s!.name || s!.shop.replace(/\.myshopify\.com$/, ""),

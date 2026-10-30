@@ -1,0 +1,8 @@
+{
+  "applications.detail.error.approval_started": "An approval already started for this application. Open it and choose Retry to finish, or Undo to remove what was created, before deciding again.",
+  "applications.detail.error.busy": "Someone else is working on this application right now. Wait a moment and try again.",
+  "applications.detail.error.fields_required": "Choose at least one question for the applicant to answer.",
+  "applications.detail.error.message_required": "Write a message so the applicant knows what to send.",
+  "applications.detail.error.not_open": "This application was already decided, so nothing changed. Refresh the page to see its current status.",
+  "applications.detail.error.note_required": "Write something before saving the note."
+}

@@ -5,6 +5,7 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
 import { refreshShopFacts } from "../lib/shop.server";
+import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { updateSettings } from "../lib/settings.server";
 import { applyWelcome, checklist, pendingWork, serverAlerts, type AlertId, type ChecklistStep, type Numbers } from "../lib/home.server";
 import { BUSINESS_TYPES, SUGGESTED_TIER_NAMES } from "../lib/form-defaults";
@@ -17,6 +18,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
   // Spec: detect plan and B2B entitlements on each Home load.
   const facts = await refreshShopFacts(ctx.shop, ctx.admin);
+  // The plan changed in Shopify since we last looked (e.g. cancelled from Shopify admin): plan-dependent storefront parts follow.
+  if (facts.planChanged) await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
   const [steps, pending, alerts] = await Promise.all([
     checklist(ctx.shop, ctx.settings),
     pendingWork(ctx.shop, ctx.settings),

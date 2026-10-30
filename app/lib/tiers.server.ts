@@ -23,6 +23,8 @@ export const PLACEHOLDER_COMPANY_NAME = "Tradepass (do not delete)";
 export const PLACEHOLDER_EXTERNAL_ID = "tradepass-placeholder";
 export const MARKET_LOCK = "market";
 export const ASSISTED_JOB = "assisted_assignment";
+/** A market write with read-back and up to 4 retries stays well under this; a crashed holder frees the shop after it. */
+export const MARKET_LOCK_TTL_MS = 120_000;
 
 export type TierDefaults = {
   pricing: "percent" | "existing";
@@ -361,7 +363,7 @@ export async function moveLocations(
       if (!(await check())) throw new AssignmentError("verify_failed");
     }
     return { mode: "auto" as const, verified: true, jobIds: [] };
-  }, 25_000).catch((e) => {
+  }, 25_000, MARKET_LOCK_TTL_MS).catch((e) => {
     if (e?.name === "LockBusyError") throw new AssignmentError("busy");
     throw e;
   });

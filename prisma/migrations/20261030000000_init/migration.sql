@@ -1,3 +1,6 @@
+-- CreateSchema
+CREATE SCHEMA IF NOT EXISTS "public";
+
 -- CreateTable
 CREATE TABLE "Session" (
     "id" TEXT NOT NULL,
@@ -39,6 +42,15 @@ CREATE TABLE "Shop" (
     "settingsVersion" INTEGER NOT NULL DEFAULT 1,
     "welcomeDoneAt" TIMESTAMP(3),
     "checkedAt" TIMESTAMP(3),
+    "name" TEXT,
+    "email" TEXT,
+    "contactEmail" TEXT,
+    "domainUrl" TEXT,
+    "currency" TEXT,
+    "country" TEXT,
+    "placeholderCompanyGid" TEXT,
+    "subscriptionGid" TEXT,
+    "trialStartedAt" TIMESTAMP(3),
 
     CONSTRAINT "Shop_pkey" PRIMARY KEY ("shop")
 );
@@ -77,7 +89,14 @@ CREATE TABLE "Application" (
     "flags" TEXT[] DEFAULT ARRAY[]::TEXT[],
     "assignee" TEXT,
     "approvalState" JSONB,
+    "approvalStatus" TEXT,
     "buyerId" TEXT,
+    "source" TEXT NOT NULL DEFAULT 'form',
+    "suggestedTierId" TEXT,
+    "notes" JSONB NOT NULL DEFAULT '[]',
+    "requested" JSONB,
+    "autoRuleId" TEXT,
+    "ipHash" TEXT,
     "submittedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "decidedAt" TIMESTAMP(3),
 
@@ -110,6 +129,8 @@ CREATE TABLE "Tier" (
     "discountPct" INTEGER,
     "defaults" JSONB NOT NULL DEFAULT '{}',
     "syncState" TEXT NOT NULL DEFAULT 'ok',
+    "mode" TEXT NOT NULL DEFAULT 'market',
+    "placeholderLocationGid" TEXT,
     "position" INTEGER NOT NULL DEFAULT 0,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -126,6 +147,9 @@ CREATE TABLE "Buyer" (
     "contactGid" TEXT,
     "tierId" TEXT,
     "status" TEXT NOT NULL DEFAULT 'active',
+    "pausedTierId" TEXT,
+    "taxExemptions" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "country" TEXT,
     "source" TEXT NOT NULL DEFAULT 'application',
     "name" TEXT NOT NULL,
     "approvedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -148,6 +172,8 @@ CREATE TABLE "Certificate" (
     "status" TEXT NOT NULL DEFAULT 'pending',
     "fileGid" TEXT,
     "remindedAt" JSONB NOT NULL DEFAULT '{}',
+    "rejectReason" TEXT,
+    "decidedOnExpiry" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Certificate_pkey" PRIMARY KEY ("id")
@@ -272,6 +298,9 @@ CREATE INDEX "Application_shop_status_submittedAt_idx" ON "Application"("shop", 
 CREATE INDEX "Application_shop_email_idx" ON "Application"("shop", "email");
 
 -- CreateIndex
+CREATE INDEX "Application_approvalStatus_idx" ON "Application"("approvalStatus");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Application_shop_idempotencyKey_key" ON "Application"("shop", "idempotencyKey");
 
 -- CreateIndex
@@ -293,16 +322,28 @@ CREATE INDEX "Certificate_shop_expiresOn_idx" ON "Certificate"("shop", "expiresO
 CREATE INDEX "Certificate_shop_buyerId_idx" ON "Certificate"("shop", "buyerId");
 
 -- CreateIndex
+CREATE INDEX "Certificate_shop_applicationId_idx" ON "Certificate"("shop", "applicationId");
+
+-- CreateIndex
 CREATE INDEX "EmailLog_quotaDay_status_idx" ON "EmailLog"("quotaDay", "status");
 
 -- CreateIndex
 CREATE INDEX "EmailLog_shop_quotaDay_idx" ON "EmailLog"("shop", "quotaDay");
 
 -- CreateIndex
+CREATE INDEX "EmailLog_shop_toHash_idx" ON "EmailLog"("shop", "toHash");
+
+-- CreateIndex
 CREATE INDEX "ActivityLog_shop_createdAt_idx" ON "ActivityLog"("shop", "createdAt");
 
 -- CreateIndex
+CREATE INDEX "ActivityLog_shop_subject_idx" ON "ActivityLog"("shop", "subject");
+
+-- CreateIndex
 CREATE INDEX "Job_state_runAfter_idx" ON "Job"("state", "runAfter");
+
+-- CreateIndex
+CREATE INDEX "Job_shop_type_state_idx" ON "Job"("shop", "type", "state");
 
 -- CreateIndex
 CREATE INDEX "ImportRun_shop_idx" ON "ImportRun"("shop");
@@ -311,4 +352,8 @@ CREATE INDEX "ImportRun_shop_idx" ON "ImportRun"("shop");
 CREATE INDEX "TokenUse_expiresAt_idx" ON "TokenUse"("expiresAt");
 
 -- CreateIndex
+CREATE INDEX "TokenUse_shop_subjectId_idx" ON "TokenUse"("shop", "subjectId");
+
+-- CreateIndex
 CREATE INDEX "Rule_shop_idx" ON "Rule"("shop");
+
