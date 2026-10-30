@@ -17,16 +17,16 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return { apiKey: process.env.SHOPIFY_API_KEY || "", i18n: i18nPayload(adminLocale(request, shop?.primaryLocale)) };
 };
 
+// Nine sections. Certificates and Import are tabs of Wholesale buyers;
+// Notifications and Automation are tabs of Emails & automation (SectionTabs);
+// Plans is reached from Settings and from every "Available on …" label.
 const NAV = [
   ["/app/applications", "nav.applications"],
-  ["/app/buyers", "nav.buyers"],
+  ["/app/buyers", "nav.wholesaleBuyers"],
   ["/app/tiers", "nav.tiers"],
-  ["/app/form", "nav.form"],
-  ["/app/storefront", "nav.storefront"],
-  ["/app/certificates", "nav.certificates"],
-  ["/app/notifications", "nav.notifications"],
-  ["/app/automation", "nav.automation"],
-  ["/app/import", "nav.import"],
+  ["/app/form", "nav.applicationForm"],
+  ["/app/storefront", "nav.storefrontAccess"],
+  ["/app/notifications", "nav.emailsAutomation"],
   ["/app/settings", "nav.settings"],
   ["/app/help", "nav.help"],
 ] as const;

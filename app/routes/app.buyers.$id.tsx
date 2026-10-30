@@ -97,7 +97,7 @@ export default function BuyerDetail() {
 
   return (
     <s-page heading={d.buyer.name}>
-      <s-link slot="breadcrumb-actions" href={href("/app/buyers")}>{t("buyers.title")}</s-link>
+      <s-link slot="breadcrumb-actions" href={href("/app/buyers")}>{t("nav.wholesaleBuyers")}</s-link>
       <s-button slot="primary-action" variant="primary" commandFor="change-tier" command="--show">{t("buyers.detail.changeTier")}</s-button>
       <s-button slot="secondary-actions" href={d.buyer.companyUrl} target="_top">{t("buyers.detail.openInShopify")}</s-button>
       <s-button slot="secondary-actions" onClick={() => post({ intent: "renewal" })}>{t("buyers.bulk.renewal")}</s-button>

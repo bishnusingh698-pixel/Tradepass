@@ -6,7 +6,9 @@ import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
 import { gql } from "../lib/gql.server";
 import { updateSettings } from "../lib/settings.server";
-import { resetShopData } from "../lib/privacy.server";
+import { exportDataRequest, listDataRequests, resetShopData } from "../lib/privacy.server";
+import { isCountryCode } from "../lib/countries";
+import { CountryPicker } from "../components/CountryPicker";
 import { ACTIVITY_EXPORT_MAX_ROWS, exportActivityCsv, logActivity } from "../lib/activity.server";
 import { ensureDefaults } from "../lib/defaults.server";
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
@@ -18,6 +20,7 @@ import { can } from "../lib/plans";
 const RETENTION_MONTHS = [3, 6, 12, 24, 36] as const;
 const HEX = /^#[0-9a-f]{6}$/i;
 const ASSIGNMENT_MODES = ["auto", "assisted"] as const;
+const COUNTRY_MODES = ["all", "allow", "block"] as const;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -30,7 +33,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     .filter((l) => l.published)
     .map((l) => ({ locale: l.locale, primary: l.primary, supported: Boolean(matchLocale(l.locale)) }));
   const overrides = Object.fromEntries(Object.entries(ctx.settings.texts).map(([l, m]) => [l, Object.keys(m ?? {}).length]));
+  const privacyRequests = await listDataRequests(ctx.shop);
   return {
+    countries: ctx.settings.applications.countries,
+    storeCountry: ctx.shopRow?.country ?? null,
+    privacyRequests,
     languages,
     overrides,
     supportedCount: LOCALES.length,
@@ -61,12 +68,28 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const assignmentRaw = form.get("assignment");
     const assignment = assignmentRaw == null || assignmentRaw === "" ? ctx.settings.tiers.assignment : String(assignmentRaw);
     if (!(ASSIGNMENT_MODES as readonly string[]).includes(assignment)) errors.assignment = "settings.error.assignment";
+    const countryMode = String(form.get("countryMode") ?? "all");
+    const countryList = [...new Set(form.getAll("countryList").map(String).filter(isCountryCode))];
+    if (!(COUNTRY_MODES as readonly string[]).includes(countryMode)) errors.countryMode = "settings.error.assignment";
+    else if (countryMode !== "all" && countryList.length === 0) errors.countryList = "settings.countries.errorEmpty";
     if (Object.keys(errors).length) return { ok: false as const, intent, errors };
+    const countries = { mode: countryMode as (typeof COUNTRY_MODES)[number], list: countryMode === "all" ? [] : countryList.sort() };
+    const countriesChanged = JSON.stringify(countries) !== JSON.stringify(ctx.settings.applications.countries);
     await updateSettings(ctx.shop, {
       retention: { months, deleteFiles: form.get("deleteFiles") === "on" },
       branding: { logoUrl: logoUrl || null, accentColor: accent || null },
       tiers: { assignment: assignment as (typeof ASSIGNMENT_MODES)[number] },
+      applications: { countries },
     });
+    if (countriesChanged) {
+      await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "settings.countries", subject: null, detail: { mode: countries.mode, count: countries.list.length } });
+      // The storefront form reads the rule from the app's metafields, so applicants are told up front.
+      try {
+        await syncStorefrontConfig(ctx.admin, ctx.shop);
+      } catch {
+        return { ok: true as const, intent, savedAt: Date.now(), syncFailed: true };
+      }
+    }
     if (assignment !== ctx.settings.tiers.assignment) {
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "settings.tier_assignment", subject: null, detail: { to: assignment } });
     }
@@ -79,6 +102,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const out = await exportActivityCsv(ctx.shop);
     await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "activity.export", subject: null, detail: { rows: out.rows } });
     return { ok: true as const, intent, csv: out.csv, truncated: out.truncated };
+  }
+
+  if (intent === "export_privacy") {
+    const data = await exportDataRequest(ctx.shop, String(form.get("id") ?? ""));
+    if (!data) return { ok: false as const, intent, errors: { privacy: "settings.privacy.notFound" } };
+    await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "privacy.export", subject: String(form.get("id")) });
+    return { ok: true as const, intent, json: JSON.stringify(data, null, 2) };
   }
 
   if (intent === "delete_all") {
@@ -109,7 +139,10 @@ export default function SettingsPage() {
   useEffect(() => {
     const r = fetcher.data;
     if (r?.ok && r.intent === "save") {
-      shopify.toast.show(t("common.saved"));
+      shopify.toast.show("syncFailed" in r && r.syncFailed ? t("settings.countries.syncFailed") : t("common.saved"), { isError: "syncFailed" in r && Boolean(r.syncFailed) });
+    }
+    if (r?.ok && r.intent === "export_privacy" && "json" in r) {
+      download(r.json ?? "{}", "privacy-request.json", "application/json");
     }
     if (r?.ok && r.intent === "export_activity" && "csv" in r) {
       download(r.csv ?? "", "activity.csv");
@@ -159,6 +192,27 @@ export default function SettingsPage() {
           fetcher.submit(fd, { method: "POST" });
         }}
       >
+        <s-section heading={t("settings.countries.heading")}>
+          <s-stack direction="block" gap="base">
+            <s-paragraph>{t("settings.countries.body")}</s-paragraph>
+            <s-choice-list name="countryMode" label={t("settings.countries.mode")} error={errors.countryMode ? t(errors.countryMode) : undefined}>
+              {(["all", "allow", "block"] as const).map((m) => (
+                <s-choice key={m} value={m} defaultSelected={d.countries.mode === m}>
+                  {t(`settings.countries.mode.${m}`)}
+                  <s-text slot="details">{t(`settings.countries.mode.${m}.help`)}</s-text>
+                </s-choice>
+              ))}
+            </s-choice-list>
+            <CountryPicker
+              name="countryList"
+              label={t("settings.countries.list")}
+              selected={d.countries.list.length ? d.countries.list : d.storeCountry ? [d.storeCountry] : []}
+              error={errors.countryList ? t(errors.countryList) : undefined}
+            />
+            <s-paragraph color="subdued">{t("settings.countries.note")}</s-paragraph>
+          </s-stack>
+        </s-section>
+
         <s-section heading={t("settings.retention.heading")}>
           <s-stack direction="block" gap="base">
             <s-select name="months" label={t("settings.retention.months")} value={String(d.retention.months)} error={errors.months ? t(errors.months) : undefined}>
@@ -222,6 +276,43 @@ export default function SettingsPage() {
         </s-stack>
       </s-section>
 
+      <s-section heading={t("settings.privacy.heading")}>
+        <s-stack direction="block" gap="base">
+          <s-paragraph>{t("settings.privacy.body")}</s-paragraph>
+          {errors.privacy && <s-banner tone="critical"><s-paragraph>{t(errors.privacy)}</s-paragraph></s-banner>}
+          {d.privacyRequests.length === 0 ? (
+            <s-paragraph color="subdued">{t("settings.privacy.empty")}</s-paragraph>
+          ) : (
+            <s-table>
+              <s-table-header-row>
+                <s-table-header>{t("settings.privacy.received")}</s-table-header>
+                <s-table-header>{t("settings.privacy.customer")}</s-table-header>
+                <s-table-header>{t("settings.privacy.records")}</s-table-header>
+                <s-table-header>{t("settings.privacy.action")}</s-table-header>
+              </s-table-header-row>
+              <s-table-body>
+                {d.privacyRequests.map((r) => (
+                  <s-table-row key={r.id}>
+                    <s-table-cell>{new Date(r.at).toLocaleDateString()}</s-table-cell>
+                    <s-table-cell>{r.customer ? r.customer.split("/").pop() : "—"}</s-table-cell>
+                    <s-table-cell>{t("settings.privacy.applications", { count: r.applications })}</s-table-cell>
+                    <s-table-cell>
+                      <s-button
+                        variant="tertiary"
+                        loading={fetcher.state !== "idle" && fetcher.formData?.get("id") === r.id}
+                        onClick={() => fetcher.submit({ intent: "export_privacy", id: r.id }, { method: "POST" })}
+                      >
+                        {t("settings.privacy.download")}
+                      </s-button>
+                    </s-table-cell>
+                  </s-table-row>
+                ))}
+              </s-table-body>
+            </s-table>
+          )}
+        </s-stack>
+      </s-section>
+
       <s-section heading={t("settings.plan.heading")}>
         <s-stack direction="block" gap="base">
           <s-text>{t("settings.plan.current", { plan: t(`plans.name.${d.plan}`) })}</s-text>
@@ -242,8 +333,8 @@ export default function SettingsPage() {
   );
 }
 
-function download(text: string, name: string) {
-  const url = URL.createObjectURL(new Blob([text], { type: "text/csv;charset=utf-8" }));
+function download(text: string, name: string, type = "text/csv") {
+  const url = URL.createObjectURL(new Blob([text], { type: `${type};charset=utf-8` }));
   const a = document.createElement("a");
   a.href = url;
   a.download = name;

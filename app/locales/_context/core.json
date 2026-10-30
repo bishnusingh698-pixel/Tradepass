@@ -64,6 +64,31 @@
     "maxLength": 20,
     "placeholders": []
   },
+  "nav.wholesaleBuyers": {
+    "note": "Admin left-hand navigation label (s-app-nav) and page tab. Short noun phrase, no emoji.",
+    "maxLength": 24,
+    "placeholders": []
+  },
+  "nav.applicationForm": {
+    "note": "Admin left-hand navigation label (s-app-nav) and page tab. Short noun phrase, no emoji.",
+    "maxLength": 24,
+    "placeholders": []
+  },
+  "nav.storefrontAccess": {
+    "note": "Admin left-hand navigation label (s-app-nav) and page tab. Short noun phrase, no emoji.",
+    "maxLength": 24,
+    "placeholders": []
+  },
+  "nav.emailsAutomation": {
+    "note": "Admin left-hand navigation label (s-app-nav) and page tab. Short noun phrase, no emoji.",
+    "maxLength": 24,
+    "placeholders": []
+  },
+  "nav.setup": {
+    "note": "Admin left-hand navigation label (s-app-nav) and page tab. Short noun phrase, no emoji.",
+    "maxLength": 24,
+    "placeholders": []
+  },
   "common.back": {
     "note": "Shared admin button/label or short message.",
     "maxLength": 60,

@@ -231,7 +231,7 @@ export default function FormEditor() {
 
   return (
     <s-page heading={draft.name || data.form.name}>
-      <s-link slot="breadcrumb-actions" href={href("/app/form")}>{t("nav.form")}</s-link>
+      <s-link slot="breadcrumb-actions" href={href("/app/form")}>{t("nav.applicationForm")}</s-link>
       <s-button slot="secondary-actions" onClick={() => setPickTemplate(true)}>{t("form.template.button")}</s-button>
       {!data.form.isDefault && (
         <>

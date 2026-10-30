@@ -13,6 +13,7 @@ import { requestRenewalForBuyers } from "../lib/certificates.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CertBadge } from "../components/CertBadge";
+import { SectionTabs } from "../components/SectionTabs";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -125,7 +126,8 @@ export default function Buyers() {
   })();
 
   return (
-    <s-page heading={t("buyers.title")}>
+    <s-page heading={t("nav.wholesaleBuyers")}>
+      <SectionTabs section="buyers" />
       <s-button slot="secondary-actions" href={csvHref} target="_blank">{t("buyers.exportAll")}</s-button>
 
       <s-section padding="none">

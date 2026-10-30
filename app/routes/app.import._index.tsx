@@ -11,6 +11,7 @@ import { logActivity } from "../lib/activity.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { ImportRunBadge as RunBadge } from "../components/ImportRunBadge";
+import { SectionTabs } from "../components/SectionTabs";
 
 const flag = (name: string, on: boolean | undefined) => (on ? { [name]: true } : {});
 const splitList = (v: FormDataEntryValue | null) => String(v ?? "").split(",").map((x) => x.trim()).filter(Boolean);
@@ -111,6 +112,7 @@ export default function ImportPage() {
 
   return (
     <s-page heading={t("import.title")}>
+      <SectionTabs section="buyers" />
       {locked && (
         <s-banner tone="info" heading={t("common.availableOn", { plan: "Pro" })}>
           <s-paragraph>{t("import.locked")}</s-paragraph>

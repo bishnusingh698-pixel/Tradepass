@@ -221,7 +221,7 @@
     function taxFormatBad(country, number) {
       var r = taxRule(country);
       if (!r || !r[2] || !r[4] || !number) return false;
-      var n = String(number).replace(/[\s.\-\/]/g, "").toUpperCase();
+      var n = String(number).replace(/[\s.\-/]/g, "").toUpperCase();
       if (r[3] && n.indexOf(r[3]) !== 0 && !/^[A-Z]{2}/.test(n)) n = r[3] + n;
       try { return !new RegExp(r[2]).test(n); } catch (e) { return false; }
     }

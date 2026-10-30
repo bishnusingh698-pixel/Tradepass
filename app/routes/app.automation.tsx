@@ -13,6 +13,7 @@ import { TRIGGER_HANDLES, type FlowTrigger } from "../lib/flow.server";
 import { can } from "../lib/plans";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
+import { SectionTabs } from "../components/SectionTabs";
 
 const flag = (name: string, on: boolean | undefined) => (on ? { [name]: true } : {});
 const MAX_DAILY_LIMIT = 500;
@@ -177,6 +178,7 @@ function AutomationEditor({ d }: { d: ReturnType<typeof useLoaderData<typeof loa
 
   return (
     <s-page heading={t("automation.title")}>
+      <SectionTabs section="messaging" />
       <SaveBar id="automation-save-bar" open={dirty || busy} discardConfirmation>
         <button variant="primary" onClick={onSave} {...flag("loading", busy)} {...flag("disabled", busy)}>{t("common.save")}</button>
         <button onClick={onDiscard} {...flag("disabled", busy)}>{t("common.discard")}</button>
