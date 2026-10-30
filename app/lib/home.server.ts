@@ -34,13 +34,15 @@ export async function checklist(shop: string, settings: Settings): Promise<Check
 
 export async function pendingWork(shop: string, settings: Settings) {
   const soon = new Date(Date.now() + settings.certificates.expiringDays * DAY);
-  const [apps, expiring, assignments] = await Promise.all([
+  const [apps, expiring, assignments, incomplete] = await Promise.all([
     pendingSummary(shop),
     db.certificate.count({ where: { shop, buyerId: { not: null }, status: { in: ["valid", "expiring"] }, expiresOn: { lte: soon, gte: new Date() } } }),
     // Counted in both modes: tasks created in assisted mode stay open after switching back to automatic.
     pendingAssignmentCount(shop),
+    // Approvals that stopped part-way (Shopify error, closed tab): the merchant should Retry or Undo.
+    db.application.count({ where: { shop, approvalStatus: { in: ["failed", "running"] }, status: { in: ["pending", "needs_info", "approved"] } } }),
   ]);
-  return { applications: apps.count, oldestAt: apps.oldestAt, expiring, assignments };
+  return { applications: apps.count, oldestAt: apps.oldestAt, expiring, assignments, incomplete };
 }
 
 export type AlertId = "catalog_limit" | "email_quota" | "embed_off" | "tier_missing" | "plan_limit" | "first_buyer";
@@ -90,7 +92,71 @@ export type Numbers = {
   medianHours: [number | null, number | null];
   newBuyersByTier: { tier: string; count: number }[];
   orders: { count: number; total: number; currency: string | null; truncated: boolean } | null; // null: orders unavailable
+  /** Last 6 calendar months (UTC), oldest first. */
+  months: MonthRow[];
+  /** Every current buyer by tier (paused buyers count under the tier they'll return to). */
+  buyersByTier: { tier: string; active: number; paused: number }[];
 };
+
+export type MonthRow = { month: string; received: number; approved: number; rejected: number; rate: number | null; avgDays: number | null };
+
+/** Month keys "YYYY-MM" for the last `n` calendar months, oldest first. */
+export function lastMonths(n: number, now = new Date()): string[] {
+  const out: string[] = [];
+  for (let i = n - 1; i >= 0; i--) {
+    const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i, 1));
+    out.push(d.toISOString().slice(0, 7));
+  }
+  return out;
+}
+
+/** Applications per month, approvals, approval rate and average days to decide — two grouped queries, no row scans in Node. */
+export async function monthlyReport(shop: string, now = new Date(), n = 6): Promise<MonthRow[]> {
+  const keys = lastMonths(n, now);
+  const from = new Date(`${keys[0]}-01T00:00:00Z`);
+  const [received, decided] = await Promise.all([
+    db.$queryRaw<{ m: string; c: bigint }[]>`
+      SELECT to_char(date_trunc('month', "submittedAt"), 'YYYY-MM') AS m, count(*) AS c
+      FROM "Application" WHERE "shop" = ${shop} AND "submittedAt" >= ${from} AND "status" <> 'draft' GROUP BY 1`,
+    db.$queryRaw<{ m: string; approved: bigint; rejected: bigint; days: number | null }[]>`
+      SELECT to_char(date_trunc('month', "decidedAt"), 'YYYY-MM') AS m,
+        count(*) FILTER (WHERE "status" = 'approved') AS approved,
+        count(*) FILTER (WHERE "status" = 'rejected') AS rejected,
+        avg(extract(epoch FROM ("decidedAt" - "submittedAt")) / 86400)::float8 AS days
+      FROM "Application" WHERE "shop" = ${shop} AND "decidedAt" >= ${from} AND "status" IN ('approved', 'rejected') GROUP BY 1`,
+  ]);
+  return keys.map((month) => {
+    const r = received.find((x) => x.m === month);
+    const d = decided.find((x) => x.m === month);
+    const approved = Number(d?.approved ?? 0);
+    const rejected = Number(d?.rejected ?? 0);
+    return {
+      month,
+      received: Number(r?.c ?? 0),
+      approved,
+      rejected,
+      rate: approved + rejected ? approved / (approved + rejected) : null,
+      avgDays: d?.days == null ? null : Math.round(d.days * 10) / 10,
+    };
+  });
+}
+
+export async function buyersPerTier(shop: string): Promise<Numbers["buyersByTier"]> {
+  const [groups, tiers] = await Promise.all([
+    db.buyer.groupBy({ by: ["tierId", "pausedTierId", "status"], where: { shop }, _count: { _all: true } }),
+    db.tier.findMany({ where: { shop }, select: { id: true, name: true }, orderBy: { position: "asc" } }),
+  ]);
+  const rows = tiers.map((t) => ({ tier: t.name, id: t.id, active: 0, paused: 0 }));
+  const none = { tier: "", id: "", active: 0, paused: 0 };
+  for (const g of groups) {
+    const paused = g.status === "paused";
+    const id = paused ? g.pausedTierId : g.tierId;
+    const row = rows.find((r) => r.id === id) ?? none;
+    if (paused) row.paused += g._count._all;
+    else row.active += g._count._all;
+  }
+  return [...rows, ...(none.active + none.paused ? [none] : [])].map(({ tier, active, paused }) => ({ tier, active, paused }));
+}
 
 export function median(xs: number[]): number | null {
   if (!xs.length) return null;
@@ -159,11 +225,13 @@ export async function buyerOrders(admin: Admin, shop: string, from: Date) {
 export async function homeNumbers(admin: Admin, shop: string, now = new Date()): Promise<Numbers> {
   const a = new Date(now.getTime() - 30 * DAY);
   const b = new Date(now.getTime() - 60 * DAY);
-  const [cur, prev, buyers, tiers] = await Promise.all([
+  const [cur, prev, buyers, tiers, months, byTier] = await Promise.all([
     windowStats(shop, a, now),
     windowStats(shop, b, a),
     db.buyer.groupBy({ by: ["tierId"], where: { shop, approvedAt: { gte: a } }, _count: { _all: true } }),
     db.tier.findMany({ where: { shop }, select: { id: true, name: true } }),
+    monthlyReport(shop, now),
+    buyersPerTier(shop),
   ]);
   let orders: Numbers["orders"] = null;
   try {
@@ -180,5 +248,7 @@ export async function homeNumbers(admin: Admin, shop: string, now = new Date()):
       .map((g) => ({ tier: tiers.find((t) => t.id === g.tierId)?.name ?? "", count: g._count._all }))
       .sort((x, y) => y.count - x.count),
     orders,
+    months,
+    buyersByTier: byTier,
   };
 }

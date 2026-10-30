@@ -26,6 +26,8 @@ export type QueueFilters = {
   taxCheck?: string;
   hasCertificate?: "yes" | "no";
   flag?: string;
+  /** "incomplete": an approval started and stopped part-way (needs Retry or Undo). */
+  approval?: "incomplete";
   from?: string; // YYYY-MM-DD
   to?: string;
   sort?: "newest" | "oldest" | "company";
@@ -45,6 +47,7 @@ export function parseFilters(url: URL): QueueFilters {
     taxCheck: p.get("taxCheck") || undefined,
     hasCertificate: p.get("hasCertificate") === "yes" ? "yes" : p.get("hasCertificate") === "no" ? "no" : undefined,
     flag: p.get("flag") || undefined,
+    approval: p.get("approval") === "incomplete" ? "incomplete" : undefined,
     from: p.get("from") || undefined,
     to: p.get("to") || undefined,
     sort: sort === "oldest" || sort === "company" ? sort : "newest",
@@ -60,6 +63,7 @@ export function buildWhere(shop: string, f: QueueFilters, applicationIdsWithFile
   if (f.formId) and.push({ formId: f.formId });
   if (f.taxCheck) and.push({ taxCheck: f.taxCheck });
   if (f.flag) and.push({ flags: { has: f.flag } });
+  if (f.approval === "incomplete") and.push({ approvalStatus: { in: ["running", "failed"] } });
   if (f.from) and.push({ submittedAt: { gte: new Date(`${f.from}T00:00:00Z`) } });
   if (f.to) and.push({ submittedAt: { lte: new Date(`${f.to}T23:59:59Z`) } });
   if (f.hasCertificate && applicationIdsWithFiles) {
@@ -102,7 +106,7 @@ export async function listApplications(shop: string, f: QueueFilters) {
       take: PAGE_SIZE,
       select: {
         id: true, companyName: true, email: true, countryCode: true, businessType: true, submittedAt: true,
-        taxCheck: true, flags: true, status: true, answers: true,
+        taxCheck: true, flags: true, status: true, answers: true, approvalStatus: true,
       },
     }),
     db.application.count({ where }),
@@ -131,6 +135,7 @@ export async function listApplications(shop: string, f: QueueFilters) {
       hasCertificate: hasFile.has(r.id),
       flags: r.flags,
       status: r.status,
+      approvalIncomplete: r.approvalStatus === "running" || r.approvalStatus === "failed",
     })),
     total,
     pages: Math.max(1, Math.ceil(total / PAGE_SIZE)),
