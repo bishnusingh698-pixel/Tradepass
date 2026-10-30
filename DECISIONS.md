@@ -252,3 +252,33 @@ Settings → Tier assignment: Automatic (default) or Assisted. The change applie
 
 ## D-080 File limits on the server — Decided
 The submit (and needs-info update) handlers refuse more than 3 files per upload question with the same "You can add up to 3 files" error the browser shows, and count a repeated reference to the same file once. The upload endpoint accepts exactly one file per request and checks type by content and size (≤ 5 MB) as before. The limit is per upload question, as in the spec's form section and the browser; there is no separate cap across all upload questions of one application.
+
+## D-081 Shopify is the source of truth for the plan — Decided (2026-10-30)
+Install, reinstall and every Home load read `currentAppInstallation.activeSubscriptions`; `Shop.billingPlan` is a cache. Uninstall resets it to Free (Shopify cancels app subscriptions on uninstall). Test charges only count on development stores or with `BILLING_TEST=true`.
+
+## D-082 Reinstall restores the storefront at once — Decided
+`afterAuth` re-writes the app-owned metafields and the checkout validation from saved settings, because Shopify deletes both on uninstall. A wholesale-only store is locked again the moment the app is reinstalled.
+
+## D-083 Decisions wait for an approval in progress — Decided
+Reject and "needs more info" are refused while an approval has created objects in Shopify (`approvalStatus` set). The merchant finishes it (Retry) or removes it (Undo) first, so no company is left behind under a rejected application. Approve, reject, needs-info and Undo share one 10-minute per-application lock.
+
+## D-084 Submit answers before the follow-ups — Decided
+The app proxy request returns once the application is stored (plus the ≤5 s tax check, D-042). Merchant alert, Flow trigger and automation rules run right after in the background, recorded as an `intake_followup` job that the hourly run finishes if the process stopped.
+
+## D-085 Tax-ID formats: strict only where certain — Decided
+`app/lib/tax-ids.json` lists ~65 countries with the local name, an example and a pattern. A mismatch blocks submission only for formats we know for certain (EU VAT, UK, CH, NO, CA BN, AU ABN, IN GSTIN, BR CNPJ, MX RFC, JP, KR, CN, TW, TH, VN, AE, SA, IL, TR, ZA, RU, CL, AR, PE, NZ); for the others the example is shown but anything is accepted. US resale certificate numbers vary by state and are never format-checked. Run `npm run sync-tax-ids` after editing the table.
+
+## D-086 Who can apply, by billing country — Decided
+Settings → Who can apply: every country (default), only chosen countries, or every country except chosen ones. The form shows the message on the billing country before submitting; the server refuses too. Existing applications and buyers are not affected.
+
+## D-087 Navigation in nine sections — Decided
+See PLAN.md → Navigation. Certificates and Import moved under Wholesale buyers; Notifications and Automation under Emails & automation; Plans is reached from Settings and every "Available on …" label. URLs didn't change, so links in emails keep working.
+
+## D-088 Setup wizard replaces the one-question welcome — Decided
+`/app/setup` reuses the same code as the regular pages (form templates, `createTier`, storefront sync). It offers Show/Hide prices only; the wholesale-only store stays a deliberate choice on the Storefront access page. It never loosens a store that is already wholesale-only.
+
+## D-089 Approvals need B2B on the plan — Decided
+On a store without B2B the approval stops before any Shopify call with a plain explanation; applications keep coming in and can be approved once B2B is available. Flow gets a final 422 with the same message.
+
+## D-090 Strings added on 2026-10-30 are English until translated — Decided
+They live in `app/locales/en/pending.json`; the runtime falls back to English and the i18n test allows exactly those keys to be missing elsewhere. Navigation labels and every applicant-facing storefront string were translated into all 36 languages.
