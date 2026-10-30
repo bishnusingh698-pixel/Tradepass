@@ -1,4 +1,4 @@
-import type { Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import db from "../db.server";
 import { logActivity } from "./activity.server";
 import { decrypt, sha256, signToken } from "./crypto.server";
@@ -286,7 +286,12 @@ export async function requestMoreInfo(
       });
       await db.application.update({
         where: { id },
-        data: { status: "needs_info", requested: { fields, message: opts.message.slice(0, 5000), at: new Date().toISOString() } },
+        data: {
+          status: "needs_info",
+          requested: { fields, message: opts.message.slice(0, 5000), at: new Date().toISOString() },
+          // An attempt that failed before creating anything must not be resumed by the hourly retry.
+          ...(app.approvalState ? { approvalState: Prisma.DbNull } : {}),
+        },
       });
       return { app, token, exp };
     });

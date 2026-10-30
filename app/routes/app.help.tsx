@@ -54,8 +54,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const on = form.get("on") === "1";
     const until = on ? new Date(Date.now() + DEBUG_HOURS * 3_600_000).toISOString() : null;
     await updateSettings(ctx.shop, { debug: { storefrontUntil: until } });
-    await syncStorefrontConfig(ctx.admin, ctx.shop);
-    await logActivity({ shop: ctx.shop, actor: ctx.actor, action: on ? "help.debug_on" : "help.debug_off", subject: null });
+    // A failed push is retried by the hourly job; it must not turn the click into an error page.
+    const synced = await syncStorefrontConfig(ctx.admin, ctx.shop).then(() => true, () => false);
+    await logActivity({ shop: ctx.shop, actor: ctx.actor, action: on ? "help.debug_on" : "help.debug_off", subject: null, result: synced ? "ok" : "failed" });
     return { ok: true };
   }
   if (intent === "welcome") {

@@ -25,7 +25,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const after = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true } });
   if (after && after.billingPlan !== row?.billingPlan) {
     await enforcePlanLimits(shop, after.billingPlan as PlanId);
-    if (admin) await syncStorefrontConfig(admin, shop).catch(() => undefined);
+    // Answer Shopify within its webhook time limit; the sync (and its hourly retry on failure) runs on.
+    if (admin) void syncStorefrontConfig(admin, shop).catch(() => undefined);
   }
   return new Response();
 };

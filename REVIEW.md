@@ -67,4 +67,23 @@ Status: ✅ fixed · ⚠️ not fixed (reason given).
 | m15 | `app/lib/import.server.ts:348` | A CSV run could be started from "draft" (no validation) and finished with nothing imported. | ✅ a CSV run starts only after validation. |
 | m16 | `app/routes/proxy.renew.$token.tsx:147` | The renewal page rejected files the browser sent with an empty type (common for PDFs on some systems) and accepted impossible dates like 2026-02-31. | ✅ empty/generic types accepted (bytes are sniffed), mismatched content reported as a type error, impossible dates refused, body size checked before reading. Intake and certificate dates are checked the same way. |
 | m18 | `app/lib/certificates.server.ts:30`, `app/lib/intake.server.ts:182` | Impossible dates like 2027-02-31 were accepted: JS rolls them over to March, and "Set expiry" with such a date silently cleared the expiry. | ✅ dates must round-trip; Set expiry reports the error. |
+| m19 | `app/lib/applications.server.ts:225` | Asking for more info after an approval attempt that failed before creating anything kept its state, so the hourly retry could still approve the application while the applicant was being asked for details. | ✅ the stale attempt is cleared. |
+| m20 | `app/routes/app.help.tsx:57` | Turning storefront debug mode on/off threw a server error when the push to Shopify failed. | ✅ failure is logged and retried hourly. |
+| m21 | `app/routes/webhooks.app.subscriptions_update.tsx:25` | The webhook waited for a full storefront sync (several Shopify calls, gated product lookups) before answering; past Shopify's 5-second limit the webhook is retried. | ✅ the sync runs after the response. |
 | m17 | `app/lib/rules.server.ts:162`, `app/routes/app.automation.tsx:64` | Rules were saved as posted (unknown kinds, condition types, actions). | ✅ `sanitizeRules` rebuilds rules from known kinds, conditions and action fields; bad JSON no longer crashes the action. |
+
+## Not fixed (and why)
+
+| # | Where | Issue | Why not fixed |
+|---|---|---|---|
+| N1 | `app/lib/spam.server.ts` `clientIp` | Rate limits key on the left-most `X-Forwarded-For` entry, which a client can spoof to dodge the per-IP limit (the per-email limit, honeypot and timing check still apply). | The safe entry depends on how many proxies (Shopify app proxy, Render, possibly Cloudflare) append to the header. Guessing wrong would put every applicant of every store in one bucket and block real submissions. Check the header on the live deploy, then pick the right position. |
+| N2 | `app/routes/proxy.upload.tsx` | A request without `Content-Length` (chunked) is read fully into memory before the 5 MB check. | Shopify's app proxy forwards a length for normal browser uploads; capping a streamed multipart body needs a custom parser. Low risk on a signed, rate-limited endpoint. |
+| N3 | `app/lib/privacy.server.ts` `deleteShopData` | After `shop/redact` deletes the Shop row, a later reinstall gets a fresh 14-day trial. | Keeping a trial record would mean keeping shop data after the mandatory redaction. Product decision for the owner. |
+| N4 | Approval engine | A crash right after `companyCreate`, before the GID is saved, relies on Shopify's company search by `external_id` to avoid a duplicate. Shopify's search index can lag a few seconds. | Inherent to the API; the window is one request long. |
+| N5 | Shopify behaviour not verifiable offline | Error codes the code depends on (`TAKEN` for an existing contact email, `SPECIFIED_CONDITIONS_CANNOT_BE_EMPTY`, catalog-limit codes) and whether B2B markets work below Plus. | The Shopify dev MCP server didn't connect in this session and there is no dev store. The Phase 0 spike (SPIKE_RESULTS.md) and the checklist below cover them. |
+
+## Verification
+
+- `npx tsc --noEmit`, `npm run lint`, `npx vitest run` (348 tests, 15 new in `tests/review-fixes.test.ts`) and `npm run build` pass after every group.
+- `prisma migrate deploy` on an empty Postgres 16 database applies all four migrations; `prisma migrate diff` between migrations and schema is empty.
+- Every changed file was re-read after the fixes; the second pass found m19–m21, now fixed.
