@@ -21,7 +21,7 @@ import { approvalQuota, effectivePlan } from "./plans";
 import { approvalsThisMonth } from "./applications.server";
 import { readSettings } from "./settings";
 import { suggestExemption, US_RESELLER_STATES } from "./tax";
-import { storefrontUrl } from "./shop.server";
+import { refreshShopFacts, storefrontUrl } from "./shop.server";
 import {
   AssignmentError, ASSISTED_JOB, catalogBudget, moveLocations, paymentTermsOptions, readDefaults, TierError,
 } from "./tiers.server";
@@ -540,9 +540,14 @@ function contactFromApp(app: Application, input: ApproveInput) {
   };
 }
 
-async function checkQuota(shop: string) {
-  const row = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true, isDevStore: true, b2bEnabled: true } });
+async function checkQuota(shop: string, admin?: Admin) {
+  let row = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true, isDevStore: true, b2bEnabled: true } });
   // Without B2B Shopify refuses companies; say so in plain words before creating anything.
+  // The stored fact may be stale (the merchant just changed plan), so ask Shopify once before refusing.
+  if (row && !row.b2bEnabled && admin) {
+    const live = await refreshShopFacts(shop, admin).catch(() => null);
+    if (live) row = { ...row, b2bEnabled: live.b2bEnabled, isDevStore: live.isDevStore };
+  }
   if (row && !row.b2bEnabled) throw new ApprovalError("no_b2b");
   const plan = effectivePlan(row?.billingPlan ?? "free", Boolean(row?.isDevStore));
   if (approvalQuota(plan, await approvalsThisMonth(shop)).blocked) throw new ApprovalError("plan_limit");
@@ -618,7 +623,7 @@ export async function approveApplication(ctx: ApprovalCtx, applicationId: string
     const prev = readState(app.approvalState);
     if (app.status === "approved" && prev?.finishedAt) return prev;
     if (!["pending", "needs_info", "approved"].includes(app.status)) throw new ApprovalError("not_pending");
-    if (!prev || !prev.steps.company.gid) await checkQuota(ctx.shop);
+    if (!prev || !prev.steps.company.gid) await checkQuota(ctx.shop, ctx.admin);
     // Keep GIDs from an earlier attempt; take the merchant's latest choices for what's left.
     const state: ApprovalState = prev
       ? { ...prev, input }

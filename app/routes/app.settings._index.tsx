@@ -67,8 +67,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const assignmentRaw = form.get("assignment");
     const assignment = assignmentRaw == null || assignmentRaw === "" ? ctx.settings.tiers.assignment : String(assignmentRaw);
     if (!(ASSIGNMENT_MODES as readonly string[]).includes(assignment)) errors.assignment = "settings.error.assignment";
-    const countryMode = String(form.get("countryMode") ?? "all");
-    const countryList = [...new Set(form.getAll("countryList").map(String).filter(isCountryCode))];
+    // A form without the field (e.g. an old tab) keeps the current rule rather than opening to everyone.
+    const countryMode = String(form.get("countryMode") ?? ctx.settings.applications.countries.mode);
+    const countryList = form.has("countryMode")
+      ? [...new Set(form.getAll("countryList").map(String).filter(isCountryCode))]
+      : ctx.settings.applications.countries.list;
     if (!(COUNTRY_MODES as readonly string[]).includes(countryMode)) errors.countryMode = "settings.error.assignment";
     else if (countryMode !== "all" && countryList.length === 0) errors.countryList = "settings.countries.errorEmpty";
     if (Object.keys(errors).length) return { ok: false as const, intent, errors };

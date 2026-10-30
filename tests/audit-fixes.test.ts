@@ -290,13 +290,16 @@ describe("plan without B2B", () => {
     const NOB2B = `test-audit-nob2b-${rnd}.myshopify.com`;
     await db.shop.create({ data: { shop: NOB2B, settings: defaultSettings() as object, billingPlan: "pro", b2bEnabled: false } });
     const a = await db.application.create({ data: { shop: NOB2B, idempotencyKey: `nb-${rnd}`, companyName: "No B2B Co", email: "nb@example.com", answers: {} } });
-    const graphql = vi.fn();
+    // The live re-check sees a plan without B2B too.
+    const facts = baseFacts({ entitlements: { b2b: { enabled: false }, markets: { b2b: { enabled: false, catalogs: { enabled: false, limit: 0 } } } } });
+    const graphql = vi.fn(async () => ({ json: async () => facts }));
     const input = {
       tierId: "t1", paymentTermsTemplateId: null, taxExempt: false, exemptions: [], taxRegistrationId: null, companyName: "No B2B Co", locationName: "HQ",
       billingAddress: { address1: "1 Main", city: "Austin", countryCode: "US" }, shippingAddress: null, contact: { mode: "new" as const }, sendWelcome: false,
     };
     await expect(approveApplication({ admin: { graphql }, shop: NOB2B, actor: "staff" }, a.id, input)).rejects.toBeInstanceOf(ApprovalError);
-    expect(graphql).not.toHaveBeenCalled();
+    // Only the plan check ran: no company, location or contact was created.
+    expect(graphql.mock.calls.every((c) => String((c as unknown[])[0]).includes("TradepassShopFacts"))).toBe(true);
     await db.shopLock.deleteMany({ where: { shop: NOB2B } });
     await db.application.deleteMany({ where: { shop: NOB2B } });
     await db.shop.deleteMany({ where: { shop: NOB2B } });
