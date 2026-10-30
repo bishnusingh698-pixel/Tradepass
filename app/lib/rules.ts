@@ -111,3 +111,41 @@ export function errorCodeOf(e: unknown): string {
 }
 
 export const MAX_RULES = 50;
+
+const str = (v: unknown, max = 200) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+const strList = (v: unknown) => (Array.isArray(v) ? v.map((x) => str(x, 100)).filter(Boolean).slice(0, 100) : []);
+
+/** Rebuild rules posted by the Automation page from untrusted JSON: known kinds, condition types and fields only. */
+export function sanitizeRules(raw: unknown): RuleDef[] {
+  if (!Array.isArray(raw)) return [];
+  const out: RuleDef[] = [];
+  for (const r of raw.slice(0, MAX_RULES)) {
+    if (!r || typeof r !== "object") continue;
+    const x = r as Record<string, unknown>;
+    const kind = x.kind === "approve" || x.kind === "reject" ? x.kind : null;
+    if (!kind) continue;
+    const c = (x.conditions ?? {}) as Record<string, unknown>;
+    const list: Condition[] = [];
+    for (const item of Array.isArray(c.list) ? c.list.slice(0, 20) : []) {
+      const k = (item ?? {}) as Record<string, unknown>;
+      const op = k.op === "is_not" ? "is_not" : "is";
+      if (k.type === "country" || k.type === "business_type" || k.type === "email_domain") list.push({ type: k.type, op, values: strList(k.values) });
+      else if (k.type === "custom_field") list.push({ type: "custom_field", field: str(k.field, 60), value: str(k.value) });
+      else if (k.type === "tax_verified" || k.type === "certificate_uploaded" || k.type === "spam") list.push({ type: k.type });
+    }
+    const a = (x.action ?? {}) as Record<string, unknown>;
+    const action: ApproveAction | RejectAction =
+      kind === "approve"
+        ? { tierId: str(a.tierId, 60), paymentTermsTemplateId: str(a.paymentTermsTemplateId) || null, sendWelcome: a.sendWelcome !== false }
+        : { reason: str(a.reason, 2000) || null, email: a.email === true };
+    out.push({
+      ...(typeof x.id === "string" ? { id: x.id } : {}),
+      kind,
+      enabled: x.enabled !== false,
+      conditions: { match: c.match === "any" ? "any" : "all", list },
+      action,
+      position: out.length,
+    });
+  }
+  return out;
+}

@@ -1,7 +1,8 @@
 import type { ActionFunctionArgs } from "react-router";
 import { authenticate } from "../shopify.server";
 import db from "../db.server";
-import { planForSubscriptionName } from "../lib/billing.server";
+import { enforcePlanLimits, planForSubscriptionName } from "../lib/billing.server";
+import type { PlanId } from "../lib/plans";
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 
 type Payload = { app_subscription?: { admin_graphql_api_id?: string; name?: string; status?: string } };
@@ -22,6 +23,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   }
   // Plan-dependent storefront parts (the Free plan's "Powered by Tradepass" link) follow the new plan.
   const after = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true } });
-  if (admin && after && after.billingPlan !== row?.billingPlan) await syncStorefrontConfig(admin, shop).catch(() => undefined);
+  if (after && after.billingPlan !== row?.billingPlan) {
+    await enforcePlanLimits(shop, after.billingPlan as PlanId);
+    if (admin) await syncStorefrontConfig(admin, shop).catch(() => undefined);
+  }
   return new Response();
 };

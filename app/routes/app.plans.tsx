@@ -4,7 +4,7 @@ import { useFetcher, useLoaderData } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { adminContext } from "../lib/context.server";
 import { applyDowngrade, downgradeImpact, isTestBilling, remainingTrialDays, syncBilling } from "../lib/billing.server";
-import { BILLING_NAMES, effectivePlan, FEATURES, PLANS, type Feature, type PlanId } from "../lib/plans";
+import { BILLING_NAMES, can, effectivePlan, FEATURES, PLANS, type Feature, type PlanId } from "../lib/plans";
 import { approvalsThisMonth } from "../lib/applications.server";
 import { logActivity } from "../lib/activity.server";
 import { useI18n } from "../lib/i18n/react";
@@ -55,9 +55,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     return { ok: true };
   }
 
-  if (rank(target) < rank(ctx.plan)) {
-    const res = await applyDowngrade(ctx, target, form.get("confirmWholesaleOff") === "on");
-    if (!res.ok) return { ok: false, error: res.reason };
+  // A lower paid plan only takes effect once the merchant approves it on Shopify's page; what it turns
+  // off is applied then (syncBilling / the subscription webhook), so cancelling there changes nothing.
+  if (rank(target) < rank(ctx.plan) && ctx.settings.storefront.accessMode === "wholesale_only" && !can(target, "wholesale_only")) {
+    if (form.get("confirmWholesaleOff") !== "on") return { ok: false, error: "confirm_wholesale" };
   }
   await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "billing.request", subject: null, detail: { to: target } });
   const handle = ctx.shop.replace(".myshopify.com", "");

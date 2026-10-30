@@ -96,7 +96,8 @@ export const action = async ({ request }: ActionFunctionArgs): Promise<ActionRes
     case "set_expiry": {
       const date = String(form.get("expiresOn") ?? "").trim();
       if (date && !/^\d{4}-\d{2}-\d{2}$/.test(date)) return { ok: false, intent, error: "date" };
-      return { ok: await setCertificateExpiry(ctx.shop, id, ctx.actor, date || null), intent };
+      const saved = await setCertificateExpiry(ctx.shop, id, ctx.actor, date || null);
+      return saved ? { ok: true, intent } : { ok: false, intent, error: "date" };
     }
     case "request": {
       const expired = cert.expiresOn ? daysUntil(cert.expiresOn) < 0 : false;

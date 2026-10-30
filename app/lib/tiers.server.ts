@@ -77,6 +77,8 @@ const Q = {
   priceListUpdate: `#graphql
     mutation TierPriceListUpdate($id: ID!, $input: PriceListUpdateInput!) { priceListUpdate(id: $id, input: $input) {
       priceList { id } userErrors { field message code } } }`,
+  priceListDelete: `#graphql
+    mutation TierPriceListDelete($id: ID!) { priceListDelete(id: $id) { deletedId userErrors { field message code } } }`,
   marketCreate: `#graphql
     mutation TierMarket($input: MarketCreateInput!) { marketCreate(input: $input) {
       market { id } userErrors { field message code } } }`,
@@ -535,8 +537,10 @@ export async function createTier(ctx: Ctx, plan: PlanId, input: TierInput): Prom
       created.publication = true;
     }
   } catch (e) {
-    // Leave nothing half-made in Shopify.
+    // Leave nothing half-made in Shopify. A price list without a catalog isn't removed by catalogDelete.
     await deleteObjects(ctx.admin, { catalogGid: g.catalogGid, marketGid: g.marketGid, created }).catch(() => undefined);
+    if (created.priceList && !created.catalog && g.priceListGid)
+      await mutate(ctx.admin, "priceListDelete", Q.priceListDelete, { id: g.priceListGid }).catch(() => undefined);
     const err = mapShopifyError(e);
     await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "tier.create", result: "failed", detail: { code: err.code } });
     throw err;

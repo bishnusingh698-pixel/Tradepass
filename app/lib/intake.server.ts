@@ -16,6 +16,7 @@ import { checkTaxNumber as realCheckTax, type TaxCheck } from "./taxcheck.server
 import { MAX_UPLOAD_FILES, verifyFileRef } from "./uploads.server";
 import type { Admin } from "./gql.server";
 import { can, effectivePlan } from "./plans";
+import { isLocked } from "../components/form-builder/model";
 
 export type IntakeDeps = {
   getAdmin: (shop: string) => Promise<Admin | null>;
@@ -71,6 +72,12 @@ type Clean = {
   files: Record<string, FileAnswer[]>;
 };
 
+/** YYYY-MM-DD that is a real calendar day (JS would roll 2026-02-31 over to March). */
+const realDate = (s: string) => {
+  if (!DATE_RE.test(s)) return false;
+  const d = new Date(`${s}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s;
+};
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max + 1) : "");
 const isObj = (v: unknown): v is Json => typeof v === "object" && v !== null && !Array.isArray(v);
 
@@ -96,7 +103,7 @@ function cleanAddress(v: unknown, f: FormField): { value: Json | null; error: st
   const cc = str(a.countryCode, 2).toUpperCase();
   if (COUNTRY_RE.test(cc)) out.countryCode = cc;
   const any = Object.keys(out).length > 0;
-  if (f.state === "required" || any) {
+  if (f.state === "required" || isLocked(f.id) || any) {
     if (!out.countryCode || !out.address1 || !out.city) return { value: null, error: "form.error.required" };
   }
   return { value: any ? out : null, error: null };
@@ -113,7 +120,8 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
   for (const f of def.sections.flatMap((s) => s.fields)) {
     if (!fieldVisible(def, f, values)) continue;
     const v = input[f.id];
-    const required = f.state === "required";
+    // Locked fields (company, email, names, billing address, consent) are always required, whatever is stored.
+    const required = f.state === "required" || isLocked(f.id);
     const fail = (key: string) => {
       out.errors[f.id] = key;
     };
@@ -144,7 +152,7 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
           const gid = isObj(item) ? verifyFileRef(item.ref, shop) : null;
           if (!gid || files.some((x) => x.fileGid === gid)) continue; // expired, forged or repeated reference: drop silently
           const exp = isObj(item) ? str(item.expiresOn, 10) : "";
-          files.push({ fileGid: gid, name: isObj(item) ? str(item.name, 120).replace(/[<>]/g, "") : "", expiresOn: DATE_RE.test(exp) ? exp : null });
+          files.push({ fileGid: gid, name: isObj(item) ? str(item.name, 120).replace(/[<>]/g, "") : "", expiresOn: realDate(exp) ? exp : null });
         }
         if (!files.length) { if (required) fail("form.error.required"); break; }
         out.files[f.id] = files;
@@ -180,7 +188,7 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
         if (f.type === "url" && !URL_RE.test(s)) { fail("form.error.url"); break; }
         if (f.type === "phone" && !PHONE_RE.test(s)) { fail("form.error.phone"); break; }
         if (f.type === "number" && !NUMBER_RE.test(s)) { fail("form.error.number"); break; }
-        if (f.type === "date" && (!DATE_RE.test(s) || isNaN(Date.parse(s)))) { fail("form.error.date"); break; }
+        if (f.type === "date" && !realDate(s)) { fail("form.error.date"); break; }
         out.answers[f.id] = f.type === "email" ? s.toLowerCase() : s;
       }
     }

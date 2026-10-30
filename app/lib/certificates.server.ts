@@ -28,7 +28,8 @@ export function maskedNumber(numberEnc: string | null): string {
 function parseDate(s: string | null | undefined): Date | null {
   if (!s || !/^\d{4}-\d{2}-\d{2}/.test(s)) return null;
   const d = new Date(`${s.slice(0, 10)}T00:00:00Z`);
-  return Number.isNaN(d.getTime()) ? null : d;
+  // JS rolls impossible days over (2026-02-31 → March 3); refuse them instead.
+  return Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== s.slice(0, 10) ? null : d;
 }
 
 const normType = (t: string): CertificateType => ((CERTIFICATE_TYPES as string[]).includes(t) ? (t as CertificateType) : "other");
@@ -214,6 +215,7 @@ export async function setCertificateExpiry(shop: string, id: string, actor: stri
   const cert = await db.certificate.findFirst({ where: { shop, id } });
   if (!cert) return false;
   const date = parseDate(expiresOn);
+  if (expiresOn && !date) return false; // an impossible date must not silently clear the expiry
   const s = await settingsFor(shop);
   const changed = (date?.getTime() ?? null) !== (cert.expiresOn?.getTime() ?? null);
   await db.certificate.update({
@@ -330,7 +332,8 @@ export async function runCertificateDay(shop: string, deps: DailyDeps = {}): Pro
         touched++;
         if (next === "expiring" || next === "expired") {
           const buyer = c.buyerId ? await db.buyer.findFirst({ where: { shop, id: c.buyerId }, select: { companyGid: true, name: true } }) : null;
-          await emitFlowTrigger(await getAdmin(), shop, next === "expiring" ? "certificate_expiring" : "certificate_expired", {
+          const flowAdmin = await getAdmin().catch(() => null);
+          if (flowAdmin) await emitFlowTrigger(flowAdmin, shop, next === "expiring" ? "certificate_expiring" : "certificate_expired", {
             buyerId: c.buyerId ?? undefined,
             applicationId: c.applicationId ?? undefined,
             companyGid: buyer?.companyGid,
@@ -347,15 +350,20 @@ export async function runCertificateDay(shop: string, deps: DailyDeps = {}): Pro
           try {
             await sendRenewalRequest(shop, c.id, due === "expired" ? "expired" : "expiring", adminFor, now);
             touched++;
-          } catch (e) {
-            await releaseReminder(shop, c.id, due); // try again tomorrow
-            throw e;
+          } catch {
+            // Try this one again tomorrow; one certificate's failure must not stop the shop's others.
+            await releaseReminder(shop, c.id, due);
+            await logActivity({ shop, actor: "system", action: "certificate.renewal_request", subject: c.id, result: "failed" }).catch(() => undefined);
           }
         }
       }
       if (next === "expired" && onExpiry === "remove" && !c.decidedOnExpiry && c.buyerId) {
-        await decideOnExpiry(await getAdmin(), shop, c.id, "system", "remove");
-        touched++;
+        try {
+          await decideOnExpiry(await getAdmin(), shop, c.id, "system", "remove");
+          touched++;
+        } catch {
+          // No offline session or a Shopify error: retried tomorrow.
+        }
       }
     }
   }

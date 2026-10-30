@@ -252,7 +252,8 @@ export function validateDefinition(def: FormDefinition): FormError[] {
       errors.push({ code: "badType", anchor, fieldId: f.id });
     }
 
-    if (isLocked(f.id) && f.state === "hidden") errors.push({ code: "lockedHidden", anchor, fieldId: f.id });
+    // Approval needs these answers (company, contact, address) and consent must be given, so they stay required.
+    if (isLocked(f.id) && f.state !== "required") errors.push({ code: "lockedHidden", anchor, fieldId: f.id });
 
     for (const t of Object.values(f.texts ?? {})) {
       if ((t.label?.length ?? 0) > LIMITS.label || (t.placeholder?.length ?? 0) > LIMITS.placeholder || (t.help?.length ?? 0) > LIMITS.help) {

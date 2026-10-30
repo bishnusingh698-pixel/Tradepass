@@ -904,7 +904,8 @@ export async function createBuyerFromInput(
 ): Promise<{ buyerId: string; state: ApprovalState }> {
   checkInput(input);
   const c = input.contact.mode === "new" ? input.contact : null;
-  const key = input.externalId ?? input.existingCompanyGid ??
+  // Hashed so the external IDs never contain a GID's ":" and "/" (only plain characters are safe there).
+  const key = input.externalId ?? (input.existingCompanyGid ? sha256(`${ctx.shop}|${input.existingCompanyGid}`).slice(0, 24) : null) ??
     sha256(`${ctx.shop}|${input.companyName.toLowerCase()}|${c?.email?.toLowerCase() ?? (input.contact.mode === "existing" ? input.contact.customerGid : "")}`).slice(0, 24);
   const state: ApprovalState = { input, steps: emptySteps(), startedAt: new Date().toISOString() };
   const r: Run = {

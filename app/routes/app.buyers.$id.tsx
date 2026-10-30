@@ -71,7 +71,8 @@ export default function BuyerDetail() {
   const shopify = useAppBridge();
   const fetcher = useFetcher<typeof action>();
   const [moveTo, setMoveTo] = useState(d.buyer.tierId ?? "");
-  const date = (iso: string) => new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(new Date(iso));
+  // Expiry dates are calendar dates stored at UTC midnight: format them in UTC so they don't shift a day.
+  const date = (iso: string, dateOnly = false) => new Intl.DateTimeFormat(locale, { dateStyle: "medium", ...(dateOnly ? { timeZone: "UTC" } : {}) }).format(new Date(iso));
   const dateTime = (iso: string) => new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeStyle: "short" }).format(new Date(iso));
   const label = (action: string) => {
     const k = `buyers.activity.${action}`;
@@ -178,7 +179,7 @@ export default function BuyerDetail() {
                 <s-table-row key={c.id}>
                   <s-table-cell>{t(`buyers.certType.${c.type}`)}</s-table-cell>
                   <s-table-cell>{[c.country, c.region].filter(Boolean).join(" · ") || "—"}</s-table-cell>
-                  <s-table-cell>{c.expiresOn ? date(c.expiresOn) : t("buyers.detail.noExpiry")}</s-table-cell>
+                  <s-table-cell>{c.expiresOn ? date(c.expiresOn, true) : t("buyers.detail.noExpiry")}</s-table-cell>
                   <s-table-cell><CertBadge status={c.status} /></s-table-cell>
                 </s-table-row>
               ))}

@@ -112,6 +112,13 @@ export async function buyerFilterOptions(shop: string) {
   return { countries: countries.map((c) => c.country!).sort(), tiers };
 }
 
+// Codes the Buyers pages can explain (buyers.error.<code>); anything else is a Shopify/unknown error.
+const BUYER_ERROR_CODES = new Set(["verify_failed", "concurrent", "busy", "missing_in_shopify"]);
+const buyerErrorCode = (e: unknown) => {
+  const code = (e as { code?: string }).code;
+  return code && BUYER_ERROR_CODES.has(code) ? code : "shopify";
+};
+
 export type MoveSummary = { moved: string[]; pending: string[]; failed: { id: string; name: string; code: string }[] };
 
 /** Bulk "Move to tier…" (tierId null = remove from any tier). Each buyer is moved and read back. */
@@ -135,7 +142,7 @@ export async function moveBuyers(ctx: Ctx, buyerIds: string[], tierId: string | 
       out.moved.push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.move", subject: b.id, detail: { from: b.tierId ?? b.pausedTierId, to: tierId } });
     } catch (e) {
-      const code = (e as { code?: string }).code ?? "shopify";
+      const code = buyerErrorCode(e);
       out.failed.push({ id: b.id, name: b.name, code });
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.move", subject: b.id, result: "failed", detail: { to: tierId, code } });
     }
@@ -155,7 +162,7 @@ export async function pauseBuyers(ctx: Ctx, buyerIds: string[]): Promise<MoveSum
       (res.verified ? out.moved : out.pending).push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.pause", subject: b.id, detail: { tierId: b.tierId } });
     } catch (e) {
-      const code = (e as { code?: string }).code ?? "shopify";
+      const code = buyerErrorCode(e);
       out.failed.push({ id: b.id, name: b.name, code });
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.pause", subject: b.id, result: "failed", detail: { code } });
     }
@@ -174,7 +181,7 @@ export async function resumeBuyers(ctx: Ctx, buyerIds: string[]): Promise<MoveSu
       (res.verified ? out.moved : out.pending).push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.resume", subject: b.id, detail: { tierId: tier?.id ?? null } });
     } catch (e) {
-      const code = (e as { code?: string }).code ?? "shopify";
+      const code = buyerErrorCode(e);
       out.failed.push({ id: b.id, name: b.name, code });
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.resume", subject: b.id, result: "failed", detail: { code } });
     }

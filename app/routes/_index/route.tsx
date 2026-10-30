@@ -21,9 +21,9 @@ export default function App() {
   return (
     <div className={styles.index}>
       <div className={styles.content}>
-        <h1 className={styles.heading}>A short heading about [your app]</h1>
+        <h1 className={styles.heading}>Tradepass: Wholesale Signup</h1>
         <p className={styles.text}>
-          A tagline about [your app] that describes your value proposition.
+          Collect wholesale applications and set approved buyers up with Shopify B2B and their own price tiers.
         </p>
         {showForm && (
           <Form className={styles.form} method="post" action="/auth/login">
@@ -39,16 +39,13 @@ export default function App() {
         )}
         <ul className={styles.list}>
           <li>
-            <strong>Product feature</strong>. Some detail about your feature and
-            its benefit to your customer.
+            <strong>Application form</strong>. A wholesale application on your storefront, in your customers&apos; language.
           </li>
           <li>
-            <strong>Product feature</strong>. Some detail about your feature and
-            its benefit to your customer.
+            <strong>Review and approve</strong>. Approving creates the company, location, contact, payment terms and tax settings in Shopify.
           </li>
           <li>
-            <strong>Product feature</strong>. Some detail about your feature and
-            its benefit to your customer.
+            <strong>Wholesale tiers</strong>. Each approved buyer sees their tier&apos;s prices; retail visitors don&apos;t.
           </li>
         </ul>
       </div>

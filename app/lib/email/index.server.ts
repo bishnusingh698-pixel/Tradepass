@@ -216,7 +216,7 @@ const clear = Prisma.DbNull;
 /** Send one claimed-or-claimable email. Returns "sent" | "retry" | "failed" | "skipped" | "busy". */
 export async function sendOne(id: string, send: Sender = sendViaBrevo, cache = new Map<string, ShopRow | null>()) {
   if (send === sendViaBrevo && !brevoConfigured()) return "busy" as const;
-  const claimed = await db.emailLog.updateMany({ where: { id, status: "queued" }, data: { status: "sending" } });
+  const claimed = await db.emailLog.updateMany({ where: { id, status: "queued" }, data: { status: "sending", claimedAt: new Date() } });
   if (claimed.count !== 1) return "busy" as const;
   const row = await db.emailLog.findUniqueOrThrow({ where: { id } });
   const p = row.payload as Payload | null;
@@ -261,9 +261,10 @@ export async function sendQueuedEmails(deadline: number, opts: { now?: Date; sen
   const now = opts.now ?? new Date();
   const send = opts.send ?? sendViaBrevo;
   const today = utcDay(now);
-  // A crashed run can leave rows "sending"; Brevo's IdempotencyKey protects against a double send on retry.
+  // A crashed run can leave rows "sending". Judge by when sending started: an old email that another
+  // run is sending right now must not be requeued (it would be sent twice).
   await db.emailLog.updateMany({
-    where: { status: "sending", createdAt: { lt: new Date(now.getTime() - STUCK_SENDING_MS) } },
+    where: { status: "sending", OR: [{ claimedAt: { lt: new Date(now.getTime() - STUCK_SENDING_MS) } }, { claimedAt: null, createdAt: { lt: new Date(now.getTime() - STUCK_SENDING_MS) } }] },
     data: { status: "queued" },
   });
   const due = await db.emailLog.findMany({

@@ -7,7 +7,14 @@ import { matchLocale } from "../lib/i18n/locales";
 import { readSettings } from "../lib/settings";
 import { escapeHtml, fontStack } from "../lib/email/render";
 import { applyRenewalUpload, checkRenewalToken, consumeRenewalToken, defaultAdminFor } from "../lib/certificates.server";
-import { ALLOWED_UPLOAD_TYPES, MAX_UPLOAD_BYTES, uploadToShopifyFiles } from "../lib/uploads.server";
+import { ALLOWED_UPLOAD_TYPES, MAX_UPLOAD_BYTES, uploadToShopifyFiles, UploadError } from "../lib/uploads.server";
+
+/** A real calendar date (2026-02-31 matches the pattern but isn't one). */
+function validDay(s: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+  const d = new Date(`${s}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s;
+}
 
 // Hosted certificate-renewal page, served through the app proxy at
 // https://{shop}/apps/tradepass/renew/{token}?lang=xx. Plain server-rendered
@@ -139,21 +146,29 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const check = await checkRenewalToken(c.shop, c.token);
   if (!check.ok) return html(c, { kind: check.reason }, 410);
 
-  const form = await request.formData();
+  // Refuse oversized bodies before reading them into memory.
+  if (Number(request.headers.get("content-length") ?? 0) > MAX_UPLOAD_BYTES + 64 * 1024) return html(c, { kind: "form", error: "size" }, 400);
+  const form = await request.formData().catch(() => null);
+  if (!form) return html(c, { kind: "form", error: "missing" }, 400);
   const file = form.get("file");
   const expiresOn = String(form.get("expiresOn") ?? "").trim();
   if (!(file instanceof File) || file.size === 0) return html(c, { kind: "form", error: "missing" }, 400);
   if (file.size > MAX_UPLOAD_BYTES) return html(c, { kind: "form", error: "size" }, 400);
-  if (!(ALLOWED_UPLOAD_TYPES as readonly string[]).includes(file.type)) return html(c, { kind: "form", error: "type" }, 400);
-  if (expiresOn && !/^\d{4}-\d{2}-\d{2}$/.test(expiresOn)) return html(c, { kind: "form", error: "date" }, 400);
+  // Some browsers send no type (or a generic one) for PDFs; the content is checked by its bytes on upload anyway.
+  const declared = file.type.toLowerCase();
+  if (declared && declared !== "application/octet-stream" && declared !== "image/jpg" && !(ALLOWED_UPLOAD_TYPES as readonly string[]).includes(declared)) {
+    return html(c, { kind: "form", error: "type" }, 400);
+  }
+  if (expiresOn && !validDay(expiresOn)) return html(c, { kind: "form", error: "date" }, 400);
 
   let fileGid: string;
   try {
     const admin = await defaultAdminFor(c.shop);
     ({ fileGid } = await uploadToShopifyFiles(admin, { filename: file.name, mimeType: file.type, bytes: new Uint8Array(await file.arrayBuffer()) }));
-  } catch {
-    // Type sniffing rejects files whose content doesn't match their extension, too.
-    return html(c, { kind: "form", error: "upload" }, 400);
+  } catch (e) {
+    // Type sniffing rejects files whose content doesn't match their extension: say so, not "upload failed".
+    const code = e instanceof UploadError ? e.code : "upload_failed";
+    return html(c, { kind: "form", error: code === "file_type" ? "type" : code === "file_size" ? "size" : "upload" }, 400);
   }
   // Single use: a second tab submitting at the same moment gets "already used".
   if (!(await consumeRenewalToken(c.shop, check.tokenHash))) return html(c, { kind: "used" }, 410);

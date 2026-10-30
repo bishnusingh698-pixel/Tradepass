@@ -44,9 +44,22 @@ export async function syncBilling(ctx: BillingCtx): Promise<PlanId> {
     where: { shop: ctx.shop },
     data: { billingPlan: plan, subscriptionGid: active?.id ?? null, ...(trialStart ? { trialStartedAt: trialStart } : {}) },
   });
-  // The storefront config carries plan-dependent parts (the Free plan's "Powered by Tradepass" link).
-  if (ctx.admin && plan !== (ctx.shopRow?.billingPlan ?? "free")) await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
+  const before = (ctx.shopRow?.billingPlan ?? "free") as PlanId;
+  if (plan !== before) {
+    await enforcePlanLimits(ctx.shop, plan);
+    // The storefront config carries plan-dependent parts (the Free plan's "Powered by Tradepass" link).
+    if (ctx.admin) await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
+  }
   return plan;
+}
+
+/**
+ * Applied once a lower plan is actually in effect (after Shopify confirmed it):
+ * automation rules switch off when the plan has none (D-017). Wholesale-only is
+ * never switched off here (D-015).
+ */
+export async function enforcePlanLimits(shop: string, plan: PlanId): Promise<void> {
+  if (!can(plan, "auto_rules")) await db.rule.updateMany({ where: { shop, enabled: true }, data: { enabled: false } });
 }
 
 /** What stops working when moving from one plan to a lower one. Used for the downgrade confirmation. */

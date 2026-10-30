@@ -285,7 +285,7 @@ function FieldEditor({
         value={f.state}
         details={locked ? t("form.field.lockedHint") : undefined}
         options={(["required", "optional", "hidden"] as const)
-          .filter((s) => !(locked && s === "hidden"))
+          .filter((s) => !locked || s === "required")
           .map((s) => ({ value: s, label: t(`form.state.${s}`) }))}
         onChange={(v) => onChange(updateField(def, f.id, { state: v as FormField["state"] }))}
       />

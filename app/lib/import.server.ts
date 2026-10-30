@@ -345,7 +345,11 @@ export function summarize(run: Pick<ImportRun, "mapping" | "errors">) {
 }
 
 export async function startRun(shop: string, id: string, actor: string): Promise<boolean> {
-  const res = await db.importRun.updateMany({ where: { shop, id, state: { in: ["validated", "draft"] }, kind: { in: ["csv", "tag"] } }, data: { state: "running" } });
+  // A CSV run must have been validated (the dry run prepares its rows); a draft would finish with nothing imported.
+  const res = await db.importRun.updateMany({
+    where: { shop, id, OR: [{ kind: "csv", state: "validated" }, { kind: "tag", state: { in: ["validated", "draft"] } }] },
+    data: { state: "running" },
+  });
   if (res.count) await logActivity({ shop, actor, action: "import.start", subject: id });
   return res.count > 0;
 }
@@ -439,7 +443,11 @@ export async function processImportRun(admin: Admin, shop: string, id: string, d
     // Progress is saved every few rows (each save rewrites the run's row JSON, so not after every
     // row). Rows after the last save are run again on resume, which is safe: createBuyerFromInput
     // finds what it already created by externalId.
-    const save = () => db.importRun.update({ where: { id }, data: { cursor, done, errors: issues as object, mapping: { ...data, rows } as object } });
+    // Only the counters and issues change while running; the row data (up to 5,000 rows) is written
+    // once at the end, not every few rows. Rows before `cursor` are never run again, so their in-memory
+    // status doesn't need to be stored.
+    const save = (withRows = false) =>
+      db.importRun.update({ where: { id }, data: { cursor, done, errors: issues as object, ...(withRows ? { mapping: { ...data, rows } as object } : {}) } });
     let unsaved = 0;
     while (cursor < rows.length && Date.now() + ROW_MARGIN_MS < deadline) {
       const row = rows[cursor];
@@ -466,7 +474,8 @@ export async function processImportRun(admin: Admin, shop: string, id: string, d
     run = await save();
     if (cursor >= rows.length) {
       await finish(run, "done");
-      const failed = rows.filter((r) => r.status === "failed").length;
+      // Counted from the stored issues: rows that failed in an earlier step of a resumed run are only there.
+      const failed = new Set(issues.filter((i) => i.code === "failed" || i.code === "step_failed").map((i) => i.row)).size;
       await logActivity({ shop, actor: "import", action: "import.done", subject: id, result: failed ? "failed" : "ok", detail: { done, failed } });
     }
     return processed;

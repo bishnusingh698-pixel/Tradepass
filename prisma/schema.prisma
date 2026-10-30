@@ -193,6 +193,7 @@ model EmailLog {
   payload   Json? // cleared after sending (no personal data kept)
   status    String    @default("queued") // queued | sending | sent | failed | skipped
   quotaDay  String // YYYY-MM-DD (UTC) the email counts against
+  claimedAt DateTime? // when a sender took it ("sending"); stuck rows are requeued by this, not by createdAt
   sentAt    DateTime?
   createdAt DateTime  @default(now())
 

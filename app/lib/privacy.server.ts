@@ -74,12 +74,22 @@ export async function redactCustomer(shop: string, c: CustomerRef): Promise<numb
     await db.emailLog.deleteMany({ where: { shop, toHash: sha256(c.email.toLowerCase()) } });
   }
   if (!ids.length) return 0;
+  // The applicant's uploaded documents live in the merchant's Shopify Files; they are personal data too.
+  const [files, certs] = await Promise.all([
+    db.applicationFile.findMany({ where: { shop, applicationId: { in: ids } }, select: { fileGid: true } }),
+    db.certificate.findMany({ where: { shop, applicationId: { in: ids }, fileGid: { not: null } }, select: { fileGid: true } }),
+  ]);
+  const fileGids = [...new Set([...files.map((f) => f.fileGid), ...certs.map((c) => c.fileGid!)])];
   await db.$transaction([
     db.applicationFile.deleteMany({ where: { shop, applicationId: { in: ids } } }),
     db.certificate.deleteMany({ where: { shop, applicationId: { in: ids } } }),
     db.tokenUse.deleteMany({ where: { shop, subjectId: { in: ids } } }),
     db.application.deleteMany({ where: { shop, id: { in: ids } } }),
   ]);
+  // Shopify expects the webhook answered within seconds, so the file deletion finishes in the background.
+  if (fileGids.length) {
+    void import("./jobs.server").then(({ deleteShopifyFiles }) => deleteShopifyFiles(shop, fileGids)).catch(() => undefined);
+  }
   // Buyer rows hold only Shopify GIDs and the company name (business data, not the person);
   // the company itself belongs to the merchant in Shopify and is never deleted by us.
   return ids.length;
