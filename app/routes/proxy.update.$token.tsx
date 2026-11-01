@@ -98,8 +98,6 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const form = await db.form.findFirst({ where: { shop: ctx.shop, ...(app.formId ? { id: app.formId } : { isDefault: true }) } })
     ?? (await db.form.findFirst({ where: { shop: ctx.shop }, orderBy: { createdAt: "asc" } }));
   const def = requestedDefinition(readDefinition(form?.definition), requested.fields ?? []);
-  // Drop the parts a "more info" page never needs.
-  def.sections = def.sections.map((s) => ({ ...s, fields: s.fields.filter((f) => f.type !== "consent") })).filter((s) => s.fields.length);
   def.success = { texts: {}, redirectUrl: null };
 
   const texts = storefrontTexts(i18n.locale, info.settings.texts[i18n.locale]);
@@ -163,7 +161,9 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
     const res = await applyUpdate({ shop: ctx.shop, ip: clientIp(request) }, app.id, body);
     if (!res.ok) {
       await db.tokenUse.updateMany({ where: { tokenHash, shop: ctx.shop }, data: { usedAt: null } });
-      return "errors" in res ? json({ ok: false, errors: res.errors }, 400) : json({ ok: false, error: res.error }, 404);
+      if ("errors" in res) return json({ ok: false, errors: res.errors }, 400);
+      // Decided meanwhile: the link has nothing left to update.
+      return res.error === "closed" ? json({ ok: false, error: "link_used" }, 410) : json({ ok: false, error: res.error }, 404);
     }
     return json({ ok: true, status: "received" });
   } catch (e) {

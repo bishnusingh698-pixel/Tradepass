@@ -13,16 +13,12 @@ import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CertBadge } from "../components/CertBadge";
 import { SectionTabs } from "../components/SectionTabs";
+import { downloadFromApp, saveText } from "../components/download";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
   const url = new URL(request.url);
   const filters = parseBuyerFilters(url);
-  if (url.searchParams.get("export") === "csv") {
-    return new Response(await exportBuyersCsv(ctx.shop, null), {
-      headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="buyers.csv"` },
-    });
-  }
   const [list, options] = await Promise.all([listBuyers(ctx.shop, filters), buyerFilterOptions(ctx.shop)]);
   const info = await shopifyInfo(ctx.admin, list.rows.map((r) => r.companyGid));
   return {
@@ -88,7 +84,7 @@ export default function Buyers() {
   useEffect(() => {
     const d = fetcher.data;
     if (fetcher.state !== "idle" || !d) return;
-    if ("csv" in d && d.csv) download(d.csv, "buyers.csv");
+    if ("csv" in d && d.csv) saveText(d.csv, "buyers.csv");
     if ("message" in d && d.message) shopify.toast.show(d.message, { isError: !d.ok });
     for (const id of ["move-buyers", "pause-buyers"]) (document.getElementById(id) as (HTMLElement & { hideOverlay?: () => void }) | null)?.hideOverlay?.();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -114,16 +110,18 @@ export default function Buyers() {
   const failed = fetcher.data && "failed" in fetcher.data ? fetcher.data.failed : [];
   const pending = fetcher.data && "pending" in fetcher.data ? fetcher.data.pending : 0;
   const filtered = Boolean(data.filters.tier || data.filters.cert || data.filters.country || data.filters.source || data.filters.status || data.filters.q);
-  const csvHref = (() => {
-    const p = new URLSearchParams(params);
-    p.set("export", "csv");
-    return `?${p}`;
-  })();
+  const [exporting, setExporting] = useState(false);
+  const exportAll = async () => {
+    setExporting(true);
+    const ok = await downloadFromApp("/app/buyers/export", "buyers.csv");
+    setExporting(false);
+    if (!ok) shopify.toast.show(t("errors.generic"), { isError: true });
+  };
 
   return (
     <s-page heading={t("nav.wholesaleBuyers")}>
       <SectionTabs section="buyers" />
-      <s-button slot="secondary-actions" href={csvHref} target="_blank">{t("buyers.exportAll")}</s-button>
+      <s-button slot="secondary-actions" loading={exporting} onClick={exportAll}>{t("buyers.exportAll")}</s-button>
 
       <s-section padding="none">
         <s-stack direction="block" gap="base" padding="base">
@@ -291,15 +289,6 @@ function money(amount: string, currency: string, locale: string) {
   } catch {
     return amount;
   }
-}
-
-function download(csv: string, name: string) {
-  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = name;
-  a.click();
-  URL.revokeObjectURL(url);
 }
 
 export const headers: HeadersFunction = (headersArgs) => boundary.headers(headersArgs);

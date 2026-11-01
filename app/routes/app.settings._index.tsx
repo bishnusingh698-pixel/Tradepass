@@ -40,6 +40,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     overrides,
     supportedCount: LOCALES.length,
     retention: ctx.settings.retention,
+    certificates: ctx.settings.certificates,
+    canCertificates: can(ctx.plan, "certificate_vault"),
     assignment: ctx.settings.tiers.assignment,
     canExportActivity: can(ctx.plan, "activity_export"),
     exportMax: ACTIVITY_EXPORT_MAX_ROWS,
@@ -58,6 +60,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const errors: Record<string, string> = {};
     const months = Number(form.get("months"));
     if (!(RETENTION_MONTHS as readonly number[]).includes(months)) errors.months = "settings.error.months";
+    // A form without the certificate fields (e.g. an old tab) keeps the current values.
+    const expiringDays = form.has("expiringDays") ? Number(form.get("expiringDays")) : ctx.settings.certificates.expiringDays;
+    if (!Number.isInteger(expiringDays) || expiringDays < 1 || expiringDays > 365) errors.expiringDays = "settings.error.expiringDays";
+    const onExpiryRaw = String(form.get("onExpiry") ?? ctx.settings.certificates.onExpiry);
+    const onExpiry: "ask" | "remove" = onExpiryRaw === "remove" ? "remove" : "ask";
     const assignmentRaw = form.get("assignment");
     const assignment = assignmentRaw == null || assignmentRaw === "" ? ctx.settings.tiers.assignment : String(assignmentRaw);
     if (!(ASSIGNMENT_MODES as readonly string[]).includes(assignment)) errors.assignment = "settings.error.assignment";
@@ -73,6 +80,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const countriesChanged = JSON.stringify(countries) !== JSON.stringify(ctx.settings.applications.countries);
     await updateSettings(ctx.shop, {
       retention: { months, deleteFiles: form.get("deleteFiles") === "on" },
+      certificates: { expiringDays, onExpiry },
       tiers: { assignment: assignment as (typeof ASSIGNMENT_MODES)[number] },
       applications: { countries },
     });
@@ -217,6 +225,31 @@ export default function SettingsPage() {
             </s-select>
             <s-checkbox name="deleteFiles" label={t("settings.retention.deleteFiles")} details={t("settings.retention.deleteFilesHelp")} defaultChecked={d.retention.deleteFiles} />
             <s-paragraph color="subdued">{t("settings.retention.note")}</s-paragraph>
+          </s-stack>
+        </s-section>
+
+        <s-section heading={t("settings.certificates.heading")}>
+          <s-stack direction="block" gap="base">
+            {!d.canCertificates && <s-badge tone="info">{t("common.availableOn", { plan: "Starter" })}</s-badge>}
+            <s-number-field
+              name="expiringDays"
+              label={t("settings.certificates.expiringDays")}
+              min={1}
+              max={365}
+              step={1}
+              defaultValue={String(d.certificates.expiringDays)}
+              error={errors.expiringDays ? t(errors.expiringDays) : undefined}
+            />
+            <s-choice-list name="onExpiry" label={t("settings.certificates.onExpiry")}>
+              <s-choice value="ask" defaultSelected={d.certificates.onExpiry === "ask"}>
+                {t("settings.certificates.onExpiry.ask")}
+                <s-text slot="details">{t("settings.certificates.onExpiry.askHelp")}</s-text>
+              </s-choice>
+              <s-choice value="remove" defaultSelected={d.certificates.onExpiry === "remove"}>
+                {t("settings.certificates.onExpiry.remove")}
+                <s-text slot="details">{t("settings.certificates.onExpiry.removeHelp")}</s-text>
+              </s-choice>
+            </s-choice-list>
           </s-stack>
         </s-section>
 

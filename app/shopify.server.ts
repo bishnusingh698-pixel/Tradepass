@@ -37,7 +37,15 @@ const shopify = shopifyApp({
     // Runs on install and reinstall. Every step is idempotent (upserts /
     // create-if-missing), so a reinstall never duplicates defaults.
     afterAuth: async ({ session, admin }) => {
-      await refreshShopFacts(session.shop, admin);
+      try {
+        await refreshShopFacts(session.shop, admin);
+      } catch (e) {
+        // A Shopify hiccup must not fail the install: the store row still has to exist and be
+        // marked installed again (the app proxy refuses uninstalled stores), and Home re-reads
+        // the plan facts on its next load.
+        console.error(`[tradepass] shop facts after install failed for ${session.shop}: ${(e as Error).message}`);
+        await prisma.shop.upsert({ where: { shop: session.shop }, create: { shop: session.shop }, update: { uninstalledAt: null } });
+      }
       await ensureDefaults(session.shop);
       // Shopify deletes app-owned metafields and the checkout validation on
       // uninstall. Rewrite them from our saved settings, so a store that was

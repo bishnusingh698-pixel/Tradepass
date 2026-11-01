@@ -12,7 +12,9 @@ import {
 } from "../lib/certificates.server";
 import { certificateFlags, certificateStatus, CERTIFICATE_TYPES } from "../lib/certificates";
 import type { ApplicantMessage } from "../lib/messages";
+import { isRealDate } from "../lib/dates";
 import { MessageModal } from "../components/MessageModal";
+import { openFromApp } from "../components/download";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { SectionTabs } from "../components/SectionTabs";
@@ -97,7 +99,7 @@ export const action = async ({ request }: ActionFunctionArgs): Promise<ActionRes
       return { ok: await rejectCertificate(ctx.shop, id, ctx.actor, String(form.get("reason") ?? "")), intent };
     case "set_expiry": {
       const date = String(form.get("expiresOn") ?? "").trim();
-      if (date && !/^\d{4}-\d{2}-\d{2}$/.test(date)) return { ok: false, intent, error: "date" };
+      if (date && !isRealDate(date)) return { ok: false, intent, error: "date" };
       return { ok: await setCertificateExpiry(ctx.shop, id, ctx.actor, date || null), intent };
     }
     case "renewal_link": {
@@ -163,18 +165,7 @@ export default function Certificates() {
   const date = (iso: string) => new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
 
   const openFile = async (id: string) => {
-    // Opened before the fetch so the browser treats it as the click's popup.
-    const win = window.open("", "_blank");
-    try {
-      const res = await fetch(`/app/files/${encodeURIComponent(id)}`);
-      if (!res.ok) throw new Error(String(res.status));
-      const url = URL.createObjectURL(await res.blob());
-      if (win) win.location.replace(url);
-      else window.open(url, "_blank");
-    } catch {
-      win?.close();
-      shopify.toast.show(t("certificates.error.file"), { isError: true });
-    }
+    if (!(await openFromApp(`/app/files/${encodeURIComponent(id)}`))) shopify.toast.show(t("certificates.error.file"), { isError: true });
   };
 
   const filtered = data.filters.status !== "all" || Boolean(data.filters.type);

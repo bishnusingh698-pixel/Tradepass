@@ -93,6 +93,10 @@ const Q = {
   catalogUpdate: `#graphql
     mutation TierCatalogUpdate($id: ID!, $input: CatalogUpdateInput!) { catalogUpdate(id: $id, input: $input) {
       catalog { id } userErrors { field message code } } }`,
+  // Not in API_NOTES yet (the Shopify docs server was unreachable on 2026-11-01): priceListDelete(id)
+  // returning deletedId + userErrors. Only used for cleanup, and its failure is ignored.
+  priceListDelete: `#graphql
+    mutation TierPriceListDelete($id: ID!) { priceListDelete(id: $id) { deletedId userErrors { field message } } }`,
   catalogDelete: `#graphql
     mutation TierCatalogDelete($id: ID!) { catalogDelete(id: $id, deleteDependentResources: true) {
       deletedId userErrors { field message code } } }`,
@@ -462,9 +466,11 @@ async function createPublication(admin: Admin, catalogId: string, products: Tier
   return id;
 }
 
-async function deleteObjects(admin: Admin, o: { catalogGid?: string | null; marketGid?: string | null; created: TierDefaults["created"] }) {
+async function deleteObjects(admin: Admin, o: { catalogGid?: string | null; marketGid?: string | null; priceListGid?: string | null; created: TierDefaults["created"] }) {
   // catalogDelete with deleteDependentResources also removes its price list and publication.
   if (o.catalogGid && o.created.catalog) await mutate(admin, "catalogDelete", Q.catalogDelete, { id: o.catalogGid }).catch(ignoreNotFound);
+  // No catalog was made (e.g. marketCreate failed): the price list we created would be left behind.
+  else if (o.priceListGid && o.created.priceList) await mutate(admin, "priceListDelete", Q.priceListDelete, { id: o.priceListGid }).catch(() => undefined);
   if (o.marketGid && o.created.market) await mutate(admin, "marketDelete", Q.marketDelete, { id: o.marketGid }).catch(ignoreNotFound);
 }
 
@@ -539,7 +545,7 @@ export async function createTier(ctx: Ctx, plan: PlanId, input: TierInput): Prom
     }
   } catch (e) {
     // Leave nothing half-made in Shopify.
-    await deleteObjects(ctx.admin, { catalogGid: g.catalogGid, marketGid: g.marketGid, created }).catch(() => undefined);
+    await deleteObjects(ctx.admin, { catalogGid: g.catalogGid, marketGid: g.marketGid, priceListGid: g.priceListGid, created }).catch(() => undefined);
     const err = mapShopifyError(e);
     await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "tier.create", result: "failed", detail: { code: err.code } });
     throw err;

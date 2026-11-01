@@ -5,7 +5,7 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import db from "../db.server";
 import { adminContext } from "../lib/context.server";
-import { refreshShopFacts } from "../lib/shop.server";
+import { shopFactsOrStored } from "../lib/shop.server";
 import { updateSettings } from "../lib/settings.server";
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { logActivity } from "../lib/activity.server";
@@ -27,7 +27,7 @@ type Step = (typeof STEPS)[number];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
-  const facts = await refreshShopFacts(ctx.shop, ctx.admin);
+  const facts = await shopFactsOrStored(ctx.shop, ctx.admin);
   const plan = effectivePlan(facts.subscription?.plan ?? ctx.shopRow?.billingPlan ?? "free", facts.isDevStore);
   const [tiers, budget] = await Promise.all([
     db.tier.findMany({ where: { shop: ctx.shop }, select: { id: true, name: true, discountPct: true }, orderBy: { position: "asc" } }),

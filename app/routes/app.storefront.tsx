@@ -70,7 +70,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const { shop, admin, settings, plan, actor } = await adminContext(request);
-  const parsed = parseStorefrontInput(await request.json(), settings, plan);
+  let body: unknown = null;
+  try {
+    body = await request.json();
+  } catch {
+    body = null;
+  }
+  const parsed = parseStorefrontInput(body, settings, plan);
   if (!parsed.ok) return { ok: false as const, errors: parsed.errors };
   const { before, after } = await saveStorefrontSettings(shop, parsed.value);
   // syncStorefrontConfig also turns the checkout lock on/off (ensureCheckoutLock).
@@ -128,6 +134,7 @@ export default function Storefront() {
   const [touched, setTouched] = useState<Set<string>>(new Set());
   const [showAll, setShowAll] = useState(false);
   const [confirm, setConfirm] = useState<AccessMode | null>(null);
+  const [confirmedMode, setConfirmedMode] = useState<AccessMode | null>(null);
   const [lang, setLang] = useState(() => primaryLocale(data.shopLocales));
   const [builtIn, setBuiltIn] = useState<Record<string, string>>({});
 
@@ -167,9 +174,10 @@ export default function Storefront() {
     JSON.stringify(storefront) !== JSON.stringify(data.storefront) ||
     Object.entries(draft.edits).some(([loc, map]) => Object.entries(map).some(([k, v]) => v !== (data.overrides[loc]?.[k] ?? "")));
 
-  const payload = { storefront, texts: draft.edits };
+  // The confirmed mode travels with the save: the server refuses to open or close a wholesale-only store without it.
+  const payload = { storefront, texts: draft.edits, ...(confirmedMode ? { confirmedMode } : {}) };
   const clientErrors = useMemo(() => {
-    const res = parseStorefrontInput(payload, { storefront: data.storefront } as Settings, data.canWholesaleOnly ? "starter" : "free");
+    const res = parseStorefrontInput(payload, { storefront: data.storefront } as Settings, data.canWholesaleOnly ? "starter" : "free", { skipConfirm: true });
     return res.ok ? [] : res.errors;
     // eslint-disable-next-line react-hooks/exhaustive-deps -- payload is derived from these
   }, [storefront, draft.edits, data.storefront, data.canWholesaleOnly]);
@@ -501,7 +509,10 @@ export default function Storefront() {
           variant="primary"
           {...(confirm !== "wholesale_only" ? { tone: "critical" as const } : {})}
           onClick={() => {
-            if (confirm) setSf({ accessMode: confirm });
+            if (confirm) {
+              setSf({ accessMode: confirm });
+              setConfirmedMode(confirm);
+            }
             setConfirm(null);
           }}
         >

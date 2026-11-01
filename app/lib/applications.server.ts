@@ -8,6 +8,7 @@ import { readSettings } from "./settings";
 import type { Admin } from "./gql.server";
 import { storefrontUrl } from "./shop.server";
 import { LockBusyError, withApplicationLock } from "./lock.server";
+import { isRealDate } from "./dates";
 
 // Merchant-side reads and decisions on applications (queue, detail, reject,
 // needs info, notes). Intake lives in intake.server.ts; approval in
@@ -49,8 +50,9 @@ export function parseFilters(url: URL): QueueFilters {
     hasCertificate: p.get("hasCertificate") === "yes" ? "yes" : p.get("hasCertificate") === "no" ? "no" : undefined,
     flag: p.get("flag") || undefined,
     approval: p.get("approval") === "incomplete" ? "incomplete" : undefined,
-    from: p.get("from") || undefined,
-    to: p.get("to") || undefined,
+    // A malformed date in the URL would become an Invalid Date and crash the query.
+    from: isRealDate(p.get("from") ?? "") ? p.get("from")! : undefined,
+    to: isRealDate(p.get("to") ?? "") ? p.get("to")! : undefined,
     sort: sort === "oldest" || sort === "company" ? sort : "newest",
     page: Math.max(1, Number(p.get("page")) || 1),
   };
@@ -323,13 +325,11 @@ export async function rejectionMessage(shop: string, id: string): Promise<Applic
 }
 
 export async function addNote(shop: string, id: string, actor: string, text: string): Promise<void> {
-  const app = await db.application.findFirst({ where: { shop, id }, select: { notes: true } });
-  if (!app) return;
-  const notes = Array.isArray(app.notes) ? (app.notes as unknown[]) : [];
-  await db.application.update({
-    where: { id },
-    data: { notes: [...notes, { at: new Date().toISOString(), by: actor, text: text.slice(0, 2000) }] as object },
-  });
+  const note = JSON.stringify([{ at: new Date().toISOString(), by: actor.slice(0, 100), text: text.slice(0, 2000) }]);
+  // Appended in one statement, so two staff adding notes at the same moment both keep theirs.
+  await db.$executeRaw`
+    UPDATE "Application" SET "notes" = (CASE WHEN jsonb_typeof("notes") = 'array' THEN "notes" ELSE '[]'::jsonb END) || ${note}::jsonb
+    WHERE "id" = ${id} AND "shop" = ${shop}`;
 }
 
 export async function setAssignee(shop: string, id: string, assignee: string | null): Promise<void> {

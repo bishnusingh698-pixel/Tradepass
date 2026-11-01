@@ -5,6 +5,7 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { adminContext } from "../lib/context.server";
 import db from "../db.server";
 import { createForm, listForms } from "../lib/forms.server";
+import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { logActivity } from "../lib/activity.server";
 import { can } from "../lib/plans";
 import { useI18n } from "../lib/i18n/react";
@@ -30,12 +31,14 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const { shop, plan, actor, redirect } = await adminContext(request);
+  const { shop, plan, actor, redirect, admin } = await adminContext(request);
   const form = await request.formData();
   if (form.get("intent") !== "create") return { ok: false as const, error: "invalid" };
   const res = await createForm(shop, plan, String(form.get("name") ?? ""));
   if ("error" in res) return { ok: false as const, error: res.error };
   await logActivity({ shop, actor, action: "form.created", subject: res.id });
+  // The storefront form block reads the forms from metafields; a failed push is retried hourly.
+  await syncStorefrontConfig(admin, shop).catch(() => undefined);
   const loc = new URL(request.url).searchParams.get("locale");
   return redirect(`/app/form/${res.id}${loc ? `?${new URLSearchParams({ locale: loc })}` : ""}`);
 };

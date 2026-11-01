@@ -308,13 +308,41 @@ async function loadInputs(shop: string) {
   return { settings, plan, forms, tiers };
 }
 
+/** A storefront push that failed and must be retried (one queued job per shop). */
+export const STOREFRONT_SYNC_JOB = "storefront_sync";
+
 /**
  * Write everything the storefront needs into app-owned metafields (access mode,
  * scope, texts per language, form definition, Function config) so the theme
  * extension and the validation Function work while our server sleeps.
  * Call after any change to storefront settings, forms, texts or tiers.
+ *
+ * Our database already holds the new settings when this runs, so a failed push
+ * would leave the store showing the old mode (a wholesale-only store left open,
+ * or retail customers still locked out). A failure therefore queues a
+ * `storefront_sync` job that the hourly run retries until Shopify accepts it;
+ * any later successful push clears it. The error is still thrown so the page
+ * can say the change isn't live yet.
  */
 export async function syncStorefrontConfig(admin: Admin, shop: string): Promise<void> {
+  try {
+    await pushStorefrontConfig(admin, shop);
+  } catch (e) {
+    await queueStorefrontRetry(shop, e).catch(() => undefined);
+    throw e;
+  }
+  await db.job.deleteMany({ where: { shop, type: STOREFRONT_SYNC_JOB, state: { in: ["queued", "failed"] } } }).catch(() => undefined);
+}
+
+async function queueStorefrontRetry(shop: string, e: unknown) {
+  const error = ((e as Error)?.name ?? "error").slice(0, 60);
+  const waiting = await db.job.findFirst({ where: { shop, type: STOREFRONT_SYNC_JOB, state: { in: ["queued", "running"] } }, select: { id: true } });
+  if (waiting) return;
+  await db.job.create({ data: { shop, type: STOREFRONT_SYNC_JOB, payload: {}, error, runAfter: new Date() } });
+}
+
+/** The push itself, without retry bookkeeping (the hourly retry job calls this). */
+export async function pushStorefrontConfig(admin: Admin, shop: string): Promise<void> {
   const { settings, plan, forms, tiers } = await loadInputs(shop);
   const inst = await gql<{ currentAppInstallation: { id: string } }>(admin, INSTALLATION);
   const ownerId = inst.currentAppInstallation.id;

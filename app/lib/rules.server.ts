@@ -75,6 +75,13 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
       return { decided: "rejected", ruleId: rule.id };
     }
 
+    // The approval engine keys Shopify objects by application, so approving a duplicate (same
+    // email, company or tax number as an earlier application) would create a second company.
+    // Duplicates are left for the merchant; reject rules above still apply to them.
+    if (found.app.flags.includes("duplicate")) {
+      await logActivity({ shop, actor: ACTOR, action: "automation.skipped_duplicate", subject: applicationId, detail: { ruleId: rule.id } });
+      return { decided: null };
+    }
     if ((await autoApprovalsToday(shop)) >= settings.automation.dailyLimit) {
       await logActivity({ shop, actor: ACTOR, action: "automation.limit_reached", subject: applicationId, detail: { ruleId: rule.id, limit: settings.automation.dailyLimit } });
       return { decided: null };
@@ -96,11 +103,13 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
     await db.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: rule.id } });
     const state = await approveApplication(ctx, applicationId, input);
     const failed = APPROVAL_STEPS.find((s) => state.steps[s]?.status === "failed");
+    // A failed welcome email still leaves an approved buyer (it can be sent again from the application).
+    const approved = !failed || failed === "email";
     await logActivity({
       shop, actor: ACTOR, action: "automation.approve", subject: applicationId,
-      result: failed ? "failed" : "ok", detail: { ruleId: rule.id, ...(failed ? { step: failed } : {}) },
+      result: approved ? "ok" : "failed", detail: { ruleId: rule.id, ...(failed ? { step: failed } : {}) },
     });
-    return failed ? { decided: null, ruleId: rule.id } : { decided: "approved", ruleId: rule.id };
+    return approved ? { decided: "approved", ruleId: rule.id } : { decided: null, ruleId: rule.id };
   } catch (e) {
     await logActivity({ shop, actor: ACTOR, action: "automation.evaluate", subject: applicationId, result: "failed", detail: { error: errorCodeOf(e) } }).catch(() => undefined);
     return { decided: null };

@@ -105,8 +105,13 @@ const coreDaily: Task[] = [
         if (!old.length) continue;
         const ids = old.map((a) => a.id);
         if (retention?.deleteFiles ?? true) {
-          const files = await db.applicationFile.findMany({ where: { shop: s.shop, applicationId: { in: ids } }, select: { fileGid: true } });
-          await deleteShopifyFiles(s.shop, files.map((f) => f.fileGid));
+          // Application documents and the certificate files of these applications (a renewal upload
+          // is only on the certificate), but never a certificate that now belongs to a buyer.
+          const [files, certs] = await Promise.all([
+            db.applicationFile.findMany({ where: { shop: s.shop, applicationId: { in: ids } }, select: { fileGid: true } }),
+            db.certificate.findMany({ where: { shop: s.shop, applicationId: { in: ids }, buyerId: null, fileGid: { not: null } }, select: { fileGid: true } }),
+          ]);
+          await deleteShopifyFiles(s.shop, [...new Set([...files.map((f) => f.fileGid), ...certs.map((c) => c.fileGid!)])]);
         }
         await db.$transaction([
           db.applicationFile.deleteMany({ where: { shop: s.shop, applicationId: { in: ids } } }),

@@ -1,7 +1,7 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { adminContext } from "../lib/context.server";
 import {
-  ApprovalError, approvalDefaults, approveApplication, retryApproval, undoApproval, type ApproveInput,
+  ApprovalError, approvalDefaults, approveApplication, normalizeApproveInput, retryApproval, undoApproval,
 } from "../lib/approval.server";
 import db from "../db.server";
 
@@ -32,7 +32,15 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const actx = { admin: ctx.admin, shop: ctx.shop, actor: ctx.actor, t: ctx.t };
   try {
     if (intent === "approve") {
-      const input = JSON.parse(String(form.get("input") ?? "{}")) as ApproveInput;
+      let raw: unknown = null;
+      try {
+        raw = JSON.parse(String(form.get("input") ?? "null"));
+      } catch {
+        raw = null;
+      }
+      // The posted JSON is rebuilt from known fields and values; anything malformed is refused in plain words.
+      const input = normalizeApproveInput(raw);
+      if (!input) throw new ApprovalError("missing_address");
       return { ok: true as const, state: await approveApplication(actx, params.id!, input) };
     }
     if (intent === "retry") return { ok: true as const, state: await retryApproval(actx, params.id!) };

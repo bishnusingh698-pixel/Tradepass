@@ -30,7 +30,8 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       "X-Content-Type-Options": "nosniff",
       "Content-Security-Policy": "sandbox; default-src 'none'; img-src 'self' data: blob:; style-src 'unsafe-inline'",
       "Cache-Control": "private, no-store",
-      ...(length ? { "Content-Length": String(length) } : {}),
+      // No Content-Length: fetch() already decompressed a gzip/br upstream body, so the upstream
+      // length would be wrong and the download would be cut off or hang.
     },
   });
 };

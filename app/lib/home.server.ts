@@ -164,7 +164,7 @@ export function median(xs: number[]): number | null {
 
 async function windowStats(shop: string, from: Date, to: Date) {
   const [received, decided] = await Promise.all([
-    db.application.count({ where: { shop, submittedAt: { gte: from, lt: to } } }),
+    db.application.count({ where: { shop, status: { not: "draft" }, submittedAt: { gte: from, lt: to } } }),
     db.application.findMany({
       where: { shop, status: { in: ["approved", "rejected"] }, decidedAt: { gte: from, lt: to } },
       select: { status: true, submittedAt: true, decidedAt: true },

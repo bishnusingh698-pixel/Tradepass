@@ -171,6 +171,33 @@ export async function refreshShopFacts(shop: string, admin: Pick<AdminApiContext
   return { ...facts, planChanged };
 }
 
+/**
+ * refreshShopFacts for pages: if Shopify can't be reached right now, the page still opens with the
+ * facts stored at the last successful check (`stale: true`) instead of failing with an error.
+ */
+export async function shopFactsOrStored(shop: string, admin: Pick<AdminApiContext, "graphql">): Promise<ShopFacts & { planChanged: boolean; stale: boolean }> {
+  try {
+    return { ...(await refreshShopFacts(shop, admin)), stale: false };
+  } catch {
+    const row = await db.shop.findUnique({ where: { shop } });
+    return {
+      planName: row?.planName ?? "",
+      isPlus: Boolean(row?.isPlus),
+      isDevStore: Boolean(row?.isDevStore),
+      b2bEnabled: Boolean(row?.b2bEnabled),
+      b2bMarketsEnabled: Boolean(row?.b2bMarketsEnabled),
+      catalogLimit: row?.catalogLimit ?? null,
+      directCatalogs: Boolean(row?.directCatalogs),
+      primaryLocale: row?.primaryLocale ?? "en",
+      publishedLocales: [],
+      catalogsUsed: null,
+      profile: { name: row?.name ?? null, currency: row?.currency ?? null, country: row?.country ?? null, domainUrl: row?.domainUrl ?? null },
+      planChanged: false,
+      stale: true,
+    };
+  }
+}
+
 /** Absolute storefront URL for a path ("/account/login"), on the store's own domain when known. */
 export function storefrontUrl(row: { shop: string; domainUrl?: string | null } | null | undefined, path: string, fallbackShop?: string): string {
   if (/^https:\/\//i.test(path)) return path;

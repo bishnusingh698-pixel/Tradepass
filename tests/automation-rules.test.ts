@@ -17,7 +17,7 @@ vi.mock("../app/lib/buyers.server", () => ({ pauseBuyers: m.pauseBuyers }));
 
 import db from "../app/db.server";
 import { evaluateRules, reverseAutoDecision, saveRules, listRules } from "../app/lib/rules.server";
-import { matchCondition, matchRule, pickRule, validateRules, type ApplicationFacts, type RuleDef } from "../app/lib/rules";
+import { matchCondition, matchRule, pickRule, sanitizeRules, validateRules, type ApplicationFacts, type RuleDef } from "../app/lib/rules";
 import { updateSettings } from "../app/lib/settings.server";
 
 const facts = (over: Partial<ApplicationFacts> = {}): ApplicationFacts => ({
@@ -113,6 +113,26 @@ describe("evaluateRules", () => {
     expect(await db.activityLog.count({ where: { shop, action: "automation.approve", subject: app.id, result: "ok" } })).toBe(1);
   });
 
+  it("never auto-approves a duplicate (it would create a second company); it waits for the merchant", async () => {
+    const app = await newApp({ flags: ["duplicate"] });
+    expect(await evaluateRules(admin, shop, app.id)).toEqual({ decided: null });
+    expect(m.approveApplication).not.toHaveBeenCalled();
+    expect(await db.activityLog.count({ where: { shop, action: "automation.skipped_duplicate", subject: app.id } })).toBe(1);
+    // Reject rules still apply to duplicates.
+    const spam = await newApp({ flags: ["duplicate"], email: "y@spam.test" });
+    expect((await evaluateRules(admin, shop, spam.id)).decided).toBe("rejected");
+  });
+
+  it("an auto-approval whose only failure is the welcome email still counts as approved", async () => {
+    m.approveApplication.mockImplementationOnce(async (_ctx: any, id: string) => {
+      await db.application.update({ where: { id }, data: { status: "approved", decidedAt: new Date() } });
+      return { steps: { ...done, email: { status: "failed", code: "email_failed" } } };
+    });
+    const app = await newApp();
+    expect((await evaluateRules(admin, shop, app.id)).decided).toBe("approved");
+    expect(await db.activityLog.count({ where: { shop, action: "automation.approve", subject: app.id, result: "ok" } })).toBe(1);
+  });
+
   it("auto-rejects spam before any approval rule", async () => {
     const app = await newApp({ email: "x@spam.test" });
     expect((await evaluateRules(admin, shop, app.id)).decided).toBe("rejected");
@@ -200,3 +220,20 @@ describe("rule storage", () => {
     expect(after.map((r) => r.position)).toEqual([0, 1]);
   });
 });
+
+describe("sanitizeRules", () => {
+  it("keeps only known kinds, conditions and action fields", () => {
+    const out = sanitizeRules([
+      { kind: "approve", enabled: true, conditions: { match: "weird", list: [{ type: "country", op: "is", values: ["us", "XXX", 5] }, { type: "evil" }] }, action: { tierId: "t1", paymentTermsTemplateId: "javascript:x", sendWelcome: "yes", extra: 1 } },
+      { kind: "delete_everything", conditions: {}, action: {} },
+      { kind: "reject", conditions: { match: "any", list: [{ type: "spam" }] }, action: { reason: "  ", email: true } },
+      "nonsense",
+    ]);
+    expect(out).toEqual([
+      { kind: "approve", enabled: true, conditions: { match: "all", list: [{ type: "country", op: "is", values: ["US"] }] }, action: { tierId: "t1", paymentTermsTemplateId: null, sendWelcome: true }, position: 0 },
+      { kind: "reject", enabled: true, conditions: { match: "any", list: [{ type: "spam" }] }, action: { reason: null }, position: 1 },
+    ]);
+    expect(sanitizeRules({ not: "a list" })).toEqual([]);
+  });
+});
+

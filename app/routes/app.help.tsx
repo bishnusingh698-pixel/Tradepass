@@ -4,7 +4,7 @@ import { redirect, useFetcher, useLoaderData } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
-import { refreshShopFacts } from "../lib/shop.server";
+import { shopFactsOrStored } from "../lib/shop.server";
 import { updateSettings } from "../lib/settings.server";
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { logActivity } from "../lib/activity.server";
@@ -23,7 +23,7 @@ const FAQ = [
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
-  const facts = await refreshShopFacts(ctx.shop, ctx.admin);
+  const facts = await shopFactsOrStored(ctx.shop, ctx.admin);
   const until = ctx.settings.debug.storefrontUntil;
   return {
     supportEmail: process.env.SUPPORT_EMAIL ?? "",
@@ -54,9 +54,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const on = form.get("on") === "1";
     const until = on ? new Date(Date.now() + DEBUG_HOURS * 3_600_000).toISOString() : null;
     await updateSettings(ctx.shop, { debug: { storefrontUntil: until } });
-    await syncStorefrontConfig(ctx.admin, ctx.shop);
-    await logActivity({ shop: ctx.shop, actor: ctx.actor, action: on ? "help.debug_on" : "help.debug_off", subject: null });
-    return { ok: true };
+    // A failed push is queued and retried hourly; the toggle itself never fails with a server error.
+    const synced = await syncStorefrontConfig(ctx.admin, ctx.shop).then(() => true, () => false);
+    await logActivity({ shop: ctx.shop, actor: ctx.actor, action: on ? "help.debug_on" : "help.debug_off", subject: null, result: synced ? "ok" : "failed" });
+    return { ok: true, synced };
   }
   if (intent === "welcome") {
     await updateSettings(ctx.shop, { welcome: { done: false } });

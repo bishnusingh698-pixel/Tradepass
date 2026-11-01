@@ -8,7 +8,7 @@ import { adminContext } from "../lib/context.server";
 import { updateSettings } from "../lib/settings.server";
 import { paymentTermsOptions } from "../lib/tiers.server";
 import { autoApprovalsToday, listRules, reverseAutoDecision, saveRules } from "../lib/rules.server";
-import { CONDITION_TYPES, MAX_RULES, validateRules, type Condition, type RuleDef, type RuleProblem, type ApproveAction, type RejectAction } from "../lib/rules";
+import { CONDITION_TYPES, MAX_RULES, sanitizeRules, validateRules, type Condition, type RuleDef, type RuleProblem, type ApproveAction, type RejectAction } from "../lib/rules";
 import { TRIGGER_HANDLES, type FlowTrigger } from "../lib/flow.server";
 import { can } from "../lib/plans";
 import { useI18n } from "../lib/i18n/react";
@@ -61,7 +61,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (intent === "save") {
     if (!can(ctx.plan, "auto_rules")) return { ok: false, intent, problems: [] as RuleProblem[], limitError: false };
-    const rules = JSON.parse(String(form.get("rules") ?? "[]")) as RuleDef[];
+    let posted: unknown = [];
+    try {
+      posted = JSON.parse(String(form.get("rules") ?? "[]"));
+    } catch {
+      return { ok: false, intent, problems: [] as RuleProblem[], limitError: false };
+    }
+    const rules = sanitizeRules(posted);
     const dailyLimit = Number(form.get("dailyLimit"));
     const tiers = await db.tier.findMany({ where: { shop: ctx.shop }, select: { id: true } });
     const problems = validateRules(rules, tiers.map((t) => t.id));

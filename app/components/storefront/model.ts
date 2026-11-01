@@ -62,6 +62,8 @@ export function parseStorefrontInput(
   body: unknown,
   current: Settings,
   plan: PlanId,
+  /** The page's own live check runs before the dialog; only the server insists on the confirmation. */
+  opts: { skipConfirm?: boolean } = {},
 ): { ok: true; value: StorefrontInput } | { ok: false; errors: StorefrontError[] } {
   const errors: StorefrontError[] = [];
   const b = isObj(body) ? body : {};
@@ -75,6 +77,11 @@ export function parseStorefrontInput(
   if (accessMode === "wholesale_only" && current.storefront.accessMode !== "wholesale_only" && !can(plan, "wholesale_only")) {
     errors.push({ code: "plan", anchor: "sf-mode" });
   }
+  // Turning wholesale-only on or off changes who can buy, so it needs the confirmation dialog: a save
+  // from an old tab or a script can't open a wholesale-only store to the public (or close a store) by accident.
+  const changesWholesale = accessMode !== null && accessMode !== current.storefront.accessMode &&
+    (accessMode === "wholesale_only" || current.storefront.accessMode === "wholesale_only");
+  if (changesWholesale && b.confirmedMode !== accessMode && !opts.skipConfirm) errors.push({ code: "mode", anchor: "sf-mode" });
 
   const scopeType = SCOPE_TYPES.includes(scope.type as ScopeType) ? (scope.type as ScopeType) : "all";
   const ids = list(scope.ids);

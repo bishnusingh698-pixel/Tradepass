@@ -158,7 +158,10 @@ export function ApproveModal({ applicationId, companyName }: { applicationId: st
                     const id = val(e);
                     const td = defaults.tierDefaults[id];
                     touch("tierId");
-                    set({ tierId: id, ...(td ? { paymentTermsTemplateId: td.paymentTermsTemplateId, checkoutToDraft: td.checkoutToDraft } : {}) });
+                    const ex = defaults.suggestedExemption.exemption;
+                    // The tier's tax default applies too, unless the merchant already set the tax switch.
+                    const tax = td && !touched.taxExempt ? { taxExempt: td.tax === "exempt_on_file" && Boolean(ex), exemptions: td.tax === "exempt_on_file" && ex ? [ex] : [] } : {};
+                    set({ tierId: id, ...(td ? { paymentTermsTemplateId: td.paymentTermsTemplateId, checkoutToDraft: td.checkoutToDraft } : {}), ...tax });
                   }}
                 >
                   {defaults.tiers.map((x) => (
@@ -197,6 +200,7 @@ export function ApproveModal({ applicationId, companyName }: { applicationId: st
                 }
                 onChange={(e) => {
                   const on = checked(e);
+                  touch("taxExempt");
                   set({ taxExempt: on, exemptions: on && !input.exemptions.length && defaults.suggestedExemption.exemption ? [defaults.suggestedExemption.exemption] : input.exemptions });
                 }}
               />

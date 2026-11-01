@@ -19,7 +19,7 @@ import { emitFlowTrigger } from "./flow.server";
 import { createT } from "./i18n";
 import { LockBusyError, withApplicationLock } from "./lock.server";
 import { approvalQuota, effectivePlan } from "./plans";
-import { approvalsThisMonth } from "./applications.server";
+import { approvalsThisMonth, normaliseTaxNumber } from "./applications.server";
 import { suggestExemption, US_RESELLER_STATES } from "./tax";
 import { refreshShopFacts } from "./shop.server";
 import {
@@ -385,8 +385,9 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
     const taxOk = (l: any) => {
       const ts = l.taxSettings ?? {};
       const have: string[] = ts.taxExemptions ?? [];
+      // Shopify may store the registration id with other spacing or case than typed.
       return Boolean(ts.taxExempt) === Boolean(i.taxExempt) && have.length === want.length && want.every((x) => have.includes(x)) &&
-        (i.taxRegistrationId ? ts.taxRegistrationId === i.taxRegistrationId : true);
+        (i.taxRegistrationId ? normaliseTaxNumber(String(ts.taxRegistrationId ?? "")) === normaliseTaxNumber(i.taxRegistrationId) : true);
     };
     if (!termsOk(loc)) {
       await mutate(admin, "companyLocationUpdate", Q.locationUpdate, {
@@ -587,6 +588,106 @@ async function loadApp(ctx: ApprovalCtx, id: string) {
   return app;
 }
 
+/**
+ * Inputs of steps that already ran in Shopify stay as they were: a Retry that
+ * changes the tier after the tier step finished would otherwise record the new
+ * tier on the buyer while the location stays in the old tier's market (same for
+ * the company name, addresses, contact, terms and tax).
+ */
+export function mergeRetryInput(prev: ApprovalState, next: ApproveInput): ApproveInput {
+  const done = (s: ApprovalStep) => prev.steps[s]?.status === "done" || prev.steps[s]?.status === "skipped";
+  const p = prev.input;
+  const out: ApproveInput = { ...next };
+  if (done("company") || prev.steps.company?.gid) out.companyName = p.companyName;
+  if (done("location") || prev.steps.location?.gid) {
+    out.locationName = p.locationName;
+    out.billingAddress = p.billingAddress;
+    out.shippingAddress = p.shippingAddress;
+  }
+  if (done("contact")) out.contact = p.contact;
+  if (done("terms_tax")) {
+    out.paymentTermsTemplateId = p.paymentTermsTemplateId;
+    out.checkoutToDraft = p.checkoutToDraft;
+    out.taxExempt = p.taxExempt;
+    out.exemptions = p.exemptions;
+    out.taxRegistrationId = p.taxRegistrationId;
+  }
+  if (done("tier") || prev.steps.tier?.status === "running") out.tierId = p.tierId;
+  if (done("email")) out.sendWelcome = p.sendWelcome;
+  return out;
+}
+
+const EXEMPTION_SET = new Set<string>();
+const GID = (type: string) => new RegExp(`^gid://shopify/${type}/\\d+$`);
+const MAX_TEXT = 255;
+
+function cleanStr(v: unknown, max = MAX_TEXT): string {
+  return typeof v === "string" ? v.trim().slice(0, max) : "";
+}
+
+function cleanAddress(v: unknown): Address | null {
+  if (!v || typeof v !== "object") return null;
+  const a = v as Record<string, unknown>;
+  const opt = (k: string) => cleanStr(a[k]) || undefined;
+  return {
+    firstName: opt("firstName"), lastName: opt("lastName"), company: opt("company"),
+    address1: cleanStr(a.address1), address2: opt("address2"), city: cleanStr(a.city),
+    zoneCode: cleanStr(a.zoneCode, 10).toUpperCase() || undefined, zip: cleanStr(a.zip, 20) || undefined,
+    countryCode: cleanStr(a.countryCode, 2).toUpperCase(), phone: cleanStr(a.phone, 30) || undefined,
+  };
+}
+
+const EMAIL = /^[^\s@<>()]+@[^\s@<>()]+\.[^\s@<>()]{2,}$/;
+
+/**
+ * Rebuild an approval input from what the browser posted (the approve modal's
+ * JSON). Unknown exemption codes would make Shopify refuse the whole tax call,
+ * a missing contact crashed the run, an empty company name reached
+ * companyCreate: everything is checked here, on the server.
+ */
+export function normalizeApproveInput(raw: unknown): ApproveInput | null {
+  if (!raw || typeof raw !== "object") return null;
+  const r = raw as Record<string, unknown>;
+  if (!EXEMPTION_SET.size) for (const x of TAX_EXEMPTIONS) EXEMPTION_SET.add(x);
+  const companyName = cleanStr(r.companyName);
+  const billingAddress = cleanAddress(r.billingAddress);
+  if (!companyName || !billingAddress) return null;
+  const terms = typeof r.paymentTermsTemplateId === "string" && GID("PaymentTermsTemplate").test(r.paymentTermsTemplateId) ? r.paymentTermsTemplateId : null;
+  const exemptions = Array.isArray(r.exemptions) ? [...new Set(r.exemptions.filter((x): x is string => typeof x === "string" && EXEMPTION_SET.has(x)))] : [];
+  const c = (r.contact && typeof r.contact === "object" ? r.contact : {}) as Record<string, unknown>;
+  let contact: ApproveInput["contact"];
+  if (c.mode === "existing") {
+    if (typeof c.customerGid !== "string" || !GID("Customer").test(c.customerGid)) return null;
+    contact = { mode: "existing", customerGid: c.customerGid };
+  } else {
+    const email = cleanStr(c.email).toLowerCase();
+    contact = {
+      mode: "new",
+      ...(email && EMAIL.test(email) ? { email } : {}),
+      ...(cleanStr(c.firstName) ? { firstName: cleanStr(c.firstName) } : {}),
+      ...(cleanStr(c.lastName) ? { lastName: cleanStr(c.lastName) } : {}),
+      ...(cleanStr(c.phone, 30) ? { phone: cleanStr(c.phone, 30) } : {}),
+      ...(/^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})?$/.test(cleanStr(c.locale, 20)) ? { locale: cleanStr(c.locale, 20) } : {}),
+    };
+  }
+  const shipping = r.shippingAddress == null ? null : cleanAddress(r.shippingAddress);
+  const taxExempt = r.taxExempt === true && exemptions.length > 0;
+  return {
+    tierId: cleanStr(r.tierId, 100),
+    paymentTermsTemplateId: terms,
+    taxExempt,
+    exemptions: taxExempt ? exemptions : [],
+    taxRegistrationId: cleanStr(r.taxRegistrationId, 100) || null,
+    companyName,
+    locationName: cleanStr(r.locationName) || companyName,
+    billingAddress,
+    shippingAddress: shipping,
+    contact,
+    sendWelcome: r.sendWelcome !== false,
+    checkoutToDraft: r.checkoutToDraft === true,
+  };
+}
+
 function checkInput(input: ApproveInput) {
   if (!input.tierId) throw new ApprovalError("tier_required");
   if (!validAddress(input.billingAddress) || (input.shippingAddress && !validAddress(input.shippingAddress))) throw new ApprovalError("missing_address");
@@ -601,9 +702,9 @@ export async function approveApplication(ctx: ApprovalCtx, applicationId: string
     if (app.status === "approved" && prev?.finishedAt) return prev;
     if (!["pending", "needs_info", "approved"].includes(app.status)) throw new ApprovalError("not_pending");
     if (!prev || !prev.steps.company.gid) await checkQuota(ctx.shop, ctx.admin);
-    // Keep GIDs from an earlier attempt; take the merchant's latest choices for what's left.
+    // Keep GIDs from an earlier attempt; take the merchant's latest choices only for steps not done yet.
     const state: ApprovalState = prev
-      ? { ...prev, input }
+      ? { ...prev, input: mergeRetryInput(prev, input) }
       : { input, steps: emptySteps(), startedAt: new Date().toISOString() };
     const r = appRun(ctx, app, state);
     return runSteps(r, (run) => finalizeApplication(app, run));
@@ -790,8 +891,12 @@ export async function approveMany(ctx: ApprovalCtx, ids: string[], tierId: strin
       const d = await approvalDefaults(ctx, id);
       const td = d.tierDefaults[tierId];
       if (!td) { skip("tier_missing"); continue; }
+      // Terms, checkout and the tax default all follow the chosen tier (not the application's suggested one).
+      const suggested = d.suggestedExemption.exemption;
+      const taxExempt = td.tax === "exempt_on_file" && Boolean(suggested);
       const input: ApproveInput = {
         ...d.input, tierId, paymentTermsTemplateId: td.paymentTermsTemplateId, checkoutToDraft: td.checkoutToDraft,
+        taxExempt, exemptions: taxExempt && suggested ? [suggested] : [],
         sendWelcome: opts.sendWelcome ?? d.input.sendWelcome,
       };
       const state = await approveApplication(ctx, id, input);
@@ -817,7 +922,8 @@ export async function createBuyerFromInput(
 ): Promise<{ buyerId: string; state: ApprovalState }> {
   checkInput(input);
   const c = input.contact.mode === "new" ? input.contact : null;
-  const key = input.externalId ?? input.existingCompanyGid ??
+  // External IDs are plain tokens: an existing company's GID ("gid://shopify/Company/1") is hashed.
+  const key = input.externalId ?? (input.existingCompanyGid ? sha256(input.existingCompanyGid).slice(0, 24) : null) ??
     sha256(`${ctx.shop}|${input.companyName.toLowerCase()}|${c?.email?.toLowerCase() ?? (input.contact.mode === "existing" ? input.contact.customerGid : "")}`).slice(0, 24);
   const state: ApprovalState = { input, steps: emptySteps(), startedAt: new Date().toISOString() };
   const r: Run = {
@@ -863,17 +969,31 @@ export function isSafeToRetry(state: ApprovalState | null, now = Date.now()): bo
   });
 }
 
+const RETRY_PAGE = 100;
+
 export async function retryStuckApprovals(deadline: number, adminFor: (shop: string) => Promise<Admin>): Promise<number> {
-  // Only approvals that stopped part-way (finished ones are "done" and never scanned).
-  const rows = await db.application.findMany({
-    where: { approvalStatus: { in: ["running", "failed"] }, status: { in: ["pending", "needs_info", "approved"] } },
-    select: { id: true, shop: true, approvalState: true },
-    orderBy: { submittedAt: "asc" },
-    take: 50,
-  });
+  // Only approvals that stopped part-way (finished ones are "done" and never scanned). Approvals that
+  // can't be retried automatically (a step the merchant must fix, 3 retries used) stay "failed"
+  // forever, so the scan pages through all of them instead of stopping at the first 50.
+  const rows: { id: string; shop: string; approvalState: Prisma.JsonValue }[] = [];
+  let cursor: string | undefined;
+  for (;;) {
+    const page = await db.application.findMany({
+      where: { approvalStatus: { in: ["running", "failed"] }, status: { in: ["pending", "needs_info", "approved"] } },
+      select: { id: true, shop: true, approvalState: true },
+      orderBy: { id: "asc" },
+      take: RETRY_PAGE,
+      ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
+    });
+    rows.push(...page.filter((r) => isSafeToRetry(readState(r.approvalState))));
+    if (page.length < RETRY_PAGE || Date.now() > deadline) break;
+    cursor = page[page.length - 1].id;
+  }
+  const uninstalled = new Set((await db.shop.findMany({ where: { shop: { in: [...new Set(rows.map((r) => r.shop))] }, uninstalledAt: { not: null } }, select: { shop: true } })).map((s) => s.shop));
   let n = 0;
   for (const row of rows) {
     if (Date.now() > deadline) break;
+    if (uninstalled.has(row.shop)) continue;
     const state = readState(row.approvalState);
     if (!isSafeToRetry(state)) continue;
     await db.application.updateMany({ where: { id: row.id, shop: row.shop }, data: { approvalState: { ...state!, autoRetries: (state!.autoRetries ?? 0) + 1 } as unknown as Prisma.InputJsonValue } });

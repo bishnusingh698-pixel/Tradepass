@@ -112,3 +112,58 @@ export function errorCodeOf(e: unknown): string {
 }
 
 export const MAX_RULES = 50;
+
+const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
+const strings = (v: unknown, max = 100) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string").map((x) => x.trim().slice(0, 255)).filter(Boolean).slice(0, max) : []);
+
+function sanitizeCondition(raw: unknown): Condition | null {
+  if (!isObj(raw)) return null;
+  const op = raw.op === "is_not" ? "is_not" : "is";
+  switch (raw.type) {
+    case "country":
+      return { type: "country", op, values: strings(raw.values, 250).map((v) => v.toUpperCase()).filter((v) => /^[A-Z]{2}$/.test(v)) };
+    case "business_type":
+    case "email_domain":
+      return { type: raw.type, op, values: strings(raw.values) };
+    case "tax_verified":
+    case "certificate_uploaded":
+    case "spam":
+      return { type: raw.type };
+    case "custom_field":
+      return { type: "custom_field", field: typeof raw.field === "string" ? raw.field.trim().slice(0, 100) : "", value: typeof raw.value === "string" ? raw.value.trim().slice(0, 255) : "" };
+    default:
+      return null;
+  }
+}
+
+/**
+ * Rebuild rules from what the Automation page posted: only known kinds, condition
+ * types and action fields survive (validateRules then reports what's missing).
+ */
+export function sanitizeRules(raw: unknown): RuleDef[] {
+  if (!Array.isArray(raw)) return [];
+  const out: RuleDef[] = [];
+  for (const r of raw.slice(0, MAX_RULES)) {
+    if (!isObj(r) || (r.kind !== "approve" && r.kind !== "reject")) continue;
+    const c = isObj(r.conditions) ? r.conditions : {};
+    const list = (Array.isArray(c.list) ? c.list : []).slice(0, 20).map(sanitizeCondition).filter((x): x is Condition => x !== null);
+    const a = isObj(r.action) ? r.action : {};
+    const action: ApproveAction | RejectAction = r.kind === "approve"
+      ? {
+          tierId: typeof a.tierId === "string" ? a.tierId.slice(0, 100) : "",
+          paymentTermsTemplateId: typeof a.paymentTermsTemplateId === "string" && /^gid:\/\/shopify\/PaymentTermsTemplate\/\d+$/.test(a.paymentTermsTemplateId) ? a.paymentTermsTemplateId : null,
+          sendWelcome: a.sendWelcome !== false,
+        }
+      : { reason: typeof a.reason === "string" && a.reason.trim() ? a.reason.trim().slice(0, 2000) : null };
+    out.push({
+      ...(typeof r.id === "string" && r.id.length <= 40 ? { id: r.id } : {}),
+      kind: r.kind,
+      enabled: r.enabled !== false,
+      conditions: { match: c.match === "any" ? "any" : "all", list },
+      action,
+      position: out.length,
+    });
+  }
+  return out;
+}
+

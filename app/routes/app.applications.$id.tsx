@@ -7,13 +7,15 @@ import db from "../db.server";
 import { adminContext } from "../lib/context.server";
 import { addNote, getApplication, rejectApplicationWithReason, rejectionMessage, requestMoreInfo, setAssignee } from "../lib/applications.server";
 import type { ApplicantMessage } from "../lib/messages";
-import type { FormDefinition } from "../lib/form-defaults";
 import { defaultFormDefinition } from "../lib/form-defaults";
+import { readDefinition } from "../lib/forms.server";
+import { NOT_REQUESTABLE, requestableField } from "../lib/intake.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CountryName, RelativeTime, StatusBadge, TaxCheckBadge } from "../components/applications";
 import { ApproveModal } from "../components/ApproveModal";
 import { MessageModal } from "../components/MessageModal";
+import { openFromApp } from "../components/download";
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -21,7 +23,9 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   if (!found) throw new Response("Not found", { status: 404 });
   const { app, taxNumber, files, certificates, activity, duplicates, buyer } = found;
   const form = app.formId ? await db.form.findFirst({ where: { shop: ctx.shop, id: app.formId } }) : null;
-  const definition = (form?.definition as FormDefinition | undefined) ?? defaultFormDefinition();
+  const definition = form ? readDefinition(form.definition) : defaultFormDefinition();
+  const locale = ctx.i18n.locale;
+  const primary = ctx.shopRow?.primaryLocale ?? "en";
   const tier = buyer?.tierId ? await db.tier.findFirst({ where: { shop: ctx.shop, id: buyer.tierId }, select: { id: true, name: true } }) : null;
   return {
     // Rejected: the "not approved" message stays available to copy (Tradepass sends no email).
@@ -49,15 +53,19 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       approvalState: app.approvalState as { steps?: Record<string, { status: string; error?: string }> } | null,
     },
     taxNumber,
-    files: files.map((f) => ({ id: f.id, kind: f.kind, createdAt: f.createdAt.toISOString() })),
+    files: files.map((f) => ({ id: f.id, kind: f.kind, fileGid: f.fileGid, createdAt: f.createdAt.toISOString() })),
     certificates: certificates.map((c) => ({
-      id: c.id, type: c.type, country: c.country, region: c.region, expiresOn: c.expiresOn?.toISOString().slice(0, 10) ?? null, status: c.status,
+      id: c.id, fileGid: c.fileGid, type: c.type, country: c.country, region: c.region, expiresOn: c.expiresOn?.toISOString().slice(0, 10) ?? null, status: c.status,
     })),
     activity: activity.map((a) => ({ id: a.id, actor: a.actor, action: a.action, result: a.result, at: a.createdAt.toISOString() })),
     duplicates: duplicates.map((d) => ({ ...d, submittedAt: d.submittedAt.toISOString() })),
     buyer: buyer ? { id: buyer.id, companyGid: buyer.companyGid, status: buyer.status } : null,
     tier,
-    fields: definition.sections.flatMap((s) => s.fields.filter((f) => f.state !== "hidden").map((f) => ({ id: f.id, custom: Boolean(f.custom), label: f.texts?.en?.label ?? null }))),
+    fields: definition.sections.flatMap((s) => s.fields.filter((f) => f.state !== "hidden").map((f) => ({
+      id: f.id, custom: Boolean(f.custom), requestable: requestableField(f),
+      // Custom questions: the label in the admin's language, else the store's primary language, else any.
+      label: f.texts?.[locale]?.label ?? f.texts?.[locale.split("-")[0]]?.label ?? f.texts?.[primary]?.label ?? f.texts?.en?.label ?? Object.values(f.texts ?? {}).find((x) => x?.label)?.label ?? null,
+    }))),
     shopHandle: ctx.shop.replace(".myshopify.com", ""),
   };
 };
@@ -76,7 +84,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
     }
     case "needs_info": {
       const message = String(form.get("message") ?? "").trim();
-      const fields = form.getAll("fields").map(String);
+      const fields = [...new Set(form.getAll("fields").map(String))].filter((f) => !NOT_REQUESTABLE.has(f)).slice(0, 50);
       if (!message) return { ok: false, intent, error: "message_required" };
       if (!fields.length) return { ok: false, intent, error: "fields_required" };
       const res = await requestMoreInfo(dctx, id, { message, fields });
@@ -134,6 +142,10 @@ export default function ApplicationDetail() {
     ) : null;
 
   const customAnswers = Object.keys(a.answers).filter((k) => !HANDLED.has(k));
+  const shopify = useAppBridge();
+  const openDocument = async (id: string) => {
+    if (!(await openFromApp(`/app/files/${encodeURIComponent(id)}`))) shopify.toast.show(t("certificates.error.file"), { isError: true });
+  };
   const failedStep = a.approvalState?.steps ? Object.entries(a.approvalState.steps).find(([, s]) => s.status === "failed") : null;
 
   return (
@@ -238,13 +250,14 @@ export default function ApplicationDetail() {
           ) : (
             <s-unordered-list>
               {d.files.map((f, i) => {
-                const cert = d.certificates[i];
+                // Matched by file, not by list position (files and certificates are separate lists).
+                const cert = d.certificates.find((c) => c.fileGid === f.fileGid);
                 return (
                   <s-list-item key={f.id}>
-                    <s-link href={`/app/files/${f.id}`} target="_blank">
+                    <s-button variant="tertiary" onClick={() => openDocument(f.id)}>
                       {t("applications.detail.document", { n: i + 1 })}
-                    </s-link>
-                    {cert?.expiresOn && <s-text color="subdued"> · {t("applications.detail.expires", { date: new Date(cert.expiresOn) })}</s-text>}
+                    </s-button>
+                    {cert?.expiresOn && <s-text color="subdued"> · {t("applications.detail.expires", { date: new Date(`${cert.expiresOn}T12:00:00Z`) })}</s-text>}
                   </s-list-item>
                 );
               })}
@@ -300,7 +313,7 @@ export default function ApplicationDetail() {
 
       {open && <ApproveModal applicationId={a.id} companyName={a.companyName} />}
       {a.status !== "pending" && a.status !== "needs_info" && failedStep && <ApproveModal applicationId={a.id} companyName={a.companyName} />}
-      <NeedsInfoModal company={a.companyName} fields={d.fields.map((f) => ({ id: f.id, label: label(f.id) }))} />
+      <NeedsInfoModal company={a.companyName} fields={d.fields.filter((f) => f.requestable).map((f) => ({ id: f.id, label: label(f.id) }))} />
       <RejectModal company={a.companyName} />
     </s-page>
   );

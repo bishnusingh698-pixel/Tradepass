@@ -57,7 +57,7 @@
   "settings.countries.mode.block": "Every country except the ones I choose",
   "settings.countries.mode.block.help": "Applicants with a billing address in a ticked country can't apply.",
   "settings.countries.note": "The list is ignored while “Every country” is selected. Existing applications and buyers aren't affected.",
-  "settings.countries.syncFailed": "Settings saved, but the storefront form couldn't be updated yet. It will update the next time you save, or open Help → Diagnostics.",
+  "settings.countries.syncFailed": "Settings saved, but the storefront form couldn't be updated yet. Tradepass tries again every hour until it works.",
   "settings.privacy.action": "Data",
   "settings.privacy.applications": "{count, plural, =0 {No applications} one {# application} other {# applications}}",
   "settings.privacy.body": "When a customer asks a store for their data, Shopify tells Tradepass. Each request appears here so you can download what Tradepass holds about that customer (applications, answers, tax numbers and documents) and send it to them. Deletion requests are handled automatically.",
