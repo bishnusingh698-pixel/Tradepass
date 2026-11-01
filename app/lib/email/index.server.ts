@@ -14,7 +14,7 @@ import { APPLICANT_EMAIL_TYPES, isMerchantType, type TemplateType } from "./type
 // address lives in `payload` only until the email is sent, then the payload
 // is cleared and only the recipient hash stays.
 
-export type AnyEmailType = EmailType | "merchant_new_application" | "merchant_digest" | "test";
+export type AnyEmailType = EmailType | "merchant_new_application" | "merchant_info_received" | "merchant_digest" | "test";
 
 export type QueueEmailInput = {
   shop: string;
@@ -43,6 +43,7 @@ type Payload = {
   template?: TemplateType; // "test" emails: which email to render
   draft?: { subject?: string; body?: string };
   digest?: DigestCounts;
+  weekly?: boolean;
 };
 
 export const utcDay = (d: Date = new Date()) => d.toISOString().slice(0, 10);
@@ -84,7 +85,7 @@ export function merchantAddress(settings: Settings, shopEmail: string | null | u
 async function shopFor(shop: string) {
   return db.shop.findUnique({
     where: { shop },
-    select: { shop: true, settings: true, email: true, name: true, primaryLocale: true, uninstalledAt: true },
+    select: { shop: true, settings: true, email: true, contactEmail: true, name: true, primaryLocale: true, uninstalledAt: true },
   });
 }
 
@@ -116,7 +117,7 @@ export async function queueEmail(input: QueueEmailInput, now = new Date()): Prom
   } else if (isMerchantType(input.type)) {
     const mode = settings.notifications.merchant.mode;
     if (mode === "off") return { queued: false, reason: "disabled" };
-    if (input.type === "merchant_new_application") {
+    if (input.type === "merchant_new_application" || input.type === "merchant_info_received") {
       if (mode !== "instant") return { queued: false, reason: "disabled" };
       // Instant alerts share the store's 25/day. When today is full we don't
       // defer them: the daily digest lists every pending application anyway.
@@ -142,6 +143,18 @@ export async function notifyMerchantNewApplication(shop: string, a: { applicatio
   });
 }
 
+/** "An applicant sent the information you asked for" (instant mode only; the digest counts these too). */
+export async function notifyMerchantInfoReceived(shop: string, a: { applicationId: string; company: string }): Promise<QueueResult> {
+  return queueEmail({
+    shop,
+    type: "merchant_info_received",
+    to: "",
+    locale: "",
+    vars: { company: a.company, admin_url: adminAppUrl(shop, `/app/applications/${a.applicationId}`) },
+    subjectId: a.applicationId,
+  });
+}
+
 /** Link into the embedded app; Shopify admin redirects /admin/apps/<key> to the app. */
 export function adminAppUrl(shop: string, path = ""): string {
   return `https://${shop}/admin/apps/${process.env.SHOPIFY_API_KEY ?? ""}${path}`;
@@ -160,19 +173,19 @@ export async function sendTestEmail(
   return publicResult(await enqueue(shop, "test", { to: to.trim(), locale, vars, template, draft }, new Date()));
 }
 
-/** Daily merchant digest (idempotent per UTC day). Returns true when queued. */
-export async function queueMerchantDigest(shop: string, counts: DigestCounts, now = new Date()): Promise<boolean> {
+/** Merchant digest, daily or weekly (idempotent per UTC day). Returns true when queued. */
+export async function queueMerchantDigest(shop: string, counts: DigestCounts, now = new Date(), weekly = false): Promise<boolean> {
   const shopRow = await shopFor(shop);
   if (!shopRow || shopRow.uninstalledAt) return false;
   const settings = readSettings(shopRow.settings);
   if (settings.notifications.merchant.mode === "off") return false;
-  if (!Object.values(counts).some((n) => n > 0)) return false;
+  if (!Object.values(counts).some((n) => (n ?? 0) > 0)) return false;
   const to = merchantAddress(settings, shopRow.email);
   if (!to || !EMAIL_RE.test(to)) return false;
   const start = new Date(`${utcDay(now)}T00:00:00Z`);
   const already = await db.emailLog.count({ where: { shop, type: "merchant_digest", createdAt: { gte: start, lt: new Date(start.getTime() + 86_400_000) } } });
   if (already) return false;
-  await enqueue(shop, "merchant_digest", { to, locale: shopRow.primaryLocale, vars: { admin_url: adminAppUrl(shop) }, digest: counts }, now);
+  await enqueue(shop, "merchant_digest", { to, locale: shopRow.primaryLocale, vars: { admin_url: adminAppUrl(shop) }, digest: counts, ...(weekly ? { weekly } : {}) }, now);
   return true;
 }
 
@@ -208,6 +221,7 @@ function render(row: { type: string; id: string }, p: Payload, s: ShopRow) {
     draft: p.draft,
     test: row.type === "test",
     digest: p.digest,
+    weekly: p.weekly,
   });
 }
 
@@ -232,7 +246,8 @@ export async function sendOne(id: string, send: Sender = sendViaBrevo, cache = n
     return "skipped" as const;
   }
   const email = render(row, p!, s!);
-  const replyTo = isMerchantType(row.type) || row.type === "test" ? null : s!.email;
+  // Applicants reply to the store's customer-facing address (falls back to the owner's).
+  const replyTo = isMerchantType(row.type) || row.type === "test" ? null : s!.contactEmail || s!.email;
   const result = await send({
     to: p!.to,
     senderName: isMerchantType(row.type) ? "Tradepass" : s!.name || s!.shop.replace(/\.myshopify\.com$/, ""),

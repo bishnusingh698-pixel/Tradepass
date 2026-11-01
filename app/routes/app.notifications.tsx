@@ -14,6 +14,7 @@ import { emailQuotaToday, merchantAddress, sendTestEmail } from "../lib/email/in
 import { builtInPatterns, checkPattern, resolvePattern } from "../lib/email/templates.server";
 import { renderEmail } from "../lib/email/render";
 import { APPLICANT_EMAIL_TYPES, bodyKey, RELEVANT_PLACEHOLDERS, subjectKey } from "../lib/email/types";
+import { SectionTabs } from "../components/SectionTabs";
 
 // Notifications: applicant/buyer emails (on/off, subject + body per language,
 // live preview, test send), merchant alerts, and today's email quota.
@@ -101,7 +102,7 @@ type ActionData =
   | { intent: "save"; ok: false; errors: FieldErrors; problem?: Record<string, string> }
   | { intent: "test"; ok: boolean; to?: string; deferred?: boolean };
 
-const MODES = ["instant", "digest", "off"] as const;
+const MODES = ["instant", "digest", "weekly", "off"] as const;
 const EMAIL_RE = /^[^\s@<>()]+@[^\s@<>()]+\.[^\s@<>()]+$/;
 
 export const action = async ({ request }: ActionFunctionArgs): Promise<ActionData> => {
@@ -257,6 +258,7 @@ export default function Notifications() {
 
   return (
     <s-page heading={t("notifications.title")}>
+      <SectionTabs section="messaging" />
       {q.deferred > 0 && (
         <s-banner tone="warning" heading={t("notifications.quota.deferredHeading", { count: q.deferred })}>
           <s-paragraph>{t("notifications.quota.deferredBody")}</s-paragraph>

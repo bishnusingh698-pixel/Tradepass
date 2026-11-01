@@ -5,7 +5,7 @@ import { logActivity } from "./activity.server";
 import { can, effectivePlan } from "./plans";
 import { safeEqual } from "./crypto.server";
 import { tryLock, unlock } from "./lock.server";
-import { APPROVAL_STEPS, approvalDefaults, approveApplication } from "./approval.server";
+import { APPROVAL_STEPS, ApprovalError, approvalDefaults, approveApplication } from "./approval.server";
 import { errorCodeOf } from "./rules";
 import { createT } from "./i18n";
 import { readSettings } from "./settings";
@@ -189,6 +189,8 @@ export async function handleFlowApprove(admin: Admin, shop: string, req: FlowAct
       await logActivity({ shop, actor: "flow", action: "flow.approve", subject: app.id, result: "failed", detail: { error: errorCodeOf(e) } }).catch(() => undefined);
       // Shopify-side validation errors won't fix themselves; anything else may be transient (Flow retries 5xx).
       if (e instanceof UserErrorsError) return { status: 422, body: { message: t("flow.action.stepFailed") } };
+      // Plan limit, no B2B, already being approved…: retrying won't help, so tell the merchant why.
+      if (e instanceof ApprovalError) return { status: e.code === "busy" ? 202 : 422, body: { message: t(`approval.blocked.${e.code}`) } };
       return { status: 500, body: { message: t("flow.action.tryLater") } };
     } finally {
       await unlock(shop, `flow-approve:${app.id}`, holder);

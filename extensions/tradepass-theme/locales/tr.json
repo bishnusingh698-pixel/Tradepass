@@ -116,7 +116,8 @@
       "salon": "Salon veya spa",
       "restaurant": "Restoran veya kafe",
       "distributor": "Distribütör",
-      "other": "Diğer"
+      "other": "Diğer",
+      "reseller": "Bayi"
     },
     "order_value": {
       "lt1k": "1.000'den az",
@@ -155,7 +156,8 @@
       "gst": "GST/HST numarası",
       "us_resale": "Yeniden satış sertifikası numarası",
       "us_state": "Sertifikayı veren eyalet",
-      "tax_id": "Vergi kimlik numarası"
+      "tax_id": "Vergi kimlik numarası",
+      "example": "Örnek: {{ example }}"
     },
     "upload": {
       "add": "Dosya ekle",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} 5 MB'tan büyük.",
       "file_count": "En fazla 3 dosya ekleyebilirsiniz.",
       "file_pending": "Dosyalarınızın yüklenmesinin bitmesini bekleyin.",
-      "spam": "Bu yanıt eşleşmiyor. Lütfen tekrar deneyin."
+      "spam": "Bu yanıt eşleşmiyor. Lütfen tekrar deneyin.",
+      "tax_format": "Bu geçerli bir {{ name }} gibi görünmüyor. Lütfen kontrol edin.",
+      "country_blocked": "Bu ülke veya bölgeden toptan satış başvurusu kabul edemiyoruz."
     },
     "success": {
       "heading": "Teşekkürler, başvurunuz gönderildi",

@@ -116,7 +116,8 @@
       "salon": "Salon ou spa",
       "restaurant": "Restaurant ou café",
       "distributor": "Distributeur",
-      "other": "Autre"
+      "other": "Autre",
+      "reseller": "Revendeur"
     },
     "order_value": {
       "lt1k": "Moins de 1 000",
@@ -155,7 +156,8 @@
       "gst": "Numéro de TPS/TVH",
       "us_resale": "Numéro du certificat de revente",
       "us_state": "État ayant délivré le certificat",
-      "tax_id": "Numéro d’identification fiscale"
+      "tax_id": "Numéro d’identification fiscale",
+      "example": "Exemple : {{ example }}"
     },
     "upload": {
       "add": "Ajouter un fichier",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} dépasse 5 Mo.",
       "file_count": "Vous pouvez ajouter 3 fichiers au maximum.",
       "file_pending": "Attendez la fin du téléversement de vos fichiers.",
-      "spam": "Cette réponse ne correspond pas. Veuillez réessayer."
+      "spam": "Cette réponse ne correspond pas. Veuillez réessayer.",
+      "tax_format": "Ce numéro ne semble pas être un {{ name }} valide. Veuillez le vérifier.",
+      "country_blocked": "Nous ne pouvons pas accepter de demandes de compte professionnel depuis ce pays ou cette région."
     },
     "success": {
       "heading": "Merci, votre demande a bien été envoyée",

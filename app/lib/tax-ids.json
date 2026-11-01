@@ -1,0 +1,416 @@
+{
+  "_comment": "Business tax IDs per country: n = official name shown next to the label, ex = example, re = pattern for the normalised number (upper case, no spaces . - /), p = country prefix added before matching when the applicant leaves it out, s = strict (block on mismatch; otherwise only a hint). Synced into extensions/tradepass-theme/assets/tradepass-countries.json by scripts/sync-tax-ids.mjs.",
+  "AT": {
+    "n": "UID (ATU…)",
+    "ex": "ATU12345678",
+    "re": "^ATU\\d{8}$",
+    "p": "AT",
+    "s": true
+  },
+  "BE": {
+    "n": "BTW/TVA",
+    "ex": "BE0123456789",
+    "re": "^BE[01]\\d{9}$",
+    "p": "BE",
+    "s": true
+  },
+  "BG": {
+    "n": "ДДС номер",
+    "ex": "BG123456789",
+    "re": "^BG\\d{9,10}$",
+    "p": "BG",
+    "s": true
+  },
+  "CY": {
+    "n": "ΦΠΑ",
+    "ex": "CY12345678X",
+    "re": "^CY\\d{8}[A-Z]$",
+    "p": "CY",
+    "s": true
+  },
+  "CZ": {
+    "n": "DIČ",
+    "ex": "CZ12345678",
+    "re": "^CZ\\d{8,10}$",
+    "p": "CZ",
+    "s": true
+  },
+  "DE": {
+    "n": "USt-IdNr.",
+    "ex": "DE123456789",
+    "re": "^DE\\d{9}$",
+    "p": "DE",
+    "s": true
+  },
+  "DK": {
+    "n": "CVR/SE",
+    "ex": "DK12345678",
+    "re": "^DK\\d{8}$",
+    "p": "DK",
+    "s": true
+  },
+  "EE": {
+    "n": "KMKR",
+    "ex": "EE123456789",
+    "re": "^EE\\d{9}$",
+    "p": "EE",
+    "s": true
+  },
+  "GR": {
+    "n": "ΑΦΜ",
+    "ex": "EL123456789",
+    "re": "^(EL|GR)\\d{9}$",
+    "p": "EL",
+    "s": true
+  },
+  "ES": {
+    "n": "NIF/IVA",
+    "ex": "ESX1234567X",
+    "re": "^ES[A-Z0-9]\\d{7}[A-Z0-9]$",
+    "p": "ES",
+    "s": true
+  },
+  "FI": {
+    "n": "ALV-numero",
+    "ex": "FI12345678",
+    "re": "^FI\\d{8}$",
+    "p": "FI",
+    "s": true
+  },
+  "FR": {
+    "n": "TVA intracom.",
+    "ex": "FRXX123456789",
+    "re": "^FR[A-HJ-NP-Z0-9]{2}\\d{9}$",
+    "p": "FR",
+    "s": true
+  },
+  "HR": {
+    "n": "PDV/OIB",
+    "ex": "HR12345678901",
+    "re": "^HR\\d{11}$",
+    "p": "HR",
+    "s": true
+  },
+  "HU": {
+    "n": "Közösségi adószám",
+    "ex": "HU12345678",
+    "re": "^HU\\d{8}$",
+    "p": "HU",
+    "s": true
+  },
+  "IE": {
+    "n": "VAT",
+    "ex": "IE1234567WA",
+    "re": "^IE(\\d{7}[A-W][A-IW]?|\\d[A-Z+*]\\d{5}[A-W])$",
+    "p": "IE",
+    "s": false
+  },
+  "IT": {
+    "n": "Partita IVA",
+    "ex": "IT12345678901",
+    "re": "^IT\\d{11}$",
+    "p": "IT",
+    "s": true
+  },
+  "LT": {
+    "n": "PVM kodas",
+    "ex": "LT123456789",
+    "re": "^LT(\\d{9}|\\d{12})$",
+    "p": "LT",
+    "s": true
+  },
+  "LU": {
+    "n": "TVA",
+    "ex": "LU12345678",
+    "re": "^LU\\d{8}$",
+    "p": "LU",
+    "s": true
+  },
+  "LV": {
+    "n": "PVN",
+    "ex": "LV12345678901",
+    "re": "^LV\\d{11}$",
+    "p": "LV",
+    "s": true
+  },
+  "MT": {
+    "n": "VAT",
+    "ex": "MT12345678",
+    "re": "^MT\\d{8}$",
+    "p": "MT",
+    "s": true
+  },
+  "NL": {
+    "n": "btw-id",
+    "ex": "NL123456789B01",
+    "re": "^NL\\d{9}B\\d{2}$",
+    "p": "NL",
+    "s": true
+  },
+  "PL": {
+    "n": "NIP",
+    "ex": "PL1234567890",
+    "re": "^PL\\d{10}$",
+    "p": "PL",
+    "s": true
+  },
+  "PT": {
+    "n": "NIF",
+    "ex": "PT123456789",
+    "re": "^PT\\d{9}$",
+    "p": "PT",
+    "s": true
+  },
+  "RO": {
+    "n": "CIF/CUI",
+    "ex": "RO1234567",
+    "re": "^RO\\d{2,10}$",
+    "p": "RO",
+    "s": true
+  },
+  "SE": {
+    "n": "Momsreg.nr",
+    "ex": "SE123456789001",
+    "re": "^SE\\d{12}$",
+    "p": "SE",
+    "s": true
+  },
+  "SI": {
+    "n": "ID za DDV",
+    "ex": "SI12345678",
+    "re": "^SI\\d{8}$",
+    "p": "SI",
+    "s": true
+  },
+  "SK": {
+    "n": "IČ DPH",
+    "ex": "SK1234567890",
+    "re": "^SK\\d{10}$",
+    "p": "SK",
+    "s": true
+  },
+  "GB": {
+    "n": "VAT",
+    "ex": "GB123456789",
+    "re": "^(GB|XI)(\\d{9}|\\d{12}|GD\\d{3}|HA\\d{3})$",
+    "p": "GB",
+    "s": true
+  },
+  "CH": {
+    "n": "UID/MWST",
+    "ex": "CHE-123.456.789 MWST",
+    "re": "^CHE\\d{9}(MWST|TVA|IVA)?$",
+    "p": "CHE",
+    "s": true
+  },
+  "LI": {
+    "n": "MWST",
+    "ex": "12345",
+    "re": "^\\d{5,6}$",
+    "s": false
+  },
+  "NO": {
+    "n": "Org.nr. MVA",
+    "ex": "123456789MVA",
+    "re": "^(NO)?\\d{9}(MVA)?$",
+    "s": true
+  },
+  "IS": {
+    "n": "VSK",
+    "ex": "12345",
+    "re": "^\\d{5,6}$",
+    "s": false
+  },
+  "CA": {
+    "n": "BN",
+    "ex": "123456789RT0001",
+    "re": "^\\d{9}(RT\\d{4})?$",
+    "s": true
+  },
+  "MX": {
+    "n": "RFC",
+    "ex": "ABC123456XY1",
+    "re": "^[A-ZÑ&]{3,4}\\d{6}[A-Z0-9]{3}$",
+    "s": true
+  },
+  "BR": {
+    "n": "CNPJ",
+    "ex": "12.345.678/0001-95",
+    "re": "^\\d{14}$",
+    "s": true
+  },
+  "AR": {
+    "n": "CUIT",
+    "ex": "30-12345678-1",
+    "re": "^\\d{11}$",
+    "s": true
+  },
+  "CL": {
+    "n": "RUT",
+    "ex": "76.123.456-K",
+    "re": "^\\d{7,8}[0-9K]$",
+    "s": true
+  },
+  "CO": {
+    "n": "NIT",
+    "ex": "900.123.456-7",
+    "re": "^\\d{9,10}$",
+    "s": false
+  },
+  "PE": {
+    "n": "RUC",
+    "ex": "20123456789",
+    "re": "^\\d{11}$",
+    "s": true
+  },
+  "AU": {
+    "n": "ABN",
+    "ex": "51 824 753 556",
+    "re": "^\\d{11}$",
+    "s": true
+  },
+  "NZ": {
+    "n": "GST / NZBN",
+    "ex": "123-456-789",
+    "re": "^(\\d{8,9}|\\d{13})$",
+    "s": true
+  },
+  "IN": {
+    "n": "GSTIN",
+    "ex": "22AAAAA0000A1Z5",
+    "re": "^\\d{2}[A-Z]{5}\\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$",
+    "s": true
+  },
+  "SG": {
+    "n": "GST reg. no. / UEN",
+    "ex": "201912345K",
+    "re": "^[A-Z0-9]{9,10}$",
+    "s": false
+  },
+  "MY": {
+    "n": "SST / TIN",
+    "ex": "W10-1808-31000123",
+    "re": "^[A-Z0-9]{8,17}$",
+    "s": false
+  },
+  "JP": {
+    "n": "登録番号 (T…)",
+    "ex": "T1234567890123",
+    "re": "^T?\\d{13}$",
+    "s": true
+  },
+  "KR": {
+    "n": "사업자등록번호",
+    "ex": "123-45-67890",
+    "re": "^\\d{10}$",
+    "s": true
+  },
+  "CN": {
+    "n": "统一社会信用代码",
+    "ex": "91350100M000100Y43",
+    "re": "^[0-9A-HJ-NPQRTUWXY]{2}\\d{6}[0-9A-HJ-NPQRTUWXY]{10}$",
+    "s": true
+  },
+  "HK": {
+    "n": "BR No.",
+    "ex": "12345678",
+    "re": "^\\d{8}(\\d{3})?$",
+    "s": false
+  },
+  "TW": {
+    "n": "統一編號",
+    "ex": "12345678",
+    "re": "^\\d{8}$",
+    "s": true
+  },
+  "TH": {
+    "n": "เลขประจำตัวผู้เสียภาษี",
+    "ex": "0105512345678",
+    "re": "^\\d{13}$",
+    "s": true
+  },
+  "VN": {
+    "n": "Mã số thuế",
+    "ex": "0101234567",
+    "re": "^\\d{10}(\\d{3})?$",
+    "s": true
+  },
+  "ID": {
+    "n": "NPWP",
+    "ex": "01.234.567.8-901.000",
+    "re": "^\\d{15,16}$",
+    "s": false
+  },
+  "PH": {
+    "n": "TIN",
+    "ex": "123-456-789-000",
+    "re": "^\\d{9,12}$",
+    "s": false
+  },
+  "AE": {
+    "n": "TRN",
+    "ex": "100123456700003",
+    "re": "^\\d{15}$",
+    "s": true
+  },
+  "SA": {
+    "n": "VAT (ضريبة القيمة المضافة)",
+    "ex": "300123456700003",
+    "re": "^3\\d{14}$",
+    "s": true
+  },
+  "IL": {
+    "n": "ע.מ / ח.פ",
+    "ex": "512345678",
+    "re": "^\\d{9}$",
+    "s": true
+  },
+  "TR": {
+    "n": "Vergi No (VKN)",
+    "ex": "1234567890",
+    "re": "^\\d{10,11}$",
+    "s": true
+  },
+  "ZA": {
+    "n": "VAT",
+    "ex": "4123456789",
+    "re": "^4\\d{9}$",
+    "s": true
+  },
+  "RU": {
+    "n": "ИНН",
+    "ex": "7701234567",
+    "re": "^\\d{10}(\\d{2})?$",
+    "s": true
+  },
+  "UA": {
+    "n": "ЄДРПОУ / ІПН",
+    "ex": "12345678",
+    "re": "^(\\d{8}|\\d{10}|\\d{12})$",
+    "s": false
+  },
+  "EG": {
+    "n": "Tax registration no.",
+    "ex": "123-456-789",
+    "re": "^\\d{9}$",
+    "s": false
+  },
+  "PK": {
+    "n": "NTN",
+    "ex": "1234567-8",
+    "re": "^\\d{7,8}$",
+    "s": false
+  },
+  "NG": {
+    "n": "TIN",
+    "ex": "12345678-0001",
+    "re": "^\\d{8,12}$",
+    "s": false
+  },
+  "KE": {
+    "n": "KRA PIN",
+    "ex": "P051234567X",
+    "re": "^[AP]\\d{9}[A-Z]$",
+    "s": false
+  }
+}

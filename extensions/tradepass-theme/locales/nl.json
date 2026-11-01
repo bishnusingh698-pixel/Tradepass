@@ -116,7 +116,8 @@
       "salon": "Salon of spa",
       "restaurant": "Restaurant of café",
       "distributor": "Distributeur",
-      "other": "Anders"
+      "other": "Anders",
+      "reseller": "Wederverkoper"
     },
     "order_value": {
       "lt1k": "Minder dan 1.000",
@@ -155,7 +156,8 @@
       "gst": "GST/HST-nummer",
       "us_resale": "Nummer van wederverkoopcertificaat",
       "us_state": "Staat die het certificaat heeft afgegeven",
-      "tax_id": "Fiscaal nummer"
+      "tax_id": "Fiscaal nummer",
+      "example": "Voorbeeld: {{ example }}"
     },
     "upload": {
       "add": "Bestand toevoegen",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} is groter dan 5 MB.",
       "file_count": "U kunt maximaal 3 bestanden toevoegen.",
       "file_pending": "Wacht tot uw bestanden zijn geüpload.",
-      "spam": "Dat antwoord klopt niet. Probeer het opnieuw."
+      "spam": "Dat antwoord klopt niet. Probeer het opnieuw.",
+      "tax_format": "Dit lijkt geen geldig {{ name }}. Controleer het nummer.",
+      "country_blocked": "We kunnen geen groothandelsaanvragen uit dit land of deze regio accepteren."
     },
     "success": {
       "heading": "Bedankt, uw aanvraag is verstuurd",

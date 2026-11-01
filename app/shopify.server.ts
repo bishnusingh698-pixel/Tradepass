@@ -34,11 +34,21 @@ const shopify = shopifyApp({
     [BILLING_NAMES.pro]: paidPlan(PLANS.pro.price, PLANS.pro.trialDays),
   },
   hooks: {
-    // Runs on install and reinstall. Both steps are idempotent (upserts /
+    // Runs on install and reinstall. Every step is idempotent (upserts /
     // create-if-missing), so a reinstall never duplicates defaults.
     afterAuth: async ({ session, admin }) => {
       await refreshShopFacts(session.shop, admin);
       await ensureDefaults(session.shop);
+      // Shopify deletes app-owned metafields and the checkout validation on
+      // uninstall. Rewrite them from our saved settings, so a store that was
+      // wholesale-only before a reinstall is locked again straight away instead
+      // of silently staying open until the merchant re-saves Storefront access.
+      try {
+        const { syncStorefrontConfig } = await import("./lib/storefront-sync.server");
+        await syncStorefrontConfig(admin, session.shop);
+      } catch (e) {
+        console.error(`[tradepass] storefront sync after install failed for ${session.shop}: ${(e as Error).message}`);
+      }
     },
   },
   future: {

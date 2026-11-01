@@ -50,32 +50,74 @@
       "consent": "Hozzájárulás"
     },
     "field": {
-      "companyName": { "label": "Cégnév" },
-      "businessType": { "label": "Vállalkozás típusa" },
-      "website": { "label": "Weboldal", "placeholder": "https://" },
-      "yearEstablished": { "label": "Alapítás éve" },
-      "locationsCount": { "label": "Helyszínek száma" },
-      "monthlyOrderValue": { "label": "Várható havi rendelési érték" },
-      "referral": { "label": "Honnan hallott rólunk?" },
-      "firstName": { "label": "Keresztnév" },
-      "lastName": { "label": "Vezetéknév" },
-      "email": { "label": "E-mail-cím", "help": "A jelentkezésével kapcsolatos értesítéseket erre a címre küldjük." },
-      "phone": { "label": "Telefonszám" },
-      "jobTitle": { "label": "Beosztás" },
-      "preferredLanguage": { "label": "Előnyben részesített nyelv" },
-      "billingAddress": { "label": "Számlázási cím" },
-      "shippingAddress": { "label": "Szállítási cím" },
-      "taxNumber": { "label": "Adószám" },
-      "certificates": { "label": "Igazolások", "help": "Például viszonteladói vagy adómentességi igazolás." },
-      "message": { "label": "Üzenet az áruháznak" },
-      "consent": { "label": "Hozzájárulok, hogy adataimat a jelentkezés elbírálásához felhasználják." }
+      "companyName": {
+        "label": "Cégnév"
+      },
+      "businessType": {
+        "label": "Vállalkozás típusa"
+      },
+      "website": {
+        "label": "Weboldal",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Alapítás éve"
+      },
+      "locationsCount": {
+        "label": "Helyszínek száma"
+      },
+      "monthlyOrderValue": {
+        "label": "Várható havi rendelési érték"
+      },
+      "referral": {
+        "label": "Honnan hallott rólunk?"
+      },
+      "firstName": {
+        "label": "Keresztnév"
+      },
+      "lastName": {
+        "label": "Vezetéknév"
+      },
+      "email": {
+        "label": "E-mail-cím",
+        "help": "A jelentkezésével kapcsolatos értesítéseket erre a címre küldjük."
+      },
+      "phone": {
+        "label": "Telefonszám"
+      },
+      "jobTitle": {
+        "label": "Beosztás"
+      },
+      "preferredLanguage": {
+        "label": "Előnyben részesített nyelv"
+      },
+      "billingAddress": {
+        "label": "Számlázási cím"
+      },
+      "shippingAddress": {
+        "label": "Szállítási cím"
+      },
+      "taxNumber": {
+        "label": "Adószám"
+      },
+      "certificates": {
+        "label": "Igazolások",
+        "help": "Például viszonteladói vagy adómentességi igazolás."
+      },
+      "message": {
+        "label": "Üzenet az áruháznak"
+      },
+      "consent": {
+        "label": "Hozzájárulok, hogy adataimat a jelentkezés elbírálásához felhasználják."
+      }
     },
     "business_type": {
       "retail": "Kiskereskedelmi üzlet",
       "salon": "Szalon vagy szépségközpont",
       "restaurant": "Étterem vagy kávézó",
       "distributor": "Forgalmazó",
-      "other": "Egyéb"
+      "other": "Egyéb",
+      "reseller": "Viszonteladó"
     },
     "order_value": {
       "lt1k": "Kevesebb mint 1000",
@@ -114,7 +156,8 @@
       "gst": "GST/HST-szám",
       "us_resale": "Viszonteladói igazolás száma",
       "us_state": "Az igazolást kiállító állam",
-      "tax_id": "Adóazonosító"
+      "tax_id": "Adóazonosító",
+      "example": "Példa: {{ example }}"
     },
     "upload": {
       "add": "Fájl hozzáadása",
@@ -141,7 +184,9 @@
       "file_size": "{{ name }} nagyobb 5 MB-nál.",
       "file_count": "Legfeljebb 3 fájlt adhat hozzá.",
       "file_pending": "Várja meg, amíg a fájlok feltöltése befejeződik.",
-      "spam": "A válasz nem egyezik. Próbálja újra."
+      "spam": "A válasz nem egyezik. Próbálja újra.",
+      "tax_format": "Ez nem tűnik érvényes azonosítónak ({{ name }}). Kérjük, ellenőrizze.",
+      "country_blocked": "Ebből az országból vagy régióból nem tudunk nagykereskedelmi jelentkezést elfogadni."
     },
     "success": {
       "heading": "Köszönjük, jelentkezését elküldtük",

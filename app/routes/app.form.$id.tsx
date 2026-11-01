@@ -9,7 +9,7 @@ import { deleteForm, getForm, getShopLocales, saveForm, setDefaultForm, type For
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { logActivity } from "../lib/activity.server";
 import { updateSettings } from "../lib/settings.server";
-import type { FormDefinition } from "../lib/form-defaults";
+import { applyTemplate, FORM_TEMPLATES, type FormDefinition } from "../lib/form-defaults";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { FormBuilder, useErrorText } from "../components/form-builder/Builder";
@@ -129,6 +129,8 @@ export default function FormEditor() {
   const [lang, setLang] = useState(() => primaryLocale(data.shopLocales));
   const [defaults, setDefaults] = useState<Record<string, string>>({});
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [pickTemplate, setPickTemplate] = useState(false);
+  const [template, setTemplate] = useState<string>("retail");
 
   useEffect(() => {
     let live = true;
@@ -229,7 +231,8 @@ export default function FormEditor() {
 
   return (
     <s-page heading={draft.name || data.form.name}>
-      <s-link slot="breadcrumb-actions" href={href("/app/form")}>{t("nav.form")}</s-link>
+      <s-link slot="breadcrumb-actions" href={href("/app/form")}>{t("nav.applicationForm")}</s-link>
+      <s-button slot="secondary-actions" onClick={() => setPickTemplate(true)}>{t("form.template.button")}</s-button>
       {!data.form.isDefault && (
         <>
           <s-button slot="secondary-actions" onClick={() => other.submit({ intent: "default" }, { method: "post" })}>
@@ -318,6 +321,37 @@ export default function FormEditor() {
       </s-query-container>
 
       <AddToPage shop={data.shop} apiKey={data.apiKey} />
+
+      <Modal id="form-template-modal" heading={t("form.template.heading")} open={pickTemplate} onClose={() => setPickTemplate(false)}>
+        <s-stack direction="block" gap="base">
+          <s-paragraph>{t("form.template.body")}</s-paragraph>
+          <s-choice-list
+            label={t("form.template.label")}
+            name="template"
+            onChange={(e) => setTemplate(((e.currentTarget as unknown as { values?: string[] }).values ?? [template])[0])}
+          >
+            {FORM_TEMPLATES.map((id) => (
+              <s-choice key={id} value={id} selected={template === id}>
+                {t(`form.template.name.${id}`)}
+                <s-text slot="details">{t(`form.template.desc.${id}`)}</s-text>
+              </s-choice>
+            ))}
+          </s-choice-list>
+        </s-stack>
+        <s-button
+          slot="primary-action"
+          variant="primary"
+          onClick={() => {
+            // Only the editor's draft changes; the save bar appears and nothing is stored until Save.
+            setDefinition(applyTemplate(draft.definition, template));
+            setPickTemplate(false);
+            shopify.toast.show(t("form.template.applied"));
+          }}
+        >
+          {t("form.template.apply")}
+        </s-button>
+        <s-button slot="secondary-actions" onClick={() => setPickTemplate(false)}>{t("common.cancel")}</s-button>
+      </Modal>
 
       <Modal id="form-delete-modal" heading={t("form.settings.deleteHeading", { name: data.form.name })} open={confirmDelete} onClose={() => setConfirmDelete(false)}>
         <s-paragraph>{t("form.settings.deleteBody", { name: data.form.name })}</s-paragraph>

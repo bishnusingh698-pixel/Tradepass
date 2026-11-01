@@ -116,7 +116,8 @@
       "salon": "Salong eller spa",
       "restaurant": "Restaurant eller kafé",
       "distributor": "Distributør",
-      "other": "Annet"
+      "other": "Annet",
+      "reseller": "Forhandler"
     },
     "order_value": {
       "lt1k": "Under 1000",
@@ -155,7 +156,8 @@
       "gst": "GST/HST-nummer",
       "us_resale": "Nummer på videresalgssertifikat",
       "us_state": "Delstat som utstedte sertifikatet",
-      "tax_id": "Skatte-ID"
+      "tax_id": "Skatte-ID",
+      "example": "Eksempel: {{ example }}"
     },
     "upload": {
       "add": "Legg til fil",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} er større enn 5 MB.",
       "file_count": "Du kan legge til opptil 3 filer.",
       "file_pending": "Vent til filene er ferdig lastet opp.",
-      "spam": "Svaret stemmer ikke. Prøv igjen."
+      "spam": "Svaret stemmer ikke. Prøv igjen.",
+      "tax_format": "Dette ser ikke ut som et gyldig {{ name }}. Kontroller det.",
+      "country_blocked": "Vi kan ikke ta imot engrossøknader fra dette landet eller området."
     },
     "success": {
       "heading": "Takk! Søknaden din er sendt",

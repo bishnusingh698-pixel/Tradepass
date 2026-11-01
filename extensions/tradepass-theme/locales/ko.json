@@ -116,7 +116,8 @@
       "salon": "살롱 또는 스파",
       "restaurant": "레스토랑 또는 카페",
       "distributor": "유통업체",
-      "other": "기타"
+      "other": "기타",
+      "reseller": "재판매업체"
     },
     "order_value": {
       "lt1k": "1,000 미만",
@@ -155,7 +156,8 @@
       "gst": "GST/HST 번호",
       "us_resale": "재판매 증명서 번호",
       "us_state": "증명서를 발급한 주",
-      "tax_id": "납세자 번호"
+      "tax_id": "납세자 번호",
+      "example": "예: {{ example }}"
     },
     "upload": {
       "add": "파일 추가",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }}이(가) 5MB를 초과합니다.",
       "file_count": "파일은 최대 3개까지 추가할 수 있습니다.",
       "file_pending": "파일 업로드가 끝날 때까지 기다려 주십시오.",
-      "spam": "답변이 일치하지 않습니다. 다시 시도해 주십시오."
+      "spam": "답변이 일치하지 않습니다. 다시 시도해 주십시오.",
+      "tax_format": "올바른 {{ name }}이(가) 아닌 것 같습니다. 확인해 주세요.",
+      "country_blocked": "이 국가 또는 지역에서는 도매 신청을 받을 수 없습니다."
     },
     "success": {
       "heading": "감사합니다. 신청서가 전송되었습니다",

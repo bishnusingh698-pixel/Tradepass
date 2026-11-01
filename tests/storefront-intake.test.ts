@@ -32,6 +32,8 @@ function deps(over: Partial<IntakeDeps> = {}) {
     emitFlowTrigger: vi.fn(async () => undefined),
     evaluateRules: vi.fn(async () => ({ decided: null })),
     recordApplicationCertificates: vi.fn(async () => undefined),
+    // Run follow-ups inline so assertions see them (production defers them past the response).
+    defer: vi.fn(async (_shop: string, _id: string, run: () => Promise<void>) => run()),
     ...over,
   };
   return d as typeof d & IntakeDeps;

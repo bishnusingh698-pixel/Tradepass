@@ -61,7 +61,7 @@ export function checkPattern(type: TemplateType, pattern: string): PatternProble
   return null;
 }
 
-export type DigestCounts = { pending: number; expiring: number; expired: number; failed: number; deferred: number };
+export type DigestCounts = { pending: number; replied?: number; expiring: number; expired: number; failed: number; deferred: number };
 
 export type BuildInput = {
   type: TemplateType;
@@ -75,6 +75,8 @@ export type BuildInput = {
   draft?: { subject?: string; body?: string };
   test?: boolean;
   digest?: DigestCounts;
+  /** Weekly digest: same lines, its own subject and intro. */
+  weekly?: boolean;
 };
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}(T.*)?$/;
@@ -101,8 +103,8 @@ function extraLines(i: BuildInput, vars: EmailVars, body: string, p: (k: string)
   if (i.type === "needs_info" && unused("message")) lines.push(p("email.needs_info.messageLine"));
   if (i.type === "approved" && unused("terms")) lines.push(p("email.approved.termsLine"));
   if (i.type === "merchant_digest" && i.digest) {
-    for (const k of ["pending", "expiring", "expired", "failed", "deferred"] as const) {
-      if (i.digest[k] > 0) lines.push(p(`email.merchant_digest.${k}`).replace(/\{count\b/g, `{digest_${k}`));
+    for (const k of ["pending", "replied", "expiring", "expired", "failed", "deferred"] as const) {
+      if ((i.digest[k] ?? 0) > 0) lines.push(p(`email.merchant_digest.${k}`).replace(/\{count\b/g, `{digest_${k}`));
     }
     lines.push(p("email.merchant_digest.open"));
   }
@@ -119,8 +121,9 @@ export function buildEmail(i: BuildInput): RenderedEmail {
     const lang = useOverrides && i.overrides?.[i.locale]?.[subjectKey(i.type)] ? i.locale : matched;
     const vars = prepareVars(i, matched);
     if (i.digest) for (const [k, v] of Object.entries(i.digest)) vars[`digest_${k}`] = v;
-    const subject = (useOverrides && i.draft?.subject) || p(subjectKey(i.type));
-    const body = (useOverrides && i.draft?.body) || p(bodyKey(i.type));
+    const weekly = i.type === "merchant_digest" && i.weekly;
+    const subject = (useOverrides && i.draft?.subject) || p(weekly ? "email.merchant_digest.weeklySubject" : subjectKey(i.type));
+    const body = (useOverrides && i.draft?.body) || p(weekly ? "email.merchant_digest.weeklyBody" : bodyKey(i.type));
     const out = renderEmail({
       locale: lang,
       dir: isRtl(lang) ? "rtl" : "ltr",

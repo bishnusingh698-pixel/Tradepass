@@ -13,6 +13,7 @@ import {
 import { certificateFlags, certificateStatus, CERTIFICATE_TYPES, daysUntil } from "../lib/certificates";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
+import { SectionTabs } from "../components/SectionTabs";
 
 const STATUS_FILTERS = ["all", "pending", "valid", "expiring", "expired", "rejected", "no_expiry"] as const;
 type StatusFilter = (typeof STATUS_FILTERS)[number];
@@ -175,6 +176,7 @@ export default function Certificates() {
 
   return (
     <s-page heading={t("certificates.title")}>
+      <SectionTabs section="buyers" />
       {data.gated && (
         <s-banner tone="info" heading={t("common.availableOn", { plan: t(`certificates.plan.${data.requiredPlan}`) })}>
           <s-paragraph>{t("certificates.gated.body")}</s-paragraph>

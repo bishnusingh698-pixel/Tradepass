@@ -1,5 +1,6 @@
 // CONTRACT (owner: email/certificates area).
 import db from "../db.server";
+import { storefrontUrl } from "./shop.server";
 import { logActivity } from "./activity.server";
 import { decrypt, encrypt, sha256, signToken, verifyToken } from "./crypto.server";
 import { queueEmail } from "./email/index.server";
@@ -109,9 +110,10 @@ const CONTACT_QUERY = `#graphql
 
 // ------------------------------------------------------------ renewal links
 
-export function renewalLink(shop: string, token: string, locale?: string): string {
+/** Renewal link on the store's own domain (falls back to the myshopify domain). */
+export function renewalLink(shop: string, token: string, locale?: string, domainUrl?: string | null): string {
   const q = locale ? `?lang=${encodeURIComponent(locale)}` : "";
-  return `https://${shop}/apps/tradepass/renew/${encodeURIComponent(token)}${q}`;
+  return storefrontUrl({ shop, domainUrl }, `/apps/tradepass/renew/${encodeURIComponent(token)}${q}`);
 }
 
 /** New single-use renewal link for a certificate; older unused links for it stop working. */
@@ -151,7 +153,7 @@ export async function sendRenewalRequest(
   if (!cert) return false;
   const to = await certificateRecipient(shop, cert, adminFor);
   if (!to) return false;
-  const shopRow = await db.shop.findUnique({ where: { shop }, select: { name: true } });
+  const shopRow = await db.shop.findUnique({ where: { shop }, select: { name: true, domainUrl: true } });
   const token = await createRenewalToken(shop, cert.id, now);
   const res = await queueEmail({
     shop,
@@ -162,7 +164,7 @@ export async function sendRenewalRequest(
       company: to.company,
       first_name: to.firstName,
       store_name: shopRow?.name ?? shop.replace(/\.myshopify\.com$/, ""),
-      update_link: renewalLink(shop, token, to.locale),
+      update_link: renewalLink(shop, token, to.locale, shopRow?.domainUrl),
       expiry_date: cert.expiresOn ? cert.expiresOn.toISOString().slice(0, 10) : "",
     },
     subjectId: cert.id,

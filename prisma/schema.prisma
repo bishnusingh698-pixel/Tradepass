@@ -55,7 +55,9 @@ model Shop {
   welcomeDoneAt     DateTime?
   checkedAt         DateTime? // last plan/entitlement check
   name              String?
-  email             String? // shop contact email: reply-to for applicant emails
+  email             String? // store owner's email (shop.email): merchant alerts and digest when no address is set
+  contactEmail      String? // customer-facing store email (shop.contactEmail): reply-to for applicant emails
+  domainUrl         String? // primary storefront domain, e.g. https://example.com — used for links in emails
   currency          String?
   country           String? // store country, for tax suggestions
   placeholderCompanyGid String? // see DECISIONS D-004 (only if empty B2B markets are rejected)
@@ -95,6 +97,7 @@ model Application {
   flags          String[]  @default([]) // duplicate | possible_spam
   assignee       String?
   approvalState  Json? // per-step progress of the approval engine (retry/undo)
+  approvalStatus String? // null = never started | running | failed | done — indexed copy of approvalState for queries
   buyerId        String?
   source         String    @default("form") // form | flow | import | manual
   suggestedTierId String?
@@ -108,6 +111,7 @@ model Application {
   @@unique([shop, idempotencyKey])
   @@index([shop, status, submittedAt])
   @@index([shop, email])
+  @@index([approvalStatus])
 }
 
 model ApplicationFile {
@@ -182,6 +186,7 @@ model Certificate {
 
   @@index([shop, expiresOn])
   @@index([shop, buyerId])
+  @@index([shop, applicationId])
 }
 
 /// Outgoing email queue + log. Doubles as the quota counter (count by quotaDay).
@@ -198,6 +203,7 @@ model EmailLog {
 
   @@index([quotaDay, status])
   @@index([shop, quotaDay])
+  @@index([shop, toHash])
 }
 
 model ActivityLog {
@@ -211,6 +217,7 @@ model ActivityLog {
   createdAt DateTime @default(now())
 
   @@index([shop, createdAt])
+  @@index([shop, subject])
 }
 
 model Job {
@@ -226,6 +233,7 @@ model Job {
   createdAt DateTime @default(now())
 
   @@index([state, runAfter])
+  @@index([shop, type, state])
 }
 
 /// Per-shop mutex for tier assignment (one market write at a time per shop).
@@ -263,6 +271,7 @@ model TokenUse {
   usedAt    DateTime?
 
   @@index([expiresAt])
+  @@index([shop, subjectId])
 }
 
 model Rule {

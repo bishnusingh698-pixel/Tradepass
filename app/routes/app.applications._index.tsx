@@ -177,6 +177,10 @@ export default function Applications() {
               <s-option value="duplicate">{t("applications.flag.duplicate")}</s-option>
               <s-option value="possible_spam">{t("applications.flag.possible_spam")}</s-option>
             </s-select>
+            <s-select label={t("applications.filter.approval")} value={data.filters.approval ?? ""} onChange={(e) => setParam("approval", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
+              <s-option value="">{t("applications.filter.any")}</s-option>
+              <s-option value="incomplete">{t("applications.approval.incomplete")}</s-option>
+            </s-select>
             {data.forms.length > 1 && (
               <s-select label={t("applications.filter.form")} value={data.filters.formId ?? ""} onChange={(e) => setParam("formId", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
                 <s-option value="">{t("applications.filter.any")}</s-option>
@@ -281,6 +285,7 @@ export default function Applications() {
                       {r.flags.map((f) => (
                         <s-badge key={f} tone="warning">{t(`applications.flag.${f}`)}</s-badge>
                       ))}
+                      {r.approvalIncomplete && <s-badge tone="critical">{t("applications.approval.incomplete")}</s-badge>}
                     </s-stack>
                   </s-table-cell>
                   <s-table-cell><StatusBadge status={r.status} /></s-table-cell>

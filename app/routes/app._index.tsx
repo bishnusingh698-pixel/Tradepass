@@ -5,9 +5,10 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
 import { refreshShopFacts } from "../lib/shop.server";
+import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { updateSettings } from "../lib/settings.server";
 import { applyWelcome, checklist, pendingWork, serverAlerts, type AlertId, type ChecklistStep, type Numbers } from "../lib/home.server";
-import { BUSINESS_TYPES, SUGGESTED_TIER_NAMES } from "../lib/form-defaults";
+import { BUSINESS_TYPES } from "../lib/form-defaults";
 import { EMBED_HANDLE, FORM_BLOCK_HANDLE, THEME_EXTENSION_HANDLE } from "../lib/theme";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
@@ -17,6 +18,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
   // Spec: detect plan and B2B entitlements on each Home load.
   const facts = await refreshShopFacts(ctx.shop, ctx.admin);
+  // The plan changed in Shopify since we last looked (e.g. cancelled from Shopify admin): plan-dependent storefront parts follow.
+  if (facts.planChanged) await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
   const [steps, pending, alerts] = await Promise.all([
     checklist(ctx.shop, ctx.settings),
     pendingWork(ctx.shop, ctx.settings),
@@ -121,7 +124,7 @@ export default function Home() {
 
   return (
     <s-page heading={t("home.title")}>
-      {!d.welcome.done && <Welcome />}
+      {!d.welcome.done && <SetupCard />}
 
       {d.alerts.map((a) => (
         <s-banner
@@ -191,37 +194,24 @@ function AlertAction({ id }: { id: AlertId }) {
   return <s-button href={href(to)}>{t(`home.alert.${id}.action`)}</s-button>;
 }
 
-function Welcome() {
+/** First run: one card that leads into the setup wizard (/app/setup). */
+function SetupCard() {
   const { t } = useI18n();
+  const href = useLocaleHref();
   const fetcher = useFetcher();
-  const [audience, setAudience] = useState<string>("");
   return (
     <s-section heading={t("home.welcome.heading")}>
       <s-stack direction="block" gap="base">
-        <s-paragraph>{t("home.welcome.body")}</s-paragraph>
-        <s-choice-list
-          label={t("home.welcome.question")}
-          values={audience ? [audience] : []}
-          onChange={(e) => setAudience(((e.currentTarget as unknown as { values: string[] }).values ?? [])[0] ?? "")}
-        >
-          {BUSINESS_TYPES.map((b) => (
-            <s-choice key={b} value={b}>{t(`home.welcome.audience.${b}`)}</s-choice>
-          ))}
-        </s-choice-list>
-        {audience && (
-          <s-paragraph color="subdued">
-            {t("home.welcome.suggestedTiers", { names: SUGGESTED_TIER_NAMES[audience].join(", ") })}
-          </s-paragraph>
-        )}
+        <s-paragraph>{t("home.setup.body")}</s-paragraph>
+        <s-unordered-list>
+          <s-list-item>{t("setup.plan.title")}</s-list-item>
+          <s-list-item>{t("setup.business.title")}</s-list-item>
+          <s-list-item>{t("setup.tier.title")}</s-list-item>
+          <s-list-item>{t("setup.access.short")}</s-list-item>
+          <s-list-item>{t("setup.theme.title")}</s-list-item>
+        </s-unordered-list>
         <s-stack direction="inline" gap="base">
-          <s-button
-            variant="primary"
-            disabled={!audience}
-            {...(fetcher.state !== "idle" ? { loading: true } : {})}
-            onClick={() => fetcher.submit({ intent: "welcome", audience }, { method: "POST" })}
-          >
-            {t("home.welcome.continue")}
-          </s-button>
+          <s-button variant="primary" href={href("/app/setup")}>{t("home.setup.start")}</s-button>
           <s-button variant="tertiary" onClick={() => fetcher.submit({ intent: "welcome_skip" }, { method: "POST" })}>
             {t("home.welcome.skip")}
           </s-button>
@@ -270,10 +260,10 @@ function ChecklistRow({ step, embedLink, blockLink, onRecheck }: { step: Checkli
   );
 }
 
-function PendingWork({ pending }: { pending: { applications: number; oldestAt: string | null; expiring: number; assignments: number } }) {
+function PendingWork({ pending }: { pending: { applications: number; oldestAt: string | null; expiring: number; assignments: number; incomplete: number } }) {
   const { t } = useI18n();
   const href = useLocaleHref();
-  const nothing = !pending.applications && !pending.expiring && !pending.assignments;
+  const nothing = !pending.applications && !pending.expiring && !pending.assignments && !pending.incomplete;
   return (
     <s-section heading={t("home.pending.heading")}>
       {nothing ? (
@@ -290,6 +280,9 @@ function PendingWork({ pending }: { pending: { applications: number; oldestAt: s
                 </>
               )}
             </s-link>
+          )}
+          {pending.incomplete > 0 && (
+            <s-link href={href("/app/applications?tab=all&approval=incomplete")}>{t("home.pending.incomplete", { count: pending.incomplete })}</s-link>
           )}
           {pending.expiring > 0 && <s-link href={href("/app/certificates?status=expiring")}>{t("home.pending.certificates", { count: pending.expiring })}</s-link>}
           {pending.assignments > 0 && <s-link href={href("/app/tiers?assist=1")}>{t("home.pending.assignments", { count: pending.assignments })}</s-link>}
@@ -341,6 +334,7 @@ function Numbers30({ currency }: { currency: string | null }) {
               ))}
             </s-stack>
           )}
+          <MonthlyReport months={n.months} byTier={n.buyersByTier} />
           {n.orders ? (
             <s-text>
               {t("home.numbers.orders", { count: n.orders.count, total: i18n.money(n.orders.total, n.orders.currency ?? currency ?? "USD") })}
@@ -352,6 +346,48 @@ function Numbers30({ currency }: { currency: string | null }) {
         </s-stack>
       )}
     </s-section>
+  );
+}
+
+function MonthlyReport({ months, byTier }: { months: Numbers["months"]; byTier: Numbers["buyersByTier"] }) {
+  const { t, i18n } = useI18n();
+  const monthName = (m: string) => i18n.date(new Date(`${m}-15T00:00:00Z`), { month: "short", year: "numeric", timeZone: "UTC" });
+  const pct = (v: number | null) => (v == null ? "—" : i18n.number(v, { style: "percent", maximumFractionDigits: 0 }));
+  const days = (v: number | null) => (v == null ? "—" : t("home.report.days", { count: v }));
+  return (
+    <s-stack direction="block" gap="small-200">
+      <s-text type="strong">{t("home.report.heading")}</s-text>
+      <s-table>
+        <s-table-header-row>
+          <s-table-header listSlot="primary">{t("home.report.month")}</s-table-header>
+          <s-table-header format="numeric">{t("home.report.received")}</s-table-header>
+          <s-table-header format="numeric">{t("home.report.approved")}</s-table-header>
+          <s-table-header format="numeric">{t("home.report.rate")}</s-table-header>
+          <s-table-header format="numeric">{t("home.report.avgDays")}</s-table-header>
+        </s-table-header-row>
+        <s-table-body>
+          {[...months].reverse().map((m) => (
+            <s-table-row key={m.month}>
+              <s-table-cell>{monthName(m.month)}</s-table-cell>
+              <s-table-cell>{i18n.number(m.received)}</s-table-cell>
+              <s-table-cell>{i18n.number(m.approved)}</s-table-cell>
+              <s-table-cell>{pct(m.rate)}</s-table-cell>
+              <s-table-cell>{days(m.avgDays)}</s-table-cell>
+            </s-table-row>
+          ))}
+        </s-table-body>
+      </s-table>
+      {byTier.length > 0 && (
+        <s-stack direction="block" gap="small-200">
+          <s-text type="strong">{t("home.report.byTier")}</s-text>
+          {byTier.map((b) => (
+            <s-text key={b.tier || "none"}>
+              {t("home.report.tierLine", { tier: b.tier || t("home.numbers.noTier"), active: b.active, paused: b.paused })}
+            </s-text>
+          ))}
+        </s-stack>
+      )}
+    </s-stack>
   );
 }
 

@@ -50,32 +50,74 @@
       "consent": "Consimțământ"
     },
     "field": {
-      "companyName": { "label": "Numele companiei" },
-      "businessType": { "label": "Tipul de activitate" },
-      "website": { "label": "Site web", "placeholder": "https://" },
-      "yearEstablished": { "label": "Anul înființării" },
-      "locationsCount": { "label": "Numărul de locații" },
-      "monthlyOrderValue": { "label": "Valoarea lunară estimată a comenzilor" },
-      "referral": { "label": "Cum ați aflat de noi?" },
-      "firstName": { "label": "Prenume" },
-      "lastName": { "label": "Nume" },
-      "email": { "label": "E-mail", "help": "Vă vom trimite noutăți despre cerere la această adresă." },
-      "phone": { "label": "Telefon" },
-      "jobTitle": { "label": "Funcție" },
-      "preferredLanguage": { "label": "Limba preferată" },
-      "billingAddress": { "label": "Adresa de facturare" },
-      "shippingAddress": { "label": "Adresa de livrare" },
-      "taxNumber": { "label": "Cod fiscal" },
-      "certificates": { "label": "Certificate", "help": "De exemplu, un certificat de revânzare sau de scutire de taxe." },
-      "message": { "label": "Mesaj pentru magazin" },
-      "consent": { "label": "Sunt de acord ca datele mele să fie folosite pentru analizarea acestei cereri." }
+      "companyName": {
+        "label": "Numele companiei"
+      },
+      "businessType": {
+        "label": "Tipul de activitate"
+      },
+      "website": {
+        "label": "Site web",
+        "placeholder": "https://"
+      },
+      "yearEstablished": {
+        "label": "Anul înființării"
+      },
+      "locationsCount": {
+        "label": "Numărul de locații"
+      },
+      "monthlyOrderValue": {
+        "label": "Valoarea lunară estimată a comenzilor"
+      },
+      "referral": {
+        "label": "Cum ați aflat de noi?"
+      },
+      "firstName": {
+        "label": "Prenume"
+      },
+      "lastName": {
+        "label": "Nume"
+      },
+      "email": {
+        "label": "E-mail",
+        "help": "Vă vom trimite noutăți despre cerere la această adresă."
+      },
+      "phone": {
+        "label": "Telefon"
+      },
+      "jobTitle": {
+        "label": "Funcție"
+      },
+      "preferredLanguage": {
+        "label": "Limba preferată"
+      },
+      "billingAddress": {
+        "label": "Adresa de facturare"
+      },
+      "shippingAddress": {
+        "label": "Adresa de livrare"
+      },
+      "taxNumber": {
+        "label": "Cod fiscal"
+      },
+      "certificates": {
+        "label": "Certificate",
+        "help": "De exemplu, un certificat de revânzare sau de scutire de taxe."
+      },
+      "message": {
+        "label": "Mesaj pentru magazin"
+      },
+      "consent": {
+        "label": "Sunt de acord ca datele mele să fie folosite pentru analizarea acestei cereri."
+      }
     },
     "business_type": {
       "retail": "Magazin de vânzare cu amănuntul",
       "salon": "Salon sau spa",
       "restaurant": "Restaurant sau cafenea",
       "distributor": "Distribuitor",
-      "other": "Altul"
+      "other": "Altul",
+      "reseller": "Revânzător"
     },
     "order_value": {
       "lt1k": "Sub 1.000",
@@ -114,7 +156,8 @@
       "gst": "Număr GST/HST",
       "us_resale": "Numărul certificatului de revânzare",
       "us_state": "Statul care a emis certificatul",
-      "tax_id": "Cod de identificare fiscală"
+      "tax_id": "Cod de identificare fiscală",
+      "example": "Exemplu: {{ example }}"
     },
     "upload": {
       "add": "Adăugați un fișier",
@@ -141,7 +184,9 @@
       "file_size": "{{ name }} depășește 5 MB.",
       "file_count": "Puteți adăuga cel mult 3 fișiere.",
       "file_pending": "Așteptați finalizarea încărcării fișierelor.",
-      "spam": "Răspunsul nu corespunde. Încercați din nou."
+      "spam": "Răspunsul nu corespunde. Încercați din nou.",
+      "tax_format": "Acesta nu pare un {{ name }} valid. Vă rugăm să îl verificați.",
+      "country_blocked": "Nu putem accepta cereri en-gros din această țară sau regiune."
     },
     "success": {
       "heading": "Vă mulțumim, cererea a fost trimisă",

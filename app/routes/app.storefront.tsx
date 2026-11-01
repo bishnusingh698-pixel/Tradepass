@@ -257,7 +257,7 @@ export default function Storefront() {
   const scopeType = sf.scope.type;
 
   return (
-    <s-page heading={t("storefront.title")}>
+    <s-page heading={t("nav.storefrontAccess")}>
       <SaveBar id="storefront-save-bar" open={dirty || busy} discardConfirmation>
         <button variant="primary" onClick={onSave} {...flag("loading", busy)} {...flag("disabled", busy)}>{t("common.save")}</button>
         <button onClick={onDiscard} {...flag("disabled", busy)}>{t("common.discard")}</button>

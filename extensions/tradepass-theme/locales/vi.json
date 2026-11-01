@@ -116,7 +116,8 @@
       "salon": "Salon hoặc spa",
       "restaurant": "Nhà hàng hoặc quán cà phê",
       "distributor": "Nhà phân phối",
-      "other": "Khác"
+      "other": "Khác",
+      "reseller": "Đại lý bán lại"
     },
     "order_value": {
       "lt1k": "Dưới 1.000",
@@ -155,7 +156,8 @@
       "gst": "Mã số GST/HST",
       "us_resale": "Số giấy chứng nhận bán lại",
       "us_state": "Bang cấp giấy chứng nhận",
-      "tax_id": "Mã số thuế"
+      "tax_id": "Mã số thuế",
+      "example": "Ví dụ: {{ example }}"
     },
     "upload": {
       "add": "Thêm tệp",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} lớn hơn 5 MB.",
       "file_count": "Bạn có thể thêm tối đa 3 tệp.",
       "file_pending": "Vui lòng đợi tệp tải lên xong.",
-      "spam": "Câu trả lời không khớp. Vui lòng thử lại."
+      "spam": "Câu trả lời không khớp. Vui lòng thử lại.",
+      "tax_format": "Đây có vẻ không phải là {{ name }} hợp lệ. Vui lòng kiểm tra lại.",
+      "country_blocked": "Chúng tôi không thể nhận đơn đăng ký bán sỉ từ quốc gia hoặc khu vực này."
     },
     "success": {
       "heading": "Cảm ơn bạn, đơn đăng ký của bạn đã được gửi",

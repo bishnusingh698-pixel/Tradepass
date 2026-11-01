@@ -116,7 +116,8 @@
       "salon": "Salon ali spa",
       "restaurant": "Restavracija ali kavarna",
       "distributor": "Distributer",
-      "other": "Drugo"
+      "other": "Drugo",
+      "reseller": "Preprodajalec"
     },
     "order_value": {
       "lt1k": "Manj kot 1.000",
@@ -155,7 +156,8 @@
       "gst": "Številka GST/HST",
       "us_resale": "Številka potrdila za nadaljnjo prodajo",
       "us_state": "Zvezna država, ki je izdala potrdilo",
-      "tax_id": "Davčna številka"
+      "tax_id": "Davčna številka",
+      "example": "Primer: {{ example }}"
     },
     "upload": {
       "add": "Dodaj datoteko",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} je večja od 5 MB.",
       "file_count": "Dodate lahko največ 3 datoteke.",
       "file_pending": "Počakajte, da se datoteke naložijo.",
-      "spam": "Odgovor se ne ujema. Poskusite znova."
+      "spam": "Odgovor se ne ujema. Poskusite znova.",
+      "tax_format": "To ni videti kot veljavna {{ name }}. Preverite jo.",
+      "country_blocked": "Iz te države ali regije ne moremo sprejemati veleprodajnih prijav."
     },
     "success": {
       "heading": "Hvala, vaša vloga je bila poslana",

@@ -121,6 +121,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     formId: `update-${app.id}`,
     country: billing?.countryCode ?? app.countryCode ?? "",
     countriesUrl: `${prefix}/assets/countries.json`,
+    countryRule: info.settings.applications.countries.mode === "all" ? null : info.settings.applications.countries,
     successEmail: false,
   };
   const title = t("hosted.update.title");

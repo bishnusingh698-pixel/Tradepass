@@ -82,7 +82,7 @@ function fakeAdmin(fail = false) {
 }
 
 beforeAll(async () => {
-  await db.shop.create({ data: { shop, billingPlan: "pro" } });
+  await db.shop.create({ data: { shop, b2bEnabled: true, billingPlan: "pro" } });
 });
 afterAll(async () => {
   await db.activityLog.deleteMany({ where: { shop } });

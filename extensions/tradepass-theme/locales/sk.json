@@ -116,7 +116,8 @@
       "salon": "Salón alebo kúpele",
       "restaurant": "Reštaurácia alebo kaviareň",
       "distributor": "Distribútor",
-      "other": "Iné"
+      "other": "Iné",
+      "reseller": "Predajca"
     },
     "order_value": {
       "lt1k": "Menej ako 1 000",
@@ -155,7 +156,8 @@
       "gst": "Číslo GST/HST",
       "us_resale": "Číslo certifikátu na ďalší predaj",
       "us_state": "Štát, ktorý certifikát vydal",
-      "tax_id": "Daňové identifikačné číslo"
+      "tax_id": "Daňové identifikačné číslo",
+      "example": "Príklad: {{ example }}"
     },
     "upload": {
       "add": "Pridať súbor",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} je väčší ako 5 MB.",
       "file_count": "Môžete pridať najviac 3 súbory.",
       "file_pending": "Počkajte, kým sa súbory nahrajú.",
-      "spam": "Odpoveď nesedí. Skúste to, prosím, znova."
+      "spam": "Odpoveď nesedí. Skúste to, prosím, znova.",
+      "tax_format": "Toto nevyzerá ako platné {{ name }}. Skontrolujte to, prosím.",
+      "country_blocked": "Z tejto krajiny alebo regiónu nemôžeme prijímať veľkoobchodné žiadosti."
     },
     "success": {
       "heading": "Ďakujeme, vaša žiadosť bola odoslaná",

@@ -3,7 +3,7 @@ import type { EmailType } from "../settings";
 // Email kinds and their placeholders. Client-safe (no catalogs, no DB).
 
 export const APPLICANT_EMAIL_TYPES: EmailType[] = ["received", "needs_info", "approved", "rejected", "cert_expiring", "cert_expired"];
-export const MERCHANT_EMAIL_TYPES = ["merchant_new_application", "merchant_digest"] as const;
+export const MERCHANT_EMAIL_TYPES = ["merchant_new_application", "merchant_info_received", "merchant_digest"] as const;
 export type MerchantEmailType = (typeof MERCHANT_EMAIL_TYPES)[number];
 export type TemplateType = EmailType | MerchantEmailType;
 
@@ -16,6 +16,7 @@ export const EXTRA_PLACEHOLDERS: Partial<Record<TemplateType, string[]>> = {
   rejected: ["reason"],
   approved: ["terms"],
   merchant_new_application: ["admin_url"],
+  merchant_info_received: ["admin_url"],
   merchant_digest: ["admin_url"],
 };
 
@@ -28,6 +29,7 @@ export const RELEVANT_PLACEHOLDERS: Record<TemplateType, string[]> = {
   cert_expiring: ["company", "first_name", "store_name", "expiry_date", "update_link"],
   cert_expired: ["company", "first_name", "store_name", "expiry_date", "update_link"],
   merchant_new_application: ["company", "store_name", "admin_url"],
+  merchant_info_received: ["company", "store_name", "admin_url"],
   merchant_digest: ["store_name", "admin_url"],
 };
 

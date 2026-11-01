@@ -57,6 +57,7 @@
       "endpoint": "/apps/tradepass",
       "country": {{ localization.country.iso_code | json }},
       "countriesUrl": {{ 'tradepass-countries.json' | asset_url | json }},
+      "countryRule": {{ tp_forms.countries | json }},
       "prefill": {% if customer %}{ "firstName": {{ customer.first_name | json }}, "lastName": {{ customer.last_name | json }}, "email": {{ customer.email | json }} }{% else %}null{% endif %},
       "languages": [{% for l in localization.available_languages %}{ "code": {{ l.iso_code | json }}, "name": {{ l.endonym_name | json }} }{% unless forloop.last %},{% endunless %}{% endfor %}],
       "overrides": {{ tp_over | json }},

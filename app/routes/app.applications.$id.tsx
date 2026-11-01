@@ -5,7 +5,7 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import db from "../db.server";
 import { adminContext } from "../lib/context.server";
-import { addNote, getApplication, rejectApplication, requestMoreInfo, setAssignee } from "../lib/applications.server";
+import { addNote, getApplication, rejectApplicationWithReason, requestMoreInfo, setAssignee } from "../lib/applications.server";
 import type { FormDefinition } from "../lib/form-defaults";
 import { defaultFormDefinition } from "../lib/form-defaults";
 import { useI18n } from "../lib/i18n/react";
@@ -65,11 +65,11 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const dctx = { admin: ctx.admin, shop: ctx.shop, actor: ctx.actor };
   switch (intent) {
     case "reject": {
-      const ok = await rejectApplication(dctx, id, {
+      const res = await rejectApplicationWithReason(dctx, id, {
         reason: String(form.get("reason") ?? "").trim() || null,
         email: form.get("email") === "on",
       });
-      return { ok, intent };
+      return res === true ? { ok: true, intent } : { ok: false, intent, error: res };
     }
     case "needs_info": {
       const message = String(form.get("message") ?? "").trim();
@@ -77,7 +77,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
       if (!message) return { ok: false, intent, error: "message_required" };
       if (!fields.length) return { ok: false, intent, error: "fields_required" };
       const res = await requestMoreInfo(dctx, id, { message, fields });
-      return { ok: res.ok, intent };
+      return { ok: res.ok, intent, ...(res.error ? { error: res.error } : {}) };
     }
     case "note": {
       const text = String(form.get("text") ?? "").trim();
@@ -113,6 +113,8 @@ export default function ApplicationDetail() {
   useEffect(() => {
     const r = fetcher.data;
     if (r?.ok) shopify.toast.show(t(`applications.detail.toast.${r.intent}`));
+    // Never fail silently: every refusal has a plain-language reason.
+    else if (r && "error" in r && r.error) shopify.toast.show(t(`applications.detail.error.${r.error}`), { isError: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetcher.data]);
 

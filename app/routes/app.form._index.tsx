@@ -58,7 +58,7 @@ export default function Forms() {
   };
 
   return (
-    <s-page heading={t("form.title")}>
+    <s-page heading={t("nav.applicationForm")}>
       <s-button slot="primary-action" variant="primary" {...flag("disabled", !canMultiple)} onClick={() => setAdding(true)}>
         {t("form.list.add")}
       </s-button>

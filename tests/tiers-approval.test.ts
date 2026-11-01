@@ -22,9 +22,9 @@ let tierId: string;
 let marketGid: string;
 
 beforeAll(async () => {
-  await db.shop.create({ data: { shop: SHOP, settings: defaultSettings() as object, billingPlan: "pro", country: "US", name: "Test" } });
-  await db.shop.create({ data: { shop: FREE, settings: defaultSettings() as object, billingPlan: "free", country: "US" } });
-  await db.shop.create({ data: { shop: EU, settings: defaultSettings() as object, billingPlan: "pro", country: "FR" } });
+  await db.shop.create({ data: { shop: SHOP, settings: defaultSettings() as object, b2bEnabled: true, billingPlan: "pro", country: "US", name: "Test" } });
+  await db.shop.create({ data: { shop: FREE, settings: defaultSettings() as object, b2bEnabled: true, billingPlan: "free", country: "US" } });
+  await db.shop.create({ data: { shop: EU, settings: defaultSettings() as object, b2bEnabled: true, billingPlan: "pro", country: "FR" } });
 });
 
 beforeEach(async () => {

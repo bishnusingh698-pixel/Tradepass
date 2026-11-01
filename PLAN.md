@@ -59,7 +59,7 @@ How the pieces talk:
 
 ## Database schema (final, `prisma/schema.prisma`)
 
-Three migrations: `init`, `phase2_fields`, `billing_trial`. Every table except Session and RateHit carries `shop`, and every query filters by it.
+One migration, `20261030000000_init` (the three earlier ones were folded into it on 2026-10-30, before any deploy). Every table except Session and RateHit carries `shop`, and every query filters by it. `Shop` also stores `contactEmail` and `domainUrl`; `Application.approvalStatus` (running / failed / done) is an indexed copy of the approval progress.
 
 | Table | Purpose | Notes |
 |---|---|---|
@@ -80,14 +80,19 @@ Three migrations: `init`, `phase2_fields`, `billing_trial`. Every table except S
 | Rule | Auto-approve and auto-reject rules | |
 | RateHit | Public endpoint rate limits (salted hash key, hour window) | Pruned hourly. |
 
+## Navigation (2026-10-30)
+
+Nine sections: Home · Applications · Wholesale buyers (tabs: Buyers, Certificates, Import) · Tiers · Application form · Storefront access · Emails & automation (tabs: Notifications, Automation) · Settings (links to Plans) · Help. Tabs are `app/components/SectionTabs.tsx`; every page keeps its URL.
+
 ## Route map
 
 **Admin (embedded, `/app/*`, session-token auth)**
 
 | Route | Page |
 |---|---|
-| `/app` | Home: welcome, readiness, setup checklist, pending work, alerts, numbers |
-| `/app/stats` | Home's 30-day numbers (loaded after the page shows) |
+| `/app` | Home: setup card, readiness, setup checklist, pending work (incl. approvals that stopped part-way), alerts, numbers, last-6-months report |
+| `/app/setup` | Setup wizard: plan check, business type + form template, first tier, what shoppers see, add to theme |
+| `/app/stats` | Home's 30-day numbers and monthly report (loaded after the page shows) |
 | `/app/applications`, `/app/applications/:id` | Queue (tabs, filters, bulk, CSV export) and detail |
 | `/app/applications/:id/approve` | Approval engine actions (approve, retry, undo, resend email) |
 | `/app/buyers`, `/app/buyers/:id` | Buyers list and detail (move, pause/resume, renewal request) |

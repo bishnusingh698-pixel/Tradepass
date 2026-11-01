@@ -111,7 +111,7 @@ function fakeAdmin() {
 }
 
 beforeAll(async () => {
-  await db.shop.create({ data: { shop, billingPlan: "pro" } });
+  await db.shop.create({ data: { shop, b2bEnabled: true, billingPlan: "pro" } });
 });
 afterAll(async () => {
   for (const t of ["activityLog", "importRun", "shopLock", "shop"] as const) await (db[t] as any).deleteMany({ where: { shop } });

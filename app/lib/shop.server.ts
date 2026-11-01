@@ -1,10 +1,21 @@
 import type { AdminApiContext } from "@shopify/shopify-app-react-router/server";
 import db from "../db.server";
+import { isTestBilling, planForSubscriptionName, type PlanId } from "./plans";
 
 // Field names verified against Admin GraphQL 2026-10 (see API_NOTES.md §Plan).
+// One query gives everything Tradepass needs to know about the store: plan and
+// B2B entitlements, the store profile used in emails and tax suggestions, and
+// the app subscription that really exists in Shopify (the source of truth for
+// billing — our own Shop.billingPlan is only a cache of it).
 export const SHOP_FACTS_QUERY = `#graphql
   query TradepassShopFacts {
     shop {
+      name
+      email
+      contactEmail
+      currencyCode
+      billingAddress { countryCodeV2 }
+      primaryDomain { url }
       plan { publicDisplayName partnerDevelopment shopifyPlus }
       features { directConnectionCatalogAssignmentEnabled }
       entitlements {
@@ -15,6 +26,9 @@ export const SHOP_FACTS_QUERY = `#graphql
     shopLocales { locale primary published }
     b2bMarkets: markets(type: COMPANY_LOCATION, first: 50) {
       nodes { id name status catalogs(first: 10) { nodes { id } } }
+    }
+    currentAppInstallation {
+      activeSubscriptions { id name status test trialDays createdAt }
     }
   }
 `;
@@ -30,11 +44,22 @@ export type ShopFacts = {
   primaryLocale: string;
   publishedLocales: string[];
   catalogsUsed: number | null;
+  profile: { name: string | null; email: string | null; contactEmail: string | null; currency: string | null; country: string | null; domainUrl: string | null };
+  /** The subscription Shopify reports; undefined when the query didn't include it (older callers/tests). */
+  subscription?: { gid: string | null; plan: PlanId; trialDays: number; createdAt: string | null; test: boolean };
 };
+
+type Subscription = { id: string; name: string; status: string; test?: boolean; trialDays?: number; createdAt?: string };
 
 type FactsResponse = {
   data?: {
     shop: {
+      name?: string | null;
+      email?: string | null;
+      contactEmail?: string | null;
+      currencyCode?: string | null;
+      billingAddress?: { countryCodeV2?: string | null } | null;
+      primaryDomain?: { url?: string | null } | null;
       plan: { publicDisplayName: string; partnerDevelopment: boolean; shopifyPlus: boolean };
       features: { directConnectionCatalogAssignmentEnabled: boolean };
       entitlements: {
@@ -44,6 +69,7 @@ type FactsResponse = {
     };
     shopLocales: { locale: string; primary: boolean; published: boolean }[];
     b2bMarkets?: { nodes: { id: string; catalogs: { nodes: { id: string }[] } }[] } | null;
+    currentAppInstallation?: { activeSubscriptions?: Subscription[] | null } | null;
   };
   errors?: unknown;
 };
@@ -56,11 +82,34 @@ export function countB2bCatalogs(
   return new Set(markets.flatMap((m) => m.catalogs.nodes.map((c) => c.id))).size;
 }
 
+/** "https://shop.example.com/" → "https://shop.example.com"; anything that isn't an https URL → null. */
+export function cleanDomainUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    return u.protocol === "https:" ? u.origin : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The active Tradepass subscription. Test charges only count where Tradepass
+ * itself creates test charges (development stores, BILLING_TEST staging), so a
+ * leftover test charge can't unlock paid features on a live store.
+ */
+export function activeSubscription(subs: Subscription[] | null | undefined, isDevStore: boolean): ShopFacts["subscription"] {
+  const active = (subs ?? []).find((s) => s.status === "ACTIVE" && (!s.test || isTestBilling(isDevStore)) && planForSubscriptionName(s.name) !== "free");
+  if (!active) return { gid: null, plan: "free", trialDays: 0, createdAt: null, test: false };
+  return { gid: active.id, plan: planForSubscriptionName(active.name), trialDays: active.trialDays ?? 0, createdAt: active.createdAt ?? null, test: Boolean(active.test) };
+}
+
 export function parseShopFacts(json: FactsResponse): ShopFacts {
   const s = json.data?.shop;
   if (!s) throw new Error("Shop facts query returned no shop");
   const locales = json.data?.shopLocales ?? [];
   const b2bMarkets = s.entitlements.markets.b2b;
+  const installation = json.data?.currentAppInstallation;
   return {
     planName: s.plan.publicDisplayName,
     isPlus: s.plan.shopifyPlus,
@@ -73,13 +122,28 @@ export function parseShopFacts(json: FactsResponse): ShopFacts {
     primaryLocale: locales.find((l) => l.primary)?.locale ?? "en",
     publishedLocales: locales.filter((l) => l.published).map((l) => l.locale),
     catalogsUsed: countB2bCatalogs(json.data?.b2bMarkets?.nodes),
+    profile: {
+      name: s.name?.trim() || null,
+      email: s.email?.trim() || null,
+      contactEmail: s.contactEmail?.trim() || null,
+      currency: s.currencyCode || null,
+      country: s.billingAddress?.countryCodeV2 || null,
+      domainUrl: cleanDomainUrl(s.primaryDomain?.url),
+    },
+    subscription: installation === undefined ? undefined : activeSubscription(installation?.activeSubscriptions, s.plan.partnerDevelopment),
   };
 }
 
-/** Query Shopify for plan/B2B facts and store them. Called on install and on each Home load. */
-export async function refreshShopFacts(shop: string, admin: AdminApiContext): Promise<ShopFacts> {
+/**
+ * Query Shopify for plan/B2B facts, the store profile and the real app
+ * subscription, and store them. Called on install/reinstall and on each Home
+ * load. Returns `planChanged` so callers can re-sync plan-dependent storefront parts.
+ */
+export async function refreshShopFacts(shop: string, admin: Pick<AdminApiContext, "graphql">): Promise<ShopFacts & { planChanged: boolean }> {
   const res = await admin.graphql(SHOP_FACTS_QUERY);
   const facts = parseShopFacts((await res.json()) as FactsResponse);
+  const before = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true, trialStartedAt: true } });
+  const sub = facts.subscription;
   const data = {
     planName: facts.planName,
     isPlus: facts.isPlus,
@@ -89,7 +153,21 @@ export async function refreshShopFacts(shop: string, admin: AdminApiContext): Pr
     catalogLimit: facts.catalogLimit,
     directCatalogs: facts.directCatalogs,
     primaryLocale: facts.primaryLocale,
+    name: facts.profile.name,
+    email: facts.profile.email,
+    contactEmail: facts.profile.contactEmail,
+    currency: facts.profile.currency,
+    country: facts.profile.country,
+    domainUrl: facts.profile.domainUrl,
     checkedAt: new Date(),
+    ...(sub
+      ? {
+          billingPlan: sub.plan,
+          subscriptionGid: sub.gid,
+          // The trial is given once per store (D-019): remember when the first one started.
+          ...(sub.trialDays > 0 && sub.createdAt && !before?.trialStartedAt ? { trialStartedAt: new Date(sub.createdAt) } : {}),
+        }
+      : {}),
   };
   // Upsert keeps reinstall clean: the row and its settings survive if shop/redact hasn't run yet.
   await db.shop.upsert({
@@ -97,5 +175,13 @@ export async function refreshShopFacts(shop: string, admin: AdminApiContext): Pr
     create: { shop, ...data },
     update: { ...data, uninstalledAt: null },
   });
-  return facts;
+  const planChanged = Boolean(sub) && (before?.billingPlan ?? "free") !== sub!.plan;
+  return { ...facts, planChanged };
+}
+
+/** Absolute storefront URL for a path ("/account/login"), on the store's own domain when known. */
+export function storefrontUrl(row: { shop: string; domainUrl?: string | null } | null | undefined, path: string, fallbackShop?: string): string {
+  if (/^https:\/\//i.test(path)) return path;
+  const base = row?.domainUrl || `https://${row?.shop ?? fallbackShop ?? ""}`;
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }

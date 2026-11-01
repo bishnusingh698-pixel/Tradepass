@@ -11,7 +11,7 @@
 // JSON metafields are capped at 128 KB each (Shopify metafield limits).
 import db from "../db.server";
 import { gql, mutate, type Admin } from "./gql.server";
-import { readSettings, type Settings } from "./settings";
+import { readSettings, type CountryRule, type Settings } from "./settings";
 import { effectivePlan, can, type PlanId } from "./plans";
 import { readDefinition } from "./forms.server";
 import type { FormDefinition } from "./form-defaults";
@@ -177,12 +177,21 @@ export function publicDefinition(def: FormDefinition): FormDefinition {
   return { ...clean, spamQuestion: { enabled: Boolean(clean.spamQuestion?.enabled), texts: qs } };
 }
 
-export type FormsPayload = { default: string | null; forms: Record<string, { name: string; tier: string | null; def: FormDefinition }> };
+export type FormsPayload = {
+  default: string | null;
+  forms: Record<string, { name: string; tier: string | null; def: FormDefinition }>;
+  /** Country rule, so the form tells applicants up front instead of after a rejection. Absent = everyone. */
+  countries?: CountryRule;
+};
 
-export function buildForms(rows: { id: string; name: string; isDefault: boolean; suggestedTierId: string | null; definition: unknown }[], multiple: boolean): FormsPayload {
+export function buildForms(
+  rows: { id: string; name: string; isDefault: boolean; suggestedTierId: string | null; definition: unknown }[],
+  multiple: boolean,
+  countries?: CountryRule,
+): FormsPayload {
   const sorted = [...rows].sort((a, b) => Number(b.isDefault) - Number(a.isDefault));
   const def = sorted[0]?.id ?? null;
-  const out: FormsPayload = { default: def, forms: {} };
+  const out: FormsPayload = { default: def, forms: {}, ...(countries && countries.mode !== "all" ? { countries: { mode: countries.mode, list: countries.list.filter((c) => /^[A-Z]{2}$/.test(c)) } } : {}) };
   // Without the multiple-forms feature every block shows the default form.
   for (const r of multiple ? sorted : sorted.slice(0, 1)) {
     const candidate = { name: cleanText(r.name), tier: r.suggestedTierId, def: publicDefinition(readDefinition(r.definition)) };
@@ -316,7 +325,7 @@ export async function syncStorefrontConfig(admin: Admin, shop: string): Promise<
     config: buildConfig(settings, collectionHandles, tiers, new Date(), plan),
     gated,
     texts: buildTexts(settings),
-    forms: buildForms(forms, can(plan, "multiple_forms")),
+    forms: buildForms(forms, can(plan, "multiple_forms"), settings.applications.countries),
   });
   // The checkout lock has its own config and its own failure modes; the storefront config is already written.
   try {

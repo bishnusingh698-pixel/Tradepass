@@ -116,7 +116,8 @@
       "salon": "Salonas arba SPA",
       "restaurant": "Restoranas arba kavinė",
       "distributor": "Platintojas",
-      "other": "Kita"
+      "other": "Kita",
+      "reseller": "Perpardavėjas"
     },
     "order_value": {
       "lt1k": "Mažiau nei 1 000",
@@ -155,7 +156,8 @@
       "gst": "GST/HST numeris",
       "us_resale": "Perpardavimo pažymos numeris",
       "us_state": "Pažymą išdavusi valstija",
-      "tax_id": "Mokesčių mokėtojo kodas"
+      "tax_id": "Mokesčių mokėtojo kodas",
+      "example": "Pavyzdys: {{ example }}"
     },
     "upload": {
       "add": "Pridėti failą",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} didesnis nei 5 MB.",
       "file_count": "Galite pridėti ne daugiau kaip 3 failus.",
       "file_pending": "Palaukite, kol failai bus įkelti.",
-      "spam": "Atsakymas netinka. Bandykite dar kartą."
+      "spam": "Atsakymas netinka. Bandykite dar kartą.",
+      "tax_format": "Tai neatrodo kaip galiojantis {{ name }}. Patikrinkite.",
+      "country_blocked": "Iš šios šalies ar regiono negalime priimti didmeninės prekybos paraiškų."
     },
     "success": {
       "heading": "Ačiū, jūsų paraiška išsiųsta",

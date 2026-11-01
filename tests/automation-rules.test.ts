@@ -77,7 +77,7 @@ async function newApp(over: Record<string, unknown> = {}) {
 }
 
 beforeAll(async () => {
-  await db.shop.create({ data: { shop, billingPlan: "pro" } });
+  await db.shop.create({ data: { shop, b2bEnabled: true, billingPlan: "pro" } });
   tierId = (await db.tier.create({ data: { shop, name: "Retailer" } })).id;
 });
 afterAll(async () => {

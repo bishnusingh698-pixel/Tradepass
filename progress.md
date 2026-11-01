@@ -70,3 +70,13 @@ API_NOTES (area sections), DECISIONS (D-013 to D-075), CHECKLIST (full script by
 
 ### What I need from you (Bishnu)
 The numbered steps are in README.md sections 2–6. The one only you can do: Partner Dashboard → Apps → Tradepass → API access → **Protected customer data access** (README §2.4).
+
+## 2026-10-30 — audit pass (AUDIT.md)
+
+Full read-through, then bug fixes and new features; AUDIT.md is the record (bugs with file, cause, severity and status; UX problems; features; order of work; verification log).
+
+- Fixed: store profile never loaded (emails without reply-to, digest never sent, EU reverse charge never suggested); plan surviving uninstall/reinstall; approval lock shorter than an approval; reject/needs-info racing an approval; hourly retry never reaching stuck approvals; storefront submit waiting for auto-approval and Flow; relative login link in emails; applicant files kept after customers/redact; tax IDs unchecked outside 5 regions; orphaned tier publications; approvals on plans without B2B failing with Shopify's raw error.
+- Added: setup wizard, form templates (incl. Reseller), country tax-ID table, who-can-apply country rules with a searchable picker, weekly digest, reply alerts, monthly report, approval-incomplete filter, privacy request export, navigation in nine sections.
+- Tests: 354 pass (`tests/audit-fixes.test.ts` is new). Typecheck, lint and build are clean. Smoke-tested the production build on a fresh Postgres: /healthz, jobs (401 without secret, 200 with), signed app-proxy submissions (accepted, tax-format refusal, country refusal) with follow-ups completing in the background.
+- Still needs a real store: everything in ROADMAP.md → "Needs live verification", plus the new wizard screens.
+- 141 new admin strings are English-only for now (`app/locales/en/pending.json`).

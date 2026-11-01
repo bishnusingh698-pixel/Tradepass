@@ -36,6 +36,18 @@ export const FEATURES: Record<PlanId, ReadonlySet<Feature>> = {
 export const FREE_APPROVALS_PER_MONTH = 10;
 export const FREE_MAX_TIERS = 1;
 
+/** Plan for a Billing API subscription name (anything unknown is Free). */
+export function planForSubscriptionName(name: string | null | undefined): PlanId {
+  if (name === BILLING_NAMES.pro) return "pro";
+  if (name === BILLING_NAMES.starter) return "starter";
+  return "free";
+}
+
+/** Test charges on development stores and when BILLING_TEST=true (staging). */
+export function isTestBilling(isDevStore: boolean): boolean {
+  return isDevStore || process.env.BILLING_TEST === "true";
+}
+
 /** Effective plan: dev stores get Pro for free. */
 export function effectivePlan(billingPlan: string, isDevStore: boolean): PlanId {
   if (isDevStore) return "pro";

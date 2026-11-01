@@ -37,7 +37,7 @@ const f = (id: string, type: FieldType, state: FormField["state"] = "optional", 
 
 const opts = (...values: string[]) => values.map((value) => ({ value }));
 
-export const BUSINESS_TYPES = ["retail", "salon", "restaurant", "distributor", "other"] as const;
+export const BUSINESS_TYPES = ["retail", "salon", "restaurant", "distributor", "reseller", "other"] as const;
 
 export function defaultFormDefinition(): FormDefinition {
   return {
@@ -77,17 +77,47 @@ export function defaultFormDefinition(): FormDefinition {
   };
 }
 
-/** Welcome-question presets (spec §B.1): sensible field states per audience. */
-export function formForAudience(audience: string): FormDefinition {
-  const def = defaultFormDefinition();
-  const set = (id: string, state: FormField["state"]) => {
-    for (const s of def.sections) for (const fl of s.fields) if (fl.id === id) fl.state = state;
+/**
+ * Ready-made form templates by business type. Each template only changes which
+ * standard questions are asked and which are required; the merchant's own
+ * questions, texts and consent stay as they are. Core fields (company, email,
+ * names, billing address, consent) are always required and never touched.
+ */
+export const FORM_TEMPLATES = ["retail", "distributor", "salon", "restaurant", "reseller", "other"] as const;
+export type FormTemplate = (typeof FORM_TEMPLATES)[number];
+
+const TEMPLATE_STATES: Record<FormTemplate, Partial<Record<string, FormField["state"]>>> = {
+  // Shops buying to resell in-store: tax registration matters, a website is common but not universal.
+  retail: { taxNumber: "required", website: "optional", locationsCount: "optional", monthlyOrderValue: "optional", certificates: "optional", phone: "optional" },
+  // Distributors: established businesses with volume, so ask for history and expected spend.
+  distributor: { taxNumber: "required", website: "required", yearEstablished: "optional", locationsCount: "optional", monthlyOrderValue: "required", certificates: "optional", phone: "required" },
+  // Salons and spas: a professional licence is the usual proof; most order by phone.
+  salon: { certificates: "required", phone: "required", website: "optional", locationsCount: "optional", taxNumber: "optional" },
+  // Restaurants and cafés: deliveries to a different address, several sites, phone contact.
+  restaurant: { phone: "required", locationsCount: "optional", shippingAddress: "optional", monthlyOrderValue: "optional", taxNumber: "optional" },
+  // Online and marketplace resellers: tax number plus a resale certificate, and where they sell.
+  reseller: { taxNumber: "required", certificates: "required", website: "required", referral: "optional", monthlyOrderValue: "optional" },
+  other: {},
+};
+
+/** Apply a template's question states to an existing form (custom questions and texts are kept). */
+export function applyTemplate(def: FormDefinition, template: string): FormDefinition {
+  const base = defaultFormDefinition();
+  const states: Record<string, FormField["state"]> = {};
+  for (const s of base.sections) for (const fl of s.fields) states[fl.id] = fl.state;
+  Object.assign(states, TEMPLATE_STATES[(FORM_TEMPLATES as readonly string[]).includes(template) ? (template as FormTemplate) : "other"]);
+  return {
+    ...def,
+    sections: def.sections.map((s) => ({
+      ...s,
+      fields: s.fields.map((fl) => (fl.custom || !(fl.id in states) ? fl : { ...fl, state: states[fl.id] })),
+    })),
   };
-  if (audience === "salon") set("certificates", "required");
-  if (audience === "retail") { set("taxNumber", "required"); set("website", "required"); }
-  if (audience === "restaurant") set("locationsCount", "optional");
-  if (audience === "distributor") { set("yearEstablished", "optional"); set("locationsCount", "optional"); set("monthlyOrderValue", "required"); }
-  return def;
+}
+
+/** Welcome / setup-wizard presets: a fresh default form with the business type's template applied. */
+export function formForAudience(audience: string): FormDefinition {
+  return applyTemplate(defaultFormDefinition(), audience);
 }
 
 export const SUGGESTED_TIER_NAMES: Record<string, string[]> = {
@@ -95,5 +125,6 @@ export const SUGGESTED_TIER_NAMES: Record<string, string[]> = {
   salon: ["Professional", "Salon partner"],
   restaurant: ["Restaurant", "Group account"],
   distributor: ["Distributor", "Retailer"],
+  reseller: ["Reseller", "Top reseller"],
   other: ["Wholesale", "Volume"],
 };

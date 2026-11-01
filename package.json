@@ -20,7 +20,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "npm run typecheck && npm run lint && npm test",
-    "render-build": "npm ci --include=dev && npm run build && npx prisma generate && npx prisma migrate deploy"
+    "render-build": "npm ci --include=dev && npx prisma generate && npx prisma migrate deploy && npm run build",
+    "sync-tax-ids": "node scripts/sync-tax-ids.mjs"
   },
   "type": "module",
   "engines": {

@@ -116,7 +116,8 @@
       "salon": "沙龙或水疗中心",
       "restaurant": "餐厅或咖啡馆",
       "distributor": "分销商",
-      "other": "其他"
+      "other": "其他",
+      "reseller": "转售商"
     },
     "order_value": {
       "lt1k": "少于 1,000",
@@ -155,7 +156,8 @@
       "gst": "GST/HST 税号",
       "us_resale": "转售证明编号",
       "us_state": "签发证明的州",
-      "tax_id": "纳税人识别号"
+      "tax_id": "纳税人识别号",
+      "example": "示例：{{ example }}"
     },
     "upload": {
       "add": "添加文件",
@@ -182,7 +184,9 @@
       "file_size": "{{ name }} 超过 5 MB。",
       "file_count": "最多可添加 3 个文件。",
       "file_pending": "请等待文件上传完成。",
-      "spam": "答案不正确。请重试。"
+      "spam": "答案不正确。请重试。",
+      "tax_format": "这似乎不是有效的{{ name }}。请检查。",
+      "country_blocked": "我们无法接受来自该国家或地区的批发申请。"
     },
     "success": {
       "heading": "谢谢，您的申请已提交",
