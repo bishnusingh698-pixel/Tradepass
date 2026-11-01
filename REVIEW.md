@@ -119,6 +119,7 @@ guard that no email provider, SMTP client, queue or other email-sending mutation
 | m12 | `app/lib/certificates.server.ts:290`, `app/lib/jobs.server.ts:108` | A renewal upload replaced the certificate's file without tracking the old one, and retention only deleted files listed as application files, so applicant documents could stay in the merchant's Files after redact/retention. | M13 (variant) | ✅ old file stays listed under the application; retention also deletes the application's certificate files. |
 | m13 | `app/lib/buyers.server.ts:138` | Unknown error codes (e.g. Prisma `P2025`) showed as raw translation keys. | m11 | ✅ |
 | m14 | `app/routes/app.help.tsx:57` | Turning storefront debug on/off threw a server error when the push failed. | m20 | ✅ |
+| m16 | `app/routes/app.tiers.$id.tsx:73`, `:81`, `:84` | Creating, saving or deleting a tier on the Tiers pages never pushed the storefront config, which carries the buyer-facing tier names, so the storefront kept stale names (found in the second pass). | new | ✅ pushed after each change (retried on failure). |
 | m15 | `tests/audit-fixes.test.ts:210`, `:300` | Date-dependent test failure and typecheck error on `main`. | — | ✅ |
 
 ### Leads from the earlier review already fixed on `main`
