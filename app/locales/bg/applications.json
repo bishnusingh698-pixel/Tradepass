@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Добавяне на бележка",
   "applications.detail.saveNote": "Запазване",
   "applications.detail.toast.reject": "Заявката е отхвърлена",
-  "applications.detail.toast.needs_info": "Искането е изпратено до кандидата",
+  "applications.detail.toast.needs_info": "Заявката е запазена. Изпратете на кандидата съобщението със защитената връзка.",
   "applications.detail.toast.note": "Бележката е запазена",
   "applications.detail.toast.assign": "Отговорникът е запазен",
   "applications.needsInfo.heading": "Искане на още информация",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Полета, които може да промени",
   "applications.needsInfo.fieldsHelp": "Кандидатът получава лична връзка, валидна 14 дни, с която може да промени само тези полета.",
   "applications.needsInfo.fieldsRequired": "Изберете поне едно поле.",
-  "applications.needsInfo.send": "Изпращане на искането",
+  "applications.needsInfo.send": "Създаване на заявка",
   "applications.reject.heading": "Отхвърляне на {company}?",
   "applications.reject.template": "Шаблон за причина",
   "applications.reject.templateNone": "Без шаблон",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Благодарим Ви за интереса. Не успяхме да проверим информацията в заявката Ви, затова не можем да я одобрим в момента. Можете да кандидатствате отново.",
   "applications.reject.template.region": "Благодарим Ви за интереса. Все още не предлагаме продажби на едро във Вашия регион.",
   "applications.reject.reason": "Причина (по избор)",
-  "applications.reject.reasonHelp": "Ако изпратите имейл, кандидатът ще види тази причина.",
-  "applications.reject.email": "Имейл до кандидата",
+  "applications.reject.reasonHelp": "Запазва се с кандидатурата и се включва в съобщението, което можете да изпратите на кандидата.",
   "applications.reject.consequence": "Заявката преминава в „Отхвърлени“. В Shopify не се създава нищо и можете да я намерите в раздела „Отхвърлени“.",
   "applications.reject.confirm": "Отхвърляне на заявката",
   "applications.activity.application.submit": "Заявката е подадена",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Добавена е бележка",
   "applications.activity.application.assign": "Отговорникът е променен",
   "applications.taxCheck.skipped": "Без проверка в плана Ви",
-  "applications.detail.taxCheckPlan": "Данъчните номера се проверяват в официалните регистри от план {plan} нагоре. Проверете този ръчно или преминете към по-висок план за автоматична проверка на новите заявки."
+  "applications.detail.taxCheckPlan": "Данъчните номера се проверяват в официалните регистри от план {plan} нагоре. Проверете този ръчно или преминете към по-висок план за автоматична проверка на новите заявки.",
+  "applications.detail.copyMessage": "Съобщение за кандидата"
 }

@@ -48,9 +48,8 @@
   "automation.action.terms": "เงื่อนไขการชำระเงิน",
   "automation.action.tierTerms": "ใช้เงื่อนไขการชำระเงินของระดับ",
   "automation.action.sendWelcome": "ส่งอีเมลการเข้าถึง B2B ของ Shopify ให้ผู้ซื้อ",
-  "automation.action.emailApplicant": "ส่งอีเมลแจ้งผู้สมัครว่าไม่ได้รับการอนุมัติ",
   "automation.action.reason": "เหตุผล (ไม่บังคับ)",
-  "automation.action.reasonHelp": "แสดงในอีเมลตามภาษาที่คุณเขียน",
+  "automation.action.reasonHelp": "บันทึกไว้กับใบสมัครและใส่ในข้อความที่คุณคัดลอกจากใบสมัครได้",
   "automation.error.summary": "{count, plural, other {โปรดแก้ไขปัญหา # รายการก่อนบันทึก}}",
   "automation.error.conditions_required": "โปรดเพิ่มอย่างน้อยหนึ่งเงื่อนไข",
   "automation.error.values_required": "โปรดป้อนอย่างน้อยหนึ่งค่า",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "ย้อนกลับการตัดสินใจนี้ไม่ได้ โปรดตรวจสอบบันทึกกิจกรรมแล้วลองอีกครั้ง",
   "automation.reverse.heading": "ย้อนกลับการตัดสินใจสำหรับ {company} ใช่ไหม",
   "automation.reverse.approvedBody": "{company} จะถูกหยุดชั่วคราว บริษัทยังคงอยู่ใน Shopify แต่จะออกจากระดับและเห็นราคาขายปลีก คุณกลับมาเปิดใช้งานได้จากหน้าผู้ซื้อ",
-  "automation.reverse.rejectedBody": "{company} จะกลับไปที่สถานะรอการตรวจสอบ หากส่งอีเมลปฏิเสธไปแล้ว จะเรียกคืนไม่ได้",
+  "automation.reverse.rejectedBody": "{company} จะกลับไปที่สถานะรอตรวจสอบ หากคุณแจ้งผู้สมัครไปแล้ว โปรดแจ้งให้ทราบ",
   "automation.reverse.confirm": "ย้อนกลับการตัดสินใจ",
   "automation.flow.heading": "เวิร์กโฟลว์ Shopify Flow",
   "automation.flow.body": "ใช้ทริกเกอร์และการดำเนินการของ Tradepass ใน Shopify Flow เพื่อสร้างเวิร์กโฟลว์ของคุณเอง เช่น ติดแท็กผู้ซื้อหรือส่งข้อความทาง Slack",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "ใบรับรองหมดอายุแล้ว",
   "automation.flow.action.approve": "อนุมัติใบสมัครขายส่งเข้าระดับ",
   "automation.flow.welcomeNote": "Tradepass ส่งอีเมลการเข้าถึง B2B ของ Shopify ได้อยู่แล้วเมื่ออนุมัติผู้ซื้อ จึงไม่ต้องสร้างเวิร์กโฟลว์เพิ่มสำหรับเรื่องนี้",
-  "automation.flow.open": "เปิด Shopify Flow"
+  "automation.flow.open": "เปิด Shopify Flow",
+  "automation.flow.alerts": "ต้องการรับอีเมลเมื่อมีคนสมัครใช่ไหม ใน Shopify Flow ให้ใช้ทริกเกอร์ “Wholesale application submitted” กับการดำเนินการของ Flow “Send internal email” การดำเนินการนี้ส่งถึงเฉพาะที่อยู่ของพนักงานแบบตายตัวที่คุณกรอกในเวิร์กโฟลว์"
 }

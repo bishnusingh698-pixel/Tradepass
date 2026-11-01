@@ -53,15 +53,13 @@
   "help.faq.import.q": "Mevcut toptan müşterilerimi içe aktarabilir miyim?",
   "help.faq.import.a": "Evet, “Pro” planında. Bir CSV dosyası yükleyin veya \"wholesale\" gibi bir etiketi zaten olan müşterileri dönüştürün.",
   "help.faq.languages.q": "Hangi diller destekleniyor?",
-  "help.faq.languages.a": "36 dil. Form, vitrin mesajları ve e-postalar her ziyaretçinin kendi dilinde görünür; istediğiniz metni Ayarlar → Diller bölümünden değiştirebilirsiniz.",
-  "help.faq.emails.q": "Tradepass kaç e-posta gönderir?",
-  "help.faq.emails.a": "Mağaza başına günde en fazla 25 e-posta. Fazla e-postalar ertesi gün gönderilir ve bu durumda Ana sayfa sizi bilgilendirir. E-postalarımızı kapatıp yerine Shopify Flow kullanabilirsiniz.",
+  "help.faq.languages.a": "36 dil. Form, mağaza mesajları ve başvuru sahiplerine gönderdiğiniz mesajlar herkesin kendi dilinde görünür ve her metni Ayarlar → Diller altında değiştirebilirsiniz.",
   "help.faq.approvalLimit.q": "Ücretsiz planda 10 onaya ulaştığımda ne olur?",
   "help.faq.approvalLimit.a": "Yeni başvurular toplanmaya devam eder, böylece hiçbir potansiyel müşteriyi kaybetmezsiniz. O ay daha fazla onay vermek için ücretli bir plan seçin.",
   "help.faq.markets.q": "Ana sayfa B2B pazarlarının açık olmadığını söylüyor. Ne yapmalıyım?",
   "help.faq.markets.a": "Plus'ın altındaki planlarda seviye fiyatları için Shopify'ın yeni Pazarlar özelliği gerekir. Bunu Shopify'da Ayarlar → Pazarlar bölümünden açın, ardından Ana sayfada \"Tekrar kontrol et\" düğmesine tıklayın.",
   "help.faq.privacy.q": "Başvuru sahiplerinin verileri nasıl korunur?",
-  "help.faq.privacy.a": "Vergi numaraları şifrelenir, e-postalardaki bağlantılar yalnızca bir kez çalışır ve süresi dolar; reddedilen başvurular Ayarlar'da seçtiğiniz süreden sonra silinir.",
+  "help.faq.privacy.a": "Vergi numaraları şifrelenir, güvenli bağlantıların süresi dolar ve bir kez çalışır, reddedilen başvurular da Ayarlar'da seçtiğiniz sürenin ardından silinir.",
   "help.faq.slowFirstLoad.q": "Uygulama neden bazen geç açılıyor?",
   "help.faq.slowFirstLoad.a": "Bir süre kullanılmadığında uygulamanın uyanması bir dakikayı bulabilir. Vitrininiz bundan asla etkilenmez: fiyat gizleme ve form çalışmaya devam eder.",
   "help.diagnostics.heading": "Tanılama bilgileri",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Hata ayıklama modunu kapat",
   "help.contact.heading": "Destekle iletişime geçin",
   "help.contact.body": "Genellikle 2 iş günü içinde yanıt veririz.",
-  "help.contact.priority": "“Pro” planındasınız, bu nedenle e-postalarınız öncelikli olarak, genellikle 1 iş günü içinde yanıtlanır."
+  "help.contact.priority": "“Pro” planındasınız, bu nedenle e-postalarınız öncelikli olarak, genellikle 1 iş günü içinde yanıtlanır.",
+  "help.faq.alerts.q": "Yeni başvurulardan nasıl haberdar olurum?",
+  "help.faq.alerts.a": "Tradepass e-posta göndermez. Yeni başvurular ve yanıtlar Ana sayfa'da ve Başvurular altında sizi bekler. E-posta uyarısı için Shopify Flow'da (Tradepass Pro) “Wholesale application submitted” tetikleyicisi ve Flow'un “Send internal email” eylemiyle bir iş akışı oluşturun. Bu eylem yalnızca iş akışına girdiğiniz sabit personel adreslerine gönderir."
 }

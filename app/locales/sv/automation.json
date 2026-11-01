@@ -48,9 +48,8 @@
   "automation.action.terms": "Betalningsvillkor",
   "automation.action.tierTerms": "Använd nivåns betalningsvillkor",
   "automation.action.sendWelcome": "Skicka Shopifys B2B-åtkomstmejl till köparen",
-  "automation.action.emailApplicant": "Mejla den sökande att ansökan inte godkändes",
   "automation.action.reason": "Orsak (valfritt)",
-  "automation.action.reasonHelp": "Visas i mejlet på det språk du skriver på.",
+  "automation.action.reasonHelp": "Sparas med ansökan och tas med i meddelandet som du kan kopiera därifrån.",
   "automation.error.summary": "{count, plural, one {Åtgärda # problem innan du sparar.} other {Åtgärda # problem innan du sparar.}}",
   "automation.error.conditions_required": "Lägg till minst ett villkor.",
   "automation.error.values_required": "Ange minst ett värde.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Beslutet kunde inte ångras. Kontrollera aktivitetsloggen och försök igen.",
   "automation.reverse.heading": "Ångra beslutet för {company}?",
   "automation.reverse.approvedBody": "{company} kommer att pausas: företaget finns kvar i Shopify men lämnar sin nivå och ser ordinarie priser. Du kan återuppta det under Köpare.",
-  "automation.reverse.rejectedBody": "{company} flyttas tillbaka till Väntar på granskning. Ett avslagsmejl som redan skickats kan inte återkallas.",
+  "automation.reverse.rejectedBody": "{company} går tillbaka till Väntar på granskning. Om du redan har meddelat sökanden, säg till.",
   "automation.reverse.confirm": "Ångra beslut",
   "automation.flow.heading": "Shopify Flow-koppling",
   "automation.flow.body": "Använd Tradepass utlösare och åtgärder i Shopify Flow för att bygga egna arbetsflöden, till exempel tagga köpare eller skicka ett Slack-meddelande.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Certifikat har gått ut",
   "automation.flow.action.approve": "Godkänn grossistansökan till nivå",
   "automation.flow.welcomeNote": "Tradepass kan redan skicka Shopifys B2B-åtkomstmejl när en köpare godkänns, så inget extra arbetsflöde behövs för det.",
-  "automation.flow.open": "Öppna Shopify Flow"
+  "automation.flow.open": "Öppna Shopify Flow",
+  "automation.flow.alerts": "Vill du få ett mejl när någon ansöker? Använd utlösaren ”Wholesale application submitted” med Flow-åtgärden ”Send internal email” i Shopify Flow. Åtgärden skickar bara till fasta personaladresser som du anger i arbetsflödet."
 }

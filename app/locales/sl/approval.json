@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Ustvarili bomo novo stranko {name} ({email}).",
   "approval.field.sendWelcome": "Pošlji pozdravno sporočilo",
   "approval.welcome.shopify": "Pozdravno sporočilo B2B iz Shopify s povezavo za prijavo.",
-  "approval.welcome.ours": "Sporočilo Tradepass »Odobreni ste« v jeziku kupca.",
   "approval.action.approve": "Odobri",
   "approval.action.retry": "Poskusi znova",
   "approval.action.retryEmail": "Znova pošlji sporočilo",

@@ -53,15 +53,13 @@
   "help.faq.import.q": "Importálhatom a meglévő nagykereskedelmi ügyfeleimet?",
   "help.faq.import.a": "Igen, a Pro csomagban. Töltsön fel egy CSV-fájlt, vagy alakítsa át azokat az ügyfeleket, akiknek már van címkéjük, például „nagyker”.",
   "help.faq.languages.q": "Milyen nyelveket támogat?",
-  "help.faq.languages.a": "36 nyelvet. Az űrlap, az áruházi üzenetek és az e-mailek minden látogató saját nyelvén jelennek meg, és bármely szöveget módosíthatja a Beállítások → Nyelvek részen.",
-  "help.faq.emails.q": "Hány e-mailt küld a Tradepass?",
-  "help.faq.emails.a": "Áruházanként naponta legfeljebb 25-öt. A további e-mailek másnap mennek ki, és erről a Kezdőlapon értesítjük. E-mailjeinket ki is kapcsolhatja, és helyettük a Shopify Flow-t használhatja.",
+  "help.faq.languages.a": "36 nyelv. Az űrlap, az áruházi üzenetek és a jelentkezőknek küldött üzenetek mindenki saját nyelvén jelennek meg, és bármelyik szöveget módosíthatja a Beállítások → Nyelvek alatt.",
   "help.faq.approvalLimit.q": "Mi történik, ha az ingyenes csomagban elérem a 10 jóváhagyást?",
   "help.faq.approvalLimit.a": "Az új jelentkezéseket továbbra is gyűjtjük, így egyetlen érdeklődő sem vész el. Ha abban a hónapban többet hagyna jóvá, válasszon fizetős csomagot.",
   "help.faq.markets.q": "A Kezdőlap szerint a B2B-piacok nincsenek bekapcsolva. Mit tegyek?",
   "help.faq.markets.a": "A Plus alatti csomagokban a szintárakhoz a Shopify újabb Piacok funkciója szükséges. Kapcsolja be a Shopifyban a Beállítások → Piacok részen, majd kattintson az „Újraellenőrzés” gombra a Kezdőlapon.",
   "help.faq.privacy.q": "Hogyan védjük a jelentkezők adatait?",
-  "help.faq.privacy.a": "Az adószámok titkosítva vannak, az e-mailekben lévő linkek lejárnak és csak egyszer működnek, az elutasított jelentkezéseket pedig a Beállításokban választott időszak után töröljük.",
+  "help.faq.privacy.a": "Az adószámokat titkosítjuk, a biztonságos linkek lejárnak és egyszer működnek, az elutasított jelentkezéseket pedig a Beállításokban választott idő után töröljük.",
   "help.faq.slowFirstLoad.q": "Miért nyílik meg néha lassan az alkalmazás?",
   "help.faq.slowFirstLoad.a": "Hosszabb inaktivitás után az alkalmazás akár egy perc alatt indul el. Az áruházi felületet ez soha nem érinti: az árak elrejtése és az űrlap továbbra is működik.",
   "help.diagnostics.heading": "Diagnosztikai adatok",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Hibakereső mód kikapcsolása",
   "help.contact.heading": "Kapcsolat az ügyfélszolgálattal",
   "help.contact.body": "Általában 2 munkanapon belül válaszolunk.",
-  "help.contact.priority": "Pro csomagot használ, így e-mailjeire elsőként, általában 1 munkanapon belül válaszolunk."
+  "help.contact.priority": "Pro csomagot használ, így e-mailjeire elsőként, általában 1 munkanapon belül válaszolunk.",
+  "help.faq.alerts.q": "Hogyan értesülök az új jelentkezésekről?",
+  "help.faq.alerts.a": "A Tradepass nem küld e-maileket. Az új jelentkezések és válaszok a Kezdőlapon és a Jelentkezések alatt várják. E-mail-értesítéshez hozzon létre a Shopify Flow-ban (Tradepass Pro) egy munkafolyamatot a „Wholesale application submitted” eseményindítóval és a Flow „Send internal email” műveletével. Ez a művelet csak a munkafolyamatban megadott, rögzített munkatársi címekre küld."
 }

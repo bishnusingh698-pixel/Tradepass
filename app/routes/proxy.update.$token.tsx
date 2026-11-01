@@ -122,7 +122,6 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     country: billing?.countryCode ?? app.countryCode ?? "",
     countriesUrl: `${prefix}/assets/countries.json`,
     countryRule: info.settings.applications.countries.mode === "all" ? null : info.settings.applications.countries,
-    successEmail: false,
   };
   const title = t("hosted.update.title");
   const message = requested.message?.trim()

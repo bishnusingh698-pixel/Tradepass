@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "แสดงข้างช่องยินยอม โปรดใช้ที่อยู่แบบเต็มหรือพาธในร้านค้า เช่น /policies/privacy-policy",
   "form.success.heading": "หลังจากส่ง",
   "form.success.message": "ข้อความขอบคุณ",
-  "form.success.messageHelp": "ผู้สมัครจะเห็นด้วยว่าอีเมลยืนยันกำลังส่งไป",
+  "form.success.messageHelp": "แสดงต่อผู้สมัครหลังจากส่งแบบฟอร์ม",
   "form.success.redirect": "เปลี่ยนเส้นทางไปยังหน้า (ไม่บังคับ)",
   "form.success.redirectHelp": "ส่งผู้สมัครไปยังหน้าอื่นหลังข้อความขอบคุณ เช่น /pages/thank-you",
   "form.spam.heading": "การป้องกันสแปม",

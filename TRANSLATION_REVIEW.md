@@ -1,5 +1,7 @@
 # Translation review list
 
+**2026-11-01 (D-091):** the `email.*` keys below were renamed to `message.*` (same texts; `email.cert_expiring.*` → `message.renewal_expiring.*`, `email.cert_expired.*` → `message.renewal_expired.*`). Keys for removed emails (`email.received.*`, `email.approved.*`, `email.merchant_*`, `email.sample.*`, `email.test.*`, `email.footer.*`) are gone, so notes about them no longer apply. New in all languages and worth a native check: `message.renewal.*`, `message.modal.*`, `settings.certificates.*`, `help.faq.alerts.*`, `automation.flow.alerts`, and the reworded `certificates.rules`, `renew.*.body`, `plans.summary.*` lines.
+
 Strings a native speaker should check, per language. Everything else passed the automated checks (`node scripts/i18n-check.mjs`, `tests/i18n.test.ts`) and a back-translation check. Ask a reviewer to look only at these. (All admin, email, storefront and listing strings, 2026-10-17.)
 
 ## Arabic (ar)

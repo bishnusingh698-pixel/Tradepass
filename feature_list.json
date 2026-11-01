@@ -1,5 +1,5 @@
 {
-  "note": "Never remove items. Status: 'failing' = not done; 'built' = code-complete with unit tests (npx vitest run); 'needs-live-check' = code-complete, but only a dev store can prove it (CHECKLIST.md); 'passing' = verified end to end.",
+  "note": "Never remove items. Status: 'failing' = not done; 'built' = code-complete with unit tests (npx vitest run); 'needs-live-check' = code-complete, but only a dev store can prove it (CHECKLIST.md); 'passing' = verified end to end. 'removed' = deliberately taken out (the verified field says why and what replaced it).",
   "features": [
     {
       "id": "P0-1",
@@ -158,7 +158,7 @@
     {
       "id": "P2-4",
       "phase": "P2",
-      "description": "Approval engine: company → location → contact → terms & tax → tier → email, each step read back from Shopify",
+      "description": "Approval engine: company → location → contact → terms & tax → tier → Shopify's B2B welcome email, each step read back from Shopify",
       "status": "needs-live-check",
       "verified": "2026-10-17: approval.server.ts with tests/tiers-approval.test.ts (fake Shopify); needs a dev store (acceptance 7)"
     },
@@ -312,7 +312,7 @@
     {
       "id": "P4-4",
       "phase": "P4",
-      "description": "Approve modal with tier, terms, tax exemption suggestion, addresses, contact link/create, welcome email toggle, live progress",
+      "description": "Approve modal with tier, terms, tax exemption suggestion, addresses, contact link/create, Shopify welcome email toggle, live progress",
       "status": "needs-live-check",
       "verified": "2026-10-17: ApproveModal.tsx + approval engine; needs a dev store (acceptance 7, 10)"
     },
@@ -326,30 +326,30 @@
     {
       "id": "P4-6",
       "phase": "P4",
-      "description": "Reject with reason templates + email toggle; notes; assignee",
+      "description": "Reject with reason templates (reason stored; copyable not-approved message in the applicant's language); notes; assignee",
       "status": "built",
-      "verified": "2026-10-17: app.applications.$id.tsx"
+      "verified": "2026-11-01: D-091: app.applications.$id.tsx, MessageModal; tests/email-removal.test.ts"
     },
     {
       "id": "P4-7",
       "phase": "P4",
       "description": "Applicant emails (received, needs info, approved, rejected, certificate) per language, placeholders, preview, send test",
-      "status": "built",
-      "verified": "2026-10-17: app/lib/email/*; tests/email-render.test.ts"
+      "status": "removed",
+      "verified": "2026-11-01: D-091: Tradepass sends no email. Replaced by copyable messages (needs info, not approved, renewal) in the applicant's language: app/lib/messages.ts; tests/email-removal.test.ts"
     },
     {
       "id": "P4-8",
       "phase": "P4",
       "description": "Brevo sending with caps 25/store/day and 250/day global; overflow queued + notice",
-      "status": "needs-live-check",
-      "verified": "2026-10-17: Caps and overflow in tests/email-queue.test.ts; a real Brevo send needs the account"
+      "status": "removed",
+      "verified": "2026-11-01: D-091: Brevo removed (it needs a purchased sending domain, breaking the zero-cost rule). No email provider, queue or caps remain"
     },
     {
       "id": "P4-9",
       "phase": "P4",
       "description": "Merchant notifications: instant (capped) or daily digest",
-      "status": "built",
-      "verified": "2026-10-17: Instant alerts and daily digest; tests/email-queue.test.ts"
+      "status": "removed",
+      "verified": "2026-11-01: D-091: Merchant alerts and digests removed. Pending work stays on Home and in the queue; Help/Automation explain Flow's \"Send internal email\" with the \"Wholesale application submitted\" trigger"
     },
     {
       "id": "P4-10",
@@ -410,16 +410,16 @@
     {
       "id": "P6-1",
       "phase": "P6",
-      "description": "Buyers list with filters and bulk actions (move, renewal request, pause, export)",
+      "description": "Buyers list with filters and bulk actions (move, pause, export)",
       "status": "built",
-      "verified": "2026-10-17: app.buyers._index.tsx; production build passes"
+      "verified": "2026-11-01: D-091: bulk renewal request removed; app.buyers._index.tsx"
     },
     {
       "id": "P6-2",
       "phase": "P6",
-      "description": "Buyer detail: summary, tier history, certificates, renewal requests, activity, Shopify link",
+      "description": "Buyer detail: summary, tier history, certificates, activity, Shopify link",
       "status": "built",
-      "verified": "2026-10-17: app.buyers.$id.tsx"
+      "verified": "2026-11-01: D-091: renewal button removed (Certificates → Copy renewal link); app.buyers.$id.tsx"
     },
     {
       "id": "P6-3",
@@ -438,9 +438,9 @@
     {
       "id": "P6-5",
       "phase": "P6",
-      "description": "Automatic renewal requests at 30 and 7 days with secure upload link; expiry → merchant decision on exemption",
+      "description": "Certificate renewal: Copy renewal link (message + signed single-use upload link); expiry → merchant decision on exemption, or automatic removal",
       "status": "built",
-      "verified": "2026-10-17: Daily certificate-expiry task, renewal links; tests/certificates.test.ts"
+      "verified": "2026-11-01: D-091: reminder emails removed; renewalMessage + daily status/Flow/exemption task; tests/certificates.test.ts"
     },
     {
       "id": "P6-6",
@@ -543,7 +543,7 @@
     {
       "id": "P8-7",
       "phase": "P8",
-      "description": "Accessibility pass WCAG 2.1 AA (form, blocks, emails, admin)",
+      "description": "Accessibility pass WCAG 2.1 AA (form, blocks, hosted pages, admin)",
       "status": "needs-live-check",
       "verified": "2026-10-17: Accessibility pass under way in code (form error-summary focus, fieldset descriptions, readable button text, screen-reader text for hidden prices, hosted-page contrast); keyboard, screen-reader and contrast checks still need a dev store (acceptance 22)"
     },
@@ -648,9 +648,9 @@
     {
       "id": "AT-12",
       "phase": "acceptance",
-      "description": "Reject with reason emails applicant; email caps queue overflow with notice",
+      "description": "Reject with reason: copyable not-approved message in the applicant's language; no email from Tradepass",
       "status": "needs-live-check",
-      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
+      "verified": "2026-11-01: D-091: CHECKLIST.md Test 12; needs a dev store"
     },
     {
       "id": "AT-13",
@@ -676,9 +676,9 @@
     {
       "id": "AT-16",
       "phase": "acceptance",
-      "description": "Certificate expiring in 30 days → renewal email; new upload resets; expiry triggers merchant decision",
+      "description": "Certificate expiring in 30 days → Expiring soon + Flow trigger; Copy renewal link; new upload resets; expiry triggers merchant decision",
       "status": "needs-live-check",
-      "verified": "2026-10-17: Code in place; steps in CHECKLIST.md; needs a dev store"
+      "verified": "2026-11-01: D-091: CHECKLIST.md Test 16; needs a dev store"
     },
     {
       "id": "AT-17",
@@ -739,7 +739,7 @@
     {
       "id": "AT-25",
       "phase": "acceptance",
-      "description": "/healthz never touches DB; capacity estimate shows 100 stores within Neon + Brevo free limits",
+      "description": "/healthz never touches DB; capacity estimate shows 100 stores within Neon free limits",
       "status": "built",
       "verified": "2026-10-17: tests/healthz-jobs.test.ts (no DB); capacity estimate in PLAN.md"
     }

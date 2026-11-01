@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Kami akan membuat pelanggan baru untuk {name} ({email}).",
   "approval.field.sendWelcome": "Kirim email sambutan",
   "approval.welcome.shopify": "Email sambutan B2B Shopify, dengan tautan untuk masuk.",
-  "approval.welcome.ours": "Email “Anda telah disetujui” dari Tradepass dalam bahasa pembeli.",
   "approval.action.approve": "Setujui",
   "approval.action.retry": "Coba lagi",
   "approval.action.retryEmail": "Kirim ulang email",

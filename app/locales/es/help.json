@@ -53,15 +53,13 @@
   "help.faq.import.q": "¿Puedo importar mis clientes mayoristas actuales?",
   "help.faq.import.a": "Sí, en el plan Pro. Suba un archivo CSV o convierta clientes que ya tengan una etiqueta como «wholesale».",
   "help.faq.languages.q": "¿Qué idiomas se admiten?",
-  "help.faq.languages.a": "36 idiomas. El formulario, los mensajes de la tienda y los correos aparecen en el idioma de cada visitante, y puede cambiar cualquier texto en Configuración → Idiomas.",
-  "help.faq.emails.q": "¿Cuántos correos envía Tradepass?",
-  "help.faq.emails.a": "Hasta 25 correos por tienda al día. Los correos adicionales se envían al día siguiente, y Inicio le avisa cuando ocurre. Puede desactivar nuestros correos y usar Shopify Flow en su lugar.",
+  "help.faq.languages.a": "36 idiomas. El formulario, los mensajes de la tienda y los mensajes que envías a los solicitantes aparecen en el idioma de cada persona, y puedes cambiar cualquier texto en Configuración → Idiomas.",
   "help.faq.approvalLimit.q": "¿Qué pasa al llegar a 10 aprobaciones en el plan gratuito?",
   "help.faq.approvalLimit.a": "Las nuevas solicitudes se siguen recibiendo, así que nunca pierde un cliente potencial. Para aprobar más ese mes, elija un plan de pago.",
   "help.faq.markets.q": "Inicio dice que los mercados B2B no están activados. ¿Qué hago?",
   "help.faq.markets.a": "En los planes inferiores a Plus, los precios por nivel necesitan los nuevos mercados de Shopify. Actívelos en Shopify en Configuración → Mercados y haga clic en «Volver a comprobar» en Inicio.",
   "help.faq.privacy.q": "¿Cómo se protegen los datos de los solicitantes?",
-  "help.faq.privacy.a": "Los números fiscales se cifran, los enlaces de los correos caducan y funcionan una sola vez, y las solicitudes rechazadas se eliminan tras el periodo que elija en Configuración.",
+  "help.faq.privacy.a": "Los números fiscales se cifran, los enlaces seguros caducan y funcionan una vez, y las solicitudes rechazadas se eliminan tras el periodo que elijas en Configuración.",
   "help.faq.slowFirstLoad.q": "¿Por qué la aplicación a veces tarda en abrirse?",
   "help.faq.slowFirstLoad.a": "Tras un periodo sin actividad, la aplicación puede tardar hasta un minuto en activarse. Su tienda online nunca se ve afectada: la ocultación de precios y el formulario siguen funcionando.",
   "help.diagnostics.heading": "Información de diagnóstico",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Desactivar modo de depuración",
   "help.contact.heading": "Contactar con soporte",
   "help.contact.body": "Solemos responder en un plazo de 2 días hábiles.",
-  "help.contact.priority": "Tiene el plan Pro, así que sus correos se responden primero, normalmente en 1 día hábil."
+  "help.contact.priority": "Tiene el plan Pro, así que sus correos se responden primero, normalmente en 1 día hábil.",
+  "help.faq.alerts.q": "¿Cómo me entero de las nuevas solicitudes?",
+  "help.faq.alerts.a": "Tradepass no envía correos. Las solicitudes nuevas y las respuestas te esperan en Inicio y en Solicitudes. Para recibir un aviso por correo, crea un flujo en Shopify Flow (Tradepass Pro) con el disparador «Wholesale application submitted» y la acción de Flow «Send internal email». Esa acción solo envía a direcciones fijas del personal que indiques en el flujo."
 }

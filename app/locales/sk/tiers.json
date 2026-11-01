@@ -42,7 +42,7 @@
   "tiers.editor.name": "Názov úrovne",
   "tiers.editor.nameHelp": "Tento názov vidíte iba vy, napríklad Maloobchodník alebo Distribútor.",
   "tiers.editor.buyerNames": "Názov, ktorý vidia kupujúci",
-  "tiers.editor.buyerNamesHelp": "Nepovinné. Zobrazuje sa kupujúcim v e-mailoch a v obchode, pre každý jazyk zvlášť. Prázdne pole použije názov úrovne.",
+  "tiers.editor.buyerNamesHelp": "Voliteľné. Zobrazuje sa kupujúcim v obchode, pre každý jazyk. Prázdne použije názov úrovne.",
   "tiers.editor.buyerNameFor": "Názov v jazyku {language}",
   "tiers.editor.pricing": "Ako sa nastavujú ceny",
   "tiers.editor.pricing.percent": "Percentuálna zľava z maloobchodnej ceny",

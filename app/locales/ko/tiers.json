@@ -42,7 +42,7 @@
   "tiers.editor.name": "등급 이름",
   "tiers.editor.nameHelp": "이 이름은 판매자에게만 표시됩니다(예: 소매업체, 유통업체).",
   "tiers.editor.buyerNames": "구매자에게 표시되는 이름",
-  "tiers.editor.buyerNamesHelp": "선택 사항입니다. 이메일과 스토어에서 언어별로 구매자에게 표시됩니다. 비워 두면 등급 이름이 사용됩니다.",
+  "tiers.editor.buyerNamesHelp": "선택 사항. 스토어에서 언어별로 구매자에게 표시됩니다. 비워 두면 등급 이름이 사용됩니다.",
   "tiers.editor.buyerNameFor": "{language} 이름",
   "tiers.editor.pricing": "가격 설정 방식",
   "tiers.editor.pricing.percent": "소매가 대비 할인율",

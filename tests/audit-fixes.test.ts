@@ -13,7 +13,6 @@ import { lastMonths, monthlyReport } from "../app/lib/home.server";
 import { handleSubmit, type IntakeDeps } from "../app/lib/intake.server";
 import { exportDataRequest, recordDataRequest, redactCustomer } from "../app/lib/privacy.server";
 import { encrypt } from "../app/lib/crypto.server";
-import { isDigestDay } from "../app/lib/tasks/emails";
 import { DELETE_FILES_JOB } from "../app/lib/tasks/background";
 
 process.env.ENCRYPTION_KEY ||= Buffer.alloc(32, 7).toString("base64");
@@ -25,7 +24,7 @@ const SHOP = `test-audit-${rnd}.myshopify.com`;
 const baseFacts = (shop: Record<string, unknown> = {}, extra: Record<string, unknown> = {}) => ({
   data: {
     shop: {
-      name: "Acme Supply", email: "owner@acme.test", contactEmail: "hello@acme.test", currencyCode: "EUR",
+      name: "Acme Supply", currencyCode: "EUR",
       billingAddress: { countryCodeV2: "DE" }, primaryDomain: { url: "https://acme.test/" },
       plan: { publicDisplayName: "Grow", partnerDevelopment: false, shopifyPlus: false },
       features: { directConnectionCatalogAssignmentEnabled: false },
@@ -41,7 +40,7 @@ const baseFacts = (shop: Record<string, unknown> = {}, extra: Record<string, unk
 describe("B1/B2: store profile and the real subscription", () => {
   it("reads name, emails, currency, country and primary domain", () => {
     const f = parseShopFacts(baseFacts());
-    expect(f.profile).toEqual({ name: "Acme Supply", email: "owner@acme.test", contactEmail: "hello@acme.test", currency: "EUR", country: "DE", domainUrl: "https://acme.test" });
+    expect(f.profile).toEqual({ name: "Acme Supply", currency: "EUR", country: "DE", domainUrl: "https://acme.test" });
   });
   it("leaves billing alone when the query has no installation, and reads Free when nothing is active", () => {
     expect(parseShopFacts(baseFacts()).subscription).toBeUndefined();
@@ -114,15 +113,6 @@ describe("F2: form templates", () => {
   });
 });
 
-describe("weekly digest", () => {
-  it("sends weekly summaries on Mondays only", () => {
-    expect(isDigestDay("weekly", new Date("2026-11-02T03:00:00Z"))).toBe(true); // Monday
-    expect(isDigestDay("weekly", new Date("2026-11-03T03:00:00Z"))).toBe(false);
-    expect(isDigestDay("digest", new Date("2026-11-03T03:00:00Z"))).toBe(true);
-    expect(isDigestDay("off", new Date("2026-11-02T03:00:00Z"))).toBe(false);
-  });
-});
-
 // ------------------------------------------------------------------ DB-backed
 
 const state = (over: Partial<ApprovalState> = {}): ApprovalState => ({
@@ -149,7 +139,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  for (const m of [db.applicationFile, db.certificate, db.application, db.activityLog, db.tokenUse, db.form, db.job, db.shopLock, db.emailLog] as unknown as { deleteMany: (a: object) => Promise<unknown> }[]) {
+  for (const m of [db.applicationFile, db.certificate, db.application, db.activityLog, db.tokenUse, db.form, db.job, db.shopLock] as unknown as { deleteMany: (a: object) => Promise<unknown> }[]) {
     await m.deleteMany({ where: { shop: SHOP } });
   }
   await db.shop.deleteMany({ where: { shop: SHOP } });
@@ -158,15 +148,15 @@ afterAll(async () => {
 describe("B4: decisions vs. an approval in progress", () => {
   it("refuses to reject or ask for info once an approval has created things in Shopify", async () => {
     const a = await app({ approvalState: state() as object, approvalStatus: "failed" });
-    expect(await rejectApplicationWithReason(dctx, a.id, { reason: null, email: false })).toBe("approval_started");
+    expect(await rejectApplicationWithReason(dctx, a.id, { reason: null })).toBe("approval_started");
     expect(await requestMoreInfo(dctx, a.id, { message: "x", fields: ["website"] })).toMatchObject({ ok: false, error: "approval_started" });
     expect((await db.application.findUniqueOrThrow({ where: { id: a.id } })).status).toBe("pending");
   });
   it("two simultaneous rejects: exactly one wins, the other is told it's already decided or busy", async () => {
     const a = await app();
     const results = await Promise.all([
-      rejectApplicationWithReason(dctx, a.id, { reason: null, email: false }),
-      rejectApplicationWithReason(dctx, a.id, { reason: null, email: false }),
+      rejectApplicationWithReason(dctx, a.id, { reason: null }),
+      rejectApplicationWithReason(dctx, a.id, { reason: null }),
     ]);
     expect(results.filter((r) => r === true)).toHaveLength(1);
     expect(results.find((r) => r !== true)).toMatch(/^(not_open|busy)$/);
@@ -207,9 +197,10 @@ describe("F7: monthly report", () => {
   it("counts per month with approval rate and average days to decide", async () => {
     const now = new Date();
     const thisMonth = lastMonths(1, now)[0];
-    const submitted = new Date(Date.now() - 2 * 86_400_000);
-    await app({ status: "approved", submittedAt: submitted, decidedAt: new Date(submitted.getTime() + 86_400_000) });
-    await app({ status: "rejected", submittedAt: submitted, decidedAt: new Date(submitted.getTime() + 3 * 86_400_000) });
+    // Decided "now" so the decisions always fall in the current month (the test used to fail on the 1st and 2nd).
+    const decided = new Date(now.getTime() - 60_000);
+    await app({ status: "approved", submittedAt: new Date(decided.getTime() - 86_400_000), decidedAt: decided });
+    await app({ status: "rejected", submittedAt: new Date(decided.getTime() - 3 * 86_400_000), decidedAt: decided });
     const rows = await monthlyReport(SHOP, now);
     expect(rows).toHaveLength(6);
     const m = rows.find((r) => r.month === thisMonth)!;
@@ -225,8 +216,6 @@ describe("intake: country rule, tax format, background follow-ups", () => {
     const d = {
       getAdmin: vi.fn(async () => ({ graphql: vi.fn() }) as never),
       checkTaxNumber: vi.fn(async () => ({ status: "verified" as const })),
-      queueEmail: vi.fn(async () => ({ queued: true })),
-      notifyMerchant: vi.fn(async () => ({ queued: true })),
       emitFlowTrigger: vi.fn(async () => undefined),
       evaluateRules: vi.fn(async () => ({ decided: null })),
       recordApplicationCertificates: vi.fn(async () => undefined),
@@ -297,7 +286,7 @@ describe("plan without B2B", () => {
       tierId: "t1", paymentTermsTemplateId: null, taxExempt: false, exemptions: [], taxRegistrationId: null, companyName: "No B2B Co", locationName: "HQ",
       billingAddress: { address1: "1 Main", city: "Austin", countryCode: "US" }, shippingAddress: null, contact: { mode: "new" as const }, sendWelcome: false,
     };
-    await expect(approveApplication({ admin: { graphql }, shop: NOB2B, actor: "staff" }, a.id, input)).rejects.toBeInstanceOf(ApprovalError);
+    await expect(approveApplication({ admin: { graphql } as never, shop: NOB2B, actor: "staff" }, a.id, input)).rejects.toBeInstanceOf(ApprovalError);
     // Only the plan check ran: no company, location or contact was created.
     expect(graphql.mock.calls.every((c) => String((c as unknown[])[0]).includes("TradepassShopFacts"))).toBe(true);
     await db.shopLock.deleteMany({ where: { shop: NOB2B } });

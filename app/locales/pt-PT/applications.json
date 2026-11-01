@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Adicionar nota",
   "applications.detail.saveNote": "Guardar nota",
   "applications.detail.toast.reject": "Candidatura rejeitada",
-  "applications.detail.toast.needs_info": "Pedido enviado ao candidato",
+  "applications.detail.toast.needs_info": "Pedido guardado. Envie ao candidato a mensagem com a ligação segura.",
   "applications.detail.toast.note": "Nota guardada",
   "applications.detail.toast.assign": "Atribuição guardada",
   "applications.needsInfo.heading": "Pedir mais informações",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Campos que podem ser alterados",
   "applications.needsInfo.fieldsHelp": "O candidato recebe uma ligação privada válida durante 14 dias e só pode alterar estes campos.",
   "applications.needsInfo.fieldsRequired": "Escolha pelo menos um campo.",
-  "applications.needsInfo.send": "Enviar pedido",
+  "applications.needsInfo.send": "Criar pedido",
   "applications.reject.heading": "Rejeitar {company}?",
   "applications.reject.template": "Modelo de motivo",
   "applications.reject.templateNone": "Sem modelo",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Obrigado pelo seu interesse. Não conseguimos verificar as informações da sua candidatura, pelo que não a podemos aprovar de momento. Pode candidatar-se novamente quando quiser.",
   "applications.reject.template.region": "Obrigado pelo seu interesse. Ainda não disponibilizamos venda por grosso na sua zona.",
   "applications.reject.reason": "Motivo (opcional)",
-  "applications.reject.reasonHelp": "Se enviar um e-mail, o candidato vê este motivo.",
-  "applications.reject.email": "Enviar e-mail ao candidato",
+  "applications.reject.reasonHelp": "Guardado com a candidatura e incluído na mensagem que pode enviar ao candidato.",
   "applications.reject.consequence": "A candidatura passa para Rejeitadas. Nada é criado na Shopify e pode continuar a encontrá-la no separador Rejeitadas.",
   "applications.reject.confirm": "Rejeitar candidatura",
   "applications.activity.application.submit": "Candidatura submetida",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Nota adicionada",
   "applications.activity.application.assign": "Atribuição alterada",
   "applications.taxCheck.skipped": "Não verificado no seu plano",
-  "applications.detail.taxCheckPlan": "Os números fiscais são verificados em registos oficiais a partir do plano {plan}. Verifique este número manualmente ou faça upgrade para verificar automaticamente as novas candidaturas."
+  "applications.detail.taxCheckPlan": "Os números fiscais são verificados em registos oficiais a partir do plano {plan}. Verifique este número manualmente ou faça upgrade para verificar automaticamente as novas candidaturas.",
+  "applications.detail.copyMessage": "Mensagem para o candidato"
 }

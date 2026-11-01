@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Teşekkürler, başvurunuz gönderildi",
-      "body": "Başvurunuzu inceleyip size e-postayla dönüş yapacağız.",
-      "email": "Size bir onay e-postası gönderdik."
+      "body": "Başvurunuzu inceleyip size e-postayla dönüş yapacağız."
     }
   }
 }

@@ -817,11 +817,6 @@
     "maxLength": 120,
     "placeholders": []
   },
-  "applications.reject.email": {
-    "note": "Checkbox label.",
-    "maxLength": 40,
-    "placeholders": []
-  },
   "applications.reject.consequence": {
     "note": "Modal explanation of what happens.",
     "maxLength": 200,
@@ -878,5 +873,10 @@
     "placeholders": [
       "plan"
     ]
+  },
+  "applications.detail.copyMessage": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
   }
 }

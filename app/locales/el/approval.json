@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Θα δημιουργήσουμε νέο πελάτη για {name} ({email}).",
   "approval.field.sendWelcome": "Αποστολή email καλωσορίσματος",
   "approval.welcome.shopify": "Το email καλωσορίσματος B2B του Shopify, με σύνδεσμο σύνδεσης.",
-  "approval.welcome.ours": "Το email «Εγκριθήκατε» του Tradepass στη γλώσσα του αγοραστή.",
   "approval.action.approve": "Έγκριση",
   "approval.action.retry": "Επανάληψη",
   "approval.action.retryEmail": "Νέα αποστολή email",

@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Gracias, su solicitud se ha enviado",
-      "body": "La revisaremos y le responderemos por correo electrónico.",
-      "email": "Le hemos enviado un correo de confirmación."
+      "body": "La revisaremos y le responderemos por correo electrónico."
     }
   }
 }

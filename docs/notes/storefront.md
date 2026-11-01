@@ -112,4 +112,4 @@ Checked 2026-10-16 against shopify.dev (Admin GraphQL `latest` = 2026-10):
 - [ ] 17. Add the **Apply for wholesale** block to your footer, choose **Banner**: it links to your wholesale page.
 
 ### More-info link
-- [ ] 18. On an application click **Needs info**, pick "Phone", send. Open the link from the email: only the phone field shows. Submit: "Thank you, your application has been updated". Open the link again: "This link has already been used".
+- [ ] 18. On an application click **Ask for more information**, pick "Phone", **Create request**, copy the message and send it to yourself. Open the link: only the phone field shows. Submit: "Thank you, your application has been updated". Open the link again: "This link has already been used".

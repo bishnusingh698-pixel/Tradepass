@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "رضامندی کے چیک باکس کے ساتھ دکھایا جاتا ہے۔ مکمل پتہ یا اسٹور کا راستہ استعمال کریں، جیسے /policies/privacy-policy۔",
   "form.success.heading": "جمع کرانے کے بعد",
   "form.success.message": "شکریے کا پیغام",
-  "form.success.messageHelp": "درخواست دہندگان یہ بھی دیکھتے ہیں کہ تصدیقی ای میل بھیجی جا رہی ہے۔",
+  "form.success.messageHelp": "فارم بھیجنے کے بعد درخواست دہندگان کو دکھایا جاتا ہے۔",
   "form.success.redirect": "کسی صفحے پر بھیجیں (اختیاری)",
   "form.success.redirectHelp": "شکریے کے پیغام کے بعد درخواست دہندگان کو دوسرے صفحے پر بھیجیں، مثلاً /pages/thank-you۔",
   "form.spam.heading": "اسپام سے تحفظ",

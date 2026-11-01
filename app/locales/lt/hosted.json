@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Ačiū, jūsų paraiška atnaujinta",
   "hosted.update.doneBody": "Parduotuvė {store} ją peržiūrės ir atsakys jums el. paštu.",
   "hosted.link.invalidTitle": "Ši nuoroda negalioja",
-  "hosted.link.invalidBody": "Patikrinkite, ar atidarėte visą nuorodą iš el. laiško, arba susisiekite su parduotuve {store}.",
+  "hosted.link.invalidBody": "Patikrinkite, ar atidarėte visą nuorodą, arba susisiekite su {store}.",
   "hosted.link.expiredTitle": "Šios nuorodos galiojimas baigėsi",
   "hosted.link.expiredBody": "Saugumo sumetimais atnaujinimo nuorodos galioja ribotą laiką. Susisiekite su parduotuve {store} ir paprašykite naujos nuorodos.",
   "hosted.link.usedTitle": "Ši nuoroda jau panaudota",

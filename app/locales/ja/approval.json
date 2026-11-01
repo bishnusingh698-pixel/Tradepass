@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "{name}（{email}）の新しい顧客を作成します。",
   "approval.field.sendWelcome": "ウェルカムメールを送信",
   "approval.welcome.shopify": "ログイン用リンク付きのShopify B2Bウェルカムメール。",
-  "approval.welcome.ours": "バイヤーの言語で送信されるTradepassの「承認されました」メール。",
   "approval.action.approve": "承認",
   "approval.action.retry": "再試行",
   "approval.action.retryEmail": "メールを再送信",

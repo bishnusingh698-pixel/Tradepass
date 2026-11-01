@@ -1,7 +1,8 @@
 // Applicant intake (feature spec §D): validate a storefront submission against
 // the merchant's form, stop spam quietly, detect duplicates, encrypt the tax
 // number, check it against a free registry, store the application, then fire
-// the follow-ups (emails, Flow, rules) without ever failing the submission.
+// the follow-ups (Flow, rules) without ever failing the submission. Tradepass
+// sends no email: the storefront success screen confirms the submission.
 // Called by the app proxy routes (app/routes/proxy.*). Nothing here logs
 // personal data.
 import { Prisma } from "@prisma/client";
@@ -22,13 +23,11 @@ import { countryAllowed, readSettings } from "./settings";
 export type IntakeDeps = {
   getAdmin: (shop: string) => Promise<Admin | null>;
   checkTaxNumber: (country: string, number: string) => Promise<TaxCheck>;
-  queueEmail: (input: import("./email/index.server").QueueEmailInput) => Promise<unknown>;
-  notifyMerchant: (shop: string, a: { applicationId: string; company: string }) => Promise<unknown>;
   emitFlowTrigger: typeof import("./flow.server").emitFlowTrigger;
   evaluateRules: typeof import("./rules.server").evaluateRules;
   recordApplicationCertificates: typeof import("./certificates.server").recordApplicationCertificates;
   /**
-   * Run slow follow-ups (merchant alert, Flow, auto-approval rules) without
+   * Run slow follow-ups (Flow trigger, auto-approval rules) without
    * holding up the applicant: the app proxy gives a request ~10 s, and an
    * auto-approval alone can take longer. The default stores a durable job first
    * so the hourly run finishes the work if this process stops.
@@ -51,8 +50,6 @@ export const defaultDeps: IntakeDeps = {
     }
   },
   checkTaxNumber: (c, n) => realCheckTax(c, n),
-  queueEmail: async (i) => (await import("./email/index.server")).queueEmail(i),
-  notifyMerchant: async (s, a) => (await import("./email/index.server")).notifyMerchantNewApplication(s, a),
   emitFlowTrigger: async (...a) => (await import("./flow.server")).emitFlowTrigger(...a),
   evaluateRules: async (...a) => (await import("./rules.server")).evaluateRules(...a),
   recordApplicationCertificates: async (...a) => (await import("./certificates.server")).recordApplicationCertificates(...a),
@@ -378,19 +375,12 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
     detail: { duplicate: flags.includes("duplicate"), taxCheck: taxCheck.status, files: allFiles.length },
   }).catch(() => undefined);
 
-  await afterSubmit(ctx, deps, {
-    id: app.id, email, companyName, locale, countryCode, tellApplicant,
-    firstName: typeof clean.answers.firstName === "string" ? clean.answers.firstName : "",
-    certificates: certs, tax: clean.tax,
-  });
+  await afterSubmit(ctx, deps, { id: app.id, countryCode, certificates: certs, tax: clean.tax });
 
   return { http: 200, body: { ok: true, status: tellApplicant ? "duplicate" : "received", id: app.id } };
 }
 
-type Submitted = {
-  id: string; email: string; companyName: string; locale: string; countryCode: string | null; tellApplicant: boolean;
-  firstName: string; certificates: FileAnswer[]; tax: Clean["tax"];
-};
+type Submitted = { id: string; countryCode: string | null; certificates: FileAnswer[]; tax: Clean["tax"] };
 
 /** Follow-ups never fail the submission; each is isolated. */
 async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
@@ -415,23 +405,15 @@ async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
       expiresOn: c.expiresOn,
     })));
   });
-  const shopRow = await db.shop.findUnique({ where: { shop }, select: { name: true } });
-  if (!a.tellApplicant && a.email) {
-    await safe("email_received", () => deps.queueEmail({
-      shop, type: "received", to: a.email, locale: a.locale,
-      vars: { company: a.companyName, first_name: a.firstName, store_name: shopRow?.name || shop.replace(/\.myshopify\.com$/, "") },
-      subjectId: a.id,
-    }));
-  }
   await safe("followups", () => deps.defer(shop, a.id, () => intakeFollowups(shop, a.id, deps)));
 }
 
 /**
- * Merchant alert, Flow "submitted" trigger and automation rules for a stored
- * application. Runs in the background after submit, or from the hourly job
- * (tasks/background.ts) if that run was interrupted. Each part is isolated.
+ * Flow "submitted" trigger (merchants get alerts through Flow) and automation
+ * rules for a stored application. Runs in the background after submit, or from
+ * the hourly job (tasks/background.ts) if that run was interrupted. Each part is isolated.
  */
-export async function intakeFollowups(shop: string, applicationId: string, deps: Pick<IntakeDeps, "getAdmin" | "notifyMerchant" | "emitFlowTrigger" | "evaluateRules"> = defaultDeps): Promise<void> {
+export async function intakeFollowups(shop: string, applicationId: string, deps: Pick<IntakeDeps, "getAdmin" | "emitFlowTrigger" | "evaluateRules"> = defaultDeps): Promise<void> {
   const app = await db.application.findFirst({ where: { shop, id: applicationId }, select: { id: true, email: true, companyName: true, countryCode: true } });
   if (!app) return;
   const safe = async (what: string, fn: () => Promise<unknown>) => {
@@ -441,7 +423,6 @@ export async function intakeFollowups(shop: string, applicationId: string, deps:
       await logActivity({ shop, actor: "system", action: `application.${what}`, subject: app.id, result: "failed", detail: { error: (e as Error).name } }).catch(() => undefined);
     }
   };
-  await safe("notify_merchant", () => deps.notifyMerchant(shop, { applicationId: app.id, company: app.companyName }));
   const admin = await deps.getAdmin(shop);
   if (!admin) return;
   await safe("flow", () => deps.emitFlowTrigger(admin, shop, "application_submitted", {
@@ -527,9 +508,8 @@ export async function applyUpdate(
       country: (taxAns.country as string) || app.countryCode, region: (taxAns.region as string) || null, expiresOn: c.expiresOn,
     }))).catch(() => undefined);
   }
+  // The application is back under Pending (Home and the queue show it); the activity log records the reply.
   await logActivity({ shop, actor: "applicant", action: "application.updated", subject: app.id, detail: { fields: Object.keys(clean.answers) } }).catch(() => undefined);
-  // Tell the merchant the ball is back in their court (instant alerts; the digest counts these too).
-  await (await import("./email/index.server")).notifyMerchantInfoReceived(shop, { applicationId: app.id, company: app.companyName }).catch(() => undefined);
   return { ok: true };
 }
 

@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Dipaparkan di sebelah kotak semak persetujuan. Gunakan alamat penuh atau laluan kedai seperti /policies/privacy-policy.",
   "form.success.heading": "Selepas dihantar",
   "form.success.message": "Mesej terima kasih",
-  "form.success.messageHelp": "Pemohon juga melihat bahawa e-mel pengesahan sedang dihantar.",
+  "form.success.messageHelp": "Ditunjukkan kepada pemohon selepas mereka menghantar borang.",
   "form.success.redirect": "Ubah hala ke halaman (pilihan)",
   "form.success.redirectHelp": "Hantar pemohon ke halaman lain selepas mesej terima kasih, contohnya /pages/thank-you.",
   "form.spam.heading": "Perlindungan spam",

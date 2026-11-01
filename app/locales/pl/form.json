@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Wyświetlany obok pola zgody. Użyj pełnego adresu lub ścieżki sklepu, np. /policies/privacy-policy.",
   "form.success.heading": "Po wysłaniu",
   "form.success.message": "Podziękowanie",
-  "form.success.messageHelp": "Wnioskodawcy widzą też, że e-mail z potwierdzeniem jest w drodze.",
+  "form.success.messageHelp": "Wyświetlane wnioskodawcom po wysłaniu formularza.",
   "form.success.redirect": "Przekieruj na stronę (opcjonalnie)",
   "form.success.redirectHelp": "Przekieruj wnioskodawców po podziękowaniu na inną stronę, np. /pages/dziekujemy.",
   "form.spam.heading": "Ochrona przed spamem",

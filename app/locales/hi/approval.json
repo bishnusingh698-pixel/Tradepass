@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "हम {name} ({email}) के लिए नया ग्राहक बनाएँगे।",
   "approval.field.sendWelcome": "वेलकम ईमेल भेजें",
   "approval.welcome.shopify": "Shopify का B2B वेलकम ईमेल, साइन इन करने के लिंक के साथ।",
-  "approval.welcome.ours": "Tradepass का “आपको मंज़ूरी मिल गई” ईमेल, खरीदार की भाषा में।",
   "approval.action.approve": "मंज़ूर करें",
   "approval.action.retry": "फिर कोशिश करें",
   "approval.action.retryEmail": "ईमेल फिर से भेजें",

@@ -14,7 +14,8 @@ export const CONDITION_TYPES = ["country", "business_type", "email_domain", "tax
 
 export type RuleConditions = { match: "all" | "any"; list: Condition[] };
 export type ApproveAction = { tierId: string; paymentTermsTemplateId: string | null; sendWelcome: boolean };
-export type RejectAction = { reason: string | null; email: boolean };
+/** The reason is stored on the application, so the merchant can copy the "not approved" message from it. */
+export type RejectAction = { reason: string | null };
 
 export type RuleDef = {
   id?: string;

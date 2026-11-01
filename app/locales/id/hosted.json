@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Terima kasih, pengajuan Anda sudah diperbarui",
   "hosted.update.doneBody": "{store} akan meninjaunya dan menghubungi Anda melalui email.",
   "hosted.link.invalidTitle": "Tautan ini tidak valid",
-  "hosted.link.invalidBody": "Pastikan Anda membuka tautan lengkap dari email, atau hubungi {store}.",
+  "hosted.link.invalidBody": "Pastikan Anda membuka tautan secara lengkap, atau hubungi {store}.",
   "hosted.link.expiredTitle": "Tautan ini sudah kedaluwarsa",
   "hosted.link.expiredBody": "Demi keamanan Anda, tautan pembaruan hanya berlaku untuk waktu terbatas. Silakan hubungi {store} dan minta tautan baru.",
   "hosted.link.usedTitle": "Tautan ini sudah digunakan",

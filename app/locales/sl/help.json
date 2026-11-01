@@ -53,15 +53,13 @@
   "help.faq.import.q": "Ali lahko uvozim svoje obstoječe veleprodajne stranke?",
   "help.faq.import.a": "Da, v paketu Pro. Naložite datoteko CSV ali pretvorite stranke, ki že imajo oznako, na primer »veleprodaja«.",
   "help.faq.languages.q": "Kateri jeziki so podprti?",
-  "help.faq.languages.a": "36 jezikov. Obrazec, sporočila na izložbi in e-pošta se prikažejo v jeziku vsakega obiskovalca, poljubno besedilo pa lahko spremenite v Nastavitve → Jeziki.",
-  "help.faq.emails.q": "Koliko e-poštnih sporočil pošlje Tradepass?",
-  "help.faq.emails.a": "Do 25 sporočil na trgovino na dan. Dodatna sporočila se pošljejo naslednji dan, stran Domov pa vas na to opozori. Našo e-pošto lahko izklopite in namesto nje uporabite Shopify Flow.",
+  "help.faq.languages.a": "36 jezikov. Obrazec, sporočila v trgovini in sporočila, ki jih pošiljate prosilcem, so v jeziku vsakega posameznika, vsako besedilo pa lahko spremenite v Nastavitve → Jeziki.",
   "help.faq.approvalLimit.q": "Kaj se zgodi, ko v brezplačnem paketu dosežem 10 odobritev?",
   "help.faq.approvalLimit.a": "Nove vloge se še naprej zbirajo, zato ne izgubite nobenega potencialnega kupca. Če želite ta mesec odobriti več vlog, izberite plačljiv paket.",
   "help.faq.markets.q": "Stran Domov pravi, da trgi B2B niso vklopljeni. Kaj naj storim?",
   "help.faq.markets.a": "V paketih pod Plus cene ravni potrebujejo novejše Trge Shopify. Vklopite jih v Shopify v Nastavitve → Trgi in nato na strani Domov kliknite »Preveri znova«.",
   "help.faq.privacy.q": "Kako so zaščiteni podatki prosilcev?",
-  "help.faq.privacy.a": "Davčne številke so šifrirane, povezave v e-poštnih sporočilih potečejo in delujejo samo enkrat, zavrnjene vloge pa se izbrišejo po obdobju, ki ga izberete v Nastavitvah.",
+  "help.faq.privacy.a": "Davčne številke so šifrirane, varne povezave potečejo in delujejo enkrat, zavrnjene vloge pa se izbrišejo po obdobju, ki ga izberete v Nastavitvah.",
   "help.faq.slowFirstLoad.q": "Zakaj se aplikacija včasih odpira počasi?",
   "help.faq.slowFirstLoad.a": "Po obdobju nedejavnosti lahko aplikacija za zagon potrebuje do ene minute. To nikoli ne vpliva na vašo izložbo: skrivanje cen in obrazec delujeta naprej.",
   "help.diagnostics.heading": "Diagnostični podatki",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Izklopi način za odpravljanje napak",
   "help.contact.heading": "Obrnite se na podporo",
   "help.contact.body": "Običajno odgovorimo v 2 delovnih dneh.",
-  "help.contact.priority": "Imate paket Pro, zato na vaša sporočila odgovorimo prednostno, običajno v 1 delovnem dnevu."
+  "help.contact.priority": "Imate paket Pro, zato na vaša sporočila odgovorimo prednostno, običajno v 1 delovnem dnevu.",
+  "help.faq.alerts.q": "Kako izvem za nove vloge?",
+  "help.faq.alerts.a": "Tradepass ne pošilja e-poštnih sporočil. Nove vloge in odgovori vas čakajo na Domači strani in pod Vloge. Za obvestilo po e-pošti ustvarite v Shopify Flow (Tradepass Pro) potek dela s sprožilcem »Wholesale application submitted« in dejanjem Flow »Send internal email«. To dejanje pošilja samo na stalne naslove zaposlenih, ki jih vnesete v potek dela."
 }

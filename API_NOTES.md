@@ -49,7 +49,7 @@ markets(type: COMPANY_LOCATION, first: 50) { nodes { id catalogs(first: 10) { no
 - `companyLocationCreate(companyId, input: CompanyLocationInput!)`: `name`, `shippingAddress`, `billingAddress`, `billingSameAsShipping`, `buyerExperienceConfiguration`, `externalId`, `locale`, `note`, `phone`, `taxExempt`, `taxExemptions`, `taxRegistrationId`.
 - `companyLocationTaxSettingsUpdate(companyLocationId!, taxRegistrationId, taxExempt, exemptionsToAssign, exemptionsToRemove)`. ⚠️ The prompt only mentioned `exemptionsToAssign`; `exemptionsToRemove` and `taxExempt` exist too, and Undo uses them. `companyLocationAssignTaxExemptions` / `companyLocationRevokeTaxExemptions` also exist.
 - Exists in 2026-10: `companyLocationUpdate`, `companyAssignCustomerAsContact`, `companyContactCreate`, `companyContactAssignRole(s)`, `companyLocationAssignRoles`, `companyAssignMainContact`, `companyDelete` (returns `deletedCompanyId`), `companyLocationCreateTaxRegistration`.
-- ✅ **`companyContactSendWelcomeEmail(companyContactId: ID!, email: EmailInput)`** exists. So we use Shopify's own B2B welcome email, and our "You're approved" email is the fallback (DECISIONS D-005). The Flow template is optional.
+- ✅ **`companyContactSendWelcomeEmail(companyContactId: ID!, email: EmailInput)`** exists. So we use Shopify's own B2B welcome email (DECISIONS D-005). Since D-091 it is the only email in Tradepass, with no fallback. The Flow template is optional. `customerSendAccountInviteEmail` is not used: it only works with legacy customer accounts.
 - 🔲 `paymentTermsTemplates` query exists (index). Check its scope and `BuyerExperienceConfigurationInput.paymentTermsTemplateId` / `checkoutToDraft` in P2.
 
 ## TaxExemption enum ✅ (exactly as the prompt says)
@@ -174,10 +174,9 @@ Theme app extension `extensions/tradepass-theme`, app proxy endpoints `app/route
 **Differences from the spec, and risks**
 - ⚠️ React 18 didn't attach `onChange` to custom elements and wrote `false` booleans as the string `"false"` on Polaris web components. `app/components/form-builder/wc.tsx` works around it by setting properties and listening to native events. The app is now on **React 19** (D-013), which supports custom elements properly.
 
-## Area: Emails, notifications, certificates (P4, P6)
+## Area: Certificates (P4, P6) — the email parts were removed in D-091
 
 **Confirmed**
-- ✅ Brevo transactional email (https://developers.brevo.com/reference/send-transac-email): `POST https://api.brevo.com/v3/smtp/email`, header `api-key`, JSON `sender {name ≤70, email}`, `to [{email}]`, `replyTo {email}`, `subject`, `htmlContent`, `textContent`, `headers` (we send `IdempotencyKey` = the EmailLog id), `tags`. 201 → `{ messageId }`.
 - ✅ `companyLocationTaxSettingsUpdate(companyLocationId!, exemptionsToRemove: [TaxExemption!], …)` returns `companyLocation`, `userErrors { field message }`. Needs `write_companies` (or `write_customers`) and B2B. Not deprecated.
 - ✅ `GenericFile { url mimeType fileStatus … }` and `MediaImage { mimeType image { url } }`, both read through `node(id:)`. Needs `read_files` or another qualifying read scope (`read_products`, covered by `write_products`).
 - ✅ `CompanyContact { locale company { name } customer: Customer! }` and `Customer { firstName locale defaultEmailAddress { emailAddress } }`.
@@ -185,8 +184,7 @@ Theme app extension `extensions/tradepass-theme`, app proxy endpoints `app/route
 - The renewal link is `https://{shop}/apps/tradepass/renew/{token}?lang=xx`, which maps to `/proxy/renew/:token`. The signature is checked with `verifyProxyRequest`.
 
 **Differences from the spec, and risks**
-- ⚠️ Brevo documents errors only as 400 `{ code, message }`; codes like `unauthorized` and `Insufficient credits` come inside the 400. We treat 5xx, 429, 401/403 and account-type codes as "retry later", and other 4xx as permanent.
-- ⚠️ The sender **email** must be a verified sender or domain in *our* Brevo account (`BREVO_SENDER_EMAIL`). Only the sender **name** is the store name. Reply-to is the store's email (`Shop.email`). The spec's "sender = store" is met for the name only.
+- 🗑️ Brevo (removed, D-091): Brevo no longer sends from free addresses (Gmail etc.) on any plan, so it would need a purchased, authenticated domain.
 - ⚠️ `Customer.email` is deprecated, so we use `defaultEmailAddress.emailAddress`.
 
 ## Area: Automation, Flow, wholesale-only lock, import (P5 Function, P7)

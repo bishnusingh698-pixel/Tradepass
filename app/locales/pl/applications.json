@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Dodaj notatkę",
   "applications.detail.saveNote": "Zapisz notatkę",
   "applications.detail.toast.reject": "Odrzucono wniosek",
-  "applications.detail.toast.needs_info": "Wysłano prośbę do wnioskodawcy",
+  "applications.detail.toast.needs_info": "Prośba zapisana. Wyślij wnioskodawcy wiadomość z bezpiecznym linkiem.",
   "applications.detail.toast.note": "Zapisano notatkę",
   "applications.detail.toast.assign": "Zapisano przypisanie",
   "applications.needsInfo.heading": "Poproś o dodatkowe informacje",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Pola, które mogą zmienić",
   "applications.needsInfo.fieldsHelp": "Wnioskodawca otrzyma prywatny link ważny 14 dni i będzie mógł zmienić tylko te pola.",
   "applications.needsInfo.fieldsRequired": "Wybierz co najmniej jedno pole.",
-  "applications.needsInfo.send": "Wyślij prośbę",
+  "applications.needsInfo.send": "Utwórz prośbę",
   "applications.reject.heading": "Odrzucić wniosek firmy {company}?",
   "applications.reject.template": "Szablon powodu",
   "applications.reject.templateNone": "Bez szablonu",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Dziękujemy za zainteresowanie. Nie udało się zweryfikować informacji we wniosku, więc nie możemy go teraz zatwierdzić. Zapraszamy do ponownego złożenia wniosku.",
   "applications.reject.template.region": "Dziękujemy za zainteresowanie. Nie oferujemy jeszcze sprzedaży hurtowej w tym regionie.",
   "applications.reject.reason": "Powód (opcjonalnie)",
-  "applications.reject.reasonHelp": "Jeśli wyślesz e-mail, wnioskodawca zobaczy ten powód.",
-  "applications.reject.email": "Wyślij e-mail do wnioskodawcy",
+  "applications.reject.reasonHelp": "Zapisywany we wniosku i dodawany do wiadomości, którą możesz wysłać wnioskodawcy.",
   "applications.reject.consequence": "Wniosek trafi do sekcji Odrzucone. W Shopify nic nie zostanie utworzone, a wniosek nadal znajdziesz na karcie Odrzucone.",
   "applications.reject.confirm": "Odrzuć wniosek",
   "applications.activity.application.submit": "Złożono wniosek",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Dodano notatkę",
   "applications.activity.application.assign": "Zmieniono przypisanie",
   "applications.taxCheck.skipped": "Nie sprawdzono w Twoim planie",
-  "applications.detail.taxCheckPlan": "Numery podatkowe są weryfikowane w oficjalnych rejestrach od planu {plan} wzwyż. Sprawdź ten numer ręcznie lub przejdź na wyższy plan, aby nowe wnioski były sprawdzane automatycznie."
+  "applications.detail.taxCheckPlan": "Numery podatkowe są weryfikowane w oficjalnych rejestrach od planu {plan} wzwyż. Sprawdź ten numer ręcznie lub przejdź na wyższy plan, aby nowe wnioski były sprawdzane automatycznie.",
+  "applications.detail.copyMessage": "Wiadomość dla wnioskodawcy"
 }

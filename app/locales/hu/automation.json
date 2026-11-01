@@ -48,9 +48,8 @@
   "automation.action.terms": "Fizetési feltételek",
   "automation.action.tierTerms": "A szint fizetési feltételei",
   "automation.action.sendWelcome": "A Shopify B2B-hozzáférési e-mailjének elküldése a vásárlónak",
-  "automation.action.emailApplicant": "E-mail a jelentkezőnek arról, hogy nem hagytuk jóvá",
   "automation.action.reason": "Indoklás (nem kötelező)",
-  "automation.action.reasonHelp": "Az e-mailben azon a nyelven jelenik meg, amelyen megírja.",
+  "automation.action.reasonHelp": "A jelentkezéssel együtt mentjük, és bekerül abba az üzenetbe, amelyet ott kimásolhat.",
   "automation.error.summary": "{count, plural, one {Mentés előtt javítson ki # hibát.} other {Mentés előtt javítson ki # hibát.}}",
   "automation.error.conditions_required": "Adjon meg legalább egy feltételt.",
   "automation.error.values_required": "Adjon meg legalább egy értéket.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Nem sikerült visszavonni ezt a döntést. Nézze meg a tevékenységnaplót, és próbálja újra.",
   "automation.reverse.heading": "Visszavonja a(z) {company} döntését?",
   "automation.reverse.approvedBody": "A(z) {company} szüneteltetve lesz: a vállalat a Shopifyban marad, de kikerül a szintjéből, és kiskereskedelmi árakat lát. A Vásárlók oldalon újraaktiválhatja.",
-  "automation.reverse.rejectedBody": "A(z) {company} visszakerül az Elbírálásra vár állapotba. Ha elutasító e-mail ment ki, azt nem lehet visszahívni.",
+  "automation.reverse.rejectedBody": "{company} visszakerül az Ellenőrzésre vár állapotba. Ha már értesítette a jelentkezőt, szóljon neki.",
   "automation.reverse.confirm": "Döntés visszavonása",
   "automation.flow.heading": "Shopify Flow-integráció",
   "automation.flow.body": "Használja ezeket a Tradepass-eseményindítókat és -műveleteket a Shopify Flow-ban saját munkafolyamatok létrehozásához, például vásárlók címkézéséhez vagy Slack-üzenet küldéséhez.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Igazolás lejárt",
   "automation.flow.action.approve": "Nagykereskedelmi jelentkezés jóváhagyása szintbe",
   "automation.flow.welcomeNote": "A Tradepass vásárló jóváhagyásakor már el tudja küldeni a Shopify B2B-hozzáférési e-mailjét, így ehhez nincs szükség külön munkafolyamatra.",
-  "automation.flow.open": "Shopify Flow megnyitása"
+  "automation.flow.open": "Shopify Flow megnyitása",
+  "automation.flow.alerts": "E-mailt szeretne, ha valaki jelentkezik? A Shopify Flow-ban használja a „Wholesale application submitted” eseményindítót a Flow „Send internal email” műveletével. Ez a művelet csak a munkafolyamatban megadott, rögzített munkatársi címekre küld."
 }

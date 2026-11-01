@@ -53,15 +53,13 @@
   "help.faq.import.q": "Voinko tuoda nykyiset tukkuasiakkaani?",
   "help.faq.import.a": "Kyllä, Pro-paketissa. Lataa CSV-tiedosto tai muunna asiakkaat, joilla on jo tunniste kuten ”tukku”.",
   "help.faq.languages.q": "Mitä kieliä tuetaan?",
-  "help.faq.languages.a": "36 kieltä. Lomake, kauppanäkymän viestit ja sähköpostit näkyvät kunkin vierailijan kielellä, ja voit muuttaa mitä tahansa tekstiä kohdassa Asetukset → Kielet.",
-  "help.faq.emails.q": "Kuinka monta sähköpostia Tradepass lähettää?",
-  "help.faq.emails.a": "Enintään 25 sähköpostia kauppaa kohden päivässä. Ylimääräiset lähetetään seuraavana päivänä, ja Etusivu kertoo, kun näin käy. Voit poistaa sähköpostimme käytöstä ja käyttää sen sijaan Shopify Flow’ta.",
+  "help.faq.languages.a": "36 kieltä. Lomake, kaupan ilmoitukset ja hakijoille lähettämäsi viestit näkyvät kunkin omalla kielellä, ja voit muuttaa mitä tahansa tekstiä kohdassa Asetukset → Kielet.",
   "help.faq.approvalLimit.q": "Mitä tapahtuu, kun ilmaisen paketin 10 hyväksyntää täyttyy?",
   "help.faq.approvalLimit.a": "Uusia hakemuksia kerätään edelleen, joten yksikään liidi ei katoa. Jos haluat hyväksyä lisää saman kuun aikana, valitse maksullinen paketti.",
   "help.faq.markets.q": "Etusivun mukaan B2B-markkina-alueet eivät ole käytössä. Mitä teen?",
   "help.faq.markets.a": "Plus-pakettia alemmissa paketeissa tasohinnat edellyttävät Shopifyn uudempia markkina-alueita. Ota ne käyttöön Shopifyssa kohdassa Asetukset → Markkina-alueet ja valitse sitten Etusivulla ”Tarkista uudelleen”.",
   "help.faq.privacy.q": "Miten hakijoiden tiedot suojataan?",
-  "help.faq.privacy.a": "Verotunnisteet salataan, sähköpostien linkit vanhenevat ja toimivat kerran, ja hylätyt hakemukset poistetaan asetuksissa valitsemasi ajan kuluttua.",
+  "help.faq.privacy.a": "Verotunnukset salataan, suojatut linkit vanhenevat ja toimivat kerran, ja hylätyt hakemukset poistetaan Asetuksissa valitsemasi ajan jälkeen.",
   "help.faq.slowFirstLoad.q": "Miksi sovellus avautuu joskus hitaasti?",
   "help.faq.slowFirstLoad.a": "Hiljaisen jakson jälkeen sovelluksen herääminen voi kestää jopa minuutin. Kauppanäkymään tämä ei vaikuta: hintojen piilotus ja lomake toimivat koko ajan.",
   "help.diagnostics.heading": "Diagnostiikkatiedot",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Poista vianmääritystila käytöstä",
   "help.contact.heading": "Ota yhteyttä tukeen",
   "help.contact.body": "Vastaamme yleensä 2 arkipäivän kuluessa.",
-  "help.contact.priority": "Käytössäsi on Pro, joten sähköposteihisi vastataan ensin, yleensä 1 arkipäivän kuluessa."
+  "help.contact.priority": "Käytössäsi on Pro, joten sähköposteihisi vastataan ensin, yleensä 1 arkipäivän kuluessa.",
+  "help.faq.alerts.q": "Miten saan tiedon uusista hakemuksista?",
+  "help.faq.alerts.a": "Tradepass ei lähetä sähköposteja. Uudet hakemukset ja vastaukset odottavat sinua Etusivulla ja kohdassa Hakemukset. Saat sähköposti-ilmoituksen luomalla Shopify Flow’ssa (Tradepass Pro) työnkulun, jossa on käynnistin ”Wholesale application submitted” ja Flow’n toiminto ”Send internal email”. Toiminto lähettää vain kiinteisiin henkilökunnan osoitteisiin, jotka annat työnkulussa."
 }

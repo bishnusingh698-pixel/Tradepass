@@ -48,9 +48,8 @@
   "automation.action.terms": "Betalingsvoorwaarden",
   "automation.action.tierTerms": "Voorwaarden van het niveau gebruiken",
   "automation.action.sendWelcome": "De koper de B2B-toegangsmail van Shopify sturen",
-  "automation.action.emailApplicant": "De aanvrager e-mailen dat de aanvraag niet is goedgekeurd",
   "automation.action.reason": "Reden (optioneel)",
-  "automation.action.reasonHelp": "Wordt in de e-mail getoond in de taal waarin u hem schrijft.",
+  "automation.action.reasonHelp": "Opgeslagen bij de aanvraag en opgenomen in het bericht dat je daar kunt kopiëren.",
   "automation.error.summary": "{count, plural, one {Los # probleem op voordat u opslaat.} other {Los # problemen op voordat u opslaat.}}",
   "automation.error.conditions_required": "Voeg minimaal één voorwaarde toe.",
   "automation.error.values_required": "Voer minimaal één waarde in.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Kon deze beslissing niet terugdraaien. Bekijk het activiteitenlogboek en probeer het opnieuw.",
   "automation.reverse.heading": "Beslissing voor {company} terugdraaien?",
   "automation.reverse.approvedBody": "{company} wordt gepauzeerd: het bedrijf blijft in Shopify, maar verlaat zijn niveau en ziet winkelprijzen. U kunt het hervatten via Kopers.",
-  "automation.reverse.rejectedBody": "{company} gaat terug naar Wacht op beoordeling. Als er een afwijzingsmail is verstuurd, kan die niet worden teruggehaald.",
+  "automation.reverse.rejectedBody": "{company} gaat terug naar Wacht op beoordeling. Als je de aanvrager al hebt ingelicht, laat het hem dan weten.",
   "automation.reverse.confirm": "Beslissing terugdraaien",
   "automation.flow.heading": "Shopify Flow-koppeling",
   "automation.flow.body": "Gebruik deze Tradepass-triggers en -acties in Shopify Flow om uw eigen workflows te bouwen, zoals kopers taggen of een Slack-bericht sturen.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Certificaat verlopen",
   "automation.flow.action.approve": "Groothandelsaanvraag goedkeuren voor niveau",
   "automation.flow.welcomeNote": "Tradepass kan de B2B-toegangsmail van Shopify al versturen wanneer het een koper goedkeurt, dus daarvoor is geen extra workflow nodig.",
-  "automation.flow.open": "Shopify Flow openen"
+  "automation.flow.open": "Shopify Flow openen",
+  "automation.flow.alerts": "Wil je een e-mail als iemand een aanvraag doet? Gebruik in Shopify Flow de trigger 'Wholesale application submitted' met de Flow-actie 'Send internal email'. Die actie mailt alleen vaste adressen van medewerkers die je in de workflow invult."
 }

@@ -48,9 +48,8 @@
   "automation.action.terms": "Warunki płatności",
   "automation.action.tierTerms": "Użyj warunków płatności poziomu",
   "automation.action.sendWelcome": "Wyślij kupującemu e-mail Shopify o dostępie B2B",
-  "automation.action.emailApplicant": "Powiadom wnioskodawcę e-mailem, że wniosek nie został zatwierdzony",
   "automation.action.reason": "Powód (opcjonalnie)",
-  "automation.action.reasonHelp": "Wyświetlany w e-mailu w języku, w którym go wpiszesz.",
+  "automation.action.reasonHelp": "Zapisywany we wniosku i dodawany do wiadomości, którą możesz tam skopiować.",
   "automation.error.summary": "{count, plural, one {Przed zapisaniem popraw # problem.} few {Przed zapisaniem popraw # problemy.} many {Przed zapisaniem popraw # problemów.} other {Przed zapisaniem popraw # problemu.}}",
   "automation.error.conditions_required": "Dodaj co najmniej jeden warunek.",
   "automation.error.values_required": "Podaj co najmniej jedną wartość.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Nie udało się cofnąć decyzji. Sprawdź dziennik aktywności i spróbuj ponownie.",
   "automation.reverse.heading": "Cofnąć decyzję dla firmy {company}?",
   "automation.reverse.approvedBody": "Firma {company} zostanie wstrzymana: pozostanie w Shopify, ale opuści swój poziom i będzie widzieć ceny detaliczne. Można ją wznowić w sekcji Kupujący.",
-  "automation.reverse.rejectedBody": "Firma {company} wróci do stanu Czeka na rozpatrzenie. Wysłanego e-maila o odrzuceniu nie można wycofać.",
+  "automation.reverse.rejectedBody": "{company} wraca do statusu Czeka na sprawdzenie. Jeśli już poinformowano wnioskodawcę, daj mu znać.",
   "automation.reverse.confirm": "Cofnij decyzję",
   "automation.flow.heading": "Integracja z Shopify Flow",
   "automation.flow.body": "Używaj tych wyzwalaczy i akcji Tradepass w Shopify Flow, aby tworzyć własne przepływy pracy, np. tagować kupujących lub wysyłać wiadomości na Slacku.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Zaświadczenie wygasło",
   "automation.flow.action.approve": "Zatwierdź wniosek hurtowy na poziom",
   "automation.flow.welcomeNote": "Tradepass może już wysyłać e-mail Shopify o dostępie B2B przy zatwierdzaniu kupującego, więc nie trzeba do tego dodatkowego przepływu pracy.",
-  "automation.flow.open": "Otwórz Shopify Flow"
+  "automation.flow.open": "Otwórz Shopify Flow",
+  "automation.flow.alerts": "Chcesz dostawać e-mail, gdy ktoś złoży wniosek? W Shopify Flow użyj wyzwalacza „Wholesale application submitted” z akcją Flow „Send internal email”. Ta akcja wysyła wiadomości tylko na stałe adresy pracowników wpisane w przepływie pracy."
 }

@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "ありがとうございます。申請内容が更新されました",
   "hosted.update.doneBody": "{store}が内容を確認し、メールでご連絡します。",
   "hosted.link.invalidTitle": "このリンクは無効です",
-  "hosted.link.invalidBody": "メールのリンクを最後まで正しく開いたかご確認いただくか、{store}にお問い合わせください。",
+  "hosted.link.invalidBody": "リンク全体を開いたか確認するか、{store}にお問い合わせください。",
   "hosted.link.expiredTitle": "このリンクは有効期限切れです",
   "hosted.link.expiredBody": "セキュリティ保護のため、更新用リンクの有効期間は限られています。{store}にお問い合わせのうえ、新しいリンクをご依頼ください。",
   "hosted.link.usedTitle": "このリンクはすでに使用されています",

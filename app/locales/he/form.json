@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "מוצג ליד תיבת ההסכמה. יש להשתמש בכתובת מלאה או בנתיב בחנות, כמו /policies/privacy-policy.",
   "form.success.heading": "אחרי השליחה",
   "form.success.message": "הודעת תודה",
-  "form.success.messageHelp": "מגישי הבקשות רואים גם שאימייל אישור בדרך אליהם.",
+  "form.success.messageHelp": "מוצג למגישי הבקשות אחרי שליחת הטופס.",
   "form.success.redirect": "הפניה לדף (לא חובה)",
   "form.success.redirectHelp": "שליחת מגישי הבקשות לדף אחר אחרי הודעת התודה, למשל /pages/thank-you.",
   "form.spam.heading": "הגנה מפני ספאם",

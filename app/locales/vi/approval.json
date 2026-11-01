@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Chúng tôi sẽ tạo khách hàng mới cho {name} ({email}).",
   "approval.field.sendWelcome": "Gửi email chào mừng",
   "approval.welcome.shopify": "Email chào mừng B2B của Shopify, kèm liên kết để đăng nhập.",
-  "approval.welcome.ours": "Email “Bạn đã được phê duyệt” của Tradepass bằng ngôn ngữ của người mua.",
   "approval.action.approve": "Phê duyệt",
   "approval.action.retry": "Thử lại",
   "approval.action.retryEmail": "Gửi lại email",

@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Προσθήκη σημείωσης",
   "applications.detail.saveNote": "Αποθήκευση",
   "applications.detail.toast.reject": "Η αίτηση απορρίφθηκε",
-  "applications.detail.toast.needs_info": "Το αίτημα στάλθηκε στον αιτούντα",
+  "applications.detail.toast.needs_info": "Το αίτημα αποθηκεύτηκε. Στείλτε στον αιτούντα το μήνυμα με τον ασφαλή σύνδεσμο.",
   "applications.detail.toast.note": "Η σημείωση αποθηκεύτηκε",
   "applications.detail.toast.assign": "Η ανάθεση αποθηκεύτηκε",
   "applications.needsInfo.heading": "Αίτημα για περισσότερες πληροφορίες",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Πεδία που μπορεί να αλλάξει",
   "applications.needsInfo.fieldsHelp": "Ο αιτών λαμβάνει ιδιωτικό σύνδεσμο που ισχύει 14 ημέρες και μπορεί να αλλάξει μόνο αυτά τα πεδία.",
   "applications.needsInfo.fieldsRequired": "Επιλέξτε τουλάχιστον ένα πεδίο.",
-  "applications.needsInfo.send": "Αποστολή αιτήματος",
+  "applications.needsInfo.send": "Δημιουργία αιτήματος",
   "applications.reject.heading": "Απόρριψη {company};",
   "applications.reject.template": "Πρότυπο αιτίας",
   "applications.reject.templateNone": "Χωρίς πρότυπο",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Σας ευχαριστούμε για το ενδιαφέρον σας. Δεν μπορέσαμε να επαληθεύσουμε τα στοιχεία της αίτησής σας, οπότε δεν μπορούμε να την εγκρίνουμε τώρα. Μπορείτε να υποβάλετε ξανά αίτηση.",
   "applications.reject.template.region": "Σας ευχαριστούμε για το ενδιαφέρον σας. Δεν προσφέρουμε ακόμη χονδρική στην περιοχή σας.",
   "applications.reject.reason": "Αιτία (προαιρετικό)",
-  "applications.reject.reasonHelp": "Αν στείλετε email, ο αιτών βλέπει αυτή την αιτία.",
-  "applications.reject.email": "Αποστολή email στον αιτούντα",
+  "applications.reject.reasonHelp": "Αποθηκεύεται με την αίτηση και περιλαμβάνεται στο μήνυμα που μπορείτε να στείλετε στον αιτούντα.",
   "applications.reject.consequence": "Η αίτηση μεταφέρεται στις Απορρίφθηκαν. Δεν δημιουργείται τίποτα στο Shopify και μπορείτε να τη βρείτε στην καρτέλα Απορρίφθηκαν.",
   "applications.reject.confirm": "Απόρριψη αίτησης",
   "applications.activity.application.submit": "Η αίτηση υποβλήθηκε",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Προστέθηκε σημείωση",
   "applications.activity.application.assign": "Η ανάθεση άλλαξε",
   "applications.taxCheck.skipped": "Χωρίς έλεγχο στο πρόγραμμά σας",
-  "applications.detail.taxCheckPlan": "Οι αριθμοί ΑΦΜ ελέγχονται σε επίσημα μητρώα από το πρόγραμμα {plan} και πάνω. Ελέγξτε τον χειροκίνητα ή αναβαθμίστε για αυτόματο έλεγχο των νέων αιτήσεων."
+  "applications.detail.taxCheckPlan": "Οι αριθμοί ΑΦΜ ελέγχονται σε επίσημα μητρώα από το πρόγραμμα {plan} και πάνω. Ελέγξτε τον χειροκίνητα ή αναβαθμίστε για αυτόματο έλεγχο των νέων αιτήσεων.",
+  "applications.detail.copyMessage": "Μήνυμα για τον αιτούντα"
 }

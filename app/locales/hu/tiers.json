@@ -42,7 +42,7 @@
   "tiers.editor.name": "Szint neve",
   "tiers.editor.nameHelp": "Ezt a nevet csak Ön látja, például Kiskereskedő vagy Disztribútor.",
   "tiers.editor.buyerNames": "A vásárlók által látott név",
-  "tiers.editor.buyerNamesHelp": "Nem kötelező. Nyelvenként jelenik meg a vásárlóknak az e-mailekben és az áruházban. Üresen hagyva a szint neve látszik.",
+  "tiers.editor.buyerNamesHelp": "Nem kötelező. Nyelvenként jelenik meg a vevőknek az áruházban. Üresen a szint neve látszik.",
   "tiers.editor.buyerNameFor": "Név – {language}",
   "tiers.editor.pricing": "Az árak meghatározása",
   "tiers.editor.pricing.percent": "Százalékos kedvezmény a kiskereskedelmi árból",

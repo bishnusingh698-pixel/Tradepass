@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Adăugați o notă",
   "applications.detail.saveNote": "Salvați nota",
   "applications.detail.toast.reject": "Cererea a fost respinsă",
-  "applications.detail.toast.needs_info": "Solicitarea a fost trimisă",
+  "applications.detail.toast.needs_info": "Solicitare salvată. Trimite-i solicitantului mesajul cu linkul securizat.",
   "applications.detail.toast.note": "Nota a fost salvată",
   "applications.detail.toast.assign": "Atribuirea a fost salvată",
   "applications.needsInfo.heading": "Cereți mai multe informații",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Câmpuri pe care le poate modifica",
   "applications.needsInfo.fieldsHelp": "Solicitantul primește un link privat valabil 14 zile, cu care poate modifica doar aceste câmpuri.",
   "applications.needsInfo.fieldsRequired": "Alegeți cel puțin un câmp.",
-  "applications.needsInfo.send": "Trimiteți solicitarea",
+  "applications.needsInfo.send": "Creează solicitarea",
   "applications.reject.heading": "Respingeți {company}?",
   "applications.reject.template": "Șablon de motiv",
   "applications.reject.templateNone": "Fără șablon",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Vă mulțumim pentru interes. Nu am putut verifica informațiile din cerere, așa că nu o putem aproba acum. Sunteți binevenit să trimiteți o nouă cerere.",
   "applications.reject.template.region": "Vă mulțumim pentru interes. Încă nu oferim vânzări en-gros în zona dumneavoastră.",
   "applications.reject.reason": "Motiv (opțional)",
-  "applications.reject.reasonHelp": "Dacă trimiteți un e-mail, solicitantul vede acest motiv.",
-  "applications.reject.email": "Trimiteți e-mail solicitantului",
+  "applications.reject.reasonHelp": "Se salvează cu cererea și apare în mesajul pe care îl poți trimite solicitantului.",
   "applications.reject.consequence": "Cererea trece la Respinse. Nu se creează nimic în Shopify și o puteți găsi în continuare în fila Respinse.",
   "applications.reject.confirm": "Respingeți cererea",
   "applications.activity.application.submit": "Cerere trimisă",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Notă adăugată",
   "applications.activity.application.assign": "Atribuire modificată",
   "applications.taxCheck.skipped": "Neverificat în planul dvs.",
-  "applications.detail.taxCheckPlan": "Codurile fiscale sunt verificate în registrele oficiale începând cu planul {plan}. Verificați-l manual sau treceți la un plan superior pentru verificarea automată a cererilor noi."
+  "applications.detail.taxCheckPlan": "Codurile fiscale sunt verificate în registrele oficiale începând cu planul {plan}. Verificați-l manual sau treceți la un plan superior pentru verificarea automată a cererilor noi.",
+  "applications.detail.copyMessage": "Mesaj pentru solicitant"
 }

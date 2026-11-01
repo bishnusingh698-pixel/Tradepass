@@ -42,7 +42,7 @@
   "tiers.editor.name": "Seviye adı",
   "tiers.editor.nameHelp": "Bu adı yalnızca siz görürsünüz; örneğin Perakendeci veya Distribütör.",
   "tiers.editor.buyerNames": "Alıcıların gördüğü ad",
-  "tiers.editor.buyerNamesHelp": "İsteğe bağlı. Alıcılara e-postalarda ve mağazanızda, dile göre gösterilir. Boş bırakılırsa seviye adı kullanılır.",
+  "tiers.editor.buyerNamesHelp": "İsteğe bağlı. Mağazanızda alıcılara dile göre gösterilir. Boş bırakılırsa seviye adı kullanılır.",
   "tiers.editor.buyerNameFor": "{language} dilinde ad",
   "tiers.editor.pricing": "Fiyatların belirlenme şekli",
   "tiers.editor.pricing.percent": "Perakende fiyattan yüzde indirim",

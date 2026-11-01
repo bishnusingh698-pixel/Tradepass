@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Kami akan mencipta pelanggan baharu untuk {name} ({email}).",
   "approval.field.sendWelcome": "Hantar e-mel alu-aluan",
   "approval.welcome.shopify": "E-mel alu-aluan B2B Shopify, dengan pautan untuk log masuk.",
-  "approval.welcome.ours": "E-mel “Anda telah diluluskan” Tradepass dalam bahasa pembeli.",
   "approval.action.approve": "Luluskan",
   "approval.action.retry": "Cuba lagi",
   "approval.action.retryEmail": "Hantar e-mel semula",

@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "We maken een nieuwe klant aan voor {name} ({email}).",
   "approval.field.sendWelcome": "Welkomstmail versturen",
   "approval.welcome.shopify": "De B2B-welkomstmail van Shopify, met een link om in te loggen.",
-  "approval.welcome.ours": "De e-mail ‘U bent goedgekeurd’ van Tradepass, in de taal van de koper.",
   "approval.action.approve": "Goedkeuren",
   "approval.action.retry": "Opnieuw proberen",
   "approval.action.retryEmail": "E-mail opnieuw versturen",

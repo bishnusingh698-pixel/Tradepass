@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Vă mulțumim, cererea dumneavoastră a fost actualizată",
   "hosted.update.doneBody": "{store} o va examina și vă va răspunde prin e-mail.",
   "hosted.link.invalidTitle": "Acest link nu este valid",
-  "hosted.link.invalidBody": "Verificați dacă ați deschis linkul complet din e-mail sau contactați {store}.",
+  "hosted.link.invalidBody": "Verifică dacă ai deschis linkul complet sau contactează {store}.",
   "hosted.link.expiredTitle": "Acest link a expirat",
   "hosted.link.expiredBody": "Pentru siguranța dumneavoastră, linkurile de actualizare funcționează doar o perioadă limitată. Contactați {store} și cereți un link nou.",
   "hosted.link.usedTitle": "Acest link a fost deja folosit",

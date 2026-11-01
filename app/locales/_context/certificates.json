@@ -54,16 +54,9 @@
     "maxLength": 20,
     "placeholders": []
   },
-  "certificates.rules.auto": {
+  "certificates.rules": {
     "note": "Rules summary line.",
-    "maxLength": 220,
-    "placeholders": [
-      "days"
-    ]
-  },
-  "certificates.rules.manual": {
-    "note": "Rules summary line.",
-    "maxLength": 220,
+    "maxLength": 300,
     "placeholders": [
       "days"
     ]
@@ -295,11 +288,6 @@
     "maxLength": 30,
     "placeholders": []
   },
-  "certificates.action.request": {
-    "note": "Button: emails the buyer an upload link.",
-    "maxLength": 40,
-    "placeholders": []
-  },
   "certificates.action.setExpiry": {
     "note": "Button.",
     "maxLength": 30,
@@ -403,11 +391,6 @@
     "maxLength": 50,
     "placeholders": []
   },
-  "certificates.toast.request": {
-    "note": "Toast.",
-    "maxLength": 50,
-    "placeholders": []
-  },
   "certificates.toast.expiry_keep": {
     "note": "Toast.",
     "maxLength": 50,
@@ -438,11 +421,6 @@
     "maxLength": 60,
     "placeholders": []
   },
-  "certificates.error.no_recipient": {
-    "note": "Error toast.",
-    "maxLength": 140,
-    "placeholders": []
-  },
   "certificates.error.no_buyer": {
     "note": "Error toast.",
     "maxLength": 100,
@@ -471,6 +449,11 @@
   "certificates.error.file": {
     "note": "Error toast.",
     "maxLength": 100,
+    "placeholders": []
+  },
+  "certificates.action.copyLink": {
+    "note": "Admin text.",
+    "maxLength": 60,
     "placeholders": []
   }
 }

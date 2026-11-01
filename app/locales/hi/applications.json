@@ -127,7 +127,7 @@
   "applications.detail.addNote": "नोट जोड़ें",
   "applications.detail.saveNote": "नोट सेव करें",
   "applications.detail.toast.reject": "आवेदन अस्वीकार किया गया",
-  "applications.detail.toast.needs_info": "आवेदक को अनुरोध भेजा गया",
+  "applications.detail.toast.needs_info": "अनुरोध सेव हो गया। आवेदक को सुरक्षित लिंक वाला संदेश भेजें।",
   "applications.detail.toast.note": "नोट सेव हो गया",
   "applications.detail.toast.assign": "असाइनमेंट सेव हो गया",
   "applications.needsInfo.heading": "और जानकारी माँगें",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "वे फ़ील्ड जिन्हें वे बदल सकते हैं",
   "applications.needsInfo.fieldsHelp": "आवेदक को एक निजी लिंक मिलता है जो 14 दिनों तक मान्य रहता है, और वे सिर्फ़ इन्हीं फ़ील्ड को बदल सकते हैं।",
   "applications.needsInfo.fieldsRequired": "कम से कम एक फ़ील्ड चुनें।",
-  "applications.needsInfo.send": "अनुरोध भेजें",
+  "applications.needsInfo.send": "अनुरोध बनाएं",
   "applications.reject.heading": "{company} को अस्वीकार करें?",
   "applications.reject.template": "कारण का टेम्प्लेट",
   "applications.reject.templateNone": "कोई टेम्प्लेट नहीं",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "आपकी रुचि के लिए धन्यवाद। हम आपके आवेदन की जानकारी की पुष्टि नहीं कर सके, इसलिए अभी इसे मंज़ूर नहीं कर सकते। आप चाहें तो फिर से आवेदन कर सकते हैं।",
   "applications.reject.template.region": "आपकी रुचि के लिए धन्यवाद। हम अभी आपके इलाके में होलसेल की सुविधा नहीं देते।",
   "applications.reject.reason": "कारण (वैकल्पिक)",
-  "applications.reject.reasonHelp": "अगर आप ईमेल भेजते हैं, तो आवेदक यह कारण देखेगा।",
-  "applications.reject.email": "आवेदक को ईमेल करें",
+  "applications.reject.reasonHelp": "आवेदन के साथ सेव होता है और उस संदेश में शामिल होता है जो आप आवेदक को भेज सकते हैं।",
   "applications.reject.consequence": "आवेदन अस्वीकृत में चला जाएगा। Shopify में कुछ नहीं बनता, और आप इसे अस्वीकृत टैब में बाद में भी देख सकते हैं।",
   "applications.reject.confirm": "आवेदन अस्वीकार करें",
   "applications.activity.application.submit": "आवेदन सबमिट हुआ",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "नोट जोड़ा गया",
   "applications.activity.application.assign": "असाइनमेंट बदला गया",
   "applications.taxCheck.skipped": "आपके प्लान में जाँच नहीं होती",
-  "applications.detail.taxCheckPlan": "{plan} और उससे ऊपर के प्लान में टैक्स नंबर आधिकारिक रजिस्ट्री से जाँचे जाते हैं। इसे खुद जाँचें, या नए आवेदनों की अपने-आप जाँच के लिए अपग्रेड करें।"
+  "applications.detail.taxCheckPlan": "{plan} और उससे ऊपर के प्लान में टैक्स नंबर आधिकारिक रजिस्ट्री से जाँचे जाते हैं। इसे खुद जाँचें, या नए आवेदनों की अपने-आप जाँच के लिए अपग्रेड करें।",
+  "applications.detail.copyMessage": "आवेदक के लिए संदेश"
 }

@@ -1,5 +1,5 @@
 import db from "../db.server";
-import { decrypt, sha256 } from "./crypto.server";
+import { decrypt } from "./crypto.server";
 import { DELETE_FILES_JOB } from "./tasks/background";
 
 // Everything we store per shop, in one place, so privacy webhooks and the
@@ -14,7 +14,6 @@ export async function deleteShopData(shop: string): Promise<void> {
     db.buyer.deleteMany({ where: { shop } }),
     db.tier.deleteMany({ where: { shop } }),
     db.form.deleteMany({ where: { shop } }),
-    db.emailLog.deleteMany({ where: { shop } }),
     db.activityLog.deleteMany({ where: { shop } }),
     db.job.deleteMany({ where: { shop } }),
     db.shopLock.deleteMany({ where: { shop } }),
@@ -40,7 +39,6 @@ export async function resetShopData(shop: string): Promise<void> {
     db.buyer.deleteMany({ where: { shop } }),
     db.tier.deleteMany({ where: { shop } }),
     db.form.deleteMany({ where: { shop } }),
-    db.emailLog.deleteMany({ where: { shop } }),
     db.activityLog.deleteMany({ where: { shop } }),
     db.job.deleteMany({ where: { shop } }),
     db.shopLock.deleteMany({ where: { shop } }),
@@ -71,9 +69,6 @@ async function applicationsFor(shop: string, c: CustomerRef) {
 export async function redactCustomer(shop: string, c: CustomerRef): Promise<number> {
   const apps = await applicationsFor(shop, c);
   const ids = apps.map((a) => a.id);
-  if (c.email) {
-    await db.emailLog.deleteMany({ where: { shop, toHash: sha256(c.email.toLowerCase()) } });
-  }
   if (!ids.length) return 0;
   // The applicant's documents live in the merchant's Shopify Files. Deleting them
   // needs Admin API calls, so a job does it within the hour (the webhook must answer fast).

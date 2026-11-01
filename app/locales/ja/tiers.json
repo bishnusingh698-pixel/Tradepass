@@ -42,7 +42,7 @@
   "tiers.editor.name": "価格ランク名",
   "tiers.editor.nameHelp": "この名前はストア側にのみ表示されます。例：小売店、代理店",
   "tiers.editor.buyerNames": "バイヤーに表示する名前",
-  "tiers.editor.buyerNamesHelp": "任意。メールやストアで、言語ごとにバイヤーに表示されます。空欄の場合は価格ランク名が使用されます。",
+  "tiers.editor.buyerNamesHelp": "任意。ストアで言語ごとにバイヤーに表示されます。空欄の場合はティア名が使われます。",
   "tiers.editor.buyerNameFor": "{language}での名前",
   "tiers.editor.pricing": "価格の設定方法",
   "tiers.editor.pricing.percent": "小売価格からの割引率",

@@ -15,7 +15,6 @@ const EU = `test-approval-eu-${rnd}.myshopify.com`;
 const shops = [SHOP, FREE, EU];
 
 timing.sleep = async () => undefined;
-delete process.env.BREVO_API_KEY;
 
 let fake: ReturnType<typeof fakeShopify>;
 let tierId: string;
@@ -38,7 +37,7 @@ beforeEach(async () => {
 
 afterAll(async () => {
   for (const shop of shops) {
-    for (const table of ["certificate", "buyer", "application", "job", "tier", "activityLog", "emailLog", "shopLock"] as const) {
+    for (const table of ["certificate", "buyer", "application", "job", "tier", "activityLog", "shopLock"] as const) {
       await (db[table] as unknown as { deleteMany: (a: object) => Promise<unknown> }).deleteMany({ where: { shop } });
     }
     await db.shop.deleteMany({ where: { shop } });

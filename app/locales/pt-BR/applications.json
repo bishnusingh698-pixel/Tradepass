@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Adicionar observação",
   "applications.detail.saveNote": "Salvar observação",
   "applications.detail.toast.reject": "Solicitação recusada",
-  "applications.detail.toast.needs_info": "Pedido enviado ao solicitante",
+  "applications.detail.toast.needs_info": "Pedido salvo. Envie ao solicitante a mensagem com o link seguro.",
   "applications.detail.toast.note": "Observação salva",
   "applications.detail.toast.assign": "Atribuição salva",
   "applications.needsInfo.heading": "Pedir mais informações",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Campos que podem ser alterados",
   "applications.needsInfo.fieldsHelp": "O solicitante recebe um link privado válido por 14 dias e só pode alterar estes campos.",
   "applications.needsInfo.fieldsRequired": "Escolha pelo menos um campo.",
-  "applications.needsInfo.send": "Enviar pedido",
+  "applications.needsInfo.send": "Criar pedido",
   "applications.reject.heading": "Recusar {company}?",
   "applications.reject.template": "Modelo de motivo",
   "applications.reject.templateNone": "Sem modelo",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Agradecemos seu interesse. Não conseguimos verificar as informações da sua solicitação, por isso não podemos aprová-la agora. Você pode enviar uma nova solicitação quando quiser.",
   "applications.reject.template.region": "Agradecemos seu interesse. Ainda não oferecemos atacado na sua região.",
   "applications.reject.reason": "Motivo (opcional)",
-  "applications.reject.reasonHelp": "Se você enviar um e-mail, o solicitante verá este motivo.",
-  "applications.reject.email": "Enviar e-mail ao solicitante",
+  "applications.reject.reasonHelp": "Salvo com a solicitação e incluído na mensagem que você pode enviar ao solicitante.",
   "applications.reject.consequence": "A solicitação vai para Recusadas. Nada é criado na Shopify, e você ainda pode encontrá-la na guia Recusadas.",
   "applications.reject.confirm": "Recusar solicitação",
   "applications.activity.application.submit": "Solicitação enviada",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Observação adicionada",
   "applications.activity.application.assign": "Atribuição alterada",
   "applications.taxCheck.skipped": "Não verificado no seu plano",
-  "applications.detail.taxCheckPlan": "Os números fiscais são verificados em registros oficiais a partir do plano {plan}. Verifique este número manualmente ou faça upgrade para verificar novas solicitações automaticamente."
+  "applications.detail.taxCheckPlan": "Os números fiscais são verificados em registros oficiais a partir do plano {plan}. Verifique este número manualmente ou faça upgrade para verificar novas solicitações automaticamente.",
+  "applications.detail.copyMessage": "Mensagem para o solicitante"
 }

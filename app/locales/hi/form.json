@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "सहमति चेकबॉक्स के पास दिखता है। पूरा पता या स्टोर पाथ इस्तेमाल करें, जैसे /policies/privacy-policy।",
   "form.success.heading": "सबमिट करने के बाद",
   "form.success.message": "धन्यवाद संदेश",
-  "form.success.messageHelp": "आवेदकों को यह भी दिखता है कि पुष्टि का ईमेल आ रहा है।",
+  "form.success.messageHelp": "फ़ॉर्म भेजने के बाद आवेदकों को दिखाया जाता है।",
   "form.success.redirect": "किसी पेज पर भेजें (वैकल्पिक)",
   "form.success.redirectHelp": "धन्यवाद संदेश के बाद आवेदकों को किसी दूसरे पेज पर भेजें, जैसे /pages/thank-you।",
   "form.spam.heading": "स्पैम से सुरक्षा",

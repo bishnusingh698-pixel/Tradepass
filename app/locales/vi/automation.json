@@ -48,9 +48,8 @@
   "automation.action.terms": "Điều khoản thanh toán",
   "automation.action.tierTerms": "Dùng điều khoản thanh toán của cấp giá",
   "automation.action.sendWelcome": "Gửi cho người mua email truy cập B2B của Shopify",
-  "automation.action.emailApplicant": "Gửi email báo cho người đăng ký rằng họ không được phê duyệt",
   "automation.action.reason": "Lý do (không bắt buộc)",
-  "automation.action.reasonHelp": "Hiển thị trong email bằng ngôn ngữ bạn viết.",
+  "automation.action.reasonHelp": "Được lưu cùng đơn đăng ký và đưa vào tin nhắn bạn có thể sao chép từ đó.",
   "automation.error.summary": "{count, plural, other {Sửa # lỗi trước khi lưu.}}",
   "automation.error.conditions_required": "Thêm ít nhất một điều kiện.",
   "automation.error.values_required": "Nhập ít nhất một giá trị.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Không thể hoàn tác quyết định này. Hãy kiểm tra nhật ký hoạt động và thử lại.",
   "automation.reverse.heading": "Hoàn tác quyết định cho {company}?",
   "automation.reverse.approvedBody": "{company} sẽ bị tạm dừng: công ty vẫn ở trong Shopify, nhưng họ rời khỏi cấp giá và thấy giá bán lẻ. Bạn có thể tiếp tục cho họ từ mục Người mua.",
-  "automation.reverse.rejectedBody": "{company} sẽ trở về trạng thái Đang chờ xem xét. Nếu email từ chối đã được gửi, không thể thu hồi.",
+  "automation.reverse.rejectedBody": "{company} trở về Đang chờ xem xét. Nếu bạn đã báo cho người đăng ký, hãy cho họ biết.",
   "automation.reverse.confirm": "Hoàn tác quyết định",
   "automation.flow.heading": "Tích hợp Shopify Flow",
   "automation.flow.body": "Dùng các trình kích hoạt và hành động Tradepass này trong Shopify Flow để xây dựng quy trình riêng, chẳng hạn gắn thẻ người mua hoặc gửi tin nhắn Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Giấy chứng nhận đã hết hạn",
   "automation.flow.action.approve": "Phê duyệt đơn đăng ký bán buôn vào cấp giá",
   "automation.flow.welcomeNote": "Tradepass đã có thể gửi email truy cập B2B của Shopify khi phê duyệt người mua, nên bạn không cần thêm quy trình nào cho việc đó.",
-  "automation.flow.open": "Mở Shopify Flow"
+  "automation.flow.open": "Mở Shopify Flow",
+  "automation.flow.alerts": "Muốn nhận email khi có người đăng ký? Trong Shopify Flow, hãy dùng trình kích hoạt “Wholesale application submitted” với hành động “Send internal email” của Flow. Hành động này chỉ gửi đến các địa chỉ nhân viên cố định mà bạn nhập trong quy trình."
 }

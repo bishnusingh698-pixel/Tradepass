@@ -48,9 +48,8 @@
   "automation.action.terms": "付款条款",
   "automation.action.tierTerms": "使用等级的付款条款",
   "automation.action.sendWelcome": "向买家发送 Shopify 的 B2B 访问邮件",
-  "automation.action.emailApplicant": "发送邮件告知申请人未获批准",
   "automation.action.reason": "原因（可选）",
-  "automation.action.reasonHelp": "将以您填写时使用的语言显示在邮件中。",
+  "automation.action.reasonHelp": "与申请一起保存，并包含在您可以从申请中复制的消息里。",
   "automation.error.summary": "{count, plural, other {保存前请修正 # 个问题。}}",
   "automation.error.conditions_required": "请至少添加一个条件。",
   "automation.error.values_required": "请至少输入一个值。",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "无法撤消此决定。请检查活动日志并重试。",
   "automation.reverse.heading": "要撤消对 {company} 的决定吗？",
   "automation.reverse.approvedBody": "{company} 将被暂停：其公司仍保留在 Shopify 中，但会离开所属等级并看到零售价格。您可以在“买家”中恢复。",
-  "automation.reverse.rejectedBody": "{company} 将恢复为“等待审核”。如果已发送拒绝邮件，则无法撤回。",
+  "automation.reverse.rejectedBody": "{company} 将回到“等待审核”。如果您已通知申请人，请告诉对方。",
   "automation.reverse.confirm": "撤消决定",
   "automation.flow.heading": "Shopify Flow 集成",
   "automation.flow.body": "在 Shopify Flow 中使用这些 Tradepass 触发器和操作来构建自己的工作流程，例如为买家添加标签或发送 Slack 消息。",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "证书已过期",
   "automation.flow.action.approve": "批准批发申请并分配至等级",
   "automation.flow.welcomeNote": "Tradepass 在批准买家时已可发送 Shopify 的 B2B 访问邮件，因此无需为此额外设置工作流程。",
-  "automation.flow.open": "打开 Shopify Flow"
+  "automation.flow.open": "打开 Shopify Flow",
+  "automation.flow.alerts": "想在有人提交申请时收到邮件？请在 Shopify Flow 中使用触发器“Wholesale application submitted”和 Flow 操作“Send internal email”。该操作只会发送到您在工作流中填写的固定员工地址。"
 }

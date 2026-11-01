@@ -10,10 +10,6 @@ export const SECTIONS = {
     ["/app/certificates", "nav.certificates"],
     ["/app/import", "nav.import"],
   ],
-  messaging: [
-    ["/app/notifications", "nav.notifications"],
-    ["/app/automation", "nav.automation"],
-  ],
 } as const;
 
 export function SectionTabs({ section }: { section: keyof typeof SECTIONS }) {

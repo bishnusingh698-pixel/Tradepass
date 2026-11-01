@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "谢谢，您的申请已更新",
   "hosted.update.doneBody": "{store} 将进行审核，并通过电子邮件回复您。",
   "hosted.link.invalidTitle": "此链接无效",
-  "hosted.link.invalidBody": "请确认您打开的是邮件中的完整链接，或联系 {store}。",
+  "hosted.link.invalidBody": "请检查您是否打开了完整链接，或联系 {store}。",
   "hosted.link.expiredTitle": "此链接已失效",
   "hosted.link.expiredBody": "为保障您的安全，更新链接仅在有限时间内有效。请联系 {store} 获取新链接。",
   "hosted.link.usedTitle": "此链接已被使用",

@@ -53,15 +53,13 @@
   "help.faq.import.q": "Pot importa clienții en-gros existenți?",
   "help.faq.import.a": "Da, în planul Pro. Încărcați un fișier CSV sau convertiți clienții care au deja o etichetă precum „en-gros”.",
   "help.faq.languages.q": "Ce limbi sunt acceptate?",
-  "help.faq.languages.a": "36 de limbi. Formularul, mesajele din vitrină și e-mailurile apar în limba fiecărui vizitator și puteți modifica orice text în Setări → Limbi.",
-  "help.faq.emails.q": "Câte e-mailuri trimite Tradepass?",
-  "help.faq.emails.a": "Până la 25 de e-mailuri pe magazin pe zi. E-mailurile suplimentare se trimit a doua zi, iar pagina Acasă vă anunță când se întâmplă asta. Puteți dezactiva e-mailurile noastre și folosi Shopify Flow.",
+  "help.faq.languages.a": "36 de limbi. Formularul, mesajele din magazin și mesajele pe care le trimiți solicitanților apar în limba fiecărei persoane, iar orice text poate fi modificat în Setări → Limbi.",
   "help.faq.approvalLimit.q": "Ce se întâmplă când ajung la 10 aprobări în planul gratuit?",
   "help.faq.approvalLimit.a": "Cererile noi sunt în continuare colectate, așa că nu pierdeți niciun potențial client. Pentru a aproba mai multe în luna respectivă, alegeți un plan plătit.",
   "help.faq.markets.q": "Pagina Acasă spune că piețele B2B nu sunt activate. Ce fac?",
   "help.faq.markets.a": "În planurile inferioare Plus, prețurile pe niveluri necesită noile Piețe Shopify. Activați-le în Shopify din Setări → Piețe, apoi faceți clic pe „Verificați din nou” în pagina Acasă.",
   "help.faq.privacy.q": "Cum sunt protejate datele solicitanților?",
-  "help.faq.privacy.a": "Codurile fiscale sunt criptate, linkurile din e-mailuri expiră și funcționează o singură dată, iar cererile respinse sunt șterse după perioada aleasă în Setări.",
+  "help.faq.privacy.a": "Codurile fiscale sunt criptate, linkurile securizate expiră și funcționează o singură dată, iar cererile respinse sunt șterse după perioada aleasă în Setări.",
   "help.faq.slowFirstLoad.q": "De ce se deschide aplicația uneori greu?",
   "help.faq.slowFirstLoad.a": "După o perioadă de inactivitate, aplicația poate avea nevoie de până la un minut pentru a porni. Vitrina online nu este afectată niciodată: ascunderea prețurilor și formularul funcționează în continuare.",
   "help.diagnostics.heading": "Informații de diagnosticare",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Dezactivați modul de depanare",
   "help.contact.heading": "Contactați asistența",
   "help.contact.body": "De obicei răspundem în 2 zile lucrătoare.",
-  "help.contact.priority": "Aveți planul Pro, așa că e-mailurile dumneavoastră primesc răspuns cu prioritate, de obicei în 1 zi lucrătoare."
+  "help.contact.priority": "Aveți planul Pro, așa că e-mailurile dumneavoastră primesc răspuns cu prioritate, de obicei în 1 zi lucrătoare.",
+  "help.faq.alerts.q": "Cum aflu de cererile noi?",
+  "help.faq.alerts.a": "Tradepass nu trimite e-mailuri. Cererile noi și răspunsurile te așteaptă în Acasă și la Cereri. Pentru o alertă pe e-mail, creează în Shopify Flow (Tradepass Pro) un flux cu declanșatorul „Wholesale application submitted” și acțiunea Flow „Send internal email”. Această acțiune trimite doar la adresele fixe ale personalului pe care le introduci în flux."
 }

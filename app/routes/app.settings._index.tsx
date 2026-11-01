@@ -18,7 +18,6 @@ import { useLocaleHref } from "../components/useLocaleHref";
 import { can } from "../lib/plans";
 
 const RETENTION_MONTHS = [3, 6, 12, 24, 36] as const;
-const HEX = /^#[0-9a-f]{6}$/i;
 const ASSIGNMENT_MODES = ["auto", "assisted"] as const;
 const COUNTRY_MODES = ["all", "allow", "block"] as const;
 
@@ -41,7 +40,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     overrides,
     supportedCount: LOCALES.length,
     retention: ctx.settings.retention,
-    branding: ctx.settings.branding,
     assignment: ctx.settings.tiers.assignment,
     canExportActivity: can(ctx.plan, "activity_export"),
     exportMax: ACTIVITY_EXPORT_MAX_ROWS,
@@ -59,11 +57,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (intent === "save") {
     const errors: Record<string, string> = {};
     const months = Number(form.get("months"));
-    const logoUrl = String(form.get("logoUrl") ?? "").trim();
-    const accent = String(form.get("accentColor") ?? "").trim();
     if (!(RETENTION_MONTHS as readonly number[]).includes(months)) errors.months = "settings.error.months";
-    if (logoUrl && !/^https:\/\/\S+$/i.test(logoUrl)) errors.logoUrl = "settings.error.logoUrl";
-    if (accent && !HEX.test(accent)) errors.accentColor = "settings.error.accentColor";
     const assignmentRaw = form.get("assignment");
     const assignment = assignmentRaw == null || assignmentRaw === "" ? ctx.settings.tiers.assignment : String(assignmentRaw);
     if (!(ASSIGNMENT_MODES as readonly string[]).includes(assignment)) errors.assignment = "settings.error.assignment";
@@ -79,7 +73,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const countriesChanged = JSON.stringify(countries) !== JSON.stringify(ctx.settings.applications.countries);
     await updateSettings(ctx.shop, {
       retention: { months, deleteFiles: form.get("deleteFiles") === "on" },
-      branding: { logoUrl: logoUrl || null, accentColor: accent || null },
       tiers: { assignment: assignment as (typeof ASSIGNMENT_MODES)[number] },
       applications: { countries },
     });
@@ -224,25 +217,6 @@ export default function SettingsPage() {
             </s-select>
             <s-checkbox name="deleteFiles" label={t("settings.retention.deleteFiles")} details={t("settings.retention.deleteFilesHelp")} defaultChecked={d.retention.deleteFiles} />
             <s-paragraph color="subdued">{t("settings.retention.note")}</s-paragraph>
-          </s-stack>
-        </s-section>
-
-        <s-section heading={t("settings.branding.heading")}>
-          <s-stack direction="block" gap="base">
-            <s-url-field
-              name="logoUrl"
-              label={t("settings.branding.logo")}
-              details={t("settings.branding.logoHelp")}
-              defaultValue={d.branding.logoUrl ?? ""}
-              error={errors.logoUrl ? t(errors.logoUrl) : undefined}
-            />
-            <s-color-field
-              name="accentColor"
-              label={t("settings.branding.accent")}
-              details={t("settings.branding.accentHelp")}
-              defaultValue={d.branding.accentColor ?? ""}
-              error={errors.accentColor ? t(errors.accentColor) : undefined}
-            />
           </s-stack>
         </s-section>
 

@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Köszönjük, jelentkezését frissítettük",
   "hosted.update.doneBody": "A(z) {store} áttekinti, és e-mailben válaszol Önnek.",
   "hosted.link.invalidTitle": "Ez a link nem érvényes",
-  "hosted.link.invalidBody": "Ellenőrizze, hogy a teljes linket nyitotta-e meg az e-mailből, vagy forduljon a(z) {store} áruházhoz.",
+  "hosted.link.invalidBody": "Ellenőrizze, hogy a teljes linket nyitotta-e meg, vagy forduljon ehhez: {store}.",
   "hosted.link.expiredTitle": "Ez a link lejárt",
   "hosted.link.expiredBody": "Biztonsági okokból a frissítési linkek csak korlátozott ideig működnek. Kérjük, forduljon a(z) {store} áruházhoz, és kérjen új linket.",
   "hosted.link.usedTitle": "Ezt a linket már felhasználták",

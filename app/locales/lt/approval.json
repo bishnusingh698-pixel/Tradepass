@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Sukursime naują klientą: {name} ({email}).",
   "approval.field.sendWelcome": "Siųsti pasveikinimo laišką",
   "approval.welcome.shopify": "Shopify B2B pasveikinimo laiškas su prisijungimo nuoroda.",
-  "approval.welcome.ours": "Tradepass laiškas „Jūs patvirtinti“ pirkėjo kalba.",
   "approval.action.approve": "Patvirtinti",
   "approval.action.retry": "Kartoti",
   "approval.action.retryEmail": "Siųsti laišką dar kartą",

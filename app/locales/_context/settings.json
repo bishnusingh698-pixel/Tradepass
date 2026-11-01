@@ -85,31 +85,6 @@
     "maxLength": 200,
     "placeholders": []
   },
-  "settings.branding.heading": {
-    "note": "Section heading.",
-    "maxLength": 40,
-    "placeholders": []
-  },
-  "settings.branding.logo": {
-    "note": "Field label.",
-    "maxLength": 30,
-    "placeholders": []
-  },
-  "settings.branding.logoHelp": {
-    "note": "Field help.",
-    "maxLength": 200,
-    "placeholders": []
-  },
-  "settings.branding.accent": {
-    "note": "Field label.",
-    "maxLength": 30,
-    "placeholders": []
-  },
-  "settings.branding.accentHelp": {
-    "note": "Field help.",
-    "maxLength": 150,
-    "placeholders": []
-  },
   "settings.plan.heading": {
     "note": "Section heading.",
     "maxLength": 40,
@@ -189,16 +164,6 @@
     "maxLength": 60,
     "placeholders": []
   },
-  "settings.error.logoUrl": {
-    "note": "Inline error.",
-    "maxLength": 60,
-    "placeholders": []
-  },
-  "settings.error.accentColor": {
-    "note": "Inline error.",
-    "maxLength": 60,
-    "placeholders": []
-  },
   "settings.texts.title": {
     "note": "Page title.",
     "maxLength": 30,
@@ -217,11 +182,6 @@
   "settings.texts.area": {
     "note": "Select label.",
     "maxLength": 30,
-    "placeholders": []
-  },
-  "settings.texts.area.email": {
-    "note": "Select option.",
-    "maxLength": 40,
     "placeholders": []
   },
   "settings.texts.placeholders": {
@@ -344,6 +304,51 @@
   "settings.activity.locked": {
     "note": "Error banner if a lower plan tries to export activity.",
     "maxLength": 100,
+    "placeholders": []
+  },
+  "settings.texts.area.messages": {
+    "note": "Admin text.",
+    "maxLength": 66,
+    "placeholders": []
+  },
+  "settings.certificates.heading": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "settings.certificates.expiringDays": {
+    "note": "Admin text.",
+    "maxLength": 108,
+    "placeholders": []
+  },
+  "settings.certificates.onExpiry": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "settings.certificates.onExpiry.ask": {
+    "note": "Admin text.",
+    "maxLength": 80,
+    "placeholders": []
+  },
+  "settings.certificates.onExpiry.askHelp": {
+    "note": "Admin text.",
+    "maxLength": 150,
+    "placeholders": []
+  },
+  "settings.certificates.onExpiry.remove": {
+    "note": "Admin text.",
+    "maxLength": 76,
+    "placeholders": []
+  },
+  "settings.certificates.onExpiry.removeHelp": {
+    "note": "Admin text.",
+    "maxLength": 252,
+    "placeholders": []
+  },
+  "settings.error.expiringDays": {
+    "note": "Admin text.",
+    "maxLength": 74,
     "placeholders": []
   }
 }

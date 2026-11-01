@@ -50,14 +50,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (intent === "bulk_approve") {
     const tierId = String(form.get("tierId") ?? "");
     if (!tierId) return { ok: false as const, error: "tier_required" };
-    const summary = await approveMany(dctx, ids, tierId);
+    const summary = await approveMany(dctx, ids, tierId, { sendWelcome: form.get("sendWelcome") === "on" });
     return { ok: true as const, intent, summary };
   }
   if (intent === "bulk_reject") {
     const reason = String(form.get("reason") ?? "").trim() || null;
-    const email = form.get("email") === "on";
     let rejected = 0;
-    for (const id of ids) if (await rejectApplication(dctx, id, { reason, email })) rejected++;
+    // Each application keeps the reason; its "not approved" message can be copied from the application.
+    for (const id of ids) if (await rejectApplication(dctx, id, { reason })) rejected++;
     return { ok: true as const, intent, rejected, skipped: ids.length - rejected };
   }
   if (intent === "bulk_export") {
@@ -296,16 +296,17 @@ export default function Applications() {
         )}
       </s-section>
 
-      <BulkApproveModal tiers={data.tiers} count={selected.length} onConfirm={(tierId) => submitBulk("bulk_approve", { tierId })} />
-      <BulkRejectModal count={selected.length} onConfirm={(reason, email) => submitBulk("bulk_reject", { reason, ...(email ? { email: "on" } : {}) })} />
+      <BulkApproveModal tiers={data.tiers} count={selected.length} onConfirm={(tierId, sendWelcome) => submitBulk("bulk_approve", { tierId, ...(sendWelcome ? { sendWelcome: "on" } : {}) })} />
+      <BulkRejectModal count={selected.length} onConfirm={(reason) => submitBulk("bulk_reject", { reason })} />
     </s-page>
   );
 }
 
-function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; name: string }[]; count: number; onConfirm: (tierId: string) => void }) {
+function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; name: string }[]; count: number; onConfirm: (tierId: string, sendWelcome: boolean) => void }) {
   const { t } = useI18n();
   const href = useLocaleHref();
   const [tierId, setTierId] = useState(tiers[0]?.id ?? "");
+  const [sendWelcome, setSendWelcome] = useState(true);
   return (
     <s-modal id="bulk-approve" heading={t("applications.bulk.approveHeading", { count })}>
       {tiers.length === 0 ? (
@@ -319,10 +320,11 @@ function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; na
               <s-option key={tier.id} value={tier.id}>{tier.name}</s-option>
             ))}
           </s-select>
+          <s-checkbox label={t("approval.field.sendWelcome")} details={t("approval.welcome.shopify")} checked={sendWelcome} onChange={() => setSendWelcome(!sendWelcome)} />
           <s-paragraph>{t("applications.bulk.approveExplain")}</s-paragraph>
         </s-stack>
       )}
-      <s-button slot="primary-action" variant="primary" disabled={!tierId} commandFor="bulk-approve" command="--hide" onClick={() => onConfirm(tierId)}>
+      <s-button slot="primary-action" variant="primary" disabled={!tierId} commandFor="bulk-approve" command="--hide" onClick={() => onConfirm(tierId, sendWelcome)}>
         {t("applications.bulk.approveConfirm", { count })}
       </s-button>
       <s-button slot="secondary-actions" commandFor="bulk-approve" command="--hide">{t("common.cancel")}</s-button>
@@ -330,17 +332,15 @@ function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; na
   );
 }
 
-function BulkRejectModal({ count, onConfirm }: { count: number; onConfirm: (reason: string, email: boolean) => void }) {
+function BulkRejectModal({ count, onConfirm }: { count: number; onConfirm: (reason: string) => void }) {
   const { t } = useI18n();
   const [reason, setReason] = useState("");
-  const [email, setEmail] = useState(true);
   return (
     <s-modal id="bulk-reject" heading={t("applications.bulk.rejectHeading", { count })}>
       <s-stack direction="block" gap="base">
         <s-text-area label={t("applications.reject.reason")} details={t("applications.reject.reasonHelp")} value={reason} onInput={(e) => setReason((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
-        <s-checkbox label={t("applications.reject.email")} checked={email} onChange={() => setEmail(!email)} />
       </s-stack>
-      <s-button slot="primary-action" variant="primary" tone="critical" commandFor="bulk-reject" command="--hide" onClick={() => onConfirm(reason, email)}>
+      <s-button slot="primary-action" variant="primary" tone="critical" commandFor="bulk-reject" command="--hide" onClick={() => onConfirm(reason)}>
         {t("applications.bulk.rejectConfirm", { count })}
       </s-button>
       <s-button slot="secondary-actions" commandFor="bulk-reject" command="--hide">{t("common.cancel")}</s-button>

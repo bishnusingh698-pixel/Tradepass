@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Ще създадем нов клиент за {name} ({email}).",
   "approval.field.sendWelcome": "Изпращане на приветствен имейл",
   "approval.welcome.shopify": "Приветственият B2B имейл на Shopify с връзка за вход.",
-  "approval.welcome.ours": "Имейлът „Одобрени сте“ на Tradepass на езика на купувача.",
   "approval.action.approve": "Одобряване",
   "approval.action.retry": "Повторен опит",
   "approval.action.retryEmail": "Повторно изпращане",

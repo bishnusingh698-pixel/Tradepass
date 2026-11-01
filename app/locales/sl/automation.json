@@ -48,9 +48,8 @@
   "automation.action.terms": "Plačilni pogoji",
   "automation.action.tierTerms": "Uporabi plačilne pogoje ravni",
   "automation.action.sendWelcome": "Kupcu pošlji e-poštno sporočilo Shopify za dostop B2B",
-  "automation.action.emailApplicant": "Prosilcu pošlji e-poštno sporočilo, da ni bil odobren",
   "automation.action.reason": "Razlog (neobvezno)",
-  "automation.action.reasonHelp": "Prikazan v sporočilu v jeziku, v katerem ga napišete.",
+  "automation.action.reasonHelp": "Shrani se z vlogo in je vključen v sporočilo, ki ga lahko tam kopirate.",
   "automation.error.summary": "{count, plural, one {Pred shranjevanjem odpravite # težavo.} two {Pred shranjevanjem odpravite # težavi.} few {Pred shranjevanjem odpravite # težave.} other {Pred shranjevanjem odpravite # težav.}}",
   "automation.error.conditions_required": "Dodajte vsaj en pogoj.",
   "automation.error.values_required": "Vnesite vsaj eno vrednost.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Te odločitve ni bilo mogoče razveljaviti. Preverite dnevnik dejavnosti in poskusite znova.",
   "automation.reverse.heading": "Želite razveljaviti odločitev za {company}?",
   "automation.reverse.approvedBody": "Podjetje {company} bo zaustavljeno: v Shopify ostane, vendar zapusti svojo raven in vidi maloprodajne cene. Znova ga lahko aktivirate v razdelku Kupci.",
-  "automation.reverse.rejectedBody": "Podjetje {company} se vrne v stanje Čaka na pregled. Če je bilo sporočilo o zavrnitvi že poslano, ga ni mogoče preklicati.",
+  "automation.reverse.rejectedBody": "{company} se vrne v stanje Čaka na pregled. Če ste prosilca že obvestili, mu to sporočite.",
   "automation.reverse.confirm": "Razveljavi odločitev",
   "automation.flow.heading": "Integracija s Shopify Flow",
   "automation.flow.body": "Uporabite te sprožilce in dejanja Tradepass v Shopify Flow in ustvarite lastne poteke dela, na primer označevanje kupcev ali pošiljanje sporočila v Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Potrdilo je poteklo",
   "automation.flow.action.approve": "Odobri vlogo za veleprodajo v raven",
   "automation.flow.welcomeNote": "Tradepass ob odobritvi kupca že lahko pošlje sporočilo Shopify za dostop B2B, zato za to ne potrebujete dodatnega poteka dela.",
-  "automation.flow.open": "Odpri Shopify Flow"
+  "automation.flow.open": "Odpri Shopify Flow",
+  "automation.flow.alerts": "Želite e-poštno sporočilo, ko nekdo odda vlogo? V Shopify Flow uporabite sprožilec »Wholesale application submitted« z dejanjem Flow »Send internal email«. To dejanje pošilja samo na stalne naslove zaposlenih, ki jih vnesete v potek dela."
 }

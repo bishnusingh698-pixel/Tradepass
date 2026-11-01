@@ -42,7 +42,7 @@
   "tiers.editor.name": "درجے کا نام",
   "tiers.editor.nameHelp": "یہ نام صرف آپ دیکھتے ہیں، مثلاً ریٹیلر یا ڈسٹری بیوٹر۔",
   "tiers.editor.buyerNames": "خریداروں کو نظر آنے والا نام",
-  "tiers.editor.buyerNamesHelp": "اختیاری۔ ہر زبان کے لحاظ سے ای میلز اور آپ کے اسٹور پر خریداروں کو دکھایا جاتا ہے۔ خالی ہو تو درجے کا نام استعمال ہوتا ہے۔",
+  "tiers.editor.buyerNamesHelp": "اختیاری۔ آپ کے اسٹور پر ہر زبان میں خریداروں کو دکھایا جاتا ہے۔ خالی ہونے پر ٹیئر کا نام استعمال ہوتا ہے۔",
   "tiers.editor.buyerNameFor": "{language} میں نام",
   "tiers.editor.pricing": "قیمتیں کیسے طے ہوتی ہیں",
   "tiers.editor.pricing.percent": "ریٹیل قیمت پر فیصد رعایت",

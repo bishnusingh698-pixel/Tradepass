@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Megjegyzés hozzáadása",
   "applications.detail.saveNote": "Mentés",
   "applications.detail.toast.reject": "Jelentkezés elutasítva",
-  "applications.detail.toast.needs_info": "Kérés elküldve a jelentkezőnek",
+  "applications.detail.toast.needs_info": "Kérés mentve. Küldje el a jelentkezőnek az üzenetet a biztonságos linkkel.",
   "applications.detail.toast.note": "Megjegyzés mentve",
   "applications.detail.toast.assign": "Felelős mentve",
   "applications.needsInfo.heading": "További információ kérése",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Módosítható mezők",
   "applications.needsInfo.fieldsHelp": "A jelentkező egy 14 napig érvényes privát linket kap, amellyel csak ezeket a mezőket módosíthatja.",
   "applications.needsInfo.fieldsRequired": "Válasszon legalább egy mezőt.",
-  "applications.needsInfo.send": "Kérés elküldése",
+  "applications.needsInfo.send": "Kérés létrehozása",
   "applications.reject.heading": "Elutasítja ezt: {company}?",
   "applications.reject.template": "Indoklássablon",
   "applications.reject.templateNone": "Nincs sablon",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Köszönjük érdeklődését. Nem tudtuk ellenőrizni a jelentkezésben szereplő adatokat, ezért most nem tudjuk jóváhagyni. Szívesen fogadjuk újbóli jelentkezését.",
   "applications.reject.template.region": "Köszönjük érdeklődését. Az Ön területén még nem kínálunk nagykereskedelmi lehetőséget.",
   "applications.reject.reason": "Indoklás (nem kötelező)",
-  "applications.reject.reasonHelp": "Ha e-mailt küld, a jelentkező látja ezt az indoklást.",
-  "applications.reject.email": "E-mail a jelentkezőnek",
+  "applications.reject.reasonHelp": "A jelentkezéssel együtt mentjük, és bekerül abba az üzenetbe, amelyet elküldhet a jelentkezőnek.",
   "applications.reject.consequence": "A jelentkezés Elutasítva állapotba kerül. A Shopifyban semmi sem jön létre, és továbbra is megtalálja az Elutasítva lapon.",
   "applications.reject.confirm": "Jelentkezés elutasítása",
   "applications.activity.application.submit": "Jelentkezés beküldve",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Megjegyzés hozzáadva",
   "applications.activity.application.assign": "Felelős módosítva",
   "applications.taxCheck.skipped": "Csomagja nem ellenőrzi",
-  "applications.detail.taxCheckPlan": "Az adószámokat a(z) {plan} csomagtól felfelé ellenőrizzük a hivatalos nyilvántartásokban. Ellenőrizze ezt kézzel, vagy váltson nagyobb csomagra az új jelentkezések automatikus ellenőrzéséhez."
+  "applications.detail.taxCheckPlan": "Az adószámokat a(z) {plan} csomagtól felfelé ellenőrizzük a hivatalos nyilvántartásokban. Ellenőrizze ezt kézzel, vagy váltson nagyobb csomagra az új jelentkezések automatikus ellenőrzéséhez.",
+  "applications.detail.copyMessage": "Üzenet a jelentkezőnek"
 }

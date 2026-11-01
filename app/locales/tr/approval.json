@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "{name} ({email}) için yeni bir müşteri oluşturacağız.",
   "approval.field.sendWelcome": "Hoş geldiniz e-postası gönder",
   "approval.welcome.shopify": "Oturum açma bağlantısı içeren Shopify B2B hoş geldiniz e-postası.",
-  "approval.welcome.ours": "Tradepass'in alıcının dilindeki \"Onaylandınız\" e-postası.",
   "approval.action.approve": "Onayla",
   "approval.action.retry": "Yeniden dene",
   "approval.action.retryEmail": "E-postayı yeniden gönder",

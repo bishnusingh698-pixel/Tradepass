@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Přidat poznámku",
   "applications.detail.saveNote": "Uložit poznámku",
   "applications.detail.toast.reject": "Žádost byla zamítnuta",
-  "applications.detail.toast.needs_info": "Žádost odeslána žadateli",
+  "applications.detail.toast.needs_info": "Požadavek uložen. Pošlete žadateli zprávu se zabezpečeným odkazem.",
   "applications.detail.toast.note": "Poznámka uložena",
   "applications.detail.toast.assign": "Přiřazení uloženo",
   "applications.needsInfo.heading": "Vyžádat další informace",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Pole, která může změnit",
   "applications.needsInfo.fieldsHelp": "Žadatel dostane soukromý odkaz platný 14 dní, přes který může změnit pouze tato pole.",
   "applications.needsInfo.fieldsRequired": "Vyberte alespoň jedno pole.",
-  "applications.needsInfo.send": "Odeslat žádost",
+  "applications.needsInfo.send": "Vytvořit požadavek",
   "applications.reject.heading": "Zamítnout {company}?",
   "applications.reject.template": "Šablona důvodu",
   "applications.reject.templateNone": "Bez šablony",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Děkujeme za váš zájem. Informace ve vaší žádosti se nám nepodařilo ověřit, proto ji nyní nemůžeme schválit. Můžete se přihlásit znovu.",
   "applications.reject.template.region": "Děkujeme za váš zájem. Ve vaší oblasti zatím velkoobchod nenabízíme.",
   "applications.reject.reason": "Důvod (nepovinné)",
-  "applications.reject.reasonHelp": "Pokud odešlete e-mail, žadatel tento důvod uvidí.",
-  "applications.reject.email": "Poslat žadateli e-mail",
+  "applications.reject.reasonHelp": "Uloží se k žádosti a bude ve zprávě, kterou můžete žadateli poslat.",
   "applications.reject.consequence": "Žádost se přesune mezi zamítnuté. V Shopify se nic nevytvoří a žádost stále najdete na kartě Zamítnuté.",
   "applications.reject.confirm": "Zamítnout žádost",
   "applications.activity.application.submit": "Žádost odeslána",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Přidána poznámka",
   "applications.activity.application.assign": "Přiřazení změněno",
   "applications.taxCheck.skipped": "Ve vašem tarifu neověřováno",
-  "applications.detail.taxCheckPlan": "Daňová čísla se ověřují v oficiálních registrech v tarifu {plan} a vyšších. Toto číslo ověřte ručně, nebo přejděte na vyšší tarif, aby se nové žádosti ověřovaly automaticky."
+  "applications.detail.taxCheckPlan": "Daňová čísla se ověřují v oficiálních registrech v tarifu {plan} a vyšších. Toto číslo ověřte ručně, nebo přejděte na vyšší tarif, aby se nové žádosti ověřovaly automaticky.",
+  "applications.detail.copyMessage": "Zpráva pro žadatele"
 }

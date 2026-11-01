@@ -2,8 +2,9 @@ import type { Prisma } from "@prisma/client";
 import db from "../db.server";
 import { logActivity } from "./activity.server";
 import { decrypt, sha256, signToken } from "./crypto.server";
-import { queueEmail } from "./email/index.server";
 import { emitFlowTrigger } from "./flow.server";
+import { buildMessage, type ApplicantMessage } from "./messages";
+import { readSettings } from "./settings";
 import type { Admin } from "./gql.server";
 import { storefrontUrl } from "./shop.server";
 import { LockBusyError, withApplicationLock } from "./lock.server";
@@ -194,8 +195,13 @@ export async function findDuplicates(
 type DecisionCtx = { admin: Admin; shop: string; actor: string };
 
 async function shopInfo(shop: string) {
-  const row = await db.shop.findUnique({ where: { shop }, select: { shop: true, name: true, domainUrl: true } });
-  return { storeName: row?.name || shop.replace(".myshopify.com", ""), row };
+  const row = await db.shop.findUnique({ where: { shop }, select: { shop: true, name: true, domainUrl: true, primaryLocale: true, settings: true } });
+  return {
+    storeName: row?.name || shop.replace(".myshopify.com", ""),
+    row,
+    primary: row?.primaryLocale ?? "en",
+    overrides: readSettings(row?.settings ?? {}).texts,
+  };
 }
 
 /**
@@ -222,42 +228,37 @@ async function blockReason(shop: string, id: string): Promise<DecisionBlock> {
   return app && ["pending", "needs_info"].includes(app.status) && app.approvalStatus ? "approval_started" : "not_open";
 }
 
-export async function rejectApplication(
-  ctx: DecisionCtx,
-  id: string,
-  opts: { reason: string | null; email: boolean },
-): Promise<boolean> {
+export const MAX_REASON = 2000;
+
+export async function rejectApplication(ctx: DecisionCtx, id: string, opts: { reason: string | null }): Promise<boolean> {
   return (await rejectApplicationWithReason(ctx, id, opts)) === true;
 }
 
-/** Reject; returns true, or why it couldn't (shown to the merchant). Safe against a concurrent approve/reject. */
+/**
+ * Reject; returns true, or why it couldn't (shown to the merchant). Safe against
+ * a concurrent approve/reject. The reason is kept on the application so the
+ * merchant can copy the rejection message (rejectionMessage) now or later.
+ */
 export async function rejectApplicationWithReason(
   ctx: DecisionCtx,
   id: string,
-  opts: { reason: string | null; email: boolean },
+  opts: { reason: string | null },
 ): Promise<true | DecisionBlock> {
+  const reason = opts.reason?.trim().slice(0, MAX_REASON) || null;
   const res = await decisionLock(ctx.shop, id, async () => {
     const app = await db.application.findFirst({ where: { shop: ctx.shop, id, ...OPEN_FOR_DECISION } });
     if (!app) return blockReason(ctx.shop, id);
     // Guarded write: only one decision wins even without the lock (e.g. a lock that expired).
-    const won = await db.application.updateMany({ where: { shop: ctx.shop, id, ...OPEN_FOR_DECISION }, data: { status: "rejected", decidedAt: new Date() } });
+    const won = await db.application.updateMany({
+      where: { shop: ctx.shop, id, ...OPEN_FOR_DECISION },
+      data: { status: "rejected", decidedAt: new Date(), rejectReason: reason },
+    });
     if (won.count !== 1) return blockReason(ctx.shop, id);
     return app;
   });
   if (res === "busy" || typeof res === "string") return res;
   const app = res;
-  await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.reject", subject: id, detail: { emailed: opts.email, hasReason: Boolean(opts.reason) } });
-  if (opts.email) {
-    const { storeName } = await shopInfo(ctx.shop);
-    await queueEmail({
-      shop: ctx.shop,
-      type: "rejected",
-      to: app.email,
-      locale: app.locale,
-      vars: { company: app.companyName, first_name: firstName(app.answers), store_name: storeName, reason: opts.reason ?? "" },
-      subjectId: id,
-    }).catch(() => undefined);
-  }
+  await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.reject", subject: id, detail: { hasReason: Boolean(reason) } });
   await emitFlowTrigger(ctx.admin, ctx.shop, "application_rejected", {
     applicationId: id, companyName: app.companyName, contactEmail: app.email, country: app.countryCode ?? undefined,
   });
@@ -269,11 +270,13 @@ function firstName(answers: unknown): string {
   return typeof v === "string" ? v : "";
 }
 
+type MoreInfoResult = { ok: boolean; link?: string; message?: ApplicantMessage; error?: DecisionBlock };
+
 export async function requestMoreInfo(
   ctx: DecisionCtx,
   id: string,
   opts: { message: string; fields: string[] },
-): Promise<{ ok: boolean; link?: string; error?: DecisionBlock }> {
+): Promise<MoreInfoResult> {
   const res = await decisionLock(ctx.shop, id, () => requestMoreInfoLocked(ctx, id, opts));
   return res === "busy" ? { ok: false, error: "busy" } : res;
 }
@@ -282,7 +285,7 @@ async function requestMoreInfoLocked(
   ctx: DecisionCtx,
   id: string,
   opts: { message: string; fields: string[] },
-): Promise<{ ok: boolean; link?: string; error?: DecisionBlock }> {
+): Promise<MoreInfoResult> {
   const app = await db.application.findFirst({ where: { shop: ctx.shop, id, ...OPEN_FOR_DECISION } });
   if (!app) return { ok: false, error: await blockReason(ctx.shop, id) };
   const exp = Math.floor(Date.now() / 1000) + MORE_INFO_DAYS * 86400;
@@ -299,18 +302,24 @@ async function requestMoreInfoLocked(
     where: { shop: ctx.shop, id },
     data: { status: "needs_info", requested: { fields: opts.fields, message: opts.message.slice(0, 2000), at: new Date().toISOString() } },
   });
-  const { storeName, row } = await shopInfo(ctx.shop);
-  const link = storefrontUrl(row, `/apps/tradepass/update/${encodeURIComponent(token)}`, ctx.shop);
-  await queueEmail({
-    shop: ctx.shop,
-    type: "needs_info",
-    to: app.email,
-    locale: app.locale,
-    vars: { company: app.companyName, first_name: firstName(app.answers), store_name: storeName, update_link: link, message: opts.message },
-    subjectId: id,
-  }).catch(() => undefined);
+  const info = await shopInfo(ctx.shop);
+  const link = storefrontUrl(info.row, `/apps/tradepass/update/${encodeURIComponent(token)}`, ctx.shop);
   await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.needs_info", subject: id, detail: { fields: opts.fields } });
-  return { ok: true, link };
+  // Only the link's hash is stored, so this is the one moment the merchant can copy it.
+  const message = buildMessage("needs_info", app.locale, info, {
+    company: app.companyName, firstName: firstName(app.answers), storeName: info.storeName, link, message: opts.message,
+  }, app.email);
+  return { ok: true, link, message };
+}
+
+/** The "not approved" message for a rejected application, in the applicant's language, with the stored reason. */
+export async function rejectionMessage(shop: string, id: string): Promise<ApplicantMessage | null> {
+  const app = await db.application.findFirst({ where: { shop, id, status: "rejected" } });
+  if (!app) return null;
+  const info = await shopInfo(shop);
+  return buildMessage("rejected", app.locale, info, {
+    company: app.companyName, firstName: firstName(app.answers), storeName: info.storeName, reason: app.rejectReason,
+  }, app.email);
 }
 
 export async function addNote(shop: string, id: string, actor: string, text: string): Promise<void> {

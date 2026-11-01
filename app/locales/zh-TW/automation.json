@@ -48,9 +48,8 @@
   "automation.action.terms": "付款條件",
   "automation.action.tierTerms": "使用等級的付款條件",
   "automation.action.sendWelcome": "寄送 Shopify 的 B2B 存取郵件給買家",
-  "automation.action.emailApplicant": "寄送郵件通知申請人未獲核准",
   "automation.action.reason": "原因（選填）",
-  "automation.action.reasonHelp": "將以您填寫時使用的語言顯示在郵件中。",
+  "automation.action.reasonHelp": "會與申請一起儲存，並放進您可以從申請中複製的訊息裡。",
   "automation.error.summary": "{count, plural, other {儲存前請修正 # 個問題。}}",
   "automation.error.conditions_required": "請至少新增一個條件。",
   "automation.error.values_required": "請至少輸入一個值。",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "無法撤銷此決定。請檢查活動記錄並再試一次。",
   "automation.reverse.heading": "要撤銷對 {company} 的決定嗎？",
   "automation.reverse.approvedBody": "{company} 將被暫停：其公司仍保留在 Shopify 中，但會離開所屬等級並看到零售價格。您可以在「買家」中恢復。",
-  "automation.reverse.rejectedBody": "{company} 將恢復為「等待審核」。如果已寄出拒絕郵件，則無法收回。",
+  "automation.reverse.rejectedBody": "{company} 會回到「等待審核」。如果您已通知申請人，請再告知對方。",
   "automation.reverse.confirm": "撤銷決定",
   "automation.flow.heading": "Shopify Flow 整合",
   "automation.flow.body": "在 Shopify Flow 中使用這些 Tradepass 觸發條件和動作來建立自己的工作流程，例如為買家加上標籤或傳送 Slack 訊息。",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "證明文件已過期",
   "automation.flow.action.approve": "核准批發申請並指派至等級",
   "automation.flow.welcomeNote": "Tradepass 在核准買家時已可寄送 Shopify 的 B2B 存取郵件，因此不需要為此另外建立工作流程。",
-  "automation.flow.open": "開啟 Shopify Flow"
+  "automation.flow.open": "開啟 Shopify Flow",
+  "automation.flow.alerts": "想在有人送出申請時收到郵件嗎？請在 Shopify Flow 中使用觸發條件「Wholesale application submitted」和 Flow 動作「Send internal email」。此動作只會寄到您在工作流程中輸入的固定員工地址。"
 }

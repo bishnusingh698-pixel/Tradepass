@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Terima kasih, pengajuan Anda sudah terkirim",
-      "body": "Kami akan meninjaunya dan menghubungi Anda melalui email.",
-      "email": "Kami telah mengirimkan email konfirmasi kepada Anda."
+      "body": "Kami akan meninjaunya dan menghubungi Anda melalui email."
     }
   }
 }

@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "동의 체크박스 옆에 표시됩니다. 전체 주소 또는 /policies/privacy-policy 같은 스토어 경로를 사용하십시오.",
   "form.success.heading": "제출 후",
   "form.success.message": "감사 메시지",
-  "form.success.messageHelp": "신청자에게 확인 이메일이 발송 중이라는 내용도 표시됩니다.",
+  "form.success.messageHelp": "신청자가 양식을 보낸 후에 표시됩니다.",
   "form.success.redirect": "페이지로 리디렉션(선택 사항)",
   "form.success.redirectHelp": "감사 메시지 후 신청자를 다른 페이지로 이동시킵니다(예: /pages/thank-you).",
   "form.spam.heading": "스팸 방지",

@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Takk! Søknaden din er oppdatert",
   "hosted.update.doneBody": "{store} går gjennom den og svarer deg på e-post.",
   "hosted.link.invalidTitle": "Lenken er ikke gyldig",
-  "hosted.link.invalidBody": "Sjekk at du har åpnet hele lenken fra e-posten, eller kontakt {store}.",
+  "hosted.link.invalidBody": "Sjekk at du åpnet hele lenken, eller kontakt {store}.",
   "hosted.link.expiredTitle": "Lenken har utløpt",
   "hosted.link.expiredBody": "Av sikkerhetshensyn fungerer oppdateringslenker bare en begrenset tid. Kontakt {store} og be om en ny lenke.",
   "hosted.link.usedTitle": "Lenken er allerede brukt",

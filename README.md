@@ -2,7 +2,7 @@
 
 A public Shopify app that lets businesses apply for wholesale and puts approved buyers into the right B2B price tier automatically. It's built for Shopify's native B2B on Basic, Grow, Advanced and Plus.
 
-Built on Shopify's React Router app template (React Router 7, React 19, Polaris web components), Prisma + Postgres (Neon), hosted on Render's free plan, with scheduled jobs from cron-job.org and email through Brevo.
+Built on Shopify's React Router app template (React Router 7, React 19, Polaris web components), Prisma + Postgres (Neon), hosted on Render's free plan, with scheduled jobs from cron-job.org. Tradepass sends no email of its own (DECISIONS D-091): approval uses Shopify's own B2B welcome email, and for everything else the merchant copies a ready-made message (or opens it in their email app).
 
 - What's done and what's next: `progress.md` and `feature_list.json`
 - Design, schema, routes and jobs: `PLAN.md`. Choices and open questions: `DECISIONS.md`. Verified APIs: `API_NOTES.md`
@@ -18,8 +18,7 @@ Everything below is free. Do the sections in order. Where it says "the agent", t
 4. **Point Shopify at Render** (§2.6): put the Render URL in `shopify.app.toml` (`application_url`, `auth.redirect_urls`, `app_proxy.url`) and run `npm run deploy`.
 5. **Protected customer data** (§2.4): request access in the Partner Dashboard (needed for real stores).
 6. **cron-job.org** (§5): health check every 10 minutes, hourly and daily jobs.
-7. **Brevo** (§6): API key and verified sender (emails queue safely until this is done).
-8. **Install** on a development store, open the app and follow **Set up Tradepass** (the setup wizard on Home): it checks the plan, sets up the form, creates the first tier and adds the form to the theme.
+7. **Install** on a development store, open the app and follow **Set up Tradepass** (the setup wizard on Home): it checks the plan, sets up the form, creates the first tier and adds the form to the theme.
 
 ## 1. Local development (for the coding agent)
 
@@ -120,13 +119,11 @@ Only one free service can stay awake all month, so there's no separate staging s
 
 The healthz job keeps the free Render service awake (about 744 of the 750 free hours per month).
 
-## 6. Email: Brevo
-1. Sign up at https://www.brevo.com (free plan: 300 emails per day; Tradepass uses at most 250).
-2. **Senders, domains & dedicated IPs** → **Senders** → **Add a sender**. Use an address you own (e.g. `no-reply@yourdomain.com`), and click the confirmation link Brevo emails you. Better: also verify your **domain** there (add the DNS records Brevo shows) so emails don't land in spam.
-3. **SMTP & API** → **API keys** → **Generate a new API key**, name it `tradepass`.
-4. In Render: `BREVO_API_KEY` = the key, `BREVO_SENDER_EMAIL` = the verified sender address. The sender **name** is each store's name and replies go to the store's email automatically.
-
-Without these two values the app still works, but emails stay in the queue until both are set.
+## 6. Email
+Nothing to set up. Tradepass doesn't send email, so there is no email provider, API key or domain to buy:
+- **Approvals** use Shopify's own B2B welcome email (`companyContactSendWelcomeEmail`), sent by Shopify for free when "Send welcome email" is on.
+- **Ask for more information**, **Reject** and **Copy renewal link** show a ready-made message in the applicant's language, with **Copy message** and **Open in email**.
+- **Alerts for new applications**: in Shopify Flow, use the Tradepass trigger "Wholesale application submitted" with Flow's "Send internal email" action (it emails fixed staff addresses only). Help in the app explains it.
 
 ## 7. Environment variables
 
@@ -143,8 +140,6 @@ All of these are in `.env.example`. On Render, set them in the service's **Envir
 | `ENCRYPTION_KEY` | 32 random bytes, base64: `openssl rand -base64 32`. Encrypts tax numbers. **Never change it** once there's data (old numbers would become unreadable) | The agent generates it |
 | `LINK_TOKEN_SECRET` | Long random string: `openssl rand -hex 32`. Signs more-info and renewal links, and salts spam-protection hashes | The agent generates it |
 | `JOB_SECRET` | Long random string. cron-job.org sends it as `X-Tradepass-Job-Secret` | The agent generates it |
-| `BREVO_API_KEY` | Brevo API key | Brevo → SMTP & API |
-| `BREVO_SENDER_EMAIL` | Verified sender address | Brevo → Senders |
 | `BILLING_TEST` | `false` in production; `true` on a staging app so charges are test charges | — |
 | `SUPPORT_EMAIL` | The support address shown in Help | Your email |
 

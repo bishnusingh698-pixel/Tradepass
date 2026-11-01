@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Aparece junto à caixa de consentimento. Utilize um endereço completo ou um caminho da loja, como /policies/privacy-policy.",
   "form.success.heading": "Após a submissão",
   "form.success.message": "Mensagem de agradecimento",
-  "form.success.messageHelp": "Os candidatos também são informados de que vão receber um e-mail de confirmação.",
+  "form.success.messageHelp": "Mostrado aos candidatos depois de enviarem o formulário.",
   "form.success.redirect": "Redirecionar para uma página (opcional)",
   "form.success.redirectHelp": "Encaminhe os candidatos para outra página após a mensagem de agradecimento, por exemplo /pages/thank-you.",
   "form.spam.heading": "Proteção contra spam",

@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "A hozzájárulási jelölőnégyzet mellett jelenik meg. Adjon meg teljes címet vagy áruházi útvonalat, például /policies/privacy-policy.",
   "form.success.heading": "Beküldés után",
   "form.success.message": "Köszönőüzenet",
-  "form.success.messageHelp": "A jelentkezők azt is látják, hogy visszaigazoló e-mail van úton.",
+  "form.success.messageHelp": "Az űrlap elküldése után jelenik meg a jelentkezőknek.",
   "form.success.redirect": "Átirányítás egy oldalra (nem kötelező)",
   "form.success.redirectHelp": "A köszönőüzenet után másik oldalra irányítja a jelentkezőket, például /pages/koszonjuk.",
   "form.spam.heading": "Spamvédelem",

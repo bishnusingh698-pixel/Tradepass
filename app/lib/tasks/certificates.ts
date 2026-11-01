@@ -8,8 +8,8 @@ export const hourly: Task[] = [];
 
 export const daily: Task[] = [
   {
-    // Status refresh, Flow triggers, 30/7-day renewal emails and expiry handling.
-    // Reminders are claimed atomically, so a rerun the same day sends nothing twice.
+    // Status refresh, Flow triggers on Expiring soon / Expired, and "remove the exemption when expired".
+    // Triggers fire on a status change only, so a rerun the same day fires nothing twice.
     name: "certificate-expiry",
     run: async (deadline) => {
       let processed = 0;

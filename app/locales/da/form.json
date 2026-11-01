@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Vises ved siden af afkrydsningsfeltet til samtykke. Brug en fuld adresse eller en butikssti som /policies/privacy-policy.",
   "form.success.heading": "Efter indsendelse",
   "form.success.message": "Takkebesked",
-  "form.success.messageHelp": "Ansøgere ser også, at en bekræftelsesmail er på vej.",
+  "form.success.messageHelp": "Vises for ansøgere, når de har sendt formularen.",
   "form.success.redirect": "Omdiriger til en side (valgfrit)",
   "form.success.redirectHelp": "Send ansøgere videre til en anden side efter takkebeskeden, f.eks. /pages/tak.",
   "form.spam.heading": "Spambeskyttelse",

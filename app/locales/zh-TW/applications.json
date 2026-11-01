@@ -127,7 +127,7 @@
   "applications.detail.addNote": "新增備註",
   "applications.detail.saveNote": "儲存備註",
   "applications.detail.toast.reject": "申請已拒絕",
-  "applications.detail.toast.needs_info": "已向申請人寄出要求",
+  "applications.detail.toast.needs_info": "已儲存請求。請將含有安全連結的訊息寄給申請人。",
   "applications.detail.toast.note": "備註已儲存",
   "applications.detail.toast.assign": "負責人已儲存",
   "applications.needsInfo.heading": "要求補充資訊",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "對方可修改的欄位",
   "applications.needsInfo.fieldsHelp": "申請人會收到一個 14 天內有效的專屬連結，且只能修改這些欄位。",
   "applications.needsInfo.fieldsRequired": "請至少選擇一個欄位。",
-  "applications.needsInfo.send": "寄出要求",
+  "applications.needsInfo.send": "建立請求",
   "applications.reject.heading": "要拒絕 {company} 嗎？",
   "applications.reject.template": "原因範本",
   "applications.reject.templateNone": "不使用範本",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "感謝您的關注。我們無法確認您申請中的資訊，因此目前無法核准。歡迎您再次申請。",
   "applications.reject.template.region": "感謝您的關注。我們目前尚未在您所在的地區提供批發服務。",
   "applications.reject.reason": "原因（選填）",
-  "applications.reject.reasonHelp": "如果您寄送郵件，申請人會看到此原因。",
-  "applications.reject.email": "寄送郵件給申請人",
+  "applications.reject.reasonHelp": "會與申請一起儲存，並放進您可以寄給申請人的訊息中。",
   "applications.reject.consequence": "此申請將移至「已拒絕」。不會在 Shopify 中建立任何內容，您仍可在「已拒絕」分頁中找到它。",
   "applications.reject.confirm": "拒絕申請",
   "applications.activity.application.submit": "申請已提交",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "已新增備註",
   "applications.activity.application.assign": "負責人已變更",
   "applications.taxCheck.skipped": "目前方案不檢查",
-  "applications.detail.taxCheckPlan": "{plan}及以上會透過官方登記機構驗證稅號。請自行確認此號碼，或升級以自動驗證新申請。"
+  "applications.detail.taxCheckPlan": "{plan}及以上會透過官方登記機構驗證稅號。請自行確認此號碼，或升級以自動驗證新申請。",
+  "applications.detail.copyMessage": "給申請人的訊息"
 }

@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Εμφανίζεται δίπλα στο πλαίσιο συγκατάθεσης. Χρησιμοποιήστε πλήρη διεύθυνση ή διαδρομή καταστήματος όπως /policies/privacy-policy.",
   "form.success.heading": "Μετά την υποβολή",
   "form.success.message": "Μήνυμα ευχαριστίας",
-  "form.success.messageHelp": "Οι αιτούντες βλέπουν επίσης ότι έρχεται email επιβεβαίωσης.",
+  "form.success.messageHelp": "Εμφανίζεται στους αιτούντες αφού στείλουν τη φόρμα.",
   "form.success.redirect": "Ανακατεύθυνση σε σελίδα (προαιρετικό)",
   "form.success.redirectHelp": "Στείλτε τους αιτούντες σε άλλη σελίδα μετά το μήνυμα ευχαριστίας, για παράδειγμα /pages/thank-you.",
   "form.spam.heading": "Προστασία από spam",

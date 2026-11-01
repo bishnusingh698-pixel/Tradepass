@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "{name}({email})의 새 고객을 만듭니다.",
   "approval.field.sendWelcome": "환영 이메일 보내기",
   "approval.welcome.shopify": "로그인 링크가 포함된 Shopify B2B 환영 이메일입니다.",
-  "approval.welcome.ours": "구매자의 언어로 발송되는 Tradepass의 “승인되었습니다” 이메일입니다.",
   "approval.action.approve": "승인",
   "approval.action.retry": "다시 시도",
   "approval.action.retryEmail": "이메일 다시 보내기",

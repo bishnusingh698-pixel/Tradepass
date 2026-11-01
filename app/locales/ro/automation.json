@@ -48,9 +48,8 @@
   "automation.action.terms": "Termene de plată",
   "automation.action.tierTerms": "Termenele de plată ale nivelului",
   "automation.action.sendWelcome": "Trimiteți cumpărătorului e-mailul de acces B2B al Shopify",
-  "automation.action.emailApplicant": "Anunțați solicitantul prin e-mail că nu a fost aprobat",
   "automation.action.reason": "Motiv (opțional)",
-  "automation.action.reasonHelp": "Apare în e-mail în limba în care îl scrieți.",
+  "automation.action.reasonHelp": "Se salvează cu cererea și apare în mesajul pe care îl poți copia de acolo.",
   "automation.error.summary": "{count, plural, one {Corectați # problemă înainte de salvare.} few {Corectați # probleme înainte de salvare.} other {Corectați # de probleme înainte de salvare.}}",
   "automation.error.conditions_required": "Adăugați cel puțin o condiție.",
   "automation.error.values_required": "Introduceți cel puțin o valoare.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Nu am putut anula această decizie. Verificați jurnalul de activitate și încercați din nou.",
   "automation.reverse.heading": "Anulați decizia pentru {company}?",
   "automation.reverse.approvedBody": "{company} va fi suspendată: compania rămâne în Shopify, dar iese din nivel și vede prețurile cu amănuntul. O puteți reactiva din Cumpărători.",
-  "automation.reverse.rejectedBody": "{company} revine la Așteaptă examinarea. Dacă s-a trimis un e-mail de respingere, acesta nu poate fi retras.",
+  "automation.reverse.rejectedBody": "{company} revine la În așteptarea analizei. Dacă i-ai spus deja solicitantului, anunță-l.",
   "automation.reverse.confirm": "Anulați decizia",
   "automation.flow.heading": "Integrare Shopify Flow",
   "automation.flow.body": "Folosiți acești declanșatori și aceste acțiuni Tradepass în Shopify Flow pentru a crea propriile fluxuri de lucru, de exemplu etichetarea cumpărătorilor sau trimiterea unui mesaj în Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Certificat expirat",
   "automation.flow.action.approve": "Aprobați cererea en-gros într-un nivel",
   "automation.flow.welcomeNote": "Tradepass poate trimite deja e-mailul de acces B2B al Shopify când aprobă un cumpărător, deci nu este nevoie de un flux suplimentar pentru asta.",
-  "automation.flow.open": "Deschideți Shopify Flow"
+  "automation.flow.open": "Deschideți Shopify Flow",
+  "automation.flow.alerts": "Vrei un e-mail când cineva aplică? În Shopify Flow, folosește declanșatorul „Wholesale application submitted” cu acțiunea Flow „Send internal email”. Această acțiune trimite doar la adresele fixe ale personalului pe care le introduci în flux."
 }

@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- GraphQL payloads are untyped JSON at this boundary */
 // CONTRACT (owner: tiers/approval area).
 //
-// Approval engine: company → location → contact → terms & tax → tier → email.
+// Approval engine: company → location → contact → terms & tax → tier → welcome
+// email. The welcome email is Shopify's own B2B email
+// (companyContactSendWelcomeEmail); Tradepass sends no email itself (D-091).
 // Each step is verified by reading back from Shopify and the state is saved
 // after every step, so Retry continues where it stopped and never duplicates
 // (objects carry our externalId and stored GIDs are checked first). Undo
@@ -13,15 +15,13 @@ import db from "../db.server";
 import { gql, mutate, GqlError, UserErrorsError, type Admin } from "./gql.server";
 import { logActivity } from "./activity.server";
 import { decrypt, sha256 } from "./crypto.server";
-import { queueEmail } from "./email/index.server";
 import { emitFlowTrigger } from "./flow.server";
 import { createT } from "./i18n";
 import { LockBusyError, withApplicationLock } from "./lock.server";
 import { approvalQuota, effectivePlan } from "./plans";
 import { approvalsThisMonth } from "./applications.server";
-import { readSettings } from "./settings";
 import { suggestExemption, US_RESELLER_STATES } from "./tax";
-import { refreshShopFacts, storefrontUrl } from "./shop.server";
+import { refreshShopFacts } from "./shop.server";
 import {
   AssignmentError, ASSISTED_JOB, catalogBudget, moveLocations, paymentTermsOptions, readDefaults, TierError,
 } from "./tiers.server";
@@ -423,43 +423,20 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
 
   async email(r) {
     const st = r.state.steps.email;
-    const i = r.state.input;
-    if (!i.sendWelcome) {
+    const contactGid = r.state.steps.contact.gid;
+    if (!r.state.input.sendWelcome || !contactGid) {
       st.status = "skipped";
       return;
     }
-    const row = await db.shop.findUnique({ where: { shop: r.ctx.shop } });
-    const settings = readSettings(row?.settings ?? {});
-    if (settings.notifications.useShopifyWelcome && r.state.steps.contact.gid) {
-      try {
-        await mutate(r.ctx.admin, "companyContactSendWelcomeEmail", Q.welcome, { companyContactId: r.state.steps.contact.gid });
-        await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "approval.welcome_sent", subject: r.state.steps.contact.gid, detail: { via: "shopify" } });
-        st.gid = "shopify";
-        return;
-      } catch {
-        // Fall back to our own "You're approved" email (D-005).
-      }
+    // Shopify's own B2B welcome email: it invites the contact to sign in to the store. There is
+    // no fallback any more; a failure shows on this step and the merchant can send it again.
+    try {
+      await mutate(r.ctx.admin, "companyContactSendWelcomeEmail", Q.welcome, { companyContactId: contactGid });
+    } catch (e) {
+      throw new StepError("email_failed", e instanceof UserErrorsError ? e.userErrors.map((u) => u.message).join(" ") : undefined);
     }
-    if (!r.email) {
-      st.status = "skipped";
-      return;
-    }
-    const tier = await db.tier.findFirst({ where: { id: i.tierId, shop: r.ctx.shop } });
-    const tierName = ((tier?.buyerNames ?? {}) as Record<string, string>)[r.locale] || tier?.name || "";
-    const res = await queueEmail({
-      shop: r.ctx.shop, type: "approved", to: r.email, locale: r.locale, subjectId: r.state.buyerId,
-      vars: {
-        company: i.companyName, first_name: r.firstName ?? "", store_name: row?.name || r.ctx.shop.replace(/\.myshopify\.com$/, ""), tier_name: tierName,
-        // Emails need an absolute link: the setting is a storefront path like "/account/login".
-        login_url: storefrontUrl(row, settings.storefront.loginUrl, r.ctx.shop),
-      },
-    });
-    if (!res.queued && res.reason === "disabled") {
-      st.status = "skipped";
-      return;
-    }
-    if (!res.queued) throw new StepError("email_failed");
-    st.gid = "tradepass";
+    await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "approval.welcome_sent", subject: contactGid, detail: { via: "shopify" } });
+    st.gid = "shopify";
   },
 };
 
@@ -710,7 +687,6 @@ export type ApprovalDefaults = {
   contactName: string;
   state: ApprovalState | null;
   quota: { used: number; limit: number | null; blocked: boolean };
-  useShopifyWelcome: boolean;
 };
 
 export async function approvalDefaults(ctx: ApprovalCtx, applicationId: string): Promise<ApprovalDefaults> {
@@ -721,7 +697,6 @@ export async function approvalDefaults(ctx: ApprovalCtx, applicationId: string):
     db.certificate.findMany({ where: { shop: ctx.shop, applicationId: app.id }, orderBy: { createdAt: "desc" } }),
     app.formId ? db.form.findFirst({ where: { shop: ctx.shop, id: app.formId }, select: { suggestedTierId: true } }) : null,
   ]);
-  const settings = readSettings(shopRow?.settings ?? {});
   const a = (app.answers ?? {}) as Record<string, unknown>;
   const billing = addressFromAnswers(a.billingAddress, app.countryCode) ?? { address1: "", city: "", countryCode: app.countryCode ?? "" };
   const shipping = addressFromAnswers(a.shippingAddress, app.countryCode);
@@ -794,7 +769,6 @@ export async function approvalDefaults(ctx: ApprovalCtx, applicationId: string):
     contactName: [contact.firstName, contact.lastName].filter(Boolean).join(" "),
     state: prev,
     quota: { used: quota.used, limit: quota.limit, blocked: quota.blocked },
-    useShopifyWelcome: settings.notifications.useShopifyWelcome,
   };
 }
 
@@ -802,7 +776,7 @@ export async function approvalDefaults(ctx: ApprovalCtx, applicationId: string):
 
 export type BulkApproveSummary = { approved: string[]; skipped: { id: string; company: string; reason: string }[] };
 
-export async function approveMany(ctx: ApprovalCtx, ids: string[], tierId: string): Promise<BulkApproveSummary> {
+export async function approveMany(ctx: ApprovalCtx, ids: string[], tierId: string, opts: { sendWelcome?: boolean } = {}): Promise<BulkApproveSummary> {
   const t = await translator(ctx);
   const out: BulkApproveSummary = { approved: [], skipped: [] };
   let blocked = false;
@@ -816,7 +790,10 @@ export async function approveMany(ctx: ApprovalCtx, ids: string[], tierId: strin
       const d = await approvalDefaults(ctx, id);
       const td = d.tierDefaults[tierId];
       if (!td) { skip("tier_missing"); continue; }
-      const input: ApproveInput = { ...d.input, tierId, paymentTermsTemplateId: td.paymentTermsTemplateId, checkoutToDraft: td.checkoutToDraft };
+      const input: ApproveInput = {
+        ...d.input, tierId, paymentTermsTemplateId: td.paymentTermsTemplateId, checkoutToDraft: td.checkoutToDraft,
+        sendWelcome: opts.sendWelcome ?? d.input.sendWelcome,
+      };
       const state = await approveApplication(ctx, id, input);
       const failed = APPROVAL_STEPS.find((s) => state.steps[s].status === "failed");
       if (failed && failed !== "email") skip("step_failed", { step: t(`approval.step.${failed}`), error: state.steps[failed].error ?? "" });

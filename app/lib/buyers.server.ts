@@ -206,14 +206,12 @@ export async function buyerDetail(shop: string, id: string) {
   const buyer = await db.buyer.findFirst({ where: { shop, id } });
   if (!buyer) return null;
   const certificates = await db.certificate.findMany({ where: { shop, buyerId: buyer.id }, orderBy: { expiresOn: "asc" } });
-  // Renewal requests are logged by the certificates area against the certificate id.
   const subjects = [buyer.id, buyer.companyGid, ...buyer.locationGids, ...(buyer.contactGid ? [buyer.contactGid] : []), ...certificates.map((c) => c.id)];
   const [tiers, activity, application] = await Promise.all([
     db.tier.findMany({ where: { shop }, select: { id: true, name: true }, orderBy: { position: "asc" } }),
     db.activityLog.findMany({ where: { shop, subject: { in: subjects } }, orderBy: { createdAt: "desc" }, take: 100 }),
     db.application.findFirst({ where: { shop, buyerId: buyer.id }, select: { id: true } }),
   ]);
-  const renewals = activity.filter((a) => /renewal/.test(a.action));
   const history = activity.filter((a) => /^(buyer\.(move|pause|resume|create)|tier\.(assign|unassign)|application\.approve)/.test(a.action));
-  return { buyer, tiers, certificates, activity, history, applicationId: application?.id ?? null, renewals };
+  return { buyer, tiers, certificates, activity, history, applicationId: application?.id ?? null };
 }

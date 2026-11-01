@@ -3,8 +3,8 @@ import db from "../db.server";
 import { storefrontUrl } from "./shop.server";
 import { logActivity } from "./activity.server";
 import { decrypt, encrypt, sha256, signToken, verifyToken } from "./crypto.server";
-import { queueEmail } from "./email/index.server";
 import { emitFlowTrigger } from "./flow.server";
+import { buildMessage, renewalKind, type ApplicantMessage } from "./messages";
 import { gql, mutate, type Admin } from "./gql.server";
 import { readSettings } from "./settings";
 import { EU_COUNTRIES, usResellerExemption } from "./tax";
@@ -12,10 +12,12 @@ import { EU_COUNTRIES, usResellerExemption } from "./tax";
 // Certificates (spec §H). Files live in the merchant's Shopify Files; we keep
 // the GID, dates, review status and the encrypted number. Review state
 // (pending / rejected) is stored; valid / expiring / expired is derived from
-// the expiry date and refreshed daily so filters and the digest can query it.
+// the expiry date and refreshed daily so filters and Home can query it.
+// Tradepass sends no email (D-091): to ask for a new certificate the merchant
+// copies a ready-made message with a signed, single-use upload link (renewalMessage).
 
 export * from "./certificates";
-import { CERTIFICATE_TYPES, certificateStatus, daysUntil, maskNumber, RENEWAL_LINK_DAYS, renewalStage, type CertificateType } from "./certificates";
+import { CERTIFICATE_TYPES, certificateStatus, maskNumber, RENEWAL_LINK_DAYS, type CertificateType } from "./certificates";
 
 export function maskedNumber(numberEnc: string | null): string {
   if (!numberEnc) return "";
@@ -129,63 +131,42 @@ export async function createRenewalToken(shop: string, certificateId: string, no
   return token;
 }
 
-/** Atomically mark a reminder stage as sent. False when it was already sent (so a rerun never double-sends). */
-export async function claimReminder(shop: string, id: string, stage: string, now = new Date()): Promise<boolean> {
-  const n = await db.$executeRaw`
-    UPDATE "Certificate" SET "remindedAt" = COALESCE("remindedAt", '{}'::jsonb) || jsonb_build_object(${stage}::text, ${now.toISOString()}::text)
-    WHERE "id" = ${id} AND "shop" = ${shop} AND NOT jsonb_exists(COALESCE("remindedAt", '{}'::jsonb), ${stage}::text)`;
-  return n === 1;
-}
-
-async function releaseReminder(shop: string, id: string, stage: string) {
-  await db.$executeRaw`UPDATE "Certificate" SET "remindedAt" = "remindedAt" - ${stage}::text WHERE "id" = ${id} AND "shop" = ${shop}`;
-}
-
-/** Email a renewal request with a fresh upload link. Returns true when queued (or deferred by the quota). */
-export async function sendRenewalRequest(
+/**
+ * The renewal request the merchant sends the buyer themselves: a fresh signed,
+ * single-use upload link (older unused links stop working) inside a message in
+ * the buyer's language. The recipient address is read from the application or
+ * Shopify (never stored).
+ */
+export async function renewalMessage(
   shop: string,
   certificateId: string,
-  kind: "expiring" | "expired",
+  actor: string,
   adminFor: AdminFor = defaultAdminFor,
   now = new Date(),
-): Promise<boolean> {
+): Promise<ApplicantMessage | null> {
   const cert = await db.certificate.findFirst({ where: { shop, id: certificateId } });
-  if (!cert) return false;
-  const to = await certificateRecipient(shop, cert, adminFor);
-  if (!to) return false;
-  const shopRow = await db.shop.findUnique({ where: { shop }, select: { name: true, domainUrl: true } });
+  if (!cert) return null;
+  const [to, shopRow, holder] = await Promise.all([
+    certificateRecipient(shop, cert, adminFor).catch(() => null),
+    db.shop.findUnique({ where: { shop }, select: { name: true, domainUrl: true, primaryLocale: true, settings: true } }),
+    cert.buyerId
+      ? db.buyer.findFirst({ where: { shop, id: cert.buyerId }, select: { name: true } })
+      : cert.applicationId
+        ? db.application.findFirst({ where: { shop, id: cert.applicationId }, select: { companyName: true } }).then((a) => (a ? { name: a.companyName } : null))
+        : null,
+  ]);
   const token = await createRenewalToken(shop, cert.id, now);
-  const res = await queueEmail({
-    shop,
-    type: kind === "expired" ? "cert_expired" : "cert_expiring",
-    to: to.email,
-    locale: to.locale,
-    vars: {
-      company: to.company,
-      first_name: to.firstName,
-      store_name: shopRow?.name ?? shop.replace(/\.myshopify\.com$/, ""),
-      update_link: renewalLink(shop, token, to.locale, shopRow?.domainUrl),
-      expiry_date: cert.expiresOn ? cert.expiresOn.toISOString().slice(0, 10) : "",
-    },
-    subjectId: cert.id,
-  });
-  return res.queued;
-}
-
-/** Send renewal requests (secure upload link) for the buyers' certificates. Returns how many were queued. */
-export async function requestRenewalForBuyers(shop: string, buyerIds: string[], adminFor: AdminFor = defaultAdminFor): Promise<number> {
-  let queued = 0;
-  for (const buyerId of buyerIds) {
-    // The buyer's most relevant certificate: the one expiring last (undated ones count as newest).
-    const cert = await db.certificate.findFirst({
-      where: { shop, buyerId, status: { not: "rejected" } },
-      orderBy: [{ expiresOn: { sort: "desc", nulls: "first" } }, { createdAt: "desc" }],
-    });
-    if (!cert) continue;
-    const expired = cert.expiresOn ? daysUntil(cert.expiresOn) < 0 : false;
-    if (await sendRenewalRequest(shop, cert.id, expired ? "expired" : "expiring", adminFor)) queued++;
-  }
-  return queued;
+  const primary = shopRow?.primaryLocale ?? "en";
+  const locale = to?.locale || primary;
+  const expiry = cert.expiresOn ? cert.expiresOn.toISOString().slice(0, 10) : null;
+  await logActivity({ shop, actor, action: "certificate.renewal_link", subject: cert.id });
+  return buildMessage(renewalKind(expiry, now.toISOString().slice(0, 10)), locale, { primary, overrides: readSettings(shopRow?.settings ?? {}).texts }, {
+    company: to?.company || holder?.name || "",
+    firstName: to?.firstName,
+    storeName: shopRow?.name ?? shop.replace(/\.myshopify\.com$/, ""),
+    link: renewalLink(shop, token, locale, shopRow?.domainUrl),
+    expiryDate: expiry,
+  }, to?.email ?? "");
 }
 
 // ------------------------------------------------------------ merchant actions
@@ -211,7 +192,7 @@ export async function rejectCertificate(shop: string, id: string, actor: string,
   return n.count === 1;
 }
 
-/** Set or change the expiry date. A new date restarts the 30/7-day reminders and recomputes the status. */
+/** Set or change the expiry date. A new date recomputes the status and reopens the after-expiry decision. */
 export async function setCertificateExpiry(shop: string, id: string, actor: string, expiresOn: string | null): Promise<boolean> {
   const cert = await db.certificate.findFirst({ where: { shop, id } });
   if (!cert) return false;
@@ -223,7 +204,7 @@ export async function setCertificateExpiry(shop: string, id: string, actor: stri
     data: {
       expiresOn: date,
       status: certificateStatus({ expiresOn: date, status: cert.status }, s.certificates.expiringDays),
-      ...(changed ? { remindedAt: {}, decidedOnExpiry: null } : {}),
+      ...(changed ? { decidedOnExpiry: null } : {}),
     },
   });
   await logActivity({ shop, actor, action: "certificate.set_expiry", subject: id });
@@ -286,11 +267,11 @@ export async function decideOnExpiry(admin: Admin, shop: string, id: string, act
   return { ok: true };
 }
 
-/** A buyer uploaded a new file through the renewal link: back to "pending review" with fresh reminders. */
+/** A buyer uploaded a new file through the renewal link: back to "pending review". */
 export async function applyRenewalUpload(shop: string, id: string, fileGid: string, expiresOn: string | null): Promise<void> {
   await db.certificate.updateMany({
     where: { shop, id },
-    data: { fileGid, status: "pending", expiresOn: parseDate(expiresOn), remindedAt: {}, rejectReason: null, decidedOnExpiry: null },
+    data: { fileGid, status: "pending", expiresOn: parseDate(expiresOn), rejectReason: null, decidedOnExpiry: null },
   });
   await logActivity({ shop, actor: "buyer", action: "certificate.renewal_upload", subject: id });
 }
@@ -301,15 +282,14 @@ export type DailyDeps = { adminFor?: AdminFor; now?: Date; deadline?: number };
 
 /**
  * One shop's daily pass: refresh derived statuses, fire Flow triggers on
- * transitions, send 30/7-day renewal requests and the expiry email (each once),
- * and remove exemptions after expiry when the merchant chose "remove".
+ * transitions, and remove exemptions after expiry when the merchant chose "remove".
  * Returns certificates touched.
  */
 export async function runCertificateDay(shop: string, deps: DailyDeps = {}): Promise<number> {
   const now = deps.now ?? new Date();
   const adminFor = deps.adminFor ?? defaultAdminFor;
   const settings = await settingsFor(shop);
-  const { expiringDays, autoRenewal, onExpiry } = settings.certificates;
+  const { expiringDays, onExpiry } = settings.certificates;
   let admin: Admin | null = null;
   const getAdmin = async () => (admin ??= await adminFor(shop));
   let touched = 0;
@@ -339,20 +319,6 @@ export async function runCertificateDay(shop: string, deps: DailyDeps = {}): Pro
             companyName: buyer?.name,
             expiryDate: c.expiresOn!.toISOString().slice(0, 10),
           });
-        }
-      }
-      if (autoRenewal) {
-        const stage = renewalStage({ ...c, status: next }, now);
-        const expiredStage = next === "expired" && !((c.remindedAt ?? {}) as Record<string, string>).expired ? "expired" : null;
-        const due = stage ?? expiredStage;
-        if (due && (await claimReminder(shop, c.id, due, now))) {
-          try {
-            await sendRenewalRequest(shop, c.id, due === "expired" ? "expired" : "expiring", adminFor, now);
-            touched++;
-          } catch (e) {
-            await releaseReminder(shop, c.id, due); // try again tomorrow
-            throw e;
-          }
         }
       }
       if (next === "expired" && onExpiry === "remove" && !c.decidedOnExpiry && c.buyerId) {

@@ -3,14 +3,13 @@ import { randomBytes } from "node:crypto";
 import db from "../app/db.server";
 import {
   certificateStatus, certificateFlags, checkRenewalToken, consumeRenewalToken, createRenewalToken, decideOnExpiry,
-  findStaffFile, maskNumber, recordApplicationCertificates, renewalStage, runCertificateDay, applyRenewalUpload,
+  findStaffFile, maskNumber, recordApplicationCertificates, renewalMessage, runCertificateDay, applyRenewalUpload,
 } from "../app/lib/certificates.server";
 import { defaultSettings } from "../app/lib/settings";
 import type { Admin } from "../app/lib/gql.server";
 
 process.env.ENCRYPTION_KEY = randomBytes(32).toString("base64");
 process.env.LINK_TOKEN_SECRET = "test-secret";
-delete process.env.BREVO_API_KEY;
 
 const rnd = randomBytes(4).toString("hex");
 const S1 = `test-cert-1-${rnd}.myshopify.com`;
@@ -34,11 +33,10 @@ function fakeAdmin() {
 }
 
 beforeAll(async () => {
-  for (const shop of [S1, S2]) await db.shop.create({ data: { shop, name: "Cert Store", email: "owner@example.com", settings: defaultSettings() as object } });
+  for (const shop of [S1, S2]) await db.shop.create({ data: { shop, name: "Cert Store", settings: defaultSettings() as object } });
 });
 afterAll(async () => {
   const shops = { in: [S1, S2] };
-  await db.emailLog.deleteMany({ where: { shop: shops } });
   await db.tokenUse.deleteMany({ where: { shop: shops } });
   await db.certificate.deleteMany({ where: { shop: shops } });
   await db.applicationFile.deleteMany({ where: { shop: shops } });
@@ -63,35 +61,70 @@ describe("status", () => {
     expect(maskNumber("DE123456789")).toBe("••••••6789");
   });
 
-  it("schedules renewals at 30 and 7 days, once each", () => {
-    const c = (exp: string, remindedAt = {}) => ({ expiresOn: d(exp), status: "expiring", remindedAt });
-    expect(renewalStage(c("2026-12-01"), now)).toBeNull(); // 46 days
-    expect(renewalStage(c("2026-11-15"), now)).toBe("30");
-    expect(renewalStage(c("2026-11-15", { "30": "x" }), now)).toBeNull();
-    expect(renewalStage(c("2026-10-23", { "30": "x" }), now)).toBe("7");
-    expect(renewalStage(c("2026-10-23", { "30": "x", "7": "y" }), now)).toBeNull();
-    expect(renewalStage(c("2026-10-01"), now)).toBeNull();
-  });
 });
 
 describe("daily job", () => {
-  it("sends the 30-day renewal once even when run twice, and marks status", async () => {
+  it("marks status and sends nothing: no email, no renewal link, no Shopify call for a free-plan shop", async () => {
     const app = await db.application.create({
       data: { shop: S1, idempotencyKey: `k-${rnd}`, companyName: "Acme", email: "buyer@example.com", locale: "de", answers: { firstName: "Jo" } },
     });
     const cert = await db.certificate.create({ data: { shop: S1, applicationId: app.id, type: "resale", country: "US", region: "TX", expiresOn: d("2026-11-15"), status: "valid", fileGid: "gid://shopify/GenericFile/1" } });
-    const { admin } = fakeAdmin();
+    const { admin, calls } = fakeAdmin();
     await runCertificateDay(S1, { adminFor: async () => admin, now });
     await runCertificateDay(S1, { adminFor: async () => admin, now });
     const after = await db.certificate.findUniqueOrThrow({ where: { id: cert.id } });
     expect(after.status).toBe("expiring");
-    expect(Object.keys(after.remindedAt as object)).toEqual(["30"]);
-    const emails = await db.emailLog.findMany({ where: { shop: S1, type: "cert_expiring" } });
-    expect(emails).toHaveLength(1);
-    const p = emails[0].payload as { to: string; locale: string; vars: Record<string, string> };
-    expect(p).toMatchObject({ to: "buyer@example.com", locale: "de" });
-    expect(p.vars.update_link).toMatch(new RegExp(`^https://${S1}/apps/tradepass/renew/[^?]+\\?lang=de$`));
-    expect(await db.tokenUse.count({ where: { shop: S1, subjectId: cert.id, purpose: "renewal" } })).toBe(1);
+    // Renewal requests are now a "Copy renewal link" the merchant sends; the job creates no links.
+    expect(await db.tokenUse.count({ where: { shop: S1, subjectId: cert.id } })).toBe(0);
+    // Flow is a Pro feature: a Free shop gets no trigger call.
+    expect(calls.filter((c) => c.query.includes("flowTriggerReceive"))).toHaveLength(0);
+  });
+
+  it("fires the Expiring soon Flow trigger once per transition (Pro), with the expiry date", async () => {
+    const PRO = `test-cert-pro-${rnd}.myshopify.com`;
+    await db.shop.create({ data: { shop: PRO, name: "Pro Store", billingPlan: "pro", settings: defaultSettings() as object } });
+    try {
+      const buyer = await db.buyer.create({ data: { shop: PRO, companyGid: `gid://shopify/Company/77${rnd.replace(/\D/g, "")}1`, locationGids: [], name: "Acme" } });
+      await db.certificate.create({ data: { shop: PRO, buyerId: buyer.id, type: "resale", country: "US", region: "TX", expiresOn: d("2026-11-01"), status: "valid" } });
+      const { admin, calls } = fakeAdmin();
+      await runCertificateDay(PRO, { adminFor: async () => admin, now });
+      await runCertificateDay(PRO, { adminFor: async () => admin, now });
+      const triggers = calls.filter((c) => c.query.includes("flowTriggerReceive"));
+      expect(triggers).toHaveLength(1);
+      expect(triggers[0].variables).toMatchObject({ handle: "tradepass-flow-certificate-expiring", payload: { "Expiry date": "2026-11-01", "Company name": "Acme" } });
+    } finally {
+      await db.activityLog.deleteMany({ where: { shop: PRO } });
+      await db.certificate.deleteMany({ where: { shop: PRO } });
+      await db.buyer.deleteMany({ where: { shop: PRO } });
+      await db.shop.deleteMany({ where: { shop: PRO } });
+    }
+  });
+
+  it("Copy renewal link: a message in the applicant's language with a fresh single-use link", async () => {
+    const app = await db.application.create({
+      data: { shop: S1, idempotencyKey: `kr-${rnd}`, companyName: "Beta GmbH", email: "einkauf@beta.test", locale: "de", answers: { firstName: "Jo" } },
+    });
+    const cert = await db.certificate.create({ data: { shop: S1, applicationId: app.id, type: "vat", country: "DE", expiresOn: d("2026-11-15"), status: "expiring" } });
+    const first = await renewalMessage(S1, cert.id, "staff", async () => fakeAdmin().admin, now);
+    expect(first).not.toBeNull();
+    expect(first!.locale).toBe("de");
+    expect(first!.to).toBe("einkauf@beta.test");
+    expect(first!.subject).toContain("Cert Store");
+    expect(first!.body).toContain("Jo");
+    expect(first!.body).toContain("Beta GmbH");
+    expect(first!.body).toContain("15. November 2026"); // expiry date in German
+    const link = /https:\/\/\S+\/apps\/tradepass\/renew\/[^\s?]+\?lang=de/.exec(first!.body)?.[0];
+    expect(link).toBeTruthy();
+    expect(first!.mailto.startsWith("mailto:einkauf@beta.test?subject=")).toBe(true);
+    const token = decodeURIComponent(link!.split("/renew/")[1].split("?")[0]);
+    expect((await checkRenewalToken(S1, token, now)).ok).toBe(true);
+    // A second copy creates a new link and the first one stops working.
+    const second = await renewalMessage(S1, cert.id, "staff", async () => fakeAdmin().admin, now);
+    expect(second!.body).not.toBe(first!.body);
+    expect(await checkRenewalToken(S1, token, now)).toEqual({ ok: false, reason: "used" });
+    // Expired link (60 days) is refused.
+    const t2 = decodeURIComponent(/\/renew\/([^\s?]+)/.exec(second!.body)![1]);
+    expect(await checkRenewalToken(S1, t2, new Date(now.getTime() + 61 * 86_400_000))).toEqual({ ok: false, reason: "expired" });
   });
 
   it("on expiry with onExpiry=remove, removes only that certificate's exemption from every location", async () => {
@@ -99,7 +132,7 @@ describe("daily job", () => {
     s.certificates.onExpiry = "remove";
     await db.shop.update({ where: { shop: S1 }, data: { settings: s as object } });
     const buyer = await db.buyer.create({ data: { shop: S1, companyGid: `gid://shopify/Company/${rnd}`, locationGids: ["gid://shopify/CompanyLocation/1", "gid://shopify/CompanyLocation/2"], name: "Acme", taxExemptions: ["US_TX_RESELLER_EXEMPTION", "US_CA_RESELLER_EXEMPTION"] } });
-    await db.certificate.create({ data: { shop: S1, buyerId: buyer.id, type: "resale", country: "US", region: "TX", expiresOn: d("2026-10-10"), status: "expiring", remindedAt: { "30": "x", "7": "y" } } });
+    await db.certificate.create({ data: { shop: S1, buyerId: buyer.id, type: "resale", country: "US", region: "TX", expiresOn: d("2026-10-10"), status: "expiring" } });
     const { admin, calls } = fakeAdmin();
     await runCertificateDay(S1, { adminFor: async () => admin, now });
     const removes = calls.filter((c) => c.query.includes("companyLocationTaxSettingsUpdate"));
@@ -139,7 +172,7 @@ describe("renewal links and files", () => {
     expect(await checkRenewalToken(S2, token, new Date(now.getTime() + 61 * 86_400_000))).toEqual({ ok: false, reason: "expired" });
     await applyRenewalUpload(S2, cert.id, "gid://shopify/GenericFile/new", "2028-01-31");
     const after = await db.certificate.findUniqueOrThrow({ where: { id: cert.id } });
-    expect(after).toMatchObject({ status: "pending", fileGid: "gid://shopify/GenericFile/new", rejectReason: null, remindedAt: {} });
+    expect(after).toMatchObject({ status: "pending", fileGid: "gid://shopify/GenericFile/new", rejectReason: null });
     expect(after.expiresOn?.toISOString().slice(0, 10)).toBe("2028-01-31");
   });
 

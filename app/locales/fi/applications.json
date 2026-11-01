@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Lisää muistiinpano",
   "applications.detail.saveNote": "Tallenna",
   "applications.detail.toast.reject": "Hakemus hylätty",
-  "applications.detail.toast.needs_info": "Pyyntö lähetetty hakijalle",
+  "applications.detail.toast.needs_info": "Pyyntö tallennettu. Lähetä hakijalle viesti, jossa on suojattu linkki.",
   "applications.detail.toast.note": "Muistiinpano tallennettu",
   "applications.detail.toast.assign": "Vastuuhenkilö tallennettu",
   "applications.needsInfo.heading": "Pyydä lisätietoja",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Muokattavat kentät",
   "applications.needsInfo.fieldsHelp": "Hakija saa henkilökohtaisen linkin, joka on voimassa 14 päivää, ja voi muuttaa vain näitä kenttiä.",
   "applications.needsInfo.fieldsRequired": "Valitse vähintään yksi kenttä.",
-  "applications.needsInfo.send": "Lähetä pyyntö",
+  "applications.needsInfo.send": "Luo pyyntö",
   "applications.reject.heading": "Hylätäänkö {company}?",
   "applications.reject.template": "Syyn mallipohja",
   "applications.reject.templateNone": "Ei mallipohjaa",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Kiitos kiinnostuksesta. Emme pystyneet vahvistamaan hakemuksen tietoja, joten emme voi hyväksyä sitä nyt. Voit hakea uudelleen.",
   "applications.reject.template.region": "Kiitos kiinnostuksesta. Emme vielä tarjoa tukkumyyntiä alueellesi.",
   "applications.reject.reason": "Syy (valinnainen)",
-  "applications.reject.reasonHelp": "Jos lähetät sähköpostin, hakija näkee tämän syyn.",
-  "applications.reject.email": "Lähetä hakijalle sähköposti",
+  "applications.reject.reasonHelp": "Tallennetaan hakemukseen ja lisätään viestiin, jonka voit lähettää hakijalle.",
   "applications.reject.consequence": "Hakemus siirtyy kohtaan Hylätyt. Shopifyyn ei luoda mitään, ja löydät hakemuksen yhä Hylätyt-välilehdeltä.",
   "applications.reject.confirm": "Hylkää hakemus",
   "applications.activity.application.submit": "Hakemus lähetetty",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Muistiinpano lisätty",
   "applications.activity.application.assign": "Vastuuhenkilö vaihdettu",
   "applications.taxCheck.skipped": "Ei tarkisteta paketissasi",
-  "applications.detail.taxCheckPlan": "Verotunnisteet tarkistetaan virallisista rekistereistä {plan}-paketista alkaen. Tarkista tämä itse tai päivitä paketti, niin uudet hakemukset tarkistetaan automaattisesti."
+  "applications.detail.taxCheckPlan": "Verotunnisteet tarkistetaan virallisista rekistereistä {plan}-paketista alkaen. Tarkista tämä itse tai päivitä paketti, niin uudet hakemukset tarkistetaan automaattisesti.",
+  "applications.detail.copyMessage": "Viesti hakijalle"
 }

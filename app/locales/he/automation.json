@@ -48,9 +48,8 @@
   "automation.action.terms": "תנאי תשלום",
   "automation.action.tierTerms": "תנאי התשלום של הרמה",
   "automation.action.sendWelcome": "שליחת אימייל הגישה ל-B2B של Shopify לקונה",
-  "automation.action.emailApplicant": "שליחת אימייל למגיש הבקשה שהיא לא אושרה",
   "automation.action.reason": "סיבה (לא חובה)",
-  "automation.action.reasonHelp": "מוצגת באימייל בשפה שבה היא נכתבה.",
+  "automation.action.reasonHelp": "נשמר עם הבקשה ונכלל בהודעה שאפשר להעתיק ממנה.",
   "automation.error.summary": "{count, plural, one {יש לתקן # בעיה לפני השמירה.} two {יש לתקן # בעיות לפני השמירה.} other {יש לתקן # בעיות לפני השמירה.}}",
   "automation.error.conditions_required": "יש להוסיף לפחות תנאי אחד.",
   "automation.error.values_required": "יש להזין לפחות ערך אחד.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "לא ניתן היה לבטל את ההחלטה. כדאי לבדוק את יומן הפעילות ולנסות שוב.",
   "automation.reverse.heading": "לבטל את ההחלטה לגבי {company}?",
   "automation.reverse.approvedBody": "{company} יושהו: החברה תישאר ב-Shopify, אבל תצא מהרמה שלה ותראה מחירים קמעונאיים. אפשר לחדש אותה בקטע ״קונים״.",
-  "automation.reverse.rejectedBody": "{company} יחזרו לסטטוס ״ממתינה לבדיקה״. אם כבר נשלח אימייל דחייה, אי אפשר לבטל אותו.",
+  "automation.reverse.rejectedBody": "‏{company} חוזרת לסטטוס ״ממתינה לבדיקה״. אם כבר עדכנת את מגיש הבקשה, כדאי ליידע אותו.",
   "automation.reverse.confirm": "ביטול ההחלטה",
   "automation.flow.heading": "שילוב עם Shopify Flow",
   "automation.flow.body": "אפשר להשתמש בטריגרים ובפעולות האלה של Tradepass ב-Shopify Flow כדי לבנות תהליכי עבודה משלך, כמו תיוג קונים או שליחת הודעה ב-Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "תוקף אישור פג",
   "automation.flow.action.approve": "אישור בקשה לחשבון סיטונאי לרמה",
   "automation.flow.welcomeNote": "Tradepass כבר יכול לשלוח את אימייל הגישה ל-B2B של Shopify כשהוא מאשר קונה, כך שאין צורך בתהליך נוסף לשם כך.",
-  "automation.flow.open": "פתיחת Shopify Flow"
+  "automation.flow.open": "פתיחת Shopify Flow",
+  "automation.flow.alerts": "רוצים לקבל אימייל כשמישהו מגיש בקשה? ב-Shopify Flow אפשר להשתמש בטריגר “Wholesale application submitted” עם פעולת Flow‏ “Send internal email”. הפעולה הזו שולחת רק לכתובות קבועות של הצוות שמזינים בתהליך העבודה."
 }

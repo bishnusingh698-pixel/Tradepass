@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Hvala, vaša vloga je bila poslana",
-      "body": "Pregledali jo bomo in vam odgovorili po e-pošti.",
-      "email": "Poslali smo vam potrditveno e-poštno sporočilo."
+      "body": "Pregledali jo bomo in vam odgovorili po e-pošti."
     }
   }
 }

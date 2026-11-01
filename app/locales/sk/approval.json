@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Vytvoríme nového zákazníka {name} ({email}).",
   "approval.field.sendWelcome": "Odoslať uvítací e-mail",
   "approval.welcome.shopify": "Uvítací e-mail B2B od Shopify s odkazom na prihlásenie.",
-  "approval.welcome.ours": "E-mail Tradepass „Ste schválení“ v jazyku kupujúceho.",
   "approval.action.approve": "Schváliť",
   "approval.action.retry": "Skúsiť znova",
   "approval.action.retryEmail": "Odoslať e-mail znova",

@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Visas bredvid kryssrutan för samtycke. Använd en fullständig adress eller en butikssökväg som /policies/privacy-policy.",
   "form.success.heading": "Efter inskickning",
   "form.success.message": "Tackmeddelande",
-  "form.success.messageHelp": "Sökande ser också att ett bekräftelsemejl är på väg.",
+  "form.success.messageHelp": "Visas för sökande när de har skickat formuläret.",
   "form.success.redirect": "Skicka vidare till en sida (valfritt)",
   "form.success.redirectHelp": "Skicka sökande till en annan sida efter tackmeddelandet, till exempel /pages/thank-you.",
   "form.spam.heading": "Skydd mot skräppost",

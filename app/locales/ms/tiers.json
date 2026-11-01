@@ -42,7 +42,7 @@
   "tiers.editor.name": "Nama peringkat harga",
   "tiers.editor.nameHelp": "Hanya anda yang melihat nama ini, contohnya Peruncit atau Pengedar.",
   "tiers.editor.buyerNames": "Nama yang dilihat pembeli",
-  "tiers.editor.buyerNamesHelp": "Pilihan. Dipaparkan kepada pembeli dalam e-mel dan di kedai anda, mengikut bahasa. Jika kosong, nama peringkat harga digunakan.",
+  "tiers.editor.buyerNamesHelp": "Pilihan. Ditunjukkan kepada pembeli di kedai anda, mengikut bahasa. Kosong menggunakan nama peringkat.",
   "tiers.editor.buyerNameFor": "Nama dalam {language}",
   "tiers.editor.pricing": "Cara harga ditetapkan",
   "tiers.editor.pricing.percent": "Peratus diskaun daripada harga runcit",

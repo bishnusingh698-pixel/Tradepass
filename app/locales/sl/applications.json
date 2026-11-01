@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Dodaj opombo",
   "applications.detail.saveNote": "Shrani opombo",
   "applications.detail.toast.reject": "Vloga je zavrnjena",
-  "applications.detail.toast.needs_info": "Zahteva je poslana prosilcu",
+  "applications.detail.toast.needs_info": "Zahteva shranjena. Prosilcu pošljite sporočilo z varno povezavo.",
   "applications.detail.toast.note": "Opomba je shranjena",
   "applications.detail.toast.assign": "Dodelitev je shranjena",
   "applications.needsInfo.heading": "Zahtevajte več podatkov",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Polja, ki jih lahko spremeni",
   "applications.needsInfo.fieldsHelp": "Prosilec prejme zasebno povezavo, ki velja 14 dni in omogoča spreminjanje samo teh polj.",
   "applications.needsInfo.fieldsRequired": "Izberite vsaj eno polje.",
-  "applications.needsInfo.send": "Pošlji zahtevo",
+  "applications.needsInfo.send": "Ustvari zahtevo",
   "applications.reject.heading": "Želite zavrniti {company}?",
   "applications.reject.template": "Predloga razloga",
   "applications.reject.templateNone": "Brez predloge",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Hvala za vaše zanimanje. Podatkov v vaši vlogi nismo mogli preveriti, zato je trenutno ne moremo odobriti. Vlogo lahko oddate znova.",
   "applications.reject.template.region": "Hvala za vaše zanimanje. Na vašem območju veleprodaje še ne ponujamo.",
   "applications.reject.reason": "Razlog (neobvezno)",
-  "applications.reject.reasonHelp": "Če pošljete e-poštno sporočilo, prosilec vidi ta razlog.",
-  "applications.reject.email": "Pošlji e-pošto prosilcu",
+  "applications.reject.reasonHelp": "Shrani se z vlogo in je vključen v sporočilo, ki ga lahko pošljete prosilcu.",
   "applications.reject.consequence": "Vloga se premakne med zavrnjene. V Shopify se nič ne ustvari, vlogo pa še vedno najdete na zavihku Zavrnjene.",
   "applications.reject.confirm": "Zavrni vlogo",
   "applications.activity.application.submit": "Vloga oddana",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Dodana opomba",
   "applications.activity.application.assign": "Dodelitev spremenjena",
   "applications.taxCheck.skipped": "V vašem paketu ni preverjeno",
-  "applications.detail.taxCheckPlan": "Davčne številke se v uradnih registrih preverjajo v paketu {plan} in višjih. To številko preverite ročno ali nadgradite paket za samodejno preverjanje novih vlog."
+  "applications.detail.taxCheckPlan": "Davčne številke se v uradnih registrih preverjajo v paketu {plan} in višjih. To številko preverite ročno ali nadgradite paket za samodejno preverjanje novih vlog.",
+  "applications.detail.copyMessage": "Sporočilo za prosilca"
 }

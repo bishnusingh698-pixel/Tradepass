@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Lägg till anteckning",
   "applications.detail.saveNote": "Spara anteckning",
   "applications.detail.toast.reject": "Ansökan avslagen",
-  "applications.detail.toast.needs_info": "Begäran skickad till den sökande",
+  "applications.detail.toast.needs_info": "Begäran sparad. Skicka meddelandet med den säkra länken till sökanden.",
   "applications.detail.toast.note": "Anteckningen sparades",
   "applications.detail.toast.assign": "Tilldelningen sparades",
   "applications.needsInfo.heading": "Be om mer information",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Fält som kan ändras",
   "applications.needsInfo.fieldsHelp": "Den sökande får en privat länk som gäller i 14 dagar och kan bara ändra de här fälten.",
   "applications.needsInfo.fieldsRequired": "Välj minst ett fält.",
-  "applications.needsInfo.send": "Skicka begäran",
+  "applications.needsInfo.send": "Skapa begäran",
   "applications.reject.heading": "Avslå {company}?",
   "applications.reject.template": "Mall för orsak",
   "applications.reject.templateNone": "Ingen mall",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Tack för ditt intresse. Vi kunde inte verifiera uppgifterna i din ansökan och kan därför inte godkänna den just nu. Du är välkommen att ansöka igen.",
   "applications.reject.template.region": "Tack för ditt intresse. Vi erbjuder ännu inte grossistköp i ditt område.",
   "applications.reject.reason": "Orsak (valfritt)",
-  "applications.reject.reasonHelp": "Om du skickar ett mejl ser den sökande orsaken.",
-  "applications.reject.email": "Mejla den sökande",
+  "applications.reject.reasonHelp": "Sparas med ansökan och tas med i meddelandet som du kan skicka till sökanden.",
   "applications.reject.consequence": "Ansökan flyttas till Avslagna. Inget skapas i Shopify, och du hittar den fortfarande under fliken Avslagna.",
   "applications.reject.confirm": "Avslå ansökan",
   "applications.activity.application.submit": "Ansökan skickad",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Anteckning tillagd",
   "applications.activity.application.assign": "Tilldelningen ändrades",
   "applications.taxCheck.skipped": "Ingår inte i abonnemanget",
-  "applications.detail.taxCheckPlan": "Skattenummer kontrolleras mot officiella register från abonnemanget {plan} och uppåt. Kontrollera det här numret själv, eller uppgradera för att kontrollera nya ansökningar automatiskt."
+  "applications.detail.taxCheckPlan": "Skattenummer kontrolleras mot officiella register från abonnemanget {plan} och uppåt. Kontrollera det här numret själv, eller uppgradera för att kontrollera nya ansökningar automatiskt.",
+  "applications.detail.copyMessage": "Meddelande till sökanden"
 }

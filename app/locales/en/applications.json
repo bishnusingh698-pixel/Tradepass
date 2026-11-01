@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Add a note",
   "applications.detail.saveNote": "Save note",
   "applications.detail.toast.reject": "Application rejected",
-  "applications.detail.toast.needs_info": "Request sent to the applicant",
+  "applications.detail.toast.needs_info": "Request saved. Send the applicant the message with the secure link.",
   "applications.detail.toast.note": "Note saved",
   "applications.detail.toast.assign": "Assignment saved",
   "applications.needsInfo.heading": "Ask for more information",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Fields they can change",
   "applications.needsInfo.fieldsHelp": "The applicant gets a private link that is valid for 14 days and can only change these fields.",
   "applications.needsInfo.fieldsRequired": "Pick at least one field.",
-  "applications.needsInfo.send": "Send request",
+  "applications.needsInfo.send": "Create request",
   "applications.reject.heading": "Reject {company}?",
   "applications.reject.template": "Reason template",
   "applications.reject.templateNone": "No template",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Thank you for your interest. We couldn't verify the information in your application, so we can't approve it right now. You're welcome to apply again.",
   "applications.reject.template.region": "Thank you for your interest. We don't offer wholesale in your area yet.",
   "applications.reject.reason": "Reason (optional)",
-  "applications.reject.reasonHelp": "If you send an email, the applicant sees this reason.",
-  "applications.reject.email": "Email the applicant",
+  "applications.reject.reasonHelp": "Saved with the application and included in the message you can send the applicant.",
   "applications.reject.consequence": "The application moves to Rejected. Nothing is created in Shopify, and you can still find it under the Rejected tab.",
   "applications.reject.confirm": "Reject application",
   "applications.activity.application.submit": "Application submitted",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Note added",
   "applications.activity.application.assign": "Assignment changed",
   "applications.taxCheck.skipped": "Not checked on your plan",
-  "applications.detail.taxCheckPlan": "Tax numbers are checked against official registries on the {plan} plan and up. Check this one manually, or upgrade to check new applications automatically."
+  "applications.detail.taxCheckPlan": "Tax numbers are checked against official registries on the {plan} plan and up. Check this one manually, or upgrade to check new applications automatically.",
+  "applications.detail.copyMessage": "Message for the applicant"
 }

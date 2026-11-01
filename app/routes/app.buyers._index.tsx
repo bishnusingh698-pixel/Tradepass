@@ -9,7 +9,6 @@ import {
   type MoveSummary,
 } from "../lib/buyers.server";
 import { CERT_FILTERS } from "../lib/buyers";
-import { requestRenewalForBuyers } from "../lib/certificates.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CertBadge } from "../components/CertBadge";
@@ -63,10 +62,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     }
     if (intent === "pause") return summarize(await pauseBuyers(tctx, ids), "buyers.bulk.paused");
     if (intent === "resume") return summarize(await resumeBuyers(tctx, ids), "buyers.bulk.resumed");
-    if (intent === "renewal") {
-      const n = await requestRenewalForBuyers(ctx.shop, ids);
-      return { ok: true as const, intent, message: ctx.t("buyers.bulk.renewalSent", { count: n }) };
-    }
     if (intent === "export") return { ok: true as const, intent, csv: await exportBuyersCsv(ctx.shop, ids) };
   } catch {
     return { ok: false as const, intent, message: ctx.t("errors.generic") };
@@ -169,7 +164,6 @@ export default function Buyers() {
             <s-stack direction="inline" gap="small-200" alignItems="center">
               <s-text>{t("buyers.bulk.selected", { count: selected.length })}</s-text>
               <s-button commandFor="move-buyers" command="--show">{t("buyers.bulk.move")}</s-button>
-              <s-button onClick={() => submit("renewal")}>{t("buyers.bulk.renewal")}</s-button>
               <s-button commandFor="pause-buyers" command="--show">{t("buyers.bulk.pause")}</s-button>
               <s-button onClick={() => submit("resume")}>{t("buyers.bulk.resume")}</s-button>
               <s-button variant="tertiary" onClick={() => submit("export")}>{t("buyers.bulk.export")}</s-button>

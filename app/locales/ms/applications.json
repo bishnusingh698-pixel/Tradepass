@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Tambah nota",
   "applications.detail.saveNote": "Simpan nota",
   "applications.detail.toast.reject": "Permohonan ditolak",
-  "applications.detail.toast.needs_info": "Permintaan dihantar kepada pemohon",
+  "applications.detail.toast.needs_info": "Permintaan disimpan. Hantar mesej dengan pautan selamat kepada pemohon.",
   "applications.detail.toast.note": "Nota disimpan",
   "applications.detail.toast.assign": "Tugasan disimpan",
   "applications.needsInfo.heading": "Minta maklumat tambahan",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Medan yang boleh mereka tukar",
   "applications.needsInfo.fieldsHelp": "Pemohon menerima pautan peribadi yang sah selama 14 hari dan hanya boleh menukar medan ini.",
   "applications.needsInfo.fieldsRequired": "Pilih sekurang-kurangnya satu medan.",
-  "applications.needsInfo.send": "Hantar permintaan",
+  "applications.needsInfo.send": "Cipta permintaan",
   "applications.reject.heading": "Tolak {company}?",
   "applications.reject.template": "Templat sebab",
   "applications.reject.templateNone": "Tiada templat",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Terima kasih atas minat anda. Kami tidak dapat mengesahkan maklumat dalam permohonan anda, jadi kami tidak dapat meluluskannya buat masa ini. Anda dialu-alukan untuk memohon semula.",
   "applications.reject.template.region": "Terima kasih atas minat anda. Kami belum menawarkan borong di kawasan anda.",
   "applications.reject.reason": "Sebab (pilihan)",
-  "applications.reject.reasonHelp": "Jika anda menghantar e-mel, pemohon akan melihat sebab ini.",
-  "applications.reject.email": "E-mel pemohon",
+  "applications.reject.reasonHelp": "Disimpan bersama permohonan dan dimasukkan dalam mesej yang boleh anda hantar kepada pemohon.",
   "applications.reject.consequence": "Permohonan beralih ke Ditolak. Tiada apa-apa dicipta dalam Shopify, dan anda masih boleh menemuinya di bawah tab Ditolak.",
   "applications.reject.confirm": "Tolak permohonan",
   "applications.activity.application.submit": "Permohonan dihantar",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Nota ditambah",
   "applications.activity.application.assign": "Tugasan ditukar",
   "applications.taxCheck.skipped": "Tidak disemak pada pelan ini",
-  "applications.detail.taxCheckPlan": "Nombor cukai disemak dengan daftar rasmi pada pelan {plan} dan ke atas. Semak nombor ini secara manual, atau naik taraf untuk menyemak permohonan baharu secara automatik."
+  "applications.detail.taxCheckPlan": "Nombor cukai disemak dengan daftar rasmi pada pelan {plan} dan ke atas. Semak nombor ini secara manual, atau naik taraf untuk menyemak permohonan baharu secara automatik.",
+  "applications.detail.copyMessage": "Mesej untuk pemohon"
 }

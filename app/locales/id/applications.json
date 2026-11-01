@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Tambahkan catatan",
   "applications.detail.saveNote": "Simpan catatan",
   "applications.detail.toast.reject": "Pengajuan ditolak",
-  "applications.detail.toast.needs_info": "Permintaan dikirim ke pemohon",
+  "applications.detail.toast.needs_info": "Permintaan disimpan. Kirim pesan berisi tautan aman kepada pemohon.",
   "applications.detail.toast.note": "Catatan disimpan",
   "applications.detail.toast.assign": "Penugasan disimpan",
   "applications.needsInfo.heading": "Minta informasi tambahan",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Kolom yang dapat mereka ubah",
   "applications.needsInfo.fieldsHelp": "Pemohon menerima tautan pribadi yang berlaku 14 hari dan hanya dapat mengubah kolom ini.",
   "applications.needsInfo.fieldsRequired": "Pilih minimal satu kolom.",
-  "applications.needsInfo.send": "Kirim permintaan",
+  "applications.needsInfo.send": "Buat permintaan",
   "applications.reject.heading": "Tolak {company}?",
   "applications.reject.template": "Template alasan",
   "applications.reject.templateNone": "Tanpa template",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Terima kasih atas minat Anda. Kami tidak dapat memverifikasi informasi dalam pengajuan Anda, jadi saat ini kami belum dapat menyetujuinya. Anda dipersilakan mengajukan kembali.",
   "applications.reject.template.region": "Terima kasih atas minat Anda. Kami belum menawarkan grosir di wilayah Anda.",
   "applications.reject.reason": "Alasan (opsional)",
-  "applications.reject.reasonHelp": "Jika Anda mengirim email, pemohon akan melihat alasan ini.",
-  "applications.reject.email": "Kirim email ke pemohon",
+  "applications.reject.reasonHelp": "Disimpan bersama pengajuan dan dimasukkan ke pesan yang dapat Anda kirim ke pemohon.",
   "applications.reject.consequence": "Pengajuan dipindahkan ke Ditolak. Tidak ada yang dibuat di Shopify, dan Anda tetap dapat menemukannya di tab Ditolak.",
   "applications.reject.confirm": "Tolak pengajuan",
   "applications.activity.application.submit": "Pengajuan dikirim",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Catatan ditambahkan",
   "applications.activity.application.assign": "Penugasan diubah",
   "applications.taxCheck.skipped": "Tidak diperiksa di paket ini",
-  "applications.detail.taxCheckPlan": "Nomor pajak diperiksa dengan registri resmi mulai paket {plan}. Periksa nomor ini secara manual, atau tingkatkan paket untuk memeriksa pengajuan baru secara otomatis."
+  "applications.detail.taxCheckPlan": "Nomor pajak diperiksa dengan registri resmi mulai paket {plan}. Periksa nomor ini secara manual, atau tingkatkan paket untuk memeriksa pengajuan baru secara otomatis.",
+  "applications.detail.copyMessage": "Pesan untuk pemohon"
 }

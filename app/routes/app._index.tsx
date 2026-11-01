@@ -185,7 +185,6 @@ function AlertAction({ id }: { id: AlertId }) {
   const href = useLocaleHref();
   const target: Partial<Record<AlertId, string>> = {
     catalog_limit: "/app/tiers",
-    email_quota: "/app/notifications",
     tier_missing: "/app/tiers",
     plan_limit: "/app/plans",
   };

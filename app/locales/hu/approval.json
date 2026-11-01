@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Új ügyfelet hozunk létre: {name} ({email}).",
   "approval.field.sendWelcome": "Üdvözlő e-mail küldése",
   "approval.welcome.shopify": "A Shopify B2B üdvözlő e-mailje bejelentkezési linkkel.",
-  "approval.welcome.ours": "A Tradepass „Jóváhagytuk” e-mailje a vásárló nyelvén.",
   "approval.action.approve": "Jóváhagyás",
   "approval.action.retry": "Újrapróbálás",
   "approval.action.retryEmail": "E-mail újraküldése",

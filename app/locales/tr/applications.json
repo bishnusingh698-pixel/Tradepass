@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Not ekle",
   "applications.detail.saveNote": "Notu kaydet",
   "applications.detail.toast.reject": "Başvuru reddedildi",
-  "applications.detail.toast.needs_info": "Talep başvuru sahibine gönderildi",
+  "applications.detail.toast.needs_info": "Talep kaydedildi. Başvuru sahibine güvenli bağlantıyı içeren mesajı gönderin.",
   "applications.detail.toast.note": "Not kaydedildi",
   "applications.detail.toast.assign": "Atama kaydedildi",
   "applications.needsInfo.heading": "Daha fazla bilgi isteyin",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Değiştirebilecekleri alanlar",
   "applications.needsInfo.fieldsHelp": "Başvuru sahibi 14 gün geçerli özel bir bağlantı alır ve yalnızca bu alanları değiştirebilir.",
   "applications.needsInfo.fieldsRequired": "En az bir alan seçin.",
-  "applications.needsInfo.send": "Talebi gönder",
+  "applications.needsInfo.send": "Talep oluştur",
   "applications.reject.heading": "{company} reddedilsin mi?",
   "applications.reject.template": "Neden şablonu",
   "applications.reject.templateNone": "Şablon yok",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "İlginiz için teşekkür ederiz. Başvurunuzdaki bilgileri doğrulayamadığımız için başvurunuzu şu anda onaylayamıyoruz. Yeniden başvurabilirsiniz.",
   "applications.reject.template.region": "İlginiz için teşekkür ederiz. Bölgenizde henüz toptan satış sunmuyoruz.",
   "applications.reject.reason": "Neden (isteğe bağlı)",
-  "applications.reject.reasonHelp": "E-posta gönderirseniz başvuru sahibi bu nedeni görür.",
-  "applications.reject.email": "Başvuru sahibine e-posta gönder",
+  "applications.reject.reasonHelp": "Başvuruyla birlikte kaydedilir ve başvuru sahibine gönderebileceğiniz mesaja eklenir.",
   "applications.reject.consequence": "Başvuru Reddedilen'e taşınır. Shopify'da hiçbir şey oluşturulmaz ve başvuruyu Reddedilen sekmesinde bulmaya devam edebilirsiniz.",
   "applications.reject.confirm": "Başvuruyu reddet",
   "applications.activity.application.submit": "Başvuru gönderildi",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Not eklendi",
   "applications.activity.application.assign": "Atama değiştirildi",
   "applications.taxCheck.skipped": "Planınızda kontrol edilmez",
-  "applications.detail.taxCheckPlan": "Vergi numaraları {plan} ve üzeri planlarda resmi sicillerden kontrol edilir. Bu numarayı kendiniz kontrol edin veya yeni başvuruların otomatik kontrol edilmesi için planınızı yükseltin."
+  "applications.detail.taxCheckPlan": "Vergi numaraları {plan} ve üzeri planlarda resmi sicillerden kontrol edilir. Bu numarayı kendiniz kontrol edin veya yeni başvuruların otomatik kontrol edilmesi için planınızı yükseltin.",
+  "applications.detail.copyMessage": "Başvuru sahibine mesaj"
 }

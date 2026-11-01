@@ -42,7 +42,7 @@
   "tiers.editor.name": "Nivånavn",
   "tiers.editor.nameHelp": "Bare du ser dette navnet, for eksempel Forhandler eller Distributør.",
   "tiers.editor.buyerNames": "Navn kjøpere ser",
-  "tiers.editor.buyerNamesHelp": "Valgfritt. Vises for kjøpere i e-poster og i butikken, per språk. Tomt felt bruker nivånavnet.",
+  "tiers.editor.buyerNamesHelp": "Valgfritt. Vises for kjøpere i butikken, per språk. Tomt bruker nivånavnet.",
   "tiers.editor.buyerNameFor": "Navn på {language}",
   "tiers.editor.pricing": "Slik settes prisene",
   "tiers.editor.pricing.percent": "Prosentrabatt på utsalgsprisen",

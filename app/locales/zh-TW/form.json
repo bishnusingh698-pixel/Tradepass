@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "顯示在同意核取方塊旁邊。請使用完整網址或商店路徑，例如 /policies/privacy-policy。",
   "form.success.heading": "提交後",
   "form.success.message": "感謝訊息",
-  "form.success.messageHelp": "申請人也會看到確認郵件即將送達的提示。",
+  "form.success.messageHelp": "申請人送出表單後顯示。",
   "form.success.redirect": "重新導向至網頁（選填）",
   "form.success.redirectHelp": "在顯示感謝訊息後將申請人導向其他網頁，例如 /pages/thank-you。",
   "form.spam.heading": "垃圾訊息防護",

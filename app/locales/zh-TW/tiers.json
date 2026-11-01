@@ -42,7 +42,7 @@
   "tiers.editor.name": "等級名稱",
   "tiers.editor.nameHelp": "此名稱僅您看得到，例如「零售商」或「經銷商」。",
   "tiers.editor.buyerNames": "買家看到的名稱",
-  "tiers.editor.buyerNamesHelp": "選填。依語言在郵件和商店中向買家顯示。留空則使用等級名稱。",
+  "tiers.editor.buyerNamesHelp": "選填。會依語言在商店中顯示給買家。留空則使用等級名稱。",
   "tiers.editor.buyerNameFor": "{language}名稱",
   "tiers.editor.pricing": "價格設定方式",
   "tiers.editor.pricing.percent": "依零售價折扣百分比",

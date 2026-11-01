@@ -218,11 +218,6 @@
     "maxLength": 30,
     "placeholders": []
   },
-  "buyers.bulk.renewal": {
-    "note": "Bulk action.",
-    "maxLength": 40,
-    "placeholders": []
-  },
   "buyers.bulk.pause": {
     "note": "Bulk action.",
     "maxLength": 30,
@@ -298,13 +293,6 @@
     "note": "Button.",
     "maxLength": 30,
     "placeholders": []
-  },
-  "buyers.bulk.renewalSent": {
-    "note": "Toast.",
-    "maxLength": 60,
-    "placeholders": [
-      "count"
-    ]
   },
   "buyers.move.heading": {
     "note": "Dialog title.",
@@ -466,14 +454,6 @@
     "note": "Shown for certificates without expiry.",
     "maxLength": 30,
     "placeholders": []
-  },
-  "buyers.detail.renewalsSent": {
-    "note": "Line under certificates.",
-    "maxLength": 100,
-    "placeholders": [
-      "count",
-      "date"
-    ]
   },
   "buyers.detail.activity": {
     "note": "Section heading.",

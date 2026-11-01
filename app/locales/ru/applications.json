@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Добавить заметку",
   "applications.detail.saveNote": "Сохранить",
   "applications.detail.toast.reject": "Заявка отклонена",
-  "applications.detail.toast.needs_info": "Запрос отправлен заявителю",
+  "applications.detail.toast.needs_info": "Запрос сохранён. Отправьте заявителю сообщение с защищённой ссылкой.",
   "applications.detail.toast.note": "Заметка сохранена",
   "applications.detail.toast.assign": "Ответственный сохранён",
   "applications.needsInfo.heading": "Запросить дополнительную информацию",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Поля, которые можно изменить",
   "applications.needsInfo.fieldsHelp": "Заявитель получит личную ссылку, действующую 14 дней, и сможет изменить только эти поля.",
   "applications.needsInfo.fieldsRequired": "Выберите хотя бы одно поле.",
-  "applications.needsInfo.send": "Отправить запрос",
+  "applications.needsInfo.send": "Создать запрос",
   "applications.reject.heading": "Отклонить заявку {company}?",
   "applications.reject.template": "Шаблон причины",
   "applications.reject.templateNone": "Без шаблона",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Спасибо за интерес. Нам не удалось проверить данные в вашей заявке, поэтому сейчас мы не можем её одобрить. Вы можете подать заявку повторно.",
   "applications.reject.template.region": "Спасибо за интерес. Пока мы не предлагаем оптовые поставки в ваш регион.",
   "applications.reject.reason": "Причина (необязательно)",
-  "applications.reject.reasonHelp": "Если вы отправите письмо, заявитель увидит эту причину.",
-  "applications.reject.email": "Отправить письмо заявителю",
+  "applications.reject.reasonHelp": "Сохраняется в заявке и попадает в сообщение, которое вы можете отправить заявителю.",
   "applications.reject.consequence": "Заявка переходит в «Отклонённые». В Shopify ничего не создаётся, а найти её можно на вкладке «Отклонённые».",
   "applications.reject.confirm": "Отклонить заявку",
   "applications.activity.application.submit": "Заявка отправлена",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Добавлена заметка",
   "applications.activity.application.assign": "Изменён ответственный",
   "applications.taxCheck.skipped": "Не проверяется в тарифе",
-  "applications.detail.taxCheckPlan": "Налоговые номера проверяются по официальным реестрам в тарифе {plan} и выше. Проверьте этот номер вручную или перейдите на другой тариф, чтобы новые заявки проверялись автоматически."
+  "applications.detail.taxCheckPlan": "Налоговые номера проверяются по официальным реестрам в тарифе {plan} и выше. Проверьте этот номер вручную или перейдите на другой тариф, чтобы новые заявки проверялись автоматически.",
+  "applications.detail.copyMessage": "Сообщение для заявителя"
 }

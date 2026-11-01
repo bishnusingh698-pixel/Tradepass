@@ -48,9 +48,8 @@
   "automation.action.terms": "Payment terms",
   "automation.action.tierTerms": "Use the tier's payment terms",
   "automation.action.sendWelcome": "Send the buyer Shopify's B2B access email",
-  "automation.action.emailApplicant": "Email the applicant that they were not approved",
   "automation.action.reason": "Reason (optional)",
-  "automation.action.reasonHelp": "Shown in the email in the language you write it.",
+  "automation.action.reasonHelp": "Saved with the application and included in the message you can copy from it.",
   "automation.error.summary": "{count, plural, one {Fix # problem before saving.} other {Fix # problems before saving.}}",
   "automation.error.conditions_required": "Add at least one condition.",
   "automation.error.values_required": "Enter at least one value.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Couldn't reverse this decision. Check the activity log and try again.",
   "automation.reverse.heading": "Reverse the decision for {company}?",
   "automation.reverse.approvedBody": "{company} will be paused: their company stays in Shopify, but they leave their tier and see retail prices. You can resume them from Buyers.",
-  "automation.reverse.rejectedBody": "{company} goes back to Waiting for review. If a rejection email was sent, it can't be recalled.",
+  "automation.reverse.rejectedBody": "{company} goes back to Waiting for review. If you already told the applicant, let them know.",
   "automation.reverse.confirm": "Reverse decision",
   "automation.flow.heading": "Shopify Flow",
   "automation.flow.body": "Use these Tradepass triggers and actions in Shopify Flow to build your own workflows, such as tagging buyers or sending a Slack message.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Certificate expired",
   "automation.flow.action.approve": "Approve wholesale application to tier",
   "automation.flow.welcomeNote": "Tradepass can already send Shopify's B2B access email when it approves a buyer, so no extra workflow is needed for that.",
-  "automation.flow.open": "Open Shopify Flow"
+  "automation.flow.open": "Open Shopify Flow",
+  "automation.flow.alerts": "Want an email when someone applies? In Shopify Flow, use the trigger “Wholesale application submitted” with Flow's “Send internal email” action. That action only sends to fixed staff addresses you enter in the workflow."
 }

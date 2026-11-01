@@ -42,7 +42,7 @@
   "tiers.editor.name": "Nome del livello",
   "tiers.editor.nameHelp": "Solo lei vede questo nome, ad esempio Rivenditore o Distributore.",
   "tiers.editor.buyerNames": "Nome visto dagli acquirenti",
-  "tiers.editor.buyerNamesHelp": "Facoltativo. Mostrato agli acquirenti nelle email e nel negozio, per lingua. Se vuoto, si usa il nome del livello.",
+  "tiers.editor.buyerNamesHelp": "Facoltativo. Mostrato agli acquirenti nel tuo negozio, per lingua. Se vuoto, viene usato il nome del livello.",
   "tiers.editor.buyerNameFor": "Nome in {language}",
   "tiers.editor.pricing": "Come vengono impostati i prezzi",
   "tiers.editor.pricing.percent": "Percentuale di sconto sul prezzo al dettaglio",

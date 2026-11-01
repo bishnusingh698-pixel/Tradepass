@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Vises ved siden av avmerkingsboksen for samtykke. Bruk en fullstendig adresse eller en butikksti som /policies/privacy-policy.",
   "form.success.heading": "Etter innsending",
   "form.success.message": "Takkemelding",
-  "form.success.messageHelp": "Søkere ser også at en bekreftelse er på vei på e-post.",
+  "form.success.messageHelp": "Vises for søkere etter at de har sendt skjemaet.",
   "form.success.redirect": "Videresend til en side (valgfritt)",
   "form.success.redirectHelp": "Send søkere til en annen side etter takkemeldingen, for eksempel /pages/takk.",
   "form.spam.heading": "Beskyttelse mot søppelpost",

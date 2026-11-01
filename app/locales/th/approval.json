@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "เราจะสร้างลูกค้าใหม่สำหรับ {name} ({email})",
   "approval.field.sendWelcome": "ส่งอีเมลต้อนรับ",
   "approval.welcome.shopify": "อีเมลต้อนรับ B2B ของ Shopify พร้อมลิงก์สำหรับเข้าสู่ระบบ",
-  "approval.welcome.ours": "อีเมล “คุณได้รับการอนุมัติแล้ว” ของ Tradepass ในภาษาของผู้ซื้อ",
   "approval.action.approve": "อนุมัติ",
   "approval.action.retry": "ลองอีกครั้ง",
   "approval.action.retryEmail": "ส่งอีเมลอีกครั้ง",

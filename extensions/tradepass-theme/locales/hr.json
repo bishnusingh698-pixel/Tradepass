@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Hvala, vaš je zahtjev poslan",
-      "body": "Pregledat ćemo ga i javiti vam se e-poštom.",
-      "email": "Poslali smo vam e-poruku s potvrdom."
+      "body": "Pregledat ćemo ga i javiti vam se e-poštom."
     }
   }
 }

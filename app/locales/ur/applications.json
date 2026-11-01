@@ -127,7 +127,7 @@
   "applications.detail.addNote": "نوٹ شامل کریں",
   "applications.detail.saveNote": "نوٹ محفوظ کریں",
   "applications.detail.toast.reject": "درخواست مسترد ہو گئی",
-  "applications.detail.toast.needs_info": "درخواست گزار کو درخواست بھیج دی گئی",
+  "applications.detail.toast.needs_info": "درخواست محفوظ ہو گئی۔ درخواست دہندہ کو محفوظ لنک والا پیغام بھیجیں۔",
   "applications.detail.toast.note": "نوٹ محفوظ ہو گیا",
   "applications.detail.toast.assign": "تفویض محفوظ ہو گئی",
   "applications.needsInfo.heading": "مزید معلومات طلب کریں",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "وہ فیلڈز جو وہ تبدیل کر سکتے ہیں",
   "applications.needsInfo.fieldsHelp": "درخواست گزار کو ایک نجی لنک ملتا ہے جو 14 دن کے لیے درست ہے، اور وہ صرف یہی فیلڈز تبدیل کر سکتا ہے۔",
   "applications.needsInfo.fieldsRequired": "کم از کم ایک فیلڈ منتخب کریں۔",
-  "applications.needsInfo.send": "درخواست بھیجیں",
+  "applications.needsInfo.send": "درخواست بنائیں",
   "applications.reject.heading": "{company} کو مسترد کریں؟",
   "applications.reject.template": "وجہ کا ٹیمپلیٹ",
   "applications.reject.templateNone": "کوئی ٹیمپلیٹ نہیں",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "آپ کی دلچسپی کا شکریہ۔ ہم آپ کی درخواست میں دی گئی معلومات کی تصدیق نہیں کر سکے، اس لیے فی الحال اسے منظور نہیں کر سکتے۔ آپ دوبارہ درخواست دے سکتے ہیں۔",
   "applications.reject.template.region": "آپ کی دلچسپی کا شکریہ۔ ہم ابھی آپ کے علاقے میں ہول سیل کی سہولت فراہم نہیں کرتے۔",
   "applications.reject.reason": "وجہ (اختیاری)",
-  "applications.reject.reasonHelp": "اگر آپ ای میل بھیجتے ہیں تو درخواست گزار یہ وجہ دیکھے گا۔",
-  "applications.reject.email": "درخواست گزار کو ای میل کریں",
+  "applications.reject.reasonHelp": "درخواست کے ساتھ محفوظ ہوتی ہے اور اس پیغام میں شامل ہوتی ہے جو آپ درخواست دہندہ کو بھیج سکتے ہیں۔",
   "applications.reject.consequence": "درخواست مسترد شدہ میں چلی جائے گی۔ Shopify میں کچھ نہیں بنتا، اور آپ اسے مسترد شدہ ٹیب میں دیکھ سکتے ہیں۔",
   "applications.reject.confirm": "درخواست مسترد کریں",
   "applications.activity.application.submit": "درخواست جمع کرائی گئی",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "نوٹ شامل کیا گیا",
   "applications.activity.application.assign": "تفویض تبدیل ہوئی",
   "applications.taxCheck.skipped": "آپ کے پلان میں جانچ نہیں ہوتی",
-  "applications.detail.taxCheckPlan": "{plan} اور اس سے اوپر کے پلانز میں ٹیکس نمبرز کو سرکاری رجسٹریوں سے جانچا جاتا ہے۔ اسے خود جانچیں، یا نئی درخواستوں کی خودکار جانچ کے لیے اپ گریڈ کریں۔"
+  "applications.detail.taxCheckPlan": "{plan} اور اس سے اوپر کے پلانز میں ٹیکس نمبرز کو سرکاری رجسٹریوں سے جانچا جاتا ہے۔ اسے خود جانچیں، یا نئی درخواستوں کی خودکار جانچ کے لیے اپ گریڈ کریں۔",
+  "applications.detail.copyMessage": "درخواست دہندہ کے لیے پیغام"
 }

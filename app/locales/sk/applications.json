@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Pridať poznámku",
   "applications.detail.saveNote": "Uložiť poznámku",
   "applications.detail.toast.reject": "Žiadosť bola zamietnutá",
-  "applications.detail.toast.needs_info": "Požiadavka odoslaná žiadateľovi",
+  "applications.detail.toast.needs_info": "Požiadavka uložená. Pošlite žiadateľovi správu so zabezpečeným odkazom.",
   "applications.detail.toast.note": "Poznámka uložená",
   "applications.detail.toast.assign": "Priradenie uložené",
   "applications.needsInfo.heading": "Vyžiadať ďalšie informácie",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Polia, ktoré môže zmeniť",
   "applications.needsInfo.fieldsHelp": "Žiadateľ dostane súkromný odkaz platný 14 dní, cez ktorý môže zmeniť iba tieto polia.",
   "applications.needsInfo.fieldsRequired": "Vyberte aspoň jedno pole.",
-  "applications.needsInfo.send": "Odoslať požiadavku",
+  "applications.needsInfo.send": "Vytvoriť požiadavku",
   "applications.reject.heading": "Zamietnuť {company}?",
   "applications.reject.template": "Šablóna dôvodu",
   "applications.reject.templateNone": "Bez šablóny",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Ďakujeme za váš záujem. Informácie vo vašej žiadosti sa nám nepodarilo overiť, preto ju teraz nemôžeme schváliť. Môžete požiadať znova.",
   "applications.reject.template.region": "Ďakujeme za váš záujem. Vo vašej oblasti zatiaľ veľkoobchod neponúkame.",
   "applications.reject.reason": "Dôvod (nepovinné)",
-  "applications.reject.reasonHelp": "Ak odošlete e-mail, žiadateľ tento dôvod uvidí.",
-  "applications.reject.email": "Poslať žiadateľovi e-mail",
+  "applications.reject.reasonHelp": "Uloží sa k žiadosti a bude v správe, ktorú môžete žiadateľovi poslať.",
   "applications.reject.consequence": "Žiadosť sa presunie medzi zamietnuté. V Shopify sa nič nevytvorí a žiadosť stále nájdete na karte Zamietnuté.",
   "applications.reject.confirm": "Zamietnuť žiadosť",
   "applications.activity.application.submit": "Žiadosť odoslaná",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Pridaná poznámka",
   "applications.activity.application.assign": "Priradenie zmenené",
   "applications.taxCheck.skipped": "Vo vašom pláne neoverované",
-  "applications.detail.taxCheckPlan": "Daňové čísla sa overujú v oficiálnych registroch v pláne {plan} a vyšších. Toto číslo overte ručne alebo prejdite na vyšší plán, aby sa nové žiadosti overovali automaticky."
+  "applications.detail.taxCheckPlan": "Daňové čísla sa overujú v oficiálnych registroch v pláne {plan} a vyšších. Toto číslo overte ručne alebo prejdite na vyšší plán, aby sa nové žiadosti overovali automaticky.",
+  "applications.detail.copyMessage": "Správa pre žiadateľa"
 }

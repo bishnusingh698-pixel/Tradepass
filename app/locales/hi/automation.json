@@ -48,9 +48,8 @@
   "automation.action.terms": "पेमेंट की शर्तें",
   "automation.action.tierTerms": "टियर की पेमेंट शर्तें इस्तेमाल करें",
   "automation.action.sendWelcome": "खरीदार को Shopify का B2B एक्सेस ईमेल भेजें",
-  "automation.action.emailApplicant": "आवेदक को ईमेल करें कि उन्हें मंज़ूरी नहीं मिली",
   "automation.action.reason": "कारण (वैकल्पिक)",
-  "automation.action.reasonHelp": "ईमेल में उसी भाषा में दिखता है जिसमें आप लिखते हैं।",
+  "automation.action.reasonHelp": "आवेदन के साथ सेव होता है और उस संदेश में शामिल होता है जिसे आप वहां से कॉपी कर सकते हैं।",
   "automation.error.summary": "{count, plural, one {सेव करने से पहले # समस्या ठीक करें।} other {सेव करने से पहले # समस्याएँ ठीक करें।}}",
   "automation.error.conditions_required": "कम से कम एक शर्त जोड़ें।",
   "automation.error.values_required": "कम से कम एक वैल्यू डालें।",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "यह फ़ैसला पलटा नहीं जा सका। गतिविधि लॉग देखें और फिर कोशिश करें।",
   "automation.reverse.heading": "{company} का फ़ैसला पलटें?",
   "automation.reverse.approvedBody": "{company} को रोका जाएगा: उनकी कंपनी Shopify में बनी रहेगी, लेकिन वे अपने टियर से हट जाएँगे और रिटेल कीमतें देखेंगे। आप उन्हें खरीदार पेज से फिर शुरू कर सकते हैं।",
-  "automation.reverse.rejectedBody": "{company} फिर से समीक्षा के इंतज़ार में चला जाएगा। अगर अस्वीकृति ईमेल भेजा जा चुका है, तो उसे वापस नहीं लिया जा सकता।",
+  "automation.reverse.rejectedBody": "{company} वापस समीक्षा की प्रतीक्षा में चला जाता है। अगर आपने आवेदक को पहले ही बता दिया है, तो उन्हें सूचित करें।",
   "automation.reverse.confirm": "फ़ैसला पलटें",
   "automation.flow.heading": "Shopify Flow वर्कफ़्लो",
   "automation.flow.body": "Shopify Flow में Tradepass के ट्रिगर और ऐक्शन इस्तेमाल करके अपने वर्कफ़्लो बनाएँ, जैसे खरीदारों को टैग करना या Slack मैसेज भेजना।",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "सर्टिफ़िकेट की अवधि खत्म",
   "automation.flow.action.approve": "होलसेल आवेदन को टियर में मंज़ूर करें",
   "automation.flow.welcomeNote": "खरीदार को मंज़ूरी देते समय Tradepass पहले से ही Shopify का B2B एक्सेस ईमेल भेज सकता है, इसलिए इसके लिए अलग वर्कफ़्लो की ज़रूरत नहीं है।",
-  "automation.flow.open": "Shopify Flow खोलें"
+  "automation.flow.open": "Shopify Flow खोलें",
+  "automation.flow.alerts": "क्या आप चाहते हैं कि कोई आवेदन करे तो आपको ईमेल मिले? Shopify Flow में ट्रिगर “Wholesale application submitted” को Flow के ऐक्शन “Send internal email” के साथ इस्तेमाल करें। यह ऐक्शन केवल उन तय स्टाफ़ पतों पर भेजता है जो आप वर्कफ़्लो में डालते हैं।"
 }

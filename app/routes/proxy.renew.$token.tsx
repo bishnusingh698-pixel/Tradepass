@@ -5,7 +5,7 @@ import { sha256 } from "../lib/crypto.server";
 import { createT, type Translator } from "../lib/i18n";
 import { matchLocale } from "../lib/i18n/locales";
 import { readSettings } from "../lib/settings";
-import { escapeHtml, fontStack } from "../lib/email/render";
+import { escapeHtml, fontStack } from "../lib/html";
 import { applyRenewalUpload, checkRenewalToken, consumeRenewalToken, defaultAdminFor } from "../lib/certificates.server";
 import { ALLOWED_UPLOAD_TYPES, MAX_UPLOAD_BYTES, uploadToShopifyFiles } from "../lib/uploads.server";
 

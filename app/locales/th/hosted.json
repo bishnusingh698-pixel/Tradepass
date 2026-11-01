@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "ขอบคุณ ใบสมัครของคุณได้รับการอัปเดตแล้ว",
   "hosted.update.doneBody": "{store} จะตรวจสอบและติดต่อกลับทางอีเมล",
   "hosted.link.invalidTitle": "ลิงก์นี้ไม่ถูกต้อง",
-  "hosted.link.invalidBody": "โปรดตรวจสอบว่าคุณเปิดลิงก์ทั้งหมดจากอีเมล หรือติดต่อ {store}",
+  "hosted.link.invalidBody": "ตรวจสอบว่าคุณเปิดลิงก์ครบทั้งหมด หรือติดต่อ {store}",
   "hosted.link.expiredTitle": "ลิงก์นี้หมดอายุแล้ว",
   "hosted.link.expiredBody": "เพื่อความปลอดภัยของคุณ ลิงก์อัปเดตใช้ได้ในระยะเวลาจำกัดเท่านั้น โปรดติดต่อ {store} เพื่อขอลิงก์ใหม่",
   "hosted.link.usedTitle": "ลิงก์นี้ถูกใช้ไปแล้ว",

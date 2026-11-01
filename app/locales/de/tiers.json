@@ -42,7 +42,7 @@
   "tiers.editor.name": "Name der Stufe",
   "tiers.editor.nameHelp": "Nur Sie sehen diesen Namen, zum Beispiel Einzelhändler oder Distributor.",
   "tiers.editor.buyerNames": "Name für Käufer",
-  "tiers.editor.buyerNamesHelp": "Optional. Wird Käufern in E-Mails und in Ihrem Shop pro Sprache angezeigt. Ohne Eingabe wird der Stufenname verwendet.",
+  "tiers.editor.buyerNamesHelp": "Optional. Wird Käufern in Ihrem Shop angezeigt, je Sprache. Leer bedeutet: Name der Stufe.",
   "tiers.editor.buyerNameFor": "Name auf {language}",
   "tiers.editor.pricing": "So werden Preise festgelegt",
   "tiers.editor.pricing.percent": "Prozentrabatt auf den Einzelhandelspreis",

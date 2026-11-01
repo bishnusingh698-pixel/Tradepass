@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Thank you, your application has been sent",
-      "body": "We'll review it and get back to you by email.",
-      "email": "We've sent you a confirmation email."
+      "body": "We'll review it and get back to you by email."
     }
   }
 }

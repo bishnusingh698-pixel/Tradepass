@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Añadir una nota",
   "applications.detail.saveNote": "Guardar nota",
   "applications.detail.toast.reject": "Solicitud rechazada",
-  "applications.detail.toast.needs_info": "Petición enviada al solicitante",
+  "applications.detail.toast.needs_info": "Solicitud guardada. Envía al solicitante el mensaje con el enlace seguro.",
   "applications.detail.toast.note": "Nota guardada",
   "applications.detail.toast.assign": "Asignación guardada",
   "applications.needsInfo.heading": "Pedir más información",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Campos que puede cambiar",
   "applications.needsInfo.fieldsHelp": "El solicitante recibe un enlace privado válido durante 14 días con el que solo puede cambiar estos campos.",
   "applications.needsInfo.fieldsRequired": "Elija al menos un campo.",
-  "applications.needsInfo.send": "Enviar petición",
+  "applications.needsInfo.send": "Crear solicitud",
   "applications.reject.heading": "¿Rechazar a {company}?",
   "applications.reject.template": "Plantilla de motivo",
   "applications.reject.templateNone": "Sin plantilla",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Gracias por su interés. No pudimos verificar la información de su solicitud, así que no podemos aprobarla en este momento. Puede volver a presentarla cuando quiera.",
   "applications.reject.template.region": "Gracias por su interés. Todavía no ofrecemos venta mayorista en su zona.",
   "applications.reject.reason": "Motivo (opcional)",
-  "applications.reject.reasonHelp": "Si envía un correo, el solicitante verá este motivo.",
-  "applications.reject.email": "Enviar un correo al solicitante",
+  "applications.reject.reasonHelp": "Se guarda con la solicitud y se incluye en el mensaje que puedes enviar al solicitante.",
   "applications.reject.consequence": "La solicitud pasa a Rechazadas. No se crea nada en Shopify y podrá encontrarla en la pestaña Rechazadas.",
   "applications.reject.confirm": "Rechazar solicitud",
   "applications.activity.application.submit": "Solicitud enviada",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Nota añadida",
   "applications.activity.application.assign": "Asignación cambiada",
   "applications.taxCheck.skipped": "Sin verificar en su plan",
-  "applications.detail.taxCheckPlan": "Los números fiscales se verifican en registros oficiales a partir del plan {plan}. Compruebe este número manualmente o mejore su plan para verificar automáticamente las nuevas solicitudes."
+  "applications.detail.taxCheckPlan": "Los números fiscales se verifican en registros oficiales a partir del plan {plan}. Compruebe este número manualmente o mejore su plan para verificar automáticamente las nuevas solicitudes.",
+  "applications.detail.copyMessage": "Mensaje para el solicitante"
 }

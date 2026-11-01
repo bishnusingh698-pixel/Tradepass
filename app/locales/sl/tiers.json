@@ -42,7 +42,7 @@
   "tiers.editor.name": "Ime ravni",
   "tiers.editor.nameHelp": "To ime vidite samo vi, na primer Trgovec na drobno ali Distributer.",
   "tiers.editor.buyerNames": "Ime, ki ga vidijo kupci",
-  "tiers.editor.buyerNamesHelp": "Neobvezno. Prikazano kupcem v e-pošti in v trgovini, za vsak jezik posebej. Če je prazno, se uporabi ime ravni.",
+  "tiers.editor.buyerNamesHelp": "Izbirno. Prikaže se kupcem v trgovini, za vsak jezik. Prazno uporabi ime ravni.",
   "tiers.editor.buyerNameFor": "Ime – {language}",
   "tiers.editor.pricing": "Kako so določene cene",
   "tiers.editor.pricing.percent": "Odstotek popusta na maloprodajno ceno",

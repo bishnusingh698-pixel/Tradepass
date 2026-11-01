@@ -48,9 +48,8 @@
   "automation.action.terms": "Condições de pagamento",
   "automation.action.tierTerms": "Usar as condições de pagamento do nível",
   "automation.action.sendWelcome": "Enviar ao comprador o e-mail de acesso B2B da Shopify",
-  "automation.action.emailApplicant": "Enviar e-mail ao candidato a informar que não foi aprovado",
   "automation.action.reason": "Motivo (opcional)",
-  "automation.action.reasonHelp": "Aparece no e-mail no idioma em que o escrever.",
+  "automation.action.reasonHelp": "Guardado com a candidatura e incluído na mensagem que pode copiar a partir dela.",
   "automation.error.summary": "{count, plural, one {Corrija # problema antes de guardar.} many {Corrija # de problemas antes de guardar.} other {Corrija # problemas antes de guardar.}}",
   "automation.error.conditions_required": "Adicione pelo menos uma condição.",
   "automation.error.values_required": "Introduza pelo menos um valor.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Não foi possível reverter esta decisão. Consulte o registo de atividade e tente novamente.",
   "automation.reverse.heading": "Reverter a decisão de {company}?",
   "automation.reverse.approvedBody": "{company} será pausada: a empresa continua na Shopify, mas sai do nível e passa a ver preços de retalho. Pode retomá-la em Compradores.",
-  "automation.reverse.rejectedBody": "{company} volta para A aguardar análise. Se tiver sido enviado um e-mail de rejeição, não é possível anulá-lo.",
+  "automation.reverse.rejectedBody": "{company} volta a Aguarda análise. Se já informou o candidato, avise-o.",
   "automation.reverse.confirm": "Reverter decisão",
   "automation.flow.heading": "Integração com Shopify Flow",
   "automation.flow.body": "Utilize estes acionadores e ações do Tradepass no Shopify Flow para criar os seus próprios fluxos de trabalho, como adicionar etiquetas a compradores ou enviar uma mensagem no Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Certificado expirado",
   "automation.flow.action.approve": "Aprovar candidatura grossista no nível",
   "automation.flow.welcomeNote": "O Tradepass já pode enviar o e-mail de acesso B2B da Shopify quando aprova um comprador, pelo que não é necessário um fluxo adicional para isso.",
-  "automation.flow.open": "Abrir o Shopify Flow"
+  "automation.flow.open": "Abrir o Shopify Flow",
+  "automation.flow.alerts": "Quer receber um e-mail quando alguém se candidata? No Shopify Flow, use o acionador “Wholesale application submitted” com a ação do Flow “Send internal email”. Essa ação só envia para endereços fixos da equipa que indicar no fluxo."
 }

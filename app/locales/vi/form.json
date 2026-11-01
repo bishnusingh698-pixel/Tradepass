@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Hiển thị cạnh hộp kiểm đồng ý. Dùng địa chỉ đầy đủ hoặc đường dẫn trong cửa hàng như /policies/privacy-policy.",
   "form.success.heading": "Sau khi gửi",
   "form.success.message": "Lời cảm ơn",
-  "form.success.messageHelp": "Người đăng ký cũng thấy thông báo rằng email xác nhận đang được gửi đến.",
+  "form.success.messageHelp": "Hiển thị cho người đăng ký sau khi họ gửi biểu mẫu.",
   "form.success.redirect": "Chuyển hướng đến một trang (không bắt buộc)",
   "form.success.redirectHelp": "Đưa người đăng ký đến một trang khác sau lời cảm ơn, ví dụ /pages/thank-you.",
   "form.spam.heading": "Chống thư rác",

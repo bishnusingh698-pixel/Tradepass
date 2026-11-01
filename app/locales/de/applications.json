@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Notiz hinzufügen",
   "applications.detail.saveNote": "Notiz speichern",
   "applications.detail.toast.reject": "Antrag abgelehnt",
-  "applications.detail.toast.needs_info": "Anfrage an Antragsteller gesendet",
+  "applications.detail.toast.needs_info": "Anfrage gespeichert. Senden Sie dem Antragsteller die Nachricht mit dem sicheren Link.",
   "applications.detail.toast.note": "Notiz gespeichert",
   "applications.detail.toast.assign": "Zuweisung gespeichert",
   "applications.needsInfo.heading": "Weitere Angaben anfordern",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Felder, die geändert werden dürfen",
   "applications.needsInfo.fieldsHelp": "Der Antragsteller erhält einen privaten Link, der 14 Tage gültig ist und nur das Ändern dieser Felder erlaubt.",
   "applications.needsInfo.fieldsRequired": "Wählen Sie mindestens ein Feld aus.",
-  "applications.needsInfo.send": "Anfrage senden",
+  "applications.needsInfo.send": "Anfrage erstellen",
   "applications.reject.heading": "{company} ablehnen?",
   "applications.reject.template": "Vorlage für Begründung",
   "applications.reject.templateNone": "Keine Vorlage",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Vielen Dank für Ihr Interesse. Wir konnten die Angaben in Ihrem Antrag nicht überprüfen und ihn daher derzeit nicht genehmigen. Sie können sich gern erneut bewerben.",
   "applications.reject.template.region": "Vielen Dank für Ihr Interesse. In Ihrer Region bieten wir derzeit noch keinen Großhandel an.",
   "applications.reject.reason": "Begründung (optional)",
-  "applications.reject.reasonHelp": "Wenn Sie eine E-Mail senden, sieht der Antragsteller diese Begründung.",
-  "applications.reject.email": "Antragsteller per E-Mail informieren",
+  "applications.reject.reasonHelp": "Wird mit dem Antrag gespeichert und in die Nachricht übernommen, die Sie dem Antragsteller senden können.",
   "applications.reject.consequence": "Der Antrag wird nach „Abgelehnt“ verschoben. In Shopify wird nichts erstellt, und Sie finden ihn weiterhin auf dem Tab „Abgelehnt“.",
   "applications.reject.confirm": "Antrag ablehnen",
   "applications.activity.application.submit": "Antrag eingereicht",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Notiz hinzugefügt",
   "applications.activity.application.assign": "Zuweisung geändert",
   "applications.taxCheck.skipped": "In Ihrem Tarif nicht geprüft",
-  "applications.detail.taxCheckPlan": "Steuernummern werden ab dem Tarif {plan} mit amtlichen Registern abgeglichen. Prüfen Sie diese Nummer selbst oder führen Sie ein Upgrade durch, um neue Anträge automatisch zu prüfen."
+  "applications.detail.taxCheckPlan": "Steuernummern werden ab dem Tarif {plan} mit amtlichen Registern abgeglichen. Prüfen Sie diese Nummer selbst oder führen Sie ein Upgrade durch, um neue Anträge automatisch zu prüfen.",
+  "applications.detail.copyMessage": "Nachricht für den Antragsteller"
 }

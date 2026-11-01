@@ -42,7 +42,7 @@
   "tiers.editor.name": "Nivåns namn",
   "tiers.editor.nameHelp": "Bara du ser namnet, till exempel Återförsäljare eller Distributör.",
   "tiers.editor.buyerNames": "Namn som köpare ser",
-  "tiers.editor.buyerNamesHelp": "Valfritt. Visas för köpare i mejl och i butiken, per språk. Tomt fält använder nivåns namn.",
+  "tiers.editor.buyerNamesHelp": "Valfritt. Visas för köpare i butiken, per språk. Tomt använder nivåns namn.",
   "tiers.editor.buyerNameFor": "Namn på {language}",
   "tiers.editor.pricing": "Hur priser sätts",
   "tiers.editor.pricing.percent": "Procentuell rabatt på ordinarie pris",

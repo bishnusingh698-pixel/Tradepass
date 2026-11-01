@@ -48,9 +48,8 @@
   "automation.action.terms": "Termini di pagamento",
   "automation.action.tierTerms": "Usa i termini di pagamento del livello",
   "automation.action.sendWelcome": "Invia all’acquirente l’email di accesso B2B di Shopify",
-  "automation.action.emailApplicant": "Informa via email il richiedente che non è stato approvato",
   "automation.action.reason": "Motivo (facoltativo)",
-  "automation.action.reasonHelp": "Mostrato nell’email nella lingua in cui lo scrive.",
+  "automation.action.reasonHelp": "Salvato con la richiesta e incluso nel messaggio che puoi copiare da lì.",
   "automation.error.summary": "{count, plural, one {Corregga # problema prima di salvare.} many {Corregga # di problemi prima di salvare.} other {Corregga # problemi prima di salvare.}}",
   "automation.error.conditions_required": "Aggiunga almeno una condizione.",
   "automation.error.values_required": "Inserisca almeno un valore.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Impossibile annullare questa decisione. Controlli il registro attività e riprovi.",
   "automation.reverse.heading": "Annullare la decisione per {company}?",
   "automation.reverse.approvedBody": "{company} verrà sospesa: l’azienda resta in Shopify, ma esce dal suo livello e vede i prezzi al dettaglio. Può riattivarla da Acquirenti.",
-  "automation.reverse.rejectedBody": "{company} torna In attesa di esame. Se è stata inviata un’email di rifiuto, non può essere richiamata.",
+  "automation.reverse.rejectedBody": "{company} torna In attesa di revisione. Se hai già avvisato il richiedente, faglielo sapere.",
   "automation.reverse.confirm": "Annulla decisione",
   "automation.flow.heading": "Integrazione Shopify Flow",
   "automation.flow.body": "Usi questi trigger e azioni di Tradepass in Shopify Flow per creare i suoi flussi di lavoro, ad esempio per aggiungere tag agli acquirenti o inviare un messaggio Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Certificato scaduto",
   "automation.flow.action.approve": "Approva richiesta all’ingrosso nel livello",
   "automation.flow.welcomeNote": "Tradepass può già inviare l’email di accesso B2B di Shopify quando approva un acquirente, quindi non serve alcun flusso aggiuntivo per questo.",
-  "automation.flow.open": "Apri Shopify Flow"
+  "automation.flow.open": "Apri Shopify Flow",
+  "automation.flow.alerts": "Vuoi un'email quando qualcuno fa richiesta? In Shopify Flow usa il trigger «Wholesale application submitted» con l'azione di Flow «Send internal email». Questa azione invia solo agli indirizzi fissi del personale che inserisci nel flusso di lavoro."
 }

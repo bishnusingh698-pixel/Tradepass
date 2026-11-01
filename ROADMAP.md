@@ -37,7 +37,6 @@ Built on 2026-10-17 (D-076 to D-080): "Powered by Tradepass" on the Free-plan fo
 - **App proxy subpath** is assumed to be `/apps/tradepass`; a merchant who changes it breaks the form.
 - **App proxy client IP**: if Shopify doesn't forward the visitor's IP, per-IP limits become per-Shopify-edge (per-email limits still apply).
 - **VIES REST field names** were taken from client libraries, not the official swagger.
-- **Brevo free plan**: 300 emails/day for all stores together; our caps are 25 per store and 250 in total, so busy days push emails to the next day.
 
 ## Needs live verification (from the area notes)
 - Theme editor deep links, `app.extensions()` statuses and "Check again".
@@ -54,5 +53,5 @@ Built on 2026-10-17 (D-076 to D-080): "Powered by Tradepass" on the Free-plan fo
 - `validationCreate` with `functionHandle`, `$app:` metafields and input variables on the Validation; how draft-order errors appear; checkout rule removed on uninstall.
 - Flow: triggers and fields in Flow, `company_id` resolving, the Application ID variable name, the action's HMAC with the client secret, 202-then-200 retries, 4xx messages.
 - `companies(query: "name:…")` matching and `customers(query: "email:… OR …")` batches; 200-row upload through the embedded app.
-- Brevo real send and RTL/font rendering in Gmail, Outlook and Apple Mail; `unauthenticated.admin(shop)` in jobs; `companyLocationTaxSettingsUpdate` removing an exemption.
+- Copy message / Open in email inside the embedded admin (clipboard permission, mailto in the admin iframe); `unauthenticated.admin(shop)` in jobs; `companyLocationTaxSettingsUpdate` removing an exemption.
 - Gating on Dawn, Horizon and two other free themes; hourly gated-list refresh after tagging a product.

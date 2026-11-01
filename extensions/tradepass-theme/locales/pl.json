@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Dziękujemy, wniosek został wysłany",
-      "body": "Rozpatrzymy go i odpowiemy e-mailem.",
-      "email": "Wysłaliśmy e-mail z potwierdzeniem."
+      "body": "Rozpatrzymy go i odpowiemy e-mailem."
     }
   }
 }

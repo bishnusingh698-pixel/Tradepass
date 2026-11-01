@@ -53,7 +53,7 @@ describe("rule matching", () => {
 
   it("runs reject rules before approve rules, then by position", () => {
     const a1 = approveRule([{ type: "country", op: "is", values: ["US"] }], { position: 0 });
-    const r1: RuleDef = { kind: "reject", enabled: true, position: 5, conditions: { match: "all", list: [{ type: "email_domain", op: "is", values: ["acme.com"] }] }, action: { reason: null, email: false } };
+    const r1: RuleDef = { kind: "reject", enabled: true, position: 5, conditions: { match: "all", list: [{ type: "email_domain", op: "is", values: ["acme.com"] }] }, action: { reason: null } };
     expect(pickRule([a1, r1], facts())).toBe(r1);
     expect(pickRule([a1, r1], facts({ emailDomain: "other.com" }))).toBe(a1);
     expect(pickRule([a1, r1], facts({ country: "DE", emailDomain: "x.com" }))).toBeNull();
@@ -98,7 +98,7 @@ beforeEach(async () => {
   await db.application.deleteMany({ where: { shop } });
   await updateSettings(shop, { automation: { paused: false, dailyLimit: 25 } });
   await saveRules(shop, "test", [
-    { kind: "reject", enabled: true, position: 0, conditions: { match: "any", list: [{ type: "spam" }, { type: "email_domain", op: "is", values: ["spam.test"] }] }, action: { reason: null, email: false } },
+    { kind: "reject", enabled: true, position: 0, conditions: { match: "any", list: [{ type: "spam" }, { type: "email_domain", op: "is", values: ["spam.test"] }] }, action: { reason: null } },
     approveRule([{ type: "country", op: "is", values: ["US"] }, { type: "business_type", op: "is", values: ["salon"] }], { action: { tierId, paymentTermsTemplateId: null, sendWelcome: true } }),
   ]);
 });

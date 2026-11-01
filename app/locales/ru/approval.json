@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Мы создадим нового клиента: {name} ({email}).",
   "approval.field.sendWelcome": "Отправить приветственное письмо",
   "approval.welcome.shopify": "Приветственное письмо B2B от Shopify со ссылкой для входа.",
-  "approval.welcome.ours": "Письмо Tradepass «Вы одобрены» на языке покупателя.",
   "approval.action.approve": "Одобрить",
   "approval.action.retry": "Повторить",
   "approval.action.retryEmail": "Отправить письмо снова",

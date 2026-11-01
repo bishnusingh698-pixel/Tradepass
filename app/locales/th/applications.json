@@ -127,7 +127,7 @@
   "applications.detail.addNote": "เพิ่มบันทึก",
   "applications.detail.saveNote": "บันทึกโน้ต",
   "applications.detail.toast.reject": "ปฏิเสธใบสมัครแล้ว",
-  "applications.detail.toast.needs_info": "ส่งคำขอถึงผู้สมัครแล้ว",
+  "applications.detail.toast.needs_info": "บันทึกคำขอแล้ว ส่งข้อความพร้อมลิงก์ที่ปลอดภัยให้ผู้สมัคร",
   "applications.detail.toast.note": "บันทึกโน้ตแล้ว",
   "applications.detail.toast.assign": "บันทึกการมอบหมายแล้ว",
   "applications.needsInfo.heading": "ขอข้อมูลเพิ่มเติม",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "ช่องที่ผู้สมัครแก้ไขได้",
   "applications.needsInfo.fieldsHelp": "ผู้สมัครจะได้รับลิงก์ส่วนตัวที่ใช้ได้ 14 วัน และแก้ไขได้เฉพาะช่องเหล่านี้",
   "applications.needsInfo.fieldsRequired": "โปรดเลือกอย่างน้อยหนึ่งช่อง",
-  "applications.needsInfo.send": "ส่งคำขอ",
+  "applications.needsInfo.send": "สร้างคำขอ",
   "applications.reject.heading": "ปฏิเสธ {company} ใช่ไหม",
   "applications.reject.template": "เทมเพลตเหตุผล",
   "applications.reject.templateNone": "ไม่ใช้เทมเพลต",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "ขอบคุณที่สนใจ เราไม่สามารถตรวจสอบข้อมูลในใบสมัครของคุณได้ จึงยังไม่สามารถอนุมัติได้ในขณะนี้ คุณสมัครใหม่ได้ทุกเมื่อ",
   "applications.reject.template.region": "ขอบคุณที่สนใจ ขณะนี้เรายังไม่มีบริการขายส่งในพื้นที่ของคุณ",
   "applications.reject.reason": "เหตุผล (ไม่บังคับ)",
-  "applications.reject.reasonHelp": "หากคุณส่งอีเมล ผู้สมัครจะเห็นเหตุผลนี้",
-  "applications.reject.email": "ส่งอีเมลถึงผู้สมัคร",
+  "applications.reject.reasonHelp": "บันทึกไว้กับใบสมัครและใส่ในข้อความที่คุณส่งถึงผู้สมัครได้",
   "applications.reject.consequence": "ใบสมัครจะย้ายไปที่ปฏิเสธแล้ว จะไม่มีการสร้างสิ่งใดใน Shopify และคุณยังดูใบสมัครนี้ได้ในแท็บปฏิเสธแล้ว",
   "applications.reject.confirm": "ปฏิเสธใบสมัคร",
   "applications.activity.application.submit": "ส่งใบสมัครแล้ว",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "เพิ่มบันทึกแล้ว",
   "applications.activity.application.assign": "เปลี่ยนการมอบหมายแล้ว",
   "applications.taxCheck.skipped": "แพ็กเกจของคุณไม่มีการตรวจสอบ",
-  "applications.detail.taxCheckPlan": "เลขประจำตัวผู้เสียภาษีจะได้รับการตรวจสอบกับทะเบียนทางการใน {plan} ขึ้นไป โปรดตรวจสอบรายการนี้ด้วยตนเอง หรืออัปเกรดเพื่อตรวจสอบใบสมัครใหม่โดยอัตโนมัติ"
+  "applications.detail.taxCheckPlan": "เลขประจำตัวผู้เสียภาษีจะได้รับการตรวจสอบกับทะเบียนทางการใน {plan} ขึ้นไป โปรดตรวจสอบรายการนี้ด้วยตนเอง หรืออัปเกรดเพื่อตรวจสอบใบสมัครใหม่โดยอัตโนมัติ",
+  "applications.detail.copyMessage": "ข้อความถึงผู้สมัคร"
 }

@@ -53,15 +53,13 @@
   "help.faq.import.q": "Kan jag importera mina befintliga grossistkunder?",
   "help.faq.import.a": "Ja, i abonnemanget Pro. Ladda upp en CSV-fil eller konvertera kunder som redan har en tagg som ”grossist”.",
   "help.faq.languages.q": "Vilka språk stöds?",
-  "help.faq.languages.a": "36 språk. Formuläret, meddelanden i butiksfronten och mejl visas på varje besökares språk, och du kan ändra alla texter under Inställningar → Språk.",
-  "help.faq.emails.q": "Hur många mejl skickar Tradepass?",
-  "help.faq.emails.a": "Högst 25 mejl per butik och dag. Fler mejl skickas nästa dag, och Hem visar när det händer. Du kan stänga av våra mejl och använda Shopify Flow i stället.",
+  "help.faq.languages.a": "36 språk. Formuläret, meddelandena i butiken och meddelandena du skickar till sökande visas på varje persons språk, och du kan ändra alla texter under Inställningar → Språk.",
   "help.faq.approvalLimit.q": "Vad händer när jag når 10 godkännanden i abonnemanget Gratis?",
   "help.faq.approvalLimit.a": "Nya ansökningar tas fortfarande emot, så du går aldrig miste om en kund. Välj ett betalt abonnemang för att godkänna fler den månaden.",
   "help.faq.markets.q": "Hem säger att B2B-marknader inte är aktiverade. Vad gör jag?",
   "help.faq.markets.a": "I abonnemang under Plus kräver nivåpriser Shopifys nyare Markets. Aktivera dem i Shopify under Inställningar → Marknader och klicka sedan på ”Kontrollera igen” på Hem.",
   "help.faq.privacy.q": "Hur skyddas de sökandes uppgifter?",
-  "help.faq.privacy.a": "Skattenummer krypteras, länkar i mejl slutar gälla och fungerar en gång, och avslagna ansökningar tas bort efter den period du väljer i Inställningar.",
+  "help.faq.privacy.a": "Skattenummer krypteras, säkra länkar går ut och fungerar en gång, och avvisade ansökningar raderas efter den period du väljer i Inställningar.",
   "help.faq.slowFirstLoad.q": "Varför öppnas appen ibland långsamt?",
   "help.faq.slowFirstLoad.a": "Efter en lugn period kan det ta upp till en minut innan appen vaknar. Din butiksfront påverkas aldrig – prisdöljningen och formuläret fortsätter att fungera.",
   "help.diagnostics.heading": "Diagnostikinformation",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Stäng av felsökningsläge",
   "help.contact.heading": "Kontakta support",
   "help.contact.body": "Vi svarar oftast inom 2 arbetsdagar.",
-  "help.contact.priority": "Du har Pro, så dina mejl besvaras först, oftast inom 1 arbetsdag."
+  "help.contact.priority": "Du har Pro, så dina mejl besvaras först, oftast inom 1 arbetsdag.",
+  "help.faq.alerts.q": "Hur får jag veta om nya ansökningar?",
+  "help.faq.alerts.a": "Tradepass skickar inga mejl. Nya ansökningar och svar väntar på dig under Start och Ansökningar. För en mejlavisering skapar du ett arbetsflöde i Shopify Flow (Tradepass Pro) med utlösaren ”Wholesale application submitted” och Flow-åtgärden ”Send internal email”. Åtgärden skickar bara till fasta personaladresser som du anger i arbetsflödet."
 }

@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Pridėti pastabą",
   "applications.detail.saveNote": "Išsaugoti",
   "applications.detail.toast.reject": "Paraiška atmesta",
-  "applications.detail.toast.needs_info": "Prašymas išsiųstas pareiškėjui",
+  "applications.detail.toast.needs_info": "Prašymas išsaugotas. Išsiųskite pareiškėjui žinutę su saugia nuoroda.",
   "applications.detail.toast.note": "Pastaba išsaugota",
   "applications.detail.toast.assign": "Priskyrimas išsaugotas",
   "applications.needsInfo.heading": "Prašyti daugiau informacijos",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Laukai, kuriuos galima keisti",
   "applications.needsInfo.fieldsHelp": "Pareiškėjas gauna asmeninę nuorodą, kuri galioja 14 dienų, ir gali keisti tik šiuos laukus.",
   "applications.needsInfo.fieldsRequired": "Pasirinkite bent vieną lauką.",
-  "applications.needsInfo.send": "Siųsti prašymą",
+  "applications.needsInfo.send": "Sukurti prašymą",
   "applications.reject.heading": "Atmesti {company}?",
   "applications.reject.template": "Priežasties šablonas",
   "applications.reject.templateNone": "Be šablono",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Dėkojame už susidomėjimą. Nepavyko patikrinti jūsų paraiškoje pateiktos informacijos, todėl šiuo metu negalime jos patvirtinti. Kviečiame pateikti paraišką dar kartą.",
   "applications.reject.template.region": "Dėkojame už susidomėjimą. Jūsų regione didmeninės prekybos kol kas nesiūlome.",
   "applications.reject.reason": "Priežastis (neprivaloma)",
-  "applications.reject.reasonHelp": "Jei išsiųsite el. laišką, pareiškėjas matys šią priežastį.",
-  "applications.reject.email": "Siųsti pareiškėjui el. laišką",
+  "applications.reject.reasonHelp": "Išsaugoma kartu su paraiška ir įtraukiama į žinutę, kurią galite išsiųsti pareiškėjui.",
   "applications.reject.consequence": "Paraiška perkeliama į atmestas. Shopify nieko nesukuriama, o paraišką vis tiek rasite skirtuke „Atmestos“.",
   "applications.reject.confirm": "Atmesti paraišką",
   "applications.activity.application.submit": "Paraiška pateikta",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Pridėta pastaba",
   "applications.activity.application.assign": "Pakeistas atsakingas asmuo",
   "applications.taxCheck.skipped": "Jūsų plane netikrinama",
-  "applications.detail.taxCheckPlan": "Mokesčių kodai tikrinami oficialiuose registruose nuo plano {plan}. Patikrinkite šį kodą patys arba pasirinkite aukštesnį planą, kad naujos paraiškos būtų tikrinamos automatiškai."
+  "applications.detail.taxCheckPlan": "Mokesčių kodai tikrinami oficialiuose registruose nuo plano {plan}. Patikrinkite šį kodą patys arba pasirinkite aukštesnį planą, kad naujos paraiškos būtų tikrinamos automatiškai.",
+  "applications.detail.copyMessage": "Žinutė pareiškėjui"
 }

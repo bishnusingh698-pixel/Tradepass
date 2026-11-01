@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Tack! Din ansökan har skickats",
-      "body": "Vi granskar den och återkommer till dig via e-post.",
-      "email": "Vi har skickat ett bekräftelsemejl till dig."
+      "body": "Vi granskar den och återkommer till dig via e-post."
     }
   }
 }

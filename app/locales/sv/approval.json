@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Vi skapar en ny kund för {name} ({email}).",
   "approval.field.sendWelcome": "Skicka välkomstmejl",
   "approval.welcome.shopify": "Shopifys välkomstmejl för B2B, med en länk för att logga in.",
-  "approval.welcome.ours": "Tradepass mejl ”Du är godkänd” på köparens språk.",
   "approval.action.approve": "Godkänn",
   "approval.action.retry": "Försök igen",
   "approval.action.retryEmail": "Skicka mejlet igen",

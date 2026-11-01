@@ -53,15 +53,13 @@
   "help.faq.import.q": "Kan ik mijn bestaande groothandelsklanten importeren?",
   "help.faq.import.a": "Ja, met het abonnement Pro. Upload een CSV-bestand of zet klanten om die al een tag hebben, zoals ‘groothandel’.",
   "help.faq.languages.q": "Welke talen worden ondersteund?",
-  "help.faq.languages.a": "36 talen. Het formulier, de meldingen in de webshop en de e-mails verschijnen in de taal van elke bezoeker, en u kunt elke tekst wijzigen onder Instellingen → Talen.",
-  "help.faq.emails.q": "Hoeveel e-mails verstuurt Tradepass?",
-  "help.faq.emails.a": "Maximaal 25 e-mails per winkel per dag. Extra e-mails worden de volgende dag verstuurd en de startpagina laat weten wanneer dat gebeurt. U kunt onze e-mails uitzetten en in plaats daarvan Shopify Flow gebruiken.",
+  "help.faq.languages.a": "36 talen. Het formulier, de meldingen in de winkel en de berichten die je aanvragers stuurt verschijnen in ieders eigen taal, en je kunt elke tekst wijzigen onder Instellingen → Talen.",
   "help.faq.approvalLimit.q": "Wat gebeurt er als ik 10 goedkeuringen heb bereikt met het abonnement Gratis?",
   "help.faq.approvalLimit.a": "Nieuwe aanvragen worden nog steeds verzameld, dus u mist nooit een lead. Kies een betaald abonnement om die maand meer goed te keuren.",
   "help.faq.markets.q": "De startpagina zegt dat B2B-markten niet zijn ingeschakeld. Wat moet ik doen?",
   "help.faq.markets.a": "Bij abonnementen onder Plus hebben niveauprijzen de nieuwere Markets van Shopify nodig. Schakel ze in via Instellingen → Markten in Shopify en klik daarna op de startpagina op ‘Opnieuw controleren’.",
   "help.faq.privacy.q": "Hoe worden de gegevens van aanvragers beschermd?",
-  "help.faq.privacy.a": "Belastingnummers worden versleuteld, links in e-mails verlopen en werken één keer, en afgewezen aanvragen worden verwijderd na de periode die u kiest in Instellingen.",
+  "help.faq.privacy.a": "Btw- en belastingnummers worden versleuteld, beveiligde links verlopen en werken één keer, en afgewezen aanvragen worden verwijderd na de periode die je in Instellingen kiest.",
   "help.faq.slowFirstLoad.q": "Waarom opent de app soms traag?",
   "help.faq.slowFirstLoad.a": "Na een rustige periode kan het tot een minuut duren voordat de app wakker wordt. Uw webshop merkt hier nooit iets van: het verbergen van prijzen en het formulier blijven werken.",
   "help.diagnostics.heading": "Diagnostische gegevens",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Foutopsporingsmodus uitzetten",
   "help.contact.heading": "Contact opnemen met support",
   "help.contact.body": "We antwoorden meestal binnen 2 werkdagen.",
-  "help.contact.priority": "U hebt het abonnement Pro, dus uw e-mails worden als eerste beantwoord, meestal binnen 1 werkdag."
+  "help.contact.priority": "U hebt het abonnement Pro, dus uw e-mails worden als eerste beantwoord, meestal binnen 1 werkdag.",
+  "help.faq.alerts.q": "Hoe hoor ik van nieuwe aanvragen?",
+  "help.faq.alerts.a": "Tradepass verstuurt geen e-mails. Nieuwe aanvragen en antwoorden staan voor je klaar op Home en onder Aanvragen. Voor een e-mailmelding maak je in Shopify Flow (Tradepass Pro) een workflow met de trigger 'Wholesale application submitted' en de Flow-actie 'Send internal email'. Die actie mailt alleen vaste adressen van medewerkers die je in de workflow invult."
 }

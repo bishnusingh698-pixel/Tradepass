@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Obrigado, a sua candidatura foi enviada",
-      "body": "Vamos analisá-la e responderemos por e-mail.",
-      "email": "Enviámos-lhe um e-mail de confirmação."
+      "body": "Vamos analisá-la e responderemos por e-mail."
     }
   }
 }

@@ -124,13 +124,8 @@ const coreDaily: Task[] = [
     run: async () =>
       (await db.activityLog.deleteMany({ where: { createdAt: { lt: new Date(Date.now() - 730 * DAY) } } })).count,
   },
-  {
-    name: "prune-email-log",
-    run: async () =>
-      (await db.emailLog.deleteMany({ where: { status: { not: "queued" }, createdAt: { lt: new Date(Date.now() - 90 * DAY) } } })).count,
-  },
 ];
 
-// Area tasks first (they may queue emails), core housekeeping last.
+// Area tasks first, core housekeeping last.
 export const hourlyTasks: Task[] = [...areaHourly, ...coreHourly];
 export const dailyTasks: Task[] = [...areaDaily, ...coreDaily];

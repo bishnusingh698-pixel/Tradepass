@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "ہم {name} ({email}) کے لیے نیا کسٹمر بنائیں گے۔",
   "approval.field.sendWelcome": "خوش آمدید ای میل بھیجیں",
   "approval.welcome.shopify": "Shopify کی B2B خوش آمدید ای میل، سائن ان کے لنک کے ساتھ۔",
-  "approval.welcome.ours": "Tradepass کی “آپ منظور ہو گئے” ای میل، خریدار کی زبان میں۔",
   "approval.action.approve": "منظور کریں",
   "approval.action.retry": "دوبارہ کوشش",
   "approval.action.retryEmail": "ای میل دوبارہ بھیجیں",

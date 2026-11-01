@@ -42,7 +42,7 @@
   "tiers.editor.name": "Nome do nível",
   "tiers.editor.nameHelp": "Este nome só é visível para si, por exemplo Retalhista ou Distribuidor.",
   "tiers.editor.buyerNames": "Nome que os compradores veem",
-  "tiers.editor.buyerNamesHelp": "Opcional. Apresentado aos compradores nos e-mails e na loja, por idioma. Se ficar vazio, usa o nome do nível.",
+  "tiers.editor.buyerNamesHelp": "Opcional. Mostrado aos compradores na sua loja, por idioma. Vazio usa o nome do nível.",
   "tiers.editor.buyerNameFor": "Nome em {language}",
   "tiers.editor.pricing": "Como são definidos os preços",
   "tiers.editor.pricing.percent": "Percentagem de desconto sobre o preço de retalho",

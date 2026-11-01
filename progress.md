@@ -34,13 +34,13 @@ See the reply in the project thread. The same steps are in README.md → "Accoun
 Code-complete for every phase P1–P8 (see `feature_list.json`: 41 built, 51 need a live check, 7 not done, 7 passing):
 - **Tiers and approval** (P2, P6): tiers with B2B market + catalog + price list (+ publication), Plus direct catalogs, 3-catalog budget, per-shop lock with read-back and retry, assisted mode, "Changed in Shopify" sync with Fix; approval engine with Retry and Undo; Buyers with Move, Pause and Resume.
 - **Form and storefront** (P3, P5): form builder with live preview and languages; theme app extension (app embed, application form block, Apply block); app proxy submit/upload/prefill with retries and idempotency; spam protection and rate limits; uploads to Shopify Files; duplicates; VIES/HMRC/ABN checks; access modes 1–3 with the checkout-lock Function; preview-as.
-- **Applications and emails** (P4): queue, detail, approve/reject/needs info, bulk actions, CSV export; emails in every language with caps and next-day overflow; merchant alerts and daily digest.
-- **Certificates** (P6): expiry tracking, renewal emails at 30 and 7 days with a single-use upload link, expiry decision on tax exemptions.
+- **Applications** (P4): queue, detail, approve/reject/needs info, bulk actions, CSV export; copyable messages for the applicant in their language (Tradepass sends no email since D-091); Shopify's B2B welcome email on approval and daily digest.
+- **Certificates** (P6): expiry tracking, Copy renewal link (single-use upload link in a ready-made message), Flow triggers, expiry decision on tax exemptions.
 - **Automation and import** (P7): auto-approve/reject rules with pause, daily limit and Reverse; 5 Flow triggers and the approval action; CSV import with dry run and resume; tag conversion.
 - **Plans, Help, Settings** (P8): Billing API plans with trial once per store, plan gating, downgrade confirmation; Help (guide, 17 FAQs, diagnostics, debug mode); Settings (languages and text overrides, retention, branding, delete all data); Home (welcome, checklist, pending work, alerts, numbers).
 - Moved to React 19 (D-013). Scopes final (D-016).
 - Accessibility pass done in the storefront form, hosted pages and Home checklist (error-summary focus, fieldset descriptions, readable button text, screen-reader text for hidden prices and step status, contrast). Not yet done: error red on dark themes, admin performance measurement.
-- All 36 languages translated for every admin, email, storefront and listing string (TRANSLATIONS.md, TRANSLATION_REVIEW.md).
+- All 36 languages translated for every admin, message, storefront and listing string (TRANSLATIONS.md, TRANSLATION_REVIEW.md).
 
 ### What's tested
 - `npx vitest run`: **333 tests in 27 files, all pass** (2026-10-17). `npx tsc --noEmit` and `npx eslint app` clean. `node scripts/i18n-check.mjs` OK for all 35 locales.
@@ -63,7 +63,7 @@ API_NOTES (area sections), DECISIONS (D-013 to D-075), CHECKLIST (full script by
 ### Next
 1. Owner decisions on the Proposed items in DECISIONS.md.
 2. Native-speaker check of the short lists in TRANSLATION_REVIEW.md (optional before launch).
-3. Accounts and deploy (README §2–6): link the app, request protected customer data, deploy to Render + Neon, set up cron-job.org and Brevo, `shopify app deploy`.
+3. Accounts and deploy (README §2–6): link the app, request protected customer data, deploy to Render + Neon, set up cron-job.org, `shopify app deploy`.
 4. Run the spike on a non-Plus dev store and fill in SPIKE_RESULTS.md; settle D-004.
 5. Work through CHECKLIST.md on store A (non-Plus) and store B (Plus); fix what fails and add selectors for themes.
 6. Finish and measure the accessibility pass, then the performance pass (acceptance 22, 23); Playwright smoke tests against the dev store.
@@ -80,3 +80,7 @@ Full read-through, then bug fixes and new features; AUDIT.md is the record (bugs
 - Tests: 354 pass (`tests/audit-fixes.test.ts` is new). Typecheck, lint and build are clean. Smoke-tested the production build on a fresh Postgres: /healthz, jobs (401 without secret, 200 with), signed app-proxy submissions (accepted, tax-format refusal, country refusal) with follow-ups completing in the background.
 - Still needs a real store: everything in ROADMAP.md → "Needs live verification", plus the new wizard screens.
 - 141 new admin strings are English-only for now (`app/locales/en/pending.json`).
+
+## 2026-11-01
+- Removed all email sent by Tradepass (D-091): Brevo, queue, caps, templates/editor, Notifications page, alerts and digests, reminder emails. Replaced by Shopify's welcome email on approval, copyable messages (more info, not approved, renewal) and Flow guidance for alerts. See REVIEW.md.
+- Full bug review and fixes: REVIEW.md.

@@ -42,7 +42,7 @@
   "tiers.editor.name": "ชื่อระดับ",
   "tiers.editor.nameHelp": "มีเพียงคุณที่เห็นชื่อนี้ เช่น ผู้ค้าปลีก หรือผู้จัดจำหน่าย",
   "tiers.editor.buyerNames": "ชื่อที่ผู้ซื้อเห็น",
-  "tiers.editor.buyerNamesHelp": "ไม่บังคับ แสดงให้ผู้ซื้อเห็นในอีเมลและในร้านค้าของคุณตามแต่ละภาษา หากเว้นว่างจะใช้ชื่อระดับ",
+  "tiers.editor.buyerNamesHelp": "ไม่บังคับ แสดงต่อผู้ซื้อในร้านค้าตามภาษา หากเว้นว่างจะใช้ชื่อระดับ",
   "tiers.editor.buyerNameFor": "ชื่อในภาษา{language}",
   "tiers.editor.pricing": "วิธีกำหนดราคา",
   "tiers.editor.pricing.percent": "ลดเป็นเปอร์เซ็นต์จากราคาขายปลีก",

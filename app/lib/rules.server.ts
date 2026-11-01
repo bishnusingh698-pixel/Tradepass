@@ -68,7 +68,7 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
 
     if (rule.kind === "reject") {
       const a = rule.action as RejectAction;
-      const ok = await rejectApplication(ctx, applicationId, { reason: a.reason ?? null, email: Boolean(a.email) });
+      const ok = await rejectApplication(ctx, applicationId, { reason: a.reason ?? null });
       if (!ok) return { decided: null };
       await db.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: rule.id } });
       await logActivity({ shop, actor: ACTOR, action: "automation.reject", subject: applicationId, detail: { ruleId: rule.id } });
@@ -114,7 +114,7 @@ export type ReverseResult = "undone" | "paused" | "reopened";
  * - partial auto-approval → Undo (removes only what it created in Shopify), back to pending;
  * - finished auto-approval → the buyer is paused (taken out of the tier, sees retail
  *   prices); the company stays in Shopify because it may already have orders;
- * - auto-rejection → back to pending (an email already sent can't be recalled).
+ * - auto-rejection → back to pending (the stored reason is cleared).
  */
 export async function reverseAutoDecision(ctx: ApprovalCtx, applicationId: string): Promise<ReverseResult | null> {
   const app = await db.application.findFirst({ where: { shop: ctx.shop, id: applicationId, autoRuleId: { not: null } } });
@@ -129,7 +129,7 @@ export async function reverseAutoDecision(ctx: ApprovalCtx, applicationId: strin
       result = "paused";
     } else {
       if (app.approvalState) await undoApproval(ctx, applicationId);
-      await db.application.updateMany({ where: { shop: ctx.shop, id: applicationId }, data: { status: "pending", decidedAt: null } });
+      await db.application.updateMany({ where: { shop: ctx.shop, id: applicationId }, data: { status: "pending", decidedAt: null, rejectReason: null } });
       result = app.status === "rejected" ? "reopened" : "undone";
     }
     // Cleared so the application leaves the "automatic decisions" list and can be decided again.

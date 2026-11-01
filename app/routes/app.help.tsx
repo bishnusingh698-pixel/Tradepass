@@ -18,7 +18,7 @@ const DEBUG_HOURS = 24;
 
 const FAQ = [
   "plus", "threeTiers", "signIn", "documents", "hidePrices", "theme", "uninstall", "pos", "taxExemptions",
-  "vatFails", "import", "languages", "emails", "approvalLimit", "markets", "privacy", "slowFirstLoad",
+  "vatFails", "import", "languages", "alerts", "approvalLimit", "markets", "privacy", "slowFirstLoad",
 ] as const;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

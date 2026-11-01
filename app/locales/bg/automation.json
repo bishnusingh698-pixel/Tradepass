@@ -48,9 +48,8 @@
   "automation.action.terms": "Условия на плащане",
   "automation.action.tierTerms": "Условията на плащане на нивото",
   "automation.action.sendWelcome": "Изпращане на имейла на Shopify за B2B достъп до купувача",
-  "automation.action.emailApplicant": "Имейл до кандидата, че не е одобрен",
   "automation.action.reason": "Причина (по избор)",
-  "automation.action.reasonHelp": "Показва се в имейла на езика, на който я напишете.",
+  "automation.action.reasonHelp": "Запазва се с кандидатурата и се включва в съобщението, което можете да копирате оттам.",
   "automation.error.summary": "{count, plural, one {Коригирайте # проблем преди запазване.} other {Коригирайте # проблема преди запазване.}}",
   "automation.error.conditions_required": "Добавете поне едно условие.",
   "automation.error.values_required": "Въведете поне една стойност.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Не успяхме да отменим това решение. Проверете дневника на активността и опитайте отново.",
   "automation.reverse.heading": "Отмяна на решението за {company}?",
   "automation.reverse.approvedBody": "{company} ще бъде поставена на пауза: фирмата остава в Shopify, но излиза от нивото си и вижда цени на дребно. Можете да я възобновите от „Купувачи“.",
-  "automation.reverse.rejectedBody": "{company} се връща в статус „Очаква преглед“. Ако е изпратен имейл за отхвърляне, той не може да бъде върнат.",
+  "automation.reverse.rejectedBody": "{company} се връща в „Очаква преглед“. Ако вече сте уведомили кандидата, кажете му.",
   "automation.reverse.confirm": "Отмяна на решението",
   "automation.flow.heading": "Интеграция с Shopify Flow",
   "automation.flow.body": "Използвайте тези тригери и действия на Tradepass в Shopify Flow, за да създавате собствени работни потоци, например добавяне на етикети на купувачи или изпращане на съобщение в Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Изтекъл сертификат",
   "automation.flow.action.approve": "Одобряване на заявка за покупки на едро в ниво",
   "automation.flow.welcomeNote": "Tradepass вече може да изпраща имейла на Shopify за B2B достъп при одобрение на купувач, така че за това не е нужен допълнителен работен поток.",
-  "automation.flow.open": "Отваряне на Shopify Flow"
+  "automation.flow.open": "Отваряне на Shopify Flow",
+  "automation.flow.alerts": "Искате имейл, когато някой кандидатства? В Shopify Flow използвайте тригера „Wholesale application submitted“ с действието на Flow „Send internal email“. Това действие изпраща само до фиксирани адреси на служители, които въведете в работния поток."
 }
