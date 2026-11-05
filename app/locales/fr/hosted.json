@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Merci, votre demande a été mise à jour",
   "hosted.update.doneBody": "{store} va l’examiner et vous répondra par e-mail.",
   "hosted.link.invalidTitle": "Ce lien n’est pas valide",
-  "hosted.link.invalidBody": "Vérifiez que vous avez bien ouvert le lien complet figurant dans l’e-mail, ou contactez {store}.",
+  "hosted.link.invalidBody": "Vérifiez que vous avez ouvert le lien complet, ou contactez {store}.",
   "hosted.link.expiredTitle": "Ce lien a expiré",
   "hosted.link.expiredBody": "Pour votre sécurité, les liens de mise à jour ne fonctionnent que pendant une durée limitée. Veuillez contacter {store} pour obtenir un nouveau lien.",
   "hosted.link.usedTitle": "Ce lien a déjà été utilisé",

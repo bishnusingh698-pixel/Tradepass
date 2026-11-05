@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Rodoma šalia sutikimo langelio. Naudokite visą adresą arba parduotuvės kelią, pavyzdžiui, /policies/privacy-policy.",
   "form.success.heading": "Po pateikimo",
   "form.success.message": "Padėkos žinutė",
-  "form.success.messageHelp": "Pareiškėjai taip pat mato, kad jiems siunčiamas patvirtinimo laiškas.",
+  "form.success.messageHelp": "Rodoma pareiškėjams, kai jie išsiunčia formą.",
   "form.success.redirect": "Nukreipti į puslapį (neprivaloma)",
   "form.success.redirectHelp": "Po padėkos žinutės nukreipkite pareiškėjus į kitą puslapį, pavyzdžiui, /pages/thank-you.",
   "form.spam.heading": "Apsauga nuo šlamšto",

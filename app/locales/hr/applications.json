@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Dodaj bilješku",
   "applications.detail.saveNote": "Spremi bilješku",
   "applications.detail.toast.reject": "Zahtjev je odbijen",
-  "applications.detail.toast.needs_info": "Upit je poslan podnositelju",
+  "applications.detail.toast.needs_info": "Zahtjev je spremljen. Pošaljite podnositelju poruku sa sigurnom poveznicom.",
   "applications.detail.toast.note": "Bilješka je spremljena",
   "applications.detail.toast.assign": "Dodjela je spremljena",
   "applications.needsInfo.heading": "Zatražite više podataka",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Polja koja može promijeniti",
   "applications.needsInfo.fieldsHelp": "Podnositelj dobiva privatnu poveznicu koja vrijedi 14 dana i omogućuje promjenu samo ovih polja.",
   "applications.needsInfo.fieldsRequired": "Odaberite barem jedno polje.",
-  "applications.needsInfo.send": "Pošalji upit",
+  "applications.needsInfo.send": "Izradi zahtjev",
   "applications.reject.heading": "Odbiti {company}?",
   "applications.reject.template": "Predložak razloga",
   "applications.reject.templateNone": "Bez predloška",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Hvala na interesu. Nismo mogli provjeriti podatke u vašem zahtjevu pa ga trenutačno ne možemo odobriti. Slobodno ponovno podnesite zahtjev.",
   "applications.reject.template.region": "Hvala na interesu. Na vašem području još ne nudimo veleprodaju.",
   "applications.reject.reason": "Razlog (neobavezno)",
-  "applications.reject.reasonHelp": "Ako pošaljete poruku e-pošte, podnositelj vidi ovaj razlog.",
-  "applications.reject.email": "Pošalji poruku podnositelju",
+  "applications.reject.reasonHelp": "Sprema se uz prijavu i uključuje u poruku koju možete poslati podnositelju.",
   "applications.reject.consequence": "Zahtjev se premješta među odbijene. U Shopifyju se ništa ne izrađuje, a zahtjev i dalje možete pronaći na kartici Odbijeni.",
   "applications.reject.confirm": "Odbij zahtjev",
   "applications.activity.application.submit": "Zahtjev poslan",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Bilješka dodana",
   "applications.activity.application.assign": "Dodjela promijenjena",
   "applications.taxCheck.skipped": "Nije provjereno u vašem paketu",
-  "applications.detail.taxCheckPlan": "Porezni brojevi provjeravaju se u službenim registrima u paketu {plan} i višima. Provjerite ovaj broj ručno ili nadogradite paket za automatsku provjeru novih zahtjeva."
+  "applications.detail.taxCheckPlan": "Porezni brojevi provjeravaju se u službenim registrima u paketu {plan} i višima. Provjerite ovaj broj ručno ili nadogradite paket za automatsku provjeru novih zahtjeva.",
+  "applications.detail.copyMessage": "Poruka za podnositelja"
 }

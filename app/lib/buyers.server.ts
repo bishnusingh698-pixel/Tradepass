@@ -114,6 +114,13 @@ export async function buyerFilterOptions(shop: string) {
 
 export type MoveSummary = { moved: string[]; pending: string[]; failed: { id: string; name: string; code: string }[] };
 
+const KNOWN_CODES = new Set(["busy", "concurrent", "missing_in_shopify", "verify_failed", "shopify"]);
+/** Error code for the message `buyers.error.<code>`; anything unexpected (e.g. a database code like P2025) is the generic Shopify one. */
+export function moveErrorCode(e: unknown): string {
+  const code = (e as { code?: unknown }).code;
+  return typeof code === "string" && KNOWN_CODES.has(code) ? code : "shopify";
+}
+
 /** Bulk "Move to tier…" (tierId null = remove from any tier). Each buyer is moved and read back. */
 export async function moveBuyers(ctx: Ctx, buyerIds: string[], tierId: string | null): Promise<MoveSummary> {
   const out: MoveSummary = { moved: [], pending: [], failed: [] };
@@ -135,7 +142,7 @@ export async function moveBuyers(ctx: Ctx, buyerIds: string[], tierId: string | 
       out.moved.push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.move", subject: b.id, detail: { from: b.tierId ?? b.pausedTierId, to: tierId } });
     } catch (e) {
-      const code = (e as { code?: string }).code ?? "shopify";
+      const code = moveErrorCode(e);
       out.failed.push({ id: b.id, name: b.name, code });
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.move", subject: b.id, result: "failed", detail: { to: tierId, code } });
     }
@@ -155,7 +162,7 @@ export async function pauseBuyers(ctx: Ctx, buyerIds: string[]): Promise<MoveSum
       (res.verified ? out.moved : out.pending).push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.pause", subject: b.id, detail: { tierId: b.tierId } });
     } catch (e) {
-      const code = (e as { code?: string }).code ?? "shopify";
+      const code = moveErrorCode(e);
       out.failed.push({ id: b.id, name: b.name, code });
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.pause", subject: b.id, result: "failed", detail: { code } });
     }
@@ -174,7 +181,7 @@ export async function resumeBuyers(ctx: Ctx, buyerIds: string[]): Promise<MoveSu
       (res.verified ? out.moved : out.pending).push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.resume", subject: b.id, detail: { tierId: tier?.id ?? null } });
     } catch (e) {
-      const code = (e as { code?: string }).code ?? "shopify";
+      const code = moveErrorCode(e);
       out.failed.push({ id: b.id, name: b.name, code });
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.resume", subject: b.id, result: "failed", detail: { code } });
     }
@@ -206,14 +213,12 @@ export async function buyerDetail(shop: string, id: string) {
   const buyer = await db.buyer.findFirst({ where: { shop, id } });
   if (!buyer) return null;
   const certificates = await db.certificate.findMany({ where: { shop, buyerId: buyer.id }, orderBy: { expiresOn: "asc" } });
-  // Renewal requests are logged by the certificates area against the certificate id.
   const subjects = [buyer.id, buyer.companyGid, ...buyer.locationGids, ...(buyer.contactGid ? [buyer.contactGid] : []), ...certificates.map((c) => c.id)];
   const [tiers, activity, application] = await Promise.all([
     db.tier.findMany({ where: { shop }, select: { id: true, name: true }, orderBy: { position: "asc" } }),
     db.activityLog.findMany({ where: { shop, subject: { in: subjects } }, orderBy: { createdAt: "desc" }, take: 100 }),
     db.application.findFirst({ where: { shop, buyerId: buyer.id }, select: { id: true } }),
   ]);
-  const renewals = activity.filter((a) => /renewal/.test(a.action));
   const history = activity.filter((a) => /^(buyer\.(move|pause|resume|create)|tier\.(assign|unassign)|application\.approve)/.test(a.action));
-  return { buyer, tiers, certificates, activity, history, applicationId: application?.id ?? null, renewals };
+  return { buyer, tiers, certificates, activity, history, applicationId: application?.id ?? null };
 }

@@ -53,15 +53,13 @@
   "help.faq.import.q": "Kan jeg importere mine eksisterende engroskunder?",
   "help.faq.import.a": "Ja, med Pro-abonnementet. Upload en CSV-fil, eller konverter kunder, der allerede har et tag som »engros«.",
   "help.faq.languages.q": "Hvilke sprog understøttes?",
-  "help.faq.languages.a": "36 sprog. Formularen, beskederne i butiksfacaden og e-mails vises på hver besøgendes sprog, og du kan ændre enhver tekst under Indstillinger → Sprog.",
-  "help.faq.emails.q": "Hvor mange e-mails sender Tradepass?",
-  "help.faq.emails.a": "Op til 25 e-mails pr. butik om dagen. Ekstra e-mails sendes dagen efter, og Hjem fortæller dig, når det sker. Du kan slå vores e-mails fra og bruge Shopify Flow i stedet.",
+  "help.faq.languages.a": "36 sprog. Formularen, beskederne i butikken og de beskeder, du sender ansøgere, vises på hver persons sprog, og du kan ændre enhver tekst under Indstillinger → Sprog.",
   "help.faq.approvalLimit.q": "Hvad sker der, når jeg når 10 godkendelser med det gratis abonnement?",
   "help.faq.approvalLimit.a": "Nye ansøgninger modtages stadig, så du mister aldrig et lead. Vælg et betalt abonnement for at godkende flere den måned.",
   "help.faq.markets.q": "Hjem siger, at B2B-markeder ikke er slået til. Hvad gør jeg?",
   "help.faq.markets.a": "Med abonnementer under Plus kræver niveaupriser Shopifys nyere Markeder. Slå dem til i Shopify under Indstillinger → Markeder, og klik derefter på »Tjek igen« under Hjem.",
   "help.faq.privacy.q": "Hvordan beskyttes ansøgernes data?",
-  "help.faq.privacy.a": "Momsnumre krypteres, links i e-mails udløber og virker én gang, og afviste ansøgninger slettes efter den periode, du vælger under Indstillinger.",
+  "help.faq.privacy.a": "Skattenumre krypteres, sikre links udløber og virker én gang, og afviste ansøgninger slettes efter den periode, du vælger under Indstillinger.",
   "help.faq.slowFirstLoad.q": "Hvorfor åbner appen nogle gange langsomt?",
   "help.faq.slowFirstLoad.a": "Efter en stille periode kan det tage op til et minut, før appen vågner. Din butiksfacade påvirkes aldrig: Skjulte priser og formularen fungerer fortsat.",
   "help.diagnostics.heading": "Diagnosticeringsoplysninger",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Slå fejlfindingstilstand fra",
   "help.contact.heading": "Kontakt support",
   "help.contact.body": "Vi svarer normalt inden for 2 hverdage.",
-  "help.contact.priority": "Du har Pro, så dine e-mails besvares først, normalt inden for 1 hverdag."
+  "help.contact.priority": "Du har Pro, så dine e-mails besvares først, normalt inden for 1 hverdag.",
+  "help.faq.alerts.q": "Hvordan hører jeg om nye ansøgninger?",
+  "help.faq.alerts.a": "Tradepass sender ikke e-mails. Nye ansøgninger og svar venter på dig på Start og under Ansøgninger. Vil du have en e-mailbesked, så opret et workflow i Shopify Flow (Tradepass Pro) med triggeren “Wholesale application submitted” og Flow-handlingen “Send internal email”. Handlingen sender kun til faste medarbejderadresser, som du angiver i workflowet."
 }

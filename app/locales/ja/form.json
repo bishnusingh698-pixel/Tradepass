@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "同意チェックボックスの横に表示されます。完全なアドレス、または/policies/privacy-policyのようなストアのパスを使用してください。",
   "form.success.heading": "送信後",
   "form.success.message": "お礼のメッセージ",
-  "form.success.messageHelp": "確認メールが送信されたことも申請者に表示されます。",
+  "form.success.messageHelp": "フォーム送信後に申請者に表示されます。",
   "form.success.redirect": "ページへリダイレクト（任意）",
   "form.success.redirectHelp": "お礼のメッセージの後に、申請者を別のページ（例：/pages/thank-you）に移動させます。",
   "form.spam.heading": "スパム対策",

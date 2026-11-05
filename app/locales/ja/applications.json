@@ -127,7 +127,7 @@
   "applications.detail.addNote": "メモを追加",
   "applications.detail.saveNote": "メモを保存",
   "applications.detail.toast.reject": "申請を却下しました",
-  "applications.detail.toast.needs_info": "申請者に依頼を送信しました",
+  "applications.detail.toast.needs_info": "依頼を保存しました。安全なリンクを含むメッセージを申請者に送ってください。",
   "applications.detail.toast.note": "メモを保存しました",
   "applications.detail.toast.assign": "担当者を保存しました",
   "applications.needsInfo.heading": "追加情報を依頼",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "申請者が変更できる項目",
   "applications.needsInfo.fieldsHelp": "申請者には14日間有効な専用リンクが届き、これらの項目のみを変更できます。",
   "applications.needsInfo.fieldsRequired": "項目を1つ以上選択してください。",
-  "applications.needsInfo.send": "依頼を送信",
+  "applications.needsInfo.send": "依頼を作成",
   "applications.reject.heading": "{company}を却下しますか？",
   "applications.reject.template": "理由のテンプレート",
   "applications.reject.templateNone": "テンプレートなし",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "ご関心をお寄せいただき、ありがとうございます。申請内容を確認できなかったため、現時点では承認いたしかねます。改めてのお申し込みをお待ちしております。",
   "applications.reject.template.region": "ご関心をお寄せいただき、ありがとうございます。誠に恐れ入りますが、お客様の地域では現在卸売を提供しておりません。",
   "applications.reject.reason": "理由（任意）",
-  "applications.reject.reasonHelp": "メールを送信する場合、申請者にこの理由が表示されます。",
-  "applications.reject.email": "申請者にメールで通知",
+  "applications.reject.reasonHelp": "申請に保存され、申請者に送信できるメッセージに含まれます。",
   "applications.reject.consequence": "申請は「却下済み」に移動します。Shopifyには何も作成されず、「却下済み」タブで引き続き確認できます。",
   "applications.reject.confirm": "申請を却下",
   "applications.activity.application.submit": "申請が送信されました",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "メモを追加しました",
   "applications.activity.application.assign": "担当者を変更しました",
   "applications.taxCheck.skipped": "ご利用のプランでは未確認",
-  "applications.detail.taxCheckPlan": "{plan}以上では、税番号が公的な登録機関で確認されます。この番号はご自身で確認するか、アップグレードして新しい申請を自動で確認してください。"
+  "applications.detail.taxCheckPlan": "{plan}以上では、税番号が公的な登録機関で確認されます。この番号はご自身で確認するか、アップグレードして新しい申請を自動で確認してください。",
+  "applications.detail.copyMessage": "申請者へのメッセージ"
 }

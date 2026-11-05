@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Notitie toevoegen",
   "applications.detail.saveNote": "Notitie opslaan",
   "applications.detail.toast.reject": "Aanvraag afgewezen",
-  "applications.detail.toast.needs_info": "Verzoek naar aanvrager gestuurd",
+  "applications.detail.toast.needs_info": "Verzoek opgeslagen. Stuur de aanvrager het bericht met de beveiligde link.",
   "applications.detail.toast.note": "Notitie opgeslagen",
   "applications.detail.toast.assign": "Toewijzing opgeslagen",
   "applications.needsInfo.heading": "Meer informatie vragen",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Velden die ze kunnen wijzigen",
   "applications.needsInfo.fieldsHelp": "De aanvrager krijgt een persoonlijke link die 14 dagen geldig is en kan alleen deze velden wijzigen.",
   "applications.needsInfo.fieldsRequired": "Kies minimaal één veld.",
-  "applications.needsInfo.send": "Verzoek versturen",
+  "applications.needsInfo.send": "Verzoek maken",
   "applications.reject.heading": "{company} afwijzen?",
   "applications.reject.template": "Sjabloon voor reden",
   "applications.reject.templateNone": "Geen sjabloon",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Bedankt voor uw interesse. We konden de gegevens in uw aanvraag niet verifiëren en kunnen deze daarom nu niet goedkeuren. U bent welkom om opnieuw aan te vragen.",
   "applications.reject.template.region": "Bedankt voor uw interesse. We bieden in uw regio nog geen groothandel aan.",
   "applications.reject.reason": "Reden (optioneel)",
-  "applications.reject.reasonHelp": "Als u een e-mail stuurt, ziet de aanvrager deze reden.",
-  "applications.reject.email": "Aanvrager e-mailen",
+  "applications.reject.reasonHelp": "Opgeslagen bij de aanvraag en opgenomen in het bericht dat je de aanvrager kunt sturen.",
   "applications.reject.consequence": "De aanvraag gaat naar Afgewezen. Er wordt niets aangemaakt in Shopify en u vindt de aanvraag nog steeds op het tabblad Afgewezen.",
   "applications.reject.confirm": "Aanvraag afwijzen",
   "applications.activity.application.submit": "Aanvraag ingediend",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Notitie toegevoegd",
   "applications.activity.application.assign": "Toewijzing gewijzigd",
   "applications.taxCheck.skipped": "Niet in uw abonnement",
-  "applications.detail.taxCheckPlan": "Belastingnummers worden vanaf het abonnement {plan} gecontroleerd in officiële registers. Controleer dit nummer zelf, of upgrade om nieuwe aanvragen automatisch te laten controleren."
+  "applications.detail.taxCheckPlan": "Belastingnummers worden vanaf het abonnement {plan} gecontroleerd in officiële registers. Controleer dit nummer zelf, of upgrade om nieuwe aanvragen automatisch te laten controleren.",
+  "applications.detail.copyMessage": "Bericht voor de aanvrager"
 }

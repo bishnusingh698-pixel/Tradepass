@@ -42,7 +42,7 @@
   "tiers.editor.name": "Lygio pavadinimas",
   "tiers.editor.nameHelp": "Šį pavadinimą matote tik jūs, pavyzdžiui, Mažmenininkas ar Platintojas.",
   "tiers.editor.buyerNames": "Pirkėjams rodomas pavadinimas",
-  "tiers.editor.buyerNamesHelp": "Neprivaloma. Rodoma pirkėjams el. laiškuose ir parduotuvėje, atskirai kiekvienai kalbai. Jei tuščia, naudojamas lygio pavadinimas.",
+  "tiers.editor.buyerNamesHelp": "Neprivaloma. Rodoma pirkėjams jūsų parduotuvėje kiekviena kalba. Tuščias naudoja lygio pavadinimą.",
   "tiers.editor.buyerNameFor": "Pavadinimas ({language})",
   "tiers.editor.pricing": "Kaip nustatomos kainos",
   "tiers.editor.pricing.percent": "Procentinė nuolaida nuo mažmeninės kainos",

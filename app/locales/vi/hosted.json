@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Cảm ơn bạn, đơn đăng ký của bạn đã được cập nhật",
   "hosted.update.doneBody": "{store} sẽ xem xét và phản hồi bạn qua email.",
   "hosted.link.invalidTitle": "Liên kết này không hợp lệ",
-  "hosted.link.invalidBody": "Hãy kiểm tra xem bạn đã mở đầy đủ liên kết trong email chưa, hoặc liên hệ với {store}.",
+  "hosted.link.invalidBody": "Kiểm tra xem bạn đã mở toàn bộ liên kết chưa, hoặc liên hệ {store}.",
   "hosted.link.expiredTitle": "Liên kết này đã hết hạn",
   "hosted.link.expiredBody": "Để bảo mật, liên kết cập nhật chỉ có hiệu lực trong thời gian giới hạn. Vui lòng liên hệ với {store} để xin liên kết mới.",
   "hosted.link.usedTitle": "Liên kết này đã được sử dụng",

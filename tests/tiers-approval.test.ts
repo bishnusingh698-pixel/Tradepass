@@ -15,7 +15,6 @@ const EU = `test-approval-eu-${rnd}.myshopify.com`;
 const shops = [SHOP, FREE, EU];
 
 timing.sleep = async () => undefined;
-delete process.env.BREVO_API_KEY;
 
 let fake: ReturnType<typeof fakeShopify>;
 let tierId: string;
@@ -38,7 +37,7 @@ beforeEach(async () => {
 
 afterAll(async () => {
   for (const shop of shops) {
-    for (const table of ["certificate", "buyer", "application", "job", "tier", "activityLog", "emailLog", "shopLock"] as const) {
+    for (const table of ["certificate", "buyer", "application", "job", "tier", "activityLog", "shopLock"] as const) {
       await (db[table] as unknown as { deleteMany: (a: object) => Promise<unknown> }).deleteMany({ where: { shop } });
     }
     await db.shop.deleteMany({ where: { shop } });
@@ -159,6 +158,35 @@ describe("plan limit (acceptance 20)", () => {
     expect(summary.approved).toEqual([]);
     expect(summary.skipped[0].reason).toMatch(/Free plan limit/);
     expect(fake.count("ApprovalCompanyCreate")).toBe(0);
+  });
+});
+
+describe("bulk approve and retries (review fixes)", () => {
+  it("bulk approve takes the chosen tier's tax default and the welcome-email choice", async () => {
+    const app = await newApp(SHOP, { suggestedTierId: tierId });
+    await db.certificate.create({ data: { shop: SHOP, applicationId: app.id, type: "resale", country: "US", region: "TX", status: "pending" } });
+    // The suggested tier exempts on file; the chosen one charges tax.
+    const charging = await db.tier.create({ data: { shop: SHOP, name: `Charge-${rnd}`, marketGid, defaults: { tax: "charge" } } });
+    const summary = await approveMany(ctx(), [app.id], charging.id, { sendWelcome: false });
+    expect(summary.approved).toEqual([app.id]);
+    const st = (await db.application.findUniqueOrThrow({ where: { id: app.id } })).approvalState as { input: ApproveInput; steps: Record<string, { status: string }> };
+    expect(st.input).toMatchObject({ tierId: charging.id, taxExempt: false, exemptions: [], sendWelcome: false });
+    expect(st.steps.email.status).toBe("skipped");
+    expect(fake.count("ApprovalWelcome")).toBe(0);
+  });
+
+  it("a retry can't change the inputs of steps that already ran in Shopify", async () => {
+    const app = await newApp(SHOP);
+    failTierOnce();
+    const first = await approveApplication(ctx(), app.id, input());
+    expect(first.steps.tier.status).toBe("failed");
+    const other = await db.tier.create({ data: { shop: SHOP, name: `Other-${rnd}`, marketGid } });
+    // The merchant changes the company name, terms and tier, then retries.
+    const second = await approveApplication(ctx(), app.id, input({ companyName: "Renamed Ltd", paymentTermsTemplateId: null, tierId: other.id }));
+    expect(second.input.companyName).toBe("Acme Supplies"); // company step was done
+    expect(second.input.paymentTermsTemplateId).toBe("gid://shopify/PaymentTermsTemplate/4"); // terms step was done
+    expect(second.input.tierId).toBe(other.id); // tier step had failed, so the new choice applies
+    expect(second.finishedAt).toBeTruthy();
   });
 });
 

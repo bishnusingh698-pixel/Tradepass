@@ -5,13 +5,17 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import db from "../db.server";
 import { adminContext } from "../lib/context.server";
-import { addNote, getApplication, rejectApplicationWithReason, requestMoreInfo, setAssignee } from "../lib/applications.server";
-import type { FormDefinition } from "../lib/form-defaults";
+import { addNote, getApplication, rejectApplicationWithReason, rejectionMessage, requestMoreInfo, setAssignee } from "../lib/applications.server";
+import type { ApplicantMessage } from "../lib/messages";
 import { defaultFormDefinition } from "../lib/form-defaults";
+import { readDefinition } from "../lib/forms.server";
+import { NOT_REQUESTABLE, requestableField } from "../lib/intake.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CountryName, RelativeTime, StatusBadge, TaxCheckBadge } from "../components/applications";
 import { ApproveModal } from "../components/ApproveModal";
+import { MessageModal } from "../components/MessageModal";
+import { openFromApp } from "../components/download";
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -19,9 +23,13 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   if (!found) throw new Response("Not found", { status: 404 });
   const { app, taxNumber, files, certificates, activity, duplicates, buyer } = found;
   const form = app.formId ? await db.form.findFirst({ where: { shop: ctx.shop, id: app.formId } }) : null;
-  const definition = (form?.definition as FormDefinition | undefined) ?? defaultFormDefinition();
+  const definition = form ? readDefinition(form.definition) : defaultFormDefinition();
+  const locale = ctx.i18n.locale;
+  const primary = ctx.shopRow?.primaryLocale ?? "en";
   const tier = buyer?.tierId ? await db.tier.findFirst({ where: { shop: ctx.shop, id: buyer.tierId }, select: { id: true, name: true } }) : null;
   return {
+    // Rejected: the "not approved" message stays available to copy (Tradepass sends no email).
+    rejectionMessage: app.status === "rejected" ? await rejectionMessage(ctx.shop, app.id) : null,
     app: {
       id: app.id,
       status: app.status,
@@ -37,6 +45,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       assignee: app.assignee,
       notes: (Array.isArray(app.notes) ? app.notes : []) as { at: string; by: string; text: string }[],
       requested: app.requested as { fields: string[]; message: string; at: string } | null,
+      rejectReason: app.rejectReason,
       submittedAt: app.submittedAt.toISOString(),
       decidedAt: app.decidedAt?.toISOString() ?? null,
       source: app.source,
@@ -44,15 +53,19 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       approvalState: app.approvalState as { steps?: Record<string, { status: string; error?: string }> } | null,
     },
     taxNumber,
-    files: files.map((f) => ({ id: f.id, kind: f.kind, createdAt: f.createdAt.toISOString() })),
+    files: files.map((f) => ({ id: f.id, kind: f.kind, fileGid: f.fileGid, createdAt: f.createdAt.toISOString() })),
     certificates: certificates.map((c) => ({
-      id: c.id, type: c.type, country: c.country, region: c.region, expiresOn: c.expiresOn?.toISOString().slice(0, 10) ?? null, status: c.status,
+      id: c.id, fileGid: c.fileGid, type: c.type, country: c.country, region: c.region, expiresOn: c.expiresOn?.toISOString().slice(0, 10) ?? null, status: c.status,
     })),
     activity: activity.map((a) => ({ id: a.id, actor: a.actor, action: a.action, result: a.result, at: a.createdAt.toISOString() })),
     duplicates: duplicates.map((d) => ({ ...d, submittedAt: d.submittedAt.toISOString() })),
     buyer: buyer ? { id: buyer.id, companyGid: buyer.companyGid, status: buyer.status } : null,
     tier,
-    fields: definition.sections.flatMap((s) => s.fields.filter((f) => f.state !== "hidden").map((f) => ({ id: f.id, custom: Boolean(f.custom), label: f.texts?.en?.label ?? null }))),
+    fields: definition.sections.flatMap((s) => s.fields.filter((f) => f.state !== "hidden").map((f) => ({
+      id: f.id, custom: Boolean(f.custom), requestable: requestableField(f),
+      // Custom questions: the label in the admin's language, else the store's primary language, else any.
+      label: f.texts?.[locale]?.label ?? f.texts?.[locale.split("-")[0]]?.label ?? f.texts?.[primary]?.label ?? f.texts?.en?.label ?? Object.values(f.texts ?? {}).find((x) => x?.label)?.label ?? null,
+    }))),
     shopHandle: ctx.shop.replace(".myshopify.com", ""),
   };
 };
@@ -65,19 +78,17 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const dctx = { admin: ctx.admin, shop: ctx.shop, actor: ctx.actor };
   switch (intent) {
     case "reject": {
-      const res = await rejectApplicationWithReason(dctx, id, {
-        reason: String(form.get("reason") ?? "").trim() || null,
-        email: form.get("email") === "on",
-      });
-      return res === true ? { ok: true, intent } : { ok: false, intent, error: res };
+      const res = await rejectApplicationWithReason(dctx, id, { reason: String(form.get("reason") ?? "").trim() || null });
+      if (res !== true) return { ok: false, intent, error: res };
+      return { ok: true, intent, message: await rejectionMessage(ctx.shop, id) };
     }
     case "needs_info": {
       const message = String(form.get("message") ?? "").trim();
-      const fields = form.getAll("fields").map(String);
+      const fields = [...new Set(form.getAll("fields").map(String))].filter((f) => !NOT_REQUESTABLE.has(f)).slice(0, 50);
       if (!message) return { ok: false, intent, error: "message_required" };
       if (!fields.length) return { ok: false, intent, error: "fields_required" };
       const res = await requestMoreInfo(dctx, id, { message, fields });
-      return { ok: res.ok, intent, ...(res.error ? { error: res.error } : {}) };
+      return { ok: res.ok, intent, ...(res.error ? { error: res.error } : {}), ...(res.message ? { message: res.message } : {}) };
     }
     case "note": {
       const text = String(form.get("text") ?? "").trim();
@@ -104,19 +115,9 @@ export default function ApplicationDetail() {
   const { t, locale } = useI18n();
   const href = useLocaleHref();
   const [params] = useSearchParams();
-  const shopify = useAppBridge();
-  const fetcher = useFetcher<typeof action>();
   const a = d.app;
   const open = a.status === "pending" || a.status === "needs_info";
   const backQuery = params.get("back") ?? "tab=pending";
-
-  useEffect(() => {
-    const r = fetcher.data;
-    if (r?.ok) shopify.toast.show(t(`applications.detail.toast.${r.intent}`));
-    // Never fail silently: every refusal has a plain-language reason.
-    else if (r && "error" in r && r.error) shopify.toast.show(t(`applications.detail.error.${r.error}`), { isError: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetcher.data]);
 
   const label = (fieldId: string) => {
     const f = d.fields.find((x) => x.id === fieldId);
@@ -141,6 +142,10 @@ export default function ApplicationDetail() {
     ) : null;
 
   const customAnswers = Object.keys(a.answers).filter((k) => !HANDLED.has(k));
+  const shopify = useAppBridge();
+  const openDocument = async (id: string) => {
+    if (!(await openFromApp(`/app/files/${encodeURIComponent(id)}`))) shopify.toast.show(t("certificates.error.file"), { isError: true });
+  };
   const failedStep = a.approvalState?.steps ? Object.entries(a.approvalState.steps).find(([, s]) => s.status === "failed") : null;
 
   return (
@@ -171,6 +176,12 @@ export default function ApplicationDetail() {
           <s-banner tone="critical" heading={t("applications.detail.approvalFailed")}>
             <s-paragraph>{t(`approval.step.${failedStep[0]}`)}: {failedStep[1].error}</s-paragraph>
             <s-button commandFor="approve-modal" command="--show">{t("applications.detail.openApproval")}</s-button>
+          </s-banner>
+        )}
+        {a.status === "rejected" && d.rejectionMessage && (
+          <s-banner tone="info" heading={t("applications.status.rejected")}>
+            {a.rejectReason && <s-paragraph>{a.rejectReason}</s-paragraph>}
+            <RejectionMessageButton message={d.rejectionMessage} company={a.companyName} />
           </s-banner>
         )}
         {a.status === "needs_info" && a.requested && (
@@ -239,13 +250,14 @@ export default function ApplicationDetail() {
           ) : (
             <s-unordered-list>
               {d.files.map((f, i) => {
-                const cert = d.certificates[i];
+                // Matched by file, not by list position (files and certificates are separate lists).
+                const cert = d.certificates.find((c) => c.fileGid === f.fileGid);
                 return (
                   <s-list-item key={f.id}>
-                    <s-link href={`/app/files/${f.id}`} target="_blank">
+                    <s-button variant="tertiary" onClick={() => openDocument(f.id)}>
                       {t("applications.detail.document", { n: i + 1 })}
-                    </s-link>
-                    {cert?.expiresOn && <s-text color="subdued"> · {t("applications.detail.expires", { date: new Date(cert.expiresOn) })}</s-text>}
+                    </s-button>
+                    {cert?.expiresOn && <s-text color="subdued"> · {t("applications.detail.expires", { date: new Date(`${cert.expiresOn}T12:00:00Z`) })}</s-text>}
                   </s-list-item>
                 );
               })}
@@ -301,7 +313,7 @@ export default function ApplicationDetail() {
 
       {open && <ApproveModal applicationId={a.id} companyName={a.companyName} />}
       {a.status !== "pending" && a.status !== "needs_info" && failedStep && <ApproveModal applicationId={a.id} companyName={a.companyName} />}
-      <NeedsInfoModal fields={d.fields.map((f) => ({ id: f.id, label: label(f.id) }))} />
+      <NeedsInfoModal company={a.companyName} fields={d.fields.filter((f) => f.requestable).map((f) => ({ id: f.id, label: label(f.id) }))} />
       <RejectModal company={a.companyName} />
     </s-page>
   );
@@ -333,7 +345,8 @@ function formatAddress(a: Record<string, string>, locale: string): string {
 
 function NotesAndAssignee({ notes, assignee }: { notes: { at: string; by: string; text: string }[]; assignee: string | null }) {
   const { t } = useI18n();
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<DecisionData>();
+  useDecisionResult(fetcher.data, fetcher.state, () => undefined);
   const [text, setText] = useState("");
   const [who, setWho] = useState(assignee ?? "");
   return (
@@ -367,17 +380,40 @@ function NotesAndAssignee({ notes, assignee }: { notes: { at: string; by: string
 const INFO_TEMPLATES = ["certificate", "taxNumber", "business"] as const;
 const REJECT_TEMPLATES = ["notEligible", "incomplete", "region"] as const;
 
-function NeedsInfoModal({ fields }: { fields: { id: string; label: string }[] }) {
+type DecisionData = { ok: boolean; intent: string; error?: string; message?: ApplicantMessage | null };
+
+/** Toast for a decision's result; on success the ready-made message for the applicant opens. */
+function useDecisionResult(data: DecisionData | undefined, state: string, onMessage: (m: ApplicantMessage) => void) {
   const { t } = useI18n();
-  const fetcher = useFetcher<typeof action>();
+  const shopify = useAppBridge();
+  useEffect(() => {
+    if (state !== "idle" || !data) return;
+    if (data.ok) {
+      shopify.toast.show(t(`applications.detail.toast.${data.intent}`));
+      if (data.message) onMessage(data.message);
+    } else if (data.error) shopify.toast.show(t(`applications.detail.error.${data.error}`), { isError: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, state]);
+}
+
+function NeedsInfoModal({ fields, company }: { fields: { id: string; label: string }[]; company: string }) {
+  const { t } = useI18n();
+  const fetcher = useFetcher<DecisionData>();
   const [message, setMessage] = useState("");
   const [picked, setPicked] = useState<string[]>([]);
   const [touched, setTouched] = useState(false);
+  const [ready, setReady] = useState<ApplicantMessage | null>(null);
+  useDecisionResult(fetcher.data, fetcher.state, (m) => {
+    setReady(m);
+    setMessage("");
+    setPicked([]);
+    setTouched(false);
+  });
   const errMessage = touched && !message.trim() ? t("applications.needsInfo.messageRequired") : undefined;
   const errFields = touched && picked.length === 0 ? t("applications.needsInfo.fieldsRequired") : undefined;
   const submit = () => {
     setTouched(true);
-    if (!message.trim() || picked.length === 0) return;
+    if (!message.trim() || picked.length === 0 || fetcher.state !== "idle") return;
     const fd = new FormData();
     fd.set("intent", "needs_info");
     fd.set("message", message);
@@ -386,76 +422,95 @@ function NeedsInfoModal({ fields }: { fields: { id: string; label: string }[] })
     (document.getElementById("needs-info-modal") as HTMLElement & { hideOverlay?: () => void })?.hideOverlay?.();
   };
   return (
-    <s-modal id="needs-info-modal" heading={t("applications.needsInfo.heading")}>
-      <s-stack direction="block" gap="base">
-        <s-select
-          label={t("applications.needsInfo.template")}
-          onChange={(e) => {
-            const v = (e.currentTarget as unknown as HTMLSelectElement).value;
-            if (v) setMessage(t(`applications.needsInfo.template.${v}`));
-          }}
-        >
-          <s-option value="">{t("applications.needsInfo.templateNone")}</s-option>
-          {INFO_TEMPLATES.map((k) => (
-            <s-option key={k} value={k}>{t(`applications.needsInfo.templateName.${k}`)}</s-option>
-          ))}
-        </s-select>
-        <s-text-area label={t("applications.needsInfo.message")} value={message} error={errMessage} onInput={(e) => setMessage((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
-        <s-choice-list
-          label={t("applications.needsInfo.fields")}
-          details={t("applications.needsInfo.fieldsHelp")}
-          multiple
-          error={errFields}
-          values={picked}
-          onChange={(e) => setPicked([...((e.currentTarget as unknown as { values: string[] }).values ?? [])])}
-        >
-          {fields.map((f) => (
-            <s-choice key={f.id} value={f.id}>{f.label}</s-choice>
-          ))}
-        </s-choice-list>
-      </s-stack>
-      <s-button slot="primary-action" variant="primary" onClick={submit}>{t("applications.needsInfo.send")}</s-button>
-      <s-button slot="secondary-actions" commandFor="needs-info-modal" command="--hide">{t("common.cancel")}</s-button>
-    </s-modal>
+    <>
+      <s-modal id="needs-info-modal" heading={t("applications.needsInfo.heading")}>
+        <s-stack direction="block" gap="base">
+          <s-select
+            label={t("applications.needsInfo.template")}
+            onChange={(e) => {
+              const v = (e.currentTarget as unknown as HTMLSelectElement).value;
+              if (v) setMessage(t(`applications.needsInfo.template.${v}`));
+            }}
+          >
+            <s-option value="">{t("applications.needsInfo.templateNone")}</s-option>
+            {INFO_TEMPLATES.map((k) => (
+              <s-option key={k} value={k}>{t(`applications.needsInfo.templateName.${k}`)}</s-option>
+            ))}
+          </s-select>
+          <s-text-area label={t("applications.needsInfo.message")} value={message} error={errMessage} onInput={(e) => setMessage((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
+          <s-choice-list
+            label={t("applications.needsInfo.fields")}
+            details={t("applications.needsInfo.fieldsHelp")}
+            multiple
+            error={errFields}
+            values={picked}
+            onChange={(e) => setPicked([...((e.currentTarget as unknown as { values: string[] }).values ?? [])])}
+          >
+            {fields.map((f) => (
+              <s-choice key={f.id} value={f.id}>{f.label}</s-choice>
+            ))}
+          </s-choice-list>
+        </s-stack>
+        <s-button slot="primary-action" variant="primary" loading={fetcher.state !== "idle"} onClick={submit}>{t("applications.needsInfo.send")}</s-button>
+        <s-button slot="secondary-actions" commandFor="needs-info-modal" command="--hide">{t("common.cancel")}</s-button>
+      </s-modal>
+      <MessageModal id="needs-info-message" company={company} message={ready} withLink onClose={() => setReady(null)} />
+    </>
   );
 }
 
 function RejectModal({ company }: { company: string }) {
   const { t } = useI18n();
-  const fetcher = useFetcher<typeof action>();
+  const fetcher = useFetcher<DecisionData>();
   const [reason, setReason] = useState("");
-  const [email, setEmail] = useState(true);
+  const [ready, setReady] = useState<ApplicantMessage | null>(null);
+  useDecisionResult(fetcher.data, fetcher.state, setReady);
   return (
-    <s-modal id="reject-modal" heading={t("applications.reject.heading", { company })}>
-      <s-stack direction="block" gap="base">
-        <s-select
-          label={t("applications.reject.template")}
-          onChange={(e) => {
-            const v = (e.currentTarget as unknown as HTMLSelectElement).value;
-            setReason(v ? t(`applications.reject.template.${v}`) : "");
-          }}
+    <>
+      <s-modal id="reject-modal" heading={t("applications.reject.heading", { company })}>
+        <s-stack direction="block" gap="base">
+          <s-select
+            label={t("applications.reject.template")}
+            onChange={(e) => {
+              const v = (e.currentTarget as unknown as HTMLSelectElement).value;
+              setReason(v ? t(`applications.reject.template.${v}`) : "");
+            }}
+          >
+            <s-option value="">{t("applications.reject.templateNone")}</s-option>
+            {REJECT_TEMPLATES.map((k) => (
+              <s-option key={k} value={k}>{t(`applications.reject.templateName.${k}`)}</s-option>
+            ))}
+          </s-select>
+          <s-text-area label={t("applications.reject.reason")} details={t("applications.reject.reasonHelp")} value={reason} onInput={(e) => setReason((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
+          <s-paragraph>{t("applications.reject.consequence")}</s-paragraph>
+        </s-stack>
+        <s-button
+          slot="primary-action"
+          variant="primary"
+          tone="critical"
+          commandFor="reject-modal"
+          command="--hide"
+          disabled={fetcher.state !== "idle"}
+          onClick={() => fetcher.submit({ intent: "reject", reason }, { method: "POST" })}
         >
-          <s-option value="">{t("applications.reject.templateNone")}</s-option>
-          {REJECT_TEMPLATES.map((k) => (
-            <s-option key={k} value={k}>{t(`applications.reject.templateName.${k}`)}</s-option>
-          ))}
-        </s-select>
-        <s-text-area label={t("applications.reject.reason")} details={t("applications.reject.reasonHelp")} value={reason} onInput={(e) => setReason((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
-        <s-checkbox label={t("applications.reject.email")} checked={email} onChange={() => setEmail(!email)} />
-        <s-paragraph>{t("applications.reject.consequence")}</s-paragraph>
-      </s-stack>
-      <s-button
-        slot="primary-action"
-        variant="primary"
-        tone="critical"
-        commandFor="reject-modal"
-        command="--hide"
-        onClick={() => fetcher.submit({ intent: "reject", reason, ...(email ? { email: "on" } : {}) }, { method: "POST" })}
-      >
-        {t("applications.reject.confirm")}
-      </s-button>
-      <s-button slot="secondary-actions" commandFor="reject-modal" command="--hide">{t("common.cancel")}</s-button>
-    </s-modal>
+          {t("applications.reject.confirm")}
+        </s-button>
+        <s-button slot="secondary-actions" commandFor="reject-modal" command="--hide">{t("common.cancel")}</s-button>
+      </s-modal>
+      <MessageModal id="reject-message" company={company} message={ready} onClose={() => setReady(null)} />
+    </>
+  );
+}
+
+/** A rejected application keeps its "not approved" message, ready to copy again. */
+function RejectionMessageButton({ message, company }: { message: ApplicantMessage; company: string }) {
+  const { t } = useI18n();
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <s-button onClick={() => setOpen(true)}>{t("applications.detail.copyMessage")}</s-button>
+      <MessageModal id="rejection-message-again" company={company} message={open ? message : null} onClose={() => setOpen(false)} />
+    </>
   );
 }
 

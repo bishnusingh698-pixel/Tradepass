@@ -12,16 +12,18 @@ import { IntlMessageFormat } from "intl-messageformat";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 
-// Merchant text overrides per language (Settings → Languages): emails and the
-// hosted pages (needs-info update, certificate renewal). Storefront messages are
-// edited on the Storefront page, under the theme's own keys.
-const AREAS = { email: ["email."], pages: ["hosted.", "renew."] } as const;
+// Merchant text overrides per language (Settings → Languages): the ready-made
+// messages merchants copy and send applicants themselves, and the hosted pages
+// (needs-info update, certificate renewal). Storefront messages are edited on
+// the Storefront page, under the theme's own keys. The admin-only "message.modal."
+// strings are not merchant-editable.
+const AREAS = { messages: ["message.needs_info.", "message.rejected.", "message.renewal"], pages: ["hosted.", "renew."] } as const;
 type Area = keyof typeof AREAS;
 
 const MAX_OVERRIDE = 2000;
 
 function parseArea(v: string | null): Area {
-  return v === "pages" ? "pages" : "email";
+  return v === "pages" ? "pages" : "messages";
 }
 const inArea = (area: Area, key: string) => AREAS[area].some((p) => key.startsWith(p));
 
@@ -129,7 +131,7 @@ export default function TextOverrides() {
               ))}
             </s-select>
             <s-select label={t("settings.texts.area")} value={d.area} onChange={(e) => setParam("area", (e.currentTarget as unknown as HTMLSelectElement).value)}>
-              <s-option value="email">{t("settings.texts.area.email")}</s-option>
+              <s-option value="messages">{t("settings.texts.area.messages")}</s-option>
               <s-option value="pages">{t("settings.texts.area.pages")}</s-option>
             </s-select>
           </s-grid>

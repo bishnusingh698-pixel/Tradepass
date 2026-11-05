@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Zobrazí se vedle zaškrtávacího políčka souhlasu. Použijte úplnou adresu nebo cestu v obchodě, například /policies/privacy-policy.",
   "form.success.heading": "Po odeslání",
   "form.success.message": "Poděkování",
-  "form.success.messageHelp": "Žadatelé také uvidí, že jim přijde potvrzovací e-mail.",
+  "form.success.messageHelp": "Zobrazí se žadatelům po odeslání formuláře.",
   "form.success.redirect": "Přesměrovat na stránku (nepovinné)",
   "form.success.redirectHelp": "Po poděkování přesměrujte žadatele na jinou stránku, například /pages/thank-you.",
   "form.spam.heading": "Ochrana proti spamu",

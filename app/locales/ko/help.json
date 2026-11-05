@@ -53,15 +53,13 @@
   "help.faq.import.q": "기존 도매 고객을 가져올 수 있습니까?",
   "help.faq.import.a": "네, Pro 요금제에서 가능합니다. CSV 파일을 업로드하거나 “wholesale” 같은 태그가 이미 있는 고객을 전환하십시오.",
   "help.faq.languages.q": "어떤 언어를 지원합니까?",
-  "help.faq.languages.a": "36개 언어를 지원합니다. 양식, 스토어프론트 메시지, 이메일이 각 방문자의 언어로 표시되며, 설정 → 언어에서 모든 텍스트를 변경할 수 있습니다.",
-  "help.faq.emails.q": "Tradepass는 이메일을 몇 건이나 보냅니까?",
-  "help.faq.emails.a": "스토어당 하루 최대 25건입니다. 초과된 이메일은 다음 날 발송되며, 이 경우 홈에서 알려 드립니다. Tradepass 이메일을 끄고 대신 Shopify Flow를 사용할 수도 있습니다.",
+  "help.faq.languages.a": "36개 언어. 양식, 스토어 메시지, 신청자에게 보내는 메시지가 각자의 언어로 표시되며, 모든 텍스트는 설정 → 언어에서 변경할 수 있습니다.",
   "help.faq.approvalLimit.q": "무료 요금제에서 승인 10건에 도달하면 어떻게 됩니까?",
   "help.faq.approvalLimit.a": "새 신청서는 계속 접수되므로 잠재 고객을 놓치지 않습니다. 그달에 더 승인하려면 유료 요금제를 선택하십시오.",
   "help.faq.markets.q": "홈에 B2B 마켓이 활성화되지 않았다고 표시됩니다. 어떻게 해야 합니까?",
   "help.faq.markets.a": "Plus 미만 요금제에서는 등급 가격에 Shopify의 새 마켓 기능이 필요합니다. Shopify의 설정 → 마켓에서 활성화한 후 홈에서 “다시 확인”을 클릭하십시오.",
   "help.faq.privacy.q": "신청자 데이터는 어떻게 보호됩니까?",
-  "help.faq.privacy.a": "세금 번호는 암호화되고, 이메일의 링크는 만료되며 한 번만 사용할 수 있고, 거부된 신청서는 설정에서 선택한 기간이 지나면 삭제됩니다.",
+  "help.faq.privacy.a": "세금 번호는 암호화되고, 보안 링크는 만료되며 한 번만 사용할 수 있고, 거부된 신청은 설정에서 선택한 기간이 지나면 삭제됩니다.",
   "help.faq.slowFirstLoad.q": "앱이 가끔 느리게 열리는 이유는 무엇입니까?",
   "help.faq.slowFirstLoad.a": "한동안 사용하지 않으면 앱이 다시 시작되는 데 최대 1분이 걸릴 수 있습니다. 스토어프론트에는 영향이 없으며 가격 숨기기와 양식은 계속 작동합니다.",
   "help.diagnostics.heading": "진단 정보",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "디버그 모드 끄기",
   "help.contact.heading": "지원팀에 문의",
   "help.contact.body": "보통 영업일 기준 2일 이내에 답변해 드립니다.",
-  "help.contact.priority": "Pro 요금제를 사용 중이시므로 문의에 우선 답변해 드리며, 보통 영업일 기준 1일 이내에 답변해 드립니다."
+  "help.contact.priority": "Pro 요금제를 사용 중이시므로 문의에 우선 답변해 드리며, 보통 영업일 기준 1일 이내에 답변해 드립니다.",
+  "help.faq.alerts.q": "새 신청은 어떻게 알 수 있나요?",
+  "help.faq.alerts.a": "Tradepass는 이메일을 보내지 않습니다. 새 신청과 답변은 홈과 신청 아래에서 확인할 수 있습니다. 이메일 알림을 받으려면 Shopify Flow(Tradepass Pro)에서 “Wholesale application submitted” 트리거와 Flow의 “Send internal email” 작업으로 워크플로를 만드세요. 이 작업은 워크플로에 입력한 고정 직원 주소로만 보냅니다."
 }

@@ -53,15 +53,13 @@
   "help.faq.import.q": "我可以匯入現有的批發顧客嗎？",
   "help.faq.import.a": "可以，需使用 Pro 方案。上傳 CSV 檔案，或轉換已帶有「wholesale」等標籤的顧客。",
   "help.faq.languages.q": "支援哪些語言？",
-  "help.faq.languages.a": "支援 36 種語言。表單、店面訊息和電子郵件會以每位訪客的語言顯示，您可以在「設定 → 語言」中變更任何文字。",
-  "help.faq.emails.q": "Tradepass 會寄送多少封電子郵件？",
-  "help.faq.emails.a": "每間商店每天最多 25 封。超出的郵件將於隔天寄出，發生這種情況時「首頁」會通知您。您也可以關閉我們的郵件，改用 Shopify Flow。",
+  "help.faq.languages.a": "支援 36 種語言。表單、商店訊息以及您寄給申請人的訊息都會以各自的語言顯示，所有文字都能在「設定 → 語言」中修改。",
   "help.faq.approvalLimit.q": "在免費方案上達到 10 次核准後會怎樣？",
   "help.faq.approvalLimit.a": "新申請仍會照常收集，因此您不會錯過任何潛在客戶。如要在當月核准更多申請，請選擇付費方案。",
   "help.faq.markets.q": "「首頁」顯示 B2B 市場未開啟，該怎麼辦？",
   "help.faq.markets.a": "在低於 Plus 的方案上，等級價格需要 Shopify 新版「市場」功能。請在 Shopify 的「設定 → 市場」中開啟，然後在「首頁」點擊「重新檢查」。",
   "help.faq.privacy.q": "申請人資料如何受到保護？",
-  "help.faq.privacy.a": "稅號經過加密，郵件中的連結會失效且僅能使用一次，已拒絕的申請會在您於「設定」中選擇的期間後刪除。",
+  "help.faq.privacy.a": "稅號會加密，安全連結會過期且只能使用一次，遭拒的申請會在您於「設定」中選擇的期間後刪除。",
   "help.faq.slowFirstLoad.q": "為什麼應用程式有時開啟很慢？",
   "help.faq.slowFirstLoad.a": "閒置一段時間後，應用程式可能需要最多一分鐘才能喚醒。您的店面不會受到影響：隱藏價格和表單會繼續正常運作。",
   "help.diagnostics.heading": "診斷資訊",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "關閉偵錯模式",
   "help.contact.heading": "聯絡支援團隊",
   "help.contact.body": "我們通常會在 2 個工作天內回覆。",
-  "help.contact.priority": "您使用的是 Pro 方案，因此您的郵件會優先處理，通常在 1 個工作天內回覆。"
+  "help.contact.priority": "您使用的是 Pro 方案，因此您的郵件會優先處理，通常在 1 個工作天內回覆。",
+  "help.faq.alerts.q": "如何得知有新申請？",
+  "help.faq.alerts.a": "Tradepass 不會寄送電子郵件。新申請和回覆會顯示在首頁和「申請」中。如需郵件通知，請在 Shopify Flow（Tradepass Pro）中建立工作流程，使用觸發條件「Wholesale application submitted」和 Flow 動作「Send internal email」。此動作只會寄到您在工作流程中輸入的固定員工地址。"
 }

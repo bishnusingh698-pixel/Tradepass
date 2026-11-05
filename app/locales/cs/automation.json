@@ -48,9 +48,8 @@
   "automation.action.terms": "Platební podmínky",
   "automation.action.tierTerms": "Použít platební podmínky úrovně",
   "automation.action.sendWelcome": "Poslat kupujícímu e-mail Shopify s přístupem B2B",
-  "automation.action.emailApplicant": "Poslat žadateli e-mail, že nebyl schválen",
   "automation.action.reason": "Důvod (nepovinné)",
-  "automation.action.reasonHelp": "Zobrazí se v e-mailu v jazyce, ve kterém ho napíšete.",
+  "automation.action.reasonHelp": "Uloží se k žádosti a bude ve zprávě, kterou si tam můžete zkopírovat.",
   "automation.error.summary": "{count, plural, one {Před uložením opravte # problém.} few {Před uložením opravte # problémy.} many {Před uložením opravte # problému.} other {Před uložením opravte # problémů.}}",
   "automation.error.conditions_required": "Přidejte alespoň jednu podmínku.",
   "automation.error.values_required": "Zadejte alespoň jednu hodnotu.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Toto rozhodnutí se nepodařilo vrátit. Zkontrolujte protokol aktivit a zkuste to znovu.",
   "automation.reverse.heading": "Vrátit rozhodnutí pro {company}?",
   "automation.reverse.approvedBody": "Firma {company} bude pozastavena: v Shopify zůstane, ale opustí svou úroveň a uvidí maloobchodní ceny. Obnovit ji můžete v sekci Kupující.",
-  "automation.reverse.rejectedBody": "Firma {company} se vrátí do stavu Čeká na posouzení. Pokud byl odeslán e-mail o zamítnutí, nelze ho vzít zpět.",
+  "automation.reverse.rejectedBody": "{company} se vrací do stavu Čeká na posouzení. Pokud jste už žadatele informovali, dejte mu vědět.",
   "automation.reverse.confirm": "Vrátit rozhodnutí",
   "automation.flow.heading": "Integrace Shopify Flow",
   "automation.flow.body": "Použijte tyto spouštěče a akce Tradepass v Shopify Flow a vytvořte si vlastní pracovní postupy, například označování kupujících štítky nebo odeslání zprávy do Slacku.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Platnost certifikátu vypršela",
   "automation.flow.action.approve": "Schválit žádost o velkoobchod do úrovně",
   "automation.flow.welcomeNote": "Tradepass už umí při schválení kupujícího odeslat e-mail Shopify s přístupem B2B, takže k tomu není potřeba žádný další pracovní postup.",
-  "automation.flow.open": "Otevřít Shopify Flow"
+  "automation.flow.open": "Otevřít Shopify Flow",
+  "automation.flow.alerts": "Chcete e-mail, když někdo podá žádost? V Shopify Flow použijte spouštěč „Wholesale application submitted“ s akcí Flow „Send internal email“. Tato akce posílá jen na pevné adresy zaměstnanců, které zadáte do pracovního postupu."
 }

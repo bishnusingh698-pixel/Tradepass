@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Izradit ćemo novog klijenta {name} ({email}).",
   "approval.field.sendWelcome": "Pošalji poruku dobrodošlice",
   "approval.welcome.shopify": "Shopifyjeva B2B poruka dobrodošlice s poveznicom za prijavu.",
-  "approval.welcome.ours": "Poruka Tradepassa „Odobreni ste” na jeziku kupca.",
   "approval.action.approve": "Odobri",
   "approval.action.retry": "Pokušaj ponovno",
   "approval.action.retryEmail": "Ponovno pošalji poruku",

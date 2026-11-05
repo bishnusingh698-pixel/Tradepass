@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Onay kutusunun yanında gösterilir. Tam bir adres veya /policies/privacy-policy gibi bir mağaza yolu kullanın.",
   "form.success.heading": "Gönderdikten sonra",
   "form.success.message": "Teşekkür mesajı",
-  "form.success.messageHelp": "Başvuru sahipleri ayrıca bir onay e-postasının yolda olduğunu görür.",
+  "form.success.messageHelp": "Başvuru sahiplerine formu gönderdikten sonra gösterilir.",
   "form.success.redirect": "Bir sayfaya yönlendir (isteğe bağlı)",
   "form.success.redirectHelp": "Teşekkür mesajından sonra başvuru sahiplerini başka bir sayfaya gönderin, örneğin /pages/thank-you.",
   "form.spam.heading": "Spam koruması",

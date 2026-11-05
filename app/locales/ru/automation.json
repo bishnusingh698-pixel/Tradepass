@@ -48,9 +48,8 @@
   "automation.action.terms": "Условия оплаты",
   "automation.action.tierTerms": "Условия оплаты уровня",
   "automation.action.sendWelcome": "Отправить покупателю письмо Shopify о доступе к B2B",
-  "automation.action.emailApplicant": "Сообщить заявителю по почте, что заявка не одобрена",
   "automation.action.reason": "Причина (необязательно)",
-  "automation.action.reasonHelp": "Показывается в письме на том языке, на котором вы её написали.",
+  "automation.action.reasonHelp": "Сохраняется в заявке и попадает в сообщение, которое можно скопировать оттуда.",
   "automation.error.summary": "{count, plural, one {Перед сохранением исправьте # ошибку.} few {Перед сохранением исправьте # ошибки.} many {Перед сохранением исправьте # ошибок.} other {Перед сохранением исправьте # ошибки.}}",
   "automation.error.conditions_required": "Добавьте хотя бы одно условие.",
   "automation.error.values_required": "Введите хотя бы одно значение.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Не удалось отменить решение. Проверьте журнал активности и повторите попытку.",
   "automation.reverse.heading": "Отменить решение по {company}?",
   "automation.reverse.approvedBody": "Компания {company} будет приостановлена: она останется в Shopify, но выйдет из своего уровня и будет видеть розничные цены. Возобновить её можно в разделе «Покупатели».",
-  "automation.reverse.rejectedBody": "Заявка {company} вернётся в статус «Ожидает рассмотрения». Если письмо об отклонении уже отправлено, отозвать его нельзя.",
+  "automation.reverse.rejectedBody": "{company} возвращается в статус «Ожидает проверки». Если вы уже сообщили заявителю, предупредите его.",
   "automation.reverse.confirm": "Отменить решение",
   "automation.flow.heading": "Интеграция с Shopify Flow",
   "automation.flow.body": "Используйте эти триггеры и действия Tradepass в Shopify Flow, чтобы создавать собственные процессы, например добавлять теги покупателям или отправлять сообщения в Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Срок сертификата истёк",
   "automation.flow.action.approve": "Одобрить оптовую заявку в уровень",
   "automation.flow.welcomeNote": "Tradepass уже умеет отправлять письмо Shopify о доступе к B2B при одобрении покупателя, поэтому отдельный процесс для этого не нужен.",
-  "automation.flow.open": "Открыть Shopify Flow"
+  "automation.flow.open": "Открыть Shopify Flow",
+  "automation.flow.alerts": "Хотите получать письмо о каждой новой заявке? В Shopify Flow используйте триггер «Wholesale application submitted» с действием Flow «Send internal email». Это действие отправляет письма только на постоянные адреса сотрудников, указанные в рабочем процессе."
 }

@@ -17,7 +17,7 @@ vi.mock("../app/lib/buyers.server", () => ({ pauseBuyers: m.pauseBuyers }));
 
 import db from "../app/db.server";
 import { evaluateRules, reverseAutoDecision, saveRules, listRules } from "../app/lib/rules.server";
-import { matchCondition, matchRule, pickRule, validateRules, type ApplicationFacts, type RuleDef } from "../app/lib/rules";
+import { matchCondition, matchRule, pickRule, sanitizeRules, validateRules, type ApplicationFacts, type RuleDef } from "../app/lib/rules";
 import { updateSettings } from "../app/lib/settings.server";
 
 const facts = (over: Partial<ApplicationFacts> = {}): ApplicationFacts => ({
@@ -53,7 +53,7 @@ describe("rule matching", () => {
 
   it("runs reject rules before approve rules, then by position", () => {
     const a1 = approveRule([{ type: "country", op: "is", values: ["US"] }], { position: 0 });
-    const r1: RuleDef = { kind: "reject", enabled: true, position: 5, conditions: { match: "all", list: [{ type: "email_domain", op: "is", values: ["acme.com"] }] }, action: { reason: null, email: false } };
+    const r1: RuleDef = { kind: "reject", enabled: true, position: 5, conditions: { match: "all", list: [{ type: "email_domain", op: "is", values: ["acme.com"] }] }, action: { reason: null } };
     expect(pickRule([a1, r1], facts())).toBe(r1);
     expect(pickRule([a1, r1], facts({ emailDomain: "other.com" }))).toBe(a1);
     expect(pickRule([a1, r1], facts({ country: "DE", emailDomain: "x.com" }))).toBeNull();
@@ -98,7 +98,7 @@ beforeEach(async () => {
   await db.application.deleteMany({ where: { shop } });
   await updateSettings(shop, { automation: { paused: false, dailyLimit: 25 } });
   await saveRules(shop, "test", [
-    { kind: "reject", enabled: true, position: 0, conditions: { match: "any", list: [{ type: "spam" }, { type: "email_domain", op: "is", values: ["spam.test"] }] }, action: { reason: null, email: false } },
+    { kind: "reject", enabled: true, position: 0, conditions: { match: "any", list: [{ type: "spam" }, { type: "email_domain", op: "is", values: ["spam.test"] }] }, action: { reason: null } },
     approveRule([{ type: "country", op: "is", values: ["US"] }, { type: "business_type", op: "is", values: ["salon"] }], { action: { tierId, paymentTermsTemplateId: null, sendWelcome: true } }),
   ]);
 });
@@ -110,6 +110,26 @@ describe("evaluateRules", () => {
     expect(out.decided).toBe("approved");
     expect(m.approveApplication).toHaveBeenCalledWith(expect.objectContaining({ actor: "automation" }), app.id, expect.objectContaining({ tierId, sendWelcome: true, paymentTermsTemplateId: "gid://shopify/PaymentTermsTemplate/1" }));
     expect((await db.application.findUnique({ where: { id: app.id } }))!.autoRuleId).toBe(out.ruleId);
+    expect(await db.activityLog.count({ where: { shop, action: "automation.approve", subject: app.id, result: "ok" } })).toBe(1);
+  });
+
+  it("never auto-approves a duplicate (it would create a second company); it waits for the merchant", async () => {
+    const app = await newApp({ flags: ["duplicate"] });
+    expect(await evaluateRules(admin, shop, app.id)).toEqual({ decided: null });
+    expect(m.approveApplication).not.toHaveBeenCalled();
+    expect(await db.activityLog.count({ where: { shop, action: "automation.skipped_duplicate", subject: app.id } })).toBe(1);
+    // Reject rules still apply to duplicates.
+    const spam = await newApp({ flags: ["duplicate"], email: "y@spam.test" });
+    expect((await evaluateRules(admin, shop, spam.id)).decided).toBe("rejected");
+  });
+
+  it("an auto-approval whose only failure is the welcome email still counts as approved", async () => {
+    m.approveApplication.mockImplementationOnce(async (_ctx: any, id: string) => {
+      await db.application.update({ where: { id }, data: { status: "approved", decidedAt: new Date() } });
+      return { steps: { ...done, email: { status: "failed", code: "email_failed" } } };
+    });
+    const app = await newApp();
+    expect((await evaluateRules(admin, shop, app.id)).decided).toBe("approved");
     expect(await db.activityLog.count({ where: { shop, action: "automation.approve", subject: app.id, result: "ok" } })).toBe(1);
   });
 
@@ -200,3 +220,20 @@ describe("rule storage", () => {
     expect(after.map((r) => r.position)).toEqual([0, 1]);
   });
 });
+
+describe("sanitizeRules", () => {
+  it("keeps only known kinds, conditions and action fields", () => {
+    const out = sanitizeRules([
+      { kind: "approve", enabled: true, conditions: { match: "weird", list: [{ type: "country", op: "is", values: ["us", "XXX", 5] }, { type: "evil" }] }, action: { tierId: "t1", paymentTermsTemplateId: "javascript:x", sendWelcome: "yes", extra: 1 } },
+      { kind: "delete_everything", conditions: {}, action: {} },
+      { kind: "reject", conditions: { match: "any", list: [{ type: "spam" }] }, action: { reason: "  ", email: true } },
+      "nonsense",
+    ]);
+    expect(out).toEqual([
+      { kind: "approve", enabled: true, conditions: { match: "all", list: [{ type: "country", op: "is", values: ["US"] }] }, action: { tierId: "t1", paymentTermsTemplateId: null, sendWelcome: true }, position: 0 },
+      { kind: "reject", enabled: true, conditions: { match: "any", list: [{ type: "spam" }] }, action: { reason: null }, position: 1 },
+    ]);
+    expect(sanitizeRules({ not: "a list" })).toEqual([]);
+  });
+});
+

@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "我們將為 {name}（{email}）建立新顧客。",
   "approval.field.sendWelcome": "寄送歡迎郵件",
   "approval.welcome.shopify": "Shopify 的 B2B 歡迎郵件，附上登入連結。",
-  "approval.welcome.ours": "以買家語言寄送的 Tradepass「您已獲核准」郵件。",
   "approval.action.approve": "核准",
   "approval.action.retry": "重試",
   "approval.action.retryEmail": "重新寄送郵件",

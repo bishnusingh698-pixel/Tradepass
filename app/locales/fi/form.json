@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Näytetään suostumuksen valintaruudun vieressä. Käytä koko osoitetta tai kaupan polkua, kuten /policies/privacy-policy.",
   "form.success.heading": "Lähettämisen jälkeen",
   "form.success.message": "Kiitosviesti",
-  "form.success.messageHelp": "Hakijat näkevät myös, että vahvistusviesti on tulossa.",
+  "form.success.messageHelp": "Näytetään hakijoille lomakkeen lähettämisen jälkeen.",
   "form.success.redirect": "Ohjaa sivulle (valinnainen)",
   "form.success.redirectHelp": "Ohjaa hakijat kiitosviestin jälkeen toiselle sivulle, esimerkiksi /pages/kiitos.",
   "form.spam.heading": "Roskapostisuojaus",

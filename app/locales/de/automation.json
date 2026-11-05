@@ -48,9 +48,8 @@
   "automation.action.terms": "Zahlungsbedingungen",
   "automation.action.tierTerms": "Zahlungsbedingungen der Stufe verwenden",
   "automation.action.sendWelcome": "B2B-Zugangs-E-Mail von Shopify an den Käufer senden",
-  "automation.action.emailApplicant": "Antragsteller per E-Mail über die Ablehnung informieren",
   "automation.action.reason": "Begründung (optional)",
-  "automation.action.reasonHelp": "Wird in der E-Mail in der Sprache angezeigt, in der Sie sie schreiben.",
+  "automation.action.reasonHelp": "Wird mit dem Antrag gespeichert und in die Nachricht übernommen, die Sie dort kopieren können.",
   "automation.error.summary": "{count, plural, one {Beheben Sie vor dem Speichern # Problem.} other {Beheben Sie vor dem Speichern # Probleme.}}",
   "automation.error.conditions_required": "Fügen Sie mindestens eine Bedingung hinzu.",
   "automation.error.values_required": "Geben Sie mindestens einen Wert ein.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Diese Entscheidung konnte nicht rückgängig gemacht werden. Prüfen Sie das Aktivitätsprotokoll und versuchen Sie es erneut.",
   "automation.reverse.heading": "Entscheidung für {company} rückgängig machen?",
   "automation.reverse.approvedBody": "{company} wird pausiert: Das Unternehmen bleibt in Shopify, verlässt aber seine Stufe und sieht Einzelhandelspreise. Unter „Käufer“ können Sie es wieder aktivieren.",
-  "automation.reverse.rejectedBody": "{company} wird wieder auf „Wartet auf Prüfung“ gesetzt. Eine bereits gesendete Ablehnungs-E-Mail kann nicht zurückgerufen werden.",
+  "automation.reverse.rejectedBody": "{company} wird wieder auf „Wartet auf Prüfung“ gesetzt. Falls Sie den Antragsteller bereits informiert haben, sagen Sie ihm Bescheid.",
   "automation.reverse.confirm": "Entscheidung zurücknehmen",
   "automation.flow.heading": "Shopify Flow-Integration",
   "automation.flow.body": "Nutzen Sie diese Tradepass-Trigger und -Aktionen in Shopify Flow, um eigene Workflows zu erstellen, etwa um Käufer zu taggen oder eine Slack-Nachricht zu senden.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Zertifikat abgelaufen",
   "automation.flow.action.approve": "Großhandelsantrag in Stufe genehmigen",
   "automation.flow.welcomeNote": "Tradepass kann bereits bei der Genehmigung eines Käufers die B2B-Zugangs-E-Mail von Shopify senden, dafür ist also kein zusätzlicher Workflow nötig.",
-  "automation.flow.open": "Shopify Flow öffnen"
+  "automation.flow.open": "Shopify Flow öffnen",
+  "automation.flow.alerts": "Sie möchten eine E-Mail, wenn sich jemand bewirbt? Verwenden Sie in Shopify Flow den Trigger „Wholesale application submitted“ mit der Flow-Aktion „Send internal email“. Diese Aktion sendet nur an feste Mitarbeiteradressen, die Sie im Workflow eintragen."
 }

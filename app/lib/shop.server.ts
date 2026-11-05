@@ -4,15 +4,13 @@ import { isTestBilling, planForSubscriptionName, type PlanId } from "./plans";
 
 // Field names verified against Admin GraphQL 2026-10 (see API_NOTES.md §Plan).
 // One query gives everything Tradepass needs to know about the store: plan and
-// B2B entitlements, the store profile used in emails and tax suggestions, and
+// B2B entitlements, the store profile used in messages and tax suggestions, and
 // the app subscription that really exists in Shopify (the source of truth for
 // billing — our own Shop.billingPlan is only a cache of it).
 export const SHOP_FACTS_QUERY = `#graphql
   query TradepassShopFacts {
     shop {
       name
-      email
-      contactEmail
       currencyCode
       billingAddress { countryCodeV2 }
       primaryDomain { url }
@@ -44,7 +42,7 @@ export type ShopFacts = {
   primaryLocale: string;
   publishedLocales: string[];
   catalogsUsed: number | null;
-  profile: { name: string | null; email: string | null; contactEmail: string | null; currency: string | null; country: string | null; domainUrl: string | null };
+  profile: { name: string | null; currency: string | null; country: string | null; domainUrl: string | null };
   /** The subscription Shopify reports; undefined when the query didn't include it (older callers/tests). */
   subscription?: { gid: string | null; plan: PlanId; trialDays: number; createdAt: string | null; test: boolean };
 };
@@ -55,8 +53,6 @@ type FactsResponse = {
   data?: {
     shop: {
       name?: string | null;
-      email?: string | null;
-      contactEmail?: string | null;
       currencyCode?: string | null;
       billingAddress?: { countryCodeV2?: string | null } | null;
       primaryDomain?: { url?: string | null } | null;
@@ -124,8 +120,6 @@ export function parseShopFacts(json: FactsResponse): ShopFacts {
     catalogsUsed: countB2bCatalogs(json.data?.b2bMarkets?.nodes),
     profile: {
       name: s.name?.trim() || null,
-      email: s.email?.trim() || null,
-      contactEmail: s.contactEmail?.trim() || null,
       currency: s.currencyCode || null,
       country: s.billingAddress?.countryCodeV2 || null,
       domainUrl: cleanDomainUrl(s.primaryDomain?.url),
@@ -154,8 +148,6 @@ export async function refreshShopFacts(shop: string, admin: Pick<AdminApiContext
     directCatalogs: facts.directCatalogs,
     primaryLocale: facts.primaryLocale,
     name: facts.profile.name,
-    email: facts.profile.email,
-    contactEmail: facts.profile.contactEmail,
     currency: facts.profile.currency,
     country: facts.profile.country,
     domainUrl: facts.profile.domainUrl,
@@ -177,6 +169,33 @@ export async function refreshShopFacts(shop: string, admin: Pick<AdminApiContext
   });
   const planChanged = Boolean(sub) && (before?.billingPlan ?? "free") !== sub!.plan;
   return { ...facts, planChanged };
+}
+
+/**
+ * refreshShopFacts for pages: if Shopify can't be reached right now, the page still opens with the
+ * facts stored at the last successful check (`stale: true`) instead of failing with an error.
+ */
+export async function shopFactsOrStored(shop: string, admin: Pick<AdminApiContext, "graphql">): Promise<ShopFacts & { planChanged: boolean; stale: boolean }> {
+  try {
+    return { ...(await refreshShopFacts(shop, admin)), stale: false };
+  } catch {
+    const row = await db.shop.findUnique({ where: { shop } });
+    return {
+      planName: row?.planName ?? "",
+      isPlus: Boolean(row?.isPlus),
+      isDevStore: Boolean(row?.isDevStore),
+      b2bEnabled: Boolean(row?.b2bEnabled),
+      b2bMarketsEnabled: Boolean(row?.b2bMarketsEnabled),
+      catalogLimit: row?.catalogLimit ?? null,
+      directCatalogs: Boolean(row?.directCatalogs),
+      primaryLocale: row?.primaryLocale ?? "en",
+      publishedLocales: [],
+      catalogsUsed: null,
+      profile: { name: row?.name ?? null, currency: row?.currency ?? null, country: row?.country ?? null, domainUrl: row?.domainUrl ?? null },
+      planChanged: false,
+      stale: true,
+    };
+  }
 }
 
 /** Absolute storefront URL for a path ("/account/login"), on the store's own domain when known. */

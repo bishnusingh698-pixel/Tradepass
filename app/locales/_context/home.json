@@ -383,23 +383,6 @@
     "maxLength": 30,
     "placeholders": []
   },
-  "home.alert.email_quota.heading": {
-    "note": "Alert heading.",
-    "maxLength": 60,
-    "placeholders": []
-  },
-  "home.alert.email_quota.body": {
-    "note": "Alert body.",
-    "maxLength": 200,
-    "placeholders": [
-      "cap"
-    ]
-  },
-  "home.alert.email_quota.action": {
-    "note": "Alert button.",
-    "maxLength": 30,
-    "placeholders": []
-  },
   "home.alert.embed_off.heading": {
     "note": "Alert heading.",
     "maxLength": 60,

@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Tilføj en note",
   "applications.detail.saveNote": "Gem note",
   "applications.detail.toast.reject": "Ansøgningen er afvist",
-  "applications.detail.toast.needs_info": "Anmodningen er sendt til ansøgeren",
+  "applications.detail.toast.needs_info": "Anmodning gemt. Send ansøgeren beskeden med det sikre link.",
   "applications.detail.toast.note": "Noten er gemt",
   "applications.detail.toast.assign": "Tildelingen er gemt",
   "applications.needsInfo.heading": "Bed om flere oplysninger",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Felter, de kan ændre",
   "applications.needsInfo.fieldsHelp": "Ansøgeren får et privat link, der er gyldigt i 14 dage, og kan kun ændre disse felter.",
   "applications.needsInfo.fieldsRequired": "Vælg mindst ét felt.",
-  "applications.needsInfo.send": "Send anmodning",
+  "applications.needsInfo.send": "Opret anmodning",
   "applications.reject.heading": "Vil du afvise {company}?",
   "applications.reject.template": "Skabelon til begrundelse",
   "applications.reject.templateNone": "Ingen skabelon",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Tak for din interesse. Vi kunne ikke bekræfte oplysningerne i din ansøgning, så vi kan ikke godkende den lige nu. Du er velkommen til at ansøge igen.",
   "applications.reject.template.region": "Tak for din interesse. Vi tilbyder endnu ikke engroskøb i dit område.",
   "applications.reject.reason": "Begrundelse (valgfri)",
-  "applications.reject.reasonHelp": "Hvis du sender en e-mail, ser ansøgeren denne begrundelse.",
-  "applications.reject.email": "Send en e-mail til ansøgeren",
+  "applications.reject.reasonHelp": "Gemmes med ansøgningen og medtages i den besked, du kan sende ansøgeren.",
   "applications.reject.consequence": "Ansøgningen flyttes til Afvist. Der oprettes intet i Shopify, og du kan stadig finde den under fanen Afvist.",
   "applications.reject.confirm": "Afvis ansøgning",
   "applications.activity.application.submit": "Ansøgning indsendt",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Note tilføjet",
   "applications.activity.application.assign": "Tildeling ændret",
   "applications.taxCheck.skipped": "Ikke kontrolleret i abonnement",
-  "applications.detail.taxCheckPlan": "Momsnumre kontrolleres mod officielle registre med {plan}-abonnementet og derover. Kontrollér dette manuelt, eller opgrader for at kontrollere nye ansøgninger automatisk."
+  "applications.detail.taxCheckPlan": "Momsnumre kontrolleres mod officielle registre med {plan}-abonnementet og derover. Kontrollér dette manuelt, eller opgrader for at kontrollere nye ansøgninger automatisk.",
+  "applications.detail.copyMessage": "Besked til ansøgeren"
 }

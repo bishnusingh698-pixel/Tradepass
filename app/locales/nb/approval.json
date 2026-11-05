@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Vi oppretter en ny kunde for {name} ({email}).",
   "approval.field.sendWelcome": "Send velkomst-e-post",
   "approval.welcome.shopify": "Shopifys B2B-velkomst-e-post med en lenke for å logge inn.",
-  "approval.welcome.ours": "Tradepass-e-posten «Du er godkjent» på kjøperens språk.",
   "approval.action.approve": "Godkjenn",
   "approval.action.retry": "Prøv igjen",
   "approval.action.retryEmail": "Send e-post på nytt",

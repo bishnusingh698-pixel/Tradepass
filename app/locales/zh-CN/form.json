@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "显示在同意复选框旁边。请使用完整网址或商店路径，例如 /policies/privacy-policy。",
   "form.success.heading": "提交后",
   "form.success.message": "感谢消息",
-  "form.success.messageHelp": "申请人还会看到确认邮件即将送达的提示。",
+  "form.success.messageHelp": "申请人提交表单后显示。",
   "form.success.redirect": "重定向到页面（可选）",
   "form.success.redirectHelp": "在显示感谢消息后将申请人转到其他页面，例如 /pages/thank-you。",
   "form.spam.heading": "垃圾信息防护",

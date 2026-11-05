@@ -42,7 +42,7 @@
   "tiers.editor.name": "اسم المستوى",
   "tiers.editor.nameHelp": "لا يرى هذا الاسم أحد غيرك، مثل «بائع تجزئة» أو «موزّع».",
   "tiers.editor.buyerNames": "الاسم الذي يراه المشترون",
-  "tiers.editor.buyerNamesHelp": "اختياري. يظهر للمشترين في الرسائل وفي متجرك، لكل لغة. إذا تُرك فارغًا يُستخدم اسم المستوى.",
+  "tiers.editor.buyerNamesHelp": "اختياري. يظهر للمشترين في متجرك حسب اللغة. إذا تُرك فارغًا يُستخدم اسم المستوى.",
   "tiers.editor.buyerNameFor": "الاسم باللغة {language}",
   "tiers.editor.pricing": "طريقة تحديد الأسعار",
   "tiers.editor.pricing.percent": "نسبة خصم من سعر التجزئة",

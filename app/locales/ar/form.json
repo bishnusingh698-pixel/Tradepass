@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "يظهر بجوار مربع الموافقة. استخدم عنوانًا كاملًا أو مسارًا في المتجر مثل /policies/privacy-policy.",
   "form.success.heading": "بعد الإرسال",
   "form.success.message": "رسالة الشكر",
-  "form.success.messageHelp": "يرى المتقدمون أيضًا أن رسالة تأكيد بالبريد الإلكتروني في طريقها إليهم.",
+  "form.success.messageHelp": "يظهر لمقدّمي الطلبات بعد إرسال النموذج.",
   "form.success.redirect": "إعادة التوجيه إلى صفحة (اختياري)",
   "form.success.redirectHelp": "وجّه المتقدمين إلى صفحة أخرى بعد رسالة الشكر، مثل /pages/thank-you.",
   "form.spam.heading": "الحماية من الرسائل المزعجة",

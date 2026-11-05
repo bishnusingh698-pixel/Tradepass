@@ -183,7 +183,9 @@ export async function handleFlowApprove(admin: Admin, shop: string, req: FlowAct
       const state = await approveApplication(ctx, app.id, input);
       const failed = APPROVAL_STEPS.find((s) => state.steps[s]?.status === "failed");
       await logActivity({ shop, actor: "flow", action: "flow.approve", subject: app.id, result: failed ? "failed" : "ok", detail: failed ? { step: failed } : undefined });
-      if (failed) return { status: 422, body: { message: t("flow.action.stepFailed") } };
+      // Only the welcome email failing still leaves an approved buyer: that's a success for Flow
+      // (the merchant can send the email again from the application).
+      if (failed && failed !== "email") return { status: 422, body: { message: t("flow.action.stepFailed") } };
       return { status: 200, body: {} };
     } catch (e) {
       await logActivity({ shop, actor: "flow", action: "flow.approve", subject: app.id, result: "failed", detail: { error: errorCodeOf(e) } }).catch(() => undefined);

@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Legg til et notat",
   "applications.detail.saveNote": "Lagre notat",
   "applications.detail.toast.reject": "Søknaden er avslått",
-  "applications.detail.toast.needs_info": "Forespørselen er sendt til søkeren",
+  "applications.detail.toast.needs_info": "Forespørselen er lagret. Send søkeren meldingen med den sikre lenken.",
   "applications.detail.toast.note": "Notatet er lagret",
   "applications.detail.toast.assign": "Tildelingen er lagret",
   "applications.needsInfo.heading": "Be om mer informasjon",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Felt de kan endre",
   "applications.needsInfo.fieldsHelp": "Søkeren får en privat lenke som er gyldig i 14 dager, og kan bare endre disse feltene.",
   "applications.needsInfo.fieldsRequired": "Velg minst ett felt.",
-  "applications.needsInfo.send": "Send forespørsel",
+  "applications.needsInfo.send": "Opprett forespørsel",
   "applications.reject.heading": "Vil du avslå {company}?",
   "applications.reject.template": "Mal for begrunnelse",
   "applications.reject.templateNone": "Ingen mal",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Takk for interessen. Vi kunne ikke bekrefte informasjonen i søknaden din, så vi kan ikke godkjenne den nå. Du er velkommen til å søke igjen.",
   "applications.reject.template.region": "Takk for interessen. Vi tilbyr ennå ikke engroskjøp i ditt område.",
   "applications.reject.reason": "Begrunnelse (valgfritt)",
-  "applications.reject.reasonHelp": "Hvis du sender e-post, ser søkeren denne begrunnelsen.",
-  "applications.reject.email": "Send e-post til søkeren",
+  "applications.reject.reasonHelp": "Lagres med søknaden og tas med i meldingen du kan sende søkeren.",
   "applications.reject.consequence": "Søknaden flyttes til Avslått. Ingenting opprettes i Shopify, og du finner den fortsatt under fanen Avslått.",
   "applications.reject.confirm": "Avslå søknad",
   "applications.activity.application.submit": "Søknad sendt inn",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Notat lagt til",
   "applications.activity.application.assign": "Tildeling endret",
   "applications.taxCheck.skipped": "Ikke kontrollert i abonnement",
-  "applications.detail.taxCheckPlan": "MVA-numre kontrolleres mot offisielle registre med {plan}-abonnementet og høyere. Kontroller dette manuelt, eller oppgrader for å kontrollere nye søknader automatisk."
+  "applications.detail.taxCheckPlan": "MVA-numre kontrolleres mot offisielle registre med {plan}-abonnementet og høyere. Kontroller dette manuelt, eller oppgrader for å kontrollere nye søknader automatisk.",
+  "applications.detail.copyMessage": "Melding til søkeren"
 }

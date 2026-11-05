@@ -1,8 +1,7 @@
 import db from "../db.server";
 import type { AdminContext } from "./context.server";
-import { can, FEATURES, isTestBilling, PLANS, planForSubscriptionName, type Feature, type PlanId } from "./plans";
+import { can, effectivePlan, FEATURES, isTestBilling, PLANS, planForSubscriptionName, type Feature, type PlanId } from "./plans";
 import { updateSettings } from "./settings.server";
-import { ensureCheckoutLock } from "./checkout-lock.server";
 import { syncStorefrontConfig } from "./storefront-sync.server";
 import { logActivity } from "./activity.server";
 
@@ -35,9 +34,26 @@ export async function syncBilling(ctx: BillingCtx): Promise<PlanId> {
     where: { shop: ctx.shop },
     data: { billingPlan: plan, subscriptionGid: active?.id ?? null, ...(trialStart ? { trialStartedAt: trialStart } : {}) },
   });
-  // The storefront config carries plan-dependent parts (the Free plan's "Powered by Tradepass" link).
-  if (ctx.admin && plan !== (ctx.shopRow?.billingPlan ?? "free")) await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
+  if (plan !== (ctx.shopRow?.billingPlan ?? "free")) {
+    // Shopify confirmed the change: only now do features of the old plan stop.
+    await enforcePlanLimits(ctx.shop, effectivePlan(plan, Boolean(ctx.shopRow?.isDevStore)));
+    // The storefront config carries plan-dependent parts (the Free plan's "Powered by Tradepass" link).
+    if (ctx.admin) await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
+  }
   return plan;
+}
+
+/**
+ * Switch off what the current plan doesn't include. Called only once Shopify has
+ * confirmed the plan (Plans page sync, subscription webhook), never before the
+ * merchant approves a charge, so cancelling on Shopify's page changes nothing.
+ * Wholesale-only mode is never switched off here (see applyDowngrade).
+ */
+export async function enforcePlanLimits(shop: string, plan: PlanId): Promise<void> {
+  if (!can(plan, "auto_rules")) {
+    const off = await db.rule.updateMany({ where: { shop, enabled: true }, data: { enabled: false } });
+    if (off.count) await logActivity({ shop, actor: "system", action: "billing.rules_off", subject: null, detail: { plan, rules: off.count } });
+  }
 }
 
 /** What stops working when moving from one plan to a lower one. Used for the downgrade confirmation. */
@@ -63,25 +79,30 @@ export async function downgradeImpact(shop: string, accessMode: string, from: Pl
   };
 }
 
+/** Wholesale-only mode can't stay on the target plan, so the merchant must confirm turning it off first. */
+export function needsWholesaleConfirm(accessMode: string, to: PlanId): boolean {
+  return accessMode === "wholesale_only" && !can(to, "wholesale_only");
+}
+
 /**
- * Apply a plan change on our side. Wholesale-only mode is never switched off
- * silently: the caller must pass `confirmWholesaleOff` (the merchant ticked the
- * box), and the store moves to "hide prices" rather than fully open.
+ * Apply a confirmed plan change on our side (call it after Shopify has accepted
+ * the change, e.g. the subscription was cancelled). Wholesale-only mode is never
+ * switched off silently: the caller must pass `confirmWholesaleOff` (the
+ * merchant ticked the box), and the store moves to "hide prices" rather than
+ * fully open. Other plan limits follow in enforcePlanLimits.
  */
 export async function applyDowngrade(
   ctx: Pick<AdminContext, "admin" | "shop" | "settings" | "actor">,
   to: PlanId,
   confirmWholesaleOff: boolean,
 ): Promise<{ ok: boolean; reason?: "confirm_wholesale" }> {
-  if (ctx.settings.storefront.accessMode === "wholesale_only" && !can(to, "wholesale_only")) {
+  if (needsWholesaleConfirm(ctx.settings.storefront.accessMode, to)) {
     if (!confirmWholesaleOff) return { ok: false, reason: "confirm_wholesale" };
-    const next = await updateSettings(ctx.shop, { storefront: { accessMode: "hide" } });
-    await ensureCheckoutLock(ctx.admin, ctx.shop, next);
-    await syncStorefrontConfig(ctx.admin, ctx.shop);
+    await updateSettings(ctx.shop, { storefront: { accessMode: "hide" } });
+    // Also turns the checkout lock off (ensureCheckoutLock); a failure is queued and retried.
+    await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
     await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "billing.wholesale_only_off", subject: null, detail: { to } });
   }
-  if (!can(to, "auto_rules")) {
-    await db.rule.updateMany({ where: { shop: ctx.shop, enabled: true }, data: { enabled: false } });
-  }
+  await enforcePlanLimits(ctx.shop, to);
   return { ok: true };
 }

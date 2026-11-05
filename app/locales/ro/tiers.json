@@ -42,7 +42,7 @@
   "tiers.editor.name": "Numele nivelului",
   "tiers.editor.nameHelp": "Doar dumneavoastră vedeți acest nume, de exemplu Comerciant cu amănuntul sau Distribuitor.",
   "tiers.editor.buyerNames": "Numele văzut de cumpărători",
-  "tiers.editor.buyerNamesHelp": "Opțional. Afișat cumpărătorilor în e-mailuri și în magazin, pentru fiecare limbă. Dacă e gol, se folosește numele nivelului.",
+  "tiers.editor.buyerNamesHelp": "Opțional. Afișat cumpărătorilor în magazin, pentru fiecare limbă. Gol folosește numele nivelului.",
   "tiers.editor.buyerNameFor": "Numele în {language}",
   "tiers.editor.pricing": "Cum se stabilesc prețurile",
   "tiers.editor.pricing.percent": "Reducere procentuală din prețul cu amănuntul",

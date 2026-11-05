@@ -48,9 +48,8 @@
   "automation.action.terms": "Uvjeti plaćanja",
   "automation.action.tierTerms": "Koristi uvjete plaćanja razine",
   "automation.action.sendWelcome": "Pošalji kupcu Shopifyjevu poruku za B2B pristup",
-  "automation.action.emailApplicant": "Pošalji podnositelju poruku da nije odobren",
   "automation.action.reason": "Razlog (neobavezno)",
-  "automation.action.reasonHelp": "Prikazuje se u poruci na jeziku na kojem ga napišete.",
+  "automation.action.reasonHelp": "Sprema se uz prijavu i uključuje u poruku koju tamo možete kopirati.",
   "automation.error.summary": "{count, plural, one {Prije spremanja riješite # problem.} few {Prije spremanja riješite # problema.} other {Prije spremanja riješite # problema.}}",
   "automation.error.conditions_required": "Dodajte barem jedan uvjet.",
   "automation.error.values_required": "Unesite barem jednu vrijednost.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Nije moguće poništiti ovu odluku. Provjerite zapisnik aktivnosti i pokušajte ponovno.",
   "automation.reverse.heading": "Poništiti odluku za {company}?",
   "automation.reverse.approvedBody": "Tvrtka {company} bit će pauzirana: ostaje u Shopifyju, ali napušta svoju razinu i vidi maloprodajne cijene. Možete je ponovno aktivirati u odjeljku Kupci.",
-  "automation.reverse.rejectedBody": "Tvrtka {company} vraća se u stanje Čeka pregled. Ako je poruka o odbijanju poslana, ne može se opozvati.",
+  "automation.reverse.rejectedBody": "{company} se vraća na Čeka pregled. Ako ste podnositelja već obavijestili, javite mu.",
   "automation.reverse.confirm": "Poništi odluku",
   "automation.flow.heading": "Integracija sa Shopify Flowom",
   "automation.flow.body": "Upotrijebite ove okidače i radnje Tradepassa u Shopify Flowu za izradu vlastitih tijekova rada, primjerice za označavanje kupaca ili slanje poruke u Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Potvrda je istekla",
   "automation.flow.action.approve": "Odobri zahtjev za veleprodaju u razinu",
   "automation.flow.welcomeNote": "Tradepass već može poslati Shopifyjevu poruku za B2B pristup kad odobri kupca pa za to nije potreban dodatni tijek rada.",
-  "automation.flow.open": "Otvori Shopify Flow"
+  "automation.flow.open": "Otvori Shopify Flow",
+  "automation.flow.alerts": "Želite e-poruku kad netko podnese prijavu? U Shopify Flowu upotrijebite okidač „Wholesale application submitted” s Flow radnjom „Send internal email”. Ta radnja šalje samo na stalne adrese zaposlenika koje unesete u tijek rada."
 }

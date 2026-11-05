@@ -48,9 +48,8 @@
   "automation.action.terms": "결제 조건",
   "automation.action.tierTerms": "등급의 결제 조건 사용",
   "automation.action.sendWelcome": "구매자에게 Shopify B2B 액세스 이메일 보내기",
-  "automation.action.emailApplicant": "승인되지 않았음을 신청자에게 이메일로 알리기",
   "automation.action.reason": "사유(선택 사항)",
-  "automation.action.reasonHelp": "작성한 언어 그대로 이메일에 표시됩니다.",
+  "automation.action.reasonHelp": "신청서에 저장되며 신청서에서 복사할 수 있는 메시지에 포함됩니다.",
   "automation.error.summary": "{count, plural, other {저장하기 전에 문제 #개를 해결하십시오.}}",
   "automation.error.conditions_required": "조건을 하나 이상 추가하십시오.",
   "automation.error.values_required": "값을 하나 이상 입력하십시오.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "이 결정을 되돌릴 수 없습니다. 활동 로그를 확인한 후 다시 시도하십시오.",
   "automation.reverse.heading": "{company}에 대한 결정을 되돌리시겠습니까?",
   "automation.reverse.approvedBody": "{company}이(가) 일시 중지됩니다. 회사는 Shopify에 남지만 등급에서 제외되어 소매 가격이 표시됩니다. 구매자 메뉴에서 다시 시작할 수 있습니다.",
-  "automation.reverse.rejectedBody": "{company}이(가) 검토 대기 중으로 돌아갑니다. 거부 이메일이 이미 발송된 경우 회수할 수 없습니다.",
+  "automation.reverse.rejectedBody": "{company}이(가) 검토 대기 상태로 돌아갑니다. 이미 신청자에게 알렸다면 다시 알려 주세요.",
   "automation.reverse.confirm": "결정 되돌리기",
   "automation.flow.heading": "Shopify Flow 연동",
   "automation.flow.body": "Shopify Flow에서 Tradepass 트리거와 작업을 사용하여 구매자 태그 지정이나 Slack 메시지 보내기 같은 나만의 워크플로를 만드십시오.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "증명서 만료됨",
   "automation.flow.action.approve": "도매 신청서를 승인하고 등급에 배정",
   "automation.flow.welcomeNote": "Tradepass는 구매자를 승인할 때 이미 Shopify B2B 액세스 이메일을 보낼 수 있으므로 이를 위한 별도의 워크플로는 필요하지 않습니다.",
-  "automation.flow.open": "Shopify Flow 열기"
+  "automation.flow.open": "Shopify Flow 열기",
+  "automation.flow.alerts": "신청이 들어올 때 이메일을 받고 싶으신가요? Shopify Flow에서 “Wholesale application submitted” 트리거와 Flow의 “Send internal email” 작업을 사용하세요. 이 작업은 워크플로에 입력한 고정 직원 주소로만 보냅니다."
 }

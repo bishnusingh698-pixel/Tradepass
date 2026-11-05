@@ -741,8 +741,7 @@
         h("h2", { className: "tpf-success__title", text: tx("form.duplicate") })
       ] : [
         h("h2", { className: "tpf-success__title", text: tx("form.success.heading") }),
-        h("p", { text: msgText }),
-        opts.successEmail === false ? null : h("p", { text: tx("form.success.email") })
+        h("p", { text: msgText })
       ]);
       container.innerHTML = "";
       container.appendChild(box);
@@ -826,7 +825,7 @@
         definition: cfg.definition, texts: texts, locale: cfg.locale, dir: cfg.dir,
         endpoint: cfg.endpoint, formId: cfg.formId, country: cfg.country, prefill: cfg.prefill,
         languages: cfg.languages, countriesUrl: cfg.countriesUrl, submitUrl: cfg.submitUrl, uploadUrl: cfg.uploadUrl,
-        successEmail: cfg.successEmail, countryRule: cfg.countryRule
+        countryRule: cfg.countryRule
       });
     });
   }

@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Ďakujeme, vaša žiadosť bola aktualizovaná",
   "hosted.update.doneBody": "Obchod {store} ju posúdi a ozve sa vám e-mailom.",
   "hosted.link.invalidTitle": "Tento odkaz nie je platný",
-  "hosted.link.invalidBody": "Skontrolujte, či ste z e-mailu otvorili celý odkaz, alebo kontaktujte obchod {store}.",
+  "hosted.link.invalidBody": "Skontrolujte, či ste otvorili celý odkaz, alebo kontaktujte {store}.",
   "hosted.link.expiredTitle": "Platnosť odkazu vypršala",
   "hosted.link.expiredBody": "Z bezpečnostných dôvodov fungujú odkazy na aktualizáciu iba obmedzený čas. Kontaktujte, prosím, obchod {store} a požiadajte o nový odkaz.",
   "hosted.link.usedTitle": "Tento odkaz už bol použitý",

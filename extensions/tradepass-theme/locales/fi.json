@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Kiitos, hakemuksesi on lähetetty",
-      "body": "Käsittelemme sen ja vastaamme sähköpostitse.",
-      "email": "Lähetimme sinulle vahvistusviestin."
+      "body": "Käsittelemme sen ja vastaamme sähköpostitse."
     }
   }
 }

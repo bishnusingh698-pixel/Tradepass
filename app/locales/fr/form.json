@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Affiché à côté de la case de consentement. Utilisez une adresse complète ou un chemin de la boutique comme /policies/privacy-policy.",
   "form.success.heading": "Après l’envoi",
   "form.success.message": "Message de remerciement",
-  "form.success.messageHelp": "Les demandeurs voient aussi qu’un e-mail de confirmation leur a été envoyé.",
+  "form.success.messageHelp": "Affiché aux demandeurs après l’envoi du formulaire.",
   "form.success.redirect": "Rediriger vers une page (facultatif)",
   "form.success.redirectHelp": "Envoyez les demandeurs vers une autre page après le message de remerciement, par exemple /pages/thank-you.",
   "form.spam.heading": "Protection anti-spam",

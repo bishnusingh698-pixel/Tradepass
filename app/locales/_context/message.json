@@ -1,0 +1,163 @@
+{
+  "message.needs_info.subject": {
+    "note": "Subject line of the message the merchant sends to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "message.needs_info.body": {
+    "note": "Message body the merchant copies and sends. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "store_name",
+      "company",
+      "update_link"
+    ]
+  },
+  "message.needs_info.messageLine": {
+    "note": "Extra paragraph with the merchant message. Formal business register.",
+    "maxLength": 300,
+    "placeholders": [
+      "store_name",
+      "message"
+    ]
+  },
+  "message.rejected.subject": {
+    "note": "Subject line of the message the merchant sends to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "message.rejected.body": {
+    "note": "Message body the merchant copies and sends. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "store_name",
+      "company"
+    ]
+  },
+  "message.rejected.reasonLine": {
+    "note": "Extra paragraph with the merchant reason for not approving. Formal business register.",
+    "maxLength": 300,
+    "placeholders": [
+      "reason"
+    ]
+  },
+  "message.renewal_expiring.subject": {
+    "note": "Subject line of the message the merchant sends to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name",
+      "expiry_date"
+    ]
+  },
+  "message.renewal_expiring.body": {
+    "note": "Message body the merchant copies and sends. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "company",
+      "expiry_date",
+      "store_name",
+      "update_link"
+    ]
+  },
+  "message.renewal_expired.subject": {
+    "note": "Subject line of the message the merchant sends to the applicant/buyer. Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "message.renewal_expired.body": {
+    "note": "Message body the merchant copies and sends. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "first_name",
+      "company",
+      "expiry_date",
+      "store_name",
+      "update_link"
+    ]
+  },
+  "message.renewal.subject": {
+    "note": "Subject line of the renewal message the merchant sends a buyer (certificate without an expiry date). Formal business register.",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "message.renewal.body": {
+    "note": "Message body the merchant copies and sends. Blank line = new paragraph. Keep the link placeholder on its own line. Formal business register.",
+    "maxLength": 1200,
+    "placeholders": [
+      "company",
+      "first_name",
+      "store_name",
+      "update_link"
+    ]
+  },
+  "message.modal.heading": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": [
+      "company"
+    ]
+  },
+  "message.modal.intro": {
+    "note": "Admin text.",
+    "maxLength": 310,
+    "placeholders": [
+      "language"
+    ]
+  },
+  "message.modal.linkNote": {
+    "note": "Admin text.",
+    "maxLength": 208,
+    "placeholders": []
+  },
+  "message.modal.to": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "message.modal.subject": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "message.modal.body": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "message.modal.copy": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "message.modal.copied": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "message.modal.copyFailed": {
+    "note": "Admin text.",
+    "maxLength": 138,
+    "placeholders": []
+  },
+  "message.modal.mailto": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  },
+  "message.modal.close": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
+  }
+}

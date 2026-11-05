@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "We'll create a new customer for {name} ({email}).",
   "approval.field.sendWelcome": "Send welcome email",
   "approval.welcome.shopify": "Shopify's B2B welcome email, with a link to sign in.",
-  "approval.welcome.ours": "Tradepass's \"You're approved\" email in the buyer's language.",
   "approval.action.approve": "Approve",
   "approval.action.retry": "Retry",
   "approval.action.retryEmail": "Send email again",

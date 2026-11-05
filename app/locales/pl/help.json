@@ -53,15 +53,13 @@
   "help.faq.import.q": "Czy mogę zaimportować obecnych klientów hurtowych?",
   "help.faq.import.a": "Tak, w planie Pro. Prześlij plik CSV lub przekształć klientów, którzy mają już tag, np. „hurt”.",
   "help.faq.languages.q": "Jakie języki są obsługiwane?",
-  "help.faq.languages.a": "36 języków. Formularz, komunikaty w witrynie sklepu i e-maile są wyświetlane w języku każdego odwiedzającego, a każdy tekst można zmienić w sekcji Ustawienia → Języki.",
-  "help.faq.emails.q": "Ile e-maili wysyła Tradepass?",
-  "help.faq.emails.a": "Do 25 e-maili na sklep dziennie. Nadmiarowe e-maile są wysyłane następnego dnia, a Strona główna informuje, gdy tak się dzieje. Możesz wyłączyć nasze e-maile i zamiast tego używać Shopify Flow.",
+  "help.faq.languages.a": "36 języków. Formularz, komunikaty w sklepie i wiadomości wysyłane wnioskodawcom są w języku każdej osoby, a każdy tekst możesz zmienić w Ustawienia → Języki.",
   "help.faq.approvalLimit.q": "Co się stanie po 10 zatwierdzeniach w planie bezpłatnym?",
   "help.faq.approvalLimit.a": "Nowe wnioski są nadal zbierane, więc nie tracisz żadnego potencjalnego klienta. Aby zatwierdzić więcej w danym miesiącu, wybierz płatny plan.",
   "help.faq.markets.q": "Strona główna podaje, że rynki B2B nie są włączone. Co zrobić?",
   "help.faq.markets.a": "W planach niższych niż Plus ceny poziomów wymagają nowszych Rynków Shopify. Włącz je w Shopify w sekcji Ustawienia → Rynki, a następnie kliknij „Sprawdź ponownie” na Stronie głównej.",
   "help.faq.privacy.q": "Jak chronione są dane wnioskodawców?",
-  "help.faq.privacy.a": "Numery podatkowe są szyfrowane, linki w e-mailach wygasają i działają jeden raz, a odrzucone wnioski są usuwane po okresie wybranym w Ustawieniach.",
+  "help.faq.privacy.a": "Numery podatkowe są szyfrowane, bezpieczne linki wygasają i działają raz, a odrzucone wnioski są usuwane po okresie wybranym w Ustawieniach.",
   "help.faq.slowFirstLoad.q": "Dlaczego aplikacja czasem otwiera się powoli?",
   "help.faq.slowFirstLoad.a": "Po okresie bezczynności aplikacja może potrzebować do minuty, aby się wybudzić. Nie wpływa to na witrynę sklepu: ukrywanie cen i formularz działają dalej.",
   "help.diagnostics.heading": "Informacje diagnostyczne",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Wyłącz tryb debugowania",
   "help.contact.heading": "Kontakt z pomocą techniczną",
   "help.contact.body": "Zwykle odpowiadamy w ciągu 2 dni roboczych.",
-  "help.contact.priority": "Masz plan Pro, więc Twoje e-maile są obsługiwane w pierwszej kolejności, zwykle w ciągu 1 dnia roboczego."
+  "help.contact.priority": "Masz plan Pro, więc Twoje e-maile są obsługiwane w pierwszej kolejności, zwykle w ciągu 1 dnia roboczego.",
+  "help.faq.alerts.q": "Jak dowiem się o nowych wnioskach?",
+  "help.faq.alerts.a": "Tradepass nie wysyła e-maili. Nowe wnioski i odpowiedzi czekają na Ciebie na stronie głównej i w sekcji Wnioski. Aby dostać powiadomienie e-mailem, utwórz w Shopify Flow (Tradepass Pro) przepływ pracy z wyzwalaczem „Wholesale application submitted” i akcją Flow „Send internal email”. Ta akcja wysyła wiadomości tylko na stałe adresy pracowników wpisane w przepływie pracy."
 }

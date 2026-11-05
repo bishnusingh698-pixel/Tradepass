@@ -252,11 +252,6 @@
     "maxLength": 65,
     "placeholders": []
   },
-  "automation.action.emailApplicant": {
-    "note": "Checkbox on rejection rules.",
-    "maxLength": 75,
-    "placeholders": []
-  },
   "automation.action.reason": {
     "note": "Text area label: reason included in the rejection email.",
     "maxLength": 30,
@@ -455,6 +450,11 @@
   "automation.flow.open": {
     "note": "Button linking to the Flow app.",
     "maxLength": 30,
+    "placeholders": []
+  },
+  "automation.flow.alerts": {
+    "note": "Admin text.",
+    "maxLength": 438,
     "placeholders": []
   }
 }

@@ -40,10 +40,23 @@ describe("storefront settings mapping", () => {
     const off = parseStorefrontInput(body({ accessMode: "wholesale_only" }), defaultSettings(), "free");
     expect(off.ok).toBe(false);
     if (!off.ok) expect(off.errors[0].code).toBe("plan");
-    expect(parseStorefrontInput(body({ accessMode: "wholesale_only" }), defaultSettings(), "starter").ok).toBe(true);
+    expect(parseStorefrontInput({ ...body({ accessMode: "wholesale_only" }), confirmedMode: "wholesale_only" }, defaultSettings(), "starter").ok).toBe(true);
     const already = defaultSettings();
     already.storefront.accessMode = "wholesale_only";
     expect(parseStorefrontInput(body({ accessMode: "wholesale_only" }), already, "free").ok).toBe(true);
+  });
+
+  it("never opens or closes a wholesale-only store without the confirmation dialog", () => {
+    const closed = defaultSettings();
+    closed.storefront.accessMode = "wholesale_only";
+    const open = parseStorefrontInput(body({ accessMode: "show" }), closed, "pro");
+    expect(open.ok).toBe(false);
+    if (!open.ok) expect(open.errors[0]).toMatchObject({ code: "mode", anchor: "sf-mode" });
+    expect(parseStorefrontInput({ ...body({ accessMode: "show" }), confirmedMode: "show" }, closed, "pro").ok).toBe(true);
+    expect(parseStorefrontInput({ ...body({ accessMode: "show" }), confirmedMode: "hide" }, closed, "pro").ok).toBe(false);
+    expect(parseStorefrontInput(body({ accessMode: "wholesale_only" }), defaultSettings(), "pro").ok).toBe(false);
+    // Changes that don't involve wholesale-only need no confirmation.
+    expect(parseStorefrontInput(body({ accessMode: "hide" }), defaultSettings(), "free").ok).toBe(true);
   });
 
   it("rejects unsafe or incomplete input", () => {

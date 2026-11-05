@@ -53,15 +53,13 @@
   "help.faq.import.q": "Ar galiu importuoti esamus didmeninius klientus?",
   "help.faq.import.a": "Taip, „Pro“ plane. Įkelkite CSV failą arba konvertuokite klientus, kurie jau turi žymą, pavyzdžiui, „wholesale“.",
   "help.faq.languages.q": "Kokios kalbos palaikomos?",
-  "help.faq.languages.a": "36 kalbos. Forma, vitrinos pranešimai ir el. laiškai rodomi kiekvieno lankytojo kalba, o bet kurį tekstą galite pakeisti skiltyje „Nustatymai → Kalbos“.",
-  "help.faq.emails.q": "Kiek el. laiškų siunčia Tradepass?",
-  "help.faq.emails.a": "Iki 25 el. laiškų vienai parduotuvei per dieną. Papildomi laiškai išsiunčiami kitą dieną, o puslapyje „Pradžia“ apie tai pranešama. Galite išjungti mūsų laiškus ir vietoj jų naudoti Shopify Flow.",
+  "help.faq.languages.a": "36 kalbos. Forma, parduotuvės pranešimai ir žinutės, kurias siunčiate pareiškėjams, rodomos kiekvieno žmogaus kalba, o bet kurį tekstą galite pakeisti skiltyje Nustatymai → Kalbos.",
   "help.faq.approvalLimit.q": "Kas nutiks, kai nemokamame plane pasieksiu 10 patvirtinimų?",
   "help.faq.approvalLimit.a": "Naujos paraiškos ir toliau renkamos, todėl neprarasite nė vieno potencialaus kliento. Kad tą mėnesį patvirtintumėte daugiau, pasirinkite mokamą planą.",
   "help.faq.markets.q": "Pradžioje rašoma, kad B2B rinkos neįjungtos. Ką daryti?",
   "help.faq.markets.a": "Žemesniuose nei Plus planuose lygių kainoms reikia naujesnių Shopify rinkų. Įjunkite jas Shopify skiltyje „Nustatymai → Rinkos“, tada puslapyje „Pradžia“ spustelėkite „Tikrinti dar kartą“.",
   "help.faq.privacy.q": "Kaip apsaugoti pareiškėjų duomenys?",
-  "help.faq.privacy.a": "Mokesčių mokėtojų kodai užšifruoti, nuorodos el. laiškuose veikia vieną kartą ir turi galiojimo laiką, o atmestos paraiškos ištrinamos po nustatymuose pasirinkto laikotarpio.",
+  "help.faq.privacy.a": "Mokesčių numeriai šifruojami, saugios nuorodos nustoja galioti ir veikia vieną kartą, o atmestos paraiškos ištrinamos praėjus Nustatymuose pasirinktam laikotarpiui.",
   "help.faq.slowFirstLoad.q": "Kodėl programėlė kartais ilgai atsidaro?",
   "help.faq.slowFirstLoad.a": "Po neveiklumo laikotarpio programėlei gali prireikti iki minutės pabusti. Jūsų vitrinai tai niekada nedaro įtakos: kainų slėpimas ir forma veikia toliau.",
   "help.diagnostics.heading": "Diagnostinė informacija",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Išjungti derinimo režimą",
   "help.contact.heading": "Susisiekite su pagalba",
   "help.contact.body": "Paprastai atsakome per 2 darbo dienas.",
-  "help.contact.priority": "Naudojate „Pro“ planą, todėl į jūsų laiškus atsakoma pirmiausia, paprastai per 1 darbo dieną."
+  "help.contact.priority": "Naudojate „Pro“ planą, todėl į jūsų laiškus atsakoma pirmiausia, paprastai per 1 darbo dieną.",
+  "help.faq.alerts.q": "Kaip sužinoti apie naujas paraiškas?",
+  "help.faq.alerts.a": "Tradepass nesiunčia el. laiškų. Naujos paraiškos ir atsakymai laukia jūsų Pradžioje ir skiltyje Paraiškos. Norėdami gauti pranešimą el. paštu, „Shopify Flow“ (Tradepass Pro) sukurkite darbo eigą su paleidikliu „Wholesale application submitted“ ir „Flow“ veiksmu „Send internal email“. Šis veiksmas siunčia tik nuolatiniais darbuotojų adresais, kuriuos įvedate darbo eigoje."
 }

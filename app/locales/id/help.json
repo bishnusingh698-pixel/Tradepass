@@ -53,15 +53,13 @@
   "help.faq.import.q": "Bisakah saya mengimpor pelanggan grosir yang sudah ada?",
   "help.faq.import.a": "Bisa, di paket Pro. Unggah file CSV, atau konversi pelanggan yang sudah memiliki tag seperti “wholesale”.",
   "help.faq.languages.q": "Bahasa apa saja yang didukung?",
-  "help.faq.languages.a": "36 bahasa. Formulir, pesan etalase, dan email ditampilkan dalam bahasa setiap pengunjung, dan Anda dapat mengubah teks apa pun di Pengaturan → Bahasa.",
-  "help.faq.emails.q": "Berapa banyak email yang dikirim Tradepass?",
-  "help.faq.emails.a": "Hingga 25 email per toko per hari. Email tambahan dikirim keesokan harinya, dan Beranda akan memberi tahu Anda jika hal itu terjadi. Anda dapat menonaktifkan email kami dan menggunakan Shopify Flow sebagai gantinya.",
+  "help.faq.languages.a": "36 bahasa. Formulir, pesan toko, dan pesan yang Anda kirim ke pemohon tampil dalam bahasa masing-masing, dan Anda dapat mengubah teks apa pun di Pengaturan → Bahasa.",
   "help.faq.approvalLimit.q": "Apa yang terjadi saat saya mencapai 10 persetujuan di paket gratis?",
   "help.faq.approvalLimit.a": "Pengajuan baru tetap dikumpulkan, jadi Anda tidak pernah kehilangan calon pembeli. Untuk menyetujui lebih banyak di bulan itu, pilih paket berbayar.",
   "help.faq.markets.q": "Beranda menyatakan pasar B2B belum aktif. Apa yang harus saya lakukan?",
   "help.faq.markets.a": "Di paket di bawah Plus, harga tingkat memerlukan fitur Pasar Shopify yang baru. Aktifkan di Shopify pada Pengaturan → Pasar, lalu klik “Periksa lagi” di Beranda.",
   "help.faq.privacy.q": "Bagaimana data pemohon dilindungi?",
-  "help.faq.privacy.a": "Nomor pajak dienkripsi, tautan di email memiliki masa berlaku dan hanya berfungsi satu kali, dan pengajuan yang ditolak dihapus setelah periode yang Anda pilih di Pengaturan.",
+  "help.faq.privacy.a": "Nomor pajak dienkripsi, tautan aman kedaluwarsa dan hanya berlaku sekali, dan pengajuan yang ditolak dihapus setelah periode yang Anda pilih di Pengaturan.",
   "help.faq.slowFirstLoad.q": "Mengapa aplikasi terkadang lambat dibuka?",
   "help.faq.slowFirstLoad.a": "Setelah lama tidak digunakan, aplikasi dapat memerlukan waktu hingga satu menit untuk aktif kembali. Etalase Anda tidak pernah terpengaruh: penyembunyian harga dan formulir tetap berfungsi.",
   "help.diagnostics.heading": "Info diagnostik",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Nonaktifkan mode debug",
   "help.contact.heading": "Hubungi dukungan",
   "help.contact.body": "Kami biasanya membalas dalam 2 hari kerja.",
-  "help.contact.priority": "Anda menggunakan paket Pro, jadi email Anda dijawab lebih dulu, biasanya dalam 1 hari kerja."
+  "help.contact.priority": "Anda menggunakan paket Pro, jadi email Anda dijawab lebih dulu, biasanya dalam 1 hari kerja.",
+  "help.faq.alerts.q": "Bagaimana saya tahu ada pengajuan baru?",
+  "help.faq.alerts.a": "Tradepass tidak mengirim email. Pengajuan baru dan balasan menunggu Anda di Beranda dan di Pengajuan. Untuk peringatan lewat email, buat alur kerja di Shopify Flow (Tradepass Pro) dengan pemicu “Wholesale application submitted” dan tindakan Flow “Send internal email”. Tindakan itu hanya mengirim ke alamat staf tetap yang Anda masukkan di alur kerja."
 }

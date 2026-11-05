@@ -48,9 +48,8 @@
   "automation.action.terms": "Ketentuan pembayaran",
   "automation.action.tierTerms": "Gunakan ketentuan pembayaran tingkat harga",
   "automation.action.sendWelcome": "Kirim email akses B2B Shopify kepada pembeli",
-  "automation.action.emailApplicant": "Kirim email ke pemohon bahwa mereka tidak disetujui",
   "automation.action.reason": "Alasan (opsional)",
-  "automation.action.reasonHelp": "Ditampilkan di email dalam bahasa yang Anda tulis.",
+  "automation.action.reasonHelp": "Disimpan bersama pengajuan dan dimasukkan ke pesan yang dapat Anda salin dari sana.",
   "automation.error.summary": "{count, plural, other {Perbaiki # masalah sebelum menyimpan.}}",
   "automation.error.conditions_required": "Tambahkan minimal satu ketentuan.",
   "automation.error.values_required": "Masukkan minimal satu nilai.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Tidak dapat membatalkan keputusan ini. Periksa log aktivitas dan coba lagi.",
   "automation.reverse.heading": "Batalkan keputusan untuk {company}?",
   "automation.reverse.approvedBody": "{company} akan dijeda: perusahaannya tetap ada di Shopify, tetapi keluar dari tingkat harganya dan melihat harga ritel. Anda dapat melanjutkannya dari menu Pembeli.",
-  "automation.reverse.rejectedBody": "{company} kembali ke status Menunggu tinjauan. Jika email penolakan sudah dikirim, email tersebut tidak dapat ditarik kembali.",
+  "automation.reverse.rejectedBody": "{company} kembali ke Menunggu peninjauan. Jika Anda sudah memberi tahu pemohon, kabari mereka.",
   "automation.reverse.confirm": "Batalkan keputusan",
   "automation.flow.heading": "Integrasi Shopify Flow",
   "automation.flow.body": "Gunakan pemicu dan tindakan Tradepass ini di Shopify Flow untuk membuat alur kerja sendiri, seperti memberi tag pada pembeli atau mengirim pesan Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Sertifikat kedaluwarsa",
   "automation.flow.action.approve": "Setujui pengajuan grosir ke tingkat harga",
   "automation.flow.welcomeNote": "Tradepass sudah dapat mengirim email akses B2B Shopify saat menyetujui pembeli, jadi tidak perlu alur kerja tambahan untuk itu.",
-  "automation.flow.open": "Buka Shopify Flow"
+  "automation.flow.open": "Buka Shopify Flow",
+  "automation.flow.alerts": "Ingin menerima email saat ada yang mendaftar? Di Shopify Flow, gunakan pemicu “Wholesale application submitted” dengan tindakan Flow “Send internal email”. Tindakan itu hanya mengirim ke alamat staf tetap yang Anda masukkan di alur kerja."
 }

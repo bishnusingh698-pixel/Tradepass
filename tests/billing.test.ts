@@ -6,7 +6,7 @@ vi.mock("../app/lib/storefront-sync.server", () => ({ syncStorefrontConfig: vi.f
 import db from "../app/db.server";
 import { applyDowngrade, downgradeImpact, lostFeatures, planForSubscriptionName, remainingTrialDays } from "../app/lib/billing.server";
 import { getSettings, updateSettings } from "../app/lib/settings.server";
-import { ensureCheckoutLock } from "../app/lib/checkout-lock.server";
+import { syncStorefrontConfig } from "../app/lib/storefront-sync.server";
 
 const shop = `test-billing-${Math.random().toString(36).slice(2, 8)}.myshopify.com`;
 afterAll(async () => {
@@ -51,7 +51,7 @@ describe("billing", () => {
 
     expect(await applyDowngrade(ctx, "free", true)).toEqual({ ok: true });
     expect((await getSettings(shop)).storefront.accessMode).toBe("hide");
-    expect(ensureCheckoutLock).toHaveBeenCalled();
+    expect(syncStorefrontConfig).toHaveBeenCalled(); // pushes the new mode and turns the checkout lock off
     expect(await db.rule.count({ where: { shop, enabled: true } })).toBe(0);
   });
 });

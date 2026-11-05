@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Thêm ghi chú",
   "applications.detail.saveNote": "Lưu ghi chú",
   "applications.detail.toast.reject": "Đã từ chối đơn đăng ký",
-  "applications.detail.toast.needs_info": "Đã gửi yêu cầu cho người đăng ký",
+  "applications.detail.toast.needs_info": "Đã lưu yêu cầu. Hãy gửi cho người đăng ký tin nhắn có liên kết bảo mật.",
   "applications.detail.toast.note": "Đã lưu ghi chú",
   "applications.detail.toast.assign": "Đã lưu người được giao",
   "applications.needsInfo.heading": "Yêu cầu thêm thông tin",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Các trường họ có thể thay đổi",
   "applications.needsInfo.fieldsHelp": "Người đăng ký nhận được một liên kết riêng có hiệu lực 14 ngày và chỉ có thể thay đổi các trường này.",
   "applications.needsInfo.fieldsRequired": "Hãy chọn ít nhất một trường.",
-  "applications.needsInfo.send": "Gửi yêu cầu",
+  "applications.needsInfo.send": "Tạo yêu cầu",
   "applications.reject.heading": "Từ chối {company}?",
   "applications.reject.template": "Mẫu lý do",
   "applications.reject.templateNone": "Không dùng mẫu",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Cảm ơn bạn đã quan tâm. Chúng tôi chưa xác minh được thông tin trong đơn đăng ký của bạn nên hiện chưa thể phê duyệt. Bạn có thể đăng ký lại bất cứ lúc nào.",
   "applications.reject.template.region": "Cảm ơn bạn đã quan tâm. Chúng tôi chưa cung cấp dịch vụ bán buôn tại khu vực của bạn.",
   "applications.reject.reason": "Lý do (không bắt buộc)",
-  "applications.reject.reasonHelp": "Nếu bạn gửi email, người đăng ký sẽ thấy lý do này.",
-  "applications.reject.email": "Gửi email cho người đăng ký",
+  "applications.reject.reasonHelp": "Được lưu cùng đơn đăng ký và đưa vào tin nhắn bạn có thể gửi cho người đăng ký.",
   "applications.reject.consequence": "Đơn đăng ký sẽ chuyển sang Đã từ chối. Không có gì được tạo trong Shopify và bạn vẫn có thể tìm thấy đơn trong thẻ Đã từ chối.",
   "applications.reject.confirm": "Từ chối đơn đăng ký",
   "applications.activity.application.submit": "Đã gửi đơn đăng ký",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Đã thêm ghi chú",
   "applications.activity.application.assign": "Đã đổi người được giao",
   "applications.taxCheck.skipped": "Chưa kiểm tra trên gói này",
-  "applications.detail.taxCheckPlan": "Mã số thuế được đối chiếu với cơ quan đăng ký chính thức từ gói {plan} trở lên. Hãy tự kiểm tra mã số này, hoặc nâng cấp để tự động kiểm tra các đơn đăng ký mới."
+  "applications.detail.taxCheckPlan": "Mã số thuế được đối chiếu với cơ quan đăng ký chính thức từ gói {plan} trở lên. Hãy tự kiểm tra mã số này, hoặc nâng cấp để tự động kiểm tra các đơn đăng ký mới.",
+  "applications.detail.copyMessage": "Tin nhắn cho người đăng ký"
 }

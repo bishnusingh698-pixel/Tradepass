@@ -276,16 +276,6 @@
     "maxLength": 300,
     "placeholders": []
   },
-  "help.faq.emails.q": {
-    "note": "FAQ question.",
-    "maxLength": 80,
-    "placeholders": []
-  },
-  "help.faq.emails.a": {
-    "note": "FAQ answer.",
-    "maxLength": 300,
-    "placeholders": []
-  },
   "help.faq.approvalLimit.q": {
     "note": "FAQ question.",
     "maxLength": 80,
@@ -393,6 +383,16 @@
   "help.contact.priority": {
     "note": "Support text for Pro plan.",
     "maxLength": 150,
+    "placeholders": []
+  },
+  "help.faq.alerts.q": {
+    "note": "Admin text.",
+    "maxLength": 74,
+    "placeholders": []
+  },
+  "help.faq.alerts.a": {
+    "note": "Admin text.",
+    "maxLength": 682,
     "placeholders": []
   }
 }

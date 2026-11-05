@@ -53,15 +53,13 @@
   "help.faq.import.q": "Môžem importovať svojich existujúcich veľkoobchodných zákazníkov?",
   "help.faq.import.a": "Áno, v pláne Pro. Nahrajte súbor CSV alebo preveďte zákazníkov, ktorí už majú značku, napríklad „veľkoobchod“.",
   "help.faq.languages.q": "Ktoré jazyky sú podporované?",
-  "help.faq.languages.a": "36 jazykov. Formulár, správy vo výklade a e-maily sa zobrazujú v jazyku každého návštevníka a ľubovoľný text môžete zmeniť v Nastavenia → Jazyky.",
-  "help.faq.emails.q": "Koľko e-mailov Tradepass odosiela?",
-  "help.faq.emails.a": "Až 25 e-mailov na obchod denne. Ďalšie e-maily sa odošlú nasledujúci deň a stránka Domov vás na to upozorní. Naše e-maily môžete vypnúť a namiesto nich použiť Shopify Flow.",
+  "help.faq.languages.a": "36 jazykov. Formulár, správy v obchode a správy, ktoré posielate žiadateľom, sa zobrazujú v jazyku každého človeka a akýkoľvek text môžete zmeniť v Nastavenia → Jazyky.",
   "help.faq.approvalLimit.q": "Čo sa stane, keď v bezplatnom pláne dosiahnem 10 schválení?",
   "help.faq.approvalLimit.a": "Nové žiadosti sa naďalej zhromažďujú, takže o žiadneho záujemcu neprídete. Ak chcete v danom mesiaci schváliť ďalšie, zvoľte platený plán.",
   "help.faq.markets.q": "Stránka Domov hlási, že trhy B2B nie sú zapnuté. Čo mám robiť?",
   "help.faq.markets.a": "V plánoch nižších ako Plus potrebujú ceny úrovní novšie Trhy Shopify. Zapnite ich v Shopify v Nastavenia → Trhy a potom na stránke Domov kliknite na „Skontrolovať znova“.",
   "help.faq.privacy.q": "Ako sú chránené údaje žiadateľov?",
-  "help.faq.privacy.a": "Daňové čísla sú šifrované, odkazy v e-mailoch majú obmedzenú platnosť a fungujú iba raz a zamietnuté žiadosti sa odstraňujú po období, ktoré zvolíte v Nastaveniach.",
+  "help.faq.privacy.a": "Daňové čísla sú šifrované, zabezpečené odkazy vypršia a fungujú raz a zamietnuté žiadosti sa vymažú po dobe, ktorú zvolíte v Nastaveniach.",
   "help.faq.slowFirstLoad.q": "Prečo sa aplikácia niekedy otvára pomaly?",
   "help.faq.slowFirstLoad.a": "Po období nečinnosti môže prebudenie aplikácie trvať až minútu. Vášho výkladu sa to nikdy netýka: skrývanie cien aj formulár fungujú ďalej.",
   "help.diagnostics.heading": "Diagnostické informácie",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Vypnúť režim ladenia",
   "help.contact.heading": "Kontaktovať podporu",
   "help.contact.body": "Zvyčajne odpovedáme do 2 pracovných dní.",
-  "help.contact.priority": "Máte plán Pro, takže na vaše e-maily odpovedáme prednostne, zvyčajne do 1 pracovného dňa."
+  "help.contact.priority": "Máte plán Pro, takže na vaše e-maily odpovedáme prednostne, zvyčajne do 1 pracovného dňa.",
+  "help.faq.alerts.q": "Ako sa dozviem o nových žiadostiach?",
+  "help.faq.alerts.a": "Tradepass neposiela e-maily. Nové žiadosti a odpovede na vás čakajú na Domovskej stránke a v sekcii Žiadosti. Pre upozornenie e-mailom vytvorte v Shopify Flow (Tradepass Pro) pracovný postup so spúšťačom „Wholesale application submitted“ a akciou Flow „Send internal email“. Táto akcia posiela iba na pevné adresy zamestnancov, ktoré zadáte do pracovného postupu."
 }

@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Köszönjük, jelentkezését elküldtük",
-      "body": "Átnézzük, és e-mailben válaszolunk.",
-      "email": "Visszaigazoló e-mailt küldtünk Önnek."
+      "body": "Átnézzük, és e-mailben válaszolunk."
     }
   }
 }

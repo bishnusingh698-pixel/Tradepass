@@ -53,15 +53,13 @@
   "help.faq.import.q": "Bolehkah saya mengimport pelanggan borong sedia ada?",
   "help.faq.import.a": "Boleh, pada pelan Pro. Muat naik fail CSV, atau tukar pelanggan yang sudah mempunyai tag seperti “wholesale”.",
   "help.faq.languages.q": "Bahasa apakah yang disokong?",
-  "help.faq.languages.a": "36 bahasa. Borang, mesej kedai dan e-mel dipaparkan dalam bahasa setiap pelawat, dan anda boleh menukar sebarang teks di bawah Tetapan → Bahasa.",
-  "help.faq.emails.q": "Berapakah bilangan e-mel yang dihantar oleh Tradepass?",
-  "help.faq.emails.a": "Sehingga 25 e-mel bagi setiap kedai sehari. E-mel tambahan dihantar pada hari berikutnya, dan Laman Utama akan memaklumkan anda apabila perkara itu berlaku. Anda boleh mematikan e-mel kami dan menggunakan Shopify Flow sebagai ganti.",
+  "help.faq.languages.a": "36 bahasa. Borang, mesej kedai dan mesej yang anda hantar kepada pemohon dipaparkan dalam bahasa setiap orang, dan anda boleh menukar sebarang teks di Tetapan → Bahasa.",
   "help.faq.approvalLimit.q": "Apakah yang berlaku apabila saya mencapai 10 kelulusan pada pelan percuma?",
   "help.faq.approvalLimit.a": "Permohonan baharu masih dikumpul, jadi anda tidak akan kehilangan bakal pelanggan. Untuk meluluskan lebih banyak pada bulan itu, pilih pelan berbayar.",
   "help.faq.markets.q": "Laman Utama kata pasaran B2B belum dihidupkan. Apa perlu saya buat?",
   "help.faq.markets.a": "Pada pelan di bawah Plus, harga peringkat memerlukan Pasaran Shopify yang lebih baharu. Hidupkannya dalam Shopify di bawah Tetapan → Pasaran, kemudian klik “Semak semula” di Laman Utama.",
   "help.faq.privacy.q": "Bagaimanakah data pemohon dilindungi?",
-  "help.faq.privacy.a": "Nombor cukai disulitkan, pautan dalam e-mel tamat tempoh dan berfungsi sekali sahaja, dan permohonan yang ditolak dipadamkan selepas tempoh yang anda pilih dalam Tetapan.",
+  "help.faq.privacy.a": "Nombor cukai disulitkan, pautan selamat tamat tempoh dan boleh digunakan sekali, dan permohonan yang ditolak dipadamkan selepas tempoh yang anda pilih dalam Tetapan.",
   "help.faq.slowFirstLoad.q": "Mengapa aplikasi kadangkala lambat dibuka?",
   "help.faq.slowFirstLoad.a": "Selepas tempoh tidak aktif, aplikasi boleh mengambil masa sehingga satu minit untuk aktif semula. Kedai anda tidak pernah terjejas: penyembunyian harga dan borang terus berfungsi.",
   "help.diagnostics.heading": "Maklumat diagnostik",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Matikan mod nyahpepijat",
   "help.contact.heading": "Hubungi sokongan",
   "help.contact.body": "Kami biasanya menjawab dalam masa 2 hari bekerja.",
-  "help.contact.priority": "Anda menggunakan pelan Pro, jadi e-mel anda dijawab dahulu, biasanya dalam masa 1 hari bekerja."
+  "help.contact.priority": "Anda menggunakan pelan Pro, jadi e-mel anda dijawab dahulu, biasanya dalam masa 1 hari bekerja.",
+  "help.faq.alerts.q": "Bagaimana saya tahu tentang permohonan baharu?",
+  "help.faq.alerts.a": "Tradepass tidak menghantar e-mel. Permohonan baharu dan balasan menanti anda di Laman Utama dan di bawah Permohonan. Untuk amaran e-mel, cipta aliran kerja dalam Shopify Flow (Tradepass Pro) dengan pencetus “Wholesale application submitted” dan tindakan Flow “Send internal email”. Tindakan itu hanya menghantar ke alamat kakitangan tetap yang anda masukkan dalam aliran kerja."
 }

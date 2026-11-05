@@ -14,7 +14,7 @@ Checkout ── validation Function "tradepass-checkout-lock" (wholesale-only) �
 Flow ── 5 trigger extensions + 1 action extension (POST /flow/approve, HMAC-checked)
 Render app ──Prisma──▶ Neon Postgres (free, sleeps when idle)
 cron-job.org ──▶ GET /healthz every 10 min (no DB) · POST /jobs/hourly · POST /jobs/daily (X-Tradepass-Job-Secret)
-Emails ──▶ Brevo free API (caps: 25/store/day, 250/day total; overflow → next day)
+Emails ──▶ none from Tradepass (D-091). Shopify sends its own B2B welcome email; merchants copy ready-made messages
 Certificates ──▶ merchant's own Shopify Files (staged uploads); admin views them via /app/files/:id
 Tax checks ──▶ EU VIES (free), UK HMRC and AU ABN Lookup (optional, free keys)
 ```
@@ -23,7 +23,7 @@ How the pieces talk:
 - **Storefront config** (access mode, scope, texts per language, selectors, form definitions, gated product handles) is written by `syncStorefrontConfig` into app-owned metafields on the app installation. Liquid reads them, so the storefront never calls our server for price hiding.
 - **Checkout-lock config** (messages per language, exempt tags) lives in metafields on the Validation object, written by `ensureCheckoutLock`.
 - **Tier assignment** on non-Plus moves company locations in and out of B2B markets (`marketUpdate`) under a per-shop lock (`ShopLock`), with read-back after each write and retry. On Plus, catalogs are attached to locations directly (`catalogContextUpdate`). An "assisted" mode turns the move into a checklist for the merchant if the spike shows automatic moves don't work.
-- **Approval engine** (`app/lib/approval.server.ts`) runs company → location → contact → terms and tax → tier → finalise → email. Progress per step is stored on `Application.approvalState`, so Retry continues and Undo removes only what it created.
+- **Approval engine** (`app/lib/approval.server.ts`) runs company → location → contact → terms and tax → tier → finalise → Shopify's B2B welcome email. Progress per step is stored on `Application.approvalState`, so Retry continues and Undo removes only what it created.
 
 ## Code map
 
@@ -45,7 +45,7 @@ How the pieces talk:
 | `app/lib/checkout-lock.server.ts` | Creates/enables/disables the checkout validation. |
 | `app/lib/rules*.ts`, `flow.server.ts` | Automation rules; Flow triggers and action. |
 | `app/lib/import*.ts` | CSV import and tag conversion. |
-| `app/lib/email/*` | Templates, rendering, queue and caps, Brevo client. |
+| `app/lib/messages.ts`, `app/components/MessageModal.tsx` | Ready-made messages (more info, not approved, renewal) in the recipient's language, with Copy message and Open in email. |
 | `app/lib/home.server.ts` | Home checklist, pending work, alerts, 30-day numbers. |
 | `app/lib/jobs.server.ts`, `app/lib/tasks/*` | Hourly and daily task runner and area tasks. |
 | `app/lib/privacy.server.ts` | One place that deletes or reports our data. |
@@ -64,14 +64,13 @@ One migration, `20261030000000_init` (the three earlier ones were folded into it
 | Table | Purpose | Notes |
 |---|---|---|
 | Session | Shopify sessions | Template table. Deleted on uninstall. |
-| Shop | One row per store: plan facts (plan name, Plus, dev store, B2B, B2B markets, catalog limit, direct catalogs), billing plan, subscription, trial start, settings JSON (versioned), primary language, contact email, placeholder company | `uninstalledAt` until shop/redact. |
+| Shop | One row per store: plan facts (plan name, Plus, dev store, B2B, B2B markets, catalog limit, direct catalogs), billing plan, subscription, trial start, settings JSON (versioned), primary language, store name, domain, country, currency, placeholder company | `uninstalledAt` until shop/redact. |
 | Form | Form definitions (JSON: sections, fields, conditions, texts per language), default flag, suggested tier | Default created on install. |
-| Application | One application: status, company name, email, country, business type, language, answers JSON, encrypted tax number, tax-check result, flags, notes, needs-info request, approval progress, source, rule that decided it, IP hash | `(shop, idempotencyKey)` unique; indexes `(shop, status, submittedAt)`, `(shop, email)`. |
+| Application | One application: status, company name, email, country, business type, language, answers JSON, encrypted tax number, tax-check result, flags, notes, needs-info request, rejection reason, approval progress, source, rule that decided it, IP hash | `(shop, idempotencyKey)` unique; indexes `(shop, status, submittedAt)`, `(shop, email)`. |
 | ApplicationFile | Shopify File IDs per application | No file contents. |
 | Tier | Market, catalog, price list and publication IDs, discount, defaults (terms, checkout, tax), sync state, mode (market/direct), placeholder location, position | `createdByUs` guards deletes. |
 | Buyer | Company, location and contact IDs, tier, status (active/paused), paused tier, tax exemptions, country, source, company name | `(shop, companyGid)` unique. |
-| Certificate | Buyer/application, type, country, region, encrypted number, issue/expiry dates, status, file ID, reminders sent, reject reason, expiry decision | Indexes `(shop, expiresOn)`, `(shop, buyerId)`. |
-| EmailLog | Email queue, log and quota counter (by `quotaDay`) | Recipient stored as a hash; payload cleared after sending. |
+| Certificate | Buyer/application, type, country, region, encrypted number, issue/expiry dates, status, file ID, reject reason, expiry decision | Indexes `(shop, expiresOn)`, `(shop, buyerId)`. |
 | ActivityLog | Who, what, when, result | Only IDs, never personal data. |
 | Job | Deferred work; assisted tier assignments wait here | Index `(state, runAfter)`. |
 | ShopLock | Per-shop mutex for market writes | Expires. |
@@ -82,7 +81,7 @@ One migration, `20261030000000_init` (the three earlier ones were folded into it
 
 ## Navigation (2026-10-30)
 
-Nine sections: Home · Applications · Wholesale buyers (tabs: Buyers, Certificates, Import) · Tiers · Application form · Storefront access · Emails & automation (tabs: Notifications, Automation) · Settings (links to Plans) · Help. Tabs are `app/components/SectionTabs.tsx`; every page keeps its URL.
+Nine sections: Home · Applications · Wholesale buyers (tabs: Buyers, Certificates, Import) · Tiers · Application form · Storefront access · Automation · Settings (links to Plans) · Help. Tabs are `app/components/SectionTabs.tsx`; every page keeps its URL.
 
 ## Route map
 
@@ -94,16 +93,15 @@ Nine sections: Home · Applications · Wholesale buyers (tabs: Buyers, Certifica
 | `/app/setup` | Setup wizard: plan check, business type + form template, first tier, what shoppers see, add to theme |
 | `/app/stats` | Home's 30-day numbers and monthly report (loaded after the page shows) |
 | `/app/applications`, `/app/applications/:id` | Queue (tabs, filters, bulk, CSV export) and detail |
-| `/app/applications/:id/approve` | Approval engine actions (approve, retry, undo, resend email) |
-| `/app/buyers`, `/app/buyers/:id` | Buyers list and detail (move, pause/resume, renewal request) |
+| `/app/applications/:id/approve` | Approval engine actions (approve, retry, undo, send Shopify's welcome email again) |
+| `/app/buyers`, `/app/buyers/:id` | Buyers list and detail (move, pause/resume, export) |
 | `/app/tiers`, `/app/tiers/:id` | Tiers list and editor |
 | `/app/form`, `/app/form/:id` | Forms list and builder with preview |
 | `/app/storefront` | Access mode, scope, texts, colours, exempt tags, preview-as |
-| `/app/certificates` | Certificates table and actions |
-| `/app/notifications` | Emails, merchant alerts, quota |
+| `/app/certificates` | Certificates table and actions (incl. Copy renewal link) |
 | `/app/automation` | Rules, pause, daily limit, automatic decisions, Flow |
 | `/app/import`, `/app/import/:id`, `/app/import/:id/errors`, `/app/import/template` | Import upload/tag conversion, run, error report, CSV template |
-| `/app/settings`, `/app/settings/texts` | Settings (retention, branding, plan link, danger zone) and Languages (text overrides) |
+| `/app/settings`, `/app/settings/texts` | Settings (who can apply, certificates, retention, tier assignment, privacy requests, plan link, danger zone) and Languages (text overrides) |
 | `/app/plans` | Plans and billing |
 | `/app/help`, `/app/diagnostics` | Help (guide, FAQ, diagnostics, debug, contact) and the B2B compatibility test |
 | `/app/files/:id` | Streams a certificate/application file to signed-in staff of the same store |
@@ -140,12 +138,10 @@ cron-job.org calls the two endpoints. Each run has a 100-second budget; tasks ru
 | Hourly | `approval-retry` | Retry failed approval steps that can be retried |
 | Hourly | `import-runs` | Continue open CSV/tag import runs (Pro only) |
 | Hourly | `storefront-refresh-gated` | Refresh the gated product list for collection/tag scopes |
-| Hourly | `send-queued-emails` | Send emails queued for today within the caps |
 | Hourly | `prune-rate-limits`, `expire-link-tokens`, `release-stale-locks` | Housekeeping |
-| Daily | `certificate-expiry` | Update statuses; renewal emails at 30 and 7 days; expiry email and decision (Starter+) |
-| Daily | `merchant-digest` | Daily summary email to the merchant |
+| Daily | `certificate-expiry` | Update statuses; Flow triggers on Expiring soon / Expired; remove the exemption when set to (Starter+) |
 | Daily | `retention-cleanup` | Delete rejected/withdrawn applications past the retention setting (and their Shopify files if chosen) |
-| Daily | `prune-activity`, `prune-email-log` | Activity older than 24 months, email log older than 90 days |
+| Daily | `prune-activity` | Activity older than 24 months |
 
 ## Capacity estimate for 100 stores (acceptance 25)
 
@@ -154,7 +150,7 @@ These are inferred from row sizes, not measured, and get re-checked with real da
 - **Neon storage (0.5 GB):** a generous 500 applications per store × 100 stores = 50,000 applications at ~2 KB each (answers JSON) ≈ 100 MB. Certificates, buyers and tiers add < 10 MB. The activity log is ~20 rows per application ≈ 1M rows × ~250 B ≈ 250 MB worst case. That's the largest table, so it's pruned at 24 months (D-010), and a further cap per shop can be added if needed. Expected total is under 300 MB.
 - **Neon compute:** the database only wakes for admin use, form submissions and the job runs (24 hourly plus 1 daily). /healthz never wakes it. Each hourly run is short, so the database suspends again after Neon's idle timeout. 🔲 Compare against Neon's current free compute allowance when you create the project.
 - **Render:** one service kept awake by /healthz every 10 min uses ~744 h/month, inside the 750 free hours. Only one service may be awake, so there's no staging service on the free tier.
-- **Brevo (300/day):** our cap is 250/day globally and 25 per store per day. Overflow is queued for the next day and the merchant sees a notice. Shopify's own welcome email (D-005) doesn't count against Brevo.
+- **Email:** none sent by Tradepass, so no provider limits or costs (D-091). Shopify's own welcome email (D-005) is sent by Shopify.
 
 ## Phase status
 

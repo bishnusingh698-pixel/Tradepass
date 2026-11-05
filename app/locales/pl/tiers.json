@@ -42,7 +42,7 @@
   "tiers.editor.name": "Nazwa poziomu",
   "tiers.editor.nameHelp": "Tę nazwę widzisz tylko Ty, np. Detalista lub Dystrybutor.",
   "tiers.editor.buyerNames": "Nazwa widoczna dla kupujących",
-  "tiers.editor.buyerNamesHelp": "Opcjonalnie. Wyświetlana kupującym w e-mailach i w sklepie, osobno dla każdego języka. Puste pole oznacza nazwę poziomu.",
+  "tiers.editor.buyerNamesHelp": "Opcjonalnie. Wyświetlane kupującym w sklepie, dla każdego języka. Puste oznacza nazwę poziomu.",
   "tiers.editor.buyerNameFor": "Nazwa – {language}",
   "tiers.editor.pricing": "Sposób ustalania cen",
   "tiers.editor.pricing.percent": "Rabat procentowy od ceny detalicznej",

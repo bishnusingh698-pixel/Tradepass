@@ -42,7 +42,7 @@
   "tiers.editor.name": "Naziv razine",
   "tiers.editor.nameHelp": "Ovaj naziv vidite samo vi, primjerice Maloprodaja ili Distributer.",
   "tiers.editor.buyerNames": "Naziv koji vide kupci",
-  "tiers.editor.buyerNamesHelp": "Neobavezno. Prikazuje se kupcima u e-pošti i u trgovini, za svaki jezik posebno. Ako je prazno, koristi se naziv razine.",
+  "tiers.editor.buyerNamesHelp": "Neobavezno. Prikazuje se kupcima u vašoj trgovini, po jeziku. Prazno koristi naziv razine.",
   "tiers.editor.buyerNameFor": "Naziv – {language}",
   "tiers.editor.pricing": "Kako se određuju cijene",
   "tiers.editor.pricing.percent": "Postotak popusta na maloprodajnu cijenu",

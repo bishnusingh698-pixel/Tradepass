@@ -53,15 +53,13 @@
   "help.faq.import.q": "Can I import my existing wholesale customers?",
   "help.faq.import.a": "Yes, on the Pro plan. Upload a CSV file, or convert customers that already have a tag such as \"wholesale\".",
   "help.faq.languages.q": "Which languages are supported?",
-  "help.faq.languages.a": "36 languages. The form, storefront messages and emails appear in each visitor's language, and you can change any text under Settings → Languages.",
-  "help.faq.emails.q": "How many emails does Tradepass send?",
-  "help.faq.emails.a": "Up to 25 emails per store per day. Extra emails are sent the next day, and Home tells you when that happens. You can turn our emails off and use Shopify Flow instead.",
+  "help.faq.languages.a": "36 languages. The form, storefront messages and the messages you send applicants appear in each person's language, and you can change any text under Settings → Languages.",
   "help.faq.approvalLimit.q": "What happens when I reach 10 approvals on the free plan?",
   "help.faq.approvalLimit.a": "New applications are still collected, so you never lose a lead. To approve more that month, choose a paid plan.",
   "help.faq.markets.q": "Home says B2B markets aren't turned on. What do I do?",
   "help.faq.markets.a": "On plans below Plus, tier prices need Shopify's newer Markets. Turn them on in Shopify under Settings → Markets, then click \"Check again\" on Home.",
   "help.faq.privacy.q": "How is applicant data protected?",
-  "help.faq.privacy.a": "Tax numbers are encrypted, links in emails expire and work once, and rejected applications are deleted after the period you choose in Settings.",
+  "help.faq.privacy.a": "Tax numbers are encrypted, secure links expire and work once, and rejected applications are deleted after the period you choose in Settings.",
   "help.faq.slowFirstLoad.q": "Why is the app sometimes slow to open?",
   "help.faq.slowFirstLoad.a": "After a quiet period the app can take up to a minute to wake up. Your storefront is never affected: price hiding and the form keep working.",
   "help.diagnostics.heading": "Diagnostic info",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Turn off debug mode",
   "help.contact.heading": "Contact support",
   "help.contact.body": "We usually answer within 2 business days.",
-  "help.contact.priority": "You're on Pro, so your emails are answered first, usually within 1 business day."
+  "help.contact.priority": "You're on Pro, so your emails are answered first, usually within 1 business day.",
+  "help.faq.alerts.q": "How do I hear about new applications?",
+  "help.faq.alerts.a": "Tradepass doesn't send emails. New applications and replies wait for you on Home and under Applications. For an email alert, create a workflow in Shopify Flow (Tradepass Pro) with the trigger “Wholesale application submitted” and Flow's “Send internal email” action. That action only sends to fixed staff addresses you enter in the workflow."
 }

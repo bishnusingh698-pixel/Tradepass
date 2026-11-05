@@ -140,20 +140,35 @@ async function checkAbn(number: string, f: Fetch): Promise<TaxCheck> {
   return parseAbn(await res.text());
 }
 
+/**
+ * The whole check, all calls together, must fit in the applicant's request (the app proxy gives about
+ * 10 seconds, and HMRC needs a token call before the lookup, each with its own 5 s timeout).
+ */
+export const TAX_TOTAL_MS = 6000;
+
 /** Check a tax number against free official registries (VIES, optionally HMRC/ABN). Never throws; times out to "unavailable". */
-export async function checkTaxNumber(country: string, number: string, fetchImpl: Fetch = fetch): Promise<TaxCheck> {
+export async function checkTaxNumber(country: string, number: string, fetchImpl: Fetch = fetch, totalMs = TAX_TOTAL_MS): Promise<TaxCheck> {
   const c = (country ?? "").toUpperCase();
   const n = cleanNumber(number ?? "");
   if (!n) return { status: "na" };
-  try {
+  const run = async (): Promise<TaxCheck> => {
     const prefix = viesPrefix(c, n);
-    if (prefix) return await checkVies(prefix, n, fetchImpl);
-    if (c === "GB") return await checkHmrc(n, fetchImpl);
-    if (c === "AU") return await checkAbn(n, fetchImpl);
+    if (prefix) return checkVies(prefix, n, fetchImpl);
+    if (c === "GB") return checkHmrc(n, fetchImpl);
+    if (c === "AU") return checkAbn(n, fetchImpl);
     return { status: "na" };
+  };
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<TaxCheck>((resolve) => {
+    timer = setTimeout(() => resolve({ status: "unavailable" }), totalMs);
+  });
+  try {
+    return await Promise.race([run(), timeout]);
   } catch {
     // Timeouts, DNS failures, registry outages: never block the application.
     return { status: "unavailable" };
+  } finally {
+    clearTimeout(timer);
   }
 }
 

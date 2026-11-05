@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Kiitos, hakemus on päivitetty",
   "hosted.update.doneBody": "{store} käsittelee sen ja vastaa sähköpostitse.",
   "hosted.link.invalidTitle": "Linkki ei ole kelvollinen",
-  "hosted.link.invalidBody": "Varmista, että avasit sähköpostin linkin kokonaan, tai ota yhteyttä kauppaan {store}.",
+  "hosted.link.invalidBody": "Tarkista, että avasit koko linkin, tai ota yhteyttä kauppaan {store}.",
   "hosted.link.expiredTitle": "Linkki on vanhentunut",
   "hosted.link.expiredBody": "Turvallisuussyistä päivityslinkit toimivat vain rajoitetun ajan. Ota yhteyttä kauppaan {store} ja pyydä uusi linkki.",
   "hosted.link.usedTitle": "Linkkiä on jo käytetty",

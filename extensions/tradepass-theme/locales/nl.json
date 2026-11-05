@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Bedankt, uw aanvraag is verstuurd",
-      "body": "We beoordelen de aanvraag en nemen per e-mail contact met u op.",
-      "email": "We hebben u een bevestigingsmail gestuurd."
+      "body": "We beoordelen de aanvraag en nemen per e-mail contact met u op."
     }
   }
 }

@@ -42,7 +42,7 @@
   "tiers.editor.name": "Tason nimi",
   "tiers.editor.nameHelp": "Vain sinä näet tämän nimen, esimerkiksi Jälleenmyyjä tai Jakelija.",
   "tiers.editor.buyerNames": "Ostajille näkyvä nimi",
-  "tiers.editor.buyerNamesHelp": "Valinnainen. Näytetään ostajille sähköposteissa ja kaupassa kielikohtaisesti. Tyhjänä käytetään tason nimeä.",
+  "tiers.editor.buyerNamesHelp": "Valinnainen. Näytetään ostajille kaupassasi kielittäin. Tyhjä käyttää tason nimeä.",
   "tiers.editor.buyerNameFor": "Nimi kielellä {language}",
   "tiers.editor.pricing": "Hintojen määritystapa",
   "tiers.editor.pricing.percent": "Prosenttialennus kuluttajahinnasta",

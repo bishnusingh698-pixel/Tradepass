@@ -127,7 +127,7 @@
   "applications.detail.addNote": "添加备注",
   "applications.detail.saveNote": "保存备注",
   "applications.detail.toast.reject": "申请已拒绝",
-  "applications.detail.toast.needs_info": "已向申请人发送请求",
+  "applications.detail.toast.needs_info": "请求已保存。请将包含安全链接的消息发送给申请人。",
   "applications.detail.toast.note": "备注已保存",
   "applications.detail.toast.assign": "负责人已保存",
   "applications.needsInfo.heading": "要求补充信息",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "对方可修改的字段",
   "applications.needsInfo.fieldsHelp": "申请人会收到一个 14 天内有效的专属链接，且只能修改这些字段。",
   "applications.needsInfo.fieldsRequired": "请至少选择一个字段。",
-  "applications.needsInfo.send": "发送请求",
+  "applications.needsInfo.send": "创建请求",
   "applications.reject.heading": "要拒绝 {company} 吗？",
   "applications.reject.template": "原因模板",
   "applications.reject.templateNone": "不使用模板",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "感谢您的关注。我们无法核实您申请中的信息，因此目前无法批准。欢迎您再次申请。",
   "applications.reject.template.region": "感谢您的关注。我们目前尚未在您所在的地区提供批发服务。",
   "applications.reject.reason": "原因（可选）",
-  "applications.reject.reasonHelp": "如果您发送邮件，申请人会看到此原因。",
-  "applications.reject.email": "发送邮件给申请人",
+  "applications.reject.reasonHelp": "与申请一起保存，并包含在您可以发给申请人的消息中。",
   "applications.reject.consequence": "该申请将移至“已拒绝”。不会在 Shopify 中创建任何内容，您仍可在“已拒绝”标签页中找到它。",
   "applications.reject.confirm": "拒绝申请",
   "applications.activity.application.submit": "申请已提交",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "已添加备注",
   "applications.activity.application.assign": "负责人已更改",
   "applications.taxCheck.skipped": "当前套餐不核验",
-  "applications.detail.taxCheckPlan": "{plan}及以上会通过官方登记机构核验税号。请自行核实此号码，或升级以自动核验新申请。"
+  "applications.detail.taxCheckPlan": "{plan}及以上会通过官方登记机构核验税号。请自行核实此号码，或升级以自动核验新申请。",
+  "applications.detail.copyMessage": "发给申请人的消息"
 }

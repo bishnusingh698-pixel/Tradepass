@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Apare lângă caseta de consimțământ. Folosiți o adresă completă sau o cale din magazin, de exemplu /policies/privacy-policy.",
   "form.success.heading": "După trimitere",
   "form.success.message": "Mesaj de mulțumire",
-  "form.success.messageHelp": "Solicitanții văd și că un e-mail de confirmare este pe drum.",
+  "form.success.messageHelp": "Se afișează solicitanților după ce trimit formularul.",
   "form.success.redirect": "Redirecționare către o pagină (opțional)",
   "form.success.redirectHelp": "Trimiteți solicitanții pe altă pagină după mesajul de mulțumire, de exemplu /pages/multumim.",
   "form.spam.heading": "Protecție împotriva spamului",

@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Ďakujeme, vaša žiadosť bola odoslaná",
-      "body": "Posúdime ju a ozveme sa vám e-mailom.",
-      "email": "Poslali sme vám potvrdzovací e-mail."
+      "body": "Posúdime ju a ozveme sa vám e-mailom."
     }
   }
 }

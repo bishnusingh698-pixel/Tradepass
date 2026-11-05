@@ -53,15 +53,13 @@
   "help.faq.import.q": "Mohu importovat své stávající velkoobchodní zákazníky?",
   "help.faq.import.a": "Ano, v tarifu Pro. Nahrajte soubor CSV, nebo převeďte zákazníky, kteří už mají štítek, například „velkoobchod“.",
   "help.faq.languages.q": "Které jazyky jsou podporovány?",
-  "help.faq.languages.a": "36 jazyků. Formulář, zprávy ve výloze a e-maily se zobrazují v jazyce každého návštěvníka a libovolný text můžete změnit v Nastavení → Jazyky.",
-  "help.faq.emails.q": "Kolik e-mailů Tradepass odesílá?",
-  "help.faq.emails.a": "Až 25 e-mailů na obchod denně. Další e-maily se odešlou následující den a stránka Domů vás na to upozorní. Naše e-maily můžete vypnout a místo nich použít Shopify Flow.",
+  "help.faq.languages.a": "36 jazyků. Formulář, zprávy v obchodě a zprávy, které posíláte žadatelům, se zobrazují v jazyce každého člověka a jakýkoli text můžete změnit v Nastavení → Jazyky.",
   "help.faq.approvalLimit.q": "Co se stane, když v bezplatném tarifu dosáhnu 10 schválení?",
   "help.faq.approvalLimit.a": "Nové žádosti se dál shromažďují, takže o žádného zájemce nepřijdete. Chcete-li ten měsíc schválit další, zvolte placený tarif.",
   "help.faq.markets.q": "Stránka Domů hlásí, že trhy B2B nejsou zapnuté. Co mám dělat?",
   "help.faq.markets.a": "V tarifech nižších než Plus potřebují ceny úrovní novější Trhy Shopify. Zapněte je v Shopify v Nastavení → Trhy a pak na stránce Domů klikněte na „Zkontrolovat znovu“.",
   "help.faq.privacy.q": "Jak jsou chráněna data žadatelů?",
-  "help.faq.privacy.a": "Daňová čísla jsou šifrována, odkazy v e-mailech mají omezenou platnost a fungují jen jednou a zamítnuté žádosti se mažou po období, které zvolíte v Nastavení.",
+  "help.faq.privacy.a": "Daňová čísla jsou šifrovaná, zabezpečené odkazy vyprší a fungují jednou a zamítnuté žádosti se smažou po době, kterou zvolíte v Nastavení.",
   "help.faq.slowFirstLoad.q": "Proč se aplikace někdy otevírá pomalu?",
   "help.faq.slowFirstLoad.a": "Po období nečinnosti může probuzení aplikace trvat až minutu. Vaší výlohy se to nikdy netýká: skrývání cen i formulář fungují dál.",
   "help.diagnostics.heading": "Diagnostické informace",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Vypnout režim ladění",
   "help.contact.heading": "Kontaktovat podporu",
   "help.contact.body": "Obvykle odpovídáme do 2 pracovních dnů.",
-  "help.contact.priority": "Máte tarif Pro, takže na vaše e-maily odpovídáme přednostně, obvykle do 1 pracovního dne."
+  "help.contact.priority": "Máte tarif Pro, takže na vaše e-maily odpovídáme přednostně, obvykle do 1 pracovního dne.",
+  "help.faq.alerts.q": "Jak se dozvím o nových žádostech?",
+  "help.faq.alerts.a": "Tradepass neposílá e-maily. Nové žádosti a odpovědi na vás čekají na Domovské stránce a v sekci Žádosti. Pro upozornění e-mailem vytvořte v Shopify Flow (Tradepass Pro) pracovní postup se spouštěčem „Wholesale application submitted“ a akcí Flow „Send internal email“. Tato akce posílá jen na pevné adresy zaměstnanců, které zadáte do pracovního postupu."
 }

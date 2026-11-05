@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Shown next to the consent checkbox. Use a full address or a store path such as /policies/privacy-policy.",
   "form.success.heading": "After submitting",
   "form.success.message": "Thank-you message",
-  "form.success.messageHelp": "Applicants also see that a confirmation email is on its way.",
+  "form.success.messageHelp": "Shown to applicants after they send the form.",
   "form.success.redirect": "Redirect to a page (optional)",
   "form.success.redirectHelp": "Send applicants to another page after the thank-you message, for example /pages/thank-you.",
   "form.spam.heading": "Spam protection",

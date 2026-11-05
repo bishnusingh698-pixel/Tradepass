@@ -8,12 +8,11 @@ import { adminContext } from "../lib/context.server";
 import { updateSettings } from "../lib/settings.server";
 import { paymentTermsOptions } from "../lib/tiers.server";
 import { autoApprovalsToday, listRules, reverseAutoDecision, saveRules } from "../lib/rules.server";
-import { CONDITION_TYPES, MAX_RULES, validateRules, type Condition, type RuleDef, type RuleProblem, type ApproveAction, type RejectAction } from "../lib/rules";
+import { CONDITION_TYPES, MAX_RULES, sanitizeRules, validateRules, type Condition, type RuleDef, type RuleProblem, type ApproveAction, type RejectAction } from "../lib/rules";
 import { TRIGGER_HANDLES, type FlowTrigger } from "../lib/flow.server";
 import { can } from "../lib/plans";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
-import { SectionTabs } from "../components/SectionTabs";
 
 const flag = (name: string, on: boolean | undefined) => (on ? { [name]: true } : {});
 const MAX_DAILY_LIMIT = 500;
@@ -62,7 +61,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (intent === "save") {
     if (!can(ctx.plan, "auto_rules")) return { ok: false, intent, problems: [] as RuleProblem[], limitError: false };
-    const rules = JSON.parse(String(form.get("rules") ?? "[]")) as RuleDef[];
+    let posted: unknown = [];
+    try {
+      posted = JSON.parse(String(form.get("rules") ?? "[]"));
+    } catch {
+      return { ok: false, intent, problems: [] as RuleProblem[], limitError: false };
+    }
+    const rules = sanitizeRules(posted);
     const dailyLimit = Number(form.get("dailyLimit"));
     const tiers = await db.tier.findMany({ where: { shop: ctx.shop }, select: { id: true } });
     const problems = validateRules(rules, tiers.map((t) => t.id));
@@ -169,7 +174,7 @@ function AutomationEditor({ d }: { d: ReturnType<typeof useLoaderData<typeof loa
           enabled: true,
           position: s.rules.length,
           conditions: { match: "all", list: [newCondition(kind === "reject" ? "spam" : "country")] },
-          action: kind === "approve" ? { tierId: d.tiers[0]?.id ?? "", paymentTermsTemplateId: null, sendWelcome: true } : { reason: null, email: false },
+          action: kind === "approve" ? { tierId: d.tiers[0]?.id ?? "", paymentTermsTemplateId: null, sendWelcome: true } : { reason: null },
         },
       ],
     }));
@@ -178,7 +183,6 @@ function AutomationEditor({ d }: { d: ReturnType<typeof useLoaderData<typeof loa
 
   return (
     <s-page heading={t("automation.title")}>
-      <SectionTabs section="messaging" />
       <SaveBar id="automation-save-bar" open={dirty || busy} discardConfirmation>
         <button variant="primary" onClick={onSave} {...flag("loading", busy)} {...flag("disabled", busy)}>{t("common.save")}</button>
         <button onClick={onDiscard} {...flag("disabled", busy)}>{t("common.discard")}</button>
@@ -332,6 +336,7 @@ function AutomationEditor({ d }: { d: ReturnType<typeof useLoaderData<typeof loa
             <s-list-item>{t("automation.flow.action.approve")}</s-list-item>
           </s-unordered-list>
           <s-paragraph color="subdued">{t("automation.flow.welcomeNote")}</s-paragraph>
+          <s-paragraph>{t("automation.flow.alerts")}</s-paragraph>
           <s-button href="shopify://admin/apps/flow" target="_top" {...flag("disabled", !d.flowOn)}>{t("automation.flow.open")}</s-button>
         </s-stack>
       </s-section>
@@ -401,10 +406,7 @@ function RejectFields({ action, disabled, onChange }: { action: RejectAction; di
   const { t } = useI18n();
   return (
     <s-stack direction="block" gap="small">
-      <s-checkbox label={t("automation.action.emailApplicant")} checked={action.email} {...flag("disabled", disabled)} onChange={(e) => onChange({ ...action, email: e.currentTarget.checked })} />
-      {action.email && (
-        <s-text-area label={t("automation.action.reason")} details={t("automation.action.reasonHelp")} value={action.reason ?? ""} {...flag("disabled", disabled)} onInput={(e) => onChange({ ...action, reason: e.currentTarget.value || null })} />
-      )}
+      <s-text-area label={t("automation.action.reason")} details={t("automation.action.reasonHelp")} value={action.reason ?? ""} {...flag("disabled", disabled)} onInput={(e) => onChange({ ...action, reason: e.currentTarget.value || null })} />
     </s-stack>
   );
 }

@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Показывается рядом с флажком согласия. Укажите полный адрес или путь магазина, например /policies/privacy-policy.",
   "form.success.heading": "После отправки",
   "form.success.message": "Сообщение с благодарностью",
-  "form.success.messageHelp": "Заявители также увидят, что им отправлено письмо с подтверждением.",
+  "form.success.messageHelp": "Показывается заявителям после отправки формы.",
   "form.success.redirect": "Перенаправить на страницу (необязательно)",
   "form.success.redirectHelp": "Отправлять заявителей на другую страницу после сообщения с благодарностью, например /pages/thank-you.",
   "form.spam.heading": "Защита от спама",

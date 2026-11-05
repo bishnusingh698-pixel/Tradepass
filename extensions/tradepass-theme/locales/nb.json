@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Takk! Søknaden din er sendt",
-      "body": "Vi går gjennom den og svarer deg på e-post.",
-      "email": "Vi har sendt deg en bekreftelse på e-post."
+      "body": "Vi går gjennom den og svarer deg på e-post."
     }
   }
 }

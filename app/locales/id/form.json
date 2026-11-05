@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Ditampilkan di samping kotak centang persetujuan. Gunakan alamat lengkap atau path toko seperti /policies/privacy-policy.",
   "form.success.heading": "Setelah dikirim",
   "form.success.message": "Pesan terima kasih",
-  "form.success.messageHelp": "Pemohon juga melihat bahwa email konfirmasi sedang dikirim.",
+  "form.success.messageHelp": "Ditampilkan kepada pemohon setelah mereka mengirim formulir.",
   "form.success.redirect": "Alihkan ke halaman (opsional)",
   "form.success.redirectHelp": "Arahkan pemohon ke halaman lain setelah pesan terima kasih, misalnya /pages/thank-you.",
   "form.spam.heading": "Perlindungan spam",

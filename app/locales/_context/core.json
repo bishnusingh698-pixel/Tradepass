@@ -39,11 +39,6 @@
     "maxLength": 20,
     "placeholders": []
   },
-  "nav.notifications": {
-    "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
-    "maxLength": 20,
-    "placeholders": []
-  },
   "nav.automation": {
     "note": "Admin left-hand navigation label (s-app-nav). Short noun, no emoji.",
     "maxLength": 20,
@@ -75,11 +70,6 @@
     "placeholders": []
   },
   "nav.storefrontAccess": {
-    "note": "Admin left-hand navigation label (s-app-nav) and page tab. Short noun phrase, no emoji.",
-    "maxLength": 24,
-    "placeholders": []
-  },
-  "nav.emailsAutomation": {
     "note": "Admin left-hand navigation label (s-app-nav) and page tab. Short noun phrase, no emoji.",
     "maxLength": 24,
     "placeholders": []

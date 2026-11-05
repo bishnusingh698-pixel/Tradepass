@@ -319,11 +319,6 @@
     "maxLength": 120,
     "placeholders": []
   },
-  "approval.welcome.ours": {
-    "note": "Help under the welcome-email toggle.",
-    "maxLength": 120,
-    "placeholders": []
-  },
   "approval.action.approve": {
     "note": "Primary button in the approve dialog.",
     "maxLength": 20,

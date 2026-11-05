@@ -53,15 +53,13 @@
   "help.faq.import.q": "Mogu li uvesti svoje postojeće veleprodajne klijente?",
   "help.faq.import.a": "Da, u paketu Pro. Prenesite CSV datoteku ili pretvorite klijente koji već imaju oznaku, primjerice „veleprodaja”.",
   "help.faq.languages.q": "Koji su jezici podržani?",
-  "help.faq.languages.a": "36 jezika. Obrazac, poruke u izlogu i e-pošta prikazuju se na jeziku svakog posjetitelja, a bilo koji tekst možete promijeniti u Postavke → Jezici.",
-  "help.faq.emails.q": "Koliko poruka e-pošte šalje Tradepass?",
-  "help.faq.emails.a": "Do 25 poruka po trgovini dnevno. Dodatne poruke šalju se sljedeći dan, a stranica Početna obavještava vas kad se to dogodi. Naše poruke možete isključiti i umjesto njih koristiti Shopify Flow.",
+  "help.faq.languages.a": "36 jezika. Obrazac, poruke u trgovini i poruke koje šaljete podnositeljima prikazuju se na jeziku svake osobe, a svaki tekst možete promijeniti pod Postavke → Jezici.",
   "help.faq.approvalLimit.q": "Što se događa kad u besplatnom paketu dosegnem 10 odobrenja?",
   "help.faq.approvalLimit.a": "Novi zahtjevi i dalje se prikupljaju pa nikada ne gubite potencijalnog kupca. Za odobravanje dodatnih zahtjeva taj mjesec odaberite plaćeni paket.",
   "help.faq.markets.q": "Početna kaže da B2B tržišta nisu uključena. Što trebam učiniti?",
   "help.faq.markets.a": "U paketima ispod Plusa cijene razina zahtijevaju novija Shopify tržišta. Uključite ih u Shopifyju u Postavke → Tržišta, a zatim na stranici Početna kliknite „Provjeri ponovno”.",
   "help.faq.privacy.q": "Kako su zaštićeni podaci podnositelja?",
-  "help.faq.privacy.a": "Porezni brojevi su šifrirani, poveznice u porukama e-pošte istječu i rade samo jednom, a odbijeni zahtjevi brišu se nakon razdoblja koje odaberete u Postavkama.",
+  "help.faq.privacy.a": "Porezni brojevi su šifrirani, sigurne poveznice istječu i rade jednom, a odbijene prijave brišu se nakon razdoblja koje odaberete u Postavkama.",
   "help.faq.slowFirstLoad.q": "Zašto se aplikacija ponekad sporo otvara?",
   "help.faq.slowFirstLoad.a": "Nakon razdoblja neaktivnosti aplikaciji može trebati do minute da se pokrene. To nikada ne utječe na vaš izlog: skrivanje cijena i obrazac nastavljaju raditi.",
   "help.diagnostics.heading": "Dijagnostički podaci",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Isključi način otklanjanja pogrešaka",
   "help.contact.heading": "Obratite se podršci",
   "help.contact.body": "Obično odgovaramo u roku od 2 radna dana.",
-  "help.contact.priority": "Imate paket Pro pa na vaše poruke odgovaramo prioritetno, obično u roku od 1 radnog dana."
+  "help.contact.priority": "Imate paket Pro pa na vaše poruke odgovaramo prioritetno, obično u roku od 1 radnog dana.",
+  "help.faq.alerts.q": "Kako saznajem za nove prijave?",
+  "help.faq.alerts.a": "Tradepass ne šalje e-poštu. Nove prijave i odgovori čekaju vas na Početnoj i pod Prijave. Za obavijest e-poštom izradite u Shopify Flowu (Tradepass Pro) tijek rada s okidačem „Wholesale application submitted” i Flow radnjom „Send internal email”. Ta radnja šalje samo na stalne adrese zaposlenika koje unesete u tijek rada."
 }

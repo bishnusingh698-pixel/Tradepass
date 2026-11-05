@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Prikazuje se uz potvrdni okvir privole. Upotrijebite punu adresu ili putanju u trgovini, primjerice /policies/privacy-policy.",
   "form.success.heading": "Nakon slanja",
   "form.success.message": "Poruka zahvale",
-  "form.success.messageHelp": "Podnositelji također vide da im stiže potvrda e-poštom.",
+  "form.success.messageHelp": "Prikazuje se podnositeljima nakon što pošalju obrazac.",
   "form.success.redirect": "Preusmjeri na stranicu (neobavezno)",
   "form.success.redirectHelp": "Nakon poruke zahvale preusmjerite podnositelje na drugu stranicu, primjerice /pages/thank-you.",
   "form.spam.heading": "Zaštita od spama",

@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Vielen Dank, Ihr Antrag wurde gesendet",
-      "body": "Wir prüfen ihn und melden uns per E-Mail bei Ihnen.",
-      "email": "Wir haben Ihnen eine Bestätigung per E-Mail gesendet."
+      "body": "Wir prüfen ihn und melden uns per E-Mail bei Ihnen."
     }
   }
 }

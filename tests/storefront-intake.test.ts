@@ -27,8 +27,6 @@ function deps(over: Partial<IntakeDeps> = {}) {
   const d = {
     getAdmin: vi.fn(async () => ({ graphql: vi.fn() }) as never),
     checkTaxNumber: vi.fn(async () => ({ status: "verified" as const, name: "ACME GMBH", registry: "vies" })),
-    queueEmail: vi.fn(async () => ({ queued: true })),
-    notifyMerchant: vi.fn(async () => ({ queued: true })),
     emitFlowTrigger: vi.fn(async () => undefined),
     evaluateRules: vi.fn(async () => ({ decided: null })),
     recordApplicationCertificates: vi.fn(async () => undefined),
@@ -101,8 +99,6 @@ describe("submit", () => {
     const answers = app.answers as Record<string, unknown>;
     expect(answers.taxNumberHash).toBe(sha256(normaliseTaxNumber("DE123456789")));
     expect(JSON.stringify(answers)).not.toContain("123 456 789");
-    expect(d.queueEmail).toHaveBeenCalledWith(expect.objectContaining({ type: "received", to: b.answers.email, locale: "de" }));
-    expect(d.notifyMerchant).toHaveBeenCalled();
     expect(d.emitFlowTrigger).toHaveBeenCalledWith(expect.anything(), SHOP, "application_submitted", expect.objectContaining({ applicationId: app.id }));
     expect(d.evaluateRules).toHaveBeenCalledWith(expect.anything(), SHOP, app.id);
   });
@@ -116,7 +112,7 @@ describe("submit", () => {
     expect(first.body).toMatchObject({ ok: true });
     for (const r of [again, ...parallel]) expect(r.body).toEqual(first.body);
     expect(await db.application.count({ where: { shop: SHOP, idempotencyKey: b.idempotencyKey } })).toBe(1);
-    expect(d.queueEmail).toHaveBeenCalledTimes(1);
+    expect(d.emitFlowTrigger).toHaveBeenCalledTimes(1);
   });
 
   it("silently accepts and discards honeypot and too-fast submissions", async () => {
@@ -128,7 +124,7 @@ describe("submit", () => {
       expect(r).toEqual({ http: 200, body: { ok: true, status: "received" } });
       expect(await db.application.count({ where: { shop: SHOP, idempotencyKey: b.idempotencyKey } })).toBe(0);
     }
-    expect(d.queueEmail).not.toHaveBeenCalled();
+    expect(d.emitFlowTrigger).not.toHaveBeenCalled();
   });
 
   it("discards everything from an IP after repeated spam", async () => {
@@ -166,8 +162,8 @@ describe("submit", () => {
       // A retry of the duplicate still says "already applied".
       expect((await handleSubmit(ctx("10.5.3.3"), b, d)).body).toMatchObject({ status: "duplicate" });
     }
-    // Only the first applicant got the "received" email.
-    expect(d.queueEmail).toHaveBeenCalledTimes(1);
+    // One "submitted" Flow trigger per stored application; retries add none.
+    expect(d.emitFlowTrigger).toHaveBeenCalledTimes(3);
   });
 
   it("does not see another shop's applications as duplicates", async () => {
@@ -185,7 +181,7 @@ describe("submit", () => {
 
   it("never fails the submission when follow-ups or the tax lookup fail", async () => {
     const boom = async () => { throw new Error("down"); };
-    const d = deps({ checkTaxNumber: boom, queueEmail: boom, notifyMerchant: boom, emitFlowTrigger: boom, evaluateRules: boom, getAdmin: async () => null });
+    const d = deps({ checkTaxNumber: boom, emitFlowTrigger: boom, evaluateRules: boom, getAdmin: async () => null });
     const b = body({}, { taxNumber: { country: "DE", number: "DE999999999" } });
     const r = await handleSubmit(ctx(), b, d);
     expect(r.body).toMatchObject({ ok: true, status: "received" });

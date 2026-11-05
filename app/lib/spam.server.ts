@@ -47,12 +47,14 @@ export function clientIp(request: Request): string {
 /** Count one hit and say whether the caller is still within `limit` for this hour. */
 export async function hit(key: string, limit: number, now = new Date()): Promise<{ allowed: boolean; count: number }> {
   const window = hourWindow(now);
-  const row = await db.rateHit.upsert({
-    where: { key_window: { key, window } },
-    create: { key, window, count: 1 },
-    update: { count: { increment: 1 } },
-  });
-  return { allowed: row.count <= limit, count: row.count };
+  // One atomic statement: two simultaneous first hits can't both try to insert (Prisma's upsert
+  // throws a unique-constraint error for one of them, which failed that submission).
+  const rows = await db.$queryRaw<{ count: number }[]>`
+    INSERT INTO "RateHit" ("key", "window", "count") VALUES (${key}, ${window}, 1)
+    ON CONFLICT ("key", "window") DO UPDATE SET "count" = "RateHit"."count" + 1
+    RETURNING "count"`;
+  const count = Number(rows[0]?.count ?? 1);
+  return { allowed: count <= limit, count };
 }
 
 /** Read the current count without adding a hit. */

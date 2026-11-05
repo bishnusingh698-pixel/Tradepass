@@ -18,7 +18,6 @@ import { useLocaleHref } from "../components/useLocaleHref";
 import { can } from "../lib/plans";
 
 const RETENTION_MONTHS = [3, 6, 12, 24, 36] as const;
-const HEX = /^#[0-9a-f]{6}$/i;
 const ASSIGNMENT_MODES = ["auto", "assisted"] as const;
 const COUNTRY_MODES = ["all", "allow", "block"] as const;
 
@@ -41,7 +40,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     overrides,
     supportedCount: LOCALES.length,
     retention: ctx.settings.retention,
-    branding: ctx.settings.branding,
+    certificates: ctx.settings.certificates,
+    canCertificates: can(ctx.plan, "certificate_vault"),
     assignment: ctx.settings.tiers.assignment,
     canExportActivity: can(ctx.plan, "activity_export"),
     exportMax: ACTIVITY_EXPORT_MAX_ROWS,
@@ -59,11 +59,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (intent === "save") {
     const errors: Record<string, string> = {};
     const months = Number(form.get("months"));
-    const logoUrl = String(form.get("logoUrl") ?? "").trim();
-    const accent = String(form.get("accentColor") ?? "").trim();
     if (!(RETENTION_MONTHS as readonly number[]).includes(months)) errors.months = "settings.error.months";
-    if (logoUrl && !/^https:\/\/\S+$/i.test(logoUrl)) errors.logoUrl = "settings.error.logoUrl";
-    if (accent && !HEX.test(accent)) errors.accentColor = "settings.error.accentColor";
+    // A form without the certificate fields (e.g. an old tab) keeps the current values.
+    const expiringDays = form.has("expiringDays") ? Number(form.get("expiringDays")) : ctx.settings.certificates.expiringDays;
+    if (!Number.isInteger(expiringDays) || expiringDays < 1 || expiringDays > 365) errors.expiringDays = "settings.error.expiringDays";
+    const onExpiryRaw = String(form.get("onExpiry") ?? ctx.settings.certificates.onExpiry);
+    const onExpiry: "ask" | "remove" = onExpiryRaw === "remove" ? "remove" : "ask";
     const assignmentRaw = form.get("assignment");
     const assignment = assignmentRaw == null || assignmentRaw === "" ? ctx.settings.tiers.assignment : String(assignmentRaw);
     if (!(ASSIGNMENT_MODES as readonly string[]).includes(assignment)) errors.assignment = "settings.error.assignment";
@@ -79,7 +80,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const countriesChanged = JSON.stringify(countries) !== JSON.stringify(ctx.settings.applications.countries);
     await updateSettings(ctx.shop, {
       retention: { months, deleteFiles: form.get("deleteFiles") === "on" },
-      branding: { logoUrl: logoUrl || null, accentColor: accent || null },
+      certificates: { expiringDays, onExpiry },
       tiers: { assignment: assignment as (typeof ASSIGNMENT_MODES)[number] },
       applications: { countries },
     });
@@ -227,22 +228,28 @@ export default function SettingsPage() {
           </s-stack>
         </s-section>
 
-        <s-section heading={t("settings.branding.heading")}>
+        <s-section heading={t("settings.certificates.heading")}>
           <s-stack direction="block" gap="base">
-            <s-url-field
-              name="logoUrl"
-              label={t("settings.branding.logo")}
-              details={t("settings.branding.logoHelp")}
-              defaultValue={d.branding.logoUrl ?? ""}
-              error={errors.logoUrl ? t(errors.logoUrl) : undefined}
+            {!d.canCertificates && <s-badge tone="info">{t("common.availableOn", { plan: "Starter" })}</s-badge>}
+            <s-number-field
+              name="expiringDays"
+              label={t("settings.certificates.expiringDays")}
+              min={1}
+              max={365}
+              step={1}
+              defaultValue={String(d.certificates.expiringDays)}
+              error={errors.expiringDays ? t(errors.expiringDays) : undefined}
             />
-            <s-color-field
-              name="accentColor"
-              label={t("settings.branding.accent")}
-              details={t("settings.branding.accentHelp")}
-              defaultValue={d.branding.accentColor ?? ""}
-              error={errors.accentColor ? t(errors.accentColor) : undefined}
-            />
+            <s-choice-list name="onExpiry" label={t("settings.certificates.onExpiry")}>
+              <s-choice value="ask" defaultSelected={d.certificates.onExpiry === "ask"}>
+                {t("settings.certificates.onExpiry.ask")}
+                <s-text slot="details">{t("settings.certificates.onExpiry.askHelp")}</s-text>
+              </s-choice>
+              <s-choice value="remove" defaultSelected={d.certificates.onExpiry === "remove"}>
+                {t("settings.certificates.onExpiry.remove")}
+                <s-text slot="details">{t("settings.certificates.onExpiry.removeHelp")}</s-text>
+              </s-choice>
+            </s-choice-list>
           </s-stack>
         </s-section>
 

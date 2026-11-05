@@ -55,9 +55,7 @@ model Shop {
   welcomeDoneAt     DateTime?
   checkedAt         DateTime? // last plan/entitlement check
   name              String?
-  email             String? // store owner's email (shop.email): merchant alerts and digest when no address is set
-  contactEmail      String? // customer-facing store email (shop.contactEmail): reply-to for applicant emails
-  domainUrl         String? // primary storefront domain, e.g. https://example.com — used for links in emails
+  domainUrl         String? // primary storefront domain, e.g. https://example.com — used for the secure links merchants send applicants
   currency          String?
   country           String? // store country, for tax suggestions
   placeholderCompanyGid String? // see DECISIONS D-004 (only if empty B2B markets are rejected)
@@ -103,6 +101,7 @@ model Application {
   suggestedTierId String?
   notes          Json      @default("[]") // internal notes: [{ at, by, text }]
   requested      Json? // needs-info request: { fields: string[], message, at }
+  rejectReason   String? // reason the merchant gave when rejecting (shown in the message they send the applicant)
   autoRuleId     String? // set when an automation rule decided it
   ipHash         String?
   submittedAt    DateTime  @default(now())
@@ -179,7 +178,6 @@ model Certificate {
   expiresOn     DateTime? @db.Date
   status        String    @default("pending") // pending | valid | expiring | expired | rejected
   fileGid       String?
-  remindedAt    Json      @default("{}") // { "30": iso, "7": iso }
   rejectReason  String?
   decidedOnExpiry String? // merchant choice after expiry: keep | remove
   createdAt     DateTime  @default(now())
@@ -187,23 +185,6 @@ model Certificate {
   @@index([shop, expiresOn])
   @@index([shop, buyerId])
   @@index([shop, applicationId])
-}
-
-/// Outgoing email queue + log. Doubles as the quota counter (count by quotaDay).
-model EmailLog {
-  id        String    @id @default(cuid())
-  shop      String
-  type      String
-  toHash    String // sha256 of recipient; the address itself lives in `payload` until sent
-  payload   Json? // cleared after sending (no personal data kept)
-  status    String    @default("queued") // queued | sending | sent | failed | skipped
-  quotaDay  String // YYYY-MM-DD (UTC) the email counts against
-  sentAt    DateTime?
-  createdAt DateTime  @default(now())
-
-  @@index([quotaDay, status])
-  @@index([shop, quotaDay])
-  @@index([shop, toHash])
 }
 
 model ActivityLog {

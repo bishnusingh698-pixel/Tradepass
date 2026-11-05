@@ -127,7 +127,7 @@
   "applications.detail.addNote": "إضافة ملاحظة",
   "applications.detail.saveNote": "حفظ الملاحظة",
   "applications.detail.toast.reject": "تم رفض الطلب",
-  "applications.detail.toast.needs_info": "تم إرسال الطلب إلى مقدّم الطلب",
+  "applications.detail.toast.needs_info": "تم حفظ الطلب. أرسل إلى مقدّم الطلب الرسالة التي تحتوي على الرابط الآمن.",
   "applications.detail.toast.note": "تم حفظ الملاحظة",
   "applications.detail.toast.assign": "تم حفظ الإسناد",
   "applications.needsInfo.heading": "طلب مزيد من المعلومات",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "الحقول التي يمكنه تغييرها",
   "applications.needsInfo.fieldsHelp": "يتلقى مقدّم الطلب رابطًا خاصًا صالحًا لمدة 14 يومًا، ولا يمكنه تغيير سوى هذه الحقول.",
   "applications.needsInfo.fieldsRequired": "اختر حقلًا واحدًا على الأقل.",
-  "applications.needsInfo.send": "إرسال الطلب",
+  "applications.needsInfo.send": "إنشاء الطلب",
   "applications.reject.heading": "هل تريد رفض {company}؟",
   "applications.reject.template": "قالب السبب",
   "applications.reject.templateNone": "بدون قالب",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "شكرًا لاهتمامك. لم نتمكن من التحقق من المعلومات الواردة في طلبك، لذا لا يمكننا الموافقة عليه حاليًا. يسعدنا أن تتقدّم بطلب مرة أخرى.",
   "applications.reject.template.region": "شكرًا لاهتمامك. لا نقدّم البيع بالجملة في منطقتك بعد.",
   "applications.reject.reason": "السبب (اختياري)",
-  "applications.reject.reasonHelp": "إذا أرسلت بريدًا إلكترونيًا، فسيرى مقدّم الطلب هذا السبب.",
-  "applications.reject.email": "مراسلة مقدّم الطلب",
+  "applications.reject.reasonHelp": "يُحفظ مع الطلب ويُضاف إلى الرسالة التي يمكنك إرسالها إلى مقدّم الطلب.",
   "applications.reject.consequence": "سينتقل الطلب إلى «مرفوضة». لن يُنشأ أي شيء في Shopify، ويمكنك العثور عليه لاحقًا في علامة التبويب «مرفوضة».",
   "applications.reject.confirm": "رفض الطلب",
   "applications.activity.application.submit": "تم إرسال الطلب",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "تمت إضافة ملاحظة",
   "applications.activity.application.assign": "تم تغيير الإسناد",
   "applications.taxCheck.skipped": "لم يُتحقق منه ضمن خطتك",
-  "applications.detail.taxCheckPlan": "يُتحقق من الأرقام الضريبية في السجلات الرسمية ضمن {plan} والخطط الأعلى. تحقّق من هذا الرقم يدويًا، أو قم بالترقية للتحقق من الطلبات الجديدة تلقائيًا."
+  "applications.detail.taxCheckPlan": "يُتحقق من الأرقام الضريبية في السجلات الرسمية ضمن {plan} والخطط الأعلى. تحقّق من هذا الرقم يدويًا، أو قم بالترقية للتحقق من الطلبات الجديدة تلقائيًا.",
+  "applications.detail.copyMessage": "رسالة إلى مقدّم الطلب"
 }

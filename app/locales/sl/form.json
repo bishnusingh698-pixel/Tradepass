@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Prikazana ob potrditvenem polju za soglasje. Uporabite celoten naslov ali pot v trgovini, na primer /policies/privacy-policy.",
   "form.success.heading": "Po oddaji",
   "form.success.message": "Zahvalno sporočilo",
-  "form.success.messageHelp": "Prosilci vidijo tudi, da je potrditveno e-poštno sporočilo na poti.",
+  "form.success.messageHelp": "Prikaže se prosilcem, ko pošljejo obrazec.",
   "form.success.redirect": "Preusmeri na stran (neobvezno)",
   "form.success.redirectHelp": "Po zahvalnem sporočilu prosilce preusmerite na drugo stran, na primer /pages/thank-you.",
   "form.spam.heading": "Zaščita pred neželeno pošto",

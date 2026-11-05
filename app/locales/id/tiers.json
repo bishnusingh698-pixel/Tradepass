@@ -42,7 +42,7 @@
   "tiers.editor.name": "Nama tingkat harga",
   "tiers.editor.nameHelp": "Hanya Anda yang melihat nama ini, misalnya Pengecer atau Distributor.",
   "tiers.editor.buyerNames": "Nama yang dilihat pembeli",
-  "tiers.editor.buyerNamesHelp": "Opsional. Ditampilkan kepada pembeli di email dan di toko Anda, per bahasa. Jika kosong, nama tingkat harga yang digunakan.",
+  "tiers.editor.buyerNamesHelp": "Opsional. Ditampilkan kepada pembeli di toko Anda, per bahasa. Kosong memakai nama tingkat.",
   "tiers.editor.buyerNameFor": "Nama dalam {language}",
   "tiers.editor.pricing": "Cara harga ditetapkan",
   "tiers.editor.pricing.percent": "Persentase diskon dari harga ritel",

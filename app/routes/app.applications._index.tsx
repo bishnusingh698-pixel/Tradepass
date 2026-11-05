@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { useFetcher, useLoaderData, useSearchParams } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
@@ -6,6 +6,7 @@ import { useAppBridge } from "@shopify/app-bridge-react";
 import db from "../db.server";
 import { adminContext } from "../lib/context.server";
 import { exportCsv, listApplications, parseFilters, rejectApplication } from "../lib/applications.server";
+import { downloadFromApp, saveText } from "../components/download";
 import { TABS, type Tab } from "../lib/applications";
 import { approveMany } from "../lib/approval.server";
 import { useI18n } from "../lib/i18n/react";
@@ -16,12 +17,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
   const url = new URL(request.url);
   const filters = parseFilters(url);
-  if (url.searchParams.get("export") === "csv") {
-    const csv = await exportCsv(ctx.shop, null, filters);
-    return new Response(csv, {
-      headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="applications.csv"` },
-    });
-  }
   const [list, tiers, forms, countries, businessTypes] = await Promise.all([
     listApplications(ctx.shop, filters),
     db.tier.findMany({ where: { shop: ctx.shop }, select: { id: true, name: true }, orderBy: { position: "asc" } }),
@@ -50,14 +45,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (intent === "bulk_approve") {
     const tierId = String(form.get("tierId") ?? "");
     if (!tierId) return { ok: false as const, error: "tier_required" };
-    const summary = await approveMany(dctx, ids, tierId);
+    const summary = await approveMany(dctx, ids, tierId, { sendWelcome: form.get("sendWelcome") === "on" });
     return { ok: true as const, intent, summary };
   }
   if (intent === "bulk_reject") {
     const reason = String(form.get("reason") ?? "").trim() || null;
-    const email = form.get("email") === "on";
     let rejected = 0;
-    for (const id of ids) if (await rejectApplication(dctx, id, { reason, email })) rejected++;
+    // Each application keeps the reason; its "not approved" message can be copied from the application.
+    for (const id of ids) if (await rejectApplication(dctx, id, { reason })) rejected++;
     return { ok: true as const, intent, rejected, skipped: ids.length - rejected };
   }
   if (intent === "bulk_export") {
@@ -72,6 +67,7 @@ type LoaderData = ReturnType<typeof useLoaderData<typeof loader>>;
 export default function Applications() {
   const data = useLoaderData<typeof loader>() as Exclude<LoaderData, Response>;
   const { t, number } = useI18nNumber();
+  const { locale: adminLocale } = useI18n();
   const href = useLocaleHref();
   const [params, setParams] = useSearchParams();
   const shopify = useAppBridge();
@@ -89,7 +85,7 @@ export default function Applications() {
   useEffect(() => {
     const d = fetcher.data;
     if (!d || !d.ok) return;
-    if (d.intent === "bulk_export" && "csv" in d) download(d.csv ?? "", "applications.csv");
+    if (d.intent === "bulk_export" && "csv" in d) saveText(d.csv ?? "", "applications.csv");
     if (d.intent === "bulk_reject" && "rejected" in d) shopify.toast.show(t("applications.bulk.rejectedToast", { count: d.rejected ?? 0 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetcher.data]);
@@ -104,7 +100,9 @@ export default function Applications() {
 
   const allChecked = data.rows.length > 0 && selected.length === data.rows.length;
   const toggle = (id: string) => setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+  const bulkBusy = fetcher.state !== "idle";
   const submitBulk = (intent: string, extra: Record<string, string> = {}) => {
+    if (fetcher.state !== "idle") return;
     const fd = new FormData();
     fd.set("intent", intent);
     selected.forEach((id) => fd.append("ids", id));
@@ -113,15 +111,17 @@ export default function Applications() {
   };
 
   const summary = fetcher.data && fetcher.data.ok && fetcher.data.intent === "bulk_approve" && "summary" in fetcher.data ? fetcher.data.summary : null;
-  const csvHref = useMemo(() => {
-    const p = new URLSearchParams(params);
-    p.set("export", "csv");
-    return `?${p}`;
-  }, [params]);
+  const [exporting, setExporting] = useState(false);
+  const exportAll = async () => {
+    setExporting(true);
+    const ok = await downloadFromApp(`/app/applications/export?${new URLSearchParams(params)}`, "applications.csv");
+    setExporting(false);
+    if (!ok) shopify.toast.show(t("errors.generic"), { isError: true });
+  };
 
   return (
     <s-page heading={t("applications.title")}>
-      <s-button slot="secondary-actions" href={csvHref} target="_blank">
+      <s-button slot="secondary-actions" loading={exporting} onClick={exportAll}>
         {t("applications.exportAll")}
       </s-button>
 
@@ -152,7 +152,7 @@ export default function Applications() {
             <s-select label={t("applications.filter.country")} value={data.filters.country ?? ""} onChange={(e) => setParam("country", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
               <s-option value="">{t("applications.filter.any")}</s-option>
               {data.countries.map((c) => (
-                <s-option key={c} value={c}>{countryLabel(c)}</s-option>
+                <s-option key={c} value={c}>{countryLabel(c, adminLocale)}</s-option>
               ))}
             </s-select>
             <s-select label={t("applications.filter.businessType")} value={data.filters.businessType ?? ""} onChange={(e) => setParam("businessType", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
@@ -201,9 +201,10 @@ export default function Applications() {
           {selected.length > 0 && (
             <s-stack direction="inline" gap="small-200" alignItems="center">
               <s-text>{t("applications.bulk.selected", { count: selected.length })}</s-text>
-              <s-button commandFor="bulk-approve" command="--show">{t("applications.bulk.approve")}</s-button>
-              <s-button commandFor="bulk-reject" command="--show">{t("applications.bulk.reject")}</s-button>
-              <s-button variant="tertiary" onClick={() => submitBulk("bulk_export")}>{t("applications.bulk.export")}</s-button>
+              {/* Disabled while a bulk action runs (a bulk approve can take a while), so nothing is sent twice. */}
+              <s-button commandFor="bulk-approve" command="--show" disabled={bulkBusy} loading={bulkBusy}>{t("applications.bulk.approve")}</s-button>
+              <s-button commandFor="bulk-reject" command="--show" disabled={bulkBusy}>{t("applications.bulk.reject")}</s-button>
+              <s-button variant="tertiary" disabled={bulkBusy} onClick={() => submitBulk("bulk_export")}>{t("applications.bulk.export")}</s-button>
             </s-stack>
           )}
 
@@ -296,16 +297,17 @@ export default function Applications() {
         )}
       </s-section>
 
-      <BulkApproveModal tiers={data.tiers} count={selected.length} onConfirm={(tierId) => submitBulk("bulk_approve", { tierId })} />
-      <BulkRejectModal count={selected.length} onConfirm={(reason, email) => submitBulk("bulk_reject", { reason, ...(email ? { email: "on" } : {}) })} />
+      <BulkApproveModal tiers={data.tiers} count={selected.length} onConfirm={(tierId, sendWelcome) => submitBulk("bulk_approve", { tierId, ...(sendWelcome ? { sendWelcome: "on" } : {}) })} />
+      <BulkRejectModal count={selected.length} onConfirm={(reason) => submitBulk("bulk_reject", { reason })} />
     </s-page>
   );
 }
 
-function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; name: string }[]; count: number; onConfirm: (tierId: string) => void }) {
+function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; name: string }[]; count: number; onConfirm: (tierId: string, sendWelcome: boolean) => void }) {
   const { t } = useI18n();
   const href = useLocaleHref();
   const [tierId, setTierId] = useState(tiers[0]?.id ?? "");
+  const [sendWelcome, setSendWelcome] = useState(true);
   return (
     <s-modal id="bulk-approve" heading={t("applications.bulk.approveHeading", { count })}>
       {tiers.length === 0 ? (
@@ -319,10 +321,11 @@ function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; na
               <s-option key={tier.id} value={tier.id}>{tier.name}</s-option>
             ))}
           </s-select>
+          <s-checkbox label={t("approval.field.sendWelcome")} details={t("approval.welcome.shopify")} checked={sendWelcome} onChange={() => setSendWelcome(!sendWelcome)} />
           <s-paragraph>{t("applications.bulk.approveExplain")}</s-paragraph>
         </s-stack>
       )}
-      <s-button slot="primary-action" variant="primary" disabled={!tierId} commandFor="bulk-approve" command="--hide" onClick={() => onConfirm(tierId)}>
+      <s-button slot="primary-action" variant="primary" disabled={!tierId} commandFor="bulk-approve" command="--hide" onClick={() => onConfirm(tierId, sendWelcome)}>
         {t("applications.bulk.approveConfirm", { count })}
       </s-button>
       <s-button slot="secondary-actions" commandFor="bulk-approve" command="--hide">{t("common.cancel")}</s-button>
@@ -330,17 +333,15 @@ function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; na
   );
 }
 
-function BulkRejectModal({ count, onConfirm }: { count: number; onConfirm: (reason: string, email: boolean) => void }) {
+function BulkRejectModal({ count, onConfirm }: { count: number; onConfirm: (reason: string) => void }) {
   const { t } = useI18n();
   const [reason, setReason] = useState("");
-  const [email, setEmail] = useState(true);
   return (
     <s-modal id="bulk-reject" heading={t("applications.bulk.rejectHeading", { count })}>
       <s-stack direction="block" gap="base">
         <s-text-area label={t("applications.reject.reason")} details={t("applications.reject.reasonHelp")} value={reason} onInput={(e) => setReason((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
-        <s-checkbox label={t("applications.reject.email")} checked={email} onChange={() => setEmail(!email)} />
       </s-stack>
-      <s-button slot="primary-action" variant="primary" tone="critical" commandFor="bulk-reject" command="--hide" onClick={() => onConfirm(reason, email)}>
+      <s-button slot="primary-action" variant="primary" tone="critical" commandFor="bulk-reject" command="--hide" onClick={() => onConfirm(reason)}>
         {t("applications.bulk.rejectConfirm", { count })}
       </s-button>
       <s-button slot="secondary-actions" commandFor="bulk-reject" command="--hide">{t("common.cancel")}</s-button>
@@ -353,21 +354,15 @@ function useI18nNumber() {
   return { t, number: (n: number) => new Intl.NumberFormat(locale).format(n) };
 }
 
-function countryLabel(code: string) {
+/** Country name in the admin's language (same on the server and in the browser, so hydration matches). */
+function countryLabel(code: string, locale: string) {
   try {
-    return new Intl.DisplayNames([document.documentElement.lang || "en"], { type: "region" }).of(code) ?? code;
+    return new Intl.DisplayNames([locale], { type: "region" }).of(code) ?? code;
   } catch {
     return code;
   }
 }
 
-function download(text: string, filename: string) {
-  const url = URL.createObjectURL(new Blob([text], { type: "text/csv;charset=utf-8" }));
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
-}
+
 
 export const headers: HeadersFunction = (headersArgs) => boundary.headers(headersArgs);

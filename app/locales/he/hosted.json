@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "תודה, הבקשה עודכנה",
   "hosted.update.doneBody": "{store} יבדקו אותה ויחזרו אליך באימייל.",
   "hosted.link.invalidTitle": "הקישור הזה לא תקין",
-  "hosted.link.invalidBody": "כדאי לוודא שנפתח הקישור המלא מהאימייל, או לפנות אל {store}.",
+  "hosted.link.invalidBody": "יש לוודא שפתחת את הקישור המלא, או לפנות ל-{store}.",
   "hosted.link.expiredTitle": "תוקף הקישור הזה פג",
   "hosted.link.expiredBody": "מטעמי אבטחה, קישורי עדכון פועלים לזמן מוגבל בלבד. אפשר לפנות אל {store} ולבקש קישור חדש.",
   "hosted.link.usedTitle": "כבר נעשה שימוש בקישור הזה",

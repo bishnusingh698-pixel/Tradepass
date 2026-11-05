@@ -48,9 +48,8 @@
   "automation.action.terms": "Betalingsbetingelser",
   "automation.action.tierTerms": "Bruk nivåets betalingsbetingelser",
   "automation.action.sendWelcome": "Send kjøperen Shopifys e-post om B2B-tilgang",
-  "automation.action.emailApplicant": "Send e-post til søkeren om at de ikke ble godkjent",
   "automation.action.reason": "Begrunnelse (valgfritt)",
-  "automation.action.reasonHelp": "Vises i e-posten på språket du skriver den på.",
+  "automation.action.reasonHelp": "Lagres med søknaden og tas med i meldingen du kan kopiere derfra.",
   "automation.error.summary": "{count, plural, one {Rett # problem før du lagrer.} other {Rett # problemer før du lagrer.}}",
   "automation.error.conditions_required": "Legg til minst én betingelse.",
   "automation.error.values_required": "Skriv inn minst én verdi.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Kunne ikke omgjøre beslutningen. Sjekk aktivitetsloggen og prøv igjen.",
   "automation.reverse.heading": "Vil du omgjøre beslutningen for {company}?",
   "automation.reverse.approvedBody": "{company} settes på pause: Bedriften blir værende i Shopify, men forlater nivået sitt og ser utsalgspriser. Du kan gjenoppta den fra Kjøpere.",
-  "automation.reverse.rejectedBody": "{company} går tilbake til Venter på gjennomgang. Hvis en e-post om avslag er sendt, kan den ikke kalles tilbake.",
+  "automation.reverse.rejectedBody": "{company} går tilbake til Venter på gjennomgang. Hvis du allerede har gitt søkeren beskjed, si ifra.",
   "automation.reverse.confirm": "Omgjør beslutning",
   "automation.flow.heading": "Shopify Flow-integrasjon",
   "automation.flow.body": "Bruk disse Tradepass-triggerne og -handlingene i Shopify Flow til å bygge egne arbeidsflyter, for eksempel for å tagge kjøpere eller sende en Slack-melding.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Sertifikat utløpt",
   "automation.flow.action.approve": "Godkjenn engrossøknad til nivå",
   "automation.flow.welcomeNote": "Tradepass kan allerede sende Shopifys e-post om B2B-tilgang når en kjøper godkjennes, så du trenger ingen ekstra arbeidsflyt for det.",
-  "automation.flow.open": "Åpne Shopify Flow"
+  "automation.flow.open": "Åpne Shopify Flow",
+  "automation.flow.alerts": "Vil du ha en e-post når noen søker? I Shopify Flow bruker du utløseren «Wholesale application submitted» med Flow-handlingen «Send internal email». Handlingen sender bare til faste ansattadresser som du legger inn i arbeidsflyten."
 }

@@ -42,7 +42,7 @@
   "tiers.editor.name": "שם הרמה",
   "tiers.editor.nameHelp": "השם הזה מוצג רק לך, למשל קמעונאי או מפיץ.",
   "tiers.editor.buyerNames": "השם שקונים רואים",
-  "tiers.editor.buyerNamesHelp": "לא חובה. מוצג לקונים באימיילים ובחנות, לפי שפה. אם ריק, נעשה שימוש בשם הרמה.",
+  "tiers.editor.buyerNamesHelp": "אופציונלי. מוצג לקונים בחנות, לפי שפה. אם ריק, נעשה שימוש בשם הרמה.",
   "tiers.editor.buyerNameFor": "השם ב{language}",
   "tiers.editor.pricing": "איך נקבעים המחירים",
   "tiers.editor.pricing.percent": "אחוז הנחה מהמחיר הקמעונאי",

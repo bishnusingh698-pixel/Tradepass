@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "سننشئ عميلًا جديدًا باسم {name} ({email}).",
   "approval.field.sendWelcome": "إرسال رسالة ترحيب",
   "approval.welcome.shopify": "رسالة الترحيب الخاصة بـ B2B من Shopify، مع رابط لتسجيل الدخول.",
-  "approval.welcome.ours": "رسالة «تمت الموافقة عليك» من Tradepass بلغة المشتري.",
   "approval.action.approve": "موافقة",
   "approval.action.retry": "إعادة المحاولة",
   "approval.action.retryEmail": "إرسال الرسالة مجددًا",

@@ -48,9 +48,8 @@
   "automation.action.terms": "Mokėjimo sąlygos",
   "automation.action.tierTerms": "Lygio mokėjimo sąlygos",
   "automation.action.sendWelcome": "Siųsti pirkėjui Shopify B2B prieigos laišką",
-  "automation.action.emailApplicant": "Pranešti pareiškėjui el. paštu, kad paraiška nepatvirtinta",
   "automation.action.reason": "Priežastis (neprivaloma)",
-  "automation.action.reasonHelp": "Rodoma laiške ta kalba, kuria ją parašote.",
+  "automation.action.reasonHelp": "Išsaugoma kartu su paraiška ir įtraukiama į žinutę, kurią galite iš ten nukopijuoti.",
   "automation.error.summary": "{count, plural, one {Prieš išsaugodami ištaisykite # problemą.} few {Prieš išsaugodami ištaisykite # problemas.} many {Prieš išsaugodami ištaisykite # problemos.} other {Prieš išsaugodami ištaisykite # problemų.}}",
   "automation.error.conditions_required": "Pridėkite bent vieną sąlygą.",
   "automation.error.values_required": "Įveskite bent vieną reikšmę.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Nepavyko atšaukti šio sprendimo. Patikrinkite veiklos žurnalą ir bandykite dar kartą.",
   "automation.reverse.heading": "Atšaukti sprendimą dėl {company}?",
   "automation.reverse.approvedBody": "{company} bus pristabdyta: įmonė lieka Shopify, bet išeina iš savo lygio ir mato mažmenines kainas. Atnaujinti galite skiltyje „Pirkėjai“.",
-  "automation.reverse.rejectedBody": "{company} grįžta į būseną „Laukia peržiūros“. Jei atmetimo laiškas jau išsiųstas, jo atšaukti negalima.",
+  "automation.reverse.rejectedBody": "{company} grįžta į būseną Laukia peržiūros. Jei jau informavote pareiškėją, praneškite jam.",
   "automation.reverse.confirm": "Atšaukti sprendimą",
   "automation.flow.heading": "Shopify Flow integracija",
   "automation.flow.body": "Naudokite šiuos Tradepass paleidiklius ir veiksmus Shopify Flow, kad sukurtumėte savo darbo eigas, pavyzdžiui, žymėtumėte pirkėjus ar siųstumėte Slack žinutę.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Pažymos galiojimas baigėsi",
   "automation.flow.action.approve": "Patvirtinti didmeninės prekybos paraišką į lygį",
   "automation.flow.welcomeNote": "Tradepass jau gali išsiųsti Shopify B2B prieigos laišką patvirtindama pirkėją, todėl papildomos darbo eigos tam nereikia.",
-  "automation.flow.open": "Atidaryti Shopify Flow"
+  "automation.flow.open": "Atidaryti Shopify Flow",
+  "automation.flow.alerts": "Norite gauti el. laišką, kai kas nors pateikia paraišką? „Shopify Flow“ naudokite paleidiklį „Wholesale application submitted“ su „Flow“ veiksmu „Send internal email“. Šis veiksmas siunčia tik nuolatiniais darbuotojų adresais, kuriuos įvedate darbo eigoje."
 }

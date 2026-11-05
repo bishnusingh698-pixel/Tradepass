@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Ajouter une note",
   "applications.detail.saveNote": "Enregistrer",
   "applications.detail.toast.reject": "Demande refusée",
-  "applications.detail.toast.needs_info": "Demande envoyée au demandeur",
+  "applications.detail.toast.needs_info": "Demande enregistrée. Envoyez au demandeur le message avec le lien sécurisé.",
   "applications.detail.toast.note": "Note enregistrée",
   "applications.detail.toast.assign": "Attribution enregistrée",
   "applications.needsInfo.heading": "Demander plus d’informations",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Champs modifiables",
   "applications.needsInfo.fieldsHelp": "Le demandeur reçoit un lien privé valable 14 jours, qui lui permet de modifier uniquement ces champs.",
   "applications.needsInfo.fieldsRequired": "Choisissez au moins un champ.",
-  "applications.needsInfo.send": "Envoyer la demande",
+  "applications.needsInfo.send": "Créer la demande",
   "applications.reject.heading": "Refuser {company} ?",
   "applications.reject.template": "Modèle de motif",
   "applications.reject.templateNone": "Aucun modèle",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Merci de votre intérêt. Nous n’avons pas pu vérifier les informations de votre demande et ne pouvons donc pas l’approuver pour le moment. N’hésitez pas à présenter une nouvelle demande.",
   "applications.reject.template.region": "Merci de votre intérêt. Nous ne proposons pas encore la vente en gros dans votre région.",
   "applications.reject.reason": "Motif (facultatif)",
-  "applications.reject.reasonHelp": "Si vous envoyez un e-mail, le demandeur verra ce motif.",
-  "applications.reject.email": "Prévenir le demandeur par e-mail",
+  "applications.reject.reasonHelp": "Enregistré avec la demande et repris dans le message que vous pouvez envoyer au demandeur.",
   "applications.reject.consequence": "La demande passe dans Refusées. Rien n’est créé dans Shopify, et vous la retrouverez toujours dans l’onglet Refusées.",
   "applications.reject.confirm": "Refuser la demande",
   "applications.activity.application.submit": "Demande envoyée",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Note ajoutée",
   "applications.activity.application.assign": "Attribution modifiée",
   "applications.taxCheck.skipped": "Non vérifié avec votre forfait",
-  "applications.detail.taxCheckPlan": "Les numéros fiscaux sont vérifiés auprès des registres officiels à partir du forfait {plan}. Vérifiez celui-ci manuellement, ou passez à un forfait supérieur pour vérifier automatiquement les nouvelles demandes."
+  "applications.detail.taxCheckPlan": "Les numéros fiscaux sont vérifiés auprès des registres officiels à partir du forfait {plan}. Vérifiez celui-ci manuellement, ou passez à un forfait supérieur pour vérifier automatiquement les nouvelles demandes.",
+  "applications.detail.copyMessage": "Message pour le demandeur"
 }

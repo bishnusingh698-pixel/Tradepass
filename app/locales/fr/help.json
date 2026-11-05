@@ -53,15 +53,13 @@
   "help.faq.import.q": "Puis-je importer mes clients professionnels existants ?",
   "help.faq.import.a": "Oui, avec le forfait Pro. Téléversez un fichier CSV ou convertissez les clients qui ont déjà une balise comme « wholesale ».",
   "help.faq.languages.q": "Quelles langues sont prises en charge ?",
-  "help.faq.languages.a": "36 langues. Le formulaire, les messages de la boutique et les e-mails s’affichent dans la langue de chaque visiteur, et vous pouvez modifier n’importe quel texte dans Paramètres → Langues.",
-  "help.faq.emails.q": "Combien d’e-mails Tradepass envoie-t-il ?",
-  "help.faq.emails.a": "Jusqu’à 25 e-mails par boutique et par jour. Les e-mails en surplus sont envoyés le lendemain, et l’accueil vous en informe. Vous pouvez désactiver nos e-mails et utiliser Shopify Flow à la place.",
+  "help.faq.languages.a": "36 langues. Le formulaire, les messages de la boutique et les messages que vous envoyez aux demandeurs s’affichent dans la langue de chacun, et vous pouvez modifier chaque texte dans Paramètres → Langues.",
   "help.faq.approvalLimit.q": "Que se passe-t-il quand j’atteins 10 approbations avec le forfait gratuit ?",
   "help.faq.approvalLimit.a": "Les nouvelles demandes sont toujours enregistrées : vous ne perdez donc aucun prospect. Pour en approuver davantage ce mois-là, choisissez un forfait payant.",
   "help.faq.markets.q": "L’accueil indique que les marchés B2B ne sont pas activés. Que faire ?",
   "help.faq.markets.a": "Avec les forfaits inférieurs à Plus, les prix par niveau nécessitent les nouveaux marchés Shopify. Activez-les dans Shopify sous Paramètres → Marchés, puis cliquez sur « Vérifier à nouveau » dans l’accueil.",
   "help.faq.privacy.q": "Comment les données des demandeurs sont-elles protégées ?",
-  "help.faq.privacy.a": "Les numéros fiscaux sont chiffrés, les liens des e-mails expirent et ne fonctionnent qu’une fois, et les demandes refusées sont supprimées après la durée choisie dans les paramètres.",
+  "help.faq.privacy.a": "Les numéros fiscaux sont chiffrés, les liens sécurisés expirent et ne fonctionnent qu’une fois, et les demandes refusées sont supprimées après la durée choisie dans Paramètres.",
   "help.faq.slowFirstLoad.q": "Pourquoi l’application est-elle parfois lente à s’ouvrir ?",
   "help.faq.slowFirstLoad.a": "Après une période d’inactivité, l’application peut mettre jusqu’à une minute à démarrer. Votre boutique en ligne n’est jamais affectée : le masquage des prix et le formulaire continuent de fonctionner.",
   "help.diagnostics.heading": "Informations de diagnostic",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Désactiver le mode débogage",
   "help.contact.heading": "Contacter l’assistance",
   "help.contact.body": "Nous répondons généralement sous 2 jours ouvrés.",
-  "help.contact.priority": "Vous avez le forfait Pro : vos e-mails sont traités en priorité, généralement sous 1 jour ouvré."
+  "help.contact.priority": "Vous avez le forfait Pro : vos e-mails sont traités en priorité, généralement sous 1 jour ouvré.",
+  "help.faq.alerts.q": "Comment être averti des nouvelles demandes ?",
+  "help.faq.alerts.a": "Tradepass n’envoie pas d’e-mails. Les nouvelles demandes et réponses vous attendent sur l’accueil et dans Demandes. Pour recevoir une alerte par e-mail, créez un workflow dans Shopify Flow (Tradepass Pro) avec le déclencheur « Wholesale application submitted » et l’action Flow « Send internal email ». Cette action n’écrit qu’aux adresses fixes de votre équipe que vous saisissez dans le workflow."
 }

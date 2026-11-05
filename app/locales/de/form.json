@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Wird neben dem Einwilligungs-Kontrollkästchen angezeigt. Verwenden Sie eine vollständige Adresse oder einen Shop-Pfad wie /policies/privacy-policy.",
   "form.success.heading": "Nach dem Absenden",
   "form.success.message": "Dankesnachricht",
-  "form.success.messageHelp": "Antragsteller sehen außerdem, dass eine Bestätigungs-E-Mail unterwegs ist.",
+  "form.success.messageHelp": "Wird Antragstellern angezeigt, nachdem sie das Formular gesendet haben.",
   "form.success.redirect": "Auf eine Seite weiterleiten (optional)",
   "form.success.redirectHelp": "Leiten Sie Antragsteller nach der Dankesnachricht auf eine andere Seite weiter, zum Beispiel /pages/thank-you.",
   "form.spam.heading": "Spamschutz",

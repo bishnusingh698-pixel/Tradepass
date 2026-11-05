@@ -42,7 +42,7 @@
   "tiers.editor.name": "Tên cấp giá",
   "tiers.editor.nameHelp": "Chỉ bạn thấy tên này, ví dụ Nhà bán lẻ hoặc Nhà phân phối.",
   "tiers.editor.buyerNames": "Tên người mua nhìn thấy",
-  "tiers.editor.buyerNamesHelp": "Không bắt buộc. Hiển thị cho người mua trong email và trên cửa hàng, theo từng ngôn ngữ. Để trống sẽ dùng tên cấp giá.",
+  "tiers.editor.buyerNamesHelp": "Không bắt buộc. Hiển thị cho người mua trên cửa hàng, theo từng ngôn ngữ. Để trống sẽ dùng tên cấp.",
   "tiers.editor.buyerNameFor": "Tên bằng {language}",
   "tiers.editor.pricing": "Cách đặt giá",
   "tiers.editor.pricing.percent": "Giảm theo phần trăm so với giá lẻ",

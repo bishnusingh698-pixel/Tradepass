@@ -53,15 +53,13 @@
   "help.faq.import.q": "我可以导入现有的批发客户吗？",
   "help.faq.import.a": "可以，需使用 Pro 套餐。上传 CSV 文件，或转换已带有“wholesale”等标签的客户。",
   "help.faq.languages.q": "支持哪些语言？",
-  "help.faq.languages.a": "支持 36 种语言。表单、店面消息和电子邮件会以每位访客的语言显示，您可以在“设置 → 语言”中更改任何文本。",
-  "help.faq.emails.q": "Tradepass 会发送多少封电子邮件？",
-  "help.faq.emails.a": "每个商店每天最多 25 封。超出的邮件将于次日发送，发生这种情况时“主页”会提示您。您也可以关闭我们的邮件，改用 Shopify Flow。",
+  "help.faq.languages.a": "支持 36 种语言。表单、店铺消息和您发给申请人的消息都会以各自的语言显示，所有文本都可以在“设置 → 语言”中修改。",
   "help.faq.approvalLimit.q": "在免费套餐上达到 10 次批准后会怎样？",
   "help.faq.approvalLimit.a": "新申请仍会照常收集，因此您不会错过任何潜在客户。如需在当月批准更多申请，请选择付费套餐。",
   "help.faq.markets.q": "“主页”显示 B2B 市场未开启，该怎么办？",
   "help.faq.markets.a": "在低于 Plus 的套餐上，等级价格需要 Shopify 新版“市场”功能。请在 Shopify 的“设置 → 市场”中开启，然后在“主页”点击“重新检查”。",
   "help.faq.privacy.q": "申请人数据如何受到保护？",
-  "help.faq.privacy.a": "税号经过加密，邮件中的链接会失效且仅可使用一次，已拒绝的申请会在您于“设置”中选择的期限后删除。",
+  "help.faq.privacy.a": "税号经过加密，安全链接会过期且仅可使用一次，被拒绝的申请会在您于“设置”中选择的期限后删除。",
   "help.faq.slowFirstLoad.q": "为什么应用有时打开很慢？",
   "help.faq.slowFirstLoad.a": "闲置一段时间后，应用可能需要最多一分钟才能唤醒。您的店面不会受到影响：隐藏价格和表单会继续正常运行。",
   "help.diagnostics.heading": "诊断信息",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "关闭调试模式",
   "help.contact.heading": "联系支持团队",
   "help.contact.body": "我们通常会在 2 个工作日内回复。",
-  "help.contact.priority": "您使用的是 Pro 套餐，因此您的邮件会被优先处理，通常在 1 个工作日内回复。"
+  "help.contact.priority": "您使用的是 Pro 套餐，因此您的邮件会被优先处理，通常在 1 个工作日内回复。",
+  "help.faq.alerts.q": "如何得知有新申请？",
+  "help.faq.alerts.a": "Tradepass 不发送电子邮件。新申请和回复会显示在首页和“申请”中。如需邮件提醒，请在 Shopify Flow（Tradepass Pro）中创建一个工作流，使用触发器“Wholesale application submitted”和 Flow 操作“Send internal email”。该操作只会发送到您在工作流中填写的固定员工地址。"
 }

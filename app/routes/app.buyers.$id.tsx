@@ -5,7 +5,6 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
 import { buyerDetail, moveBuyers, pauseBuyers, resumeBuyers, shopifyInfo, summarizeCertificates } from "../lib/buyers.server";
-import { requestRenewalForBuyers } from "../lib/certificates.server";
 import { adminUrl } from "../lib/tiers.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
@@ -34,7 +33,6 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     })),
     history: d.history.map((a) => ({ id: a.id, at: a.createdAt.toISOString(), action: a.action, actor: a.actor, result: a.result, detail: a.detail as Record<string, unknown> | null })),
     activity: d.activity.map((a) => ({ id: a.id, at: a.createdAt.toISOString(), action: a.action, actor: a.actor, result: a.result })),
-    renewals: d.renewals.map((a) => ({ id: a.id, at: a.createdAt.toISOString(), result: a.result })),
     applicationId: d.applicationId,
   };
 };
@@ -46,10 +44,6 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const tctx = { admin: ctx.admin, shop: ctx.shop, actor: ctx.actor };
   const id = params.id!;
   try {
-    if (intent === "renewal") {
-      const n = await requestRenewalForBuyers(ctx.shop, [id]);
-      return { ok: true, message: ctx.t("buyers.bulk.renewalSent", { count: n }) };
-    }
     const s =
       intent === "move" ? await moveBuyers(tctx, [id], String(form.get("tierId") ?? "") || null)
       : intent === "pause" ? await pauseBuyers(tctx, [id])
@@ -100,7 +94,6 @@ export default function BuyerDetail() {
       <s-link slot="breadcrumb-actions" href={href("/app/buyers")}>{t("nav.wholesaleBuyers")}</s-link>
       <s-button slot="primary-action" variant="primary" commandFor="change-tier" command="--show">{t("buyers.detail.changeTier")}</s-button>
       <s-button slot="secondary-actions" href={d.buyer.companyUrl} target="_top">{t("buyers.detail.openInShopify")}</s-button>
-      <s-button slot="secondary-actions" onClick={() => post({ intent: "renewal" })}>{t("buyers.bulk.renewal")}</s-button>
       {paused ? (
         <s-button slot="secondary-actions" onClick={() => post({ intent: "resume" })}>{t("buyers.detail.resume")}</s-button>
       ) : (
@@ -184,9 +177,6 @@ export default function BuyerDetail() {
               ))}
             </s-table-body>
           </s-table>
-        )}
-        {d.renewals.length > 0 && (
-          <s-paragraph>{t("buyers.detail.renewalsSent", { count: d.renewals.length, date: dateTime(d.renewals[0].at) })}</s-paragraph>
         )}
       </s-section>
 

@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Wordt naast het selectievakje voor toestemming getoond. Gebruik een volledig adres of een winkelpad zoals /policies/privacy-policy.",
   "form.success.heading": "Na het versturen",
   "form.success.message": "Bedankbericht",
-  "form.success.messageHelp": "Aanvragers zien ook dat er een bevestigingsmail onderweg is.",
+  "form.success.messageHelp": "Wordt aan aanvragers getoond nadat ze het formulier hebben verzonden.",
   "form.success.redirect": "Doorsturen naar een pagina (optioneel)",
   "form.success.redirectHelp": "Stuur aanvragers na het bedankbericht naar een andere pagina, bijvoorbeeld /pages/thank-you.",
   "form.spam.heading": "Bescherming tegen spam",

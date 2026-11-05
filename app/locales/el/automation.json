@@ -48,9 +48,8 @@
   "automation.action.terms": "Όροι πληρωμής",
   "automation.action.tierTerms": "Χρήση των όρων πληρωμής του επιπέδου",
   "automation.action.sendWelcome": "Αποστολή του email πρόσβασης B2B του Shopify στον αγοραστή",
-  "automation.action.emailApplicant": "Ενημέρωση του αιτούντος με email ότι δεν εγκρίθηκε",
   "automation.action.reason": "Αιτία (προαιρετικό)",
-  "automation.action.reasonHelp": "Εμφανίζεται στο email στη γλώσσα που τη γράφετε.",
+  "automation.action.reasonHelp": "Αποθηκεύεται με την αίτηση και περιλαμβάνεται στο μήνυμα που μπορείτε να αντιγράψετε από εκεί.",
   "automation.error.summary": "{count, plural, one {Διορθώστε # πρόβλημα πριν την αποθήκευση.} other {Διορθώστε # προβλήματα πριν την αποθήκευση.}}",
   "automation.error.conditions_required": "Προσθέστε τουλάχιστον μία συνθήκη.",
   "automation.error.values_required": "Εισαγάγετε τουλάχιστον μία τιμή.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Δεν ήταν δυνατή η αναίρεση της απόφασης. Ελέγξτε το αρχείο δραστηριότητας και δοκιμάστε ξανά.",
   "automation.reverse.heading": "Αναίρεση της απόφασης για {company};",
   "automation.reverse.approvedBody": "Η {company} θα τεθεί σε παύση: η εταιρεία παραμένει στο Shopify, αλλά βγαίνει από το επίπεδό της και βλέπει τιμές λιανικής. Μπορείτε να την επαναφέρετε από τους Αγοραστές.",
-  "automation.reverse.rejectedBody": "Η {company} επιστρέφει στο Αναμένει εξέταση. Αν στάλθηκε email απόρριψης, δεν μπορεί να ανακληθεί.",
+  "automation.reverse.rejectedBody": "Η {company} επιστρέφει σε «Αναμένει έλεγχο». Αν έχετε ήδη ενημερώσει τον αιτούντα, ενημερώστε τον.",
   "automation.reverse.confirm": "Αναίρεση απόφασης",
   "automation.flow.heading": "Ενσωμάτωση Shopify Flow",
   "automation.flow.body": "Χρησιμοποιήστε αυτά τα εναύσματα και τις ενέργειες του Tradepass στο Shopify Flow για να δημιουργήσετε δικές σας ροές εργασιών, όπως προσθήκη ετικετών σε αγοραστές ή αποστολή μηνύματος στο Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Πιστοποιητικό έληξε",
   "automation.flow.action.approve": "Έγκριση αίτησης χονδρικής σε επίπεδο",
   "automation.flow.welcomeNote": "Το Tradepass μπορεί ήδη να στέλνει το email πρόσβασης B2B του Shopify όταν εγκρίνει αγοραστή, οπότε δεν χρειάζεται επιπλέον ροή εργασιών για αυτό.",
-  "automation.flow.open": "Άνοιγμα Shopify Flow"
+  "automation.flow.open": "Άνοιγμα Shopify Flow",
+  "automation.flow.alerts": "Θέλετε email όταν κάποιος κάνει αίτηση; Στο Shopify Flow, χρησιμοποιήστε το έναυσμα «Wholesale application submitted» με την ενέργεια του Flow «Send internal email». Αυτή η ενέργεια στέλνει μόνο σε σταθερές διευθύνσεις προσωπικού που ορίζετε στη ροή εργασιών."
 }

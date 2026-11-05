@@ -3,7 +3,7 @@ import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "re
 import { useFetcher, useLoaderData } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { adminContext } from "../lib/context.server";
-import { applyDowngrade, downgradeImpact, isTestBilling, remainingTrialDays, syncBilling } from "../lib/billing.server";
+import { applyDowngrade, downgradeImpact, isTestBilling, needsWholesaleConfirm, remainingTrialDays, syncBilling } from "../lib/billing.server";
 import { BILLING_NAMES, effectivePlan, FEATURES, PLANS, type Feature, type PlanId } from "../lib/plans";
 import { approvalsThisMonth } from "../lib/applications.server";
 import { logActivity } from "../lib/activity.server";
@@ -44,21 +44,25 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (isDevStore) return { ok: false, error: "dev_store" };
   const isTest = isTestBilling(isDevStore);
 
+  const confirmWholesaleOff = form.get("confirmWholesaleOff") === "on";
+  // Ask before anything happens; nothing is switched off until Shopify confirms the lower plan.
+  if (rank(target) < rank(ctx.plan) && needsWholesaleConfirm(ctx.settings.storefront.accessMode, target) && !confirmWholesaleOff) {
+    return { ok: false, error: "confirm_wholesale" };
+  }
+
   if (target === "free") {
-    const res = await applyDowngrade(ctx, "free", form.get("confirmWholesaleOff") === "on");
-    if (!res.ok) return { ok: false, error: res.reason };
     if (ctx.shopRow?.subscriptionGid) {
       await ctx.billing.cancel({ subscriptionId: ctx.shopRow.subscriptionGid, isTest, prorate: true });
     }
+    // The subscription is gone in Shopify now; apply the Free plan's limits.
+    await applyDowngrade(ctx, "free", confirmWholesaleOff);
     await syncBilling(ctx);
     await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "billing.change", subject: null, detail: { to: "free" } });
     return { ok: true };
   }
 
-  if (rank(target) < rank(ctx.plan)) {
-    const res = await applyDowngrade(ctx, target, form.get("confirmWholesaleOff") === "on");
-    if (!res.ok) return { ok: false, error: res.reason };
-  }
+  // Upgrade or a lower paid plan: Shopify's approval page decides. Limits of a lower plan are
+  // applied when we see the confirmed subscription (syncBilling on return, or the webhook).
   await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "billing.request", subject: null, detail: { to: target } });
   const handle = ctx.shop.replace(".myshopify.com", "");
   // billing.request throws a redirect to Shopify's approval page.

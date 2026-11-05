@@ -42,7 +42,7 @@
   "tiers.editor.name": "Tier name",
   "tiers.editor.nameHelp": "Only you see this name, for example Retailer or Distributor.",
   "tiers.editor.buyerNames": "Name buyers see",
-  "tiers.editor.buyerNamesHelp": "Optional. Shown to buyers in emails and on your store, per language. Empty uses the tier name.",
+  "tiers.editor.buyerNamesHelp": "Optional. Shown to buyers on your store, per language. Empty uses the tier name.",
   "tiers.editor.buyerNameFor": "Name in {language}",
   "tiers.editor.pricing": "How prices are set",
   "tiers.editor.pricing.percent": "Percentage off retail price",

@@ -105,8 +105,13 @@ const coreDaily: Task[] = [
         if (!old.length) continue;
         const ids = old.map((a) => a.id);
         if (retention?.deleteFiles ?? true) {
-          const files = await db.applicationFile.findMany({ where: { shop: s.shop, applicationId: { in: ids } }, select: { fileGid: true } });
-          await deleteShopifyFiles(s.shop, files.map((f) => f.fileGid));
+          // Application documents and the certificate files of these applications (a renewal upload
+          // is only on the certificate), but never a certificate that now belongs to a buyer.
+          const [files, certs] = await Promise.all([
+            db.applicationFile.findMany({ where: { shop: s.shop, applicationId: { in: ids } }, select: { fileGid: true } }),
+            db.certificate.findMany({ where: { shop: s.shop, applicationId: { in: ids }, buyerId: null, fileGid: { not: null } }, select: { fileGid: true } }),
+          ]);
+          await deleteShopifyFiles(s.shop, [...new Set([...files.map((f) => f.fileGid), ...certs.map((c) => c.fileGid!)])]);
         }
         await db.$transaction([
           db.applicationFile.deleteMany({ where: { shop: s.shop, applicationId: { in: ids } } }),
@@ -124,13 +129,8 @@ const coreDaily: Task[] = [
     run: async () =>
       (await db.activityLog.deleteMany({ where: { createdAt: { lt: new Date(Date.now() - 730 * DAY) } } })).count,
   },
-  {
-    name: "prune-email-log",
-    run: async () =>
-      (await db.emailLog.deleteMany({ where: { status: { not: "queued" }, createdAt: { lt: new Date(Date.now() - 90 * DAY) } } })).count,
-  },
 ];
 
-// Area tasks first (they may queue emails), core housekeeping last.
+// Area tasks first, core housekeeping last.
 export const hourlyTasks: Task[] = [...areaHourly, ...coreHourly];
 export const dailyTasks: Task[] = [...areaDaily, ...coreDaily];

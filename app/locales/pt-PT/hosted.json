@@ -6,7 +6,7 @@
   "hosted.update.doneHeading": "Obrigado, a sua candidatura foi atualizada",
   "hosted.update.doneBody": "A {store} vai analisá-la e responderá por e-mail.",
   "hosted.link.invalidTitle": "Esta ligação não é válida",
-  "hosted.link.invalidBody": "Verifique se abriu a ligação completa do e-mail ou contacte a {store}.",
+  "hosted.link.invalidBody": "Verifique se abriu a ligação completa ou contacte {store}.",
   "hosted.link.expiredTitle": "Esta ligação expirou",
   "hosted.link.expiredBody": "Por motivos de segurança, as ligações de atualização só funcionam durante um período limitado. Contacte a {store} e peça uma nova ligação.",
   "hosted.link.usedTitle": "Esta ligação já foi utilizada",

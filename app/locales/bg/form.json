@@ -130,7 +130,7 @@
   "form.consent.privacyUrlHelp": "Показва се до квадратчето за съгласие. Използвайте пълен адрес или път в магазина, например /policies/privacy-policy.",
   "form.success.heading": "След изпращане",
   "form.success.message": "Благодарствено съобщение",
-  "form.success.messageHelp": "Кандидатите виждат и че потвърдителен имейл е на път.",
+  "form.success.messageHelp": "Показва се на кандидатите, след като изпратят формуляра.",
   "form.success.redirect": "Пренасочване към страница (по избор)",
   "form.success.redirectHelp": "Изпратете кандидатите на друга страница след благодарственото съобщение, например /pages/thank-you.",
   "form.spam.heading": "Защита от спам",

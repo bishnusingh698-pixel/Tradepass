@@ -28,7 +28,7 @@ Each test says **[A]** (non-Plus store) or **[A + B]** (also re-run on the Plus 
 ## Test 1. Fresh install, welcome and Home [A + B]
 - [ ] 1.1 Partner Dashboard → **Apps** → **Tradepass** → **Test your app** → choose the store → **Install**.
 - [ ] 1.2 The app opens inside Shopify admin with the welcome question "Who do you sell wholesale to?". Choose **Salons & professionals**. (Skip also works; you can reopen it from **Help**.)
-- [ ] 1.3 The left menu shows: Home, Applications, Buyers, Tiers, Form, Storefront, Certificates, Notifications, Automation, Import, Settings, Help. Click each one: every page opens, none is blank.
+- [ ] 1.3 The left menu shows: Home, Applications, Wholesale buyers, Tiers, Application form, Storefront access, Automation, Settings, Help (Certificates and Import are tabs under Wholesale buyers). Click each one: every page opens, none is blank. There is no Notifications page.
 - [ ] 1.4 Home → **Plan and readiness** shows your plan, "B2B is available on your plan" (green), whether B2B markets are on, and "0 of 3 B2B catalogs used". On store B (Plus) it says catalogs are assigned directly and there's no 3-catalog limit.
 - [ ] 1.5 Click **Check again**: the card reloads without errors.
 - [ ] 1.6 The **Setup checklist** shows six steps. As you do tests 3, 4 and 13, come back and check each step turns green: tier created, form reviewed (save the Form page once), embed on, form block on a page, storefront mode chosen (save the Storefront page once), test application received.
@@ -91,18 +91,18 @@ Each test says **[A]** (non-Plus store) or **[A + B]** (also re-run on the Plus 
 - [ ] 10.3 Submit with a VAT number when VIES is down (ask the agent to simulate it): the application shows "Couldn't check" and is still saved.
 
 ## Test 11. Ask for more info [A]
-- [ ] 11.1 On a pending application click **Needs info**, tick "Phone", write a message, send.
-- [ ] 11.2 The applicant email has a link. Open it: only the phone field shows. Submit: "Thank you, your application has been updated". The application is back in Pending with the new phone.
+- [ ] 11.1 On a pending application click **Ask for more information**, tick "Phone", write a message, **Create request**. A "Message for …" window opens with the message in the applicant's language (submit one application in French to check), your message and a secure link.
+- [ ] 11.1b **Copy message** → "Message copied"; paste it into an email to the applicant. **Open in email** opens your email app with the address, subject and message filled in. No email was sent by Tradepass.
+- [ ] 11.2 Open the link from your email: only the phone field shows. Submit: "Thank you, your application has been updated". The application is back in Pending with the new phone.
 - [ ] 11.3 Open the link again: "This link has already been used".
 - [ ] 11.4 Ask the agent for an expired link (older than 14 days): it shows a friendly "expired" message.
 
-## Test 12. Reject, emails and caps [A]
-- [ ] 12.1 **Reject** an application with a reason and "Email the applicant" on: the email arrives with the reason.
-- [ ] 12.2 **Notifications**: the quota line reads "N of 25 emails used today". Turn "Not approved" off → Save (save bar → **Save** → "Saved"). Reject another: no email arrives.
-- [ ] 12.3 Switch the language to French, change the "Application received" subject: the preview updates. **Send test to me**: the subject starts with "Test:", there's a plain-text part, and replying goes to the store email. Switch to Arabic: the preview and test email are right-to-left.
-- [ ] 12.4 Type `{nope}` in a subject and Save: a red error next to the field and a summary banner. Click **Use built-in text** and Save.
-- [ ] 12.5 Set alerts to "Email me for each new application" and submit: the alert arrives.
-- [ ] 12.6 Ask the agent to fill today's quota (25 rows). Trigger another email: Notifications says "1 email is waiting for tomorrow", and it goes out the next day.
+## Test 12. Reject, the "not approved" message, and no other email [A]
+- [ ] 12.1 **Reject** an application with a reason: there is no "Email the applicant" box. After rejecting, a "Message for …" window shows the not-approved message in the applicant's language with your reason; **Copy message** and **Open in email** work.
+- [ ] 12.2 Reopen the rejected application later: a **Message for the applicant** button shows the same message again.
+- [ ] 12.3 Submit an application and check the applicant's inbox: nothing arrives from Tradepass (the thank-you screen says nothing about an email). Approve with "Send welcome email" on: the only email is Shopify's B2B welcome email.
+- [ ] 12.4 Settings → Languages → **Change texts** → "Messages to applicants and buyers": change the French not-approved subject, Save; reject a French application: the message uses your subject.
+- [ ] 12.5 Alerts through Flow (Pro): in Shopify Flow create a workflow with the trigger "Wholesale application submitted" and the action "Send internal email" to your own address. Submit: Flow's email arrives. Help → "How do I hear about new applications?" explains the same.
 
 ## Test 13. Hide prices (access mode 2) on four themes [A + B]
 Repeat on **Dawn**, **Horizon** and two other free themes (e.g. Sense, Craft). Online Store → Themes → add theme → **Publish** each in turn.
@@ -130,8 +130,8 @@ Repeat on **Dawn**, **Horizon** and two other free themes (e.g. Sense, Craft). O
 - [ ] 15.2 Open a buyer → **Pause access** → **Pause**: the buyer sees retail prices (or is blocked in wholesale-only mode). **Resume access** restores the tier. Tier history lists both.
 
 ## Test 16. Certificates and renewals [A]
-- [ ] 16.1 **Certificates**: give a certificate an expiry date 30 days from today. Ask the agent to run the daily job (`POST /jobs/daily`). The buyer gets a renewal email with an upload link. Run it again: no second email.
-- [ ] 16.2 Open the link, upload a PDF: "Thank you". The certificate shows "Waiting for review". Open the link again: "This link was already used".
+- [ ] 16.1 **Certificates**: give a certificate an expiry date 30 days from today. Ask the agent to run the daily job (`POST /jobs/daily`): it shows Expiring soon, and (Pro) Flow's "Certificate expiring" trigger runs once; run it again: nothing new. No email is sent. **Manage** → **Copy renewal link**: a message in the buyer's language with a single-use upload link; copy it or open it in your email app.
+- [ ] 16.2 Open the link, upload a PDF: "Thank you". The certificate shows "Waiting for review". Open the link again: "This link was already used". Copy a renewal link twice: the first one no longer works.
 - [ ] 16.3 Set the expiry to yesterday and run the daily job: status Expired with "Decide about the tax exemption". **Manage** → **Remove tax exemption** → confirm, and check the location's tax settings in Shopify.
 - [ ] 16.4 A certificate without an expiry date is flagged "No expiry date".
 
@@ -164,7 +164,7 @@ Repeat on **Dawn**, **Horizon** and two other free themes (e.g. Sense, Craft). O
 
 ## Test 21. All 36 languages [A]
 - [ ] 21.1 Switch the admin language to a few languages (Deutsch, 日本語, العربية, עברית, اردو): no English leftovers in the app; Arabic, Hebrew and Urdu are right-to-left.
-- [ ] 21.2 Publish a few store languages (Online Store → Settings → Languages): the form, price-hiding messages, checkout-lock message, more-info page and emails appear in that language.
+- [ ] 21.2 Publish a few store languages (Online Store → Settings → Languages): the form, price-hiding messages, checkout-lock message, more-info page and the copyable messages appear in that language.
 - [ ] 21.3 Ask the agent to confirm `npx vitest run` passes the translation checks and that TRANSLATION_REVIEW.md lists the strings for a native speaker.
 
 ## Test 22. Keyboard and screen reader [A + B]

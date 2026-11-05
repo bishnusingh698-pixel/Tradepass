@@ -1,7 +1,9 @@
 // Shop settings: one versioned JSON blob on Shop.settings. Always read through
 // `readSettings`, which fills defaults so older rows keep working after we add
 // fields. Bump SETTINGS_VERSION and add a migration step only when a field's
-// meaning changes (adding fields needs no migration).
+// meaning changes (adding fields needs no migration). Keys that are no longer
+// part of Settings (e.g. the old email `notifications` and `branding` blocks)
+// are dropped on read, so stored settings from older versions keep loading.
 
 export const SETTINGS_VERSION = 1;
 
@@ -10,8 +12,6 @@ export type ScopeType = "all" | "collections" | "products" | "tags";
 export type Audience = "retail" | "salon" | "restaurant" | "distributor" | "reseller" | "other";
 /** all = anyone; allow = only the listed countries; block = everyone except the listed countries. */
 export type CountryRule = { mode: "all" | "allow" | "block"; list: string[] };
-export type EmailType =
-  | "received" | "needs_info" | "approved" | "rejected" | "cert_expiring" | "cert_expired";
 
 /** Per-locale merchant text: { locale: { key: text } } */
 export type LocalizedTexts = Record<string, Record<string, string>>;
@@ -32,19 +32,13 @@ export type Settings = {
     hidePages: string[]; // handles of pages/collections hidden from non-B2B in wholesale-only mode
     exemptCustomerTags: string[]; // wholesale-only: customers with these tags may check out (e.g. staff draft orders)
   };
-  notifications: {
-    emails: Record<EmailType, { enabled: boolean }>;
-    useShopifyWelcome: boolean;
-    /** digest = daily summary; weekly = one summary on Mondays (UTC). Instant also gets the daily summary. */
-    merchant: { mode: "instant" | "digest" | "weekly" | "off"; email: string | null };
-  };
-  certificates: { expiringDays: number; autoRenewal: boolean; onExpiry: "ask" | "remove" };
+  /** expiringDays: when a certificate counts as "Expiring soon"; onExpiry: what happens to the tax exemption once it has expired. */
+  certificates: { expiringDays: number; onExpiry: "ask" | "remove" };
   automation: { paused: boolean; dailyLimit: number };
   /** auto = Tradepass moves locations between B2B markets; assisted = merchant does it from a checklist (Phase 0 fallback). */
   tiers: { assignment: "auto" | "assisted" };
   retention: { months: number; deleteFiles: boolean };
-  branding: { logoUrl: string | null; accentColor: string | null };
-  /** Merchant overrides for any built-in text, admin/emails/storefront: { locale: { key: text } } */
+  /** Merchant overrides for any built-in text, admin/messages/storefront: { locale: { key: text } } */
   texts: LocalizedTexts;
   /** formReviewed / storefrontReviewed turn the matching checklist steps green once the merchant saved that page. */
   onboarding: { checklistDismissed: boolean; dismissedAlerts: Record<string, string>; formReviewed: boolean; storefrontReviewed: boolean };
@@ -67,23 +61,10 @@ export function defaultSettings(): Settings {
       hidePages: [],
       exemptCustomerTags: [],
     },
-    notifications: {
-      emails: {
-        received: { enabled: true },
-        needs_info: { enabled: true },
-        approved: { enabled: true },
-        rejected: { enabled: true },
-        cert_expiring: { enabled: true },
-        cert_expired: { enabled: true },
-      },
-      useShopifyWelcome: true,
-      merchant: { mode: "digest", email: null },
-    },
-    certificates: { expiringDays: 30, autoRenewal: true, onExpiry: "ask" },
+    certificates: { expiringDays: 30, onExpiry: "ask" },
     automation: { paused: false, dailyLimit: 25 },
     tiers: { assignment: "auto" },
     retention: { months: 12, deleteFiles: true },
-    branding: { logoUrl: null, accentColor: null },
     texts: {},
     onboarding: { checklistDismissed: false, dismissedAlerts: {}, formReviewed: false, storefrontReviewed: false },
     debug: { storefrontUntil: null },

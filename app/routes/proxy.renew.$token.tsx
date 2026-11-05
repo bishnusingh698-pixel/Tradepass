@@ -5,9 +5,12 @@ import { sha256 } from "../lib/crypto.server";
 import { createT, type Translator } from "../lib/i18n";
 import { matchLocale } from "../lib/i18n/locales";
 import { readSettings } from "../lib/settings";
-import { escapeHtml, fontStack } from "../lib/email/render";
+import { escapeHtml, fontStack } from "../lib/html";
 import { applyRenewalUpload, checkRenewalToken, consumeRenewalToken, defaultAdminFor } from "../lib/certificates.server";
-import { ALLOWED_UPLOAD_TYPES, MAX_UPLOAD_BYTES, uploadToShopifyFiles } from "../lib/uploads.server";
+import { MAX_UPLOAD_BYTES, uploadToShopifyFiles, UploadError } from "../lib/uploads.server";
+import { clientIp, hit } from "../lib/spam.server";
+import { isRealDate } from "../lib/dates";
+import { deleteShopifyFiles } from "../lib/jobs.server";
 
 // Hosted certificate-renewal page, served through the app proxy at
 // https://{shop}/apps/tradepass/renew/{token}?lang=xx. Plain server-rendered
@@ -37,15 +40,8 @@ async function context(request: Request, token: string) {
 
 /** Per-IP hourly limit for this public endpoint (RateHit, pruned hourly). */
 async function rateLimited(request: Request, shop: string): Promise<boolean> {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  const key = `renew:${sha256(`${shop}|${ip}`).slice(0, 32)}`;
-  const window = new Date().toISOString().slice(0, 13);
-  const row = await db.rateHit.upsert({
-    where: { key_window: { key, window } },
-    create: { key, window, count: 1 },
-    update: { count: { increment: 1 } },
-  });
-  return row.count > RATE_LIMIT_PER_HOUR;
+  const key = `renew:${sha256(`${shop}|${clientIp(request)}`).slice(0, 32)}`;
+  return !(await hit(key, RATE_LIMIT_PER_HOUR)).allowed;
 }
 
 function html(c: { storeName: string; i18n: Translator }, page: Page, status = 200): Response {
@@ -139,24 +135,35 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const check = await checkRenewalToken(c.shop, c.token);
   if (!check.ok) return html(c, { kind: check.reason }, 410);
 
-  const form = await request.formData();
+  // The body is read into memory, so refuse oversized requests before reading them.
+  if (Number(request.headers.get("content-length") ?? 0) > MAX_UPLOAD_BYTES + 64 * 1024) return html(c, { kind: "form", error: "size" }, 400);
+  let form: FormData;
+  try {
+    form = await request.formData();
+  } catch {
+    return html(c, { kind: "form", error: "missing" }, 400);
+  }
   const file = form.get("file");
   const expiresOn = String(form.get("expiresOn") ?? "").trim();
   if (!(file instanceof File) || file.size === 0) return html(c, { kind: "form", error: "missing" }, 400);
   if (file.size > MAX_UPLOAD_BYTES) return html(c, { kind: "form", error: "size" }, 400);
-  if (!(ALLOWED_UPLOAD_TYPES as readonly string[]).includes(file.type)) return html(c, { kind: "form", error: "type" }, 400);
-  if (expiresOn && !/^\d{4}-\d{2}-\d{2}$/.test(expiresOn)) return html(c, { kind: "form", error: "date" }, 400);
+  if (expiresOn && !isRealDate(expiresOn)) return html(c, { kind: "form", error: "date" }, 400);
 
   let fileGid: string;
   try {
     const admin = await defaultAdminFor(c.shop);
+    // The type is decided by the file's content (uploadToShopifyFiles sniffs it); browsers often
+    // send an empty or generic type for PDFs, which is fine.
     ({ fileGid } = await uploadToShopifyFiles(admin, { filename: file.name, mimeType: file.type, bytes: new Uint8Array(await file.arrayBuffer()) }));
-  } catch {
-    // Type sniffing rejects files whose content doesn't match their extension, too.
+  } catch (e) {
+    if (e instanceof UploadError && e.code !== "upload_failed") return html(c, { kind: "form", error: e.code === "file_size" ? "size" : "type" }, 400);
     return html(c, { kind: "form", error: "upload" }, 400);
   }
-  // Single use: a second tab submitting at the same moment gets "already used".
-  if (!(await consumeRenewalToken(c.shop, check.tokenHash))) return html(c, { kind: "used" }, 410);
+  // Single use: a second tab submitting at the same moment gets "already used" (its upload is removed again).
+  if (!(await consumeRenewalToken(c.shop, check.tokenHash))) {
+    await deleteShopifyFiles(c.shop, [fileGid]).catch(() => undefined);
+    return html(c, { kind: "used" }, 410);
+  }
   await applyRenewalUpload(c.shop, check.certificateId, fileGid, expiresOn || null);
   return html(c, { kind: "done" });
 };

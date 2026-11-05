@@ -1,8 +1,9 @@
 import type { ActionFunctionArgs } from "react-router";
 import { authenticate } from "../shopify.server";
 import db from "../db.server";
-import { planForSubscriptionName } from "../lib/billing.server";
+import { enforcePlanLimits, planForSubscriptionName } from "../lib/billing.server";
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
+import { effectivePlan } from "../lib/plans";
 
 type Payload = { app_subscription?: { admin_graphql_api_id?: string; name?: string; status?: string } };
 
@@ -20,8 +21,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   } else if (row?.subscriptionGid === sub.admin_graphql_api_id) {
     await db.shop.updateMany({ where: { shop }, data: { billingPlan: "free", subscriptionGid: null } });
   }
-  // Plan-dependent storefront parts (the Free plan's "Powered by Tradepass" link) follow the new plan.
-  const after = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true } });
-  if (admin && after && after.billingPlan !== row?.billingPlan) await syncStorefrontConfig(admin, shop).catch(() => undefined);
+  // Plan-dependent storefront parts (the Free plan's "Powered by Tradepass" link) and plan limits
+  // follow the new plan. The push takes several Shopify calls, so it runs after the webhook has
+  // been answered (Shopify allows 5 seconds); a failed push is queued and retried hourly.
+  const after = await db.shop.findUnique({ where: { shop }, select: { billingPlan: true, isDevStore: true } });
+  if (after && after.billingPlan !== row?.billingPlan) {
+    await enforcePlanLimits(shop, effectivePlan(after.billingPlan, after.isDevStore));
+    if (admin) void syncStorefrontConfig(admin, shop).catch(() => undefined);
+  }
   return new Response();
 };

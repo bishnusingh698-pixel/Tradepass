@@ -42,7 +42,7 @@
   "tiers.editor.name": "Naam van niveau",
   "tiers.editor.nameHelp": "Alleen u ziet deze naam, bijvoorbeeld Detailhandelaar of Distributeur.",
   "tiers.editor.buyerNames": "Naam die kopers zien",
-  "tiers.editor.buyerNamesHelp": "Optioneel. Per taal getoond aan kopers in e-mails en in uw winkel. Leeg gebruikt de naam van het niveau.",
+  "tiers.editor.buyerNamesHelp": "Optioneel. Wordt per taal aan kopers in je winkel getoond. Leeg gebruikt de naam van het niveau.",
   "tiers.editor.buyerNameFor": "Naam in het {language}",
   "tiers.editor.pricing": "Hoe prijzen worden bepaald",
   "tiers.editor.pricing.percent": "Percentage korting op winkelprijs",

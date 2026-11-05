@@ -48,9 +48,8 @@
   "automation.action.terms": "شروط الدفع",
   "automation.action.tierTerms": "استخدام شروط الدفع الخاصة بالمستوى",
   "automation.action.sendWelcome": "إرسال رسالة الوصول إلى B2B من Shopify إلى المشتري",
-  "automation.action.emailApplicant": "إبلاغ مقدّم الطلب عبر البريد الإلكتروني بعدم الموافقة",
   "automation.action.reason": "السبب (اختياري)",
-  "automation.action.reasonHelp": "يظهر في الرسالة باللغة التي تكتبه بها.",
+  "automation.action.reasonHelp": "يُحفظ مع الطلب ويُضاف إلى الرسالة التي يمكنك نسخها منه.",
   "automation.error.summary": "{count, plural, zero {لا توجد مشكلات.} one {أصلح مشكلة واحدة قبل الحفظ.} two {أصلح مشكلتين قبل الحفظ.} few {أصلح # مشكلات قبل الحفظ.} many {أصلح # مشكلة قبل الحفظ.} other {أصلح # مشكلة قبل الحفظ.}}",
   "automation.error.conditions_required": "أضف شرطًا واحدًا على الأقل.",
   "automation.error.values_required": "أدخل قيمة واحدة على الأقل.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "تعذّر عكس هذا القرار. راجع سجل النشاط وحاول مرة أخرى.",
   "automation.reverse.heading": "هل تريد عكس القرار بشأن {company}؟",
   "automation.reverse.approvedBody": "سيتم إيقاف {company} مؤقتًا: تبقى الشركة في Shopify، لكنها تخرج من مستواها وترى أسعار التجزئة. يمكنك استئنافها من صفحة المشترين.",
-  "automation.reverse.rejectedBody": "سيعود {company} إلى «بانتظار المراجعة». إذا أُرسلت رسالة رفض، فلا يمكن استرجاعها.",
+  "automation.reverse.rejectedBody": "يعود {company} إلى «بانتظار المراجعة». إذا كنت قد أبلغت مقدّم الطلب بالفعل، فأعلمه بذلك.",
   "automation.reverse.confirm": "عكس القرار",
   "automation.flow.heading": "مسارات العمل في Shopify Flow",
   "automation.flow.body": "استخدم مشغّلات Tradepass وإجراءاته في Shopify Flow لإنشاء مسارات عمل خاصة بك، مثل إضافة وسوم إلى المشترين أو إرسال رسالة على Slack.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "انتهت صلاحية الشهادة",
   "automation.flow.action.approve": "الموافقة على طلب جملة إلى مستوى",
   "automation.flow.welcomeNote": "يستطيع Tradepass بالفعل إرسال رسالة الوصول إلى B2B من Shopify عند الموافقة على مشترٍ، لذا لا حاجة إلى سير عمل إضافي لذلك.",
-  "automation.flow.open": "فتح Shopify Flow"
+  "automation.flow.open": "فتح Shopify Flow",
+  "automation.flow.alerts": "هل تريد رسالة بريد إلكتروني عندما يتقدّم أحد بطلب؟ في Shopify Flow، استخدم المشغّل “Wholesale application submitted” مع إجراء Flow‏ “Send internal email”. يرسل هذا الإجراء فقط إلى عناوين ثابتة لفريق العمل تُدخلها في سير العمل."
 }

@@ -5,6 +5,7 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import db from "../db.server";
 import { adminContext } from "../lib/context.server";
+import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { gql } from "../lib/gql.server";
 import {
   catalogBudget, createBlockReason, createTier, deleteTier, listB2bCatalogs, paymentTermsOptions, readDefaults,
@@ -71,6 +72,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   try {
     if (intent === "delete") {
       await deleteTier(tctx, params.id!, { deleteShopifyObjects: form.get("deleteShopify") === "true" });
+      await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined); // buyer-facing tier names live in the storefront config
       return redirect(back);
     }
     if (intent === "save") {
@@ -79,9 +81,12 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
       if (Object.keys(fieldErrors).length) return { ok: false as const, fieldErrors, message: ctx.t("tiers.editor.fixErrors") };
       if (params.id === "new") {
         await createTier(tctx, ctx.plan, input);
+        await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
         return redirect(back);
       }
       await updateTier(tctx, params.id!, input);
+      // The storefront shows the tier's buyer-facing names; a failed push is retried hourly.
+      await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
       return { ok: true as const, message: ctx.t("common.saved") };
     }
   } catch (e) {

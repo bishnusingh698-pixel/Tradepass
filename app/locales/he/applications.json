@@ -127,7 +127,7 @@
   "applications.detail.addNote": "הוספת הערה",
   "applications.detail.saveNote": "שמירת ההערה",
   "applications.detail.toast.reject": "הבקשה נדחתה",
-  "applications.detail.toast.needs_info": "הבקשה נשלחה למגיש",
+  "applications.detail.toast.needs_info": "הבקשה נשמרה. יש לשלוח למגיש הבקשה את ההודעה עם הקישור המאובטח.",
   "applications.detail.toast.note": "ההערה נשמרה",
   "applications.detail.toast.assign": "השיוך נשמר",
   "applications.needsInfo.heading": "בקשת מידע נוסף",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "שדות שאפשר לשנות",
   "applications.needsInfo.fieldsHelp": "מגיש הבקשה מקבל קישור אישי שתקף ל-14 יום, ויכול לשנות רק את השדות האלה.",
   "applications.needsInfo.fieldsRequired": "יש לבחור לפחות שדה אחד.",
-  "applications.needsInfo.send": "שליחת הבקשה",
+  "applications.needsInfo.send": "יצירת בקשה",
   "applications.reject.heading": "לדחות את {company}?",
   "applications.reject.template": "תבנית סיבה",
   "applications.reject.templateNone": "בלי תבנית",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "תודה על ההתעניינות. לא הצלחנו לאמת את המידע בבקשה, ולכן לא נוכל לאשר אותה כרגע. אפשר להגיש בקשה חדשה.",
   "applications.reject.template.region": "תודה על ההתעניינות. עדיין איננו מציעים סיטונאות באזור שלכם.",
   "applications.reject.reason": "סיבה (לא חובה)",
-  "applications.reject.reasonHelp": "אם יישלח אימייל, מגיש הבקשה יראה את הסיבה הזו.",
-  "applications.reject.email": "שליחת אימייל למגיש הבקשה",
+  "applications.reject.reasonHelp": "נשמר עם הבקשה ונכלל בהודעה שאפשר לשלוח למגיש הבקשה.",
   "applications.reject.consequence": "הבקשה עוברת ל״נדחו״. שום דבר לא נוצר ב-Shopify, ועדיין אפשר למצוא אותה בכרטיסייה ״נדחו״.",
   "applications.reject.confirm": "דחיית הבקשה",
   "applications.activity.application.submit": "הבקשה הוגשה",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "נוספה הערה",
   "applications.activity.application.assign": "השיוך שונה",
   "applications.taxCheck.skipped": "לא נבדק בתוכנית שלך",
-  "applications.detail.taxCheckPlan": "מספרי מס נבדקים מול מרשמים רשמיים בתוכנית {plan} ומעלה. אפשר לבדוק את המספר הזה ידנית, או לשדרג כדי שבקשות חדשות ייבדקו אוטומטית."
+  "applications.detail.taxCheckPlan": "מספרי מס נבדקים מול מרשמים רשמיים בתוכנית {plan} ומעלה. אפשר לבדוק את המספר הזה ידנית, או לשדרג כדי שבקשות חדשות ייבדקו אוטומטית.",
+  "applications.detail.copyMessage": "הודעה למגיש הבקשה"
 }

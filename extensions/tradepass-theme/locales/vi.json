@@ -190,8 +190,7 @@
     },
     "success": {
       "heading": "Cảm ơn bạn, đơn đăng ký của bạn đã được gửi",
-      "body": "Chúng tôi sẽ xem xét và phản hồi bạn qua email.",
-      "email": "Chúng tôi đã gửi cho bạn email xác nhận."
+      "body": "Chúng tôi sẽ xem xét và phản hồi bạn qua email."
     }
   }
 }

@@ -127,7 +127,7 @@
   "applications.detail.addNote": "Aggiungi una nota",
   "applications.detail.saveNote": "Salva nota",
   "applications.detail.toast.reject": "Richiesta rifiutata",
-  "applications.detail.toast.needs_info": "Richiesta inviata al richiedente",
+  "applications.detail.toast.needs_info": "Richiesta salvata. Invia al richiedente il messaggio con il link sicuro.",
   "applications.detail.toast.note": "Nota salvata",
   "applications.detail.toast.assign": "Assegnazione salvata",
   "applications.needsInfo.heading": "Chieda altre informazioni",
@@ -144,7 +144,7 @@
   "applications.needsInfo.fields": "Campi modificabili",
   "applications.needsInfo.fieldsHelp": "Il richiedente riceve un link privato valido 14 giorni che consente di modificare solo questi campi.",
   "applications.needsInfo.fieldsRequired": "Scelga almeno un campo.",
-  "applications.needsInfo.send": "Invia richiesta",
+  "applications.needsInfo.send": "Crea richiesta",
   "applications.reject.heading": "Rifiutare {company}?",
   "applications.reject.template": "Modello di motivo",
   "applications.reject.templateNone": "Nessun modello",
@@ -155,8 +155,7 @@
   "applications.reject.template.incomplete": "Grazie per il suo interesse. Non siamo riusciti a verificare le informazioni della sua richiesta, quindi al momento non possiamo approvarla. Può presentare una nuova richiesta quando vuole.",
   "applications.reject.template.region": "Grazie per il suo interesse. Non offriamo ancora la vendita all’ingrosso nella sua zona.",
   "applications.reject.reason": "Motivo (facoltativo)",
-  "applications.reject.reasonHelp": "Se invia un’email, il richiedente vedrà questo motivo.",
-  "applications.reject.email": "Invia un’email al richiedente",
+  "applications.reject.reasonHelp": "Salvato con la richiesta e incluso nel messaggio che puoi inviare al richiedente.",
   "applications.reject.consequence": "La richiesta passa a Rifiutate. In Shopify non viene creato nulla e potrà ancora trovarla nella scheda Rifiutate.",
   "applications.reject.confirm": "Rifiuta richiesta",
   "applications.activity.application.submit": "Richiesta inviata",
@@ -167,5 +166,6 @@
   "applications.activity.application.note": "Nota aggiunta",
   "applications.activity.application.assign": "Assegnazione modificata",
   "applications.taxCheck.skipped": "Non verificato con il suo piano",
-  "applications.detail.taxCheckPlan": "I numeri fiscali vengono verificati nei registri ufficiali a partire dal piano {plan}. Verifichi questo numero manualmente oppure passi a un piano superiore per verificare automaticamente le nuove richieste."
+  "applications.detail.taxCheckPlan": "I numeri fiscali vengono verificati nei registri ufficiali a partire dal piano {plan}. Verifichi questo numero manualmente oppure passi a un piano superiore per verificare automaticamente le nuove richieste.",
+  "applications.detail.copyMessage": "Messaggio per il richiedente"
 }

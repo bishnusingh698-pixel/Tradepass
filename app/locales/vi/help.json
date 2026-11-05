@@ -53,15 +53,13 @@
   "help.faq.import.q": "Tôi có thể nhập khách hàng bán buôn hiện có không?",
   "help.faq.import.a": "Có, trên gói Pro. Tải lên tệp CSV, hoặc chuyển đổi khách hàng đã có thẻ như “wholesale”.",
   "help.faq.languages.q": "Những ngôn ngữ nào được hỗ trợ?",
-  "help.faq.languages.a": "36 ngôn ngữ. Biểu mẫu, thông báo trên cửa hàng và email hiển thị bằng ngôn ngữ của từng khách truy cập, và bạn có thể thay đổi mọi văn bản trong Cài đặt → Ngôn ngữ.",
-  "help.faq.emails.q": "Tradepass gửi bao nhiêu email?",
-  "help.faq.emails.a": "Tối đa 25 email mỗi cửa hàng mỗi ngày. Email vượt mức sẽ được gửi vào ngày hôm sau và Trang chủ sẽ báo cho bạn khi điều đó xảy ra. Bạn có thể tắt email của chúng tôi và dùng Shopify Flow thay thế.",
+  "help.faq.languages.a": "36 ngôn ngữ. Biểu mẫu, thông báo trên cửa hàng và tin nhắn bạn gửi người đăng ký hiển thị bằng ngôn ngữ của từng người, và bạn có thể đổi mọi văn bản trong Cài đặt → Ngôn ngữ.",
   "help.faq.approvalLimit.q": "Điều gì xảy ra khi tôi đạt 10 lượt phê duyệt trên gói miễn phí?",
   "help.faq.approvalLimit.a": "Đơn đăng ký mới vẫn được thu thập nên bạn không bao giờ bỏ lỡ khách hàng tiềm năng. Để phê duyệt thêm trong tháng đó, hãy chọn một gói trả phí.",
   "help.faq.markets.q": "Trang chủ báo chưa bật thị trường B2B. Tôi phải làm gì?",
   "help.faq.markets.a": "Trên các gói thấp hơn Plus, giá theo cấp giá cần tính năng Thị trường mới của Shopify. Hãy bật trong Shopify tại Cài đặt → Thị trường, sau đó nhấp “Kiểm tra lại” trên Trang chủ.",
   "help.faq.privacy.q": "Dữ liệu của người đăng ký được bảo vệ như thế nào?",
-  "help.faq.privacy.a": "Mã số thuế được mã hóa, liên kết trong email có thời hạn và chỉ dùng được một lần, và đơn đăng ký bị từ chối sẽ bị xóa sau khoảng thời gian bạn chọn trong Cài đặt.",
+  "help.faq.privacy.a": "Mã số thuế được mã hóa, liên kết bảo mật sẽ hết hạn và chỉ dùng được một lần, và đơn bị từ chối sẽ bị xóa sau khoảng thời gian bạn chọn trong Cài đặt.",
   "help.faq.slowFirstLoad.q": "Vì sao ứng dụng đôi khi mở chậm?",
   "help.faq.slowFirstLoad.a": "Sau một thời gian không hoạt động, ứng dụng có thể mất tối đa một phút để khởi động lại. Cửa hàng của bạn không bao giờ bị ảnh hưởng: tính năng ẩn giá và biểu mẫu vẫn hoạt động.",
   "help.diagnostics.heading": "Thông tin chẩn đoán",
@@ -76,5 +74,7 @@
   "help.debug.turnOff": "Tắt chế độ gỡ lỗi",
   "help.contact.heading": "Liên hệ bộ phận hỗ trợ",
   "help.contact.body": "Chúng tôi thường trả lời trong vòng 2 ngày làm việc.",
-  "help.contact.priority": "Bạn đang dùng gói Pro nên email của bạn được trả lời trước, thường trong vòng 1 ngày làm việc."
+  "help.contact.priority": "Bạn đang dùng gói Pro nên email của bạn được trả lời trước, thường trong vòng 1 ngày làm việc.",
+  "help.faq.alerts.q": "Làm sao để biết có đơn đăng ký mới?",
+  "help.faq.alerts.a": "Tradepass không gửi email. Đơn đăng ký mới và phản hồi chờ bạn ở Trang chủ và mục Đơn đăng ký. Để nhận cảnh báo qua email, hãy tạo quy trình trong Shopify Flow (Tradepass Pro) với trình kích hoạt “Wholesale application submitted” và hành động “Send internal email” của Flow. Hành động này chỉ gửi đến các địa chỉ nhân viên cố định mà bạn nhập trong quy trình."
 }

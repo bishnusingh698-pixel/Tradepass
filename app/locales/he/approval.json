@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "ניצור לקוח חדש עבור {name} ({email}).",
   "approval.field.sendWelcome": "שליחת אימייל קבלת פנים",
   "approval.welcome.shopify": "אימייל קבלת הפנים של Shopify ל-B2B, עם קישור להתחברות.",
-  "approval.welcome.ours": "האימייל ״אושרת״ של Tradepass בשפה של הקונה.",
   "approval.action.approve": "אישור",
   "approval.action.retry": "ניסיון חוזר",
   "approval.action.retryEmail": "שליחת האימייל שוב",

@@ -4,7 +4,7 @@ import { useFetcher, useLoaderData, useRevalidator } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
-import { refreshShopFacts } from "../lib/shop.server";
+import { shopFactsOrStored } from "../lib/shop.server";
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
 import { updateSettings } from "../lib/settings.server";
 import { applyWelcome, checklist, pendingWork, serverAlerts, type AlertId, type ChecklistStep, type Numbers } from "../lib/home.server";
@@ -17,7 +17,7 @@ import { RelativeTime } from "../components/applications";
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
   // Spec: detect plan and B2B entitlements on each Home load.
-  const facts = await refreshShopFacts(ctx.shop, ctx.admin);
+  const facts = await shopFactsOrStored(ctx.shop, ctx.admin);
   // The plan changed in Shopify since we last looked (e.g. cancelled from Shopify admin): plan-dependent storefront parts follow.
   if (facts.planChanged) await syncStorefrontConfig(ctx.admin, ctx.shop).catch(() => undefined);
   const [steps, pending, alerts] = await Promise.all([
@@ -185,7 +185,6 @@ function AlertAction({ id }: { id: AlertId }) {
   const href = useLocaleHref();
   const target: Partial<Record<AlertId, string>> = {
     catalog_limit: "/app/tiers",
-    email_quota: "/app/notifications",
     tier_missing: "/app/tiers",
     plan_limit: "/app/plans",
   };

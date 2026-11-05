@@ -28,14 +28,14 @@ The app uses only the GraphQL Admin API, session-token auth, Polaris web compone
 ### 4. Submit an application (2 min)
 1. Open `https://<dev-store>.myshopify.com/pages/wholesale` in a private window.
 2. Fill the form (company, name, your email, a US billing address in Texas, any resale certificate number), attach a small PDF, tick consent → **Send application**. The button shows "Sending…", then a thank-you screen.
-3. The applicant receives "Application received". The certificate is in Shopify admin → **Content** → **Files** with a random name.
+3. Tradepass sends no email (the thank-you screen confirms the submission). The certificate is in Shopify admin → **Content** → **Files** with a random name.
 
 ### 5. Approve (2 min)
 1. **Applications** → open the new application. The tax section shows the certificate; **View file** opens it (staff only).
 2. **Approve**. The modal has the tier "Retailer", Net 30 and "US reseller exemption (TX)" prefilled. Click **Approve**.
-3. Progress: Company ✓ → Location ✓ → Contact ✓ → Terms and tax ✓ → Tier ✓ → Email ✓.
+3. Progress: Company ✓ → Location ✓ → Contact ✓ → Terms and tax ✓ → Tier ✓ → Welcome email ✓ (Shopify's own B2B welcome email).
 4. Shopify admin → **Customers** → **Companies**: the company, its location (Net 30, Texas exemption) and contact exist; the location is in the "Tradepass Retailer" market.
-5. The applicant receives Shopify's B2B welcome email. In a private window, sign in with that email and the one-time code: prices are 20% lower.
+5. The applicant receives Shopify's B2B welcome email (sent by Shopify; it's the only email in the flow). In a private window, sign in with that email and the one-time code: prices are 20% lower.
 
 ### 6. Price hiding and wholesale-only (2 min)
 1. **Storefront** → **Hide prices from non-wholesale visitors** → **Whole store** → **Save**. In a private window, product and collection pages show "Log in" / "Apply for wholesale" instead of prices. Signed in as the buyer, prices show.
@@ -43,9 +43,9 @@ The app uses only the GraphQL Admin API, session-token auth, Polaris web compone
 3. Switch back to **Show prices to everyone** → **Save**.
 
 ### 7. Other areas (optional)
-- **Applications** → **Needs info**: the applicant gets a single-use link to a page showing only the requested fields.
+- **Applications** → **Ask for more information**: Tradepass shows a ready-made message in the applicant's language with a single-use link to a page showing only the requested fields; **Copy message** or **Open in email** to send it. **Reject** offers the same for the "not approved" message.
 - **Buyers**: move between tiers, pause and resume access.
-- **Certificates**: expiry tracking and renewal requests.
+- **Certificates**: expiry tracking; **Manage** → **Copy renewal link** gives a ready-made message with a single-use upload link.
 - **Automation**: auto-approve rules; Flow triggers ("Wholesale application submitted", etc.) and the action "Approve wholesale application to tier".
 - **Import**: CSV template and tag conversion.
 - **Help**: guide, FAQ, "Copy diagnostic info".

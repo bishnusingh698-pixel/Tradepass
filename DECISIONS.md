@@ -14,8 +14,8 @@ Production is Neon Postgres, so dev and tests use Postgres too (`DATABASE_URL` p
 ## D-004 Placeholder company location per tier market — Proposed (fallback built, waits on the spike)
 The API lists `SPECIFIED_CONDITIONS_CANNOT_BE_EMPTY`, which suggests a B2B market can't be empty. The code handles both answers. It first tries to create a tier's market with no locations. Only if Shopify refuses with that error does Tradepass create one hidden placeholder location under a company named "Tradepass (do not delete)" (external ID `tradepass-placeholder`) and keep it in each tier market. That company would appear in the merchant's Companies list. The spike (SPIKE_RESULTS.md, not run yet) will show which case applies. **If the placeholder turns out to be needed, it is visible to merchants, so it needs your OK.** The alternative is to create a market only when its first buyer is approved, but then a tier can't exist before it has buyers.
 
-## D-005 Use Shopify's own B2B welcome email — Decided
-`companyContactSendWelcomeEmail` exists in 2026-10, so "Send welcome email" calls it. Our own "You're approved" email (all 36 languages) is used only if that call fails or the merchant turns Shopify's email off. This also saves Brevo quota.
+## D-005 Use Shopify's own B2B welcome email — Decided (updated by D-091)
+`companyContactSendWelcomeEmail` exists in 2026-10, so "Send welcome email" calls it. Since D-091 it is the only welcome email: there is no Tradepass fallback, and a failure shows on the approval's email step with Retry.
 
 ## D-006 Certificate files: admin-only viewing through the app — Proposed (built, residual risk needs your OK)
 Files go to the merchant's Shopify Files, as required. A Shopify `GenericFile` URL is a public CDN link, so "opens only for staff" can't be guaranteed by Shopify alone. What's built: uploads get random 128-bit file names; the link is never shown on the storefront or in emails; the admin opens a file through `/app/files/:id`, which looks the file up by id **and** the signed-in store, reads it through that store's Admin API and streams it with `nosniff`, a sandbox CSP and `no-store`. The admin page fetches it with the App Bridge session token and opens it as a blob, so the CDN link never reaches the browser. **Residual risk:** anyone who already has the exact CDN link can open it. Storing files ourselves would break the zero-cost and no-files-on-our-server rules. Recommended: accept this; PRIVACY.md says so.
@@ -160,26 +160,26 @@ Errors for empty inputs appear after leaving the field or trying to save; errors
 ## D-049 "Preview as" runs the real storefront script — Decided
 On a mock product page and collection card, in three sandboxed frames (retail, logged-in non-wholesale, wholesale with the chosen tier's discount).
 
-## D-050 Email caps — Decided (follows the spec)
+## D-050 Email caps — Superseded by D-091 (2026-11-01)
 Every queued email reserves a slot on a UTC day: 25 per store, 250 in total, protected by a database lock so busy moments can't overshoot. Overflow goes to the next day with room and is never dropped; Notifications and the digest say "N emails are waiting for tomorrow". Failed sends still count (Brevo may have counted them).
 
-## D-051 Instant merchant alerts count toward the store's 25 — Decided
+## D-051 Instant merchant alerts count toward the store's 25 — Superseded by D-091 (2026-11-01)
 When the day is full the alert isn't queued, because the daily digest lists every pending application anyway.
 
-## D-052 Daily digest — Decided
+## D-052 Daily digest — Superseded by D-091 (2026-11-01)
 Sent once per UTC day when there's something to report (pending applications, expiring or expired certificates, failed actions in the last 24 h, deferred emails), to the notification email or else the store email, in the store's primary language.
 
-## D-053 Emails are rendered at send time — Decided
-In the recipient's language, falling back to the store's primary language, then English. A broken merchant override falls back to the built-in text and never blocks sending. An empty `{first_name}` uses the company name.
+## D-053 Emails are rendered at send time — Superseded by D-091 (2026-11-01)
+The copyable messages keep the same language rule: in the recipient's language, falling back to the store's primary language, then English. A broken merchant override falls back to the built-in text and never blocks sending. An empty `{first_name}` uses the company name.
 
-## D-054 "Sending" status prevents double sends — Decided
+## D-054 "Sending" status prevents double sends — Superseded by D-091 (2026-11-01)
 Overlapping job runs can't send the same email twice; rows stuck for more than 15 minutes go back to the queue, and Brevo's idempotency key guards the retry.
 
-## D-055 Emails try to send immediately — Decided
+## D-055 Emails try to send immediately — Superseded by D-091 (2026-11-01)
 After queueing for today, the app tries to send at once, so "Application received" doesn't wait for the hourly job (which remains the safety net).
 
 ## D-056 Certificate statuses — Decided
-Review states (waiting for review, rejected) are stored; valid, expiring and expired are worked out from the expiry date daily. The expiry day itself still counts as valid. Reminders at 30 and 7 days and the expiry email are each recorded before sending, so reruns never double-send. A new expiry date resets them.
+Review states (waiting for review, rejected) are stored; valid, expiring and expired are worked out from the expiry date daily. The expiry day itself still counts as valid. (The 30/7-day reminder and expiry emails were removed in D-091; Flow triggers fire on the status change, once.)
 
 ## D-057 Renewal links last 60 days and work once — Decided
 A newer link cancels older unused ones. The link is used up only after the upload succeeds, and the new upload sets the certificate to "Waiting for review".
@@ -188,12 +188,12 @@ A newer link cancels older unused ones. The link is used up only after the uploa
 Default "ask": the certificate shows "Decide about the tax exemption" with Keep or Remove (with a confirmation). Setting "remove": the daily job removes it automatically. Removal only takes off the exemption that certificate backs (US state resale or EU reverse charge), on every location of the buyer, and is skipped if another valid certificate covers it. Canadian, licence and other certificates are never removed automatically.
 
 ## D-059 Email address for buyers without an application — Decided
-For imported buyers, the renewal email address is read live from Shopify and never stored.
+For imported buyers, the contact's email address (filled into the copied renewal message) is read live from Shopify and never stored.
 
 ## D-060 Certificates on the Free plan — Decided
 The page stays visible with actions disabled and an "Available on Starter" banner. The daily certificate job runs only for plans with the certificate vault.
 
-## D-061 No "Sent with Tradepass" footer on Free-plan emails — Proposed
+## D-061 No "Sent with Tradepass" footer on Free-plan emails — Superseded by D-091 (2026-11-01)
 We haven't added a footer to Free-plan emails. Say if you want one. (The "Powered by Tradepass" link on the Free-plan form is now built, D-077.)
 
 ## D-062 The checkout lock blocks at checkout, not in the cart — Decided
@@ -282,3 +282,17 @@ On a store without B2B the approval stops before any Shopify call with a plain e
 
 ## D-090 Strings added on 2026-10-30 are English until translated — Decided
 They live in `app/locales/en/pending.json`; the runtime falls back to English and the i18n test allows exactly those keys to be missing elsewhere. Navigation labels and every applicant-facing storefront string were translated into all 36 languages.
+
+## D-091 Tradepass sends no email — Decided (2026-11-01)
+Brevo no longer sends from free addresses (Gmail and similar) on any plan, so sending needs a purchased, authenticated domain. That breaks the zero-running-cost rule, so all email sent by Tradepass is gone: the Brevo client, queue, daily caps, templates and editor, the Notifications page, merchant alerts and the daily/weekly digest, the "Application received" email, renewal reminder emails, test emails, the email-quota alert on Home and the `EmailLog` table (migration `20261101000000_remove_email`, which also drops `Certificate.remindedAt` and the `Shop.email`/`contactEmail` columns that only fed email).
+
+What replaces each email:
+- **Approval**: Shopify's own B2B welcome email (`companyContactSendWelcomeEmail`, D-005), still chosen per approval, in bulk approve (now with its own switch), automation rules and the Flow action. A Shopify failure shows a plain message on the email step with Retry; there is no fallback. `customerSendAccountInviteEmail` is not used (legacy customer accounts only).
+- **Ask for more information**: the request (with its signed, single-use link that expires in 14 days) is saved, then the merchant sees a ready-made message in the applicant's language with **Copy message** and **Open in email** (mailto). The link is shown only then, because only its hash is stored; asking again makes a new link and cancels the old one.
+- **Reject**: the reason is now stored on the application (`rejectReason`) and the same copy / open-in-email message is offered after rejecting, and later from the application page. Bulk and automatic rejections keep the reason, so their message can be copied from each application.
+- **Certificate renewal**: **Copy renewal link** on one certificate makes a new signed, single-use upload link (60 days, D-057) inside the translated renewal message. Bulk renewal and the 30/7-day/expiry reminder emails are gone; the daily job still refreshes statuses, fires the Flow triggers and applies "remove the exemption when expired".
+- **Merchant alerts**: pending work stays on Home and in the queue. Help and the Automation page explain Flow's "Send internal email" action with the "Wholesale application submitted" trigger (it emails fixed staff addresses only).
+- **"Application received"**: the storefront success screen confirms the submission; the "We've sent you a confirmation email" line is removed in every language.
+
+The message texts reuse the translated email texts (renamed `email.*` → `message.*`, all 36 languages kept), and merchants can still change them per language under Settings → Languages → Change texts ("Messages to applicants and buyers"). The email-only "Email branding" settings are removed. Stored settings from before load as usual; the old `notifications` and `branding` keys are ignored. Plans, prices and feature gating are unchanged.
+

@@ -1,7 +1,8 @@
 // Applicant intake (feature spec §D): validate a storefront submission against
 // the merchant's form, stop spam quietly, detect duplicates, encrypt the tax
 // number, check it against a free registry, store the application, then fire
-// the follow-ups (emails, Flow, rules) without ever failing the submission.
+// the follow-ups (Flow, rules) without ever failing the submission. Tradepass
+// sends no email: the storefront success screen confirms the submission.
 // Called by the app proxy routes (app/routes/proxy.*). Nothing here logs
 // personal data.
 import { Prisma } from "@prisma/client";
@@ -18,17 +19,16 @@ import type { Admin } from "./gql.server";
 import { can, effectivePlan } from "./plans";
 import { checkTaxIdFormat } from "./tax-ids";
 import { countryAllowed, readSettings } from "./settings";
+import { isRealDate } from "./dates";
 
 export type IntakeDeps = {
   getAdmin: (shop: string) => Promise<Admin | null>;
   checkTaxNumber: (country: string, number: string) => Promise<TaxCheck>;
-  queueEmail: (input: import("./email/index.server").QueueEmailInput) => Promise<unknown>;
-  notifyMerchant: (shop: string, a: { applicationId: string; company: string }) => Promise<unknown>;
   emitFlowTrigger: typeof import("./flow.server").emitFlowTrigger;
   evaluateRules: typeof import("./rules.server").evaluateRules;
   recordApplicationCertificates: typeof import("./certificates.server").recordApplicationCertificates;
   /**
-   * Run slow follow-ups (merchant alert, Flow, auto-approval rules) without
+   * Run slow follow-ups (Flow trigger, auto-approval rules) without
    * holding up the applicant: the app proxy gives a request ~10 s, and an
    * auto-approval alone can take longer. The default stores a durable job first
    * so the hourly run finishes the work if this process stops.
@@ -51,8 +51,6 @@ export const defaultDeps: IntakeDeps = {
     }
   },
   checkTaxNumber: (c, n) => realCheckTax(c, n),
-  queueEmail: async (i) => (await import("./email/index.server")).queueEmail(i),
-  notifyMerchant: async (s, a) => (await import("./email/index.server")).notifyMerchantNewApplication(s, a),
   emitFlowTrigger: async (...a) => (await import("./flow.server")).emitFlowTrigger(...a),
   evaluateRules: async (...a) => (await import("./rules.server")).evaluateRules(...a),
   recordApplicationCertificates: async (...a) => (await import("./certificates.server")).recordApplicationCertificates(...a),
@@ -80,7 +78,6 @@ const EMAIL_RE = /^[^\s@<>()]+@[^\s@<>()]+\.[^\s@<>()]{2,}$/;
 const URL_RE = /^(https?:\/\/)?[^\s.<>"]+\.[^\s<>"]{2,}$/i;
 const PHONE_RE = /^\+?[\d\s().-]{6,20}$/;
 const NUMBER_RE = /^-?\d+([.,]\d+)?$/;
-const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const COUNTRY_RE = /^[A-Z]{2}$/;
 const MAX = { text: 255, textarea: 5000 } as const;
 
@@ -169,7 +166,7 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
           const gid = isObj(item) ? verifyFileRef(item.ref, shop) : null;
           if (!gid || files.some((x) => x.fileGid === gid)) continue; // expired, forged or repeated reference: drop silently
           const exp = isObj(item) ? str(item.expiresOn, 10) : "";
-          files.push({ fileGid: gid, name: isObj(item) ? str(item.name, 120).replace(/[<>]/g, "") : "", expiresOn: DATE_RE.test(exp) ? exp : null });
+          files.push({ fileGid: gid, name: isObj(item) ? str(item.name, 120).replace(/[<>]/g, "") : "", expiresOn: isRealDate(exp) ? exp : null });
         }
         if (!files.length) { if (required) fail("form.error.required"); break; }
         out.files[f.id] = files;
@@ -205,7 +202,7 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
         if (f.type === "url" && !URL_RE.test(s)) { fail("form.error.url"); break; }
         if (f.type === "phone" && !PHONE_RE.test(s)) { fail("form.error.phone"); break; }
         if (f.type === "number" && !NUMBER_RE.test(s)) { fail("form.error.number"); break; }
-        if (f.type === "date" && (!DATE_RE.test(s) || isNaN(Date.parse(s)))) { fail("form.error.date"); break; }
+        if (f.type === "date" && !isRealDate(s)) { fail("form.error.date"); break; }
         out.answers[f.id] = f.type === "email" ? s.toLowerCase() : s;
       }
     }
@@ -287,7 +284,8 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
 
   const ipKey = hashKey("ip", ctx.ip);
   // Bots: pretend success, store nothing. Repeat offenders get the same silent treatment.
-  if (looksLikeBot(body) || (await peek(`spam:${ipKey}`)) >= LIMITS.spamPerIp) {
+  const spamHits = await peek(`spam:${ipKey}`);
+  if (looksLikeBot(body) || spamHits >= LIMITS.spamPerIp) {
     await hit(`spam:${ipKey}`, LIMITS.spamPerIp);
     return { http: 200, body: { ok: true, status: "received" } };
   }
@@ -332,6 +330,9 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
   const dups = email || companyName || taxHash ? await findDuplicates(shop, email, companyName, taxHash) : [];
   const flags: string[] = [];
   if (dups.length) flags.push("duplicate");
+  // A human-looking submission from an address that sent bot-like ones this hour: stored, but flagged
+  // for the "Looks like spam" rule condition and the "Possible spam" queue filter.
+  if (spamHits > 0) flags.push("possible_spam");
   // The applicant hears "You've already applied" only while an earlier one is open or approved.
   const tellApplicant = dups.some((d) => OPEN.includes(d.status));
 
@@ -378,19 +379,12 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
     detail: { duplicate: flags.includes("duplicate"), taxCheck: taxCheck.status, files: allFiles.length },
   }).catch(() => undefined);
 
-  await afterSubmit(ctx, deps, {
-    id: app.id, email, companyName, locale, countryCode, tellApplicant,
-    firstName: typeof clean.answers.firstName === "string" ? clean.answers.firstName : "",
-    certificates: certs, tax: clean.tax,
-  });
+  await afterSubmit(ctx, deps, { id: app.id, countryCode, certificates: certs, tax: clean.tax });
 
   return { http: 200, body: { ok: true, status: tellApplicant ? "duplicate" : "received", id: app.id } };
 }
 
-type Submitted = {
-  id: string; email: string; companyName: string; locale: string; countryCode: string | null; tellApplicant: boolean;
-  firstName: string; certificates: FileAnswer[]; tax: Clean["tax"];
-};
+type Submitted = { id: string; countryCode: string | null; certificates: FileAnswer[]; tax: Clean["tax"] };
 
 /** Follow-ups never fail the submission; each is isolated. */
 async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
@@ -415,23 +409,15 @@ async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
       expiresOn: c.expiresOn,
     })));
   });
-  const shopRow = await db.shop.findUnique({ where: { shop }, select: { name: true } });
-  if (!a.tellApplicant && a.email) {
-    await safe("email_received", () => deps.queueEmail({
-      shop, type: "received", to: a.email, locale: a.locale,
-      vars: { company: a.companyName, first_name: a.firstName, store_name: shopRow?.name || shop.replace(/\.myshopify\.com$/, "") },
-      subjectId: a.id,
-    }));
-  }
   await safe("followups", () => deps.defer(shop, a.id, () => intakeFollowups(shop, a.id, deps)));
 }
 
 /**
- * Merchant alert, Flow "submitted" trigger and automation rules for a stored
- * application. Runs in the background after submit, or from the hourly job
- * (tasks/background.ts) if that run was interrupted. Each part is isolated.
+ * Flow "submitted" trigger (merchants get alerts through Flow) and automation
+ * rules for a stored application. Runs in the background after submit, or from
+ * the hourly job (tasks/background.ts) if that run was interrupted. Each part is isolated.
  */
-export async function intakeFollowups(shop: string, applicationId: string, deps: Pick<IntakeDeps, "getAdmin" | "notifyMerchant" | "emitFlowTrigger" | "evaluateRules"> = defaultDeps): Promise<void> {
+export async function intakeFollowups(shop: string, applicationId: string, deps: Pick<IntakeDeps, "getAdmin" | "emitFlowTrigger" | "evaluateRules"> = defaultDeps): Promise<void> {
   const app = await db.application.findFirst({ where: { shop, id: applicationId }, select: { id: true, email: true, companyName: true, countryCode: true } });
   if (!app) return;
   const safe = async (what: string, fn: () => Promise<unknown>) => {
@@ -441,7 +427,6 @@ export async function intakeFollowups(shop: string, applicationId: string, deps:
       await logActivity({ shop, actor: "system", action: `application.${what}`, subject: app.id, result: "failed", detail: { error: (e as Error).name } }).catch(() => undefined);
     }
   };
-  await safe("notify_merchant", () => deps.notifyMerchant(shop, { applicationId: app.id, company: app.companyName }));
   const admin = await deps.getAdmin(shop);
   if (!admin) return;
   await safe("flow", () => deps.emitFlowTrigger(admin, shop, "application_submitted", {
@@ -454,13 +439,21 @@ export async function intakeFollowups(shop: string, applicationId: string, deps:
 
 export type UpdateContext = { shop: string; ip: string };
 
+/**
+ * Fields a "more info" request can't ask for: consent (the hosted page doesn't
+ * show it, so a required consent would block every reply) and the email (it
+ * can't be changed through a link, see applyUpdate).
+ */
+export const NOT_REQUESTABLE = new Set(["consent", "email"]);
+export const requestableField = (f: Pick<FormField, "id" | "type">) => f.type !== "consent" && !NOT_REQUESTABLE.has(f.id);
+
 /** Keep only the requested fields of a form, for the hosted "more info" page. */
 export function requestedDefinition(def: FormDefinition, fields: string[]): FormDefinition {
-  const want = new Set(fields);
+  const want = new Set(fields.filter((id) => !NOT_REQUESTABLE.has(id)));
   return {
     ...def,
     sections: def.sections
-      .map((s) => ({ ...s, fields: s.fields.filter((f) => want.has(f.id)).map((f) => ({ ...f, showIf: undefined, state: f.state === "hidden" ? "optional" as const : f.state })) }))
+      .map((s) => ({ ...s, fields: s.fields.filter((f) => want.has(f.id) && requestableField(f)).map((f) => ({ ...f, showIf: undefined, state: f.state === "hidden" ? "optional" as const : f.state })) }))
       .filter((s) => s.fields.length),
     spamQuestion: { enabled: false, texts: {} },
   };
@@ -476,10 +469,11 @@ export async function applyUpdate(
   applicationId: string,
   raw: unknown,
   deps: Pick<IntakeDeps, "checkTaxNumber" | "recordApplicationCertificates"> = defaultDeps,
-): Promise<{ ok: true } | { ok: false; errors: Record<string, string> } | { ok: false; error: "not_found" }> {
+): Promise<{ ok: true } | { ok: false; errors: Record<string, string> } | { ok: false; error: "not_found" | "closed" }> {
   const { shop } = ctx;
   const app = await db.application.findFirst({ where: { shop, id: applicationId } });
   if (!app) return { ok: false, error: "not_found" };
+  if (app.status !== "needs_info" || app.approvalStatus) return { ok: false, error: "closed" };
   const fields = ((app.requested as { fields?: string[] } | null)?.fields ?? []).filter((x) => typeof x === "string");
   const form = await loadForm(shop, app.formId);
   if (!form) return { ok: false, error: "not_found" };
@@ -504,7 +498,9 @@ export async function applyUpdate(
   const billing = clean.answers.billingAddress;
   if (isObj(billing) && typeof billing.countryCode === "string") data.countryCode = billing.countryCode;
   // Email stays as submitted: changing it via a link would let anyone holding the link redirect the account.
-  if ("email" in clean.answers) delete answers.email;
+  const original = isObj(app.answers) ? app.answers.email : undefined;
+  if (original !== undefined) answers.email = original;
+  else delete answers.email;
 
   const certs = clean.files.certificates ?? [];
   if (certs.length) {
@@ -512,7 +508,13 @@ export async function applyUpdate(
     answers.certificateMeta = [...prev, ...certs.map((c) => ({ fileGid: c.fileGid, expiresOn: c.expiresOn }))];
   }
   data.answers = answers as Prisma.InputJsonObject;
-  await db.application.update({ where: { id: app.id }, data });
+  // Guarded: if the merchant decided (or started approving) since the page opened, the reply must not
+  // turn the application back into "pending".
+  const won = await db.application.updateMany({
+    where: { id: app.id, shop, status: "needs_info", approvalStatus: null },
+    data: data as Prisma.ApplicationUpdateManyMutationInput,
+  });
+  if (won.count !== 1) return { ok: false, error: "closed" };
 
   const allFiles = Object.entries(clean.files).flatMap(([field, list]) => list.map((f) => ({ field, ...f })));
   if (allFiles.length) {
@@ -527,9 +529,8 @@ export async function applyUpdate(
       country: (taxAns.country as string) || app.countryCode, region: (taxAns.region as string) || null, expiresOn: c.expiresOn,
     }))).catch(() => undefined);
   }
+  // The application is back under Pending (Home and the queue show it); the activity log records the reply.
   await logActivity({ shop, actor: "applicant", action: "application.updated", subject: app.id, detail: { fields: Object.keys(clean.answers) } }).catch(() => undefined);
-  // Tell the merchant the ball is back in their court (instant alerts; the digest counts these too).
-  await (await import("./email/index.server")).notifyMerchantInfoReceived(shop, { applicationId: app.id, company: app.companyName }).catch(() => undefined);
   return { ok: true };
 }
 

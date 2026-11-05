@@ -3,7 +3,6 @@ import { paginate, type Admin } from "./gql.server";
 import type { Settings } from "./settings";
 import type { ShopFacts } from "./shop.server";
 import { approvalQuota, type PlanId } from "./plans";
-import { emailQuotaToday } from "./email/index.server";
 import { pendingAssignmentCount } from "./tiers.server";
 import { approvalsThisMonth, pendingSummary } from "./applications.server";
 import { formForAudience } from "./form-defaults";
@@ -45,7 +44,7 @@ export async function pendingWork(shop: string, settings: Settings) {
   return { applications: apps.count, oldestAt: apps.oldestAt, expiring, assignments, incomplete };
 }
 
-export type AlertId = "catalog_limit" | "email_quota" | "embed_off" | "tier_missing" | "plan_limit" | "first_buyer";
+export type AlertId = "catalog_limit" | "embed_off" | "tier_missing" | "plan_limit" | "first_buyer";
 /** `key` encodes the condition; a dismissed alert comes back only when its key changes. */
 export type HomeAlert = { id: AlertId; key: string; values?: Record<string, string | number> };
 
@@ -54,14 +53,12 @@ export async function serverAlerts(shop: string, settings: Settings, facts: Shop
   const limit = facts.catalogLimit ?? 0;
   if (!facts.isPlus && limit > 0 && (facts.catalogsUsed ?? 0) >= limit) out.push({ id: "catalog_limit", key: `${limit}`, values: { limit } });
 
-  const [quota, missing, approvals, buyers] = await Promise.all([
-    emailQuotaToday(shop),
+  const [missing, approvals, buyers] = await Promise.all([
     db.tier.findMany({ where: { shop, syncState: "missing" }, select: { id: true, name: true } }),
     approvalsThisMonth(shop),
     db.buyer.count({ where: { shop } }),
   ]);
   const today = new Date().toISOString().slice(0, 10);
-  if (quota.shopUsed >= quota.shopCap) out.push({ id: "email_quota", key: today, values: { cap: quota.shopCap } });
   if (missing.length) out.push({ id: "tier_missing", key: missing.map((m) => m.id).sort().join(","), values: { tier: missing[0].name, count: missing.length } });
 
   const q = approvalQuota(plan, approvals);
@@ -167,7 +164,7 @@ export function median(xs: number[]): number | null {
 
 async function windowStats(shop: string, from: Date, to: Date) {
   const [received, decided] = await Promise.all([
-    db.application.count({ where: { shop, submittedAt: { gte: from, lt: to } } }),
+    db.application.count({ where: { shop, status: { not: "draft" }, submittedAt: { gte: from, lt: to } } }),
     db.application.findMany({
       where: { shop, status: { in: ["approved", "rejected"] }, decidedAt: { gte: from, lt: to } },
       select: { status: true, submittedAt: true, decidedAt: true },

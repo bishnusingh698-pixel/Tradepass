@@ -48,9 +48,8 @@
   "automation.action.terms": "Maksuehdot",
   "automation.action.tierTerms": "Käytä tason maksuehtoja",
   "automation.action.sendWelcome": "Lähetä ostajalle Shopifyn B2B-käyttöoikeussähköposti",
-  "automation.action.emailApplicant": "Ilmoita hakijalle sähköpostitse, ettei hakemusta hyväksytty",
   "automation.action.reason": "Syy (valinnainen)",
-  "automation.action.reasonHelp": "Näytetään sähköpostissa sillä kielellä, jolla sen kirjoitat.",
+  "automation.action.reasonHelp": "Tallennetaan hakemukseen ja lisätään viestiin, jonka voit kopioida sieltä.",
   "automation.error.summary": "{count, plural, one {Korjaa # ongelma ennen tallentamista.} other {Korjaa # ongelmaa ennen tallentamista.}}",
   "automation.error.conditions_required": "Lisää vähintään yksi ehto.",
   "automation.error.values_required": "Anna vähintään yksi arvo.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Päätöstä ei voitu perua. Tarkista toimintaloki ja yritä uudelleen.",
   "automation.reverse.heading": "Perutaanko päätös: {company}?",
   "automation.reverse.approvedBody": "{company} keskeytetään: yritys säilyy Shopifyssa, mutta se poistuu tasoltaan ja näkee kuluttajahinnat. Voit palauttaa sen Ostajat-sivulla.",
-  "automation.reverse.rejectedBody": "{company} palaa tilaan Odottaa käsittelyä. Jos hylkäyssähköposti on jo lähetetty, sitä ei voi perua.",
+  "automation.reverse.rejectedBody": "{company} palaa tilaan Odottaa tarkistusta. Jos ilmoitit jo hakijalle, kerro asiasta hänelle.",
   "automation.reverse.confirm": "Peru päätös",
   "automation.flow.heading": "Shopify Flow -integraatio",
   "automation.flow.body": "Käytä näitä Tradepassin käynnistimiä ja toimintoja Shopify Flow’ssa omien työnkulkujen rakentamiseen, esimerkiksi ostajien tunnisteiden lisäämiseen tai Slack-viestin lähettämiseen.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Todistus vanhentunut",
   "automation.flow.action.approve": "Hyväksy tukkuasiakashakemus tasolle",
   "automation.flow.welcomeNote": "Tradepass voi jo lähettää Shopifyn B2B-käyttöoikeussähköpostin, kun ostaja hyväksytään, joten siihen ei tarvita erillistä työnkulkua.",
-  "automation.flow.open": "Avaa Shopify Flow"
+  "automation.flow.open": "Avaa Shopify Flow",
+  "automation.flow.alerts": "Haluatko sähköpostin, kun joku hakee? Käytä Shopify Flow’ssa käynnistintä ”Wholesale application submitted” ja Flow’n toimintoa ”Send internal email”. Toiminto lähettää vain kiinteisiin henkilökunnan osoitteisiin, jotka annat työnkulussa."
 }

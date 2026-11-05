@@ -345,7 +345,8 @@ export function summarize(run: Pick<ImportRun, "mapping" | "errors">) {
 }
 
 export async function startRun(shop: string, id: string, actor: string): Promise<boolean> {
-  const res = await db.importRun.updateMany({ where: { shop, id, state: { in: ["validated", "draft"] }, kind: { in: ["csv", "tag"] } }, data: { state: "running" } });
+  // A CSV run starts only after its dry run (validated); starting a draft finished with nothing imported.
+  const res = await db.importRun.updateMany({ where: { shop, id, state: "validated", kind: { in: ["csv", "tag"] } }, data: { state: "running" } });
   if (res.count) await logActivity({ shop, actor, action: "import.start", subject: id });
   return res.count > 0;
 }
@@ -436,10 +437,11 @@ export async function processImportRun(admin: Admin, shop: string, id: string, d
     const rows = data.rows ?? [];
     const issues = (run.errors ?? []) as Issue[];
     let { cursor, done } = run;
-    // Progress is saved every few rows (each save rewrites the run's row JSON, so not after every
-    // row). Rows after the last save are run again on resume, which is safe: createBuyerFromInput
+    // Progress (cursor, counts, problems) is saved every few rows; the row data itself is not
+    // rewritten while running (up to ~2 MB of JSON per save on Neon). Rows before the cursor are
+    // done; rows after the last save are run again on resume, which is safe: createBuyerFromInput
     // finds what it already created by externalId.
-    const save = () => db.importRun.update({ where: { id }, data: { cursor, done, errors: issues as object, mapping: { ...data, rows } as object } });
+    const save = () => db.importRun.update({ where: { id }, data: { cursor, done, errors: issues as object } });
     let unsaved = 0;
     while (cursor < rows.length && Date.now() + ROW_MARGIN_MS < deadline) {
       const row = rows[cursor];
@@ -466,7 +468,7 @@ export async function processImportRun(admin: Admin, shop: string, id: string, d
     run = await save();
     if (cursor >= rows.length) {
       await finish(run, "done");
-      const failed = rows.filter((r) => r.status === "failed").length;
+      const failed = new Set(issues.filter((i) => i.code === "failed" || i.code === "step_failed").map((i) => i.row)).size;
       await logActivity({ shop, actor: "import", action: "import.done", subject: id, result: failed ? "failed" : "ok", detail: { done, failed } });
     }
     return processed;

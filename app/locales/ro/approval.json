@@ -59,7 +59,6 @@
   "approval.contact.willCreate": "Vom crea un client nou pentru {name} ({email}).",
   "approval.field.sendWelcome": "Trimiteți e-mail de bun venit",
   "approval.welcome.shopify": "E-mailul de bun venit B2B al Shopify, cu un link de conectare.",
-  "approval.welcome.ours": "E-mailul Tradepass „Ați fost aprobat” în limba cumpărătorului.",
   "approval.action.approve": "Aprobați",
   "approval.action.retry": "Reîncercați",
   "approval.action.retryEmail": "Retrimiteți e-mailul",

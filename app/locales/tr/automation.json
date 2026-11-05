@@ -48,9 +48,8 @@
   "automation.action.terms": "Ödeme koşulları",
   "automation.action.tierTerms": "Seviyenin ödeme koşullarını kullan",
   "automation.action.sendWelcome": "Alıcıya Shopify'ın B2B erişim e-postasını gönder",
-  "automation.action.emailApplicant": "Başvuru sahibine onaylanmadığını e-postayla bildir",
   "automation.action.reason": "Neden (isteğe bağlı)",
-  "automation.action.reasonHelp": "E-postada, yazdığınız dilde gösterilir.",
+  "automation.action.reasonHelp": "Başvuruyla birlikte kaydedilir ve oradan kopyalayabileceğiniz mesaja eklenir.",
   "automation.error.summary": "{count, plural, one {Kaydetmeden önce # sorunu düzeltin.} other {Kaydetmeden önce # sorunu düzeltin.}}",
   "automation.error.conditions_required": "En az bir koşul ekleyin.",
   "automation.error.values_required": "En az bir değer girin.",
@@ -73,7 +72,7 @@
   "automation.recent.reverseFailed": "Bu karar geri alınamadı. Etkinlik günlüğünü kontrol edip tekrar deneyin.",
   "automation.reverse.heading": "{company} için karar geri alınsın mı?",
   "automation.reverse.approvedBody": "{company} duraklatılacak: şirket Shopify'da kalır, ancak seviyesinden çıkar ve perakende fiyatları görür. Alıcılar bölümünden yeniden etkinleştirebilirsiniz.",
-  "automation.reverse.rejectedBody": "{company} yeniden İnceleme bekliyor durumuna döner. Ret e-postası gönderildiyse geri alınamaz.",
+  "automation.reverse.rejectedBody": "{company} yeniden İnceleme bekliyor durumuna döner. Başvuru sahibine zaten bilgi verdiyseniz ona haber verin.",
   "automation.reverse.confirm": "Kararı geri al",
   "automation.flow.heading": "Shopify Flow entegrasyonu",
   "automation.flow.body": "Alıcıları etiketlemek veya Slack mesajı göndermek gibi kendi iş akışlarınızı oluşturmak için bu Tradepass tetikleyicilerini ve işlemlerini Shopify Flow'da kullanın.",
@@ -86,5 +85,6 @@
   "automation.flow.trigger.certificate_expired": "Sertifikanın süresi doldu",
   "automation.flow.action.approve": "Toptan satış başvurusunu seviyeye onayla",
   "automation.flow.welcomeNote": "Tradepass bir alıcıyı onayladığında Shopify'ın B2B erişim e-postasını zaten gönderebilir, bu nedenle bunun için ek bir iş akışı gerekmez.",
-  "automation.flow.open": "Shopify Flow'u aç"
+  "automation.flow.open": "Shopify Flow'u aç",
+  "automation.flow.alerts": "Biri başvurduğunda e-posta almak ister misiniz? Shopify Flow'da “Wholesale application submitted” tetikleyicisini Flow'un “Send internal email” eylemiyle kullanın. Bu eylem yalnızca iş akışına girdiğiniz sabit personel adreslerine gönderir."
 }

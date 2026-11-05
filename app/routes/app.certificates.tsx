@@ -8,9 +8,13 @@ import db from "../db.server";
 import { adminContext } from "../lib/context.server";
 import { can, requiredPlan } from "../lib/plans";
 import {
-  approveCertificate, decideOnExpiry, exemptionForCertificate, maskedNumber, rejectCertificate, sendRenewalRequest, setCertificateExpiry,
+  approveCertificate, decideOnExpiry, exemptionForCertificate, maskedNumber, rejectCertificate, renewalMessage, setCertificateExpiry,
 } from "../lib/certificates.server";
-import { certificateFlags, certificateStatus, CERTIFICATE_TYPES, daysUntil } from "../lib/certificates";
+import { certificateFlags, certificateStatus, CERTIFICATE_TYPES } from "../lib/certificates";
+import type { ApplicantMessage } from "../lib/messages";
+import { isRealDate } from "../lib/dates";
+import { MessageModal } from "../components/MessageModal";
+import { openFromApp } from "../components/download";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { SectionTabs } from "../components/SectionTabs";
@@ -75,11 +79,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     gated: !can(ctx.plan, "certificate_vault"),
     requiredPlan: requiredPlan("certificate_vault"),
     expiringDays: days,
-    autoRenewal: ctx.settings.certificates.autoRenewal,
   };
 };
 
-type ActionResult = { ok: boolean; intent: string; error?: string };
+type ActionResult = { ok: boolean; intent: string; error?: string; message?: ApplicantMessage; name?: string };
 
 export const action = async ({ request }: ActionFunctionArgs): Promise<ActionResult> => {
   const ctx = await adminContext(request);
@@ -87,7 +90,7 @@ export const action = async ({ request }: ActionFunctionArgs): Promise<ActionRes
   const intent = String(form.get("intent") ?? "");
   const id = String(form.get("id") ?? "");
   if (!can(ctx.plan, "certificate_vault")) return { ok: false, intent, error: "plan" };
-  const cert = await db.certificate.findFirst({ where: { shop: ctx.shop, id }, select: { id: true, expiresOn: true } });
+  const cert = await db.certificate.findFirst({ where: { shop: ctx.shop, id }, select: { id: true } });
   if (!cert) return { ok: false, intent, error: "not_found" };
   switch (intent) {
     case "approve":
@@ -96,13 +99,13 @@ export const action = async ({ request }: ActionFunctionArgs): Promise<ActionRes
       return { ok: await rejectCertificate(ctx.shop, id, ctx.actor, String(form.get("reason") ?? "")), intent };
     case "set_expiry": {
       const date = String(form.get("expiresOn") ?? "").trim();
-      if (date && !/^\d{4}-\d{2}-\d{2}$/.test(date)) return { ok: false, intent, error: "date" };
+      if (date && !isRealDate(date)) return { ok: false, intent, error: "date" };
       return { ok: await setCertificateExpiry(ctx.shop, id, ctx.actor, date || null), intent };
     }
-    case "request": {
-      const expired = cert.expiresOn ? daysUntil(cert.expiresOn) < 0 : false;
-      const ok = await sendRenewalRequest(ctx.shop, id, expired ? "expired" : "expiring", async () => ctx.admin);
-      return { ok, intent, ...(ok ? {} : { error: "no_recipient" }) };
+    case "renewal_link": {
+      // A fresh signed, single-use upload link inside the renewal message the merchant sends themselves.
+      const message = await renewalMessage(ctx.shop, id, ctx.actor, async () => ctx.admin);
+      return message ? { ok: true, intent, message } : { ok: false, intent, error: "not_found" };
     }
     case "expiry_keep":
     case "expiry_remove": {
@@ -127,15 +130,19 @@ export default function Certificates() {
   const [params, setParams] = useSearchParams();
   const fetcher = useFetcher<typeof action>();
   const [current, setCurrent] = useState<Row | null>(null);
+  // The renewal message belongs to the fetch that produced it; closing the modal dismisses that result.
+  const [dismissed, setDismissed] = useState<unknown>(null);
+  const ready: ApplicantMessage | null = fetcher.state === "idle" && fetcher.data?.message && fetcher.data !== dismissed ? fetcher.data.message : null;
   const busy = fetcher.state !== "idle";
 
   useEffect(() => {
     const d = fetcher.data;
-    if (!d) return;
+    if (!d || fetcher.state !== "idle") return;
+    if (d.ok && d.message) return;
     if (d.ok) shopify.toast.show(t(`certificates.toast.${d.intent}`));
     else shopify.toast.show(t(`certificates.error.${d.error ?? "generic"}`), { isError: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetcher.data]);
+  }, [fetcher.data, fetcher.state]);
 
   const setParam = (key: string, value: string | null) => {
     const next = new URLSearchParams(params);
@@ -158,18 +165,7 @@ export default function Certificates() {
   const date = (iso: string) => new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
 
   const openFile = async (id: string) => {
-    // Opened before the fetch so the browser treats it as the click's popup.
-    const win = window.open("", "_blank");
-    try {
-      const res = await fetch(`/app/files/${encodeURIComponent(id)}`);
-      if (!res.ok) throw new Error(String(res.status));
-      const url = URL.createObjectURL(await res.blob());
-      if (win) win.location.replace(url);
-      else window.open(url, "_blank");
-    } catch {
-      win?.close();
-      shopify.toast.show(t("certificates.error.file"), { isError: true });
-    }
+    if (!(await openFromApp(`/app/files/${encodeURIComponent(id)}`))) shopify.toast.show(t("certificates.error.file"), { isError: true });
   };
 
   const filtered = data.filters.status !== "all" || Boolean(data.filters.type);
@@ -187,9 +183,7 @@ export default function Certificates() {
       <s-section padding="none">
         <s-stack direction="block" gap="base" padding="base">
           <s-paragraph color="subdued">
-            {data.autoRenewal
-              ? t("certificates.rules.auto", { days: data.expiringDays })
-              : t("certificates.rules.manual", { days: data.expiringDays })}{" "}
+            {t("certificates.rules", { days: data.expiringDays })}{" "}
             <s-link href={href("/app/settings")}>{t("certificates.rules.change")}</s-link>
           </s-paragraph>
           <s-grid gridTemplateColumns="repeat(auto-fit, minmax(180px, 1fr))" gap="small-200">
@@ -297,6 +291,7 @@ export default function Certificates() {
       </s-section>
 
       <ManageModal row={current} busy={busy} onSubmit={submit} />
+      <MessageModal id="cert-renewal-message" company={current?.name ?? ""} message={ready} withLink onClose={() => setDismissed(fetcher.data)} />
       <RejectModal row={current} onSubmit={submit} />
       <ExpiryModal key={current?.id ?? "none"} row={current} onSubmit={submit} />
       <RemoveExemptionModal row={current} onSubmit={submit} />
@@ -322,8 +317,8 @@ function ManageModal({ row, busy, onSubmit }: { row: Row | null; busy: boolean; 
             {row.status !== "rejected" && (
               <s-button commandFor="cert-reject" command="--show">{t("certificates.action.reject")}</s-button>
             )}
-            <s-button commandFor="cert-actions" command="--hide" disabled={busy} onClick={() => onSubmit("request", row.id)}>
-              {t("certificates.action.request")}
+            <s-button commandFor="cert-actions" command="--hide" disabled={busy} onClick={() => onSubmit("renewal_link", row.id)}>
+              {t("certificates.action.copyLink")}
             </s-button>
             <s-button commandFor="cert-expiry" command="--show">
               {t(row.expiresOn ? "certificates.action.editExpiry" : "certificates.action.setExpiry")}
