@@ -8,7 +8,7 @@ import { updateSettings } from "../app/lib/settings.server";
 import { channelLinks, gmailHref, lineHref, LINK_LIMITS, mailtoHref, outlookHref, safeHttpsUrl, safeWhatsAppUrl, smsHref, telegramHref, waDigits, whatsappHref } from "../app/lib/message-links";
 import { buildMessage } from "../app/lib/messages";
 import { applicationForCustomer, cooldownFor, publicStatus, readStatusToken, reapplyFrom, statusLink, statusView } from "../app/lib/status.server";
-import { statusBody } from "../app/routes/proxy.status.$token";
+import { statusBody } from "../app/lib/status-page.server";
 import { blockView } from "../extensions/tradepass-account-status/src/view.js";
 import { applicationPayload, buildFlowPayload, TRIGGER_FIELDS, TRIGGER_HANDLES } from "../app/lib/flow.server";
 import { handleSubmit, infoReceivedFollowup, type IntakeDeps } from "../app/lib/intake.server";
