@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Ticari referanslar",
  "form.field.yearsInBusiness.label": "Faaliyet yılı",
  "form.phone.country": "Ülke kodu",
+ "form.status.book": "Tanışma görüşmesi planlayın",
+ "form.status.details": "Başvuru durumunu görün",
+ "form.status.reapply": "{{ date }} tarihinden itibaren yeniden başvurabilirsiniz.",
+ "form.status.shop": "Alışverişe başlayın",
+ "form.status.submitted": "Başvuru tarihi: {{ date }}",
+ "form.status.title.approved": "Toptan satış hesabınız onaylandı",
+ "form.status.title.needs_info": "Biraz daha bilgiye ihtiyacımız var",
+ "form.status.title.pending": "Başvurunuzu inceliyoruz",
+ "form.status.title.rejected": "Başvurunuz onaylanmadı",
+ "form.status.update": "Başvurunuzu güncelleyin",
  "form.tax.us_add_state": "Başka bir eyalet ekle",
  "form.tax.us_form": "Hangi belgeniz var?",
  "form.tax.us_form_exempt": "Vergiden muaf kuruluş belgesi",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Eyaletin kendi yeniden satış belgesi",
  "form.tax.us_permit": "Seller's permit veya satış vergisi numarası",
  "form.tax.us_remove_state": "{{ name }} kaldır",
- "form.upload.camera": "Fotoğraf çek"
+ "form.upload.camera": "Fotoğraf çek",
+ "form.whatsapp": "Bize WhatsApp'tan yazın"
 }

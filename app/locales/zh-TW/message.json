@@ -20,8 +20,8 @@
   "message.modal.copy": "複製訊息",
   "message.modal.copied": "已複製訊息",
   "message.modal.copyFailed": "無法複製訊息。請選取文字自行複製。",
-  "message.modal.mailto": "在郵件中開啟",
   "message.modal.close": "關閉",
   "message.approved.subject": "您在 {store_name} 的批發帳戶已獲核准",
-  "message.approved.body": "{first_name} 您好：\n\n好消息：{company} 已獲准開通 {store_name} 的批發帳戶。您的價格等級為「{tier_name}」。\n\n如要登入，請開啟以下連結並輸入此電子郵件地址。我們會以電子郵件寄送一次性驗證碼給您，因此不需要密碼：\n{login_url}\n\n登入後，您會在整個商店中看到批發價格。"
+  "message.approved.body": "{first_name} 您好：\n\n好消息：{company} 已獲准開通 {store_name} 的批發帳戶。您的價格等級為「{tier_name}」。\n\n如要登入，請開啟以下連結並輸入此電子郵件地址。我們會以電子郵件寄送一次性驗證碼給您，因此不需要密碼：\n{login_url}\n\n登入後，您會在整個商店中看到批發價格。",
+  "message.channel.mailto": "在郵件中開啟"
 }

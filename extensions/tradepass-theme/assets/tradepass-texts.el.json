@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Εμπορικές συστάσεις",
  "form.field.yearsInBusiness.label": "Χρόνια λειτουργίας",
  "form.phone.country": "Κωδικός χώρας",
+ "form.status.book": "Κλείστε μια εισαγωγική κλήση",
+ "form.status.details": "Δείτε την κατάσταση της αίτησής σας",
+ "form.status.reapply": "Μπορείτε να υποβάλετε ξανά αίτηση από {{ date }}.",
+ "form.status.shop": "Ξεκινήστε τις αγορές",
+ "form.status.submitted": "Υποβλήθηκε στις {{ date }}",
+ "form.status.title.approved": "Ο λογαριασμός χονδρικής σας εγκρίθηκε",
+ "form.status.title.needs_info": "Χρειαζόμαστε λίγες ακόμη πληροφορίες",
+ "form.status.title.pending": "Εξετάζουμε την αίτησή σας",
+ "form.status.title.rejected": "Η αίτησή σας δεν εγκρίθηκε",
+ "form.status.update": "Ενημερώστε την αίτησή σας",
  "form.tax.us_add_state": "Προσθήκη άλλης πολιτείας",
  "form.tax.us_form": "Ποιο πιστοποιητικό έχετε;",
  "form.tax.us_form_exempt": "Πιστοποιητικό φορολογικά απαλλαγμένου οργανισμού",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Το πιστοποιητικό μεταπώλησης της ίδιας της πολιτείας",
  "form.tax.us_permit": "Αριθμός seller's permit ή φόρου πωλήσεων",
  "form.tax.us_remove_state": "Αφαίρεση {{ name }}",
- "form.upload.camera": "Λήψη φωτογραφίας"
+ "form.upload.camera": "Λήψη φωτογραφίας",
+ "form.whatsapp": "Στείλτε μας μήνυμα στο WhatsApp"
 }

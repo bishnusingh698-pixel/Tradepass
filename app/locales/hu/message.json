@@ -20,8 +20,8 @@
   "message.modal.copy": "Üzenet másolása",
   "message.modal.copied": "Üzenet kimásolva",
   "message.modal.copyFailed": "Az üzenetet nem sikerült kimásolni. Jelölje ki a szöveget, és másolja ki saját maga.",
-  "message.modal.mailto": "Megnyitás e-mailben",
   "message.modal.close": "Bezárás",
   "message.approved.subject": "Jóváhagytuk nagykereskedelmi fiókját a(z) {store_name} áruháznál",
-  "message.approved.body": "Kedves {first_name}!\n\nJó hírünk van: a(z) {company} nagykereskedelmi fiókot kapott a(z) {store_name} áruháznál. Az Ön árszintje: {tier_name}.\n\nBejelentkezéshez nyissa meg az alábbi linket, és adja meg ezt az e-mail-címet. E-mailben küldünk Önnek egy egyszer használatos kódot, így nincs szükség jelszóra:\n{login_url}\n\nBejelentkezés után az egész áruházban a nagykereskedelmi árait látja."
+  "message.approved.body": "Kedves {first_name}!\n\nJó hírünk van: a(z) {company} nagykereskedelmi fiókot kapott a(z) {store_name} áruháznál. Az Ön árszintje: {tier_name}.\n\nBejelentkezéshez nyissa meg az alábbi linket, és adja meg ezt az e-mail-címet. E-mailben küldünk Önnek egy egyszer használatos kódot, így nincs szükség jelszóra:\n{login_url}\n\nBejelentkezés után az egész áruházban a nagykereskedelmi árait látja.",
+  "message.channel.mailto": "Megnyitás e-mailben"
 }

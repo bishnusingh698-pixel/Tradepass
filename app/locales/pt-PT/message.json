@@ -20,8 +20,8 @@
   "message.modal.copy": "Copiar mensagem",
   "message.modal.copied": "Mensagem copiada",
   "message.modal.copyFailed": "Não foi possível copiar a mensagem. Selecione o texto e copie-o manualmente.",
-  "message.modal.mailto": "Abrir no e-mail",
   "message.modal.close": "Fechar",
   "message.approved.subject": "A sua conta de venda por grosso na {store_name} foi aprovada",
-  "message.approved.body": "Olá, {first_name},\n\nBoas notícias: a {company} foi aprovada para uma conta de venda por grosso na {store_name}. O seu nível de preços é {tier_name}.\n\nPara iniciar sessão, abra a ligação abaixo e introduza este endereço de e-mail. Vamos enviar-lhe um código de utilização única por e-mail, pelo que não precisa de palavra-passe:\n{login_url}\n\nDepois de iniciar sessão, verá os seus preços por grosso em toda a loja."
+  "message.approved.body": "Olá, {first_name},\n\nBoas notícias: a {company} foi aprovada para uma conta de venda por grosso na {store_name}. O seu nível de preços é {tier_name}.\n\nPara iniciar sessão, abra a ligação abaixo e introduza este endereço de e-mail. Vamos enviar-lhe um código de utilização única por e-mail, pelo que não precisa de palavra-passe:\n{login_url}\n\nDepois de iniciar sessão, verá os seus preços por grosso em toda a loja.",
+  "message.channel.mailto": "Abrir no e-mail"
 }

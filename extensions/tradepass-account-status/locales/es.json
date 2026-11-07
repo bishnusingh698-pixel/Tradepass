@@ -1,0 +1,12 @@
+{
+  "title": "Cuenta mayorista",
+  "status": {
+    "pending": "Solicitud en revisión",
+    "needs_info": "Necesitamos más información",
+    "approved": "Aprobada",
+    "rejected": "No aprobada"
+  },
+  "submitted": "Solicitado el {{date}}",
+  "reapply": "Puedes volver a solicitarlo a partir del {{date}}.",
+  "view": "Ver detalles"
+}

@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "व्यापारिक संदर्भ",
  "form.field.yearsInBusiness.label": "कारोबार के वर्ष",
  "form.phone.country": "देश कोड",
+ "form.status.book": "परिचय कॉल बुक करें",
+ "form.status.details": "अपने आवेदन की स्थिति देखें",
+ "form.status.reapply": "आप {{ date }} से फिर आवेदन कर सकते हैं।",
+ "form.status.shop": "खरीदारी शुरू करें",
+ "form.status.submitted": "आवेदन की तारीख: {{ date }}",
+ "form.status.title.approved": "आपका होलसेल खाता स्वीकृत हो गया है",
+ "form.status.title.needs_info": "हमें थोड़ी और जानकारी चाहिए",
+ "form.status.title.pending": "हम आपके आवेदन की समीक्षा कर रहे हैं",
+ "form.status.title.rejected": "आपका आवेदन स्वीकृत नहीं हुआ",
+ "form.status.update": "अपना आवेदन अपडेट करें",
  "form.tax.us_add_state": "एक और राज्य जोड़ें",
  "form.tax.us_form": "आपके पास कौन-सा प्रमाणपत्र है?",
  "form.tax.us_form_exempt": "कर-मुक्त संगठन का प्रमाणपत्र",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "राज्य का अपना रीसेल प्रमाणपत्र",
  "form.tax.us_permit": "सेलर्स परमिट या सेल्स टैक्स नंबर",
  "form.tax.us_remove_state": "{{ name }} हटाएँ",
- "form.upload.camera": "फ़ोटो लें"
+ "form.upload.camera": "फ़ोटो लें",
+ "form.whatsapp": "हमें WhatsApp पर संदेश भेजें"
 }

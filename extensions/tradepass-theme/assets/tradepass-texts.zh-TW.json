@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "商業推薦人",
  "form.field.yearsInBusiness.label": "經營年數",
  "form.phone.country": "國家/地區代碼",
+ "form.status.book": "預約入門電話",
+ "form.status.details": "查看申請狀態",
+ "form.status.reapply": "您可以從 {{ date }} 起重新申請。",
+ "form.status.shop": "開始購物",
+ "form.status.submitted": "申請日期：{{ date }}",
+ "form.status.title.approved": "您的批發帳戶已獲核准",
+ "form.status.title.needs_info": "我們還需要一些資訊",
+ "form.status.title.pending": "我們正在審核您的申請",
+ "form.status.title.rejected": "您的申請未獲核准",
+ "form.status.update": "更新您的申請",
  "form.tax.us_add_state": "新增其他州",
  "form.tax.us_form": "您持有哪種證書？",
  "form.tax.us_form_exempt": "免稅組織證書",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "該州自己的轉售證書",
  "form.tax.us_permit": "銷售許可證號碼或銷售稅 ID",
  "form.tax.us_remove_state": "移除{{ name }}",
- "form.upload.camera": "拍照"
+ "form.upload.camera": "拍照",
+ "form.whatsapp": "透過 WhatsApp 傳訊息給我們"
 }

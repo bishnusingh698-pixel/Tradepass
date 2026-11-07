@@ -8,6 +8,7 @@ import { adminContext } from "../lib/context.server";
 import { updateSettings } from "../lib/settings.server";
 import { paymentTermsOptions } from "../lib/tiers.server";
 import { autoApprovalsToday, listRules, reverseAutoDecision, saveRules } from "../lib/rules.server";
+import { replyIn } from "../lib/replies";
 import { CONDITION_TYPES, MAX_RULES, sanitizeRules, validateRules, type Condition, type RuleDef, type RuleProblem, type ApproveAction, type RejectAction } from "../lib/rules";
 import { TRIGGER_HANDLES, type FlowTrigger } from "../lib/flow.server";
 import { can } from "../lib/plans";
@@ -32,7 +33,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       select: { id: true, companyName: true, status: true, decidedAt: true },
     }),
   ]);
+  const replies = ctx.settings.replies.reject.map((r) => ({ id: r.id, title: replyIn(r, ctx.i18n.locale, ctx.shopRow?.primaryLocale ?? "en")?.title ?? "" }));
   return {
+    replies,
     rules,
     tiers,
     terms: terms.map((p) => ({ id: p.id, name: p.name })),
@@ -271,7 +274,7 @@ function AutomationEditor({ d }: { d: ReturnType<typeof useLoaderData<typeof loa
                 {r.kind === "approve" ? (
                   <ApproveFields action={r.action as ApproveAction} tiers={d.tiers} terms={d.terms} disabled={locked} tierError={problemFor(i, "tier")} onChange={(action) => setRule(i, { action })} />
                 ) : (
-                  <RejectFields action={r.action as RejectAction} disabled={locked} onChange={(action) => setRule(i, { action })} />
+                  <RejectFields action={r.action as RejectAction} replies={d.replies} disabled={locked} onChange={(action) => setRule(i, { action })} />
                 )}
               </s-stack>
             </s-box>
@@ -335,8 +338,9 @@ function AutomationEditor({ d }: { d: ReturnType<typeof useLoaderData<typeof loa
           <s-unordered-list>
             <s-list-item>{t("automation.flow.action.approve")}</s-list-item>
           </s-unordered-list>
-          <s-paragraph color="subdued">{t("automation.flow.welcomeNote")}</s-paragraph>
+          <s-paragraph color="subdued">{t("automation.flow.welcomeNoteFlow")}</s-paragraph>
           <s-paragraph>{t("automation.flow.alerts")}</s-paragraph>
+          <s-paragraph>{t("automation.flow.alertsMore")}</s-paragraph>
           <s-button href="shopify://admin/apps/flow" target="_top" {...flag("disabled", !d.flowOn)}>{t("automation.flow.open")}</s-button>
         </s-stack>
       </s-section>
@@ -402,10 +406,17 @@ function ApproveFields({ action, tiers, terms, disabled, tierError, onChange }: 
   );
 }
 
-function RejectFields({ action, disabled, onChange }: { action: RejectAction; disabled: boolean; onChange: (a: RejectAction) => void }) {
+function RejectFields({ action, replies, disabled, onChange }: { action: RejectAction; replies: { id: string; title: string }[]; disabled: boolean; onChange: (a: RejectAction) => void }) {
   const { t } = useI18n();
   return (
     <s-stack direction="block" gap="small">
+      {replies.length > 0 && (
+        <s-select label={t("applications.reply.saved")} details={t("applications.bulk.replyHelp")} value={action.replyId ?? ""} {...flag("disabled", disabled)}
+          onChange={(e) => onChange({ ...action, replyId: e.currentTarget.value || null })}>
+          <s-option value="">{t("applications.reject.templateNone")}</s-option>
+          {replies.map((r) => <s-option key={r.id} value={r.id}>{r.title}</s-option>)}
+        </s-select>
+      )}
       <s-text-area label={t("automation.action.reason")} details={t("automation.action.reasonHelp")} value={action.reason ?? ""} {...flag("disabled", disabled)} onInput={(e) => onChange({ ...action, reason: e.currentTarget.value || null })} />
     </s-stack>
   );

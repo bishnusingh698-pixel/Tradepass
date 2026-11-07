@@ -1,0 +1,12 @@
+{
+  "title": "Cont en-gros",
+  "status": {
+    "pending": "Cererea este în analiză",
+    "needs_info": "Avem nevoie de mai multe informații",
+    "approved": "Aprobată",
+    "rejected": "Neaprobată"
+  },
+  "submitted": "Trimisă pe {{date}}",
+  "reapply": "Puteți aplica din nou începând cu {{date}}.",
+  "view": "Vedeți detaliile"
+}

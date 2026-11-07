@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "تجارتی حوالہ جات",
  "form.field.yearsInBusiness.label": "کاروبار کے سال",
  "form.phone.country": "ملک کا کوڈ",
+ "form.status.book": "تعارفی کال بک کریں",
+ "form.status.details": "اپنی درخواست کی حیثیت دیکھیں",
+ "form.status.reapply": "آپ {{ date }} سے دوبارہ درخواست دے سکتے ہیں۔",
+ "form.status.shop": "خریداری شروع کریں",
+ "form.status.submitted": "درخواست کی تاریخ: {{ date }}",
+ "form.status.title.approved": "آپ کا ہول سیل اکاؤنٹ منظور ہو گیا ہے",
+ "form.status.title.needs_info": "ہمیں تھوڑی مزید معلومات درکار ہیں",
+ "form.status.title.pending": "ہم آپ کی درخواست کا جائزہ لے رہے ہیں",
+ "form.status.title.rejected": "آپ کی درخواست منظور نہیں ہوئی",
+ "form.status.update": "اپنی درخواست اپ ڈیٹ کریں",
  "form.tax.us_add_state": "ایک اور ریاست شامل کریں",
  "form.tax.us_form": "آپ کے پاس کون سا سرٹیفکیٹ ہے؟",
  "form.tax.us_form_exempt": "ٹیکس سے مستثنیٰ تنظیم کا سرٹیفکیٹ",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "ریاست کا اپنا ری سیل سرٹیفکیٹ",
  "form.tax.us_permit": "سیلرز پرمٹ یا سیلز ٹیکس نمبر",
  "form.tax.us_remove_state": "{{ name }} ہٹائیں",
- "form.upload.camera": "تصویر لیں"
+ "form.upload.camera": "تصویر لیں",
+ "form.whatsapp": "ہمیں WhatsApp پر پیغام بھیجیں"
 }

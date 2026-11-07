@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Handelsreferanser",
  "form.field.yearsInBusiness.label": "År i drift",
  "form.phone.country": "Landskode",
+ "form.status.book": "Bestill en introduksjonssamtale",
+ "form.status.details": "Se status for søknaden",
+ "form.status.reapply": "Du kan søke på nytt fra {{ date }}.",
+ "form.status.shop": "Begynn å handle",
+ "form.status.submitted": "Søkt {{ date }}",
+ "form.status.title.approved": "Engroskontoen din er godkjent",
+ "form.status.title.needs_info": "Vi trenger litt mer informasjon",
+ "form.status.title.pending": "Vi går gjennom søknaden din",
+ "form.status.title.rejected": "Søknaden din ble ikke godkjent",
+ "form.status.update": "Oppdater søknaden din",
  "form.tax.us_add_state": "Legg til en delstat til",
  "form.tax.us_form": "Hvilket sertifikat har du?",
  "form.tax.us_form_exempt": "Sertifikat for skattefritatt organisasjon",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Delstatens eget videresalgssertifikat",
  "form.tax.us_permit": "Seller's permit- eller omsetningsavgiftsnummer",
  "form.tax.us_remove_state": "Fjern {{ name }}",
- "form.upload.camera": "Ta et bilde"
+ "form.upload.camera": "Ta et bilde",
+ "form.whatsapp": "Send oss en melding på WhatsApp"
 }

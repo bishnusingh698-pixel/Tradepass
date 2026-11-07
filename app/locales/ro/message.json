@@ -20,8 +20,8 @@
   "message.modal.copy": "Copiază mesajul",
   "message.modal.copied": "Mesaj copiat",
   "message.modal.copyFailed": "Mesajul nu a putut fi copiat. Selectează textul și copiază-l tu.",
-  "message.modal.mailto": "Deschide în e-mail",
   "message.modal.close": "Închide",
   "message.approved.subject": "Contul dumneavoastră en-gros la {store_name} a fost aprobat",
-  "message.approved.body": "Bună ziua, {first_name},\n\nVești bune: {company} a fost aprobată pentru un cont en-gros la {store_name}. Nivelul dumneavoastră de prețuri este {tier_name}.\n\nPentru a vă conecta, deschideți linkul de mai jos și introduceți această adresă de e-mail. Vă vom trimite prin e-mail un cod unic, deci nu aveți nevoie de parolă:\n{login_url}\n\nDupă conectare, veți vedea prețurile en-gros în tot magazinul."
+  "message.approved.body": "Bună ziua, {first_name},\n\nVești bune: {company} a fost aprobată pentru un cont en-gros la {store_name}. Nivelul dumneavoastră de prețuri este {tier_name}.\n\nPentru a vă conecta, deschideți linkul de mai jos și introduceți această adresă de e-mail. Vă vom trimite prin e-mail un cod unic, deci nu aveți nevoie de parolă:\n{login_url}\n\nDupă conectare, veți vedea prețurile en-gros în tot magazinul.",
+  "message.channel.mailto": "Deschide în e-mail"
 }

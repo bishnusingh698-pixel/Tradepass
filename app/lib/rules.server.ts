@@ -3,6 +3,8 @@ import type { Admin } from "./gql.server";
 import { logActivity } from "./activity.server";
 import { can, effectivePlan } from "./plans";
 import { readSettings } from "./settings";
+import { replyIn } from "./replies";
+import { riskForApplication } from "./applications";
 import { APPROVAL_STEPS, approvalDefaults, approveApplication, undoApproval, type ApprovalCtx } from "./approval.server";
 import { rejectApplication } from "./applications.server";
 import { pauseBuyers } from "./buyers.server";
@@ -67,6 +69,7 @@ async function factsFor(shop: string, applicationId: string) {
     hasCertificate: files + certs > 0,
     flags: app.flags,
     answers: (app.answers ?? {}) as Record<string, unknown>,
+    risk: riskForApplication(app),
   };
   return { app, facts };
 }
@@ -92,7 +95,11 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
 
     if (rule.kind === "reject") {
       const a = rule.action as RejectAction;
-      const ok = await rejectApplication(ctx, applicationId, { reason: a.reason ?? null });
+      // A saved reply is written in the applicant's own language when the merchant has that text.
+      const reply = a.replyId ? settings.replies.reject.find((r) => r.id === a.replyId) : null;
+      const shopPrimary = (await db.shop.findUnique({ where: { shop }, select: { primaryLocale: true } }))?.primaryLocale ?? "en";
+      const reason = (reply && replyIn(reply, found.app.locale, shopPrimary)?.text) || a.reason || null;
+      const ok = await rejectApplication(ctx, applicationId, { reason });
       if (!ok) return { decided: null };
       await db.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: rule.id } });
       await logActivity({ shop, actor: ACTOR, action: "automation.reject", subject: applicationId, detail: { ruleId: rule.id } });

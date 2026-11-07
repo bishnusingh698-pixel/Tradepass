@@ -41,7 +41,7 @@ export function safeEqual(a: string, b: string): boolean {
  * Payload holds only opaque ids (never personal data). Single use is enforced
  * by the TokenUse table, keyed by sha256(token).
  */
-export type LinkToken = { shop: string; purpose: "more_info" | "renewal"; subject: string; exp: number; n: string };
+export type LinkToken = { shop: string; purpose: "more_info" | "renewal" | "status"; subject: string; exp: number; n: string };
 
 function tokenSecret(): string {
   const s = process.env.LINK_TOKEN_SECRET;

@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Trade references",
  "form.field.yearsInBusiness.label": "Years in business",
  "form.phone.country": "Country code",
+ "form.status.book": "Book an onboarding call",
+ "form.status.details": "See your application status",
+ "form.status.reapply": "You can apply again from {{ date }}.",
+ "form.status.shop": "Start shopping",
+ "form.status.submitted": "Applied on {{ date }}",
+ "form.status.title.approved": "Your wholesale account is approved",
+ "form.status.title.needs_info": "We need a little more information",
+ "form.status.title.pending": "We're reviewing your application",
+ "form.status.title.rejected": "Your application wasn't approved",
+ "form.status.update": "Update your application",
  "form.tax.us_add_state": "Add another state",
  "form.tax.us_form": "Which certificate do you have?",
  "form.tax.us_form_exempt": "Tax-exempt organization certificate",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "The state's own resale certificate",
  "form.tax.us_permit": "Seller's permit or sales tax ID number",
  "form.tax.us_remove_state": "Remove {{ name }}",
- "form.upload.camera": "Take a photo"
+ "form.upload.camera": "Take a photo",
+ "form.whatsapp": "Message us on WhatsApp"
 }

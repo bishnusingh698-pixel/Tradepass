@@ -32,6 +32,8 @@ export type MessageVars = {
   tierName?: string | null;
   /** Store sign-in page (approved). */
   loginUrl?: string | null;
+  /** The applicant's hosted status page (signed, expiring); added as its own line to application messages. */
+  statusLink?: string | null;
 };
 
 export type ApplicantMessage = {
@@ -44,6 +46,10 @@ export type ApplicantMessage = {
   to: string;
   /** mailto: link that opens the merchant's email app with everything filled in. */
   mailto: string;
+  /** Recipient's phone (E.164 when the form collected it that way), for WhatsApp and text messages. */
+  phone?: string;
+  /** The message's own link (update or status page), for share links that need one (Telegram). */
+  link?: string;
 };
 
 // Unicode isolates keep names and numbers readable inside right-to-left sentences.
@@ -71,7 +77,7 @@ export function mailtoLink(to: string, subject: string, body: string): string {
   return `mailto:${addr}?subject=${enc(subject)}&body=${enc(body)}`;
 }
 
-function build(kind: MessageKind, locale: string | null | undefined, opts: { primary?: string; overrides?: LocalizedTexts }, v: MessageVars, to: string): ApplicantMessage {
+function build(kind: MessageKind, locale: string | null | undefined, opts: { primary?: string; overrides?: LocalizedTexts }, v: MessageVars, to: string, phone?: string): ApplicantMessage {
   const i18n = createT(locale, { primary: opts.primary, overrides: opts.overrides });
   const rtl = i18n.dir === "rtl";
   const iso = (s: string) => (rtl && s && !isUrl(s) ? `${FSI}${s}${PDI}` : s);
@@ -92,8 +98,10 @@ function build(kind: MessageKind, locale: string | null | undefined, opts: { pri
   const paragraphs = i18n.t(k.body, values).split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
   const extra = k.extra && values[k.extra.value];
   if (extra && !paragraphs.some((p) => p.includes(extra))) paragraphs.push(i18n.t(k.extra!.key, values));
+  if (v.statusLink && !kind.startsWith("renewal")) paragraphs.push(i18n.t("message.statusLine", { status_link: v.statusLink }));
   const body = paragraphs.join("\n\n");
-  return { subject, body, locale: i18n.locale, dir: i18n.dir, to, mailto: mailtoLink(to, subject, body) };
+  const link = v.link || v.statusLink || undefined;
+  return { subject, body, locale: i18n.locale, dir: i18n.dir, to, mailto: mailtoLink(to, subject, body), ...(phone ? { phone } : {}), ...(link ? { link } : {}) };
 }
 
 /** Build the message. A broken merchant override never blocks the merchant: the built-in text is used instead. */
@@ -103,10 +111,11 @@ export function buildMessage(
   opts: { primary?: string; overrides?: LocalizedTexts },
   vars: MessageVars,
   to = "",
+  phone?: string,
 ): ApplicantMessage {
   try {
-    return build(kind, locale, opts, vars, to);
+    return build(kind, locale, opts, vars, to, phone);
   } catch {
-    return build(kind, locale, { primary: opts.primary }, vars, to);
+    return build(kind, locale, { primary: opts.primary }, vars, to, phone);
   }
 }

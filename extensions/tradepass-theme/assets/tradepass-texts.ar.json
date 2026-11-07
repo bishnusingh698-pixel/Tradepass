@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "مراجع تجارية",
  "form.field.yearsInBusiness.label": "سنوات العمل",
  "form.phone.country": "رمز الدولة",
+ "form.status.book": "احجز مكالمة تعريفية",
+ "form.status.details": "عرض حالة طلبك",
+ "form.status.reapply": "يمكنك التقديم مجددًا اعتبارًا من {{ date }}.",
+ "form.status.shop": "ابدأ التسوق",
+ "form.status.submitted": "تاريخ التقديم: {{ date }}",
+ "form.status.title.approved": "تمت الموافقة على حساب الجملة الخاص بك",
+ "form.status.title.needs_info": "نحتاج إلى مزيد من المعلومات",
+ "form.status.title.pending": "نراجع طلبك الآن",
+ "form.status.title.rejected": "لم تتم الموافقة على طلبك",
+ "form.status.update": "تحديث طلبك",
  "form.tax.us_add_state": "إضافة ولاية أخرى",
  "form.tax.us_form": "ما الشهادة التي لديك؟",
  "form.tax.us_form_exempt": "شهادة منظمة معفاة من الضرائب",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "شهادة إعادة البيع الخاصة بالولاية",
  "form.tax.us_permit": "رقم تصريح البائع أو رقم ضريبة المبيعات",
  "form.tax.us_remove_state": "إزالة {{ name }}",
- "form.upload.camera": "التقاط صورة"
+ "form.upload.camera": "التقاط صورة",
+ "form.whatsapp": "راسلنا على واتساب"
 }

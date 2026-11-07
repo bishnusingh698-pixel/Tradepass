@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Prekybinės rekomendacijos",
  "form.field.yearsInBusiness.label": "Veiklos metai",
  "form.phone.country": "Šalies kodas",
+ "form.status.book": "Užsisakyti įvadinį pokalbį",
+ "form.status.details": "Peržiūrėti paraiškos būseną",
+ "form.status.reapply": "Vėl teikti paraišką galėsite nuo {{ date }}.",
+ "form.status.shop": "Pradėti apsipirkti",
+ "form.status.submitted": "Pateikta {{ date }}",
+ "form.status.title.approved": "Jūsų didmeninė paskyra patvirtinta",
+ "form.status.title.needs_info": "Mums reikia šiek tiek daugiau informacijos",
+ "form.status.title.pending": "Peržiūrime jūsų paraišką",
+ "form.status.title.rejected": "Jūsų paraiška nepatvirtinta",
+ "form.status.update": "Papildyti paraišką",
  "form.tax.us_add_state": "Pridėti dar vieną valstiją",
  "form.tax.us_form": "Kokį sertifikatą turite?",
  "form.tax.us_form_exempt": "Neapmokestinamos organizacijos sertifikatas",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Pačios valstijos perpardavimo sertifikatas",
  "form.tax.us_permit": "Seller's permit arba pardavimo mokesčio numeris",
  "form.tax.us_remove_state": "Pašalinti {{ name }}",
- "form.upload.camera": "Fotografuoti"
+ "form.upload.camera": "Fotografuoti",
+ "form.whatsapp": "Parašykite mums per WhatsApp"
 }

@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Tham chiếu thương mại",
  "form.field.yearsInBusiness.label": "Số năm kinh doanh",
  "form.phone.country": "Mã quốc gia",
+ "form.status.book": "Đặt lịch gọi làm quen",
+ "form.status.details": "Xem trạng thái đơn",
+ "form.status.reapply": "Bạn có thể nộp lại từ {{ date }}.",
+ "form.status.shop": "Bắt đầu mua sắm",
+ "form.status.submitted": "Đã nộp ngày {{ date }}",
+ "form.status.title.approved": "Tài khoản bán sỉ của bạn đã được duyệt",
+ "form.status.title.needs_info": "Chúng tôi cần thêm một chút thông tin",
+ "form.status.title.pending": "Chúng tôi đang xem xét đơn của bạn",
+ "form.status.title.rejected": "Đơn của bạn chưa được duyệt",
+ "form.status.update": "Cập nhật đơn của bạn",
  "form.tax.us_add_state": "Thêm bang khác",
  "form.tax.us_form": "Bạn có loại giấy chứng nhận nào?",
  "form.tax.us_form_exempt": "Giấy chứng nhận tổ chức được miễn thuế",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Giấy chứng nhận bán lại của chính bang đó",
  "form.tax.us_permit": "Số seller's permit hoặc mã thuế bán hàng",
  "form.tax.us_remove_state": "Xóa {{ name }}",
- "form.upload.camera": "Chụp ảnh"
+ "form.upload.camera": "Chụp ảnh",
+ "form.whatsapp": "Nhắn tin cho chúng tôi qua WhatsApp"
 }

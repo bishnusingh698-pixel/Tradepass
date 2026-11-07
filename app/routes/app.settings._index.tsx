@@ -8,6 +8,8 @@ import { gql } from "../lib/gql.server";
 import { updateSettings } from "../lib/settings.server";
 import { exportDataRequest, listDataRequests, resetShopData } from "../lib/privacy.server";
 import { isCountryCode } from "../lib/countries";
+import { safeHttpsUrl, safeWhatsAppUrl } from "../lib/message-links";
+import { cleanTags } from "../lib/customer-tags";
 import { CountryPicker } from "../components/CountryPicker";
 import { ACTIVITY_EXPORT_MAX_ROWS, exportActivityCsv, logActivity } from "../lib/activity.server";
 import { ensureDefaults } from "../lib/defaults.server";
@@ -48,6 +50,16 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     plan: ctx.plan,
     isDevStore: Boolean(ctx.shopRow?.isDevStore),
     shopName: ctx.shopRow?.name ?? ctx.shop.replace(".myshopify.com", ""),
+    applicants: {
+      reapplyDays: ctx.settings.applications.reapplyDays,
+      staleDays: ctx.settings.review.staleDays,
+      whatsappUrl: ctx.settings.contact.whatsappUrl,
+      bookingUrl: ctx.settings.links.bookingUrl,
+      shoppingUrl: ctx.settings.links.shoppingUrl,
+      tags: ctx.settings.customerTags.onApprove.join(", "),
+      removeOnPause: ctx.settings.customerTags.removeOnPause,
+    },
+    replyCount: ctx.settings.replies.reject.length + ctx.settings.replies.info.length,
   };
 };
 
@@ -75,16 +87,36 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       : ctx.settings.applications.countries.list;
     if (!(COUNTRY_MODES as readonly string[]).includes(countryMode)) errors.countryMode = "settings.error.assignment";
     else if (countryMode !== "all" && countryList.length === 0) errors.countryList = "settings.countries.errorEmpty";
+    // Applicants and contact (B7, B10, B11, C12, C19). Missing fields (an old tab) keep the current values.
+    const num = (k: string, cur: number) => (form.has(k) ? Number(form.get(k)) : cur);
+    const reapplyDays = num("reapplyDays", ctx.settings.applications.reapplyDays);
+    if (!Number.isInteger(reapplyDays) || reapplyDays < 0 || reapplyDays > 730) errors.reapplyDays = "settings.applicants.error.days";
+    const staleDays = num("staleDays", ctx.settings.review.staleDays);
+    if (!Number.isInteger(staleDays) || staleDays < 1 || staleDays > 90) errors.staleDays = "settings.applicants.error.days";
+    const text = (k: string, cur: string) => (form.has(k) ? String(form.get(k) ?? "").trim() : cur);
+    const whatsappUrl = text("whatsappUrl", ctx.settings.contact.whatsappUrl);
+    if (whatsappUrl && !safeWhatsAppUrl(whatsappUrl)) errors.whatsappUrl = "settings.applicants.error.whatsapp";
+    const bookingUrl = text("bookingUrl", ctx.settings.links.bookingUrl);
+    if (bookingUrl && !safeHttpsUrl(bookingUrl)) errors.bookingUrl = "settings.applicants.error.url";
+    const shoppingUrl = text("shoppingUrl", ctx.settings.links.shoppingUrl);
+    if (shoppingUrl && !safeHttpsUrl(shoppingUrl)) errors.shoppingUrl = "settings.applicants.error.url";
+    const tags = form.has("tags") ? cleanTags(String(form.get("tags") ?? "")) : ctx.settings.customerTags.onApprove;
+    if (tags === null) errors.tags = "settings.applicants.error.tags";
     if (Object.keys(errors).length) return { ok: false as const, intent, errors };
     const countries = { mode: countryMode as (typeof COUNTRY_MODES)[number], list: countryMode === "all" ? [] : countryList.sort() };
+    const linksChanged = whatsappUrl !== ctx.settings.contact.whatsappUrl || bookingUrl !== ctx.settings.links.bookingUrl || shoppingUrl !== ctx.settings.links.shoppingUrl;
     const countriesChanged = JSON.stringify(countries) !== JSON.stringify(ctx.settings.applications.countries);
     await updateSettings(ctx.shop, {
       retention: { months, deleteFiles: form.get("deleteFiles") === "on" },
       certificates: { expiringDays, onExpiry },
       tiers: { assignment: assignment as (typeof ASSIGNMENT_MODES)[number] },
-      applications: { countries },
+      applications: { countries, reapplyDays },
+      review: { staleDays },
+      contact: { whatsappUrl: whatsappUrl ? safeWhatsAppUrl(whatsappUrl)! : "" },
+      links: { bookingUrl: bookingUrl ? safeHttpsUrl(bookingUrl)! : "", shoppingUrl: shoppingUrl ? safeHttpsUrl(shoppingUrl)! : "" },
+      customerTags: { onApprove: tags ?? [], removeOnPause: form.has("tags") ? form.get("removeOnPause") === "on" : ctx.settings.customerTags.removeOnPause },
     });
-    if (countriesChanged) {
+    if (countriesChanged || linksChanged) {
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "settings.countries", subject: null, detail: { mode: countries.mode, count: countries.list.length } });
       // The storefront form reads the rule from the app's metafields, so applicants are told up front.
       try {
@@ -213,6 +245,30 @@ export default function SettingsPage() {
               error={errors.countryList ? t(errors.countryList) : undefined}
             />
             <s-paragraph color="subdued">{t("settings.countries.note")}</s-paragraph>
+          </s-stack>
+        </s-section>
+
+        <s-section heading={t("settings.applicants.heading")}>
+          <s-stack direction="block" gap="base">
+            <s-grid gridTemplateColumns="repeat(auto-fit, minmax(220px, 1fr))" gap="base">
+              <s-number-field name="reapplyDays" label={t("settings.applicants.reapplyDays")} details={t("settings.applicants.reapplyDaysHelp")} min={0} max={730} step={1}
+                defaultValue={String(d.applicants.reapplyDays)} error={errors.reapplyDays ? t(errors.reapplyDays) : undefined} />
+              <s-number-field name="staleDays" label={t("settings.applicants.staleDays")} details={t("settings.applicants.staleDaysHelp")} min={1} max={90} step={1}
+                defaultValue={String(d.applicants.staleDays)} error={errors.staleDays ? t(errors.staleDays) : undefined} />
+            </s-grid>
+            <s-text-field name="whatsappUrl" label={t("settings.applicants.whatsapp")} details={t("settings.applicants.whatsappHelp")} placeholder="https://wa.me/15125550123"
+              defaultValue={d.applicants.whatsappUrl} error={errors.whatsappUrl ? t(errors.whatsappUrl) : undefined} />
+            <s-text-field name="bookingUrl" label={t("settings.applicants.booking")} details={t("settings.applicants.bookingHelp")}
+              defaultValue={d.applicants.bookingUrl} error={errors.bookingUrl ? t(errors.bookingUrl) : undefined} />
+            <s-text-field name="shoppingUrl" label={t("settings.applicants.shopping")} details={t("settings.applicants.shoppingHelp")} placeholder="/collections/wholesale"
+              defaultValue={d.applicants.shoppingUrl} error={errors.shoppingUrl ? t(errors.shoppingUrl) : undefined} />
+            <s-text-field name="tags" label={t("settings.applicants.tags")} details={t("settings.applicants.tagsHelp")} placeholder="wholesale, b2b"
+              defaultValue={d.applicants.tags} error={errors.tags ? t(errors.tags) : undefined} />
+            <s-checkbox name="removeOnPause" label={t("settings.applicants.removeOnPause")} defaultChecked={d.applicants.removeOnPause} />
+            <s-stack direction="inline" gap="base" alignItems="center">
+              <s-button href={href("/app/settings/replies")}>{t("settings.replies.open")}</s-button>
+              <s-text color="subdued">{t("settings.replies.count", { count: d.replyCount })}</s-text>
+            </s-stack>
           </s-stack>
         </s-section>
 

@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "ผู้อ้างอิงทางการค้า",
  "form.field.yearsInBusiness.label": "จำนวนปีที่ดำเนินธุรกิจ",
  "form.phone.country": "รหัสประเทศ",
+ "form.status.book": "จองการโทรแนะนำการใช้งาน",
+ "form.status.details": "ดูสถานะใบสมัครของคุณ",
+ "form.status.reapply": "คุณสมัครใหม่ได้ตั้งแต่ {{ date }}",
+ "form.status.shop": "เริ่มช้อปปิ้ง",
+ "form.status.submitted": "สมัครเมื่อ {{ date }}",
+ "form.status.title.approved": "บัญชีขายส่งของคุณได้รับการอนุมัติแล้ว",
+ "form.status.title.needs_info": "เราต้องการข้อมูลเพิ่มเติมเล็กน้อย",
+ "form.status.title.pending": "เรากำลังพิจารณาใบสมัครของคุณ",
+ "form.status.title.rejected": "ใบสมัครของคุณไม่ได้รับการอนุมัติ",
+ "form.status.update": "อัปเดตใบสมัครของคุณ",
  "form.tax.us_add_state": "เพิ่มรัฐอื่น",
  "form.tax.us_form": "คุณมีใบรับรองแบบใด",
  "form.tax.us_form_exempt": "ใบรับรององค์กรที่ได้รับยกเว้นภาษี",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "ใบรับรองการขายต่อของรัฐเอง",
  "form.tax.us_permit": "หมายเลข seller's permit หรือภาษีการขาย",
  "form.tax.us_remove_state": "นำ {{ name }} ออก",
- "form.upload.camera": "ถ่ายรูป"
+ "form.upload.camera": "ถ่ายรูป",
+ "form.whatsapp": "ส่งข้อความถึงเราทาง WhatsApp"
 }

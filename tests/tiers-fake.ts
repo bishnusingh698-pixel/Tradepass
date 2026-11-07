@@ -12,6 +12,8 @@ export function fakeShopify() {
   const locations = new Map<string, { id: string; companyId: string; externalId: string | null; terms: string | null; draft: boolean; taxExempt: boolean; exemptions: string[]; reg: string | null; roles: string[] }>();
   const markets = new Map<string, { id: string; locs: string[]; catalogs: string[] }>();
   const customers = new Map<string, { id: string; email: string; name: string }>();
+  /** Customer tags: customer id → tags. */
+  const tags = new Map<string, Set<string>>();
   /** App metafields written by Tradepass: "ownerId|namespace|key" → value. */
   const metafields = new Map<string, string>();
   const calls: Call[] = [];
@@ -133,6 +135,32 @@ export function fakeShopify() {
       return { marketUpdate: ok({ market: { id: m.id } }) };
     },
     TierMarketCreate: () => ({}),
+    ApprovalContactCustomer: (v) => {
+      for (const c of companies.values()) {
+        const cc = c.contacts.find((x) => x.id === v.id);
+        if (cc) return { companyContact: { id: cc.id, customer: { id: cc.customer, tags: [...(tags.get(cc.customer) ?? [])] } } };
+      }
+      return { companyContact: null };
+    },
+    BuyerContactCustomer: (v) => handlers.ApprovalContactCustomer(v),
+    ApprovalTagsAdd: (v) => {
+      const cur = tags.get(v.id) ?? new Set<string>();
+      for (const t of v.tags) cur.add(t);
+      tags.set(v.id, cur);
+      return { tagsAdd: ok({ node: { id: v.id } }) };
+    },
+    BuyerTagsAdd: (v) => ({ tagsAdd: handlers.ApprovalTagsAdd(v).tagsAdd }),
+    ApprovalTagsRemove: (v) => {
+      const cur = tags.get(v.id) ?? new Set<string>();
+      for (const t of v.tags) cur.delete(t);
+      tags.set(v.id, cur);
+      return { tagsRemove: ok({ node: { id: v.id } }) };
+    },
+    BuyerTagsRemove: (v) => ({ tagsRemove: handlers.ApprovalTagsRemove(v).tagsRemove }),
+    TradepassStatusCustomer: (v) => {
+      const c = customers.get(v.id);
+      return { customer: c ? { id: c.id, defaultEmailAddress: { emailAddress: c.email } } : null };
+    },
     BuyerPausedSet: (v) => {
       for (const m of v.metafields) metafields.set(`${m.ownerId}|${m.namespace}|${m.key}`, m.value);
       return { metafieldsSet: ok({ metafields: v.metafields.map((_: unknown, i: number) => ({ id: `gid://shopify/Metafield/${i}` })) }) };
@@ -172,6 +200,7 @@ export function fakeShopify() {
     markets,
     customers,
     metafields,
+    tags,
     addMarket(locs: string[] = [], catalogs: string[] = []) {
       const m = { id: id("Market"), locs, catalogs };
       markets.set(m.id, m);

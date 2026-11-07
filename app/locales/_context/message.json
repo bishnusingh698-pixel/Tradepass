@@ -150,11 +150,6 @@
     "maxLength": 138,
     "placeholders": []
   },
-  "message.modal.mailto": {
-    "note": "Admin text.",
-    "maxLength": 60,
-    "placeholders": []
-  },
   "message.modal.close": {
     "note": "Admin text.",
     "maxLength": 60,
@@ -176,5 +171,10 @@
       "tier_name",
       "login_url"
     ]
+  },
+  "message.channel.mailto": {
+    "note": "Admin text.",
+    "maxLength": 60,
+    "placeholders": []
   }
 }

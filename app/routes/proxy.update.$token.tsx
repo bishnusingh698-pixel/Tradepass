@@ -7,6 +7,8 @@ import { readDefinition } from "../lib/forms.server";
 import { readSettings } from "../lib/settings";
 import { clientIp, hashKey, hit, LIMITS } from "../lib/spam.server";
 import { storefrontTexts } from "../lib/storefront-sync.server";
+import { esc, page, scriptJson } from "../lib/hosted-page.server";
+import { safeWhatsAppUrl } from "../lib/message-links";
 
 // Hosted "more info" page: /apps/tradepass/update/<token> (app proxy →
 // /proxy/update/<token>). The token is signed, expiring and single use
@@ -16,9 +18,6 @@ import { storefrontTexts } from "../lib/storefront-sync.server";
 
 type LinkState = "ok" | "invalid" | "expired" | "used";
 
-const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
-/** JSON inside <script>: no "</script>" break-out, no HTML comments. */
-const scriptJson = (v: unknown) => JSON.stringify(v).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
 
 async function inspect(shop: string, raw: string) {
   const check = verifyToken(raw);
@@ -39,41 +38,6 @@ async function shopInfo(shop: string) {
   return { name: row?.name ?? shop.replace(/\.myshopify\.com$/, ""), primary: row?.primaryLocale ?? "en", settings: readSettings(row?.settings ?? {}) };
 }
 
-function page(opts: { lang: string; dir: string; title: string; body: string; head?: string; status?: number }) {
-  const html = `<!doctype html>
-<html lang="${esc(opts.lang)}" dir="${opts.dir}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<meta name="referrer" content="no-referrer">
-<title>${esc(opts.title)}</title>
-<style>
-body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;color:#1a1a1a;background:#fff}
-.hosted{max-inline-size:40rem;margin-inline:auto;padding:2rem 1rem 4rem}
-h1{font-size:1.5rem;line-height:1.3;margin-block:0 1rem}
-.msg{padding:1rem;border:1px solid #c9cccf;border-radius:4px;white-space:pre-wrap;overflow-wrap:anywhere}
-.msg-label{font-weight:600;margin-block-end:.25rem}
-.tpf-submit{background:#1a1a1a;color:#fff;border:0;border-radius:4px}
-a{color:#005bd3}
-@media (prefers-color-scheme:dark){body{background:#111;color:#f1f1f1}.tpf-submit{background:#f1f1f1;color:#111}
-a{color:#8ab4f8}.hosted .tpf-error,.hosted .tpf-summary a{color:#ff8a80}.hosted .tpf-summary,.hosted .tpf [aria-invalid=true]{border-color:#ff8a80}.msg{border-color:#5c5f62}}
-</style>
-${opts.head ?? ""}
-</head>
-<body><main class="hosted">${opts.body}</main></body>
-</html>`;
-  return new Response(html, {
-    status: opts.status ?? 200,
-    headers: {
-      "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "no-store",
-      "X-Content-Type-Options": "nosniff",
-      "Referrer-Policy": "no-referrer",
-      "X-Robots-Tag": "noindex",
-    },
-  });
-}
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const ctx = await proxyContext(request);
@@ -122,6 +86,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     countryRule: info.settings.applications.countries.mode === "all" ? null : info.settings.applications.countries,
   };
   const title = t("hosted.update.title");
+  const wa = safeWhatsAppUrl(info.settings.contact.whatsappUrl);
   const message = requested.message?.trim()
     ? `<div class="msg"><p class="msg-label">${esc(t("hosted.update.messageLabel", { store }))}</p>${esc(requested.message.trim())}</div>`
     : "";
@@ -133,6 +98,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     body: `<h1>${esc(title)}</h1>
 <p>${esc(t("hosted.update.intro", { store }))}</p>
 ${message}
+${wa ? `<p><a class="btn" href="${esc(wa)}" target="_blank" rel="noopener">${esc(t("hosted.status.whatsapp", { store }))}</a></p>` : ""}
 <div data-tradepass-form><div class="tpf-mount"><noscript><p>${esc(t("hosted.noscript"))}</p></noscript></div>
 <script type="application/json">${scriptJson(boot)}</script></div>
 <script src="${esc(prefix)}/assets/form.js" defer></script>`,

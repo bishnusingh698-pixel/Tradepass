@@ -1,0 +1,12 @@
+{
+  "title": "批发账户",
+  "status": {
+    "pending": "申请审核中",
+    "needs_info": "我们需要更多信息",
+    "approved": "已批准",
+    "rejected": "未获批准"
+  },
+  "submitted": "申请日期：{{date}}",
+  "reapply": "您可以从 {{date}} 起重新申请。",
+  "view": "查看详情"
+}

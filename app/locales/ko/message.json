@@ -20,8 +20,8 @@
   "message.modal.copy": "메시지 복사",
   "message.modal.copied": "메시지를 복사했습니다",
   "message.modal.copyFailed": "메시지를 복사하지 못했습니다. 텍스트를 선택해 직접 복사하세요.",
-  "message.modal.mailto": "이메일에서 열기",
   "message.modal.close": "닫기",
   "message.approved.subject": "{store_name} 도매 계정이 승인되었습니다",
-  "message.approved.body": "{first_name}님, 안녕하세요.\n\n좋은 소식을 전해 드립니다. {company}의 {store_name} 도매 계정이 승인되었습니다. 적용되는 가격 등급은 {tier_name}입니다.\n\n로그인하려면 아래 링크를 열고 이 이메일 주소를 입력해 주십시오. 일회용 코드를 이메일로 보내 드리므로 비밀번호는 필요하지 않습니다.\n{login_url}\n\n로그인하시면 스토어 전체에서 도매 가격을 확인하실 수 있습니다."
+  "message.approved.body": "{first_name}님, 안녕하세요.\n\n좋은 소식을 전해 드립니다. {company}의 {store_name} 도매 계정이 승인되었습니다. 적용되는 가격 등급은 {tier_name}입니다.\n\n로그인하려면 아래 링크를 열고 이 이메일 주소를 입력해 주십시오. 일회용 코드를 이메일로 보내 드리므로 비밀번호는 필요하지 않습니다.\n{login_url}\n\n로그인하시면 스토어 전체에서 도매 가격을 확인하실 수 있습니다.",
+  "message.channel.mailto": "이메일에서 열기"
 }

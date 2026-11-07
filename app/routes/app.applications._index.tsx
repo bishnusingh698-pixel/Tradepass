@@ -12,13 +12,15 @@ import { approveMany } from "../lib/approval.server";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { CountryName, TaxCheckBadge, StatusBadge, RelativeTime } from "../components/applications";
+import { replyIn } from "../lib/replies";
+import { waitingDays } from "../lib/applications";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
   const url = new URL(request.url);
   const filters = parseFilters(url);
   const [list, tiers, forms, countries, businessTypes] = await Promise.all([
-    listApplications(ctx.shop, filters),
+    listApplications(ctx.shop, filters, ctx.actor),
     db.tier.findMany({ where: { shop: ctx.shop }, select: { id: true, name: true }, orderBy: { position: "asc" } }),
     db.form.findMany({ where: { shop: ctx.shop }, select: { id: true, name: true } }),
     db.application.findMany({ where: { shop: ctx.shop, countryCode: { not: null } }, select: { countryCode: true }, distinct: ["countryCode"] }),
@@ -31,6 +33,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     forms,
     countries: countries.map((c) => c.countryCode!).sort(),
     businessTypes: businessTypes.map((b) => b.businessType!).sort(),
+    staleDays: ctx.settings.review.staleDays,
+    replies: ctx.settings.replies.reject.map((r) => ({ id: r.id, title: replyIn(r, ctx.i18n.locale, ctx.shopRow?.primaryLocale ?? "en")?.title ?? "" })),
   };
 };
 
@@ -49,10 +53,17 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     return { ok: true as const, intent, summary };
   }
   if (intent === "bulk_reject") {
-    const reason = String(form.get("reason") ?? "").trim() || null;
+    const typed = String(form.get("reason") ?? "").trim() || null;
+    // A saved reply (B9) is written in each applicant's own language when the merchant has that text.
+    const reply = ctx.settings.replies.reject.find((r) => r.id === String(form.get("replyId") ?? "")) ?? null;
+    const primary = ctx.shopRow?.primaryLocale ?? "en";
+    const locales = reply ? new Map((await db.application.findMany({ where: { shop: ctx.shop, id: { in: ids } }, select: { id: true, locale: true } })).map((a) => [a.id, a.locale])) : null;
     let rejected = 0;
     // Each application keeps the reason; its "not approved" message can be copied from the application.
-    for (const id of ids) if (await rejectApplication(dctx, id, { reason })) rejected++;
+    for (const id of ids) {
+      const reason = (reply && replyIn(reply, locales?.get(id), primary)?.text) || typed;
+      if (await rejectApplication(dctx, id, { reason })) rejected++;
+    }
     return { ok: true as const, intent, rejected, skipped: ids.length - rejected };
   }
   if (intent === "bulk_export") {
@@ -177,6 +188,11 @@ export default function Applications() {
               <s-option value="duplicate">{t("applications.flag.duplicate")}</s-option>
               <s-option value="possible_spam">{t("applications.flag.possible_spam")}</s-option>
             </s-select>
+            <s-select label={t("applications.filter.assignee")} value={data.filters.assignee ?? ""} onChange={(e) => setParam("assignee", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
+              <s-option value="">{t("applications.filter.any")}</s-option>
+              <s-option value="me">{t("applications.filter.mine")}</s-option>
+              <s-option value="none">{t("applications.filter.unassigned")}</s-option>
+            </s-select>
             <s-select label={t("applications.filter.approval")} value={data.filters.approval ?? ""} onChange={(e) => setParam("approval", (e.currentTarget as unknown as HTMLSelectElement).value || null)}>
               <s-option value="">{t("applications.filter.any")}</s-option>
               <s-option value="incomplete">{t("applications.approval.incomplete")}</s-option>
@@ -278,7 +294,14 @@ export default function Applications() {
                   </s-table-cell>
                   <s-table-cell>{r.countryCode ? <CountryName code={r.countryCode} /> : "—"}</s-table-cell>
                   <s-table-cell>{r.businessType ? (t(`applications.businessType.${r.businessType}`) === `applications.businessType.${r.businessType}` ? r.businessType : t(`applications.businessType.${r.businessType}`)) : "—"}</s-table-cell>
-                  <s-table-cell><RelativeTime iso={r.submittedAt} /></s-table-cell>
+                  <s-table-cell>
+                    <s-stack direction="block" gap="small-300">
+                      <RelativeTime iso={r.submittedAt} />
+                      {(r.status === "pending" || r.status === "needs_info") && waitingDays(r.submittedAt) >= data.staleDays && (
+                        <s-badge tone="critical">{t("applications.waiting.days", { count: waitingDays(r.submittedAt) })}</s-badge>
+                      )}
+                    </s-stack>
+                  </s-table-cell>
                   <s-table-cell><TaxCheckBadge value={r.taxCheck} /></s-table-cell>
                   <s-table-cell>{r.hasCertificate ? t("applications.certificate.uploaded") : t("applications.certificate.missing")}</s-table-cell>
                   <s-table-cell>
@@ -298,7 +321,7 @@ export default function Applications() {
       </s-section>
 
       <BulkApproveModal tiers={data.tiers} count={selected.length} onConfirm={(tierId, sendWelcome) => submitBulk("bulk_approve", { tierId, ...(sendWelcome ? { sendWelcome: "on" } : {}) })} />
-      <BulkRejectModal count={selected.length} onConfirm={(reason) => submitBulk("bulk_reject", { reason })} />
+      <BulkRejectModal count={selected.length} replies={data.replies} onConfirm={(reason, replyId) => submitBulk("bulk_reject", { reason, replyId })} />
     </s-page>
   );
 }
@@ -333,15 +356,26 @@ function BulkApproveModal({ tiers, count, onConfirm }: { tiers: { id: string; na
   );
 }
 
-function BulkRejectModal({ count, onConfirm }: { count: number; onConfirm: (reason: string) => void }) {
+function BulkRejectModal({ count, replies, onConfirm }: { count: number; replies: { id: string; title: string }[]; onConfirm: (reason: string, replyId: string) => void }) {
   const { t } = useI18n();
   const [reason, setReason] = useState("");
+  const [replyId, setReplyId] = useState("");
   return (
     <s-modal id="bulk-reject" heading={t("applications.bulk.rejectHeading", { count })}>
       <s-stack direction="block" gap="base">
-        <s-text-area label={t("applications.reject.reason")} details={t("applications.reject.reasonHelp")} value={reason} onInput={(e) => setReason((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
+        {replies.length > 0 && (
+          // A saved reply is written in each applicant's own language (B9).
+          <s-select label={t("applications.reply.saved")} value={replyId} details={t("applications.bulk.replyHelp")}
+            onChange={(e) => setReplyId((e.currentTarget as unknown as HTMLSelectElement).value)}>
+            <s-option value="">{t("applications.reject.templateNone")}</s-option>
+            {replies.map((r) => <s-option key={r.id} value={r.id}>{r.title}</s-option>)}
+          </s-select>
+        )}
+        {!replyId && (
+          <s-text-area label={t("applications.reject.reason")} details={t("applications.reject.reasonHelp")} value={reason} onInput={(e) => setReason((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
+        )}
       </s-stack>
-      <s-button slot="primary-action" variant="primary" tone="critical" commandFor="bulk-reject" command="--hide" onClick={() => onConfirm(reason)}>
+      <s-button slot="primary-action" variant="primary" tone="critical" commandFor="bulk-reject" command="--hide" onClick={() => onConfirm(replyId ? "" : reason, replyId)}>
         {t("applications.bulk.rejectConfirm", { count })}
       </s-button>
       <s-button slot="secondary-actions" commandFor="bulk-reject" command="--hide">{t("common.cancel")}</s-button>

@@ -20,8 +20,8 @@
   "message.modal.copy": "Copiar mensagem",
   "message.modal.copied": "Mensagem copiada",
   "message.modal.copyFailed": "Não foi possível copiar a mensagem. Selecione o texto e copie você mesmo.",
-  "message.modal.mailto": "Abrir no e-mail",
   "message.modal.close": "Fechar",
   "message.approved.subject": "Sua conta de atacado na {store_name} foi aprovada",
-  "message.approved.body": "Olá, {first_name},\n\nBoas notícias: a {company} foi aprovada para uma conta de atacado na {store_name}. Seu nível de preço é {tier_name}.\n\nPara fazer login, abra o link abaixo e informe este endereço de e-mail. Enviaremos um código de uso único por e-mail, então você não precisa de senha:\n{login_url}\n\nDepois de fazer login, você verá seus preços de atacado em toda a loja."
+  "message.approved.body": "Olá, {first_name},\n\nBoas notícias: a {company} foi aprovada para uma conta de atacado na {store_name}. Seu nível de preço é {tier_name}.\n\nPara fazer login, abra o link abaixo e informe este endereço de e-mail. Enviaremos um código de uso único por e-mail, então você não precisa de senha:\n{login_url}\n\nDepois de fazer login, você verá seus preços de atacado em toda a loja.",
+  "message.channel.mailto": "Abrir no e-mail"
 }

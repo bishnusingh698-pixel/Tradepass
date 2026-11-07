@@ -25,7 +25,7 @@ export function openApproveModal() {
   (document.getElementById(APPROVE_MODAL_ID) as (HTMLElement & { showOverlay?: () => void }) | null)?.showOverlay?.();
 }
 
-const STEPS: ApprovalStep[] = ["company", "location", "contact", "terms_tax", "tier", "email"];
+const STEPS: ApprovalStep[] = ["company", "location", "contact", "terms_tax", "tier", "tags", "email"];
 
 type LoaderData = { defaults?: ApprovalDefaults; error?: string; message?: string; progress?: ApprovalState | null; status?: string | null };
 type ActionData = { ok: boolean; state?: ApprovalState | null; undone?: boolean; error?: string; message?: string };
@@ -335,6 +335,9 @@ export function ApproveModal({ applicationId, companyName }: { applicationId: st
               ) : (
                 <s-paragraph>{t("approval.contact.willCreate", { name: defaults.contactName || defaults.contactEmail, email: defaults.contactEmail })}</s-paragraph>
               )}
+              {(input.customerTags ?? []).length > 0 && (
+                <s-text color="subdued">{t("approval.tags.note", { tags: (input.customerTags ?? []).join(", ") })}</s-text>
+              )}
               <s-switch
                 label={t("approval.field.sendWelcome")}
                 details={t("approval.welcome.shopify")}
@@ -390,7 +393,7 @@ function Progress({ state, busy, success }: { state: ApprovalState; busy: boolea
         </s-banner>
       )}
       <s-stack direction="block" gap="small-200" accessibilityRole="status">
-        {STEPS.map((s) => {
+        {STEPS.filter((s) => state.steps[s] && !(s === "tags" && state.steps[s].status === "skipped" && !state.input.customerTags?.length)).map((s) => {
           const st = state.steps[s];
           const running = st.status === "running" || (busy && st.status === "pending" && STEPS.find((x) => state.steps[x].status === "pending") === s);
           return (

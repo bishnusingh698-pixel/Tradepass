@@ -20,8 +20,8 @@
   "message.modal.copy": "Kopírovat zprávu",
   "message.modal.copied": "Zpráva zkopírována",
   "message.modal.copyFailed": "Zprávu se nepodařilo zkopírovat. Označte text a zkopírujte ho sami.",
-  "message.modal.mailto": "Otevřít v e-mailu",
   "message.modal.close": "Zavřít",
   "message.approved.subject": "Váš velkoobchodní účet v obchodě {store_name} byl schválen",
-  "message.approved.body": "Dobrý den, {first_name},\n\nmáme dobrou zprávu: firmě {company} byl schválen velkoobchodní účet v obchodě {store_name}. Vaše cenová úroveň je {tier_name}.\n\nChcete-li se přihlásit, otevřete níže uvedený odkaz a zadejte tuto e-mailovou adresu. Pošleme vám e-mailem jednorázový kód, takže heslo nepotřebujete:\n{login_url}\n\nPo přihlášení uvidíte v celém obchodě své velkoobchodní ceny."
+  "message.approved.body": "Dobrý den, {first_name},\n\nmáme dobrou zprávu: firmě {company} byl schválen velkoobchodní účet v obchodě {store_name}. Vaše cenová úroveň je {tier_name}.\n\nChcete-li se přihlásit, otevřete níže uvedený odkaz a zadejte tuto e-mailovou adresu. Pošleme vám e-mailem jednorázový kód, takže heslo nepotřebujete:\n{login_url}\n\nPo přihlášení uvidíte v celém obchodě své velkoobchodní ceny.",
+  "message.channel.mailto": "Otevřít v e-mailu"
 }

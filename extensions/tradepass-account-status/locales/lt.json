@@ -1,0 +1,12 @@
+{
+  "title": "Didmeninė paskyra",
+  "status": {
+    "pending": "Paraiška peržiūrima",
+    "needs_info": "Mums reikia daugiau informacijos",
+    "approved": "Patvirtinta",
+    "rejected": "Nepatvirtinta"
+  },
+  "submitted": "Pateikta {{date}}",
+  "reapply": "Vėl teikti paraišką galėsite nuo {{date}}.",
+  "view": "Peržiūrėti išsamiau"
+}

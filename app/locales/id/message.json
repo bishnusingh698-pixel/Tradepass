@@ -20,8 +20,8 @@
   "message.modal.copy": "Salin pesan",
   "message.modal.copied": "Pesan disalin",
   "message.modal.copyFailed": "Pesan tidak dapat disalin. Pilih teksnya lalu salin sendiri.",
-  "message.modal.mailto": "Buka di email",
   "message.modal.close": "Tutup",
   "message.approved.subject": "Akun grosir Anda di {store_name} telah disetujui",
-  "message.approved.body": "Halo {first_name},\n\nKabar baik: {company} telah disetujui untuk akun grosir di {store_name}. Tingkat harga Anda adalah {tier_name}.\n\nUntuk masuk, buka tautan di bawah dan masukkan alamat email ini. Kami akan mengirimkan kode sekali pakai melalui email, jadi Anda tidak memerlukan kata sandi:\n{login_url}\n\nSetelah masuk, Anda akan melihat harga grosir Anda di seluruh toko."
+  "message.approved.body": "Halo {first_name},\n\nKabar baik: {company} telah disetujui untuk akun grosir di {store_name}. Tingkat harga Anda adalah {tier_name}.\n\nUntuk masuk, buka tautan di bawah dan masukkan alamat email ini. Kami akan mengirimkan kode sekali pakai melalui email, jadi Anda tidak memerlukan kata sandi:\n{login_url}\n\nSetelah masuk, Anda akan melihat harga grosir Anda di seluruh toko.",
+  "message.channel.mailto": "Buka di email"
 }

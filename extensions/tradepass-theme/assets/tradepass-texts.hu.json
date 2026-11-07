@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Kereskedelmi referenciák",
  "form.field.yearsInBusiness.label": "Működési évek",
  "form.phone.country": "Országhívószám",
+ "form.status.book": "Bemutatkozó hívás foglalása",
+ "form.status.details": "Jelentkezés állapotának megtekintése",
+ "form.status.reapply": "{{ date }} után jelentkezhet újra.",
+ "form.status.shop": "Vásárlás indítása",
+ "form.status.submitted": "Beküldve: {{ date }}",
+ "form.status.title.approved": "Nagykereskedelmi fiókját jóváhagytuk",
+ "form.status.title.needs_info": "Kicsit több információra van szükségünk",
+ "form.status.title.pending": "Átnézzük a jelentkezését",
+ "form.status.title.rejected": "Jelentkezését nem hagytuk jóvá",
+ "form.status.update": "Jelentkezés kiegészítése",
  "form.tax.us_add_state": "Újabb állam hozzáadása",
  "form.tax.us_form": "Milyen tanúsítványa van?",
  "form.tax.us_form_exempt": "Adómentes szervezet tanúsítványa",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Az állam saját viszonteladói tanúsítványa",
  "form.tax.us_permit": "Seller's permit vagy forgalmi adó azonosító száma",
  "form.tax.us_remove_state": "{{ name }} eltávolítása",
- "form.upload.camera": "Fénykép készítése"
+ "form.upload.camera": "Fénykép készítése",
+ "form.whatsapp": "Írjon nekünk WhatsAppon"
 }

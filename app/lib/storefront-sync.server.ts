@@ -17,6 +17,7 @@ import { readDefinition } from "./forms.server";
 import type { FormDefinition } from "./form-defaults";
 import { ensureCheckoutLock } from "./checkout-lock.server";
 import { logActivity } from "./activity.server";
+import { safeHttpsUrl, safeWhatsAppUrl } from "./message-links";
 
 export const NAMESPACE = "tradepass";
 /** Handles listed for card/quick-add gating. Each costs ~30 bytes on every storefront page. */
@@ -91,6 +92,8 @@ export type StorefrontConfig = {
   debugUntil: string | null;
   tiers: Record<string, Record<string, string>>; // tier id → buyer-facing names per locale
   brand: string | null; // "Powered by Tradepass" link URL; null on plans with "no_branding"
+  wa: string | null; // merchant's WhatsApp contact link (wa.me / api.whatsapp.com only), B7
+  links: { booking: string | null; shopping: string | null }; // optional success/status links, B11
 };
 
 const COLOR = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
@@ -166,6 +169,8 @@ export function buildConfig(
     debugUntil: until && new Date(until) > now ? until : null,
     tiers: tierNames,
     brand: can(plan, "no_branding") ? null : POWERED_BY_URL,
+    wa: safeWhatsAppUrl(settings.contact.whatsappUrl),
+    links: { booking: safeHttpsUrl(settings.links.bookingUrl), shopping: safeHttpsUrl(settings.links.shoppingUrl) },
   };
 }
 

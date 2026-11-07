@@ -51,9 +51,12 @@ export async function runBackgroundJobs(deadline: number, now = new Date()): Pro
   for (const job of jobs) {
     if (Date.now() > deadline) break;
     if (!(await claim(job.id))) continue;
-    const payload = (job.payload ?? {}) as { applicationId?: string; fileGids?: string[]; buyerId?: string };
+    const payload = (job.payload ?? {}) as { applicationId?: string; fileGids?: string[]; buyerId?: string; kind?: string };
     try {
-      if (job.type === "intake_followup" && payload.applicationId) {
+      if (job.type === "intake_followup" && payload.applicationId && payload.kind === "info") {
+        const { infoReceivedFollowup } = await import("../intake.server");
+        await infoReceivedFollowup(job.shop, payload.applicationId);
+      } else if (job.type === "intake_followup" && payload.applicationId) {
         const { intakeFollowups } = await import("../intake.server");
         await intakeFollowups(job.shop, payload.applicationId);
       } else if (job.type === DELETE_FILES_JOB && payload.fileGids?.length) {

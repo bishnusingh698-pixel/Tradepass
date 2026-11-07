@@ -999,6 +999,7 @@
     var submitBtn = h("button", { type: "submit", className: "tpf-submit button", text: tx("form.submit") });
     form.appendChild(submitBtn);
     form.appendChild(status);
+    if (opts.whatsapp && !preview) form.appendChild(h("p", { className: "tpf-help" }, [h("a", { href: opts.whatsapp, target: "_blank", rel: "noopener", text: tx("form.whatsapp") })]));
     container.appendChild(form);
 
     function refreshConditions() {
@@ -1067,7 +1068,7 @@
       ] : [
         h("h2", { className: "tpf-success__title", text: tx("form.success.heading") }),
         h("p", { text: msgText })
-      ]);
+      ].concat(extraLinks(opts, tx, "pending")));
       container.innerHTML = "";
       container.appendChild(box);
       box.focus();
@@ -1108,6 +1109,7 @@
           if (res.ok && j.ok) return success(j.status === "duplicate");
           setSending(false);
           if (res.status === 429) { status.textContent = tx("form.rate_limited"); return; }
+          if (j.error === "cooldown" && j.until) { status.textContent = tx("form.status.reapply", { date: longDate(j.until, locale) }); return; }
           if (j.errors) {
             var list = [];
             for (var id in j.errors) {
@@ -1133,6 +1135,38 @@
     });
 
     return { destroy: function () { container.innerHTML = ""; }, values: function () { return state.values; } };
+  }
+
+  function longDate(iso, locale) {
+    try { return new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" }).format(new Date(iso.length === 10 ? iso + "T00:00:00Z" : iso)); } catch (e) { return iso; }
+  }
+  /** Optional merchant links (B7, B11): book a call while pending, start shopping once approved, WhatsApp always. */
+  function extraLinks(o, tx, st) {
+    var out = [];
+    var l = o.links || {};
+    var add = function (href, text) { if (href) out.push(h("p", {}, [h("a", { href: href, className: "tpf-filebtn", rel: "noopener", target: href.charAt(0) === "/" ? null : "_blank", text: text })])); };
+    if (st === "approved") add(l.shopping, tx("form.status.shop"));
+    if (st === "pending" || st === "needs_info") add(l.booking, tx("form.status.book"));
+    add(o.whatsapp, tx("form.whatsapp"));
+    return out;
+  }
+  /** A logged-in customer who already applied sees their application instead of the form (B5). */
+  function statusCard(container, a, o, tx) {
+    var locale = o.locale || "en";
+    var kids = [
+      h("h2", { className: "tpf-success__title", text: tx("form.status.title." + a.status) }),
+      h("p", { text: tx("form.status.submitted", { date: longDate(a.submittedAt, locale) }) })
+    ];
+    if (a.status === "needs_info") {
+      if (a.message) kids.push(h("p", { className: "tpf-note", text: a.message }));
+      if (a.updateUrl) kids.push(h("p", {}, [h("a", { href: a.updateUrl, className: "tpf-submit button", text: tx("form.status.update") })]));
+    }
+    if (a.status === "rejected" && a.reapplyFrom) kids.push(h("p", { text: tx("form.status.reapply", { date: longDate(a.reapplyFrom, locale) }) }));
+    kids = kids.concat(extraLinks(o, tx, a.status));
+    if (a.statusUrl) kids.push(h("p", {}, [h("a", { href: a.statusUrl, text: tx("form.status.details") })]));
+    container.innerHTML = "";
+    container.classList.add("tpf");
+    container.appendChild(h("div", { className: "tpf-success", role: "status" }, kids));
   }
 
   /**
@@ -1172,14 +1206,24 @@
       var texts = cfg.texts || {};
       var ov = cfg.overrides || {};
       var mount = root.querySelector(".tpf-mount") || root;
-      loadExtraTexts(cfg.extraTexts).then(function (extra) {
+      var status = cfg.loggedIn && !cfg.submitUrl ? Promise.race([
+        fetch((cfg.endpoint || "/apps/tradepass") + "/status", { credentials: "same-origin", headers: { Accept: "application/json" } })
+          .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+        sleep(4000).then(function () { return null; })
+      ]) : Promise.resolve(null);
+      Promise.all([loadExtraTexts(cfg.extraTexts), status]).then(function (got) {
+      var extra = got[0];
       for (var x in extra) if (texts[x] == null) texts[x] = extra[x];
       for (var k in ov) if (ov[k]) texts[k] = ov[k];
+      var app = got[1] && got[1].application;
+      var tx0 = function (key, vars) { var v = texts[key]; return v == null ? "" : String(v).replace(/\{\{\s*(\w+)\s*\}\}/g, function (_, n) { return vars && vars[n] != null ? vars[n] : ""; }); };
+      // Rejected and free to apply again: the form, as for a first application.
+      if (app && !(app.status === "rejected" && !app.reapplyFrom)) { statusCard(mount, app, { locale: cfg.locale, links: cfg.links, whatsapp: cfg.whatsapp }, tx0); return; }
       render(mount, {
         definition: cfg.definition, texts: texts, locale: cfg.locale, dir: cfg.dir,
         endpoint: cfg.endpoint, formId: cfg.formId, country: cfg.country, prefill: cfg.prefill,
         languages: cfg.languages, countriesUrl: cfg.countriesUrl, submitUrl: cfg.submitUrl, uploadUrl: cfg.uploadUrl,
-        countryRule: cfg.countryRule
+        countryRule: cfg.countryRule, links: cfg.links, whatsapp: cfg.whatsapp
       });
       });
     });

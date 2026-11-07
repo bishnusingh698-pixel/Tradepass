@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Търговски препоръки",
  "form.field.yearsInBusiness.label": "Години в бизнеса",
  "form.phone.country": "Код на държавата",
+ "form.status.book": "Запазете уводен разговор",
+ "form.status.details": "Вижте статуса на заявката си",
+ "form.status.reapply": "Можете да кандидатствате отново от {{ date }}.",
+ "form.status.shop": "Започнете пазаруването",
+ "form.status.submitted": "Подадена на {{ date }}",
+ "form.status.title.approved": "Акаунтът ви на едро е одобрен",
+ "form.status.title.needs_info": "Нуждаем се от малко повече информация",
+ "form.status.title.pending": "Разглеждаме заявката ви",
+ "form.status.title.rejected": "Заявката ви не е одобрена",
+ "form.status.update": "Актуализирайте заявката си",
  "form.tax.us_add_state": "Добавяне на още един щат",
  "form.tax.us_form": "Какъв сертификат имате?",
  "form.tax.us_form_exempt": "Сертификат на организация, освободена от данъци",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Собственият сертификат за препродажба на щата",
  "form.tax.us_permit": "Номер на seller's permit или данък върху продажбите",
  "form.tax.us_remove_state": "Премахване на {{ name }}",
- "form.upload.camera": "Снимайте"
+ "form.upload.camera": "Снимайте",
+ "form.whatsapp": "Пишете ни в WhatsApp"
 }

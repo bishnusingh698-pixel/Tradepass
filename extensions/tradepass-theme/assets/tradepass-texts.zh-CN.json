@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "商业推荐人",
  "form.field.yearsInBusiness.label": "经营年限",
  "form.phone.country": "国家/地区代码",
+ "form.status.book": "预约入门电话",
+ "form.status.details": "查看申请状态",
+ "form.status.reapply": "您可以从 {{ date }} 起重新申请。",
+ "form.status.shop": "开始购物",
+ "form.status.submitted": "申请日期：{{ date }}",
+ "form.status.title.approved": "您的批发账户已获批准",
+ "form.status.title.needs_info": "我们还需要一些信息",
+ "form.status.title.pending": "我们正在审核您的申请",
+ "form.status.title.rejected": "您的申请未获批准",
+ "form.status.update": "更新您的申请",
  "form.tax.us_add_state": "添加其他州",
  "form.tax.us_form": "您持有哪种证书？",
  "form.tax.us_form_exempt": "免税组织证书",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "该州自己的转售证书",
  "form.tax.us_permit": "销售许可证号或销售税 ID",
  "form.tax.us_remove_state": "移除{{ name }}",
- "form.upload.camera": "拍照"
+ "form.upload.camera": "拍照",
+ "form.whatsapp": "通过 WhatsApp 给我们留言"
 }

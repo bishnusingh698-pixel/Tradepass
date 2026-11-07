@@ -15,7 +15,7 @@ import { readSettings } from "./settings";
 // match TRIGGER_FIELDS below exactly (tests/automation-flow.test.ts checks).
 
 export type FlowTrigger =
-  | "application_submitted" | "application_approved" | "application_rejected"
+  | "application_submitted" | "application_approved" | "application_rejected" | "application_info_received"
   | "certificate_expiring" | "certificate_expired";
 
 export type FlowPayload = {
@@ -27,6 +27,12 @@ export type FlowPayload = {
   country?: string;
   tierName?: string;
   expiryDate?: string;
+  contactName?: string;
+  phone?: string;
+  /** US state / province code of the billing address (or the certificate's state). */
+  state?: string;
+  /** Link that opens the application (or the buyer) in Tradepass inside Shopify admin. */
+  adminUrl?: string;
 };
 
 /** Extension handle per trigger (flowTriggerReceive's `handle`). */
@@ -34,21 +40,67 @@ export const TRIGGER_HANDLES: Record<FlowTrigger, string> = {
   application_submitted: "tradepass-flow-application-submitted",
   application_approved: "tradepass-flow-application-approved",
   application_rejected: "tradepass-flow-application-rejected",
+  application_info_received: "tradepass-flow-application-info-received",
   certificate_expiring: "tradepass-flow-certificate-expiring",
   certificate_expired: "tradepass-flow-certificate-expired",
 };
 
 // Flow field keys: letters and spaces only, sent verbatim. `company_id` is the
 // payload key of a `company_reference` field (numeric id).
-type FieldKey = "company_id" | "Application ID" | "Buyer ID" | "Company name" | "Contact email" | "Country" | "Tier" | "Expiry date";
+type FieldKey =
+  | "company_id" | "Application ID" | "Buyer ID" | "Company name" | "Contact email" | "Country" | "Tier" | "Expiry date"
+  | "Admin URL" | "Contact name" | "Phone" | "State";
+
+/** Fields every alert recipe needs (B8): id, admin link, company, contact, email, phone, country, state, tier. */
+const APPLICATION_FIELDS: FieldKey[] = ["Application ID", "Admin URL", "Company name", "Contact name", "Contact email", "Phone", "Country", "State", "Tier"];
 
 export const TRIGGER_FIELDS: Record<FlowTrigger, FieldKey[]> = {
-  application_submitted: ["Application ID", "Company name", "Contact email", "Country"],
-  application_approved: ["company_id", "Application ID", "Buyer ID", "Company name", "Contact email", "Country", "Tier"],
-  application_rejected: ["Application ID", "Company name", "Contact email", "Country"],
-  certificate_expiring: ["company_id", "Buyer ID", "Company name", "Contact email", "Country", "Tier", "Expiry date"],
-  certificate_expired: ["company_id", "Buyer ID", "Company name", "Contact email", "Country", "Tier", "Expiry date"],
+  application_submitted: APPLICATION_FIELDS,
+  application_approved: ["company_id", ...APPLICATION_FIELDS, "Buyer ID"],
+  application_rejected: APPLICATION_FIELDS,
+  application_info_received: APPLICATION_FIELDS,
+  certificate_expiring: ["company_id", "Buyer ID", "Admin URL", "Company name", "Contact email", "Country", "State", "Tier", "Expiry date"],
+  certificate_expired: ["company_id", "Buyer ID", "Admin URL", "Company name", "Contact email", "Country", "State", "Tier", "Expiry date"],
 };
+
+/** Flow field type per key (`url` for the admin link, plain text otherwise; the company is a reference). */
+export const FIELD_TYPES: Record<FieldKey, string> = {
+  company_id: "company_reference", "Admin URL": "url", "Application ID": "single_line_text_field", "Buyer ID": "single_line_text_field",
+  "Company name": "single_line_text_field", "Contact email": "single_line_text_field", Country: "single_line_text_field", Tier: "single_line_text_field",
+  "Expiry date": "single_line_text_field", "Contact name": "single_line_text_field", Phone: "single_line_text_field", State: "single_line_text_field",
+};
+
+/**
+ * The application's page in Shopify admin (embedded Tradepass), for Flow emails and Slack posts.
+ * Uses the app's client ID, which the admin resolves to the installed app (verify on a dev store).
+ */
+export function adminUrl(shop: string, path: string): string {
+  const handle = shop.replace(/\.myshopify\.com$/, "");
+  return `https://admin.shopify.com/store/${encodeURIComponent(handle)}/apps/${encodeURIComponent(process.env.SHOPIFY_API_KEY ?? "")}${path}`;
+}
+
+/** What every application trigger carries, from the stored application (no Shopify call). */
+export async function applicationPayload(shop: string, applicationId: string, extra: FlowPayload = {}): Promise<FlowPayload> {
+  const app = await db.application.findFirst({ where: { shop, id: applicationId } });
+  if (!app) return { applicationId, ...extra };
+  const a = (app.answers ?? {}) as Record<string, unknown>;
+  const s = (v: unknown) => (typeof v === "string" ? v : "");
+  const billing = (a.billingAddress ?? {}) as Record<string, unknown>;
+  const tierId = app.suggestedTierId;
+  const tier = !extra.tierName && tierId ? await db.tier.findFirst({ where: { shop, id: tierId }, select: { name: true } }) : null;
+  return {
+    applicationId: app.id,
+    adminUrl: adminUrl(shop, `/app/applications/${app.id}`),
+    companyName: app.companyName,
+    contactName: [s(a.firstName), s(a.lastName)].filter(Boolean).join(" "),
+    contactEmail: app.email,
+    phone: s(a.phone),
+    country: app.countryCode ?? undefined,
+    state: s(billing.zoneCode),
+    tierName: tier?.name,
+    ...extra,
+  };
+}
 
 /** Flow rejects payloads of 50,000 bytes or more (keys included). */
 export const MAX_PAYLOAD_BYTES = 50_000;
@@ -71,6 +123,10 @@ export function buildFlowPayload(trigger: FlowTrigger, p: FlowPayload): Record<s
     Country: clip(p.country),
     Tier: clip(p.tierName),
     "Expiry date": clip(p.expiryDate),
+    "Admin URL": clip(p.adminUrl),
+    "Contact name": clip(p.contactName),
+    Phone: clip(p.phone),
+    State: clip(p.state),
   };
   const out: Record<string, string | number> = {};
   for (const key of TRIGGER_FIELDS[trigger]) {

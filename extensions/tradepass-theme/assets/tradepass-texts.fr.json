@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Références commerciales",
  "form.field.yearsInBusiness.label": "Années d'activité",
  "form.phone.country": "Indicatif du pays",
+ "form.status.book": "Réserver un appel de démarrage",
+ "form.status.details": "Voir l'état de votre demande",
+ "form.status.reapply": "Vous pourrez refaire une demande à partir du {{ date }}.",
+ "form.status.shop": "Commencer vos achats",
+ "form.status.submitted": "Demande envoyée le {{ date }}",
+ "form.status.title.approved": "Votre compte professionnel est approuvé",
+ "form.status.title.needs_info": "Il nous faut quelques informations de plus",
+ "form.status.title.pending": "Nous examinons votre demande",
+ "form.status.title.rejected": "Votre demande n'a pas été approuvée",
+ "form.status.update": "Compléter votre demande",
  "form.tax.us_add_state": "Ajouter un autre État",
  "form.tax.us_form": "Quel certificat avez-vous ?",
  "form.tax.us_form_exempt": "Certificat d'organisme exonéré d'impôt",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Le certificat de revente propre à l'État",
  "form.tax.us_permit": "Numéro de seller's permit ou d'identification de taxe de vente",
  "form.tax.us_remove_state": "Retirer {{ name }}",
- "form.upload.camera": "Prendre une photo"
+ "form.upload.camera": "Prendre une photo",
+ "form.whatsapp": "Écrivez-nous sur WhatsApp"
 }

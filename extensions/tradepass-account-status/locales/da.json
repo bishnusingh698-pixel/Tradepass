@@ -1,0 +1,12 @@
+{
+  "title": "Engroskonto",
+  "status": {
+    "pending": "Ansøgningen gennemgås",
+    "needs_info": "Vi har brug for flere oplysninger",
+    "approved": "Godkendt",
+    "rejected": "Ikke godkendt"
+  },
+  "submitted": "Ansøgt den {{date}}",
+  "reapply": "Du kan ansøge igen fra {{date}}.",
+  "view": "Se detaljer"
+}

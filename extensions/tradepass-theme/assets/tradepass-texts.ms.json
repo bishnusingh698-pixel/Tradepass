@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Rujukan perdagangan",
  "form.field.yearsInBusiness.label": "Tahun dalam perniagaan",
  "form.phone.country": "Kod negara",
+ "form.status.book": "Tempah panggilan pengenalan",
+ "form.status.details": "Lihat status permohonan anda",
+ "form.status.reapply": "Anda boleh memohon semula mulai {{ date }}.",
+ "form.status.shop": "Mula membeli-belah",
+ "form.status.submitted": "Dimohon pada {{ date }}",
+ "form.status.title.approved": "Akaun borong anda telah diluluskan",
+ "form.status.title.needs_info": "Kami perlukan sedikit maklumat lagi",
+ "form.status.title.pending": "Kami sedang menyemak permohonan anda",
+ "form.status.title.rejected": "Permohonan anda tidak diluluskan",
+ "form.status.update": "Kemas kini permohonan anda",
  "form.tax.us_add_state": "Tambah negeri lain",
  "form.tax.us_form": "Sijil yang manakah anda ada?",
  "form.tax.us_form_exempt": "Sijil organisasi dikecualikan cukai",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Sijil jualan semula negeri itu sendiri",
  "form.tax.us_permit": "Nombor seller's permit atau cukai jualan",
  "form.tax.us_remove_state": "Alih keluar {{ name }}",
- "form.upload.camera": "Ambil gambar"
+ "form.upload.camera": "Ambil gambar",
+ "form.whatsapp": "Hantar mesej kepada kami di WhatsApp"
 }

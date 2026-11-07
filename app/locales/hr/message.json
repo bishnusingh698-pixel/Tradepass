@@ -20,8 +20,8 @@
   "message.modal.copy": "Kopiraj poruku",
   "message.modal.copied": "Poruka je kopirana",
   "message.modal.copyFailed": "Poruku nije bilo moguće kopirati. Označite tekst i kopirajte ga sami.",
-  "message.modal.mailto": "Otvori u e-pošti",
   "message.modal.close": "Zatvori",
   "message.approved.subject": "Vaš veleprodajni račun u trgovini {store_name} je odobren",
-  "message.approved.body": "Dobar dan, {first_name},\n\nimamo dobre vijesti: tvrtki {company} odobren je veleprodajni račun u trgovini {store_name}. Vaša cjenovna razina je {tier_name}.\n\nZa prijavu otvorite poveznicu u nastavku i unesite ovu adresu e-pošte. E-poštom ćemo vam poslati jednokratni kod pa vam lozinka nije potrebna:\n{login_url}\n\nNakon prijave vidjet ćete svoje veleprodajne cijene u cijeloj trgovini."
+  "message.approved.body": "Dobar dan, {first_name},\n\nimamo dobre vijesti: tvrtki {company} odobren je veleprodajni račun u trgovini {store_name}. Vaša cjenovna razina je {tier_name}.\n\nZa prijavu otvorite poveznicu u nastavku i unesite ovu adresu e-pošte. E-poštom ćemo vam poslati jednokratni kod pa vam lozinka nije potrebna:\n{login_url}\n\nNakon prijave vidjet ćete svoje veleprodajne cijene u cijeloj trgovini.",
+  "message.channel.mailto": "Otvori u e-pošti"
 }

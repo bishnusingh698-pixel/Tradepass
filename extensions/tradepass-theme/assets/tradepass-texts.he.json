@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "ממליצים עסקיים",
  "form.field.yearsInBusiness.label": "שנות פעילות",
  "form.phone.country": "קידומת מדינה",
+ "form.status.book": "קביעת שיחת היכרות",
+ "form.status.details": "צפייה בסטטוס הבקשה",
+ "form.status.reapply": "אפשר להגיש בקשה מחדש החל מ-{{ date }}.",
+ "form.status.shop": "להתחיל לקנות",
+ "form.status.submitted": "הוגשה ב-{{ date }}",
+ "form.status.title.approved": "חשבון הסיטונאות שלך אושר",
+ "form.status.title.needs_info": "אנחנו צריכים עוד קצת מידע",
+ "form.status.title.pending": "אנחנו בודקים את הבקשה שלך",
+ "form.status.title.rejected": "הבקשה שלך לא אושרה",
+ "form.status.update": "עדכון הבקשה",
  "form.tax.us_add_state": "הוספת מדינה נוספת",
  "form.tax.us_form": "איזו תעודה יש לך?",
  "form.tax.us_form_exempt": "תעודה של ארגון פטור ממס",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "תעודת המכירה החוזרת של המדינה עצמה",
  "form.tax.us_permit": "מספר seller's permit או מספר מס מכירה",
  "form.tax.us_remove_state": "הסרת {{ name }}",
- "form.upload.camera": "צילום תמונה"
+ "form.upload.camera": "צילום תמונה",
+ "form.whatsapp": "שלחו לנו הודעה בוואטסאפ"
 }

@@ -3,7 +3,7 @@ import db from "../db.server";
 import { storefrontUrl } from "./shop.server";
 import { logActivity } from "./activity.server";
 import { decrypt, encrypt, sha256, signToken, verifyToken } from "./crypto.server";
-import { emitFlowTrigger } from "./flow.server";
+import { adminUrl, emitFlowTrigger } from "./flow.server";
 import { buildMessage, renewalKind, type ApplicantMessage } from "./messages";
 import { gql, mutate, type Admin } from "./gql.server";
 import { readSettings } from "./settings";
@@ -374,6 +374,8 @@ async function certificateDay(
         country: buyer.country ?? c.country ?? undefined,
         tierName: tier?.name,
         expiryDate: c.expiresOn!.toISOString().slice(0, 10),
+        state: c.region ?? "",
+        adminUrl: adminUrl(shop, `/app/buyers/${buyer.id}`),
       });
     }
   }

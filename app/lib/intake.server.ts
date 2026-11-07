@@ -21,6 +21,7 @@ import { checkTaxIdFormat } from "./tax-ids";
 import { countryAllowed, readSettings } from "./settings";
 import { isRealDate } from "./dates";
 import { dunsOk, einOk, isUsCertForm, isUsState, usZipOk, type UsCertForm } from "./us-states";
+import { cooldownFor } from "./status.server";
 
 export type IntakeDeps = {
   getAdmin: (shop: string) => Promise<Admin | null>;
@@ -36,7 +37,7 @@ export type IntakeDeps = {
    * auto-approval alone can take longer. The default stores a durable job first
    * so the hourly run finishes the work if this process stops.
    */
-  defer: (shop: string, applicationId: string, run: () => Promise<void>) => Promise<void>;
+  defer: (shop: string, applicationId: string, run: () => Promise<void>, payload?: { kind?: "info" }) => Promise<void>;
 };
 
 export const INTAKE_JOB = "intake_followup";
@@ -58,9 +59,9 @@ export const defaultDeps: IntakeDeps = {
   emitFlowTrigger: async (...a) => (await import("./flow.server")).emitFlowTrigger(...a),
   evaluateRules: async (...a) => (await import("./rules.server")).evaluateRules(...a),
   recordApplicationCertificates: async (...a) => (await import("./certificates.server")).recordApplicationCertificates(...a),
-  defer: async (shop, applicationId, run) => {
+  defer: async (shop, applicationId, run, extra) => {
     const job = await db.job.create({
-      data: { shop, type: INTAKE_JOB, payload: { applicationId }, runAfter: new Date(Date.now() + INTAKE_JOB_GRACE_MS) },
+      data: { shop, type: INTAKE_JOB, payload: { applicationId, ...(extra?.kind ? { kind: extra.kind } : {}) }, runAfter: new Date(Date.now() + INTAKE_JOB_GRACE_MS) },
       select: { id: true },
     });
     void run()
@@ -74,7 +75,8 @@ export type IntakeContext = { shop: string; loggedInCustomerId: string | null; i
 export type IntakeResponse =
   | { http: 200; body: { ok: true; status: "received" | "duplicate"; id?: string } }
   | { http: 400; body: { ok: false; error?: string; errors?: Record<string, string> } }
-  | { http: 429; body: { ok: false; error: "rate_limited" } };
+  | { http: 429; body: { ok: false; error: "rate_limited" } }
+  | { http: 409; body: { ok: false; error: "cooldown"; until: string } };
 
 const KEY_RE = /^[A-Za-z0-9_-]{8,100}$/;
 const LOCALE_RE = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})?$/;
@@ -379,6 +381,14 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
   let taxNumberEnc: string | null = null;
   let taxHash: string | null = null;
   let taxCheck: TaxCheck = { status: "na" };
+  // Rejected recently and the merchant set a re-apply wait: say from when they may apply again (B10).
+  // An open or approved earlier application is a duplicate instead (handled below).
+  {
+    const keys = { email, companyName, taxHash: clean.tax ? sha256(normaliseTaxNumber(clean.tax.number)) : null };
+    const open = (email || companyName || keys.taxHash ? await findDuplicates(shop, email, companyName, keys.taxHash) : []).some((d) => OPEN.includes(d.status));
+    const until = open ? null : await cooldownFor(shop, keys);
+    if (until) return { http: 409, body: { ok: false, error: "cooldown", until } };
+  }
   let usChecks: UsCheck[] = [];
   if (clean.tax) {
     taxNumberEnc = encrypt(clean.tax.number);
@@ -550,10 +560,18 @@ export async function intakeFollowups(shop: string, applicationId: string, deps:
   };
   const admin = await deps.getAdmin(shop);
   if (!admin) return;
-  await safe("flow", () => deps.emitFlowTrigger(admin, shop, "application_submitted", {
-    applicationId: app.id, companyName: app.companyName, contactEmail: app.email, country: app.countryCode ?? undefined,
-  }));
+  await safe("flow", async () => deps.emitFlowTrigger(admin, shop, "application_submitted", await (await import("./flow.server")).applicationPayload(shop, app.id)));
   await safe("rules", () => deps.evaluateRules(admin, shop, app.id));
+}
+
+/**
+ * The applicant answered "Ask for more info": the "Wholesale application info received" Flow trigger
+ * (B8), so merchants can be alerted. Runs after the response, backed by a job like intake follow-ups.
+ */
+export async function infoReceivedFollowup(shop: string, applicationId: string, deps: Pick<IntakeDeps, "getAdmin" | "emitFlowTrigger"> = defaultDeps): Promise<void> {
+  const admin = await deps.getAdmin(shop);
+  if (!admin) return;
+  await deps.emitFlowTrigger(admin, shop, "application_info_received", await (await import("./flow.server")).applicationPayload(shop, applicationId));
 }
 
 // ---------------------------------------------------------------- needs info
@@ -589,7 +607,7 @@ export async function applyUpdate(
   ctx: UpdateContext,
   applicationId: string,
   raw: unknown,
-  deps: Pick<IntakeDeps, "checkTaxNumber" | "checkUsPermit" | "recordApplicationCertificates"> = defaultDeps,
+  deps: Pick<IntakeDeps, "checkTaxNumber" | "checkUsPermit" | "recordApplicationCertificates"> & Partial<Pick<IntakeDeps, "defer" | "getAdmin" | "emitFlowTrigger">> = defaultDeps,
 ): Promise<{ ok: true } | { ok: false; errors: Record<string, string> } | { ok: false; error: "not_found" | "closed" }> {
   const { shop } = ctx;
   const app = await db.application.findFirst({ where: { shop, id: applicationId } });
@@ -664,6 +682,7 @@ export async function applyUpdate(
   }
   // The application is back under Pending (Home and the queue show it); the activity log records the reply.
   await logActivity({ shop, actor: "applicant", action: "application.updated", subject: app.id, detail: { fields: Object.keys(clean.answers) } }).catch(() => undefined);
+  await (deps.defer ?? defaultDeps.defer)(shop, app.id, () => infoReceivedFollowup(shop, app.id, { getAdmin: deps.getAdmin ?? defaultDeps.getAdmin, emitFlowTrigger: deps.emitFlowTrigger ?? defaultDeps.emitFlowTrigger }), { kind: "info" }).catch(() => undefined);
   return { ok: true };
 }
 

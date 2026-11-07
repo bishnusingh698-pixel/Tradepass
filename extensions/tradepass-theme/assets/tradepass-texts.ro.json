@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Referințe comerciale",
  "form.field.yearsInBusiness.label": "Ani de activitate",
  "form.phone.country": "Prefixul țării",
+ "form.status.book": "Programați un apel introductiv",
+ "form.status.details": "Vedeți starea cererii",
+ "form.status.reapply": "Puteți aplica din nou începând cu {{ date }}.",
+ "form.status.shop": "Începeți cumpărăturile",
+ "form.status.submitted": "Trimisă pe {{ date }}",
+ "form.status.title.approved": "Contul dvs. en-gros a fost aprobat",
+ "form.status.title.needs_info": "Avem nevoie de câteva informații în plus",
+ "form.status.title.pending": "Analizăm cererea dvs.",
+ "form.status.title.rejected": "Cererea dvs. nu a fost aprobată",
+ "form.status.update": "Completați cererea",
  "form.tax.us_add_state": "Adăugați alt stat",
  "form.tax.us_form": "Ce certificat aveți?",
  "form.tax.us_form_exempt": "Certificat de organizație scutită de taxe",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Certificatul de revânzare propriu al statului",
  "form.tax.us_permit": "Număr seller's permit sau de taxă pe vânzări",
  "form.tax.us_remove_state": "Eliminați {{ name }}",
- "form.upload.camera": "Faceți o fotografie"
+ "form.upload.camera": "Faceți o fotografie",
+ "form.whatsapp": "Scrieți-ne pe WhatsApp"
 }

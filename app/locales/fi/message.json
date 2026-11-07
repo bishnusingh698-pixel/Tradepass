@@ -20,8 +20,8 @@
   "message.modal.copy": "Kopioi viesti",
   "message.modal.copied": "Viesti kopioitu",
   "message.modal.copyFailed": "Viestiä ei voitu kopioida. Valitse teksti ja kopioi se itse.",
-  "message.modal.mailto": "Avaa sähköpostissa",
   "message.modal.close": "Sulje",
   "message.approved.subject": "Tukkuasiakastilisi kaupassa {store_name} on hyväksytty",
-  "message.approved.body": "Hei {first_name}\n\nHyviä uutisia: yritykselle {company} on hyväksytty tukkuasiakastili kauppaan {store_name}. Hintatasosi on {tier_name}.\n\nKirjaudu sisään avaamalla alla oleva linkki ja antamalla tämä sähköpostiosoite. Lähetämme sinulle sähköpostitse kertakäyttökoodin, joten salasanaa ei tarvita:\n{login_url}\n\nKun olet kirjautunut sisään, näet tukkuhintasi kaikkialla kaupassa."
+  "message.approved.body": "Hei {first_name}\n\nHyviä uutisia: yritykselle {company} on hyväksytty tukkuasiakastili kauppaan {store_name}. Hintatasosi on {tier_name}.\n\nKirjaudu sisään avaamalla alla oleva linkki ja antamalla tämä sähköpostiosoite. Lähetämme sinulle sähköpostitse kertakäyttökoodin, joten salasanaa ei tarvita:\n{login_url}\n\nKun olet kirjautunut sisään, näet tukkuhintasi kaikkialla kaupassa.",
+  "message.channel.mailto": "Avaa sähköpostissa"
 }

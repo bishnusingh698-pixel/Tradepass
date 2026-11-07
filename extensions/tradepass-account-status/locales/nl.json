@@ -1,0 +1,12 @@
+{
+  "title": "Groothandelsaccount",
+  "status": {
+    "pending": "Aanvraag wordt beoordeeld",
+    "needs_info": "We hebben meer informatie nodig",
+    "approved": "Goedgekeurd",
+    "rejected": "Niet goedgekeurd"
+  },
+  "submitted": "Aangevraagd op {{date}}",
+  "reapply": "Je kunt vanaf {{date}} opnieuw aanvragen.",
+  "view": "Details bekijken"
+}

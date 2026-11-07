@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Handelsreferenties",
  "form.field.yearsInBusiness.label": "Aantal jaren actief",
  "form.phone.country": "Landcode",
+ "form.status.book": "Plan een kennismakingsgesprek",
+ "form.status.details": "Status van je aanvraag bekijken",
+ "form.status.reapply": "Je kunt vanaf {{ date }} opnieuw aanvragen.",
+ "form.status.shop": "Begin met winkelen",
+ "form.status.submitted": "Aangevraagd op {{ date }}",
+ "form.status.title.approved": "Je groothandelsaccount is goedgekeurd",
+ "form.status.title.needs_info": "We hebben nog wat informatie nodig",
+ "form.status.title.pending": "We bekijken je aanvraag",
+ "form.status.title.rejected": "Je aanvraag is niet goedgekeurd",
+ "form.status.update": "Je aanvraag aanvullen",
  "form.tax.us_add_state": "Nog een staat toevoegen",
  "form.tax.us_form": "Welk certificaat heb je?",
  "form.tax.us_form_exempt": "Certificaat van een belastingvrijgestelde organisatie",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Het eigen wederverkoopcertificaat van de staat",
  "form.tax.us_permit": "Seller's permit- of omzetbelastingnummer",
  "form.tax.us_remove_state": "{{ name }} verwijderen",
- "form.upload.camera": "Foto maken"
+ "form.upload.camera": "Foto maken",
+ "form.whatsapp": "Stuur ons een bericht via WhatsApp"
 }

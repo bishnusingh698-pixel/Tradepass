@@ -71,7 +71,8 @@ describe("approval step machine", () => {
   it("runs all steps, verifies each, creates the buyer and assigns the tier", async () => {
     const app = await newApp(SHOP);
     const state = await approveApplication(ctx(), app.id, input());
-    expect(Object.values(state.steps).map((s) => s.status)).toEqual(["done", "done", "done", "done", "done", "done"]);
+    // No customer tags configured: the tags step (C19) is skipped.
+    expect(Object.values(state.steps).map((s) => s.status)).toEqual(["done", "done", "done", "done", "done", "skipped", "done"]);
     const loc = state.steps.location.gid!;
     expect(fake.markets.get(marketGid)!.locs).toContain(loc);
     const l = fake.locations.get(loc)!;

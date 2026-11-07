@@ -1,0 +1,12 @@
+{
+  "title": "卸売アカウント",
+  "status": {
+    "pending": "審査中",
+    "needs_info": "追加情報が必要です",
+    "approved": "承認済み",
+    "rejected": "承認されませんでした"
+  },
+  "submitted": "申込日：{{date}}",
+  "reapply": "{{date}}から再度お申し込みいただけます。",
+  "view": "詳細を見る"
+}

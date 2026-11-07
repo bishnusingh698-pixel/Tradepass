@@ -16,10 +16,27 @@ export type CountryRule = { mode: "all" | "allow" | "block"; list: string[] };
 /** Per-locale merchant text: { locale: { key: text } } */
 export type LocalizedTexts = Record<string, Record<string, string>>;
 
+/** A merchant's own saved reply (rejection reason or "more info" message), per language. */
+export type SavedReply = { id: string; texts: Record<string, { title: string; text: string }> };
+export const MAX_REPLIES = 30;
+
 export type Settings = {
   welcome: { audience: Audience | null; done: boolean };
-  /** Who may apply, by billing country. Enforced by the storefront form and again on the server. */
-  applications: { countries: CountryRule };
+  /**
+   * Who may apply, by billing country (enforced by the form and the server), and how many days a
+   * rejected applicant waits before applying again (0 = no wait; they're told the date).
+   */
+  applications: { countries: CountryRule; reapplyDays: number };
+  /** Review: applications waiting longer than staleDays are highlighted on Home and in the queue. */
+  review: { staleDays: number };
+  /** Merchant's own WhatsApp contact link (wa.me / api.whatsapp.com only), shown to applicants. Empty = off. */
+  contact: { whatsappUrl: string };
+  /** Optional links on the success and status pages: a scheduling link and where approved buyers start shopping. */
+  links: { bookingUrl: string; shoppingUrl: string };
+  /** Saved replies: rejection reasons and "more info" messages, in the merchant's own words per language. */
+  replies: { reject: SavedReply[]; info: SavedReply[] };
+  /** Customer tags Tradepass adds on approval (and removes when the buyer is paused). */
+  customerTags: { onApprove: string[]; removeOnPause: boolean };
   storefront: {
     accessMode: AccessMode;
     scope: { type: ScopeType; ids: string[]; tags: string[] };
@@ -48,7 +65,12 @@ export type Settings = {
 export function defaultSettings(): Settings {
   return {
     welcome: { audience: null, done: false },
-    applications: { countries: { mode: "all", list: [] } },
+    applications: { countries: { mode: "all", list: [] }, reapplyDays: 0 },
+    review: { staleDays: 3 },
+    contact: { whatsappUrl: "" },
+    links: { bookingUrl: "", shoppingUrl: "" },
+    replies: { reject: [], info: [] },
+    customerTags: { onApprove: [], removeOnPause: true },
     storefront: {
       accessMode: "show",
       scope: { type: "all", ids: [], tags: [] },

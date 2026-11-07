@@ -1,10 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- GraphQL payloads are untyped JSON at this boundary */
 import type { Buyer, Prisma } from "@prisma/client";
 import db from "../db.server";
-import { gql } from "./gql.server";
 import { logActivity } from "./activity.server";
 import { moveLocations, type Ctx } from "./tiers.server";
 import { syncBuyerMarker } from "./buyer-marker.server";
+import { gql, mutate, type Admin } from "./gql.server";
+import { readSettings } from "./settings";
+
+const CONTACT_CUSTOMER = `#graphql
+  query BuyerContactCustomer($id: ID!) { companyContact(id: $id) { id customer { id } } }`;
+const TAGS_ADD = `#graphql
+  mutation BuyerTagsAdd($id: ID!, $tags: [String!]!) { tagsAdd(id: $id, tags: $tags) { node { id } userErrors { field message } } }`;
+const TAGS_REMOVE = `#graphql
+  mutation BuyerTagsRemove($id: ID!, $tags: [String!]!) { tagsRemove(id: $id, tags: $tags) { node { id } userErrors { field message } } }`;
+
+/**
+ * Pause / resume and the merchant's approval tags (C19): with "remove when paused" on, the tags come
+ * off the contact's customer on pause and go back on resume. Never fails the pause itself; logged.
+ */
+export async function syncBuyerTags(admin: Admin, shop: string, buyerId: string, on: boolean): Promise<void> {
+  const [b, row] = await Promise.all([
+    db.buyer.findFirst({ where: { shop, id: buyerId }, select: { contactGid: true } }),
+    db.shop.findUnique({ where: { shop }, select: { settings: true } }),
+  ]);
+  const cfg = readSettings(row?.settings ?? {}).customerTags;
+  if (!b?.contactGid || !cfg.onApprove.length || !cfg.removeOnPause) return;
+  try {
+    const customer = (await gql(admin, CONTACT_CUSTOMER, { id: b.contactGid })).companyContact?.customer?.id as string | undefined;
+    if (!customer) return;
+    await mutate(admin, on ? "tagsAdd" : "tagsRemove", on ? TAGS_ADD : TAGS_REMOVE, { id: customer, tags: cfg.onApprove });
+    await logActivity({ shop, actor: "system", action: on ? "buyer.tags_added" : "buyer.tags_removed", subject: buyerId });
+  } catch (e) {
+    await logActivity({ shop, actor: "system", action: on ? "buyer.tags_added" : "buyer.tags_removed", subject: buyerId, result: "failed", detail: { error: (e as Error).name } });
+  }
+}
 
 // Buyers: companies approved through, imported into or converted by Tradepass.
 // We keep only GIDs + name; everything else (contact, terms, orders) is read
@@ -162,6 +191,7 @@ export async function pauseBuyers(ctx: Ctx, buyerIds: string[]): Promise<MoveSum
       await db.buyer.update({ where: { id: b.id }, data: { status: "paused", pausedTierId: b.tierId, tierId: null } });
       // The checkout lock reads this marker, so a paused buyer can't order in a wholesale-only store (N1).
       await syncBuyerMarker(ctx.admin, ctx.shop, b.id);
+      await syncBuyerTags(ctx.admin, ctx.shop, b.id, false);
       (res.verified ? out.moved : out.pending).push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.pause", subject: b.id, detail: { tierId: b.tierId } });
     } catch (e) {
@@ -182,6 +212,7 @@ export async function resumeBuyers(ctx: Ctx, buyerIds: string[]): Promise<MoveSu
       const res = tier ? await moveLocations(ctx, b.locationGids, null, tier, { buyerId: b.id }) : { verified: true };
       await db.buyer.update({ where: { id: b.id }, data: { status: "active", tierId: tier?.id ?? null, pausedTierId: null } });
       await syncBuyerMarker(ctx.admin, ctx.shop, b.id);
+      await syncBuyerTags(ctx.admin, ctx.shop, b.id, true);
       (res.verified ? out.moved : out.pending).push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.resume", subject: b.id, detail: { tierId: tier?.id ?? null } });
     } catch (e) {

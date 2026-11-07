@@ -20,8 +20,8 @@
   "message.modal.copy": "Mesajı kopyala",
   "message.modal.copied": "Mesaj kopyalandı",
   "message.modal.copyFailed": "Mesaj kopyalanamadı. Metni seçip kendiniz kopyalayın.",
-  "message.modal.mailto": "E-postada aç",
   "message.modal.close": "Kapat",
   "message.approved.subject": "{store_name} mağazasındaki toptan satış hesabınız onaylandı",
-  "message.approved.body": "Merhaba {first_name},\n\nGüzel haber: {company} için {store_name} mağazasında toptan satış hesabı onaylandı. Fiyat seviyeniz: {tier_name}.\n\nOturum açmak için aşağıdaki bağlantıyı açın ve bu e-posta adresini girin. Size e-postayla tek kullanımlık bir kod göndereceğiz, bu nedenle şifreye ihtiyacınız yok:\n{login_url}\n\nOturum açtıktan sonra mağazanın her yerinde toptan satış fiyatlarınızı göreceksiniz."
+  "message.approved.body": "Merhaba {first_name},\n\nGüzel haber: {company} için {store_name} mağazasında toptan satış hesabı onaylandı. Fiyat seviyeniz: {tier_name}.\n\nOturum açmak için aşağıdaki bağlantıyı açın ve bu e-posta adresini girin. Size e-postayla tek kullanımlık bir kod göndereceğiz, bu nedenle şifreye ihtiyacınız yok:\n{login_url}\n\nOturum açtıktan sonra mağazanın her yerinde toptan satış fiyatlarınızı göreceksiniz.",
+  "message.channel.mailto": "E-postada aç"
 }

@@ -1,0 +1,12 @@
+{
+  "title": "Veleprodajni račun",
+  "status": {
+    "pending": "Prijava je v pregledu",
+    "needs_info": "Potrebujemo več podatkov",
+    "approved": "Odobreno",
+    "rejected": "Ni odobreno"
+  },
+  "submitted": "Oddano {{date}}",
+  "reapply": "Znova se lahko prijavite od {{date}}.",
+  "view": "Ogled podrobnosti"
+}

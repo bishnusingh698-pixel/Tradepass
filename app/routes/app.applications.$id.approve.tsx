@@ -43,6 +43,11 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
       if (!input) throw new ApprovalError("missing_address");
       return { ok: true as const, state: await approveApplication(actx, params.id!, input) };
     }
+    if (intent === "approve_defaults") {
+      // "Approve with defaults" (C13): exactly what the dialog would prefill, without opening it.
+      const d = await approvalDefaults(actx, params.id!);
+      return { ok: true as const, state: await approveApplication(actx, params.id!, d.input) };
+    }
     if (intent === "retry") return { ok: true as const, state: await retryApproval(actx, params.id!) };
     if (intent === "undo") {
       await undoApproval(actx, params.id!);

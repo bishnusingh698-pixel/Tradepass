@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Kauppaviitteet",
  "form.field.yearsInBusiness.label": "Toimintavuodet",
  "form.phone.country": "Maatunnus",
+ "form.status.book": "Varaa aloituspuhelu",
+ "form.status.details": "Näytä hakemuksen tila",
+ "form.status.reapply": "Voit hakea uudelleen {{ date }} alkaen.",
+ "form.status.shop": "Aloita ostokset",
+ "form.status.submitted": "Haettu {{ date }}",
+ "form.status.title.approved": "Tukkutilisi on hyväksytty",
+ "form.status.title.needs_info": "Tarvitsemme hieman lisätietoja",
+ "form.status.title.pending": "Käsittelemme hakemustasi",
+ "form.status.title.rejected": "Hakemustasi ei hyväksytty",
+ "form.status.update": "Täydennä hakemustasi",
  "form.tax.us_add_state": "Lisää toinen osavaltio",
  "form.tax.us_form": "Mikä todistus sinulla on?",
  "form.tax.us_form_exempt": "Verovapaan järjestön todistus",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Osavaltion oma jälleenmyyntitodistus",
  "form.tax.us_permit": "Seller's permit- tai myyntiverotunnus",
  "form.tax.us_remove_state": "Poista {{ name }}",
- "form.upload.camera": "Ota kuva"
+ "form.upload.camera": "Ota kuva",
+ "form.whatsapp": "Lähetä meille viesti WhatsAppissa"
 }

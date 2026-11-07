@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Referencje handlowe",
  "form.field.yearsInBusiness.label": "Lata działalności",
  "form.phone.country": "Numer kierunkowy kraju",
+ "form.status.book": "Umów rozmowę wprowadzającą",
+ "form.status.details": "Zobacz status wniosku",
+ "form.status.reapply": "Możesz złożyć wniosek ponownie od {{ date }}.",
+ "form.status.shop": "Zacznij zakupy",
+ "form.status.submitted": "Złożono {{ date }}",
+ "form.status.title.approved": "Twoje konto hurtowe zostało zatwierdzone",
+ "form.status.title.needs_info": "Potrzebujemy trochę więcej informacji",
+ "form.status.title.pending": "Rozpatrujemy Twój wniosek",
+ "form.status.title.rejected": "Twój wniosek nie został zatwierdzony",
+ "form.status.update": "Uzupełnij wniosek",
  "form.tax.us_add_state": "Dodaj kolejny stan",
  "form.tax.us_form": "Jaki masz certyfikat?",
  "form.tax.us_form_exempt": "Certyfikat organizacji zwolnionej z podatku",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Własny certyfikat odsprzedaży stanu",
  "form.tax.us_permit": "Numer seller's permit lub numer podatku od sprzedaży",
  "form.tax.us_remove_state": "Usuń {{ name }}",
- "form.upload.camera": "Zrób zdjęcie"
+ "form.upload.camera": "Zrób zdjęcie",
+ "form.whatsapp": "Napisz do nas na WhatsAppie"
 }

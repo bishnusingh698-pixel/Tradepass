@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Referensi dagang",
  "form.field.yearsInBusiness.label": "Lama berbisnis (tahun)",
  "form.phone.country": "Kode negara",
+ "form.status.book": "Jadwalkan panggilan perkenalan",
+ "form.status.details": "Lihat status pengajuan Anda",
+ "form.status.reapply": "Anda dapat mengajukan lagi mulai {{ date }}.",
+ "form.status.shop": "Mulai belanja",
+ "form.status.submitted": "Diajukan pada {{ date }}",
+ "form.status.title.approved": "Akun grosir Anda disetujui",
+ "form.status.title.needs_info": "Kami perlu sedikit informasi lagi",
+ "form.status.title.pending": "Kami sedang meninjau pengajuan Anda",
+ "form.status.title.rejected": "Pengajuan Anda tidak disetujui",
+ "form.status.update": "Perbarui pengajuan Anda",
  "form.tax.us_add_state": "Tambah negara bagian lain",
  "form.tax.us_form": "Sertifikat apa yang Anda miliki?",
  "form.tax.us_form_exempt": "Sertifikat organisasi bebas pajak",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Sertifikat penjualan kembali milik negara bagian",
  "form.tax.us_permit": "Nomor seller's permit atau pajak penjualan",
  "form.tax.us_remove_state": "Hapus {{ name }}",
- "form.upload.camera": "Ambil foto"
+ "form.upload.camera": "Ambil foto",
+ "form.whatsapp": "Kirim pesan kepada kami di WhatsApp"
 }

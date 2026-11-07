@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
-import { useFetcher, useLoaderData, useSearchParams } from "react-router";
+import { useFetcher, useLoaderData, useNavigate, useRevalidator, useSearchParams } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import db from "../db.server";
 import { adminContext } from "../lib/context.server";
-import { addNote, approvedMessage, getApplication, rejectApplicationWithReason, rejectionMessage, requestMoreInfo, setAssignee } from "../lib/applications.server";
+import { addNote, approvedMessage, getApplication, queueNeighbours, rejectApplicationWithReason, rejectionMessage, requestMoreInfo, setAssignee } from "../lib/applications.server";
+import { riskForApplication, waitingDays } from "../lib/applications";
 import type { ApplicantMessage } from "../lib/messages";
 import { defaultFormDefinition } from "../lib/form-defaults";
 import { readDefinition } from "../lib/forms.server";
@@ -18,6 +19,7 @@ import { MessageModal } from "../components/MessageModal";
 import { openFromApp } from "../components/download";
 import { PermitCheck } from "../components/PermitCheck";
 import { can } from "../lib/plans";
+import { replyIn } from "../lib/replies";
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -29,7 +31,15 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const locale = ctx.i18n.locale;
   const primary = ctx.shopRow?.primaryLocale ?? "en";
   const tier = buyer?.tierId ? await db.tier.findFirst({ where: { shop: ctx.shop, id: buyer.tierId }, select: { id: true, name: true } }) : null;
+  const back = new URL(request.url).searchParams.get("back") ?? "tab=pending";
+  const nav = await queueNeighbours(ctx.shop, back, app.id, ctx.actor);
   return {
+    nav,
+    risk: riskForApplication(app),
+    attribution: (app.attribution ?? null) as Record<string, string> | null,
+    me: ctx.actor,
+    staleDays: ctx.settings.review.staleDays,
+    isPlus: Boolean(ctx.shopRow?.isPlus),
     // Rejected: the "not approved" message stays available to copy (Tradepass sends no email).
     rejectionMessage: app.status === "rejected" ? await rejectionMessage(ctx.shop, app.id) : null,
     // Approved: the "you're approved" message, for when Shopify's B2B welcome email wasn't sent (D-092).
@@ -63,6 +73,11 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       form: c.form, checkResult: c.checkResult, checkName: c.checkName, checkedBy: c.checkedBy, checkedAt: c.checkedAt?.toISOString() ?? null,
     })),
     liveChecks: can(ctx.plan, "tax_checks"),
+    // Saved replies (B9): the name in the admin's language, the text in the applicant's language.
+    replies: (["reject", "info"] as const).reduce((acc, kind) => ({
+      ...acc,
+      [kind]: ctx.settings.replies[kind].map((r) => ({ id: r.id, title: replyIn(r, locale, primary)?.title ?? "", text: replyIn(r, app.locale, primary)?.text ?? "" })),
+    }), {} as Record<"reject" | "info", { id: string; title: string; text: string }[]>),
     activity: activity.map((a) => ({ id: a.id, actor: a.actor, action: a.action, result: a.result, at: a.createdAt.toISOString() })),
     duplicates: duplicates.map((d) => ({ ...d, submittedAt: d.submittedAt.toISOString() })),
     buyer: buyer ? { id: buyer.id, companyGid: buyer.companyGid, status: buyer.status } : null,
@@ -105,6 +120,11 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
     case "assign": {
       await setAssignee(ctx.shop, id, String(form.get("assignee") ?? "").trim() || null);
       return { ok: true, intent };
+    }
+    case "assign_me": {
+      // "Mine" in the queue matches the signed-in staff member's name (C13).
+      await setAssignee(ctx.shop, id, ctx.actor);
+      return { ok: true, intent: "assign" };
     }
   }
   return { ok: false, intent: "unknown" };
@@ -159,15 +179,22 @@ export default function ApplicationDetail() {
   return (
     <s-page heading={a.companyName}>
       <s-link slot="breadcrumb-actions" href={href(`/app/applications?${backQuery}`)}>{t("nav.applications")}</s-link>
+      <ReviewKeys
+        prev={d.nav.prev ? href(`/app/applications/${d.nav.prev}?back=${encodeURIComponent(backQuery)}`) : null}
+        next={d.nav.next ? href(`/app/applications/${d.nav.next}?back=${encodeURIComponent(backQuery)}`) : null}
+        open={open}
+      />
       {open && (
         <>
           <s-button slot="primary-action" variant="primary" commandFor="approve-modal" command="--show">
             {t("applications.detail.approve")}
           </s-button>
+          <ApproveDefaultsButton applicationId={a.id} />
           <s-button slot="secondary-actions" commandFor="needs-info-modal" command="--show">{t("applications.detail.needsInfo")}</s-button>
           <s-button slot="secondary-actions" commandFor="reject-modal" command="--show">{t("applications.detail.reject")}</s-button>
         </>
       )}
+      <s-button slot="secondary-actions" onClick={async () => { if (!(await openFromApp(href(`/app/applications/${a.id}/print`)))) shopify.toast.show(t("errors.generic"), { isError: true }); }}>{t("applications.detail.print")}</s-button>
 
       <s-section>
         <s-stack direction="inline" gap="base" alignItems="center">
@@ -179,7 +206,17 @@ export default function ApplicationDetail() {
           {a.flags.map((f) => (
             <s-badge key={f} tone="warning">{t(`applications.flag.${f}`)}</s-badge>
           ))}
+          {open && waitingDays(a.submittedAt) >= d.staleDays && <s-badge tone="critical">{t("applications.waiting.days", { count: waitingDays(a.submittedAt) })}</s-badge>}
+          {d.nav.position && <s-text color="subdued">{t("applications.detail.position", { n: d.nav.position, total: d.nav.total })}</s-text>}
         </s-stack>
+        {d.risk.length > 0 && (
+          // Hints only: they never block an approval (C14).
+          <s-banner tone="warning" heading={t("applications.risk.heading")}>
+            <s-unordered-list>
+              {d.risk.map((h) => <s-list-item key={h}>{t(`applications.risk.${h}`)}</s-list-item>)}
+            </s-unordered-list>
+          </s-banner>
+        )}
         {failedStep && (
           <s-banner tone="critical" heading={t("applications.detail.approvalFailed")}>
             <s-paragraph>{t(`approval.step.${failedStep[0]}`)}: {failedStep[1].error}</s-paragraph>
@@ -213,6 +250,7 @@ export default function ApplicationDetail() {
             {welcomeNotSent && emailStep?.code === "email_unavailable" && (
               <s-paragraph color="subdued">{t("approval.error.email_unavailable")}</s-paragraph>
             )}
+            <NativeSetupLinks companyGid={d.buyer.companyGid} isPlus={d.isPlus} />
             {d.approvedMessage && (
               <s-stack direction="block" gap="small-200">
                 {welcomeNotSent && <s-paragraph color="subdued">{t("applications.detail.accessEmailHint")}</s-paragraph>}
@@ -234,6 +272,19 @@ export default function ApplicationDetail() {
           )}
         </s-grid>
       </s-section>
+
+      {d.attribution && (
+        <s-section heading={t("applications.section.source")}>
+          <s-grid gridTemplateColumns="repeat(auto-fit, minmax(160px, 1fr))" gap="base">
+            {(["utm_source", "utm_medium", "utm_campaign", "ref", "landing"] as const).filter((k) => d.attribution?.[k]).map((k) => (
+              <s-stack key={k} direction="block" gap="small-400">
+                <s-text color="subdued">{t(`applications.source.${k}`)}</s-text>
+                <s-text>{d.attribution![k]}</s-text>
+              </s-stack>
+            ))}
+          </s-grid>
+        </s-section>
+      )}
 
       <s-section heading={t("applications.section.contact")}>
         <s-grid gridTemplateColumns="repeat(auto-fit, minmax(220px, 1fr))" gap="base">
@@ -339,8 +390,8 @@ export default function ApplicationDetail() {
 
       {open && <ApproveModal applicationId={a.id} companyName={a.companyName} />}
       {a.status !== "pending" && a.status !== "needs_info" && failedStep && <ApproveModal applicationId={a.id} companyName={a.companyName} />}
-      <NeedsInfoModal company={a.companyName} fields={d.fields.filter((f) => f.requestable).map((f) => ({ id: f.id, label: label(f.id) }))} />
-      <RejectModal company={a.companyName} />
+      <NeedsInfoModal company={a.companyName} replies={d.replies.info} fields={d.fields.filter((f) => f.requestable).map((f) => ({ id: f.id, label: label(f.id) }))} />
+      <RejectModal company={a.companyName} replies={d.replies.reject} />
     </s-page>
   );
 }
@@ -382,6 +433,7 @@ function NotesAndAssignee({ notes, assignee }: { notes: { at: string; by: string
         <s-stack direction="inline" gap="small-200" alignItems="end">
           <s-text-field name="assignee" label={t("applications.detail.assignee")} details={t("applications.detail.assigneeHelp")} value={who} onInput={(e) => setWho((e.currentTarget as unknown as HTMLInputElement).value)} />
           <s-button type="submit">{t("common.save")}</s-button>
+          <s-button variant="tertiary" onClick={() => fetcher.submit({ intent: "assign_me" }, { method: "POST" })}>{t("applications.detail.assignMe")}</s-button>
         </s-stack>
       </fetcher.Form>
       {notes.map((n, i) => (
@@ -422,7 +474,34 @@ function useDecisionResult(data: DecisionData | undefined, state: string, onMess
   }, [data, state]);
 }
 
-function NeedsInfoModal({ fields, company }: { fields: { id: string; label: string }[]; company: string }) {
+type Reply = { id: string; title: string; text: string };
+
+/** Saved replies first (the merchant's own, B9), then the built-in suggestions. */
+function ReplyPicker({ label, none, replies, builtIn, onPick }: { label: string; none: string; replies: Reply[]; builtIn: { value: string; label: string; text: string }[]; onPick: (text: string) => void }) {
+  const { t } = useI18n();
+  return (
+    <s-select
+      label={label}
+      onChange={(e) => {
+        const v = (e.currentTarget as unknown as HTMLSelectElement).value;
+        const r = replies.find((x) => `saved:${x.id}` === v)?.text ?? builtIn.find((x) => `built:${x.value}` === v)?.text;
+        onPick(r ?? "");
+      }}
+    >
+      <s-option value="">{none}</s-option>
+      {replies.length > 0 && (
+        <s-option-group label={t("applications.reply.saved")}>
+          {replies.map((r) => <s-option key={r.id} value={`saved:${r.id}`}>{r.title}</s-option>)}
+        </s-option-group>
+      )}
+      <s-option-group label={t("applications.reply.builtIn")}>
+        {builtIn.map((b) => <s-option key={b.value} value={`built:${b.value}`}>{b.label}</s-option>)}
+      </s-option-group>
+    </s-select>
+  );
+}
+
+function NeedsInfoModal({ fields, company, replies }: { fields: { id: string; label: string }[]; company: string; replies: Reply[] }) {
   const { t } = useI18n();
   const fetcher = useFetcher<DecisionData>();
   const [message, setMessage] = useState("");
@@ -451,18 +530,13 @@ function NeedsInfoModal({ fields, company }: { fields: { id: string; label: stri
     <>
       <s-modal id="needs-info-modal" heading={t("applications.needsInfo.heading")}>
         <s-stack direction="block" gap="base">
-          <s-select
+          <ReplyPicker
             label={t("applications.needsInfo.template")}
-            onChange={(e) => {
-              const v = (e.currentTarget as unknown as HTMLSelectElement).value;
-              if (v) setMessage(t(`applications.needsInfo.template.${v}`));
-            }}
-          >
-            <s-option value="">{t("applications.needsInfo.templateNone")}</s-option>
-            {INFO_TEMPLATES.map((k) => (
-              <s-option key={k} value={k}>{t(`applications.needsInfo.templateName.${k}`)}</s-option>
-            ))}
-          </s-select>
+            none={t("applications.needsInfo.templateNone")}
+            replies={replies}
+            builtIn={INFO_TEMPLATES.map((k) => ({ value: k, label: t(`applications.needsInfo.templateName.${k}`), text: t(`applications.needsInfo.template.${k}`) }))}
+            onPick={(text) => text && setMessage(text)}
+          />
           <s-text-area label={t("applications.needsInfo.message")} value={message} error={errMessage} onInput={(e) => setMessage((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
           <s-choice-list
             label={t("applications.needsInfo.fields")}
@@ -485,7 +559,7 @@ function NeedsInfoModal({ fields, company }: { fields: { id: string; label: stri
   );
 }
 
-function RejectModal({ company }: { company: string }) {
+function RejectModal({ company, replies }: { company: string; replies: Reply[] }) {
   const { t } = useI18n();
   const fetcher = useFetcher<DecisionData>();
   const [reason, setReason] = useState("");
@@ -495,18 +569,13 @@ function RejectModal({ company }: { company: string }) {
     <>
       <s-modal id="reject-modal" heading={t("applications.reject.heading", { company })}>
         <s-stack direction="block" gap="base">
-          <s-select
+          <ReplyPicker
             label={t("applications.reject.template")}
-            onChange={(e) => {
-              const v = (e.currentTarget as unknown as HTMLSelectElement).value;
-              setReason(v ? t(`applications.reject.template.${v}`) : "");
-            }}
-          >
-            <s-option value="">{t("applications.reject.templateNone")}</s-option>
-            {REJECT_TEMPLATES.map((k) => (
-              <s-option key={k} value={k}>{t(`applications.reject.templateName.${k}`)}</s-option>
-            ))}
-          </s-select>
+            none={t("applications.reject.templateNone")}
+            replies={replies}
+            builtIn={REJECT_TEMPLATES.map((k) => ({ value: k, label: t(`applications.reject.templateName.${k}`), text: t(`applications.reject.template.${k}`) }))}
+            onPick={setReason}
+          />
           <s-text-area label={t("applications.reject.reason")} details={t("applications.reject.reasonHelp")} value={reason} onInput={(e) => setReason((e.currentTarget as unknown as HTMLTextAreaElement).value)} />
           <s-paragraph>{t("applications.reject.consequence")}</s-paragraph>
         </s-stack>
@@ -525,6 +594,94 @@ function RejectModal({ company }: { company: string }) {
       </s-modal>
       <MessageModal id="reject-message" company={company} message={ready} onClose={() => setReady(null)} />
     </>
+  );
+}
+
+/**
+ * Keyboard shortcuts for working through the queue (C13): J / K next and previous, A approve,
+ * M ask for more info, R reject, ? shows the list. Ignored while typing in a field or a dialog is open.
+ */
+function ReviewKeys({ prev, next, open }: { prev: string | null; next: string | null; open: boolean }) {
+  const { t } = useI18n();
+  const navigate = useNavigate();
+  const [help, setHelp] = useState(false);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (e.metaKey || e.ctrlKey || e.altKey || !el) return;
+      if (/^(input|textarea|select)$/i.test(el.tagName) || el.isContentEditable || el.closest("s-modal, [role=dialog], s-text-field, s-text-area, s-select")) return;
+      const show = (id: string) => (document.getElementById(id) as HTMLElement & { showOverlay?: () => void } | null)?.showOverlay?.();
+      const k = e.key.toLowerCase();
+      if (k === "j" && next) navigate(next);
+      else if (k === "k" && prev) navigate(prev);
+      else if (k === "a" && open) show("approve-modal");
+      else if (k === "m" && open) show("needs-info-modal");
+      else if (k === "r" && open) show("reject-modal");
+      else if (e.key === "?") setHelp((h) => !h);
+      else return;
+      e.preventDefault();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [prev, next, open, navigate]);
+  return (
+    <>
+      {prev && <s-button slot="secondary-actions" href={prev} accessibilityLabel={t("applications.nav.prevLabel")}>{t("applications.nav.prev")}</s-button>}
+      {next && <s-button slot="secondary-actions" href={next} accessibilityLabel={t("applications.nav.nextLabel")}>{t("applications.nav.next")}</s-button>}
+      <s-button slot="secondary-actions" onClick={() => setHelp((h) => !h)}>{t("applications.keys.button")}</s-button>
+      {help && (
+        <s-section heading={t("applications.keys.heading")}>
+          <s-unordered-list>
+            {(["next", "prev", "approve", "info", "reject", "help"] as const).map((k) => <s-list-item key={k}>{t(`applications.keys.${k}`)}</s-list-item>)}
+          </s-unordered-list>
+        </s-section>
+      )}
+    </>
+  );
+}
+
+/** "Approve with defaults" (C13): the suggested tier, terms, tax and contact, no dialog. Progress opens in the approve dialog on failure. */
+function ApproveDefaultsButton({ applicationId }: { applicationId: string }) {
+  const { t } = useI18n();
+  const href = useLocaleHref();
+  const shopify = useAppBridge();
+  const fetcher = useFetcher<{ ok: boolean; message?: string; state?: { finishedAt?: string } | null }>();
+  const revalidator = useRevalidator();
+  useEffect(() => {
+    const d = fetcher.data;
+    if (fetcher.state !== "idle" || !d) return;
+    if (d.ok && d.state?.finishedAt) shopify.toast.show(t("applications.detail.approvedDefaults"));
+    else {
+      shopify.toast.show(d.message ?? t("applications.detail.approvalFailed"), { isError: true });
+      (document.getElementById("approve-modal") as HTMLElement & { showOverlay?: () => void } | null)?.showOverlay?.();
+    }
+    revalidator.revalidate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetcher.state, fetcher.data]);
+  return (
+    <s-button slot="secondary-actions" loading={fetcher.state !== "idle"} disabled={fetcher.state !== "idle"}
+      onClick={() => fetcher.submit({ intent: "approve_defaults" }, { method: "POST", action: href(`/app/applications/${applicationId}/approve`) })}>
+      {t("applications.detail.approveDefaults")}
+    </s-button>
+  );
+}
+
+/**
+ * After approval: short links to the Shopify B2B settings Tradepass doesn't rebuild (C20) — the company
+ * (payment terms, contacts), catalogs (volume pricing and quantity rules) and, on Plus, deposits.
+ */
+function NativeSetupLinks({ companyGid, isPlus }: { companyGid: string; isPlus: boolean }) {
+  const { t } = useI18n();
+  const id = companyGid.split("/").pop();
+  return (
+    <s-stack direction="block" gap="small-200">
+      <s-text type="strong">{t("applications.native.heading")}</s-text>
+      <s-unordered-list>
+        <s-list-item><s-link href="shopify://admin/catalogs" target="_top">{t("applications.native.catalogs")}</s-link></s-list-item>
+        <s-list-item><s-link href={`shopify://admin/companies/${id}`} target="_top">{t("applications.native.terms")}</s-link></s-list-item>
+        {isPlus && <s-list-item><s-link href={`shopify://admin/companies/${id}`} target="_top">{t("applications.native.deposits")}</s-link></s-list-item>}
+      </s-unordered-list>
+    </s-stack>
   );
 }
 

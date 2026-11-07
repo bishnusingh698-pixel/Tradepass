@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Obchodné referencie",
  "form.field.yearsInBusiness.label": "Roky podnikania",
  "form.phone.country": "Predvoľba krajiny",
+ "form.status.book": "Dohodnúť úvodný hovor",
+ "form.status.details": "Zobraziť stav žiadosti",
+ "form.status.reapply": "Znova môžete požiadať od {{ date }}.",
+ "form.status.shop": "Začať nakupovať",
+ "form.status.submitted": "Podané {{ date }}",
+ "form.status.title.approved": "Váš veľkoobchodný účet je schválený",
+ "form.status.title.needs_info": "Potrebujeme trochu viac informácií",
+ "form.status.title.pending": "Vašu žiadosť posudzujeme",
+ "form.status.title.rejected": "Vaša žiadosť nebola schválená",
+ "form.status.update": "Doplniť žiadosť",
  "form.tax.us_add_state": "Pridať ďalší štát",
  "form.tax.us_form": "Aký máte certifikát?",
  "form.tax.us_form_exempt": "Certifikát organizácie oslobodenej od dane",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Vlastný certifikát štátu na ďalší predaj",
  "form.tax.us_permit": "Číslo seller's permit alebo dane z predaja",
  "form.tax.us_remove_state": "Odstrániť {{ name }}",
- "form.upload.camera": "Odfotiť"
+ "form.upload.camera": "Odfotiť",
+ "form.whatsapp": "Napíšte nám na WhatsApp"
 }

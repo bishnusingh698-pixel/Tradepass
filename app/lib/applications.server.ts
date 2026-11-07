@@ -2,12 +2,13 @@ import type { Prisma } from "@prisma/client";
 import db from "../db.server";
 import { logActivity } from "./activity.server";
 import { decrypt, sha256, signToken } from "./crypto.server";
-import { emitFlowTrigger } from "./flow.server";
+import { applicationPayload, emitFlowTrigger } from "./flow.server";
 import { buildMessage, type ApplicantMessage } from "./messages";
 import { readSettings } from "./settings";
 import type { Admin } from "./gql.server";
 import { storefrontUrl } from "./shop.server";
 import { LockBusyError, withApplicationLock } from "./lock.server";
+import { statusLink } from "./status.server";
 import { isRealDate } from "./dates";
 
 // Merchant-side reads and decisions on applications (queue, detail, reject,
@@ -30,6 +31,8 @@ export type QueueFilters = {
   flag?: string;
   /** "incomplete": an approval started and stopped part-way (needs Retry or Undo). */
   approval?: "incomplete";
+  /** "me": assigned to the staff member looking (C13); "none": nobody. */
+  assignee?: "me" | "none";
   from?: string; // YYYY-MM-DD
   to?: string;
   sort?: "newest" | "oldest" | "company";
@@ -50,16 +53,20 @@ export function parseFilters(url: URL): QueueFilters {
     hasCertificate: p.get("hasCertificate") === "yes" ? "yes" : p.get("hasCertificate") === "no" ? "no" : undefined,
     flag: p.get("flag") || undefined,
     approval: p.get("approval") === "incomplete" ? "incomplete" : undefined,
+    assignee: p.get("assignee") === "me" ? "me" : p.get("assignee") === "none" ? "none" : undefined,
     // A malformed date in the URL would become an Invalid Date and crash the query.
     from: isRealDate(p.get("from") ?? "") ? p.get("from")! : undefined,
     to: isRealDate(p.get("to") ?? "") ? p.get("to")! : undefined,
-    sort: sort === "oldest" || sort === "company" ? sort : "newest",
+    // The pending tab works oldest first unless the merchant chose otherwise (C12: slow answers lose buyers).
+    sort: sort === "oldest" || sort === "company" || sort === "newest" ? sort : tab === "pending" || tab === "needs_info" ? "oldest" : "newest",
     page: Math.max(1, Number(p.get("page")) || 1),
   };
 }
 
-export function buildWhere(shop: string, f: QueueFilters, applicationIdsWithFiles?: string[]): Prisma.ApplicationWhereInput {
+export function buildWhere(shop: string, f: QueueFilters, applicationIdsWithFiles?: string[], actor?: string): Prisma.ApplicationWhereInput {
   const and: Prisma.ApplicationWhereInput[] = [{ shop }, { status: { not: "draft" } }];
+  if (f.assignee === "me") and.push({ assignee: actor ?? "" });
+  if (f.assignee === "none") and.push({ assignee: null });
   if (f.tab !== "all") and.push({ status: f.tab });
   if (f.country) and.push({ countryCode: f.country });
   if (f.businessType) and.push({ businessType: f.businessType });
@@ -96,11 +103,11 @@ const ORDER: Record<NonNullable<QueueFilters["sort"]>, Prisma.ApplicationOrderBy
   company: { companyName: "asc" },
 };
 
-export async function listApplications(shop: string, f: QueueFilters) {
+export async function listApplications(shop: string, f: QueueFilters, actor?: string) {
   const withFiles = f.hasCertificate
     ? (await db.applicationFile.findMany({ where: { shop }, select: { applicationId: true }, distinct: ["applicationId"] })).map((r) => r.applicationId)
     : undefined;
-  const where = buildWhere(shop, f, withFiles);
+  const where = buildWhere(shop, f, withFiles, actor);
   const [rows, total, counts, files] = await Promise.all([
     db.application.findMany({
       where,
@@ -259,12 +266,14 @@ export async function rejectApplicationWithReason(
     return app;
   });
   if (res === "busy" || typeof res === "string") return res;
-  const app = res;
   await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "application.reject", subject: id, detail: { hasReason: Boolean(reason) } });
-  await emitFlowTrigger(ctx.admin, ctx.shop, "application_rejected", {
-    applicationId: id, companyName: app.companyName, contactEmail: app.email, country: app.countryCode ?? undefined,
-  });
+  await emitFlowTrigger(ctx.admin, ctx.shop, "application_rejected", await applicationPayload(ctx.shop, id));
   return true;
+}
+
+function phoneOf(answers: unknown): string | undefined {
+  const v = ((answers ?? {}) as Answers).phone;
+  return typeof v === "string" && v.trim() ? v.trim() : undefined;
 }
 
 function firstName(answers: unknown): string {
@@ -310,7 +319,8 @@ async function requestMoreInfoLocked(
   // Only the link's hash is stored, so this is the one moment the merchant can copy it.
   const message = buildMessage("needs_info", app.locale, info, {
     company: app.companyName, firstName: firstName(app.answers), storeName: info.storeName, link, message: opts.message,
-  }, app.email);
+    statusLink: statusLink(info.row, ctx.shop, id),
+  }, app.email, phoneOf(app.answers));
   return { ok: true, link, message };
 }
 
@@ -321,7 +331,8 @@ export async function rejectionMessage(shop: string, id: string): Promise<Applic
   const info = await shopInfo(shop);
   return buildMessage("rejected", app.locale, info, {
     company: app.companyName, firstName: firstName(app.answers), storeName: info.storeName, reason: app.rejectReason,
-  }, app.email);
+    statusLink: statusLink(info.row, shop, id),
+  }, app.email, phoneOf(app.answers));
 }
 
 /**
@@ -341,8 +352,8 @@ export async function approvedMessage(shop: string, id: string): Promise<Applica
   const loginPath = readSettings(info.row?.settings ?? {}).storefront.loginUrl || "/account/login";
   return buildMessage("approved", app.locale, info, {
     company: app.companyName, firstName: firstName(app.answers), storeName: info.storeName,
-    tierName, loginUrl: storefrontUrl(info.row, loginPath, shop),
-  }, app.email);
+    tierName, loginUrl: storefrontUrl(info.row, loginPath, shop), statusLink: statusLink(info.row, shop, id),
+  }, app.email, phoneOf(app.answers));
 }
 
 export async function addNote(shop: string, id: string, actor: string, text: string): Promise<void> {
@@ -366,7 +377,7 @@ export async function pendingSummary(shop: string) {
   return { count, oldestAt: oldest?.submittedAt.toISOString() ?? null };
 }
 
-const CSV_COLUMNS = ["id", "status", "company", "contact", "email", "country", "businessType", "submittedAt", "taxCheck", "flags"] as const;
+const CSV_COLUMNS = ["id", "status", "company", "contact", "email", "country", "businessType", "submittedAt", "taxCheck", "flags", "assignee", "utmSource", "utmMedium", "utmCampaign", "referrer", "landingPage"] as const;
 
 function csvCell(v: unknown): string {
   let s = v == null ? "" : String(v);
@@ -381,7 +392,8 @@ export async function exportCsv(shop: string, ids: string[] | null, f?: QueueFil
   const lines = [CSV_COLUMNS.join(",")];
   for (const r of rows) {
     lines.push(
-      [r.id, r.status, r.companyName, contactName(r.answers), r.email, r.countryCode, r.businessType, r.submittedAt.toISOString(), r.taxCheck, r.flags.join(" ")]
+      [r.id, r.status, r.companyName, contactName(r.answers), r.email, r.countryCode, r.businessType, r.submittedAt.toISOString(), r.taxCheck, r.flags.join(" "), r.assignee,
+        ...(["utm_source", "utm_medium", "utm_campaign", "ref", "landing"] as const).map((k) => ((r.attribution ?? {}) as Record<string, string>)[k] ?? "")]
         .map(csvCell)
         .join(","),
     );
@@ -395,4 +407,20 @@ export async function approvalsThisMonth(shop: string): Promise<number> {
   start.setUTCDate(1);
   start.setUTCHours(0, 0, 0, 0);
   return db.application.count({ where: { shop, status: "approved", decidedAt: { gte: start } } });
+}
+
+/**
+ * Previous and next application in the queue the reviewer came from (same tab, filters and sort),
+ * for the detail page's arrows and the J/K shortcuts (C13).
+ */
+export async function queueNeighbours(shop: string, back: string, id: string, actor: string): Promise<{ prev: string | null; next: string | null; position: number | null; total: number }> {
+  const f = parseFilters(new URL(`https://x.invalid/?${back}`));
+  const withFiles = f.hasCertificate
+    ? (await db.applicationFile.findMany({ where: { shop }, select: { applicationId: true }, distinct: ["applicationId"] })).map((r) => r.applicationId)
+    : undefined;
+  // A queue of up to 500 ids is cheap (ids only) and covers any realistic review session.
+  const ids = (await db.application.findMany({ where: buildWhere(shop, f, withFiles, actor), orderBy: [ORDER[f.sort ?? "newest"], { id: "asc" }], select: { id: true }, take: 500 })).map((r) => r.id);
+  const i = ids.indexOf(id);
+  if (i < 0) return { prev: null, next: ids[0] ?? null, position: null, total: ids.length };
+  return { prev: ids[i - 1] ?? null, next: ids[i + 1] ?? null, position: i + 1, total: ids.length };
 }

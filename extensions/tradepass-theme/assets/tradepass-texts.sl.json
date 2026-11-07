@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Poslovne reference",
  "form.field.yearsInBusiness.label": "Leta poslovanja",
  "form.phone.country": "Klicna koda države",
+ "form.status.book": "Rezervirajte uvodni klic",
+ "form.status.details": "Oglejte si stanje prijave",
+ "form.status.reapply": "Znova se lahko prijavite od {{ date }}.",
+ "form.status.shop": "Začnite nakupovati",
+ "form.status.submitted": "Oddano {{ date }}",
+ "form.status.title.approved": "Vaš veleprodajni račun je odobren",
+ "form.status.title.needs_info": "Potrebujemo še nekaj podatkov",
+ "form.status.title.pending": "Pregledujemo vašo prijavo",
+ "form.status.title.rejected": "Vaša prijava ni bila odobrena",
+ "form.status.update": "Dopolnite prijavo",
  "form.tax.us_add_state": "Dodaj še eno zvezno državo",
  "form.tax.us_form": "Katero potrdilo imate?",
  "form.tax.us_form_exempt": "Potrdilo organizacije, oproščene davka",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Lastno potrdilo zvezne države za nadaljnjo prodajo",
  "form.tax.us_permit": "Številka seller's permit ali davka od prodaje",
  "form.tax.us_remove_state": "Odstrani {{ name }}",
- "form.upload.camera": "Fotografiraj"
+ "form.upload.camera": "Fotografiraj",
+ "form.whatsapp": "Pišite nam na WhatsApp"
 }

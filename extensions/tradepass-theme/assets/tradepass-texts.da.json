@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Handelsreferencer",
  "form.field.yearsInBusiness.label": "År i branchen",
  "form.phone.country": "Landekode",
+ "form.status.book": "Book en introduktionssamtale",
+ "form.status.details": "Se status for din ansøgning",
+ "form.status.reapply": "Du kan ansøge igen fra {{ date }}.",
+ "form.status.shop": "Begynd at handle",
+ "form.status.submitted": "Ansøgt den {{ date }}",
+ "form.status.title.approved": "Din engroskonto er godkendt",
+ "form.status.title.needs_info": "Vi har brug for lidt flere oplysninger",
+ "form.status.title.pending": "Vi gennemgår din ansøgning",
+ "form.status.title.rejected": "Din ansøgning blev ikke godkendt",
+ "form.status.update": "Opdater din ansøgning",
  "form.tax.us_add_state": "Tilføj endnu en stat",
  "form.tax.us_form": "Hvilket certifikat har du?",
  "form.tax.us_form_exempt": "Certifikat for skattefritaget organisation",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Statens eget videresalgscertifikat",
  "form.tax.us_permit": "Seller's permit- eller salgsafgiftsnummer",
  "form.tax.us_remove_state": "Fjern {{ name }}",
- "form.upload.camera": "Tag et billede"
+ "form.upload.camera": "Tag et billede",
+ "form.whatsapp": "Skriv til os på WhatsApp"
 }

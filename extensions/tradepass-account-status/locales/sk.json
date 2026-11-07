@@ -1,0 +1,12 @@
+{
+  "title": "Veľkoobchodný účet",
+  "status": {
+    "pending": "Žiadosť sa posudzuje",
+    "needs_info": "Potrebujeme viac informácií",
+    "approved": "Schválené",
+    "rejected": "Neschválené"
+  },
+  "submitted": "Podané {{date}}",
+  "reapply": "Znova môžete požiadať od {{date}}.",
+  "view": "Zobraziť podrobnosti"
+}

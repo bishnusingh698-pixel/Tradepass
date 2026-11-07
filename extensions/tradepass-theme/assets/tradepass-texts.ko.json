@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "거래 추천처",
  "form.field.yearsInBusiness.label": "사업 연수",
  "form.phone.country": "국가 번호",
+ "form.status.book": "온보딩 통화 예약",
+ "form.status.details": "신청 상태 보기",
+ "form.status.reapply": "{{ date }}부터 다시 신청할 수 있습니다.",
+ "form.status.shop": "쇼핑 시작하기",
+ "form.status.submitted": "신청일: {{ date }}",
+ "form.status.title.approved": "도매 계정이 승인되었습니다",
+ "form.status.title.needs_info": "정보가 조금 더 필요합니다",
+ "form.status.title.pending": "신청서를 검토하고 있습니다",
+ "form.status.title.rejected": "신청이 승인되지 않았습니다",
+ "form.status.update": "신청서 업데이트",
  "form.tax.us_add_state": "다른 주 추가",
  "form.tax.us_form": "어떤 인증서를 가지고 계신가요?",
  "form.tax.us_form_exempt": "면세 단체 인증서",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "해당 주의 재판매 인증서",
  "form.tax.us_permit": "판매자 허가 번호 또는 판매세 ID 번호",
  "form.tax.us_remove_state": "{{ name }} 삭제",
- "form.upload.camera": "사진 찍기"
+ "form.upload.camera": "사진 찍기",
+ "form.whatsapp": "WhatsApp으로 메시지 보내기"
 }

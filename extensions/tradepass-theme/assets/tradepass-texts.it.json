@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Referenze commerciali",
  "form.field.yearsInBusiness.label": "Anni di attività",
  "form.phone.country": "Prefisso internazionale",
+ "form.status.book": "Prenota una chiamata introduttiva",
+ "form.status.details": "Vedi lo stato della richiesta",
+ "form.status.reapply": "Potrai fare di nuovo richiesta dal {{ date }}.",
+ "form.status.shop": "Inizia ad acquistare",
+ "form.status.submitted": "Richiesta inviata il {{ date }}",
+ "form.status.title.approved": "Il tuo account all'ingrosso è approvato",
+ "form.status.title.needs_info": "Ci servono alcune informazioni in più",
+ "form.status.title.pending": "Stiamo esaminando la tua richiesta",
+ "form.status.title.rejected": "La tua richiesta non è stata approvata",
+ "form.status.update": "Aggiorna la tua richiesta",
  "form.tax.us_add_state": "Aggiungi un altro stato",
  "form.tax.us_form": "Quale certificato hai?",
  "form.tax.us_form_exempt": "Certificato di organizzazione esente da imposte",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Il certificato di rivendita dello stato",
  "form.tax.us_permit": "Numero di seller's permit o di imposta sulle vendite",
  "form.tax.us_remove_state": "Rimuovi {{ name }}",
- "form.upload.camera": "Scatta una foto"
+ "form.upload.camera": "Scatta una foto",
+ "form.whatsapp": "Scrivici su WhatsApp"
 }

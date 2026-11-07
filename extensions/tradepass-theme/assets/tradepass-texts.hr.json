@@ -16,6 +16,16 @@
  "form.field.tradeReferences.label": "Poslovne preporuke",
  "form.field.yearsInBusiness.label": "Godine poslovanja",
  "form.phone.country": "Pozivni broj države",
+ "form.status.book": "Rezervirajte uvodni razgovor",
+ "form.status.details": "Pogledajte status zahtjeva",
+ "form.status.reapply": "Ponovno se možete prijaviti od {{ date }}.",
+ "form.status.shop": "Počnite s kupnjom",
+ "form.status.submitted": "Podneseno {{ date }}",
+ "form.status.title.approved": "Vaš veleprodajni račun je odobren",
+ "form.status.title.needs_info": "Trebamo još malo podataka",
+ "form.status.title.pending": "Pregledavamo vaš zahtjev",
+ "form.status.title.rejected": "Vaš zahtjev nije odobren",
+ "form.status.update": "Dopunite zahtjev",
  "form.tax.us_add_state": "Dodaj još jednu saveznu državu",
  "form.tax.us_form": "Koju potvrdu imate?",
  "form.tax.us_form_exempt": "Potvrda porezno oslobođene organizacije",
@@ -24,5 +34,6 @@
  "form.tax.us_form_state": "Vlastita potvrda savezne države za preprodaju",
  "form.tax.us_permit": "Broj seller's permita ili poreza na promet",
  "form.tax.us_remove_state": "Ukloni {{ name }}",
- "form.upload.camera": "Snimi fotografiju"
+ "form.upload.camera": "Snimi fotografiju",
+ "form.whatsapp": "Pišite nam na WhatsApp"
 }

@@ -15,7 +15,7 @@ import db from "../db.server";
 import { gql, mutate, GqlError, UserErrorsError, type Admin } from "./gql.server";
 import { logActivity } from "./activity.server";
 import { decrypt, sha256 } from "./crypto.server";
-import { emitFlowTrigger } from "./flow.server";
+import { applicationPayload, emitFlowTrigger } from "./flow.server";
 import { createT } from "./i18n";
 import { LockBusyError, withApplicationLock } from "./lock.server";
 import { approvalQuota, effectivePlan } from "./plans";
@@ -23,6 +23,7 @@ import { approvalsThisMonth, normaliseTaxNumber } from "./applications.server";
 import { suggestExemption, US_RESELLER_STATES } from "./tax";
 import { refreshShopFacts } from "./shop.server";
 import { syncBuyerMarker } from "./buyer-marker.server";
+import { readSettings } from "./settings";
 import {
   AssignmentError, ASSISTED_JOB, catalogBudget, moveLocations, paymentTermsOptions, readDefaults, TierError,
 } from "./tiers.server";
@@ -56,9 +57,11 @@ export type ApproveInput = {
   sendWelcome: boolean;
   /** Orders go to the merchant as drafts (buyer experience checkoutToDraft). Defaults to the tier's setting. */
   checkoutToDraft?: boolean;
+  /** Customer tags added to the contact's customer (Settings → customer tags, C19). */
+  customerTags?: string[];
 };
 
-export const APPROVAL_STEPS = ["company", "location", "contact", "terms_tax", "tier", "email"] as const;
+export const APPROVAL_STEPS = ["company", "location", "contact", "terms_tax", "tier", "tags", "email"] as const;
 export type ApprovalStep = (typeof APPROVAL_STEPS)[number];
 export type StepState = {
   status: "pending" | "running" | "done" | "failed" | "skipped";
@@ -68,6 +71,8 @@ export type StepState = {
   created?: boolean; // true = this approval created the Shopify object (Undo may remove it)
   pendingAssignment?: boolean; // tier step in assisted mode: waiting for the merchant
   jobIds?: string[];
+  /** tags step: the tags this approval added (the customer didn't have them before), for Undo. */
+  added?: string[];
 };
 export type ApprovalState = {
   input: ApproveInput;
@@ -154,6 +159,12 @@ const Q = {
       companyLocationTaxSettingsUpdate(companyLocationId: $companyLocationId, taxExempt: $taxExempt, exemptionsToAssign: $exemptionsToAssign,
         exemptionsToRemove: $exemptionsToRemove, taxRegistrationId: $taxRegistrationId) {
         companyLocation { id } userErrors { field message code } } }`,
+  contactCustomer: `#graphql
+    query ApprovalContactCustomer($id: ID!) { companyContact(id: $id) { id customer { id tags } } }`,
+  tagsAdd: `#graphql
+    mutation ApprovalTagsAdd($id: ID!, $tags: [String!]!) { tagsAdd(id: $id, tags: $tags) { node { id } userErrors { field message } } }`,
+  tagsRemove: `#graphql
+    mutation ApprovalTagsRemove($id: ID!, $tags: [String!]!) { tagsRemove(id: $id, tags: $tags) { node { id } userErrors { field message } } }`,
   welcome: `#graphql
     mutation ApprovalWelcome($companyContactId: ID!) { companyContactSendWelcomeEmail(companyContactId: $companyContactId) {
       companyContact { id } userErrors { field message code } } }`,
@@ -181,7 +192,11 @@ export function emptySteps(): Record<ApprovalStep, StepState> {
 
 function readState(raw: unknown): ApprovalState | null {
   const s = raw as ApprovalState | null;
-  return s && s.steps && s.input ? s : null;
+  if (!(s && s.steps && s.input)) return null;
+  // Approvals saved before a step existed (the tags step, 2026-11-07): a finished one skipped it,
+  // an unfinished one runs it.
+  for (const k of APPROVAL_STEPS) if (!s.steps[k]) s.steps[k] = { status: s.finishedAt ? "skipped" : "pending" };
+  return s;
 }
 
 async function translator(ctx: ApprovalCtx) {
@@ -431,6 +446,27 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
     await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "tier.assign", subject: r.state.steps.location.gid!, detail: { tierId: tier.id, mode: res.mode } });
   },
 
+  async tags(r) {
+    // Customer tags (C19): added to the contact's customer, read back, and remembered so Undo removes
+    // only the tags this approval added.
+    const st = r.state.steps.tags;
+    const want = [...new Set(r.state.input.customerTags ?? [])];
+    const contactGid = r.state.steps.contact.gid;
+    if (!want.length || !contactGid) {
+      st.status = "skipped";
+      return;
+    }
+    const read = async () => (await gql(r.ctx.admin, Q.contactCustomer, { id: contactGid })).companyContact?.customer as { id: string; tags: string[] } | null;
+    const before = await read();
+    if (!before) throw new StepError("missing_in_shopify");
+    const missing = want.filter((x) => !before.tags.some((y) => y.toLowerCase() === x.toLowerCase()));
+    if (missing.length) await mutate(r.ctx.admin, "tagsAdd", Q.tagsAdd, { id: before.id, tags: missing });
+    const after = await read();
+    if (!after || !want.every((x) => after.tags.some((y) => y.toLowerCase() === x.toLowerCase()))) throw new StepError("verify_failed");
+    Object.assign(st, { gid: before.id, added: [...new Set([...(st.added ?? []), ...missing])] });
+    if (missing.length) await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "approval.tags_added", subject: before.id, detail: { count: missing.length } });
+  },
+
   async email(r) {
     const st = r.state.steps.email;
     const contactGid = r.state.steps.contact.gid;
@@ -602,10 +638,10 @@ async function finalizeApplication(app: Application, r: Run, source: "applicatio
   state.flowSent = true;
   await r.save(state);
   const tier = await db.tier.findFirst({ where: { id: i.tierId, shop: ctx.shop }, select: { name: true } });
-  await emitFlowTrigger(ctx.admin, ctx.shop, "application_approved", {
-    applicationId: app.id, buyerId: buyer.id, companyGid, companyName: i.companyName,
-    contactEmail: r.email ?? undefined, country: i.billingAddress.countryCode, tierName: tier?.name,
-  }).catch(() => undefined);
+  await emitFlowTrigger(ctx.admin, ctx.shop, "application_approved", await applicationPayload(ctx.shop, app.id, {
+    buyerId: buyer.id, companyGid, companyName: i.companyName,
+    contactEmail: r.email ?? undefined, country: i.billingAddress.countryCode, state: i.billingAddress.zoneCode ?? "", tierName: tier?.name ?? "",
+  })).catch(() => undefined);
 }
 
 async function attachJobsToBuyer(shop: string, jobIds: string[] | undefined, buyerId: string) {
@@ -647,6 +683,7 @@ export function mergeRetryInput(prev: ApprovalState, next: ApproveInput): Approv
     out.taxRegistrationId = p.taxRegistrationId;
   }
   if (done("tier") || prev.steps.tier?.status === "running") out.tierId = p.tierId;
+  if (done("tags")) out.customerTags = p.customerTags;
   if (done("email")) out.sendWelcome = p.sendWelcome;
   return out;
 }
@@ -720,6 +757,9 @@ export function normalizeApproveInput(raw: unknown): ApproveInput | null {
     contact,
     sendWelcome: r.sendWelcome !== false,
     checkoutToDraft: r.checkoutToDraft === true,
+    customerTags: Array.isArray(r.customerTags)
+      ? [...new Set(r.customerTags.filter((x): x is string => typeof x === "string").map((x) => x.trim()).filter((x) => x && x.length <= 40 && !/[<>,]/.test(x)))].slice(0, 10)
+      : [],
   };
 }
 
@@ -791,6 +831,10 @@ async function undoState(ctx: ApprovalCtx, state: ApprovalState, subject: string
       throw e;
     }
   };
+  // Tags this approval added go first (the customer stays; Undo never deletes customers).
+  if (s.tags?.gid && s.tags.added?.length) {
+    await step("approval.tags_removed", s.tags.gid, () => mutate(ctx.admin, "tagsRemove", Q.tagsRemove, { id: s.tags.gid, tags: s.tags.added }));
+  }
   // Tier first, so a market never keeps a location we are about to delete.
   if (s.tier.jobIds?.length) await db.job.deleteMany({ where: { shop: ctx.shop, id: { in: s.tier.jobIds }, state: "waiting" } });
   if (s.location.gid && (s.tier.status === "done" || s.tier.status === "failed" || s.tier.status === "running") && !s.tier.pendingAssignment) {
@@ -893,6 +937,7 @@ export async function approvalDefaults(ctx: ApprovalCtx, applicationId: string):
     contact: existing ? { mode: "existing", customerGid: existing.gid } : { mode: "new" },
     sendWelcome: true,
     checkoutToDraft: td.checkoutToDraft,
+    customerTags: readSettings(shopRow?.settings ?? {}).customerTags.onApprove,
   };
 
   return {
