@@ -16,6 +16,8 @@ import { CountryName, RelativeTime, StatusBadge, TaxCheckBadge } from "../compon
 import { ApproveModal } from "../components/ApproveModal";
 import { MessageModal } from "../components/MessageModal";
 import { openFromApp } from "../components/download";
+import { PermitCheck } from "../components/PermitCheck";
+import { can } from "../lib/plans";
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -58,7 +60,9 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     files: files.map((f) => ({ id: f.id, kind: f.kind, fileGid: f.fileGid, createdAt: f.createdAt.toISOString() })),
     certificates: certificates.map((c) => ({
       id: c.id, fileGid: c.fileGid, type: c.type, country: c.country, region: c.region, expiresOn: c.expiresOn?.toISOString().slice(0, 10) ?? null, status: c.status,
+      form: c.form, checkResult: c.checkResult, checkName: c.checkName, checkedBy: c.checkedBy, checkedAt: c.checkedAt?.toISOString() ?? null,
     })),
+    liveChecks: can(ctx.plan, "tax_checks"),
     activity: activity.map((a) => ({ id: a.id, actor: a.actor, action: a.action, result: a.result, at: a.createdAt.toISOString() })),
     duplicates: duplicates.map((d) => ({ ...d, submittedAt: d.submittedAt.toISOString() })),
     buyer: buyer ? { id: buyer.id, companyGid: buyer.companyGid, status: buyer.status } : null,
@@ -107,10 +111,10 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
 };
 
 const STANDARD_SECTIONS: Record<string, string[]> = {
-  business: ["companyName", "businessType", "website", "yearEstablished", "locationsCount", "monthlyOrderValue", "referral"],
+  business: ["companyName", "businessType", "website", "storeType", "storeUrl", "yearEstablished", "yearsInBusiness", "locationsCount", "monthlyOrderValue", "ein", "duns", "tradeReferences", "referral"],
   contact: ["firstName", "lastName", "email", "phone", "jobTitle", "preferredLanguage"],
 };
-const HANDLED = new Set([...STANDARD_SECTIONS.business, ...STANDARD_SECTIONS.contact, "billingAddress", "shippingAddress", "taxNumber", "certificates", "message", "consent", "taxNumberHash", "certificateMeta", "taxState", "taxCountry"]);
+const HANDLED = new Set([...STANDARD_SECTIONS.business, ...STANDARD_SECTIONS.contact, "billingAddress", "shippingAddress", "taxNumber", "certificates", "message", "consent", "taxNumberHash", "certificateMeta", "taxState", "taxCountry", "usPermits"]);
 
 export default function ApplicationDetail() {
   const d = useLoaderData<typeof loader>();
@@ -139,7 +143,7 @@ export default function ApplicationDetail() {
     a.answers[fieldId] !== undefined || fieldId === "companyName" || fieldId === "email" ? (
       <s-stack key={fieldId} direction="block" gap="small-400">
         <s-text color="subdued">{label(fieldId)}</s-text>
-        <s-text>{fieldId === "companyName" ? a.companyName : fieldId === "email" ? a.email : fieldId === "businessType" && a.businessType ? businessTypeLabel(t, a.businessType) : value(a.answers[fieldId])}</s-text>
+        <s-text>{fieldId === "companyName" ? a.companyName : fieldId === "email" ? a.email : fieldId === "businessType" && a.businessType ? businessTypeLabel(t, a.businessType) : fieldId === "storeType" && typeof a.answers.storeType === "string" ? t(`form.option.storeType.${a.answers.storeType}`) : value(a.answers[fieldId])}</s-text>
       </s-stack>
     ) : null;
 
@@ -257,6 +261,15 @@ export default function ApplicationDetail() {
             {a.taxCheckName && <s-text color="subdued">{t("applications.detail.registryName", { name: a.taxCheckName })}</s-text>}
           </s-stack>
           {a.taxCheck === "unavailable" && <s-paragraph color="subdued">{t("applications.detail.checkManually")}</s-paragraph>}
+          {/* US: one certificate per covered state, each with its official lookup and check mark. */}
+          {d.certificates.filter((c) => c.country === "US" && c.region).map((c) => (
+            <s-box key={c.id} padding="small-200" borderWidth="base" borderRadius="base">
+              <s-stack direction="block" gap="small-200">
+                <s-text type="strong">{t("applications.detail.usPermit", { state: c.region!, form: c.form ? t(`certificates.usForm.${c.form}`) : t(`certificates.type.${c.type}`) })}</s-text>
+                <PermitCheck cert={c} liveAllowed={d.liveChecks} />
+              </s-stack>
+            </s-box>
+          ))}
           {a.taxCheck === "skipped" && <s-paragraph color="subdued">{t("applications.detail.taxCheckPlan", { plan: "Starter" })}</s-paragraph>}
           {d.files.length === 0 ? (
             <s-text color="subdued">{t("applications.certificate.missing")}</s-text>

@@ -21,7 +21,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     // Read at most the size limit, also when the body comes without a Content-Length (REVIEW N4).
     const body = await readCapped(request, MAX_UPLOAD_BYTES + 64 * 1024);
     if (!body) return json({ ok: false, error: "file_size" }, 400);
-    read = await readUploadForm(await new Request(request.url, { method: "POST", headers: { "content-type": request.headers.get("content-type") ?? "" }, body }).formData());
+    read = await readUploadForm(await new Request(request.url, { method: "POST", headers: { "content-type": request.headers.get("content-type") ?? "" }, body: body as unknown as BodyInit }).formData());
   } catch {
     read = { ok: false, error: "file_type" };
   }

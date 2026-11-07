@@ -204,6 +204,24 @@ export function ApproveModal({ applicationId, companyName }: { applicationId: st
                   set({ taxExempt: on, exemptions: on && !input.exemptions.length && defaults.suggestedExemption.exemption ? [defaults.suggestedExemption.exemption] : input.exemptions });
                 }}
               />
+              {(defaults.suggestedExemption.alsoCovered ?? []).length > 0 && (
+                <s-stack direction="inline" gap="small-200" alignItems="center">
+                  <s-text color="subdued">
+                    {t("approval.tax.alsoCovered", { states: (defaults.suggestedExemption.alsoCovered ?? []).map(exemptionLabel).join(", ") })}
+                  </s-text>
+                  {(defaults.suggestedExemption.alsoCovered ?? []).some((x) => !input.taxExempt || !input.exemptions.includes(x)) && (
+                    <s-button
+                      variant="tertiary"
+                      onClick={() => {
+                        touch("taxExempt");
+                        set({ taxExempt: true, exemptions: [...new Set([...(input.taxExempt ? input.exemptions : []), ...(defaults.suggestedExemption.alsoCovered ?? [])])] });
+                      }}
+                    >
+                      {t("approval.tax.addCovered")}
+                    </s-button>
+                  )}
+                </s-stack>
+              )}
               {input.taxExempt && (
                 <s-stack direction="block" gap="small-200">
                   <s-stack direction="inline" gap="small-200">

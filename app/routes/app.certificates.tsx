@@ -18,6 +18,7 @@ import { openFromApp } from "../components/download";
 import { useI18n } from "../lib/i18n/react";
 import { useLocaleHref } from "../components/useLocaleHref";
 import { SectionTabs } from "../components/SectionTabs";
+import { PermitCheck } from "../components/PermitCheck";
 
 const STATUS_FILTERS = ["all", "pending", "valid", "expiring", "expired", "rejected", "no_expiry"] as const;
 type StatusFilter = (typeof STATUS_FILTERS)[number];
@@ -69,6 +70,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       needsDecision: st === "expired" && Boolean(c.buyerId) && !c.decidedOnExpiry,
       decided: c.decidedOnExpiry,
       exemption: exemptionForCertificate(c),
+      form: c.form,
+      checkResult: c.checkResult,
+      checkName: c.checkName,
+      checkedBy: c.checkedBy,
+      checkedAt: c.checkedAt?.toISOString() ?? null,
     };
   });
   return {
@@ -79,6 +85,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     gated: !can(ctx.plan, "certificate_vault"),
     requiredPlan: requiredPlan("certificate_vault"),
     expiringDays: days,
+    liveChecks: can(ctx.plan, "tax_checks"),
   };
 };
 
@@ -243,7 +250,7 @@ export default function Certificates() {
                       <s-text color="subdued">{t(r.isBuyer ? "certificates.holder.buyer" : "certificates.holder.applicant")}</s-text>
                     </s-stack>
                   </s-table-cell>
-                  <s-table-cell>{t(`certificates.type.${r.type}`)}</s-table-cell>
+                  <s-table-cell>{r.form ? t(`certificates.usForm.${r.form}`) : t(`certificates.type.${r.type}`)}</s-table-cell>
                   <s-table-cell>
                     {r.country
                       ? r.region
@@ -290,7 +297,7 @@ export default function Certificates() {
         )}
       </s-section>
 
-      <ManageModal row={current} busy={busy} onSubmit={submit} />
+      <ManageModal row={current} busy={busy} onSubmit={submit} liveChecks={data.liveChecks} />
       <MessageModal id="cert-renewal-message" company={current?.name ?? ""} message={ready} withLink onClose={() => setDismissed(fetcher.data)} />
       <RejectModal row={current} onSubmit={submit} />
       <ExpiryModal key={current?.id ?? "none"} row={current} onSubmit={submit} />
@@ -301,13 +308,14 @@ export default function Certificates() {
 
 type Submit = (intent: string, id: string, extra?: Record<string, string>) => void;
 
-function ManageModal({ row, busy, onSubmit }: { row: Row | null; busy: boolean; onSubmit: Submit }) {
+function ManageModal({ row, busy, onSubmit, liveChecks }: { row: Row | null; busy: boolean; onSubmit: Submit; liveChecks: boolean }) {
   const { t } = useI18n();
   return (
     <s-modal id="cert-actions" heading={row ? t("certificates.manage.heading", { name: row.name }) : t("certificates.title")}>
       {row && (
         <s-stack direction="block" gap="base">
           {row.rejectReason && row.status === "rejected" && <s-paragraph>{t("certificates.manage.rejectedBecause", { reason: row.rejectReason })}</s-paragraph>}
+          {row.country === "US" && <PermitCheck cert={row} liveAllowed={liveChecks} />}
           <s-stack direction="inline" gap="small-200">
             {row.status !== "valid" && row.status !== "expiring" && (
               <s-button commandFor="cert-actions" command="--hide" disabled={busy} onClick={() => onSubmit("approve", row.id)}>

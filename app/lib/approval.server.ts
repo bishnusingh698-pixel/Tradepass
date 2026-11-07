@@ -812,7 +812,7 @@ async function undoState(ctx: ApprovalCtx, state: ApprovalState, subject: string
 export type ApprovalDefaults = {
   input: ApproveInput;
   existingCustomer: { gid: string; name: string; email: string; otherCompany: string | null } | null;
-  suggestedExemption: { exemption: string | null; reason: string };
+  suggestedExemption: { exemption: string | null; reason: string; alsoCovered?: string[] };
   paymentTermsOptions: { id: string; name: string }[];
   tiers: { id: string; name: string }[];
   catalogBudget: { used: number | null; limit: number | null };
@@ -840,15 +840,21 @@ export async function approvalDefaults(ctx: ApprovalCtx, applicationId: string):
     tiers.find((x) => x.id === app.suggestedTierId) ?? tiers.find((x) => x.id === form?.suggestedTierId) ?? tiers[0];
   const td = readDefaults(tier?.defaults);
 
-  // Certificates outrank the billing state: a Texas certificate means the Texas exemption.
-  const resale = certs.find((c) => c.type === "resale" && c.status !== "rejected");
+  // US: one certificate per state; the location's state (where orders ship) decides which one
+  // applies, and the other covered states are offered.
+  const usable = certs.filter((c) => c.status !== "rejected");
+  const resale = usable.find((c) => c.type === "resale");
+  const covered = [...new Set(usable.filter((c) => c.type === "resale" && c.country === "US" && c.region).map((c) => c.region!))];
+  const locationState = (shipping && validAddress(shipping) ? shipping.zoneCode : billing.zoneCode) ?? null;
   const suggestion = suggestExemption({
     storeCountry: shopRow?.country ?? "",
     buyerCountry: billing.countryCode || app.countryCode || "",
-    buyerRegion: billing.zoneCode,
-    certificateType: resale ? "resale" : certs[0] ? (certs[0].type as "vat") : null,
+    buyerRegion: locationState,
+    certificateType: resale ? "resale" : usable[0] ? (usable[0].type as "vat") : null,
     certificateRegion: resale?.region ?? null,
     vatVerified: app.taxCheck === "verified",
+    coveredStates: covered.length ? covered : undefined,
+    exemptOrg: usable.some((c) => c.form === "exempt"),
   });
 
   let taxNumber: string | null = null;

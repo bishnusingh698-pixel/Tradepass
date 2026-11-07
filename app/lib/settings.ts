@@ -9,7 +9,7 @@ export const SETTINGS_VERSION = 1;
 
 export type AccessMode = "show" | "hide" | "wholesale_only";
 export type ScopeType = "all" | "collections" | "products" | "tags";
-export type Audience = "retail" | "salon" | "restaurant" | "distributor" | "reseller" | "other";
+export type Audience = "retail" | "salon" | "restaurant" | "distributor" | "reseller" | "nonprofit" | "other";
 /** all = anyone; allow = only the listed countries; block = everyone except the listed countries. */
 export type CountryRule = { mode: "all" | "allow" | "block"; list: string[] };
 

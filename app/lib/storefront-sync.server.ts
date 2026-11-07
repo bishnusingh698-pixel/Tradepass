@@ -48,15 +48,27 @@ function localeFile(locale: string): Json | null {
   return (entries.find(([p]) => name(p) === want) ?? entries.find(([p]) => name(p) === want.split("-")[0]))?.[1] ?? null;
 }
 
-/** Every key in the extension's English locale file (dotted). */
+// Storefront strings added after the theme locale files neared Shopify's 15 KB cap (D-097) live in
+// assets/tradepass-texts.<locale>.json (flat keys, no size cap per file). The form loads the visitor's
+// file from Shopify's CDN; the hosted pages and the admin preview merge them here.
+const extraModules = import.meta.glob<Record<string, string>>("/extensions/tradepass-theme/assets/tradepass-texts.*.json", { eager: true, import: "default" });
+
+function extraFile(locale: string): Record<string, string> | null {
+  const want = locale.toLowerCase();
+  const name = (p: string) => p.split("/").pop()!.replace(/^tradepass-texts\./, "").replace(/\.json$/, "").toLowerCase();
+  const entries = Object.entries(extraModules);
+  return (entries.find(([p]) => name(p) === want) ?? entries.find(([p]) => name(p) === want.split("-")[0]))?.[1] ?? null;
+}
+
+/** Every key in the extension's English locale file (dotted), plus the extra storefront strings. */
 export function storefrontTextKeys(): string[] {
-  return Object.keys(flatten(localeFile("en") ?? {}));
+  return [...Object.keys(flatten(localeFile("en") ?? {})), ...Object.keys(extraFile("en") ?? {})];
 }
 
 /** Built-in storefront strings for a language (English underneath), plus merchant overrides. Used by the hosted pages. */
 export function storefrontTexts(locale: string, overrides?: Record<string, string>): Record<string, string> {
   const own = localeFile(locale);
-  const out = { ...flatten(localeFile("en") ?? {}), ...(own ? flatten(own) : {}) };
+  const out = { ...flatten(localeFile("en") ?? {}), ...(extraFile("en") ?? {}), ...(own ? flatten(own) : {}), ...(extraFile(locale) ?? {}) };
   for (const [k, v] of Object.entries(overrides ?? {})) if (v && k in out) out[k] = v;
   return out;
 }

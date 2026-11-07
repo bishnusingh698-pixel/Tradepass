@@ -1,5 +1,5 @@
 import { useState, type DragEvent } from "react";
-import { BUSINESS_TYPES, type FieldType, type FieldTexts, type FormDefinition, type FormField, type FormSection } from "../../lib/form-defaults";
+import { BUSINESS_TYPES, STORE_TYPES, type FieldType, type FieldTexts, type FormDefinition, type FormField, type FormSection } from "../../lib/form-defaults";
 import { useI18n } from "../../lib/i18n/react";
 import {
   CHOICE_TYPES, CUSTOM_FIELD_TYPES, LIMITS, allFields, fieldAnchor, findField, isLocked, moveField, moveSection,
@@ -13,6 +13,7 @@ type Texts = Record<string, string>;
 const BUILT_IN_OPTIONS: Record<string, readonly string[]> = {
   businessType: BUSINESS_TYPES,
   monthlyOrderValue: ["lt1k", "1k-5k", "5k-20k", "gt20k"],
+  storeType: STORE_TYPES,
 };
 
 export type BuilderProps = {

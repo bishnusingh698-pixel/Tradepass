@@ -103,6 +103,7 @@ model Application {
   requested      Json? // needs-info request: { fields: string[], message, at }
   rejectReason   String? // reason the merchant gave when rejecting (shown in the message they send the applicant)
   autoRuleId     String? // set when an automation rule decided it
+  attribution    Json? // where the applicant came from: { utm_source, utm_medium, utm_campaign, ref (referrer host), landing } — no personal data
   ipHash         String?
   submittedAt    DateTime  @default(now())
   decidedAt      DateTime?
@@ -180,6 +181,11 @@ model Certificate {
   fileGid       String?
   rejectReason  String?
   decidedOnExpiry String? // merchant choice after expiry: keep | remove
+  form          String? // US: state | sst | mtc | exempt (which certificate the buyer gave; one row per covered state)
+  checkResult   String? // permit check: verified | not_found | unavailable (live, e.g. Texas open data) | manual (staff checked on the state's site)
+  checkName     String? // name the registry returned (live checks)
+  checkedBy     String? // staff member who marked it checked (or "system" for a live check)
+  checkedAt     DateTime?
   createdAt     DateTime  @default(now())
 
   @@index([shop, expiresOn])

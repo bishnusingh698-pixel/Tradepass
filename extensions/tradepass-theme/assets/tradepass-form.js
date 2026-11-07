@@ -26,6 +26,16 @@
   // ISO 3166-1 alpha-2 codes; names come from Intl.DisplayNames in the visitor's language.
   var CODES = "AD AE AF AG AI AL AM AO AR AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GS GT GW GY HK HN HR HT HU ID IE IL IM IN IO IQ IS IT JE JM JO JP KE KG KH KI KM KN KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MK ML MM MN MO MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PS PT PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SZ TC TD TF TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG UM US UY UZ VA VC VE VG VN VU WF WS XK YE YT ZA ZM ZW".split(" ");
   var EU = "AT BE BG CY CZ DE DK EE ES FI FR GR HR HU IE IT LT LU LV MT NL PL PT RO SE SI SK".split(" ");
+  // ITU country calling codes for the phone field's country-code picker (E.164 numbers).
+  var DIAL = {};
+  "AD376 AE971 AF93 AG1 AI1 AL355 AM374 AO244 AR54 AT43 AU61 AW297 AX358 AZ994 BA387 BB1 BD880 BE32 BF226 BG359 BH973 BI257 BJ229 BL590 BM1 BN673 BO591 BQ599 BR55 BS1 BT975 BW267 BY375 BZ501 CA1 CC61 CD243 CF236 CG242 CH41 CI225 CK682 CL56 CM237 CN86 CO57 CR506 CV238 CW599 CX61 CY357 CZ420 DE49 DJ253 DK45 DM1 DO1 DZ213 EC593 EE372 EG20 EH212 ER291 ES34 ET251 FI358 FJ679 FK500 FO298 FR33 GA241 GB44 GD1 GE995 GF594 GG44 GH233 GI350 GL299 GM220 GN224 GP590 GQ240 GR30 GS500 GT502 GW245 GY592 HK852 HN504 HR385 HT509 HU36 ID62 IE353 IL972 IM44 IN91 IO246 IQ964 IS354 IT39 JE44 JM1 JO962 JP81 KE254 KG996 KH855 KI686 KM269 KN1 KR82 KW965 KY1 KZ7 LA856 LB961 LC1 LI423 LK94 LR231 LS266 LT370 LU352 LV371 LY218 MA212 MC377 MD373 ME382 MF590 MG261 MK389 ML223 MM95 MN976 MO853 MQ596 MR222 MS1 MT356 MU230 MV960 MW265 MX52 MY60 MZ258 NA264 NC687 NE227 NF672 NG234 NI505 NL31 NO47 NP977 NR674 NU683 NZ64 OM968 PA507 PE51 PF689 PG675 PH63 PK92 PL48 PM508 PN64 PS970 PT351 PY595 QA974 RE262 RO40 RS381 RU7 RW250 SA966 SB677 SC248 SD249 SE46 SG65 SH290 SI386 SJ47 SK421 SL232 SM378 SN221 SO252 SR597 SS211 ST239 SV503 SX1 SZ268 TC1 TD235 TF262 TG228 TH66 TJ992 TK690 TL670 TM993 TN216 TO676 TR90 TT1 TV688 TW886 TZ255 UA380 UG256 UM1 US1 UY598 UZ998 VA39 VC1 VE58 VG1 VN84 VU678 WF681 WS685 XK383 YE967 YT262 ZA27 ZM260 ZW263".split(" ").forEach(function (x) { DIAL[x.slice(0, 2)] = x.slice(2); });
+  var US_FORMS = ["state", "sst", "mtc", "exempt"];
+  var MAX_STATES = 12;
+  /** "+14155550123" → true; US/Canada numbers (+1) need 10 digits after the code. */
+  function e164Ok(v) {
+    if (!/^\+[1-9]\d{6,14}$/.test(v)) return false;
+    return v.indexOf("+1") !== 0 || v.length === 12;
+  }
   var AUTO = {
     companyName: "organization", firstName: "given-name", lastName: "family-name", email: "email",
     phone: "tel", jobTitle: "organization-title", website: "url"
@@ -374,12 +384,22 @@
           if (!a.city) errs.city = tx("form.error.required", { field: tx("form.address.city") });
           if (c && c.r && !a.zoneCode) errs.zoneCode = tx("form.error.choose", { field: zoneLabel(c) });
           if (c && c.z !== 0 && !a.zip) errs.zip = tx("form.error.required", { field: zipLabel(c) });
+          else if (a.countryCode === "US" && a.zip && !/^\d{5}(-\d{4})?$/.test(a.zip.trim())) errs.zip = tx("form.error.zip");
         }
         if (f.id === "billingAddress" && countryBlocked(a.countryCode)) errs.countryCode = tx("form.error.country_blocked");
         return Object.keys(errs).length ? errs : null;
       }
       if (f.type === "country_tax") {
         var tv = v || {};
+        if (tv.states) {
+          var rows = tv.states.filter(function (r) { return r.region || r.number; });
+          if (req && !rows.length) return tx("form.error.required", { field: taxLabel("US") });
+          for (var ri = 0; ri < rows.length; ri++) {
+            if (!rows[ri].region) return tx("form.error.us_state");
+            if (!rows[ri].number) return tx("form.error.required", { field: tx("form.tax.us_permit") });
+          }
+          return null;
+        }
         if (req && !tv.number) return tx("form.error.required", { field: taxLabel(tv.country) });
         if (tv.number && tv.number.length > 40) return tx("form.error.too_long", { max: 40 });
         var bill0 = state.values.billingAddress;
@@ -403,7 +423,9 @@
         if (v.length > max) return tx("form.error.too_long", { max: max });
         if (f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return tx("form.error.email");
         if (f.type === "url" && !/^(https?:\/\/)?[^\s.]+\.[^\s]{2,}$/i.test(v)) return tx("form.error.url");
-        if (f.type === "phone" && !/^\+?[\d\s().-]{6,20}$/.test(v)) return tx("form.error.phone");
+        if (f.type === "phone" && !(v.charAt(0) === "+" ? e164Ok(v) : /^\+?[\d\s().-]{6,20}$/.test(v))) return tx("form.error.phone");
+        if (f.id === "ein" && !/^\d{2}-?\d{7}$/.test(v.trim())) return tx("form.error.ein");
+        if (f.id === "duns" && !/^\d{9}$/.test(v.replace(/[\s-]/g, ""))) return tx("form.error.duns");
         if (f.type === "number" && !/^-?\d+([.,]\d+)?$/.test(v)) return tx("form.error.number");
         if (f.type === "date" && isNaN(Date.parse(v))) return tx("form.error.date");
       }
@@ -527,6 +549,8 @@
             opts_.map(function (o) { return h("option", { value: o.value, text: optLabel(f, o) }); })
           ));
           input.value = v || "";
+        } else if (f.type === "phone") {
+          return phoneControl(f, id, describedBy);
         } else {
           input = h("input", {
             id: id, name: f.id, type: INPUT[f.type] || "text",
@@ -543,6 +567,39 @@
         input.addEventListener("blur", blur(f));
         return { el: input, input: input, focus: function () { input.focus(); } };
       };
+    }
+
+    /** Country code + national number → E.164 ("+" code digits). Starts from the billing or store country. */
+    function phoneControl(f, id, describedBy) {
+      var box = h("div", { className: "tpf-phone" });
+      var cur = state.values[f.id] || "";
+      var bill = state.values.billingAddress;
+      var cc = (bill && bill.countryCode) || opts.country || "";
+      var national = cur;
+      if (cur.charAt(0) === "+") {
+        // Longest calling code that fits; keep the chosen country when its code matches.
+        var best = "";
+        for (var k in DIAL) if (cur.indexOf("+" + DIAL[k]) === 0 && DIAL[k].length > (DIAL[best] || "").length) best = k;
+        if (best && !(DIAL[cc] && cur.indexOf("+" + DIAL[cc]) === 0)) cc = best;
+        national = DIAL[cc] ? cur.slice(DIAL[cc].length + 1) : cur;
+      }
+      var sel = h("select", { id: id + "-cc", "aria-label": tx("form.phone.country"), autocomplete: "tel-country-code" }, sortedCodes.filter(function (c) { return DIAL[c]; }).map(function (c) {
+        return h("option", { value: c, text: countryName(c) + " (+" + DIAL[c] + ")" });
+      }));
+      sel.value = DIAL[cc] ? cc : "US";
+      var input = h("input", { id: id, name: f.id, type: "tel", inputmode: "tel", autocomplete: "tel-national", maxlength: 20, "aria-describedby": describedBy });
+      input.value = national;
+      if (f.state === "required") input.setAttribute("aria-required", "true");
+      function update(fromBlur) {
+        var digits = input.value.replace(/\D/g, "").replace(/^0+/, "");
+        onChange(f, digits ? "+" + DIAL[sel.value] + digits : "", fromBlur);
+      }
+      sel.addEventListener("change", function () { update(true); });
+      input.addEventListener("input", function () { update(false); });
+      input.addEventListener("blur", blur(f));
+      box.appendChild(sel);
+      box.appendChild(input);
+      return { el: box, input: input, focus: function () { input.focus(); } };
     }
 
     function checkboxesControl(f) {
@@ -696,7 +753,8 @@
           box.innerHTML = "";
           var bill = state.values.billingAddress;
           var country = v.country || (bill && bill.countryCode) || opts.country || "";
-          var cs = countrySelect(id + "-country", country, null, function (c) { v.country = c; onChange(f, v); build(); var n = document.getElementById(id + "-country"); if (n) n.focus(); });
+          var cs = countrySelect(id + "-country", country, null, function (c) { v.country = c; if (c !== "US") { delete v.states; delete v.form; } onChange(f, v); build(); var n = document.getElementById(id + "-country"); if (n) n.focus(); });
+          if (taxKind(country) !== "us_resale" && v.states) { delete v.states; delete v.form; }
           box.appendChild(sub(id + "-country", tx("form.tax.country"), cs).el);
           var kind = taxKind(country);
           var rule = taxRule(country);
@@ -710,15 +768,54 @@
               : kind === "vat" ? h("p", { className: "tpf-help", text: tx("form.tax.vat_help") }) : null,
             numberInput
           ]));
-          if (kind === "us_resale") {
-            var us = countries && countries.US;
-            var rs = h("select", { id: id + "-state" }, [h("option", { value: "", text: tx("form.select") })].concat(
-              (us && us.r || []).map(function (z) { return h("option", { value: z[0], text: z[1] }); })
-            ));
-            rs.value = v.region || "";
-            rs.addEventListener("change", function () { v.region = rs.value; onChange(f, v); });
-            box.appendChild(sub(id + "-state", tx("form.tax.us_state"), rs).el);
+          if (kind === "us_resale") { usRows(); return; }
+        }
+        /** US: which certificate, then one seller's permit / sales tax ID per state it covers. */
+        function usRows() {
+          box.lastChild && box.removeChild(box.lastChild); // the single-number input built above
+          var us = countries && countries.US;
+          v.form = US_FORMS.indexOf(v.form) >= 0 ? v.form : "state";
+          if (!v.states || !v.states.length) v.states = [{ region: v.region || (state.values.billingAddress || {}).zoneCode || "", number: v.number || "" }];
+          var fs = h("select", { id: id + "-form" }, US_FORMS.map(function (x) { return h("option", { value: x, text: tx("form.tax.us_form_" + x) }); }));
+          fs.value = v.form;
+          fs.addEventListener("change", function () { v.form = fs.value; onChange(f, v, true); });
+          box.appendChild(sub(id + "-form", tx("form.tax.us_form"), fs).el);
+          var list = h("div", { className: "tpf-states" });
+          function sync() {
+            var first = v.states[0] || {};
+            v.region = first.region || ""; v.number = first.number || "";
+            onChange(f, v);
           }
+          function draw() {
+            list.innerHTML = "";
+            v.states.forEach(function (row, i) {
+              var rid = id + "-s" + i;
+              var rs = h("select", { id: rid + "-state" }, [h("option", { value: "", text: tx("form.select") })].concat(
+                (us && us.r || []).map(function (z) { return h("option", { value: z[0], text: z[1] }); })
+              ));
+              rs.value = row.region || "";
+              rs.addEventListener("change", function () { row.region = rs.value; sync(); });
+              var ni = h("input", { id: i === 0 ? id : rid, type: "text", maxlength: 40, autocomplete: "off", spellcheck: "false", "aria-describedby": i === 0 ? describedBy : null });
+              ni.value = row.number || "";
+              ni.addEventListener("input", function () { row.number = ni.value.trim(); sync(); });
+              ni.addEventListener("blur", blur(f));
+              if (i === 0) numberInput = ni;
+              var name = rs.value ? rs.options[rs.selectedIndex].text : String(i + 1);
+              list.appendChild(h("div", { className: "tpf-staterow" }, [
+                sub(rid + "-state", tx("form.tax.us_state"), rs).el,
+                sub(i === 0 ? id : rid, tx("form.tax.us_permit"), ni).el,
+                v.states.length > 1 ? h("button", { type: "button", className: "tpf-link", text: tx("form.tax.us_remove_state", { name: name }), onclick: function () {
+                  v.states.splice(i, 1); sync(); draw(); var n = document.getElementById(id); if (n) n.focus();
+                } }) : null
+              ]));
+            });
+            if (v.states.length < MAX_STATES) list.appendChild(h("button", { type: "button", className: "tpf-link", text: tx("form.tax.us_add_state"), onclick: function () {
+              v.states.push({ region: "", number: "" }); sync(); draw();
+              var n = document.getElementById(id + "-s" + (v.states.length - 1) + "-state"); if (n) n.focus();
+            } }));
+          }
+          draw();
+          box.appendChild(list);
         }
         build();
         addressRebuilders.push(build);
@@ -755,10 +852,14 @@
             list.appendChild(row);
           });
           input.disabled = files.length >= MAX_FILES;
+          if (typeof cam !== "undefined") cam.disabled = input.disabled;
         }
         input.addEventListener("change", function () {
           var picked = Array.prototype.slice.call(input.files || []);
           input.value = "";
+          pick(picked);
+        });
+        function pick(picked) {
           var err = null;
           picked.forEach(function (file) {
             if (files.length >= MAX_FILES) { err = tx("form.error.file_count"); return; }
@@ -781,11 +882,16 @@
           showError(f, err || validate(f));
           onChange(f, files);
           draw();
-        });
+        }
+        // Phones: a second button opens the camera straight away (photo of a paper certificate).
+        var cam = h("input", { id: id + "-cam", type: "file", accept: "image/*", capture: "environment", "aria-describedby": id + "-hint", className: "tpf-fileinput" });
+        cam.addEventListener("change", function () { pick(Array.prototype.slice.call(cam.files || [])); cam.value = ""; });
         box.appendChild(hint);
         box.appendChild(list);
-        box.appendChild(input);
-        box.appendChild(h("label", { "for": id, className: "tpf-filebtn", text: tx("form.upload.add") }));
+        box.appendChild(h("div", { className: "tpf-filebtns" }, [
+          input, h("label", { "for": id, className: "tpf-filebtn", text: tx("form.upload.add") }),
+          cam, h("label", { "for": id + "-cam", className: "tpf-filebtn tpf-filebtn--camera", text: tx("form.upload.camera") })
+        ]));
         box.appendChild(live);
         draw();
         return { el: box, input: input, focus: function () { input.focus(); } };
@@ -991,6 +1097,7 @@
         elapsedMs: Date.now() - state.startedAt,
         hp: hp.value,
         spam: spamInput ? spamInput.value : null,
+        attribution: attribution(),
         answers: collect()
       };
       setSending(true, tx("form.sending"));
@@ -1028,6 +1135,32 @@
     return { destroy: function () { container.innerHTML = ""; }, values: function () { return state.values; } };
   }
 
+  /**
+   * Where the applicant came from (A15): UTM parameters and the referring site's host, first touch of
+   * the browsing session (the app embed stores it on every page), else this page. No personal data.
+   */
+  function attribution() {
+    var a = null;
+    try { a = JSON.parse(sessionStorage.getItem("tradepass-attr") || "null"); } catch (e) { a = null; }
+    if (a) return a;
+    try {
+      var q = new URLSearchParams(location.search);
+      var ref = document.referrer ? new URL(document.referrer).host : "";
+      a = { utm_source: q.get("utm_source") || "", utm_medium: q.get("utm_medium") || "", utm_campaign: q.get("utm_campaign") || "", ref: ref === location.host ? "" : ref, landing: location.pathname };
+    } catch (e) { a = null; }
+    return a;
+  }
+
+  /** Storefront strings added after the theme locale files neared their size cap (assets/tradepass-texts.<locale>.json). */
+  function loadExtraTexts(urls) {
+    var list = (urls || []).filter(Boolean);
+    function next(i) {
+      if (i >= list.length) return Promise.resolve({});
+      return fetch(list[i]).then(function (r) { if (!r.ok) throw r; return r.json(); }).catch(function () { return next(i + 1); });
+    }
+    return Promise.race([next(0), sleep(3000).then(function () { return {}; })]);
+  }
+
   /** Boot every form block on the page from its inline JSON. */
   function boot() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-tradepass-form]"), function (root) {
@@ -1038,13 +1171,16 @@
       try { cfg = JSON.parse(cfgNode.textContent); } catch (e) { cfg = {}; }
       var texts = cfg.texts || {};
       var ov = cfg.overrides || {};
-      for (var k in ov) if (ov[k]) texts[k] = ov[k];
       var mount = root.querySelector(".tpf-mount") || root;
+      loadExtraTexts(cfg.extraTexts).then(function (extra) {
+      for (var x in extra) if (texts[x] == null) texts[x] = extra[x];
+      for (var k in ov) if (ov[k]) texts[k] = ov[k];
       render(mount, {
         definition: cfg.definition, texts: texts, locale: cfg.locale, dir: cfg.dir,
         endpoint: cfg.endpoint, formId: cfg.formId, country: cfg.country, prefill: cfg.prefill,
         languages: cfg.languages, countriesUrl: cfg.countriesUrl, submitUrl: cfg.submitUrl, uploadUrl: cfg.uploadUrl,
         countryRule: cfg.countryRule
+      });
       });
     });
   }

@@ -247,7 +247,7 @@ describe("needs-info update", () => {
     expect(after.companyName).toBe(app.companyName); // not requested → ignored
     expect(after.taxCheck).toBe("not_verified");
     expect(decrypt(after.taxNumberEnc!)).toBe("DE111111117");
-    expect((after.answers as Record<string, unknown>).phone).toBe("+49 30 1234567");
+    expect((after.answers as Record<string, unknown>).phone).toBe("+49301234567");
     expect((after.answers as Record<string, unknown>).firstName).toBe("Jo");
     // Other shops can't touch it.
     expect(await applyUpdate({ shop: OTHER, ip: "x" }, app.id, { answers: {} }, d)).toEqual({ ok: false, error: "not_found" });

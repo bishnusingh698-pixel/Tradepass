@@ -4,8 +4,11 @@
 //  - EU: VIES REST (no key). Greece is "EL", Northern Ireland "XI".
 //  - UK: HMRC "Check a UK VAT number" v2, only when HMRC_CLIENT_ID/SECRET are set.
 //  - AU: ABN Lookup JSON, only when ABN_GUID is set.
+//  - US Texas: the Comptroller's "Active Sales Tax Permit Holders" open dataset on data.texas.gov
+//    (Socrata, public, no key; SOCRATA_APP_TOKEN optional for higher rate limits).
 // Malformed numbers are "not_verified" without a network call.
 import { EU_COUNTRIES } from "./tax";
+import { PERMIT_LOOKUPS, texasTaxpayerNumber } from "./us-states";
 
 /** "skipped": a number was given but the plan has no live checks (Free). */
 export type TaxCheck = { status: "verified" | "not_verified" | "unavailable" | "na" | "skipped"; name?: string; registry?: string };
@@ -15,6 +18,8 @@ export const TAX_TIMEOUT_MS = 5000;
 const VIES_URL = "https://ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number";
 const HMRC_BASE = "https://api.service.hmrc.gov.uk";
 const ABN_URL = "https://abr.business.gov.au/json/AbnDetails.aspx";
+/** data.texas.gov dataset jrea-zgmq ("Active Sales Tax Permit Holders", Texas Comptroller). */
+export const TX_PERMITS_URL = "https://data.texas.gov/resource/jrea-zgmq.json";
 
 type Fetch = typeof fetch;
 
@@ -170,6 +175,47 @@ export async function checkTaxNumber(country: string, number: string, fetchImpl:
   } finally {
     clearTimeout(timer);
   }
+}
+
+/** Run a check within the total budget; any failure or overrun is "unavailable", never an exception. */
+async function withBudget(run: () => Promise<TaxCheck>, totalMs: number): Promise<TaxCheck> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<TaxCheck>((resolve) => {
+    timer = setTimeout(() => resolve({ status: "unavailable" }), totalMs);
+  });
+  try {
+    return await Promise.race([run(), timeout]);
+  } catch {
+    return { status: "unavailable" };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/** Parse a data.texas.gov reply: a row means an active permit, an empty list means not in the active list. */
+export function parseTexasPermits(httpStatus: number, body: unknown, number: string): TaxCheck {
+  if (httpStatus !== 200 || !Array.isArray(body)) return { status: "unavailable", registry: "tx_comptroller" };
+  const row = body.find((r) => r && typeof r === "object" && String((r as Record<string, unknown>).taxpayer_number ?? "") === number) as Record<string, unknown> | undefined;
+  if (row) return { status: "verified", name: cleanName(row.taxpayer_name), registry: "tx_comptroller" };
+  return body.length === 0 ? { status: "not_verified", registry: "tx_comptroller" } : { status: "unavailable", registry: "tx_comptroller" };
+}
+
+/**
+ * A US state seller's permit / sales tax ID. Only states with a free official open dataset are
+ * checked live (Texas); everything else is "na" (the merchant uses "Check on the state's site").
+ */
+export async function checkUsPermit(state: string, number: string, fetchImpl: Fetch = fetch, totalMs = TAX_TOTAL_MS): Promise<TaxCheck> {
+  const st = (state ?? "").toUpperCase();
+  if (PERMIT_LOOKUPS[st as keyof typeof PERMIT_LOOKUPS]?.live !== "tx_socrata") return { status: "na" };
+  const tin = texasTaxpayerNumber(number ?? "");
+  // Not an 11-digit Texas taxpayer number (could be an FEIN): don't guess, the merchant checks on the site.
+  if (!tin) return { status: "na" };
+  return withBudget(async () => {
+    const url = `${TX_PERMITS_URL}?${new URLSearchParams({ taxpayer_number: tin, $limit: "1" })}`;
+    const token = process.env.SOCRATA_APP_TOKEN;
+    const res = await fetchImpl(url, { headers: { Accept: "application/json", ...(token ? { "X-App-Token": token } : {}) }, signal: AbortSignal.timeout(TAX_TIMEOUT_MS) });
+    return parseTexasPermits(res.status, await res.json().catch(() => null), tin);
+  }, totalMs);
 }
 
 /** Test hook: forget the cached HMRC token. */
