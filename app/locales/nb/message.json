@@ -21,5 +21,7 @@
   "message.modal.copied": "Meldingen er kopiert",
   "message.modal.copyFailed": "Meldingen kunne ikke kopieres. Merk teksten og kopier den selv.",
   "message.modal.mailto": "Åpne i e-post",
-  "message.modal.close": "Lukk"
+  "message.modal.close": "Lukk",
+  "message.approved.subject": "Engroskontoen din hos {store_name} er godkjent",
+  "message.approved.body": "Hei {first_name}\n\nGode nyheter: {company} er godkjent for en engroskonto hos {store_name}. Prisnivået ditt er {tier_name}.\n\nFor å logge inn åpner du lenken nedenfor og skriver inn denne e-postadressen. Vi sender deg en engangskode på e-post, så du trenger ikke passord:\n{login_url}\n\nNår du er logget inn, ser du engrosprisene dine i hele butikken."
 }

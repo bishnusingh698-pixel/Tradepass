@@ -21,5 +21,7 @@
   "message.modal.copied": "Wiadomość skopiowana",
   "message.modal.copyFailed": "Nie udało się skopiować wiadomości. Zaznacz tekst i skopiuj go samodzielnie.",
   "message.modal.mailto": "Otwórz w poczcie",
-  "message.modal.close": "Zamknij"
+  "message.modal.close": "Zamknij",
+  "message.approved.subject": "Konto hurtowe w sklepie {store_name} zostało zatwierdzone",
+  "message.approved.body": "Dzień dobry {first_name},\n\nmamy dobrą wiadomość: firma {company} otrzymała zatwierdzenie konta hurtowego w sklepie {store_name}. Przypisany poziom cenowy to {tier_name}.\n\nAby się zalogować, wystarczy otworzyć poniższy link i wpisać ten adres e-mail. Wyślemy kod jednorazowy, więc hasło nie jest potrzebne:\n{login_url}\n\nPo zalogowaniu ceny hurtowe będą widoczne w całym sklepie."
 }

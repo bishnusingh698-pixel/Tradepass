@@ -131,8 +131,8 @@ const Q = {
     query TierInCatalog($ids: [ID!]!, $catalogId: ID!) { nodes(ids: $ids) { ... on CompanyLocation { id inCatalog(catalogId: $catalogId) } } }`,
   syncTier: `#graphql
     query TierSync($ids: [ID!]!) { nodes(ids: $ids) { __typename id
-      ... on Market { name status catalogs(first: 10) { nodes { id } } }
-      ... on Catalog { title status priceList { id } }
+      ... on Market { name marketStatus: status catalogs(first: 10) { nodes { id } } }
+      ... on Catalog { title catalogStatus: status priceList { id } }
       ... on PriceList { parent { adjustment { type value } } }
       ... on CompanyLocation { name } } }`,
   paymentTerms: `#graphql query TierPaymentTerms { paymentTermsTemplates { id translatedName paymentTermsType dueInDays } }`,
@@ -665,11 +665,11 @@ export function syncStateFor(
   if ((tier.marketGid && !market) || (tier.catalogGid && !catalog)) return "missing";
   if (tier.mode === "direct" && !shopDirect) return "changed_in_shopify";
   if (market) {
-    if (market.status && market.status !== "ACTIVE") return "changed_in_shopify";
+    if (market.marketStatus && market.marketStatus !== "ACTIVE") return "changed_in_shopify";
     if (tier.catalogGid && !(market.catalogs?.nodes ?? []).some((c: any) => c.id === tier.catalogGid)) return "changed_in_shopify";
   }
   if (catalog) {
-    if (catalog.status && catalog.status !== "ACTIVE") return "changed_in_shopify";
+    if (catalog.catalogStatus && catalog.catalogStatus !== "ACTIVE") return "changed_in_shopify";
     if (tier.priceListGid && catalog.priceList?.id !== tier.priceListGid) return "changed_in_shopify";
   }
   const pl = tier.priceListGid ? nodes[tier.priceListGid] : undefined;
@@ -740,7 +740,7 @@ export async function repairTier(ctx: Ctx, tierId: string): Promise<Tier> {
       marketRecreated = true;
       d.created.market = true;
       data.placeholderLocationGid = ph;
-    } else if (marketGid && nodes[marketGid]?.status !== "ACTIVE") {
+    } else if (marketGid && nodes[marketGid]?.marketStatus !== "ACTIVE") {
       await mutate(ctx.admin, "marketUpdate", Q.marketUpdate, { id: marketGid, input: { status: "ACTIVE" } });
     }
     let catalogGid = tier.catalogGid && nodes[tier.catalogGid] ? tier.catalogGid : null;

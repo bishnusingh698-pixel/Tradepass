@@ -25,7 +25,7 @@ const baseFacts = (shop: Record<string, unknown> = {}, extra: Record<string, unk
   data: {
     shop: {
       name: "Acme Supply", currencyCode: "EUR",
-      billingAddress: { countryCodeV2: "DE" }, primaryDomain: { url: "https://acme.test/" },
+      shopAddress: { countryCodeV2: "DE" }, primaryDomain: { url: "https://acme.test/" },
       plan: { publicDisplayName: "Grow", partnerDevelopment: false, shopifyPlus: false },
       features: { directConnectionCatalogAssignmentEnabled: false },
       entitlements: { b2b: { enabled: true }, markets: { b2b: { enabled: true, catalogs: { enabled: true, limit: 3 } } } },

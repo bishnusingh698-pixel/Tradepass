@@ -12,7 +12,7 @@ export const SHOP_FACTS_QUERY = `#graphql
     shop {
       name
       currencyCode
-      billingAddress { countryCodeV2 }
+      shopAddress { countryCodeV2 }
       primaryDomain { url }
       plan { publicDisplayName partnerDevelopment shopifyPlus }
       features { directConnectionCatalogAssignmentEnabled }
@@ -54,7 +54,7 @@ type FactsResponse = {
     shop: {
       name?: string | null;
       currencyCode?: string | null;
-      billingAddress?: { countryCodeV2?: string | null } | null;
+      shopAddress?: { countryCodeV2?: string | null } | null;
       primaryDomain?: { url?: string | null } | null;
       plan: { publicDisplayName: string; partnerDevelopment: boolean; shopifyPlus: boolean };
       features: { directConnectionCatalogAssignmentEnabled: boolean };
@@ -121,7 +121,7 @@ export function parseShopFacts(json: FactsResponse): ShopFacts {
     profile: {
       name: s.name?.trim() || null,
       currency: s.currencyCode || null,
-      country: s.billingAddress?.countryCodeV2 || null,
+      country: s.shopAddress?.countryCodeV2 || null,
       domainUrl: cleanDomainUrl(s.primaryDomain?.url),
     },
     subscription: installation === undefined ? undefined : activeSubscription(installation?.activeSubscriptions, s.plan.partnerDevelopment),

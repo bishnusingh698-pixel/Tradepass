@@ -386,6 +386,9 @@ function Progress({ state, busy, success }: { state: ApprovalState; busy: boolea
               {st.status === "failed" && st.error && (
                 <s-text tone="critical">{st.error}</s-text>
               )}
+              {st.status === "skipped" && st.code === "email_unavailable" && st.error && (
+                <s-text color="subdued">{st.error}</s-text>
+              )}
             </s-stack>
           );
         })}

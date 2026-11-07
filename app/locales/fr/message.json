@@ -21,5 +21,7 @@
   "message.modal.copied": "Message copié",
   "message.modal.copyFailed": "Le message n’a pas pu être copié. Sélectionnez le texte et copiez-le vous-même.",
   "message.modal.mailto": "Ouvrir dans la messagerie",
-  "message.modal.close": "Fermer"
+  "message.modal.close": "Fermer",
+  "message.approved.subject": "Votre compte de vente en gros chez {store_name} est approuvé",
+  "message.approved.body": "Bonjour {first_name},\n\nBonne nouvelle : {company} a été approuvée pour un compte de vente en gros chez {store_name}. Votre niveau de prix est {tier_name}.\n\nPour vous connecter, ouvrez le lien ci-dessous et saisissez cette adresse e-mail. Nous vous enverrons un code à usage unique par e-mail : aucun mot de passe n’est nécessaire.\n{login_url}\n\nUne fois connecté, vous verrez vos prix de gros dans toute la boutique."
 }

@@ -21,5 +21,7 @@
   "message.modal.copied": "Žinutė nukopijuota",
   "message.modal.copyFailed": "Žinutės nukopijuoti nepavyko. Pažymėkite tekstą ir nukopijuokite jį patys.",
   "message.modal.mailto": "Atidaryti el. pašte",
-  "message.modal.close": "Uždaryti"
+  "message.modal.close": "Uždaryti",
+  "message.approved.subject": "Jūsų didmeninės prekybos paskyra parduotuvėje {store_name} patvirtinta",
+  "message.approved.body": "Sveiki, {first_name},\n\nGeros žinios: įmonei {company} patvirtinta didmeninės prekybos paskyra parduotuvėje {store_name}. Jūsų kainų lygis: {tier_name}.\n\nNorėdami prisijungti, atidarykite toliau pateiktą nuorodą ir įveskite šį el. pašto adresą. Atsiųsime jums vienkartinį kodą, todėl slaptažodžio nereikia:\n{login_url}\n\nPrisijungę visoje parduotuvėje matysite savo didmenines kainas."
 }

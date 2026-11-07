@@ -21,5 +21,7 @@
   "message.modal.copied": "Bericht gekopieerd",
   "message.modal.copyFailed": "Het bericht kon niet worden gekopieerd. Selecteer de tekst en kopieer die zelf.",
   "message.modal.mailto": "Openen in e-mail",
-  "message.modal.close": "Sluiten"
+  "message.modal.close": "Sluiten",
+  "message.approved.subject": "Uw groothandelsaccount bij {store_name} is goedgekeurd",
+  "message.approved.body": "Beste {first_name},\n\nGoed nieuws: {company} is goedgekeurd voor een groothandelsaccount bij {store_name}. Uw prijsniveau is {tier_name}.\n\nOpen de link hieronder en voer dit e-mailadres in om in te loggen. We sturen u een eenmalige code per e-mail, dus u hebt geen wachtwoord nodig:\n{login_url}\n\nZodra u bent ingelogd, ziet u in de hele winkel uw groothandelsprijzen."
 }

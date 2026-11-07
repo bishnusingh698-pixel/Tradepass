@@ -21,5 +21,7 @@
   "message.modal.copied": "Mesej disalin",
   "message.modal.copyFailed": "Mesej tidak dapat disalin. Pilih teks dan salin sendiri.",
   "message.modal.mailto": "Buka dalam e-mel",
-  "message.modal.close": "Tutup"
+  "message.modal.close": "Tutup",
+  "message.approved.subject": "Akaun borong anda dengan {store_name} telah diluluskan",
+  "message.approved.body": "Hai {first_name},\n\nBerita baik: {company} telah diluluskan untuk akaun borong dengan {store_name}. Peringkat harga anda ialah {tier_name}.\n\nUntuk log masuk, buka pautan di bawah dan masukkan alamat e-mel ini. Kami akan menghantar kod sekali guna melalui e-mel, jadi anda tidak memerlukan kata laluan:\n{login_url}\n\nSetelah log masuk, anda akan melihat harga borong anda di seluruh kedai."
 }

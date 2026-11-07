@@ -21,5 +21,7 @@
   "message.modal.copied": "Besked kopieret",
   "message.modal.copyFailed": "Beskeden kunne ikke kopieres. Markér teksten, og kopiér den selv.",
   "message.modal.mailto": "Åbn i e-mail",
-  "message.modal.close": "Luk"
+  "message.modal.close": "Luk",
+  "message.approved.subject": "Din engroskonto hos {store_name} er godkendt",
+  "message.approved.body": "Hej {first_name}\n\nGode nyheder: {company} er blevet godkendt til en engroskonto hos {store_name}. Dit prisniveau er {tier_name}.\n\nFor at logge ind skal du åbne linket nedenfor og indtaste denne e-mailadresse. Vi sender dig en engangskode via e-mail, så du behøver ingen adgangskode:\n{login_url}\n\nNår du er logget ind, kan du se dine engrospriser overalt i butikken."
 }

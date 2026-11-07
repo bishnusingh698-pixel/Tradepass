@@ -21,5 +21,7 @@
   "message.modal.copied": "تم نسخ الرسالة",
   "message.modal.copyFailed": "تعذّر نسخ الرسالة. حدّد النص وانسخه بنفسك.",
   "message.modal.mailto": "فتح في البريد",
-  "message.modal.close": "إغلاق"
+  "message.modal.close": "إغلاق",
+  "message.approved.subject": "تمت الموافقة على حساب الجملة الخاص بك لدى {store_name}",
+  "message.approved.body": "مرحبًا {first_name}،\n\nيسعدنا إبلاغك بأنه تمت الموافقة على حساب جملة لـ {company} لدى {store_name}. مستوى التسعير الخاص بك هو {tier_name}.\n\nلتسجيل الدخول، افتح الرابط أدناه وأدخل عنوان البريد الإلكتروني هذا. سنرسل إليك رمزًا لمرة واحدة، فلا حاجة إلى كلمة مرور:\n{login_url}\n\nبعد تسجيل الدخول، سترى أسعار الجملة الخاصة بك في جميع أنحاء المتجر."
 }

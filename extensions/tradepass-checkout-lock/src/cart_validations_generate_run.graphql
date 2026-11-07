@@ -12,6 +12,10 @@ query CartValidationsGenerateRunInput($exemptTags: [String!]!) {
       purchasingCompany {
         company {
           id
+          # Set by Tradepass while the buyer is paused (REVIEW N1): no wholesale checkout.
+          paused: metafield(namespace: "$app:tradepass", key: "paused") {
+            value
+          }
         }
       }
     }

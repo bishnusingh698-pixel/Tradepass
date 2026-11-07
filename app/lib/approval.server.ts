@@ -22,6 +22,7 @@ import { approvalQuota, effectivePlan } from "./plans";
 import { approvalsThisMonth, normaliseTaxNumber } from "./applications.server";
 import { suggestExemption, US_RESELLER_STATES } from "./tax";
 import { refreshShopFacts } from "./shop.server";
+import { syncBuyerMarker } from "./buyer-marker.server";
 import {
   AssignmentError, ASSISTED_JOB, catalogBudget, moveLocations, paymentTermsOptions, readDefaults, TierError,
 } from "./tiers.server";
@@ -429,17 +430,38 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
       st.status = "skipped";
       return;
     }
-    // Shopify's own B2B welcome email: it invites the contact to sign in to the store. There is
-    // no fallback any more; a failure shows on this step and the merchant can send it again.
+    // Shopify's own B2B welcome email: it invites the contact to sign in to the store. Tradepass
+    // sends no email itself (D-091). shopify.dev documents companyContactSendWelcomeEmail, but the
+    // Admin schema in the Shopify dev toolkit (2026-01 … unstable) doesn't contain it, so Shopify
+    // may refuse it as an unknown field (D-092). Then the step is skipped, not failed: the buyer is
+    // fully approved and the merchant gets the ready-made "approved" message plus the ways to send
+    // Shopify's B2B access email themselves (company page in Shopify admin, or a Flow workflow).
     try {
       await mutate(r.ctx.admin, "companyContactSendWelcomeEmail", Q.welcome, { companyContactId: contactGid });
     } catch (e) {
+      if (welcomeUnavailable(e)) {
+        st.status = "skipped";
+        st.code = "email_unavailable";
+        st.error = (await translator(r.ctx))("approval.error.email_unavailable");
+        await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "approval.welcome_unavailable", subject: contactGid });
+        return;
+      }
       throw new StepError("email_failed", e instanceof UserErrorsError ? e.userErrors.map((u) => u.message).join(" ") : undefined);
     }
     await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "approval.welcome_sent", subject: contactGid, detail: { via: "shopify" } });
     st.gid = "shopify";
   },
 };
+
+/**
+ * Shopify refused the welcome mutation itself (unknown field, or the app isn't allowed to call it),
+ * as opposed to a one-off failure (userErrors, throttling) that a Retry can fix.
+ */
+export function welcomeUnavailable(e: unknown): boolean {
+  if (!(e instanceof GqlError)) return false;
+  const text = JSON.stringify(e.errors ?? "");
+  return /undefinedField|Cannot query field|doesn't exist on type|ACCESS_DENIED|access denied/i.test(text);
+}
 
 function locationInput(r: Run) {
   const i = r.state.input;
@@ -549,6 +571,7 @@ async function finalizeApplication(app: Application, r: Run, source: "applicatio
   const i = state.input;
   const companyGid = state.steps.company.gid!;
   const locationGid = state.steps.location.gid!;
+  const before = await db.buyer.findUnique({ where: { shop_companyGid: { shop: ctx.shop, companyGid } }, select: { status: true } });
   const buyer = await db.buyer.upsert({
     where: { shop_companyGid: { shop: ctx.shop, companyGid } },
     create: {
@@ -560,6 +583,8 @@ async function finalizeApplication(app: Application, r: Run, source: "applicatio
   if (!buyer.locationGids.includes(locationGid))
     await db.buyer.update({ where: { id: buyer.id }, data: { locationGids: [...buyer.locationGids, locationGid] } });
   state.buyerId = buyer.id;
+  // A paused company approved again is active: lift the checkout-lock marker (N1).
+  if (before?.status === "paused") await syncBuyerMarker(ctx.admin, ctx.shop, buyer.id);
   await attachJobsToBuyer(ctx.shop, state.steps.tier.jobIds, buyer.id);
   await db.application.updateMany({ where: { id: app.id, shop: ctx.shop }, data: { status: "approved", decidedAt: new Date(), buyerId: buyer.id } });
   await db.certificate.updateMany({ where: { shop: ctx.shop, applicationId: app.id, buyerId: null }, data: { buyerId: buyer.id } });

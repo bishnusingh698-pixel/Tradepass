@@ -21,5 +21,7 @@
   "message.modal.copied": "Sporočilo kopirano",
   "message.modal.copyFailed": "Sporočila ni bilo mogoče kopirati. Označite besedilo in ga kopirajte sami.",
   "message.modal.mailto": "Odpri v e-pošti",
-  "message.modal.close": "Zapri"
+  "message.modal.close": "Zapri",
+  "message.approved.subject": "Vaš veleprodajni račun v trgovini {store_name} je odobren",
+  "message.approved.body": "Pozdravljeni, {first_name},\n\nimamo dobro novico: podjetju {company} smo odobrili veleprodajni račun v trgovini {store_name}. Vaša cenovna raven je {tier_name}.\n\nZa prijavo odprite spodnjo povezavo in vnesite ta e-poštni naslov. Po e-pošti vam bomo poslali enkratno kodo, zato gesla ne potrebujete:\n{login_url}\n\nKo se prijavite, boste v celotni trgovini videli svoje veleprodajne cene."
 }

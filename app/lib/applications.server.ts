@@ -324,6 +324,27 @@ export async function rejectionMessage(shop: string, id: string): Promise<Applic
   }, app.email);
 }
 
+/**
+ * The "you're approved" message for an approved application, in the buyer's language, with the
+ * buyer-facing tier name and the store's sign-in link. The merchant sends it themselves when
+ * Shopify's own B2B welcome email wasn't sent (turned off, or not available to the app: D-092).
+ */
+export async function approvedMessage(shop: string, id: string): Promise<ApplicantMessage | null> {
+  const app = await db.application.findFirst({ where: { shop, id, status: "approved" } });
+  if (!app) return null;
+  const info = await shopInfo(shop);
+  const buyer = app.buyerId ? await db.buyer.findFirst({ where: { shop, id: app.buyerId }, select: { tierId: true, pausedTierId: true } }) : null;
+  const tierId = buyer?.tierId ?? buyer?.pausedTierId ?? null;
+  const tier = tierId ? await db.tier.findFirst({ where: { shop, id: tierId }, select: { name: true, buyerNames: true } }) : null;
+  const names = (tier?.buyerNames ?? {}) as Record<string, string>;
+  const tierName = names[app.locale] || names[app.locale.split("-")[0]] || names[info.primary] || tier?.name || "";
+  const loginPath = readSettings(info.row?.settings ?? {}).storefront.loginUrl || "/account/login";
+  return buildMessage("approved", app.locale, info, {
+    company: app.companyName, firstName: firstName(app.answers), storeName: info.storeName,
+    tierName, loginUrl: storefrontUrl(info.row, loginPath, shop),
+  }, app.email);
+}
+
 export async function addNote(shop: string, id: string, actor: string, text: string): Promise<void> {
   const note = JSON.stringify([{ at: new Date().toISOString(), by: actor.slice(0, 100), text: text.slice(0, 2000) }]);
   // Appended in one statement, so two staff adding notes at the same moment both keep theirs.

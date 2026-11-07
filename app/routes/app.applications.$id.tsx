@@ -5,7 +5,7 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import db from "../db.server";
 import { adminContext } from "../lib/context.server";
-import { addNote, getApplication, rejectApplicationWithReason, rejectionMessage, requestMoreInfo, setAssignee } from "../lib/applications.server";
+import { addNote, approvedMessage, getApplication, rejectApplicationWithReason, rejectionMessage, requestMoreInfo, setAssignee } from "../lib/applications.server";
 import type { ApplicantMessage } from "../lib/messages";
 import { defaultFormDefinition } from "../lib/form-defaults";
 import { readDefinition } from "../lib/forms.server";
@@ -30,6 +30,8 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   return {
     // Rejected: the "not approved" message stays available to copy (Tradepass sends no email).
     rejectionMessage: app.status === "rejected" ? await rejectionMessage(ctx.shop, app.id) : null,
+    // Approved: the "you're approved" message, for when Shopify's B2B welcome email wasn't sent (D-092).
+    approvedMessage: app.status === "approved" ? await approvedMessage(ctx.shop, app.id) : null,
     app: {
       id: app.id,
       status: app.status,
@@ -147,6 +149,8 @@ export default function ApplicationDetail() {
     if (!(await openFromApp(`/app/files/${encodeURIComponent(id)}`))) shopify.toast.show(t("certificates.error.file"), { isError: true });
   };
   const failedStep = a.approvalState?.steps ? Object.entries(a.approvalState.steps).find(([, s]) => s.status === "failed") : null;
+  const emailStep = a.approvalState?.steps?.email as { status: string; code?: string } | undefined;
+  const welcomeNotSent = a.status === "approved" && emailStep?.status !== "done";
 
   return (
     <s-page heading={a.companyName}>
@@ -202,6 +206,15 @@ export default function ApplicationDetail() {
               </s-link>
               <s-link href={href(`/app/buyers/${d.buyer.id}`)}>{t("applications.detail.changeTier")}</s-link>
             </s-stack>
+            {welcomeNotSent && emailStep?.code === "email_unavailable" && (
+              <s-paragraph color="subdued">{t("approval.error.email_unavailable")}</s-paragraph>
+            )}
+            {d.approvedMessage && (
+              <s-stack direction="block" gap="small-200">
+                {welcomeNotSent && <s-paragraph color="subdued">{t("applications.detail.accessEmailHint")}</s-paragraph>}
+                <ApprovedMessageButton message={d.approvedMessage} company={a.companyName} />
+              </s-stack>
+            )}
           </s-stack>
         </s-section>
       )}
@@ -498,6 +511,18 @@ function RejectModal({ company }: { company: string }) {
         <s-button slot="secondary-actions" commandFor="reject-modal" command="--hide">{t("common.cancel")}</s-button>
       </s-modal>
       <MessageModal id="reject-message" company={company} message={ready} onClose={() => setReady(null)} />
+    </>
+  );
+}
+
+/** An approved application keeps its "you're approved" message (sign-in link, tier), ready to copy. */
+function ApprovedMessageButton({ message, company }: { message: ApplicantMessage; company: string }) {
+  const { t } = useI18n();
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <s-button onClick={() => setOpen(true)}>{t("applications.detail.messageBuyer")}</s-button>
+      <MessageModal id="approved-message" company={company} message={open ? message : null} onClose={() => setOpen(false)} />
     </>
   );
 }

@@ -4,6 +4,7 @@ import db from "../db.server";
 import { gql } from "./gql.server";
 import { logActivity } from "./activity.server";
 import { moveLocations, type Ctx } from "./tiers.server";
+import { syncBuyerMarker } from "./buyer-marker.server";
 
 // Buyers: companies approved through, imported into or converted by Tradepass.
 // We keep only GIDs + name; everything else (contact, terms, orders) is read
@@ -159,6 +160,8 @@ export async function pauseBuyers(ctx: Ctx, buyerIds: string[]): Promise<MoveSum
       const tier = b.tierId ? await db.tier.findFirst({ where: { id: b.tierId, shop: ctx.shop } }) : null;
       const res = tier ? await moveLocations(ctx, b.locationGids, tier, null, { buyerId: b.id }) : { verified: true };
       await db.buyer.update({ where: { id: b.id }, data: { status: "paused", pausedTierId: b.tierId, tierId: null } });
+      // The checkout lock reads this marker, so a paused buyer can't order in a wholesale-only store (N1).
+      await syncBuyerMarker(ctx.admin, ctx.shop, b.id);
       (res.verified ? out.moved : out.pending).push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.pause", subject: b.id, detail: { tierId: b.tierId } });
     } catch (e) {
@@ -178,6 +181,7 @@ export async function resumeBuyers(ctx: Ctx, buyerIds: string[]): Promise<MoveSu
       const tier = b.pausedTierId ? await db.tier.findFirst({ where: { id: b.pausedTierId, shop: ctx.shop } }) : null;
       const res = tier ? await moveLocations(ctx, b.locationGids, null, tier, { buyerId: b.id }) : { verified: true };
       await db.buyer.update({ where: { id: b.id }, data: { status: "active", tierId: tier?.id ?? null, pausedTierId: null } });
+      await syncBuyerMarker(ctx.admin, ctx.shop, b.id);
       (res.verified ? out.moved : out.pending).push(b.id);
       await logActivity({ shop: ctx.shop, actor: ctx.actor, action: "buyer.resume", subject: b.id, detail: { tierId: tier?.id ?? null } });
     } catch (e) {

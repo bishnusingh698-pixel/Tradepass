@@ -21,5 +21,7 @@
   "message.modal.copied": "Nachricht kopiert",
   "message.modal.copyFailed": "Die Nachricht konnte nicht kopiert werden. Markieren Sie den Text und kopieren Sie ihn selbst.",
   "message.modal.mailto": "In E-Mail öffnen",
-  "message.modal.close": "Schließen"
+  "message.modal.close": "Schließen",
+  "message.approved.subject": "Ihr Großhandelskonto bei {store_name} wurde genehmigt",
+  "message.approved.body": "Guten Tag {first_name},\n\ngute Nachrichten: {company} wurde für ein Großhandelskonto bei {store_name} genehmigt. Ihre Preisstufe ist {tier_name}.\n\nÖffnen Sie zum Anmelden den folgenden Link und geben Sie diese E-Mail-Adresse ein. Wir senden Ihnen einen Einmalcode per E-Mail, Sie benötigen also kein Passwort:\n{login_url}\n\nSobald Sie angemeldet sind, sehen Sie im gesamten Shop Ihre Großhandelspreise."
 }

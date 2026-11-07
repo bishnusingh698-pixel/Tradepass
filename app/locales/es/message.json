@@ -21,5 +21,7 @@
   "message.modal.copied": "Mensaje copiado",
   "message.modal.copyFailed": "No se pudo copiar el mensaje. Selecciona el texto y cópialo tú.",
   "message.modal.mailto": "Abrir en el correo",
-  "message.modal.close": "Cerrar"
+  "message.modal.close": "Cerrar",
+  "message.approved.subject": "Su cuenta mayorista en {store_name} ha sido aprobada",
+  "message.approved.body": "Hola, {first_name}:\n\nBuenas noticias: {company} ha sido aprobada para una cuenta mayorista en {store_name}. Su nivel de precios es {tier_name}.\n\nPara iniciar sesión, abra el siguiente enlace e introduzca esta dirección de correo electrónico. Le enviaremos un código de un solo uso por correo, así que no necesita contraseña:\n{login_url}\n\nUna vez que inicie sesión, verá sus precios mayoristas en toda la tienda."
 }

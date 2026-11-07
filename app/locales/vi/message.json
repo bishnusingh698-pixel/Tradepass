@@ -21,5 +21,7 @@
   "message.modal.copied": "Đã sao chép tin nhắn",
   "message.modal.copyFailed": "Không sao chép được tin nhắn. Hãy chọn văn bản và tự sao chép.",
   "message.modal.mailto": "Mở trong email",
-  "message.modal.close": "Đóng"
+  "message.modal.close": "Đóng",
+  "message.approved.subject": "Tài khoản bán buôn của bạn tại {store_name} đã được phê duyệt",
+  "message.approved.body": "Xin chào {first_name},\n\nTin vui: {company} đã được phê duyệt tài khoản bán buôn tại {store_name}. Cấp giá của bạn là {tier_name}.\n\nĐể đăng nhập, hãy mở liên kết bên dưới và nhập địa chỉ email này. Chúng tôi sẽ gửi cho bạn mã dùng một lần qua email, vì vậy bạn không cần mật khẩu:\n{login_url}\n\nSau khi đăng nhập, bạn sẽ thấy giá bán buôn của mình trên toàn bộ cửa hàng."
 }

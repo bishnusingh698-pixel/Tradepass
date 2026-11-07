@@ -57,6 +57,13 @@ const shopify = shopifyApp({
       } catch (e) {
         console.error(`[tradepass] storefront sync after install failed for ${session.shop}: ${(e as Error).message}`);
       }
+      // App-owned metafields on companies went with the uninstall too: re-mark paused buyers (N1).
+      try {
+        const { restorePausedMarkers } = await import("./lib/buyer-marker.server");
+        await restorePausedMarkers(admin, session.shop);
+      } catch (e) {
+        console.error(`[tradepass] paused markers after install failed for ${session.shop}: ${(e as Error).message}`);
+      }
     },
   },
   future: {

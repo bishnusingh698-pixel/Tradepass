@@ -21,5 +21,7 @@
   "message.modal.copied": "Meddelandet har kopierats",
   "message.modal.copyFailed": "Meddelandet kunde inte kopieras. Markera texten och kopiera den själv.",
   "message.modal.mailto": "Öppna i mejl",
-  "message.modal.close": "Stäng"
+  "message.modal.close": "Stäng",
+  "message.approved.subject": "Ditt grossistkonto hos {store_name} är godkänt",
+  "message.approved.body": "Hej {first_name},\n\nGoda nyheter: {company} har godkänts för ett grossistkonto hos {store_name}. Din prisnivå är {tier_name}.\n\nLogga in genom att öppna länken nedan och ange den här e-postadressen. Vi mejlar dig en engångskod, så du behöver inget lösenord:\n{login_url}\n\nNär du har loggat in ser du dina grossistpriser i hela butiken."
 }

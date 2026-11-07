@@ -21,5 +21,7 @@
   "message.modal.copied": "已复制消息",
   "message.modal.copyFailed": "无法复制消息。请选中文本自行复制。",
   "message.modal.mailto": "在邮件中打开",
-  "message.modal.close": "关闭"
+  "message.modal.close": "关闭",
+  "message.approved.subject": "您在 {store_name} 的批发账户已获批准",
+  "message.approved.body": "{first_name}，您好：\n\n好消息：{company} 已获准开通 {store_name} 的批发账户。您的价格等级为“{tier_name}”。\n\n如需登录，请打开以下链接并输入此电子邮件地址。我们会通过电子邮件向您发送一次性验证码，因此无需密码：\n{login_url}\n\n登录后，您将在整个商店中看到批发价格。"
 }

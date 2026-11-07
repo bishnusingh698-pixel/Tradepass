@@ -7,11 +7,13 @@ import type { LocalizedTexts } from "./settings";
 // (falling back to the store's primary language, then English), with the
 // merchant's own wording from Settings → Languages when they changed it.
 
-export type MessageKind = "needs_info" | "rejected" | "renewal_expiring" | "renewal_expired" | "renewal";
+export type MessageKind = "needs_info" | "rejected" | "approved" | "renewal_expiring" | "renewal_expired" | "renewal";
 
 const KEYS: Record<MessageKind, { subject: string; body: string; extra?: { key: string; value: "message" | "reason" } }> = {
   needs_info: { subject: "message.needs_info.subject", body: "message.needs_info.body", extra: { key: "message.needs_info.messageLine", value: "message" } },
   rejected: { subject: "message.rejected.subject", body: "message.rejected.body", extra: { key: "message.rejected.reasonLine", value: "reason" } },
+  // Approved: sent by the merchant when Shopify's own B2B welcome email isn't available or was turned off (D-092).
+  approved: { subject: "message.approved.subject", body: "message.approved.body" },
   renewal_expiring: { subject: "message.renewal_expiring.subject", body: "message.renewal_expiring.body" },
   renewal_expired: { subject: "message.renewal_expired.subject", body: "message.renewal_expired.body" },
   renewal: { subject: "message.renewal.subject", body: "message.renewal.body" },
@@ -26,6 +28,10 @@ export type MessageVars = {
   reason?: string | null;
   /** YYYY-MM-DD; formatted as a long date in the recipient's language. */
   expiryDate?: string | null;
+  /** Buyer-facing tier name (approved). */
+  tierName?: string | null;
+  /** Store sign-in page (approved). */
+  loginUrl?: string | null;
 };
 
 export type ApplicantMessage = {
@@ -78,6 +84,8 @@ function build(kind: MessageKind, locale: string | null | undefined, opts: { pri
     expiry_date: v.expiryDate ? formatDate(v.expiryDate, i18n.locale) : "",
     message: iso(v.message?.trim() ?? ""),
     reason: iso(v.reason?.trim() ?? ""),
+    tier_name: iso(v.tierName?.trim() ?? ""),
+    login_url: v.loginUrl ?? "",
   };
   const k = KEYS[kind];
   const subject = i18n.t(k.subject, values).replace(/\s+/g, " ").trim();

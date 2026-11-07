@@ -15,7 +15,9 @@ import type { Task } from "../jobs.server";
 
 export const DELETE_FILES_JOB = "delete_files";
 export const STOREFRONT_SYNC = "storefront_sync";
-const TYPES = ["intake_followup", DELETE_FILES_JOB, STOREFRONT_SYNC];
+//  - buyer_marker: the paused marker on a company (checkout lock, N1) couldn't be written or removed.
+export const BUYER_MARKER = "buyer_marker";
+const TYPES = ["intake_followup", DELETE_FILES_JOB, STOREFRONT_SYNC, BUYER_MARKER];
 const MAX_ATTEMPTS = 5;
 
 async function claim(id: string): Promise<boolean> {
@@ -49,7 +51,7 @@ export async function runBackgroundJobs(deadline: number, now = new Date()): Pro
   for (const job of jobs) {
     if (Date.now() > deadline) break;
     if (!(await claim(job.id))) continue;
-    const payload = (job.payload ?? {}) as { applicationId?: string; fileGids?: string[] };
+    const payload = (job.payload ?? {}) as { applicationId?: string; fileGids?: string[]; buyerId?: string };
     try {
       if (job.type === "intake_followup" && payload.applicationId) {
         const { intakeFollowups } = await import("../intake.server");
@@ -61,11 +63,15 @@ export async function runBackgroundJobs(deadline: number, now = new Date()): Pro
         const row = await db.shop.findUnique({ where: { shop: job.shop }, select: { uninstalledAt: true } });
         // Uninstalled: Shopify removed the metafields anyway, and reinstalling pushes them again.
         if (row && !row.uninstalledAt) await syncWith(job.shop);
+      } else if (job.type === BUYER_MARKER && payload.buyerId) {
+        const row = await db.shop.findUnique({ where: { shop: job.shop }, select: { uninstalledAt: true } });
+        if (row && !row.uninstalledAt) await storefrontRetry.marker(job.shop, payload.buyerId);
       }
       await finish(job.id, true, job.attempts + 1);
       n++;
     } catch (e) {
-      await finish(job.id, false, job.attempts + 1, (e as Error).message, job.type === STOREFRONT_SYNC);
+      // A stale storefront config or paused marker can let the wrong people check out: never give up.
+      await finish(job.id, false, job.attempts + 1, (e as Error).message, job.type === STOREFRONT_SYNC || job.type === BUYER_MARKER);
     }
   }
   // Finished jobs are only bookkeeping: keep a week for support, then drop them.
@@ -79,6 +85,13 @@ export const storefrontRetry = {
     const { unauthenticated } = await import("../../shopify.server");
     const { pushStorefrontConfig } = await import("../storefront-sync.server");
     await pushStorefrontConfig((await unauthenticated.admin(shop)).admin, shop);
+  },
+  /** Write the paused marker to match the buyer's current status (throws on failure, so the job retries). */
+  marker: async (shop: string, buyerId: string) => {
+    const { unauthenticated } = await import("../../shopify.server");
+    const { writePausedMarkers } = await import("../buyer-marker.server");
+    const b = await db.buyer.findFirst({ where: { shop, id: buyerId }, select: { companyGid: true, status: true } });
+    if (b) await writePausedMarkers((await unauthenticated.admin(shop)).admin, [b.companyGid], b.status === "paused");
   },
 };
 const syncWith = (shop: string) => storefrontRetry.push(shop);

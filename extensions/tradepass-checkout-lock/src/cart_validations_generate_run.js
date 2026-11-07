@@ -3,7 +3,8 @@
 // (tests/automation-checkout-lock.test.ts).
 //
 // Rules:
-// - B2B buyers (cart.buyerIdentity.purchasingCompany set) always pass.
+// - B2B buyers (cart.buyerIdentity.purchasingCompany set) pass, unless Tradepass paused their
+//   company (app-owned metafield `$app:tradepass.paused` = "true", REVIEW N1).
 // - Customers with one of the merchant's exempt tags pass (staff draft
 //   orders for retail customers, sales reps, testing).
 // - Carts that contain only gift cards pass.
@@ -56,6 +57,15 @@ export function pickMessage(config, locale) {
   return FALLBACK_MESSAGE;
 }
 
+/**
+ * A buyer the merchant paused in Tradepass.
+ * @param {any} purchasingCompany
+ */
+export function companyPaused(purchasingCompany) {
+  const mf = purchasingCompany && purchasingCompany.company && purchasingCompany.company.paused;
+  return Boolean(mf && String(mf.value).toLowerCase() === "true");
+}
+
 /** @param {any} input */
 function onlyGiftCards(input) {
   const lines = (input.cart && input.cart.lines) || [];
@@ -75,7 +85,7 @@ export function allowReason(input) {
   const config = input.validation && input.validation.config ? input.validation.config.jsonValue : null;
   if (config && config.enabled === false) return "disabled";
   const identity = (input.cart && input.cart.buyerIdentity) || null;
-  if (identity && identity.purchasingCompany) return "company";
+  if (identity && identity.purchasingCompany && !companyPaused(identity.purchasingCompany)) return "company";
   if (identity && identity.customer && identity.customer.exempt === true) return "exempt";
   if (onlyGiftCards(input)) return "gift_card";
   if (input.buyerJourney && input.buyerJourney.step === "CART_INTERACTION") return "cart_step";
