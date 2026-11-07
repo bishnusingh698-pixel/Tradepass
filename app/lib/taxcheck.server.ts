@@ -6,9 +6,13 @@
 //  - AU: ABN Lookup JSON, only when ABN_GUID is set.
 //  - US Texas: the Comptroller's "Active Sales Tax Permit Holders" open dataset on data.texas.gov
 //    (Socrata, public, no key; SOCRATA_APP_TOKEN optional for higher rate limits).
+//  - Norway: Brønnøysund Register Centre's open Enhetsregisteret API (data.brreg.no, no key, NLOD licence).
+//  - New Zealand: the NZBN API (api.business.govt.nz), only when the free NZBN_API_KEY is set.
+//  - Switzerland, Canada and others: no live call; the admin shows "Check on the official site" (tax-registries.ts).
 // Malformed numbers are "not_verified" without a network call.
 import { EU_COUNTRIES } from "./tax";
 import { PERMIT_LOOKUPS, texasTaxpayerNumber } from "./us-states";
+import { taxChecksum } from "./tax-checksums.js";
 
 /** "skipped": a number was given but the plan has no live checks (Free). */
 export type TaxCheck = { status: "verified" | "not_verified" | "unavailable" | "na" | "skipped"; name?: string; registry?: string };
@@ -18,6 +22,10 @@ export const TAX_TIMEOUT_MS = 5000;
 const VIES_URL = "https://ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number";
 const HMRC_BASE = "https://api.service.hmrc.gov.uk";
 const ABN_URL = "https://abr.business.gov.au/json/AbnDetails.aspx";
+/** Enhetsregisteret (Brønnøysundregistrene), one entity by organisation number. */
+export const BRREG_URL = "https://data.brreg.no/enhetsregisteret/api/enheter";
+/** NZBN API v5 (MBIE), one entity by NZBN; free subscription key in the Ocp-Apim-Subscription-Key header. */
+export const NZBN_URL = "https://api.business.govt.nz/gateway/nzbn/v5/entities";
 /** data.texas.gov dataset jrea-zgmq ("Active Sales Tax Permit Holders", Texas Comptroller). */
 export const TX_PERMITS_URL = "https://data.texas.gov/resource/jrea-zgmq.json";
 
@@ -145,13 +153,66 @@ async function checkAbn(number: string, f: Fetch): Promise<TaxCheck> {
   return parseAbn(await res.text());
 }
 
+/** Norwegian organisation number (9 digits, optional NO prefix and MVA suffix) with a valid mod-11 check digit. */
+export function norwayOrgNumber(n: string): { orgnr: string; vat: boolean } | null {
+  const m = /^(?:NO)?(\d{9})(MVA)?$/.exec(n);
+  if (!m || taxChecksum("NO", m[1]) === false) return null;
+  return { orgnr: m[1], vat: Boolean(m[2]) };
+}
+
+/**
+ * Enhetsregisteret reply: 404 unknown, 410 removed from the register; a bankrupt, dissolving or deleted
+ * entity is not verified. A number written as a VAT number (…MVA) must also be in the VAT register.
+ */
+export function parseBrreg(httpStatus: number, body: unknown, vat = false): TaxCheck {
+  if (httpStatus === 404 || httpStatus === 410) return { status: "not_verified", registry: "brreg" };
+  if (httpStatus !== 200 || !body || typeof body !== "object") return { status: "unavailable", registry: "brreg" };
+  const b = body as Record<string, unknown>;
+  if (typeof b.organisasjonsnummer !== "string") return { status: "unavailable", registry: "brreg" };
+  const name = cleanName(b.navn);
+  const closed = b.konkurs === true || b.underAvvikling === true || b.underTvangsavviklingEllerTvangsopplosning === true || Boolean(b.slettedato);
+  if (closed || (vat && b.registrertIMvaregisteret === false)) return { status: "not_verified", name, registry: "brreg" };
+  return { status: "verified", name, registry: "brreg" };
+}
+
+async function checkBrreg(number: string, f: Fetch): Promise<TaxCheck> {
+  const no = norwayOrgNumber(number);
+  if (!no) return { status: "not_verified", registry: "brreg" };
+  const res = await f(`${BRREG_URL}/${no.orgnr}`, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(TAX_TIMEOUT_MS) });
+  return parseBrreg(res.status, await res.json().catch(() => null), no.vat);
+}
+
+/**
+ * NZBN reply. The status field name is read defensively (entityStatusDescription, then entityStatusCode)
+ * because it could only be confirmed from third-party clients (API_NOTES: needs verification with a key).
+ * No status at all is "unavailable", never a guess.
+ */
+export function parseNzbn(httpStatus: number, body: unknown): TaxCheck {
+  if (httpStatus === 404) return { status: "not_verified", registry: "nzbn" };
+  if (httpStatus !== 200 || !body || typeof body !== "object") return { status: "unavailable", registry: "nzbn" };
+  const b = body as Record<string, unknown>;
+  const name = cleanName(b.entityName);
+  const st = String(b.entityStatusDescription ?? b.entityStatusCode ?? "").trim();
+  if (!st) return { status: "unavailable", name, registry: "nzbn" };
+  return /^registered$/i.test(st) || st === "50" ? { status: "verified", name, registry: "nzbn" } : { status: "not_verified", name, registry: "nzbn" };
+}
+
+async function checkNzbn(number: string, f: Fetch): Promise<TaxCheck> {
+  const nzbn = number.replace(/\D/g, "");
+  if (!/^94\d{11}$/.test(nzbn)) return { status: "na" }; // a GST or company number: offline check only
+  const key = process.env.NZBN_API_KEY;
+  if (!key) return { status: "unavailable", registry: "nzbn" };
+  const res = await f(`${NZBN_URL}/${nzbn}`, { headers: { Accept: "application/json", "Ocp-Apim-Subscription-Key": key }, signal: AbortSignal.timeout(TAX_TIMEOUT_MS) });
+  return parseNzbn(res.status, await res.json().catch(() => null));
+}
+
 /**
  * The whole check, all calls together, must fit in the applicant's request (the app proxy gives about
  * 10 seconds, and HMRC needs a token call before the lookup, each with its own 5 s timeout).
  */
 export const TAX_TOTAL_MS = 6000;
 
-/** Check a tax number against free official registries (VIES, optionally HMRC/ABN). Never throws; times out to "unavailable". */
+/** Check a tax number against free official registries (VIES, Brønnøysund, optionally HMRC/ABN/NZBN). Never throws; times out to "unavailable". */
 export async function checkTaxNumber(country: string, number: string, fetchImpl: Fetch = fetch, totalMs = TAX_TOTAL_MS): Promise<TaxCheck> {
   const c = (country ?? "").toUpperCase();
   const n = cleanNumber(number ?? "");
@@ -161,6 +222,8 @@ export async function checkTaxNumber(country: string, number: string, fetchImpl:
     if (prefix) return checkVies(prefix, n, fetchImpl);
     if (c === "GB") return checkHmrc(n, fetchImpl);
     if (c === "AU") return checkAbn(n, fetchImpl);
+    if (c === "NO") return checkBrreg(n, fetchImpl);
+    if (c === "NZ") return checkNzbn(n, fetchImpl);
     return { status: "na" };
   };
   let timer: ReturnType<typeof setTimeout> | undefined;

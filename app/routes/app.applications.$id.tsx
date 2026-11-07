@@ -20,6 +20,7 @@ import { openFromApp } from "../components/download";
 import { PermitCheck } from "../components/PermitCheck";
 import { can } from "../lib/plans";
 import { replyIn } from "../lib/replies";
+import { registryFor, registryHost } from "../lib/tax-registries";
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const ctx = await adminContext(request);
@@ -67,6 +68,8 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       approvalState: app.approvalState as { steps?: Record<string, { status: string; error?: string }> } | null,
     },
     taxNumber,
+    // E24: the official site to check the number by hand (always offered unless the live check verified it).
+    registryUrl: taxNumber ? registryFor(String((app.answers as Record<string, unknown>)?.taxCountry ?? "") || app.countryCode)?.url ?? null : null,
     files: files.map((f) => ({ id: f.id, kind: f.kind, fileGid: f.fileGid, createdAt: f.createdAt.toISOString() })),
     certificates: certificates.map((c) => ({
       id: c.id, fileGid: c.fileGid, type: c.type, country: c.country, region: c.region, expiresOn: c.expiresOn?.toISOString().slice(0, 10) ?? null, status: c.status,
@@ -312,6 +315,9 @@ export default function ApplicationDetail() {
             {a.taxCheckName && <s-text color="subdued">{t("applications.detail.registryName", { name: a.taxCheckName })}</s-text>}
           </s-stack>
           {a.taxCheck === "unavailable" && <s-paragraph color="subdued">{t("applications.detail.checkManually")}</s-paragraph>}
+          {d.registryUrl && a.taxCheck !== "verified" && (
+            <s-link href={d.registryUrl} target="_blank">{t("applications.detail.officialLookup", { site: registryHost(d.registryUrl) })}</s-link>
+          )}
           {/* US: one certificate per covered state, each with its official lookup and check mark. */}
           {d.certificates.filter((c) => c.country === "US" && c.region).map((c) => (
             <s-box key={c.id} padding="small-200" borderWidth="base" borderRadius="base">
