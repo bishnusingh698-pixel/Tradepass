@@ -11,11 +11,11 @@ export type Condition =
   | { type: "spam" }
   // Risk hints (C14): a free email domain, a website that doesn't match the email, a registry name that
   // doesn't match the company, a P.O. box as the shipping address.
-  | { type: "free_email" } | { type: "website_mismatch" } | { type: "registry_mismatch" } | { type: "po_box" };
+  | { type: "free_email" } | { type: "disposable_email" } | { type: "website_mismatch" } | { type: "registry_mismatch" } | { type: "po_box" };
 
 export const CONDITION_TYPES = [
   "country", "business_type", "email_domain", "tax_verified", "certificate_uploaded", "custom_field", "spam",
-  "free_email", "website_mismatch", "registry_mismatch", "po_box",
+  "free_email", "disposable_email", "website_mismatch", "registry_mismatch", "po_box",
 ] as const;
 
 export type RuleConditions = { match: "all" | "any"; list: Condition[] };
@@ -69,6 +69,7 @@ export function matchCondition(c: Condition, f: ApplicationFacts): boolean {
     case "spam":
       return f.flags.includes("possible_spam");
     case "free_email":
+    case "disposable_email":
     case "website_mismatch":
     case "registry_mismatch":
     case "po_box":
@@ -142,6 +143,7 @@ function sanitizeCondition(raw: unknown): Condition | null {
     case "certificate_uploaded":
     case "spam":
     case "free_email":
+    case "disposable_email":
     case "website_mismatch":
     case "registry_mismatch":
     case "po_box":

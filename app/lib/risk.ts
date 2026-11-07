@@ -10,7 +10,19 @@ export const FREE_EMAIL_DOMAINS = new Set([
   "comcast.net", "att.net", "verizon.net", "sbcglobal.net", "bellsouth.net", "cox.net", "rediffmail.com", "seznam.cz", "wp.pl", "o2.pl", "interia.pl",
 ]);
 
-export type RiskHint = "free_email" | "website_mismatch" | "registry_mismatch" | "po_box";
+/**
+ * Well-known throwaway inboxes (Step 3: merchants report made-up "businesses" applying). Offline list, no
+ * lookup service; a hit is a hint, never a block.
+ */
+export const DISPOSABLE_EMAIL_DOMAINS = new Set([
+  "mailinator.com", "guerrillamail.com", "guerrillamail.net", "guerrillamail.org", "sharklasers.com", "grr.la", "10minutemail.com",
+  "10minutemail.net", "temp-mail.org", "temp-mail.io", "tempmail.com", "tempmailo.com", "tempr.email", "yopmail.com", "yopmail.fr", "yopmail.net",
+  "trashmail.com", "trashmail.de", "dispostable.com", "getnada.com", "maildrop.cc", "throwawaymail.com", "fakeinbox.com", "mintemail.com",
+  "mohmal.com", "emailondeck.com", "spamgourmet.com", "mailnesia.com", "mytemp.email", "discard.email", "burnermail.io", "moakt.com",
+  "mailcatch.com", "spambox.us", "tempinbox.com", "inboxkitten.com", "emailfake.com", "fakemail.net", "mail.tm", "tmpmail.org", "byom.de",
+]);
+
+export type RiskHint = "free_email" | "disposable_email" | "website_mismatch" | "registry_mismatch" | "po_box";
 
 /** example.co.uk from "https://www.Example.co.uk/shop", or "" when it isn't a web address. */
 export function hostOf(url: string): string {
@@ -61,8 +73,10 @@ export type RiskInput = {
 export function riskHints(i: RiskInput): RiskHint[] {
   const out: RiskHint[] = [];
   const emailDomain = (i.email.split("@").pop() ?? "").toLowerCase();
-  const free = FREE_EMAIL_DOMAINS.has(emailDomain);
-  if (free) out.push("free_email");
+  const disposable = DISPOSABLE_EMAIL_DOMAINS.has(emailDomain);
+  const free = disposable || FREE_EMAIL_DOMAINS.has(emailDomain);
+  if (disposable) out.push("disposable_email");
+  else if (free) out.push("free_email");
   const site = hostOf(i.website || "") || hostOf(i.storeUrl || "");
   // Marketplaces and site builders host many sellers: a mismatch there means nothing.
   const hosted = /(^|\.)(etsy|amazon|ebay|shopify|myshopify|wixsite|squarespace|facebook|instagram|tiktok|google)\./.test(`.${site}`);
