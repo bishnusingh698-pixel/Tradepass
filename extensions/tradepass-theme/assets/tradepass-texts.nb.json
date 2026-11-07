@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's permit- eller omsetningsavgiftsnummer",
  "form.tax.us_remove_state": "Fjern {{ name }}",
  "form.upload.camera": "Ta et bilde",
+ "form.upload.offline": "{{ name }} kunne ikke lastes opp fordi forbindelsen ble brutt. Sjekk tilkoblingen og legg til filen på nytt.",
  "form.whatsapp": "Send oss en melding på WhatsApp"
 }

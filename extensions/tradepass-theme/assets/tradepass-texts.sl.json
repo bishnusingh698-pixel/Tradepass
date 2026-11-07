@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Številka seller's permit ali davka od prodaje",
  "form.tax.us_remove_state": "Odstrani {{ name }}",
  "form.upload.camera": "Fotografiraj",
+ "form.upload.offline": "Datoteke {{ name }} ni bilo mogoče naložiti, ker se je povezava prekinila. Preverite povezavo in jo dodajte znova.",
  "form.whatsapp": "Pišite nam na WhatsApp"
 }

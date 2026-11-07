@@ -35,5 +35,6 @@
  "form.tax.us_permit": "セラーズパーミットまたは売上税ID番号",
  "form.tax.us_remove_state": "{{ name }}を削除",
  "form.upload.camera": "写真を撮る",
+ "form.upload.offline": "接続が切れたため、{{ name }} をアップロードできませんでした。接続を確認して、もう一度追加してください。",
  "form.whatsapp": "WhatsAppでメッセージを送る"
 }

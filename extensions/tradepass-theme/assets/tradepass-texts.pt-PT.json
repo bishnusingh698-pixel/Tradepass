@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Número do seller's permit ou de imposto sobre vendas",
  "form.tax.us_remove_state": "Remover {{ name }}",
  "form.upload.camera": "Tirar uma fotografia",
+ "form.upload.offline": "Não foi possível carregar {{ name }} porque a ligação caiu. Verifique a sua ligação e adicione o ficheiro novamente.",
  "form.whatsapp": "Envie-nos uma mensagem no WhatsApp"
 }

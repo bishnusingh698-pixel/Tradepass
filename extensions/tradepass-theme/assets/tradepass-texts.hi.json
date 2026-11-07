@@ -35,5 +35,6 @@
  "form.tax.us_permit": "सेलर्स परमिट या सेल्स टैक्स नंबर",
  "form.tax.us_remove_state": "{{ name }} हटाएँ",
  "form.upload.camera": "फ़ोटो लें",
+ "form.upload.offline": "कनेक्शन टूट जाने के कारण {{ name }} अपलोड नहीं हो सका। अपना कनेक्शन जांचें और इसे फिर से जोड़ें।",
  "form.whatsapp": "हमें WhatsApp पर संदेश भेजें"
 }

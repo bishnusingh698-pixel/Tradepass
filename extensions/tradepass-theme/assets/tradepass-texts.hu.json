@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's permit vagy forgalmi adó azonosító száma",
  "form.tax.us_remove_state": "{{ name }} eltávolítása",
  "form.upload.camera": "Fénykép készítése",
+ "form.upload.offline": "A(z) {{ name }} feltöltése nem sikerült, mert megszakadt a kapcsolat. Ellenőrizze a kapcsolatot, és adja hozzá újra.",
  "form.whatsapp": "Írjon nekünk WhatsAppon"
 }

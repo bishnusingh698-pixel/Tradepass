@@ -871,11 +871,18 @@
             upload(file, f.id).then(function (ref) {
               item.ref = ref; item.status = "done";
               live.textContent = tx("form.upload.done", { name: file.name });
-            }, function () {
+            }, function (e) {
               item.status = "failed";
               files.splice(files.indexOf(item), 1);
-              live.textContent = tx("form.upload.failed", { name: file.name });
-              showError(f, tx("form.upload.failed", { name: file.name }));
+              // The server's reason in the applicant's language (type, size, too many tries), else the general message.
+              var code = e && e.error;
+              var msg = code === "file_type" ? tx("form.error.file_type", { name: file.name })
+                : code === "file_size" ? tx("form.error.file_size", { name: file.name })
+                  : code === "rate_limited" ? tx("form.rate_limited")
+                    : e && e.offline ? tx("form.upload.offline", { name: file.name })
+                      : tx("form.upload.failed", { name: file.name });
+              live.textContent = msg;
+              showError(f, msg);
             }).then(function () { onChange(f, files); draw(); });
           });
           state.touched[f.id] = true;
@@ -925,7 +932,8 @@
         fd.append("field", field);
         return fetch(uploadUrl, { method: "POST", body: fd, credentials: "same-origin" });
       }).then(function (res) {
-        return res.json().then(function (j) {
+        if (res.status === 429) throw { retry: false, error: "rate_limited" };
+        return res.json().catch(function () { return {}; }).then(function (j) {
           if (!res.ok || !j.ref) throw { retry: false, error: j && j.error };
           return j.ref;
         });

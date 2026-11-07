@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Αριθμός seller's permit ή φόρου πωλήσεων",
  "form.tax.us_remove_state": "Αφαίρεση {{ name }}",
  "form.upload.camera": "Λήψη φωτογραφίας",
+ "form.upload.offline": "Δεν ήταν δυνατή η μεταφόρτωση του {{ name }} επειδή διακόπηκε η σύνδεση. Ελέγξτε τη σύνδεσή σας και προσθέστε το ξανά.",
  "form.whatsapp": "Στείλτε μας μήνυμα στο WhatsApp"
 }

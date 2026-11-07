@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Číslo seller's permit nebo daně z prodeje",
  "form.tax.us_remove_state": "Odebrat {{ name }}",
  "form.upload.camera": "Vyfotit",
+ "form.upload.offline": "Soubor {{ name }} se nepodařilo nahrát, protože se přerušilo připojení. Zkontrolujte připojení a přidejte ho znovu.",
  "form.whatsapp": "Napište nám na WhatsApp"
 }

@@ -35,5 +35,6 @@
  "form.tax.us_permit": "판매자 허가 번호 또는 판매세 ID 번호",
  "form.tax.us_remove_state": "{{ name }} 삭제",
  "form.upload.camera": "사진 찍기",
+ "form.upload.offline": "연결이 끊어져 {{ name }}을(를) 업로드하지 못했습니다. 연결을 확인한 후 다시 추가해 주세요.",
  "form.whatsapp": "WhatsApp으로 메시지 보내기"
 }

@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Numero di seller's permit o di imposta sulle vendite",
  "form.tax.us_remove_state": "Rimuovi {{ name }}",
  "form.upload.camera": "Scatta una foto",
+ "form.upload.offline": "Impossibile caricare {{ name }} perché la connessione si è interrotta. Controlla la connessione e aggiungilo di nuovo.",
  "form.whatsapp": "Scrivici su WhatsApp"
 }

@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's permit- of omzetbelastingnummer",
  "form.tax.us_remove_state": "{{ name }} verwijderen",
  "form.upload.camera": "Foto maken",
+ "form.upload.offline": "{{ name }} kon niet worden geüpload omdat de verbinding werd verbroken. Controleer je verbinding en voeg het bestand opnieuw toe.",
  "form.whatsapp": "Stuur ons een bericht via WhatsApp"
 }

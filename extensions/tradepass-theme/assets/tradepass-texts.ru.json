@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Номер seller's permit или налога с продаж",
  "form.tax.us_remove_state": "Удалить {{ name }}",
  "form.upload.camera": "Сделать фото",
+ "form.upload.offline": "Не удалось загрузить {{ name }}: соединение прервалось. Проверьте подключение и добавьте файл снова.",
  "form.whatsapp": "Напишите нам в WhatsApp"
 }

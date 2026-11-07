@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's permit veya satış vergisi numarası",
  "form.tax.us_remove_state": "{{ name }} kaldır",
  "form.upload.camera": "Fotoğraf çek",
+ "form.upload.offline": "Bağlantı kesildiği için {{ name }} yüklenemedi. Bağlantınızı kontrol edip yeniden ekleyin.",
  "form.whatsapp": "Bize WhatsApp'tan yazın"
 }

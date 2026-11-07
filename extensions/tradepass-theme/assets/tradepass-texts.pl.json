@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Numer seller's permit lub numer podatku od sprzedaży",
  "form.tax.us_remove_state": "Usuń {{ name }}",
  "form.upload.camera": "Zrób zdjęcie",
+ "form.upload.offline": "Nie udało się przesłać pliku {{ name }}, ponieważ połączenie zostało przerwane. Sprawdź połączenie i dodaj plik ponownie.",
  "form.whatsapp": "Napisz do nas na WhatsAppie"
 }

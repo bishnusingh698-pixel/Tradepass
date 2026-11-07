@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Số seller's permit hoặc mã thuế bán hàng",
  "form.tax.us_remove_state": "Xóa {{ name }}",
  "form.upload.camera": "Chụp ảnh",
+ "form.upload.offline": "Không thể tải lên {{ name }} vì kết nối bị gián đoạn. Hãy kiểm tra kết nối và thêm lại tệp.",
  "form.whatsapp": "Nhắn tin cho chúng tôi qua WhatsApp"
 }

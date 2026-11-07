@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Broj seller's permita ili poreza na promet",
  "form.tax.us_remove_state": "Ukloni {{ name }}",
  "form.upload.camera": "Snimi fotografiju",
+ "form.upload.offline": "Datoteku {{ name }} nije bilo moguće prenijeti jer je veza prekinuta. Provjerite vezu i ponovno je dodajte.",
  "form.whatsapp": "Pišite nam na WhatsApp"
 }

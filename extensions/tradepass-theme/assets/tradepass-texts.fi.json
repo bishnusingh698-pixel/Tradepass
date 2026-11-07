@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's permit- tai myyntiverotunnus",
  "form.tax.us_remove_state": "Poista {{ name }}",
  "form.upload.camera": "Ota kuva",
+ "form.upload.offline": "Tiedostoa {{ name }} ei voitu ladata, koska yhteys katkesi. Tarkista yhteys ja lisää tiedosto uudelleen.",
  "form.whatsapp": "Lähetä meille viesti WhatsAppissa"
 }

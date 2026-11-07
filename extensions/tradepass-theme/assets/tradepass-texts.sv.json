@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's permit- eller försäljningsskattenummer",
  "form.tax.us_remove_state": "Ta bort {{ name }}",
  "form.upload.camera": "Ta ett foto",
+ "form.upload.offline": "{{ name }} kunde inte laddas upp eftersom anslutningen bröts. Kontrollera anslutningen och lägg till filen igen.",
  "form.whatsapp": "Skicka ett meddelande till oss på WhatsApp"
 }

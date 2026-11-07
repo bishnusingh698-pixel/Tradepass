@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's Permit oder Umsatzsteuer-ID-Nummer",
  "form.tax.us_remove_state": "{{ name }} entfernen",
  "form.upload.camera": "Foto aufnehmen",
+ "form.upload.offline": "{{ name }} konnte nicht hochgeladen werden, weil die Verbindung abgebrochen ist. Prüfe deine Verbindung und füge die Datei erneut hinzu.",
  "form.whatsapp": "Schreiben Sie uns auf WhatsApp"
 }

@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Nombor seller's permit atau cukai jualan",
  "form.tax.us_remove_state": "Alih keluar {{ name }}",
  "form.upload.camera": "Ambil gambar",
+ "form.upload.offline": "{{ name }} tidak dapat dimuat naik kerana sambungan terputus. Semak sambungan anda dan tambah semula.",
  "form.whatsapp": "Hantar mesej kepada kami di WhatsApp"
 }

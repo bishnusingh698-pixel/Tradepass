@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Nomor seller's permit atau pajak penjualan",
  "form.tax.us_remove_state": "Hapus {{ name }}",
  "form.upload.camera": "Ambil foto",
+ "form.upload.offline": "{{ name }} tidak dapat diunggah karena koneksi terputus. Periksa koneksi Anda lalu tambahkan lagi.",
  "form.whatsapp": "Kirim pesan kepada kami di WhatsApp"
 }

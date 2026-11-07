@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Număr seller's permit sau de taxă pe vânzări",
  "form.tax.us_remove_state": "Eliminați {{ name }}",
  "form.upload.camera": "Faceți o fotografie",
+ "form.upload.offline": "{{ name }} nu a putut fi încărcat deoarece conexiunea s-a întrerupt. Verificați conexiunea și adăugați-l din nou.",
  "form.whatsapp": "Scrieți-ne pe WhatsApp"
 }

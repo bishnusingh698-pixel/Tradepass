@@ -35,5 +35,6 @@
  "form.tax.us_permit": "سیلرز پرمٹ یا سیلز ٹیکس نمبر",
  "form.tax.us_remove_state": "{{ name }} ہٹائیں",
  "form.upload.camera": "تصویر لیں",
+ "form.upload.offline": "کنکشن منقطع ہونے کی وجہ سے {{ name }} اپ لوڈ نہیں ہو سکا۔ اپنا کنکشن چیک کریں اور اسے دوبارہ شامل کریں۔",
  "form.whatsapp": "ہمیں WhatsApp پر پیغام بھیجیں"
 }

@@ -35,5 +35,6 @@
  "form.tax.us_permit": "销售许可证号或销售税 ID",
  "form.tax.us_remove_state": "移除{{ name }}",
  "form.upload.camera": "拍照",
+ "form.upload.offline": "连接中断，{{ name }} 未能上传。请检查网络连接后重新添加。",
  "form.whatsapp": "通过 WhatsApp 给我们留言"
 }

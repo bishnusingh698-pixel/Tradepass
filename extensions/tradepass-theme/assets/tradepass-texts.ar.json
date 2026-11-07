@@ -35,5 +35,6 @@
  "form.tax.us_permit": "رقم تصريح البائع أو رقم ضريبة المبيعات",
  "form.tax.us_remove_state": "إزالة {{ name }}",
  "form.upload.camera": "التقاط صورة",
+ "form.upload.offline": "تعذّر رفع {{ name }} لأن الاتصال انقطع. تحقّق من اتصالك ثم أضفه مرة أخرى.",
  "form.whatsapp": "راسلنا على واتساب"
 }

@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's permit or sales tax ID number",
  "form.tax.us_remove_state": "Remove {{ name }}",
  "form.upload.camera": "Take a photo",
+ "form.upload.offline": "{{ name }} couldn't be uploaded because the connection dropped. Check your connection and add it again.",
  "form.whatsapp": "Message us on WhatsApp"
 }

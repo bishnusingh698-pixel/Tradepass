@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Номер на seller's permit или данък върху продажбите",
  "form.tax.us_remove_state": "Премахване на {{ name }}",
  "form.upload.camera": "Снимайте",
+ "form.upload.offline": "{{ name }} не можа да се качи, защото връзката прекъсна. Проверете връзката си и го добавете отново.",
  "form.whatsapp": "Пишете ни в WhatsApp"
 }

@@ -35,5 +35,6 @@
  "form.tax.us_permit": "Seller's permit arba pardavimo mokesčio numeris",
  "form.tax.us_remove_state": "Pašalinti {{ name }}",
  "form.upload.camera": "Fotografuoti",
+ "form.upload.offline": "Nepavyko įkelti {{ name }}, nes nutrūko ryšys. Patikrinkite ryšį ir pridėkite failą dar kartą.",
  "form.whatsapp": "Parašykite mums per WhatsApp"
 }

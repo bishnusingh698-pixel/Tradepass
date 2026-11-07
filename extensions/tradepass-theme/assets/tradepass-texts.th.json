@@ -35,5 +35,6 @@
  "form.tax.us_permit": "หมายเลข seller's permit หรือภาษีการขาย",
  "form.tax.us_remove_state": "นำ {{ name }} ออก",
  "form.upload.camera": "ถ่ายรูป",
+ "form.upload.offline": "อัปโหลด {{ name }} ไม่ได้เนื่องจากการเชื่อมต่อขาดหาย โปรดตรวจสอบการเชื่อมต่อแล้วเพิ่มไฟล์อีกครั้ง",
  "form.whatsapp": "ส่งข้อความถึงเราทาง WhatsApp"
 }

@@ -35,5 +35,6 @@
  "form.tax.us_permit": "מספר seller's permit או מספר מס מכירה",
  "form.tax.us_remove_state": "הסרת {{ name }}",
  "form.upload.camera": "צילום תמונה",
+ "form.upload.offline": "לא ניתן היה להעלות את {{ name }} כי החיבור התנתק. בדקו את החיבור והוסיפו את הקובץ שוב.",
  "form.whatsapp": "שלחו לנו הודעה בוואטסאפ"
 }
