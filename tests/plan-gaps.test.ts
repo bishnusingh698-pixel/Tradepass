@@ -116,14 +116,14 @@ describe("tax-number checks are a Starter feature", () => {
 
   it("Free: stores the number encrypted, makes no lookup and marks it skipped", async () => {
     const d = deps();
-    const b = body(FREE, { taxNumber: { country: "DE", number: "DE123456789" } });
+    const b = body(FREE, { taxNumber: { country: "DE", number: "DE136695976" } });
     const res = await handleSubmit(ctx(FREE), b, d);
     expect(res).toMatchObject({ http: 200, body: { ok: true } });
     expect(d.checkTaxNumber).not.toHaveBeenCalled();
     const app = await db.application.findFirstOrThrow({ where: { shop: FREE, idempotencyKey: b.idempotencyKey } });
     expect(app.taxCheck).toBe("skipped");
     expect(app.taxCheckName).toBeNull();
-    expect(decrypt(app.taxNumberEnc!)).toBe("DE123456789");
+    expect(decrypt(app.taxNumberEnc!)).toBe("DE136695976");
     expect((app.answers as Record<string, unknown>).taxNumberHash).toBeTypeOf("string"); // duplicates still detected
   });
 
@@ -137,9 +137,9 @@ describe("tax-number checks are a Starter feature", () => {
   it("Starter and dev stores check the number live", async () => {
     for (const shop of [STARTER, DEV]) {
       const d = deps();
-      const b = body(shop, { taxNumber: { country: "DE", number: "DE123456789" } });
+      const b = body(shop, { taxNumber: { country: "DE", number: "DE136695976" } });
       await handleSubmit(ctx(shop), b, d);
-      expect(d.checkTaxNumber).toHaveBeenCalledWith("DE", "DE123456789");
+      expect(d.checkTaxNumber).toHaveBeenCalledWith("DE", "DE136695976");
       const app = await db.application.findFirstOrThrow({ where: { shop, idempotencyKey: b.idempotencyKey } });
       expect(app.taxCheck).toBe("verified");
     }
@@ -151,11 +151,11 @@ describe("tax-number checks are a Starter feature", () => {
     const app = await db.application.findFirstOrThrow({ where: { shop: FREE, idempotencyKey: b.idempotencyKey } });
     await db.application.update({ where: { id: app.id }, data: { status: "needs_info", requested: { fields: ["taxNumber"], message: "x", at: new Date().toISOString() } } });
     const d = deps();
-    expect(await applyUpdate({ shop: FREE, ip: "x" }, app.id, { answers: { taxNumber: { country: "DE", number: "DE999999999" } } }, d)).toEqual({ ok: true });
+    expect(await applyUpdate({ shop: FREE, ip: "x" }, app.id, { answers: { taxNumber: { country: "DE", number: "DE999999995" } } }, d)).toEqual({ ok: true });
     expect(d.checkTaxNumber).not.toHaveBeenCalled();
     const after = await db.application.findUniqueOrThrow({ where: { id: app.id } });
     expect(after.taxCheck).toBe("skipped");
-    expect(decrypt(after.taxNumberEnc!)).toBe("DE999999999");
+    expect(decrypt(after.taxNumberEnc!)).toBe("DE999999995");
   });
 });
 

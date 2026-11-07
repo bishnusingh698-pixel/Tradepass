@@ -38,9 +38,16 @@ export function hashKey(kind: string, value: string): string {
  * upstream; a client can prepend its own value, which is why intake also has a
  * per-store hourly cap (LIMITS.submitPerShop) and per-email limits.
  */
-export function clientIp(request: Request): string {
+export function clientIp(request: Request, trustedHops = Number(process.env.TRUSTED_PROXY_HOPS ?? 0)): string {
   const xff = request.headers.get("x-forwarded-for");
-  if (xff) return xff.split(",")[0].trim();
+  if (xff) {
+    const hops = xff.split(",").map((x) => x.trim()).filter(Boolean);
+    // TRUSTED_PROXY_HOPS = how many proxies at the right end of the header are ours (e.g. Shopify's
+    // app proxy + Render = 2, once checked on the live deploy, REVIEW N2). The entry just left of
+    // them is the visitor and can't be forged. 0 (default) keeps the left-most entry.
+    if (Number.isInteger(trustedHops) && trustedHops > 0 && hops.length > trustedHops) return hops[hops.length - 1 - trustedHops];
+    if (hops.length) return hops[0];
+  }
   return request.headers.get("x-real-ip") ?? request.headers.get("cf-connecting-ip") ?? "unknown";
 }
 

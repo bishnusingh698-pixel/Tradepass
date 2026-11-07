@@ -35,8 +35,15 @@ export type Address = {
 export type ApproveInput = {
   tierId: string;
   paymentTermsTemplateId: string | null;
+  /** Apply the listed exemptions (e.g. one US state's reseller exemption). */
   taxExempt: boolean;
   exemptions: string[]; // TaxExemption enum values
+  /**
+   * Shopify's location-wide `taxExempt` flag: no tax at all, anywhere. Off unless the merchant
+   * explicitly chooses it — a resale certificate covers one state, so setting it with a state
+   * exemption (as before 2026-11-07) also stopped tax on orders shipped to every other state.
+   */
+  taxExemptAll?: boolean;
   taxRegistrationId: string | null;
   companyName: string;
   locationName: string;
@@ -383,11 +390,12 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
       (l.buyerExperienceConfiguration?.paymentTermsTemplate?.id ?? null) === (i.paymentTermsTemplateId ?? null) &&
       Boolean(l.buyerExperienceConfiguration?.checkoutToDraft) === draft;
     const want = i.taxExempt ? [...new Set(i.exemptions)] : [];
+    const exemptAll = Boolean(i.taxExemptAll);
     const taxOk = (l: any) => {
       const ts = l.taxSettings ?? {};
       const have: string[] = ts.taxExemptions ?? [];
       // Shopify may store the registration id with other spacing or case than typed.
-      return Boolean(ts.taxExempt) === Boolean(i.taxExempt) && have.length === want.length && want.every((x) => have.includes(x)) &&
+      return Boolean(ts.taxExempt) === exemptAll && have.length === want.length && want.every((x) => have.includes(x)) &&
         (i.taxRegistrationId ? normaliseTaxNumber(String(ts.taxRegistrationId ?? "")) === normaliseTaxNumber(i.taxRegistrationId) : true);
     };
     if (!termsOk(loc)) {
@@ -401,12 +409,12 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
       const have: string[] = loc.taxSettings?.taxExemptions ?? [];
       await mutate(admin, "companyLocationTaxSettingsUpdate", Q.taxUpdate, {
         companyLocationId: locationGid,
-        taxExempt: Boolean(i.taxExempt),
+        taxExempt: exemptAll,
         exemptionsToAssign: want.filter((x) => !have.includes(x)),
         exemptionsToRemove: have.filter((x) => !want.includes(x)),
         ...(i.taxRegistrationId ? { taxRegistrationId: i.taxRegistrationId } : {}),
       });
-      await logActivity({ shop, actor, action: "approval.tax_set", subject: locationGid, detail: { taxExempt: i.taxExempt, exemptions: want } });
+      await logActivity({ shop, actor, action: "approval.tax_set", subject: locationGid, detail: { taxExemptAll: exemptAll, exemptions: want } });
     }
     const after = (await gql(admin, Q.location, { id: locationGid })).companyLocation;
     if (!after || !termsOk(after) || !taxOk(after)) throw new StepError("verify_failed");
@@ -634,6 +642,7 @@ export function mergeRetryInput(prev: ApprovalState, next: ApproveInput): Approv
     out.paymentTermsTemplateId = p.paymentTermsTemplateId;
     out.checkoutToDraft = p.checkoutToDraft;
     out.taxExempt = p.taxExempt;
+    out.taxExemptAll = p.taxExemptAll;
     out.exemptions = p.exemptions;
     out.taxRegistrationId = p.taxRegistrationId;
   }
@@ -702,6 +711,7 @@ export function normalizeApproveInput(raw: unknown): ApproveInput | null {
     paymentTermsTemplateId: terms,
     taxExempt,
     exemptions: taxExempt ? exemptions : [],
+    taxExemptAll: r.taxExemptAll === true,
     taxRegistrationId: cleanStr(r.taxRegistrationId, 100) || null,
     companyName,
     locationName: cleanStr(r.locationName) || companyName,

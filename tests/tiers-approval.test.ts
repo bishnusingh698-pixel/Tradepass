@@ -75,7 +75,8 @@ describe("approval step machine", () => {
     const loc = state.steps.location.gid!;
     expect(fake.markets.get(marketGid)!.locs).toContain(loc);
     const l = fake.locations.get(loc)!;
-    expect(l).toMatchObject({ terms: "gid://shopify/PaymentTermsTemplate/4", taxExempt: true, exemptions: ["US_TX_RESELLER_EXEMPTION"] });
+    // A state exemption only: the location-wide "exempt from all taxes" flag stays off (C9).
+    expect(l).toMatchObject({ terms: "gid://shopify/PaymentTermsTemplate/4", taxExempt: false, exemptions: ["US_TX_RESELLER_EXEMPTION"] });
     expect(l.roles).toContain(state.steps.contact.gid);
     const saved = await db.application.findUnique({ where: { id: app.id } });
     expect(saved?.status).toBe("approved");

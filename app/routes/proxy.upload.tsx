@@ -1,7 +1,7 @@
 import type { ActionFunctionArgs } from "react-router";
 import { json, proxyContext } from "../lib/intake.server";
 import { clientIp, hashKey, hit, LIMITS } from "../lib/spam.server";
-import { MAX_UPLOAD_BYTES, readUploadForm, signFileRef, uploadToShopifyFiles, UploadError } from "../lib/uploads.server";
+import { MAX_UPLOAD_BYTES, readCapped, readUploadForm, signFileRef, uploadToShopifyFiles, UploadError } from "../lib/uploads.server";
 import { unauthenticated } from "../shopify.server";
 
 // POST /apps/tradepass/upload: one certificate (PDF/JPG/PNG ≤ 5 MB, one file per request). The file
@@ -18,7 +18,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   let read: Awaited<ReturnType<typeof readUploadForm>>;
   try {
-    read = await readUploadForm(await request.formData());
+    // Read at most the size limit, also when the body comes without a Content-Length (REVIEW N4).
+    const body = await readCapped(request, MAX_UPLOAD_BYTES + 64 * 1024);
+    if (!body) return json({ ok: false, error: "file_size" }, 400);
+    read = await readUploadForm(await new Request(request.url, { method: "POST", headers: { "content-type": request.headers.get("content-type") ?? "" }, body }).formData());
   } catch {
     read = { ok: false, error: "file_type" };
   }

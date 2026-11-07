@@ -182,3 +182,149 @@ describe("N1 paused buyers can't check out in a wholesale-only store", () => {
     for (const b of paused) expect(fake.metafields.get(`${b.companyGid}|$app:tradepass|paused`)).toBe("true");
   });
 });
+
+describe("C9 a state resale exemption must not exempt the location from all taxes", () => {
+  it("sets only the chosen exemptions; the blanket flag needs the merchant's explicit choice", async () => {
+    const { fake, tier, app, ctx } = await setup();
+    const state = await approveApplication(ctx, app.id, input(tier.id, { taxExempt: true, exemptions: ["US_TX_RESELLER_EXEMPTION"], sendWelcome: false }));
+    expect(fake.locations.get(state.steps.location.gid!)).toMatchObject({ taxExempt: false, exemptions: ["US_TX_RESELLER_EXEMPTION"] });
+
+    const two = await setup();
+    const s2 = await approveApplication(two.ctx, two.app.id, input(two.tier.id, { taxExempt: false, exemptions: [], taxExemptAll: true, sendWelcome: false }));
+    expect(two.fake.locations.get(s2.steps.location.gid!)).toMatchObject({ taxExempt: true, exemptions: [] });
+  });
+
+  it("the posted input keeps taxExemptAll only when explicitly true", async () => {
+    const { normalizeApproveInput } = await import("../app/lib/approval.server");
+    const base = { companyName: "A", tierId: "t", billingAddress: { address1: "1", city: "c", countryCode: "US" }, contact: { mode: "new" } };
+    expect(normalizeApproveInput(base)!.taxExemptAll).toBe(false);
+    expect(normalizeApproveInput({ ...base, taxExemptAll: "true" })!.taxExemptAll).toBe(false);
+    expect(normalizeApproveInput({ ...base, taxExemptAll: true })!.taxExemptAll).toBe(true);
+  });
+});
+
+describe("storefront form: privacy, phone uploads and contrast", async () => {
+  const { runInNewContext } = await import("node:vm");
+  const sandbox: Record<string, unknown> = { window: { TradepassFormNoBoot: true }, document: { readyState: "complete" } };
+  (sandbox.window as Record<string, unknown>).window = sandbox.window;
+  runInNewContext(readFileSync("extensions/tradepass-theme/assets/tradepass-form.js", "utf8"), sandbox);
+  const T = ((sandbox.window as Record<string, unknown>).TradepassForm as { _test: Record<string, (...a: unknown[]) => unknown> })._test;
+
+  it("m18 the browser draft never keeps documents or the tax number", () => {
+    const fields = { certificates: { type: "file" }, taxNumber: { type: "country_tax" }, companyName: { type: "text" } };
+    const out = T.sanitizeDraft({ companyName: "Acme", taxNumber: { country: "US", region: "TX", number: "12345678901" }, certificates: [{ ref: "signed", name: "c.pdf", status: "done" }] }, fields);
+    expect(out).toEqual({ companyName: "Acme", taxNumber: { country: "US", region: "TX", number: "" } });
+  });
+
+  it("m19 accepts PDFs that a phone sends with an empty type, still refuses other files", () => {
+    expect(T.fileTypeOk({ name: "cert.pdf", type: "" })).toBe(true);
+    expect(T.fileTypeOk({ name: "cert.PDF", type: "application/octet-stream" })).toBe(true);
+    expect(T.fileTypeOk({ name: "photo.jpg", type: "image/jpeg" })).toBe(true);
+    expect(T.fileTypeOk({ name: "letter.docx", type: "" })).toBe(false);
+    expect(T.fileTypeOk({ name: "x.exe", type: "application/octet-stream" })).toBe(false);
+  });
+
+  it("m20 detects dark theme backgrounds so error text keeps its contrast", () => {
+    expect(T.darkColor("rgb(18, 18, 18)")).toBe(true);
+    expect(T.darkColor("rgb(255, 255, 255)")).toBe(false);
+    expect(T.darkColor("rgba(0, 0, 0, 0)")).toBeNull();
+    expect(T.darkColor("")).toBeNull();
+  });
+});
+
+describe("E23 offline check digits (and the tax-ID examples)", async () => {
+  const { taxChecksum, CHECKSUM_COUNTRIES } = await import("../app/lib/tax-checksums.js");
+  const { checkTaxIdFormat, normaliseTaxId, TAX_ID_RULES } = await import("../app/lib/tax-ids");
+  // Real, publicly listed numbers (companies' own registrations or the authorities' published examples).
+  const VALID: [string, string][] = [
+    ["AU", "51824753556"], ["NO", "923609016"], ["CN", "91350100M000100Y43"], ["BR", "11222333000181"], ["IN", "27AAPFU0939F1ZV"],
+    ["NZ", "49091850"], ["NZ", "136410132"], ["DE", "DE136695976"], ["RU", "7707083893"], ["FR", "FR40303265045"], ["GB", "GB980780684"],
+    ["IT", "IT00743110157"], ["BE", "BE0403170701"], ["DK", "DK13585628"], ["FI", "FI20774740"], ["PL", "PL5260250274"], ["PT", "PT501964843"],
+    ["SE", "SE556036079301"], ["CH", "CHE116281710"], ["JP", "5010001008846"], ["TW", "04595257"], ["KR", "1208147521"], ["HR", "69435151530"],
+    ["EE", "EE100931558"], ["LU", "LU15027442"], ["SI", "SI50223054"], ["HU", "HU12892312"], ["GR", "EL094259216"], ["SK", "SK2020317068"],
+    ["TR", "10000000146"], ["IL", "520000118"], ["PE", "20131312955"], ["TH", "0994000165510"], ["AR", "30500010912"],
+  ];
+  // Change the check digit itself (Sweden's sits before the fixed "01").
+  const flip = (n: string) => {
+    const i = /^SE\d{12}$/.test(n) ? n.length - 3 : n.length - 1;
+    return n.slice(0, i) + (n[i] === "1" ? "2" : "1") + n.slice(i + 1);
+  };
+
+  it("accepts real numbers and refuses the same numbers with the last character changed", () => {
+    for (const [c, n] of VALID) {
+      expect(taxChecksum(c, n), `${c} ${n}`).toBe(true);
+      expect(taxChecksum(c, flip(n)), `${c} ${flip(n)}`).toBe(false);
+    }
+    // Inland Revenue's own invalid example, and the GSTIN example the form used to show.
+    expect(taxChecksum("NZ", "136410133")).toBe(false);
+    expect(taxChecksum("IN", "22AAAAA0000A1Z5")).toBe(false);
+  });
+
+  it("covers every country with an algorithm, and knows nothing about the others", () => {
+    for (const c of CHECKSUM_COUNTRIES) expect(VALID.some(([v]) => v === c) || c === "CL", c).toBe(true);
+    expect(taxChecksum("US", "12-3456789")).toBeNull();
+    expect(taxChecksum("XX", "123")).toBeNull();
+  });
+
+  it("every example in the tax-ID table passes its own pattern and check digit", () => {
+    for (const [c, r] of Object.entries(TAX_ID_RULES)) {
+      let n = normaliseTaxId(r.ex);
+      if (r.p && !n.startsWith(r.p) && !/^[A-Z]{2}/.test(n)) n = r.p + n;
+      expect(new RegExp(r.re).test(n), `${c} pattern ${r.ex}`).toBe(true);
+      expect(taxChecksum(c, n), `${c} checksum ${r.ex}`).not.toBe(false);
+      expect(checkTaxIdFormat(c, r.ex), c).toBe("ok");
+    }
+  });
+
+  it("the server refuses a strict country's number with a wrong check digit", () => {
+    expect(checkTaxIdFormat("DE", "DE136695976")).toBe("ok");
+    expect(checkTaxIdFormat("DE", "DE136695977")).toBe("invalid");
+    expect(checkTaxIdFormat("IN", "22AAAAA0000A1Z5")).toBe("invalid");
+  });
+
+  it("the storefront form runs the very same code", async () => {
+    const { runInNewContext } = await import("node:vm");
+    const sandbox: Record<string, unknown> = { window: { TradepassFormNoBoot: true }, document: { readyState: "complete" } };
+    runInNewContext(readFileSync("extensions/tradepass-theme/assets/tradepass-form.js", "utf8"), sandbox);
+    const ck = ((sandbox.window as Record<string, unknown>).TradepassForm as { _test: { checksum: (c: string, n: string) => boolean | null } })._test.checksum;
+    for (const [c, n] of VALID) {
+      expect(ck(c, n)).toBe(true);
+      expect(ck(c, flip(n))).toBe(false);
+    }
+    const lib = readFileSync("app/lib/tax-checksums.js", "utf8");
+    const code = lib.slice(lib.indexOf("/* checksums:start */"), lib.indexOf("/* checksums:end */")).replace(/\s+/g, "");
+    expect(readFileSync("extensions/tradepass-theme/assets/tradepass-form.js", "utf8").replace(/\s+/g, "")).toContain(code);
+  });
+});
+
+describe("N2–N4 re-checked", async () => {
+  const { clientIp } = await import("../app/lib/spam.server");
+  const { readCapped } = await import("../app/lib/uploads.server");
+  const { reserveAutoApproval } = await import("../app/lib/rules.server");
+
+  it("N2 with TRUSTED_PROXY_HOPS set, a client can't choose its own IP by prepending to X-Forwarded-For", () => {
+    const req = new Request("https://x.test", { headers: { "x-forwarded-for": "6.6.6.6, 203.0.113.7, 23.227.38.1, 10.0.0.2" } });
+    expect(clientIp(req, 0)).toBe("6.6.6.6"); // default: unchanged behaviour
+    expect(clientIp(req, 2)).toBe("203.0.113.7");
+    expect(clientIp(new Request("https://x.test", { headers: { "x-forwarded-for": "10.0.0.2" } }), 2)).toBe("10.0.0.2");
+  });
+
+  it("N4 stops reading an upload body (with or without Content-Length) once it passes the limit", async () => {
+    const big = new ReadableStream({ start(c) { for (let i = 0; i < 20; i++) c.enqueue(new Uint8Array(1024)); c.close(); } });
+    expect(await readCapped(new Request("https://x.test", { method: "POST", body: big, duplex: "half" } as RequestInit), 10_000)).toBeNull();
+    const small = await readCapped(new Request("https://x.test", { method: "POST", body: "hello" }), 10_000);
+    expect(new TextDecoder().decode(small!)).toBe("hello");
+  });
+
+  it("N3 two applications racing for the last auto-approval slot: exactly one gets it", async () => {
+    const mk = () => db.application.create({ data: { shop: SHOP, idempotencyKey: randomBytes(8).toString("hex"), companyName: "Race", email: `r-${randomBytes(3).toString("hex")}@x.test`, answers: {} } });
+    await db.application.updateMany({ where: { shop: SHOP }, data: { autoRuleId: null } });
+    const [a, b] = await Promise.all([mk(), mk()]);
+    const res = await Promise.all([reserveAutoApproval(SHOP, a.id, "rule-x", 1), reserveAutoApproval(SHOP, b.id, "rule-x", 1)]);
+    expect(res.filter(Boolean)).toHaveLength(1);
+    // A reject decision (status rejected) doesn't use a slot.
+    await db.application.updateMany({ where: { id: { in: [a.id, b.id] } }, data: { status: "rejected" } });
+    const c = await mk();
+    expect(await reserveAutoApproval(SHOP, c.id, "rule-x", 1)).toBe(true);
+  });
+});

@@ -236,6 +236,12 @@ export function ApproveModal({ applicationId, companyName }: { applicationId: st
                   </s-select>
                 </s-stack>
               )}
+              <s-checkbox
+                label={t("approval.field.taxExemptAll")}
+                details={t("approval.field.taxExemptAllHelp")}
+                checked={Boolean(input.taxExemptAll)}
+                onChange={(e) => set({ taxExemptAll: checked(e) })}
+              />
               <s-text-field
                 label={t("approval.field.taxRegistrationId")}
                 value={input.taxRegistrationId ?? ""}

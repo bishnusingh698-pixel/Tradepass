@@ -1,4 +1,62 @@
-# Code review — Tradepass (2026-11-01)
+# Code review — Tradepass
+
+## Review of 2026-11-07 (branch `ccr-cf9569d2-nfbtvu`, from `main` at `ba8371b`)
+
+Line numbers point at `ba8371b`. Severity and status as below (✅ fixed · ⚠️ not fixed, reason given).
+
+**How the Shopify field names were checked this time.** The `shopify-dev-mcp` server didn't connect to this
+session, and shopify.dev is blocked by the session's network policy. The Shopify dev toolkit (`@shopify/dev-mcp`
+1.18.0) was therefore run locally over stdio: its `validate` tool checks operations against the Admin/Functions
+GraphQL schemas it bundles (2026-01 … unstable), offline. **All 88 GraphQL operations in `app/` and `extensions/`
+were validated against Admin 2026-10** (and the checkout Function input against the cart-and-checkout-validation
+Function schema 2026-10). Doc search (`search_docs_chunks`) needs shopify.dev and failed, so prose-only facts
+(Flow template format, customer-account plan availability) are listed under "needs a dev store".
+
+### Baseline (before any change)
+| Check | Result |
+|---|---|
+| `prisma migrate deploy` on an empty Postgres 16, `migrate diff` | ✅ applies; diff empty |
+| `npm run typecheck`, `npm run lint` | ✅ clean |
+| `vitest run` | ✅ 377 / 377 |
+| `npm run build` | ✅ (only "empty chunk" notices for resource routes) |
+| `node scripts/i18n-check.mjs <35 locales>` | ✅ — but `app/locales/en/pending.json` held **134 English-only strings** in every other language (setup wizard, country rules, templates, privacy requests, monthly report): translated in this pass |
+| Schema validation of every GraphQL operation | ❌ **4 invalid** (C7, C8, m17 below; the 4th was the Function query, valid against its own schema) |
+
+### Critical
+
+| # | File:line | Bug and root cause | Status |
+|---|---|---|---|
+| C7 | `app/lib/approval.server.ts:149`, `:425` | **`companyContactSendWelcomeEmail` does not exist in the Admin schema** (not in any bundled version, 2026-01 … unstable, although shopify.dev has a reference page for it and a Shopify staff reply in the dev community says apps can't send the B2B access email). Every approval with "Send welcome email" on — the default, also bulk, rules and Flow — got a GraphQL error, the email step **failed**, the approval never got `finishedAt`, stayed in "Approval incomplete" and was **retried every hour** (3 times). The tests passed because the fake Admin answers any operation name. | ✅ D-092: the call is kept (it is Shopify's own email, the only allowed route), but when Shopify refuses the field itself (unknown field / access denied) the step is **skipped** with `email_unavailable`, the approval finishes, and the application offers a ready-made **"you're approved"** message (sign-in link, buyer-facing tier name; texts restored from the removed email in all 36 languages) plus how to send Shopify's B2B access email from the admin or Flow. One-off failures (userErrors, throttling) still fail the step with Retry. |
+| C8 | `app/lib/tiers.server.ts:132` | The tier sync query selected `status` on both `Market` and `Catalog`; the types differ (`MarketStatus!` / `CatalogStatus!`), so Shopify rejects the whole query. The hourly **"Changed in Shopify" check never worked and the Fix button always crashed.** | ✅ aliased `marketStatus` / `catalogStatus`; readers updated. |
+| C9 | `app/lib/approval.server.ts:401` | Approving with a state exemption (e.g. `US_TX_RESELLER_EXEMPTION`) also set the location's `taxExempt: true`, which the schema documents as "whether the location is exempt from taxes" — **no tax at all, in any state**. A Texas resale certificate stopped tax on orders shipped to California. | ✅ exemptions are assigned on their own; the blanket flag is a separate, explicit "Don't collect any tax from this location" choice (off by default). Buyers' tax column now says "N exemptions". ⚠️ Buyers approved before this fix keep the blanket flag in Shopify: check them on the company location's tax settings (Help says so). |
+| N1 | `extensions/tradepass-checkout-lock` | A **paused** buyer could still check out in a wholesale-only store. | ✅ pausing writes the app-owned company metafield `$app:tradepass.paused`; the Function reads `purchasingCompany.company.metafield` (both validated against the 2026-10 schemas) and treats a paused company like a retail customer. Resume and re-approval remove it; a failed write is a `buyer_marker` job retried hourly; reinstall writes the markers again. |
+
+### Major
+
+| # | File:line | Bug and root cause | Status |
+|---|---|---|---|
+| M18 | `extensions/tradepass-theme/assets/tradepass-form.js:124` | The browser draft (localStorage) stored **everything typed, including the tax number and the signed references of uploaded certificates**, on whatever device the applicant used (shared office PCs, library computers). The hosted "more info" page did the same. | ✅ drafts keep neither (tax country/state are kept); older drafts are cleaned on load; the restore note says documents and tax numbers must be added again (36 languages). |
+| M19 | `app/lib/tax-ids.json` | Examples shown on the form failed their own check digit (GSTIN `22AAAAA0000A1Z5`, and 26 placeholder-style examples such as `DE123456789`), so an applicant copying the format could be told their real number was wrong, and typos with a valid shape were accepted. | ✅ offline check digits for 34 countries (E23); every example replaced by one that passes its pattern and check digit (test). |
+
+### Minor
+
+| # | File:line | Bug and root cause | Status |
+|---|---|---|---|
+| m17 | `app/lib/shop.server.ts:15` | `Shop.billingAddress` is deprecated. | ✅ `shopAddress`. |
+| m18 | form script `:547` | PDFs that a phone sends with an empty or generic type were refused in the browser (the server already decides by content). | ✅ |
+| m19 | `tradepass-form.css:23` | Error text and borders are a fixed `#b3261e`, about 2.5:1 on dark theme backgrounds (WCAG 1.4.3 needs 4.5:1). | ✅ the script detects a dark background and switches to `#ffb4ab`. |
+| N2 | `app/lib/spam.server.ts` `clientIp` | Left-most `X-Forwarded-For` can be spoofed. | ✅ new optional `TRUSTED_PROXY_HOPS` (count of our proxies at the right of the header); default 0 keeps today's behaviour until the owner checks the live headers. |
+| N3 | `app/lib/rules.server.ts` | Two applications at the same second could both pass the daily auto-approval limit. | ✅ a per-shop advisory transaction lock serialises only the check-and-reserve (milliseconds, not the approval). |
+| N4 | `app/routes/proxy.upload.tsx` | A chunked upload without `Content-Length` was read fully before the size check. | ✅ the body is read with a running byte cap. |
+
+### Still not fixed
+| # | Why |
+|---|---|
+| N5 (fresh trial after `shop/redact` + reinstall) | Keeping any trial record after the mandatory redaction keeps shop data; product decision, unchanged. |
+| N6 (Shopify behaviour) | Needs a dev store; the list grew (see "Needs a dev store" in CHECKLIST.md). |
+| Form script size | `tradepass-form.js` is ~12 KB gzipped (Shopify suggests ≤ 10 KB for app-block JS; it was 10.6 KB before this pass). Only the form page loads it. A minify step at deploy is in ROADMAP. |
+
+## Review of 2026-11-01
 
 Scope: every file in `app/`, `extensions/`, `prisma/`, `scripts/`, `tests/` and the docs, starting from `main` at `79ec937`.
 The earlier review on branch `ccr-a79ddd23-95guxy` (done on older code) was used only as a list of leads; each

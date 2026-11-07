@@ -28,6 +28,30 @@ export async function autoApprovalsToday(shop: string, now = new Date()): Promis
   return db.application.count({ where: { shop, autoRuleId: { not: null }, status: "approved", decidedAt: { gte: startOfUtcDay(now) } } });
 }
 
+/**
+ * Take one of today's auto-approval slots for this application. A Postgres advisory transaction
+ * lock (per shop) serialises only this check-and-mark, not the approval itself. Approvals still in
+ * progress (marked, not yet approved) count too.
+ */
+export async function reserveAutoApproval(shop: string, applicationId: string, ruleId: string, limit: number, now = new Date()): Promise<boolean> {
+  return db.$transaction(async (tx) => {
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${`tradepass-auto:${shop}`}))`;
+    const used = await tx.application.count({
+      where: {
+        shop, autoRuleId: { not: null }, id: { not: applicationId },
+        OR: [
+          { status: "approved", decidedAt: { gte: startOfUtcDay(now) } },
+          // Reserved today and not decided yet (the approval is under way, or stopped part-way).
+          { status: { in: ["pending", "needs_info"] }, submittedAt: { gte: startOfUtcDay(now) } },
+        ],
+      },
+    });
+    if (used >= limit) return false;
+    await tx.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: ruleId } });
+    return true;
+  });
+}
+
 async function factsFor(shop: string, applicationId: string) {
   const app = await db.application.findFirst({ where: { shop, id: applicationId } });
   if (!app) return null;
@@ -82,10 +106,6 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
       await logActivity({ shop, actor: ACTOR, action: "automation.skipped_duplicate", subject: applicationId, detail: { ruleId: rule.id } });
       return { decided: null };
     }
-    if ((await autoApprovalsToday(shop)) >= settings.automation.dailyLimit) {
-      await logActivity({ shop, actor: ACTOR, action: "automation.limit_reached", subject: applicationId, detail: { ruleId: rule.id, limit: settings.automation.dailyLimit } });
-      return { decided: null };
-    }
     const a = rule.action as ApproveAction;
     const tier = await db.tier.findFirst({ where: { shop, id: a.tierId }, select: { id: true } });
     if (!tier) {
@@ -99,8 +119,13 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
       paymentTermsTemplateId: a.paymentTermsTemplateId ?? defaults.input.paymentTermsTemplateId,
       sendWelcome: a.sendWelcome ?? defaults.input.sendWelcome,
     };
-    // Mark first, so a partial approval can still be found and reversed.
-    await db.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: rule.id } });
+    // Reserve a slot under today's limit and mark the application in one short, per-shop serialised
+    // step, so two applications arriving together can't both take the last slot (REVIEW N3). The
+    // mark also lets a partial approval be found and reversed.
+    if (!(await reserveAutoApproval(shop, applicationId, rule.id, settings.automation.dailyLimit))) {
+      await logActivity({ shop, actor: ACTOR, action: "automation.limit_reached", subject: applicationId, detail: { ruleId: rule.id, limit: settings.automation.dailyLimit } });
+      return { decided: null };
+    }
     const state = await approveApplication(ctx, applicationId, input);
     const failed = APPROVAL_STEPS.find((s) => state.steps[s]?.status === "failed");
     // A failed welcome email still leaves an approved buyer (it can be sent again from the application).

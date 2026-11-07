@@ -63,12 +63,12 @@ describe("B1/B2: store profile and the real subscription", () => {
 
 describe("B9/F3: country tax IDs", () => {
   it("accepts well-formed numbers with or without the country prefix and punctuation", () => {
-    expect(checkTaxIdFormat("DE", "DE 123.456.789")).toBe("ok");
-    expect(checkTaxIdFormat("DE", "123456789")).toBe("ok");
-    expect(checkTaxIdFormat("GR", "EL123456789")).toBe("ok");
-    expect(checkTaxIdFormat("CH", "CHE-123.456.789 MWST")).toBe("ok");
-    expect(checkTaxIdFormat("IN", "22AAAAA0000A1Z5")).toBe("ok");
-    expect(checkTaxIdFormat("BR", "12.345.678/0001-95")).toBe("ok");
+    expect(checkTaxIdFormat("DE", "DE 136.695.976")).toBe("ok");
+    expect(checkTaxIdFormat("DE", "136695976")).toBe("ok");
+    expect(checkTaxIdFormat("GR", "EL094259216")).toBe("ok");
+    expect(checkTaxIdFormat("CH", "CHE-116.281.710 MWST")).toBe("ok");
+    expect(checkTaxIdFormat("IN", "27AAPFU0939F1ZV")).toBe("ok");
+    expect(checkTaxIdFormat("BR", "11.222.333/0001-81")).toBe("ok");
   });
   it("refuses only formats it knows for certain", () => {
     expect(checkTaxIdFormat("DE", "DE12345")).toBe("invalid");
