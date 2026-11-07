@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Nagykereskedelmi jelentkezés jóváhagyása szintbe",
   "automation.flow.welcomeNote": "A Tradepass vásárló jóváhagyásakor már el tudja küldeni a Shopify B2B-hozzáférési e-mailjét, így ehhez nincs szükség külön munkafolyamatra.",
   "automation.flow.open": "Shopify Flow megnyitása",
-  "automation.flow.alerts": "E-mailt szeretne, ha valaki jelentkezik? A Shopify Flow-ban használja a „Wholesale application submitted” eseményindítót a Flow „Send internal email” műveletével. Ez a művelet csak a munkafolyamatban megadott, rögzített munkatársi címekre küld."
+  "automation.flow.alerts": "E-mailt szeretne, ha valaki jelentkezik? A Shopify Flow-ban használja a „Wholesale application submitted” eseményindítót a Flow „Send internal email” műveletével. Ez a művelet csak a munkafolyamatban megadott, rögzített munkatársi címekre küld.",
+  "automation.condition.disposable_email": "Eldobható e-mail-cím (mailinator.com…)",
+  "automation.condition.free_email": "Ingyenes levelezőszolgáltatás (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "A szállítási cím postafiók",
+  "automation.condition.registry_mismatch": "A nyilvántartásban szereplő név nem egyezik a céggel",
+  "automation.condition.website_mismatch": "A webhely nem egyezik az e-mail domainjével",
+  "automation.flow.alertsMore": "További értesítések: a „Nagykereskedelmi jelentkezés: információ beérkezett” akkor fut, amikor a jelentkező válaszol a kérésére, a „Lejáró igazolás” pedig egy igazolás lejárta előtt. Minden trigger tartalmazza a céget, a kapcsolattartót, az e-mailt, a telefont, az országot, az államot, a szintet és egy linket a jelentkezéshez, készen egy e-mailhez vagy Slack-üzenethez.",
+  "automation.flow.trigger.application_info_received": "Nagykereskedelmi jelentkezés: információ beérkezett",
+  "automation.flow.welcomeNoteFlow": "Jóváhagyáskor a Tradepass megkéri a Shopifyt, hogy küldje el a saját B2B üdvözlő e-mailjét. Ha a Shopify ezt nem engedi az áruházában, a Shopify „Cégkapcsolattartó engedélyt kapott” → „B2B-hozzáférési e-mail küldése” Flow-sablonja ugyanezt teszi; a Tradepass ezt az engedélyt a jóváhagyás során adja meg."
 }

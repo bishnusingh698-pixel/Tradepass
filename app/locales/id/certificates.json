@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify tidak menerima perubahan. Tidak ada yang dihapus. Coba lagi nanti.",
   "certificates.error.unknown_intent": "Terjadi kesalahan. Silakan coba lagi.",
   "certificates.error.file": "Kami tidak dapat membuka file ini. Silakan coba lagi.",
-  "certificates.action.copyLink": "Salin tautan perpanjangan"
+  "certificates.action.copyLink": "Salin tautan perpanjangan",
+  "certificates.usForm.exempt": "Organisasi bebas pajak",
+  "certificates.usForm.mtc": "Sertifikat penjualan kembali seragam MTC",
+  "certificates.usForm.sst": "Sertifikat Streamlined Sales Tax",
+  "certificates.usForm.state": "Sertifikat penjualan kembali negara bagian"
 }

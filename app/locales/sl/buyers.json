@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Korak odobritve ni uspel",
   "buyers.activity.approval.undo": "Odobritev razveljavljena",
   "buyers.activity.tier.assisted_add_verified": "Dodelitev ravni potrjena",
-  "buyers.activity.tier.assisted_remove_verified": "Odstranitev iz ravni potrjena"
+  "buyers.activity.tier.assisted_remove_verified": "Odstranitev iz ravni potrjena",
+  "buyers.tax.specific": "{count, plural, one {# oprostitev} two {# oprostitvi} few {# oprostitve} other {# oprostitev}}"
 }

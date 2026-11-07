@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Yeniden denenecek bir şey yok.",
   "approval.skip.finished": "Zaten onaylandı.",
   "approval.skip.missing_address": "Fatura adresi eksik.",
-  "approval.skip.tier_required": "Seviye seçilmedi."
+  "approval.skip.tier_required": "Seviye seçilmedi.",
+  "approval.blocked.no_b2b": "Shopify planınız B2B içermiyor, bu yüzden Shopify bu alıcı için henüz şirket oluşturamaz. Başvuru kuyruğunuzda kalır: B2B kullanılabilir olduğunda onaylayın (yeni Pazarlar ile Basic veya üstü plan). Ana sayfa planınızın neleri desteklediğini gösterir.",
+  "approval.error.email_unavailable": "Shopify bu mağazada Tradepass'in B2B hoş geldin e-postasını göndermesine izin vermedi, bu yüzden e-posta gönderilmedi. Alıcı onaylandı. Başvuru sayfasındaki hazır mesajı alıcıya gönderin.",
+  "approval.field.taxExemptAll": "Bu konumdan hiç vergi tahsil etme",
+  "approval.field.taxExemptAllHelp": "Yalnızca gönderim yaptığınız her yerde tüm vergilerden muaf alıcılar için. Bir yeniden satış sertifikası genellikle tek bir eyaleti veya ülkeyi kapsar: muafiyetin geçerli olmadığı yerlerde vergi alınmaya devam etsin diye yukarıdaki muafiyetleri kullanın.",
+  "approval.skip.no_b2b": "Bu mağazanın Shopify planında B2B kullanılamıyor.",
+  "approval.step.tags": "Müşteri etiketleri",
+  "approval.tags.note": "Müşteriye eklenen etiketler: {tags} (Ayarlar → Başvuranlar ve iletişim).",
+  "approval.tax.addCovered": "Bu muafiyetleri ekle",
+  "approval.tax.alsoCovered": "Sertifikalar şunları da kapsıyor: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Bu konumun eyaletinde eyalet çapında satış vergisi yok, bu yüzden orada muafiyet gerekmiyor.",
+  "approval.tax.reason.us_exempt_org": "Vergiden muaf bir kuruluşun sertifikası: Shopify'da bunun için özel bir muafiyet yok. Sertifikayı kontrol edin; yalnızca alıcı hiç vergi ödemiyorsa “Hiç vergi tahsil etme”yi seçin.",
+  "approval.tax.reason.us_resale_local_only": "Alıcının sertifikası bu eyaleti kapsıyor. Alaska'da eyalet çapında satış vergisi yok ama bazı şehirler kendi vergisini alıyor.",
+  "approval.tax.reason.us_state_not_covered": "Alıcının sertifikaları bu konumun eyaleti dışındaki eyaletleri kapsıyor. Bu muafiyetleri yalnızca bu konumun siparişleri oraya gönderiliyorsa ekleyin."
 }

@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nichts zu wiederholen.",
   "approval.skip.finished": "Bereits genehmigt.",
   "approval.skip.missing_address": "Rechnungsadresse fehlt.",
-  "approval.skip.tier_required": "Keine Stufe gewählt."
+  "approval.skip.tier_required": "Keine Stufe gewählt.",
+  "approval.blocked.no_b2b": "Ihr Shopify-Tarif enthält kein B2B, daher kann Shopify für diesen Käufer noch kein Unternehmen anlegen. Die Bewerbung bleibt in Ihrer Warteschlange: Genehmigen Sie sie, sobald B2B verfügbar ist (Basic-Tarif oder höher mit den neuen Märkten). Die Startseite zeigt, was Ihr Tarif unterstützt.",
+  "approval.error.email_unavailable": "Shopify hat Tradepass auf diesem Shop nicht erlaubt, die B2B-Willkommens-E-Mail zu senden, daher ging keine E-Mail raus. Der Käufer ist genehmigt. Senden Sie ihm die vorbereitete Nachricht von der Bewerbungsseite.",
+  "approval.field.taxExemptAll": "An diesem Standort keinerlei Steuer erheben",
+  "approval.field.taxExemptAllHelp": "Nur für Käufer, die überall, wohin Sie liefern, von jeder Steuer befreit sind. Eine Wiederverkaufsbescheinigung gilt meist für einen Bundesstaat oder ein Land: Nutzen Sie stattdessen die Befreiungen oben, damit dort, wo keine Befreiung gilt, weiterhin Steuer berechnet wird.",
+  "approval.skip.no_b2b": "B2B ist im Shopify-Tarif dieses Shops nicht verfügbar.",
+  "approval.step.tags": "Kundentags",
+  "approval.tags.note": "Dem Kunden hinzugefügte Tags: {tags} (Einstellungen → Bewerber und Kontakt).",
+  "approval.tax.addCovered": "Diese Befreiungen hinzufügen",
+  "approval.tax.alsoCovered": "Die Bescheinigungen gelten auch für: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Der Bundesstaat dieses Standorts erhebt keine landesweite Umsatzsteuer, daher ist dort keine Befreiung nötig.",
+  "approval.tax.reason.us_exempt_org": "Bescheinigung einer steuerbefreiten Organisation: Shopify hat dafür keine eigene Befreiung. Prüfen Sie die Bescheinigung; nur wenn der Käufer überhaupt keine Steuer schuldet, wählen Sie „Keinerlei Steuer erheben“.",
+  "approval.tax.reason.us_resale_local_only": "Die Bescheinigung des Käufers gilt für diesen Bundesstaat. Alaska hat keine landesweite Umsatzsteuer, aber manche Städte erheben eigene.",
+  "approval.tax.reason.us_state_not_covered": "Die Bescheinigungen des Käufers gelten für andere Bundesstaaten als den dieses Standorts. Fügen Sie diese Befreiungen nur hinzu, wenn Bestellungen dieses Standorts dorthin geliefert werden."
 }

@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify ไม่ยอมรับการเปลี่ยนแปลง ไม่มีสิ่งใดถูกนำออก โปรดลองอีกครั้งภายหลัง",
   "certificates.error.unknown_intent": "เกิดข้อผิดพลาด โปรดลองอีกครั้ง",
   "certificates.error.file": "เราเปิดไฟล์นี้ไม่ได้ โปรดลองอีกครั้ง",
-  "certificates.action.copyLink": "คัดลอกลิงก์ต่ออายุ"
+  "certificates.action.copyLink": "คัดลอกลิงก์ต่ออายุ",
+  "certificates.usForm.exempt": "องค์กรที่ได้รับยกเว้นภาษี",
+  "certificates.usForm.mtc": "ใบรับรองการขายต่อแบบเดียวกันของ MTC",
+  "certificates.usForm.sst": "ใบรับรอง Streamlined Sales Tax",
+  "certificates.usForm.state": "ใบรับรองการขายต่อของรัฐ"
 }

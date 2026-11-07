@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify no aceptó el cambio. No se quitó nada. Vuelva a intentarlo más tarde.",
   "certificates.error.unknown_intent": "Se produjo un error. Vuelva a intentarlo.",
   "certificates.error.file": "No pudimos abrir este archivo. Vuelva a intentarlo.",
-  "certificates.action.copyLink": "Copiar enlace de renovación"
+  "certificates.action.copyLink": "Copiar enlace de renovación",
+  "certificates.usForm.exempt": "Organización exenta de impuestos",
+  "certificates.usForm.mtc": "Certificado de reventa uniforme MTC",
+  "certificates.usForm.sst": "Certificado de Streamlined Sales Tax",
+  "certificates.usForm.state": "Certificado de reventa estatal"
 }

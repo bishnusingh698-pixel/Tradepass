@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Hyväksynnän vaihe epäonnistui",
   "buyers.activity.approval.undo": "Hyväksyntä peruttu",
   "buyers.activity.tier.assisted_add_verified": "Tasomääritys vahvistettu",
-  "buyers.activity.tier.assisted_remove_verified": "Tasolta poisto vahvistettu"
+  "buyers.activity.tier.assisted_remove_verified": "Tasolta poisto vahvistettu",
+  "buyers.tax.specific": "{count, plural, one {# vapautus} other {# vapautusta}}"
 }

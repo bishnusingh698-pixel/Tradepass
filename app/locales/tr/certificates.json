@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify değişikliği kabul etmedi. Hiçbir şey kaldırılmadı. Daha sonra tekrar deneyin.",
   "certificates.error.unknown_intent": "Bir sorun oluştu. Lütfen tekrar deneyin.",
   "certificates.error.file": "Bu dosyayı açamadık. Lütfen tekrar deneyin.",
-  "certificates.action.copyLink": "Yenileme bağlantısını kopyala"
+  "certificates.action.copyLink": "Yenileme bağlantısını kopyala",
+  "certificates.usForm.exempt": "Vergiden muaf kuruluş",
+  "certificates.usForm.mtc": "MTC tek tip yeniden satış sertifikası",
+  "certificates.usForm.sst": "Streamlined Sales Tax sertifikası",
+  "certificates.usForm.state": "Eyalet yeniden satış sertifikası"
 }

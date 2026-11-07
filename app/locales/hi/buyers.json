@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "मंज़ूरी का चरण सफल नहीं हुआ",
   "buyers.activity.approval.undo": "मंज़ूरी वापस ली गई",
   "buyers.activity.tier.assisted_add_verified": "टियर असाइनमेंट की पुष्टि हुई",
-  "buyers.activity.tier.assisted_remove_verified": "टियर से हटाने की पुष्टि हुई"
+  "buyers.activity.tier.assisted_remove_verified": "टियर से हटाने की पुष्टि हुई",
+  "buyers.tax.specific": "{count, plural, one {# छूट} other {# छूटें}}"
 }

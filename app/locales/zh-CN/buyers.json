@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "批准步骤未成功",
   "buyers.activity.approval.undo": "已撤消批准",
   "buyers.activity.tier.assisted_add_verified": "已确认等级分配",
-  "buyers.activity.tier.assisted_remove_verified": "已确认移出等级"
+  "buyers.activity.tier.assisted_remove_verified": "已确认移出等级",
+  "buyers.tax.specific": "{count, plural, other {# 项免税}}"
 }

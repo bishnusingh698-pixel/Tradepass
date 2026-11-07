@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Έγκριση αίτησης χονδρικής σε επίπεδο",
   "automation.flow.welcomeNote": "Το Tradepass μπορεί ήδη να στέλνει το email πρόσβασης B2B του Shopify όταν εγκρίνει αγοραστή, οπότε δεν χρειάζεται επιπλέον ροή εργασιών για αυτό.",
   "automation.flow.open": "Άνοιγμα Shopify Flow",
-  "automation.flow.alerts": "Θέλετε email όταν κάποιος κάνει αίτηση; Στο Shopify Flow, χρησιμοποιήστε το έναυσμα «Wholesale application submitted» με την ενέργεια του Flow «Send internal email». Αυτή η ενέργεια στέλνει μόνο σε σταθερές διευθύνσεις προσωπικού που ορίζετε στη ροή εργασιών."
+  "automation.flow.alerts": "Θέλετε email όταν κάποιος κάνει αίτηση; Στο Shopify Flow, χρησιμοποιήστε το έναυσμα «Wholesale application submitted» με την ενέργεια του Flow «Send internal email». Αυτή η ενέργεια στέλνει μόνο σε σταθερές διευθύνσεις προσωπικού που ορίζετε στη ροή εργασιών.",
+  "automation.condition.disposable_email": "Προσωρινή διεύθυνση email (mailinator.com…)",
+  "automation.condition.free_email": "Δωρεάν υπηρεσία email (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Η διεύθυνση αποστολής είναι ταχυδρομική θυρίδα",
+  "automation.condition.registry_mismatch": "Το όνομα στο μητρώο δεν ταιριάζει με την εταιρεία",
+  "automation.condition.website_mismatch": "Ο ιστότοπος δεν ταιριάζει με τον τομέα του email",
+  "automation.flow.alertsMore": "Περισσότερες ειδοποιήσεις: το «Ελήφθησαν πληροφορίες αίτησης χονδρικής» εκτελείται όταν ένας αιτών απαντά στο αίτημά σας, και το «Λήγει πιστοποιητικό» πριν λήξει ένα πιστοποιητικό. Κάθε εναύσμα περιλαμβάνει εταιρεία, επαφή, email, τηλέφωνο, χώρα, πολιτεία, βαθμίδα και σύνδεσμο προς την αίτηση, έτοιμα για email ή μήνυμα στο Slack.",
+  "automation.flow.trigger.application_info_received": "Ελήφθησαν πληροφορίες αίτησης χονδρικής",
+  "automation.flow.welcomeNoteFlow": "Κατά την έγκριση ζητείται από το Shopify να στείλει το δικό του email καλωσορίσματος B2B. Αν το Shopify δεν το επιτρέπει στο κατάστημά σας, το πρότυπο Flow του Shopify «Ανατέθηκε άδεια σε επαφή εταιρείας» → «Αποστολή email πρόσβασης B2B» κάνει το ίδιο· το Tradepass αναθέτει αυτή την άδεια κατά την έγκριση."
 }

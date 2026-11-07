@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Patvirtinti didmeninės prekybos paraišką į lygį",
   "automation.flow.welcomeNote": "Tradepass jau gali išsiųsti Shopify B2B prieigos laišką patvirtindama pirkėją, todėl papildomos darbo eigos tam nereikia.",
   "automation.flow.open": "Atidaryti Shopify Flow",
-  "automation.flow.alerts": "Norite gauti el. laišką, kai kas nors pateikia paraišką? „Shopify Flow“ naudokite paleidiklį „Wholesale application submitted“ su „Flow“ veiksmu „Send internal email“. Šis veiksmas siunčia tik nuolatiniais darbuotojų adresais, kuriuos įvedate darbo eigoje."
+  "automation.flow.alerts": "Norite gauti el. laišką, kai kas nors pateikia paraišką? „Shopify Flow“ naudokite paleidiklį „Wholesale application submitted“ su „Flow“ veiksmu „Send internal email“. Šis veiksmas siunčia tik nuolatiniais darbuotojų adresais, kuriuos įvedate darbo eigoje.",
+  "automation.condition.disposable_email": "Vienkartinis el. pašto adresas (mailinator.com…)",
+  "automation.condition.free_email": "Nemokama el. pašto paslauga (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Pristatymo adresas yra pašto dėžutė",
+  "automation.condition.registry_mismatch": "Registro pavadinimas nesutampa su įmone",
+  "automation.condition.website_mismatch": "Svetainė nesutampa su el. pašto domenu",
+  "automation.flow.alertsMore": "Daugiau įspėjimų: „Gauta didmeninės paraiškos informacija“ paleidžiamas, kai pareiškėjas atsako į jūsų prašymą, o „Baigiasi pažymos galiojimas“ – prieš pažymai nustojant galioti. Kiekvienas paleidiklis apima įmonę, kontaktą, el. paštą, telefoną, šalį, valstiją, lygį ir nuorodą į paraišką, paruoštus el. laiškui ar „Slack“ žinutei.",
+  "automation.flow.trigger.application_info_received": "Gauta didmeninės paraiškos informacija",
+  "automation.flow.welcomeNoteFlow": "Patvirtinant „Shopify“ paprašoma išsiųsti savo B2B pasveikinimo laišką. Jei „Shopify“ to neleidžia jūsų parduotuvėje, „Shopify Flow“ šablonas „Įmonės kontaktui suteiktas leidimas“ → „Siųsti B2B prieigos laišką“ atlieka tą patį; „Tradepass“ šį leidimą suteikia patvirtinimo metu."
 }

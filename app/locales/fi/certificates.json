@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify ei hyväksynyt muutosta. Mitään ei poistettu. Yritä myöhemmin uudelleen.",
   "certificates.error.unknown_intent": "Jokin meni vikaan. Yritä uudelleen.",
   "certificates.error.file": "Tiedostoa ei voitu avata. Yritä uudelleen.",
-  "certificates.action.copyLink": "Kopioi uusimislinkki"
+  "certificates.action.copyLink": "Kopioi uusimislinkki",
+  "certificates.usForm.exempt": "Verovapaa järjestö",
+  "certificates.usForm.mtc": "Yhtenäinen MTC-jälleenmyyntitodistus",
+  "certificates.usForm.sst": "Streamlined Sales Tax -todistus",
+  "certificates.usForm.state": "Osavaltion jälleenmyyntitodistus"
 }

@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "لم تنجح إحدى خطوات الموافقة",
   "buyers.activity.approval.undo": "تم التراجع عن الموافقة",
   "buyers.activity.tier.assisted_add_verified": "تم تأكيد تعيين المستوى",
-  "buyers.activity.tier.assisted_remove_verified": "تم تأكيد الإزالة من المستوى"
+  "buyers.activity.tier.assisted_remove_verified": "تم تأكيد الإزالة من المستوى",
+  "buyers.tax.specific": "{count, plural, zero {لا إعفاءات} one {إعفاء واحد} two {إعفاءان} few {# إعفاءات} many {# إعفاءً} other {# إعفاء}}"
 }

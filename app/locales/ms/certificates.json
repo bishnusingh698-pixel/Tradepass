@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify tidak menerima perubahan. Tiada apa-apa yang dialih keluar. Cuba lagi kemudian.",
   "certificates.error.unknown_intent": "Berlaku ralat. Sila cuba lagi.",
   "certificates.error.file": "Kami tidak dapat membuka fail ini. Sila cuba lagi.",
-  "certificates.action.copyLink": "Salin pautan pembaharuan"
+  "certificates.action.copyLink": "Salin pautan pembaharuan",
+  "certificates.usForm.exempt": "Organisasi dikecualikan cukai",
+  "certificates.usForm.mtc": "Sijil jualan semula seragam MTC",
+  "certificates.usForm.sst": "Sijil Streamlined Sales Tax",
+  "certificates.usForm.state": "Sijil jualan semula negeri"
 }

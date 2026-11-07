@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nothing to retry.",
   "approval.skip.finished": "Already approved.",
   "approval.skip.missing_address": "Missing billing address.",
-  "approval.skip.tier_required": "No tier chosen."
+  "approval.skip.tier_required": "No tier chosen.",
+  "approval.blocked.no_b2b": "Your Shopify plan doesn't include B2B, so Shopify can't create a company for this buyer yet. The application stays in your queue: approve it once B2B is available (Basic plan or higher with the new Markets). Home shows what your plan supports.",
+  "approval.error.email_unavailable": "Shopify didn't let Tradepass send its B2B welcome email on this store, so no email went out. The buyer is approved. Send them the ready-made message from the application page.",
+  "approval.field.taxExemptAll": "Don't collect any tax from this location",
+  "approval.field.taxExemptAllHelp": "Only for buyers exempt from every tax wherever you ship to them. A resale certificate usually covers one state or country: use the exemptions above instead, so tax is still charged where no exemption applies.",
+  "approval.skip.no_b2b": "B2B isn't available on this store's Shopify plan.",
+  "approval.step.tags": "Customer tags",
+  "approval.tags.note": "Tags added to the customer: {tags} (Settings → Applicants and contact).",
+  "approval.tax.addCovered": "Add these exemptions",
+  "approval.tax.alsoCovered": "The certificates also cover: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "This location's state has no statewide sales tax, so no exemption is needed there.",
+  "approval.tax.reason.us_exempt_org": "A tax-exempt organization's certificate: Shopify has no specific exemption for it. Check the certificate; only if the buyer owes no tax at all, choose “Don't collect any tax”.",
+  "approval.tax.reason.us_resale_local_only": "The buyer's certificate covers this state. Alaska has no statewide sales tax, but some cities charge their own.",
+  "approval.tax.reason.us_state_not_covered": "The buyer's certificates cover other states than this location's state. Add those exemptions only if this location's orders ship there."
 }

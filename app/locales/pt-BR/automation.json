@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Aprovar solicitação de atacado no nível",
   "automation.flow.welcomeNote": "O Tradepass já pode enviar o e-mail de acesso B2B da Shopify ao aprovar um comprador, então não é preciso um fluxo extra para isso.",
   "automation.flow.open": "Abrir o Shopify Flow",
-  "automation.flow.alerts": "Quer um e-mail quando alguém se inscrever? No Shopify Flow, use o gatilho “Wholesale application submitted” com a ação do Flow “Send internal email”. Essa ação só envia para endereços fixos da equipe que você informar no fluxo."
+  "automation.flow.alerts": "Quer um e-mail quando alguém se inscrever? No Shopify Flow, use o gatilho “Wholesale application submitted” com a ação do Flow “Send internal email”. Essa ação só envia para endereços fixos da equipe que você informar no fluxo.",
+  "automation.condition.disposable_email": "E-mail descartável (mailinator.com…)",
+  "automation.condition.free_email": "Serviço de e-mail gratuito (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "O endereço de entrega é uma caixa postal",
+  "automation.condition.registry_mismatch": "O nome no cadastro não corresponde à empresa",
+  "automation.condition.website_mismatch": "O site não corresponde ao domínio do e-mail",
+  "automation.flow.alertsMore": "Mais alertas: “Informações recebidas da solicitação de atacado” é executado quando um solicitante responde ao seu pedido, e “Certificado expirando” antes de um certificado vencer. Cada gatilho inclui empresa, contato, e-mail, telefone, país, estado, nível e um link para a solicitação, prontos para um e-mail ou uma mensagem no Slack.",
+  "automation.flow.trigger.application_info_received": "Informações recebidas da solicitação de atacado",
+  "automation.flow.welcomeNoteFlow": "A aprovação pede que a Shopify envie o próprio e-mail de boas-vindas B2B. Se a Shopify não permitir isso na sua loja, o modelo do Flow da Shopify “Permissão atribuída ao contato da empresa” → “Enviar e-mail de acesso B2B” faz o mesmo; o Tradepass atribui essa permissão durante a aprovação."
 }

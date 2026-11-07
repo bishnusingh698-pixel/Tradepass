@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "核准批發申請並指派至等級",
   "automation.flow.welcomeNote": "Tradepass 在核准買家時已可寄送 Shopify 的 B2B 存取郵件，因此不需要為此另外建立工作流程。",
   "automation.flow.open": "開啟 Shopify Flow",
-  "automation.flow.alerts": "想在有人送出申請時收到郵件嗎？請在 Shopify Flow 中使用觸發條件「Wholesale application submitted」和 Flow 動作「Send internal email」。此動作只會寄到您在工作流程中輸入的固定員工地址。"
+  "automation.flow.alerts": "想在有人送出申請時收到郵件嗎？請在 Shopify Flow 中使用觸發條件「Wholesale application submitted」和 Flow 動作「Send internal email」。此動作只會寄到您在工作流程中輸入的固定員工地址。",
+  "automation.condition.disposable_email": "一次性電子郵件地址（mailinator.com…）",
+  "automation.condition.free_email": "免費郵件服務（gmail.com、outlook.com…）",
+  "automation.condition.po_box": "收件地址是郵政信箱",
+  "automation.condition.registry_mismatch": "登記名稱與公司不符",
+  "automation.condition.website_mismatch": "網站與電子郵件網域不一致",
+  "automation.flow.alertsMore": "更多提醒：「已收到批發申請資訊」會在申請者回覆您的要求時執行，「證明即將到期」會在證明到期前執行。每個觸發條件都包含公司、聯絡人、電子郵件、電話、國家/地區、州、等級和申請連結，可直接用於郵件或 Slack 訊息。",
+  "automation.flow.trigger.application_info_received": "已收到批發申請資訊",
+  "automation.flow.welcomeNoteFlow": "核准時會請 Shopify 傳送其自己的 B2B 歡迎郵件。如果 Shopify 不允許在您的商店這麼做，Shopify 的 Flow 範本「已為公司聯絡人指派權限」→「傳送 B2B 存取郵件」也能完成同樣的事；Tradepass 會在核准時指派該權限。"
 }

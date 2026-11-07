@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Aucun pays ne correspond à votre recherche.",
+  "countries.search": "Rechercher des pays",
+  "countries.selected": "{count, plural, =0 {Aucun pays sélectionné} one {# pays sélectionné} many {# pays sélectionnés} other {# pays sélectionnés}}"
+}

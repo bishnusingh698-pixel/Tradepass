@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Un pas al aprobării nu a reușit",
   "buyers.activity.approval.undo": "Aprobare anulată",
   "buyers.activity.tier.assisted_add_verified": "Atribuirea nivelului confirmată",
-  "buyers.activity.tier.assisted_remove_verified": "Eliminarea din nivel confirmată"
+  "buyers.activity.tier.assisted_remove_verified": "Eliminarea din nivel confirmată",
+  "buyers.tax.specific": "{count, plural, one {# scutire} few {# scutiri} other {# de scutiri}}"
 }

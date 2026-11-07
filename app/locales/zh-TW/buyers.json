@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "核准步驟未成功",
   "buyers.activity.approval.undo": "已撤銷核准",
   "buyers.activity.tier.assisted_add_verified": "已確認等級指派",
-  "buyers.activity.tier.assisted_remove_verified": "已確認移出等級"
+  "buyers.activity.tier.assisted_remove_verified": "已確認移出等級",
+  "buyers.tax.specific": "{count, plural, other {# 項免稅}}"
 }

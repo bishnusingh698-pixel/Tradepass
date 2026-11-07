@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nic do ponowienia.",
   "approval.skip.finished": "Już zatwierdzony.",
   "approval.skip.missing_address": "Brak adresu rozliczeniowego.",
-  "approval.skip.tier_required": "Nie wybrano poziomu."
+  "approval.skip.tier_required": "Nie wybrano poziomu.",
+  "approval.blocked.no_b2b": "Twój plan Shopify nie obejmuje B2B, więc Shopify nie może jeszcze utworzyć firmy dla tego kupującego. Wniosek zostaje w kolejce: zatwierdź go, gdy B2B będzie dostępne (plan Basic lub wyższy z nowymi Rynkami). Strona główna pokazuje, co obsługuje Twój plan.",
+  "approval.error.email_unavailable": "Shopify nie pozwolił Tradepass wysłać powitalnego e-maila B2B w tym sklepie, więc żaden e-mail nie wyszedł. Kupujący jest zatwierdzony. Wyślij mu gotową wiadomość ze strony wniosku.",
+  "approval.field.taxExemptAll": "Nie pobieraj żadnego podatku w tej lokalizacji",
+  "approval.field.taxExemptAllHelp": "Tylko dla kupujących zwolnionych ze wszystkich podatków wszędzie tam, dokąd wysyłasz. Zaświadczenie o odsprzedaży zwykle obejmuje jeden stan lub kraj: użyj zamiast tego zwolnień powyżej, aby podatek był nadal naliczany tam, gdzie nie ma zwolnienia.",
+  "approval.skip.no_b2b": "B2B nie jest dostępne w planie Shopify tego sklepu.",
+  "approval.step.tags": "Tagi klienta",
+  "approval.tags.note": "Tagi dodane do klienta: {tags} (Ustawienia → Wnioskodawcy i kontakt).",
+  "approval.tax.addCovered": "Dodaj te zwolnienia",
+  "approval.tax.alsoCovered": "Zaświadczenia obejmują też: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Stan tej lokalizacji nie ma stanowego podatku od sprzedaży, więc zwolnienie nie jest tam potrzebne.",
+  "approval.tax.reason.us_exempt_org": "Zaświadczenie organizacji zwolnionej z podatku: Shopify nie ma dla niego osobnego zwolnienia. Sprawdź zaświadczenie; tylko jeśli kupujący nie płaci żadnego podatku, wybierz „Nie pobieraj żadnego podatku”.",
+  "approval.tax.reason.us_resale_local_only": "Zaświadczenie kupującego obejmuje ten stan. Alaska nie ma stanowego podatku od sprzedaży, ale niektóre miasta pobierają własny.",
+  "approval.tax.reason.us_state_not_covered": "Zaświadczenia kupującego obejmują inne stany niż stan tej lokalizacji. Dodaj te zwolnienia tylko wtedy, gdy zamówienia z tej lokalizacji są tam wysyłane."
 }

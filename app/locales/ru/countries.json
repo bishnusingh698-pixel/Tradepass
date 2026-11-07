@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Нет стран, соответствующих поиску.",
+  "countries.search": "Поиск стран",
+  "countries.selected": "{count, plural, =0 {Страны не выбраны} one {Выбрана # страна} few {Выбрано # страны} many {Выбрано # стран} other {Выбрано # страны}}"
+}

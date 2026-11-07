@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "A Shopify nem fogadta el a módosítást. Semmi sem törlődött. Próbálja újra később.",
   "certificates.error.unknown_intent": "Hiba történt. Kérjük, próbálja újra.",
   "certificates.error.file": "Nem sikerült megnyitni ezt a fájlt. Kérjük, próbálja újra.",
-  "certificates.action.copyLink": "Megújítási link másolása"
+  "certificates.action.copyLink": "Megújítási link másolása",
+  "certificates.usForm.exempt": "Adómentes szervezet",
+  "certificates.usForm.mtc": "Egységes MTC viszonteladói igazolás",
+  "certificates.usForm.sst": "Streamlined Sales Tax igazolás",
+  "certificates.usForm.state": "Állami viszonteladói igazolás"
 }

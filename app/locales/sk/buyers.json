@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Krok schválenia sa nepodaril",
   "buyers.activity.approval.undo": "Schválenie vrátené",
   "buyers.activity.tier.assisted_add_verified": "Priradenie úrovne potvrdené",
-  "buyers.activity.tier.assisted_remove_verified": "Odstránenie z úrovne potvrdené"
+  "buyers.activity.tier.assisted_remove_verified": "Odstránenie z úrovne potvrdené",
+  "buyers.tax.specific": "{count, plural, one {# výnimka} few {# výnimky} many {# výnimky} other {# výnimiek}}"
 }

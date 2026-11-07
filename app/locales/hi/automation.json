@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "होलसेल आवेदन को टियर में मंज़ूर करें",
   "automation.flow.welcomeNote": "खरीदार को मंज़ूरी देते समय Tradepass पहले से ही Shopify का B2B एक्सेस ईमेल भेज सकता है, इसलिए इसके लिए अलग वर्कफ़्लो की ज़रूरत नहीं है।",
   "automation.flow.open": "Shopify Flow खोलें",
-  "automation.flow.alerts": "क्या आप चाहते हैं कि कोई आवेदन करे तो आपको ईमेल मिले? Shopify Flow में ट्रिगर “Wholesale application submitted” को Flow के ऐक्शन “Send internal email” के साथ इस्तेमाल करें। यह ऐक्शन केवल उन तय स्टाफ़ पतों पर भेजता है जो आप वर्कफ़्लो में डालते हैं।"
+  "automation.flow.alerts": "क्या आप चाहते हैं कि कोई आवेदन करे तो आपको ईमेल मिले? Shopify Flow में ट्रिगर “Wholesale application submitted” को Flow के ऐक्शन “Send internal email” के साथ इस्तेमाल करें। यह ऐक्शन केवल उन तय स्टाफ़ पतों पर भेजता है जो आप वर्कफ़्लो में डालते हैं।",
+  "automation.condition.disposable_email": "अस्थायी ईमेल पता (mailinator.com…)",
+  "automation.condition.free_email": "मुफ़्त ईमेल सेवा (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "शिपिंग पता पी.ओ. बॉक्स है",
+  "automation.condition.registry_mismatch": "रजिस्ट्री का नाम कंपनी से मेल नहीं खाता",
+  "automation.condition.website_mismatch": "वेबसाइट ईमेल डोमेन से मेल नहीं खाती",
+  "automation.flow.alertsMore": "और अलर्ट: “होलसेल आवेदन की जानकारी मिली” तब चलता है जब आवेदक आपके अनुरोध का जवाब देता है, और “सर्टिफ़िकेट की अवधि ख़त्म होने वाली है” सर्टिफ़िकेट ख़त्म होने से पहले। हर ट्रिगर में कंपनी, संपर्क, ईमेल, फ़ोन, देश, राज्य, टियर और आवेदन का लिंक होता है, जो ईमेल या Slack संदेश के लिए तैयार है।",
+  "automation.flow.trigger.application_info_received": "होलसेल आवेदन की जानकारी मिली",
+  "automation.flow.welcomeNoteFlow": "मंज़ूरी के समय Shopify से उसका अपना B2B वेलकम ईमेल भेजने को कहा जाता है। अगर Shopify आपके स्टोर पर ऐसा नहीं करने देता, तो Shopify का Flow टेम्पलेट “कंपनी संपर्क को अनुमति दी गई” → “B2B एक्सेस ईमेल भेजें” यही काम करता है; Tradepass मंज़ूरी के दौरान यह अनुमति देता है।"
 }

@@ -111,5 +111,18 @@
   "approval.skip.no_state": "再試行するものはありません。",
   "approval.skip.finished": "すでに承認済みです。",
   "approval.skip.missing_address": "請求先住所がありません。",
-  "approval.skip.tier_required": "価格ランクが選択されていません。"
+  "approval.skip.tier_required": "価格ランクが選択されていません。",
+  "approval.blocked.no_b2b": "お使いの Shopify プランには B2B が含まれていないため、Shopify はまだこの購入者の会社を作成できません。申請はキューに残ります。B2B が利用可能になったら（新しいマーケットを使う Basic 以上のプラン）承認してください。ホームでプランの対応内容を確認できます。",
+  "approval.error.email_unavailable": "このストアでは Shopify が Tradepass に B2B ウェルカムメールの送信を許可しなかったため、メールは送信されていません。購入者は承認済みです。申請ページの定型メッセージを送ってください。",
+  "approval.field.taxExemptAll": "このロケーションでは税を一切徴収しない",
+  "approval.field.taxExemptAllHelp": "配送先のどこでもすべての税が免除される購入者のみが対象です。再販証明書は通常1つの州や国のみが対象なので、代わりに上の免除を使い、免除が適用されない場所では引き続き税が課されるようにしてください。",
+  "approval.skip.no_b2b": "このストアの Shopify プランでは B2B を利用できません。",
+  "approval.step.tags": "顧客タグ",
+  "approval.tags.note": "顧客に追加されたタグ：{tags}（設定 → 申請者と連絡先）。",
+  "approval.tax.addCovered": "これらの免除を追加",
+  "approval.tax.alsoCovered": "証明書は次の州も対象です：{states}。",
+  "approval.tax.reason.no_state_sales_tax": "このロケーションの州には州全体の売上税がないため、免除は不要です。",
+  "approval.tax.reason.us_exempt_org": "免税団体の証明書：Shopify にはこれに対応する免除がありません。証明書を確認し、購入者がまったく税を負わない場合のみ「税を一切徴収しない」を選んでください。",
+  "approval.tax.reason.us_resale_local_only": "購入者の証明書はこの州が対象です。アラスカには州の売上税はありませんが、独自の税を課す市もあります。",
+  "approval.tax.reason.us_state_not_covered": "購入者の証明書はこのロケーションとは別の州が対象です。このロケーションの注文がそちらに配送される場合のみ、これらの免除を追加してください。"
 }

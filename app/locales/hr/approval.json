@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nema ništa za ponovni pokušaj.",
   "approval.skip.finished": "Već odobreno.",
   "approval.skip.missing_address": "Nedostaje adresa za naplatu.",
-  "approval.skip.tier_required": "Razina nije odabrana."
+  "approval.skip.tier_required": "Razina nije odabrana.",
+  "approval.blocked.no_b2b": "Vaš Shopify paket ne uključuje B2B, pa Shopify još ne može stvoriti tvrtku za ovog kupca. Zahtjev ostaje u vašem redu: odobrite ga kad B2B bude dostupan (paket Basic ili viši s novim Tržištima). Početna stranica prikazuje što vaš paket podržava.",
+  "approval.error.email_unavailable": "Shopify nije dopustio Tradepassu da u ovoj trgovini pošalje B2B poruku dobrodošlice, pa nije poslana nikakva e-poruka. Kupac je odobren. Pošaljite mu pripremljenu poruku sa stranice zahtjeva.",
+  "approval.field.taxExemptAll": "Ne naplaćuj nikakav porez za ovu lokaciju",
+  "approval.field.taxExemptAllHelp": "Samo za kupce oslobođene svih poreza svugdje kamo im šaljete. Potvrda o preprodaji obično vrijedi za jednu saveznu državu ili zemlju: radije koristite oslobođenja iznad, kako bi se porez i dalje naplaćivao gdje oslobođenje ne vrijedi.",
+  "approval.skip.no_b2b": "B2B nije dostupan u Shopify paketu ove trgovine.",
+  "approval.step.tags": "Oznake kupca",
+  "approval.tags.note": "Oznake dodane kupcu: {tags} (Postavke → Podnositelji i kontakt).",
+  "approval.tax.addCovered": "Dodaj ova oslobođenja",
+  "approval.tax.alsoCovered": "Potvrde vrijede i za: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Savezna država ove lokacije nema porez na promet na razini države, pa ondje nije potrebno oslobođenje.",
+  "approval.tax.reason.us_exempt_org": "Potvrda porezno oslobođene organizacije: Shopify za nju nema posebno oslobođenje. Provjerite potvrdu; samo ako kupac ne duguje nikakav porez, odaberite „Ne naplaćuj nikakav porez”.",
+  "approval.tax.reason.us_resale_local_only": "Kupčeva potvrda vrijedi za ovu saveznu državu. Aljaska nema porez na promet na razini države, ali neki gradovi naplaćuju vlastiti.",
+  "approval.tax.reason.us_state_not_covered": "Kupčeve potvrde vrijede za druge savezne države, a ne za državu ove lokacije. Dodajte ta oslobođenja samo ako se narudžbe ove lokacije ondje šalju."
 }

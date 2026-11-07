@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "검색과 일치하는 국가가 없습니다.",
+  "countries.search": "국가 검색",
+  "countries.selected": "{count, plural, =0 {선택한 국가 없음} other {국가 #개 선택됨}}"
+}

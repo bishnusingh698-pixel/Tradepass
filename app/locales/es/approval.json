@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nada que reintentar.",
   "approval.skip.finished": "Ya aprobada.",
   "approval.skip.missing_address": "Falta la dirección de facturación.",
-  "approval.skip.tier_required": "No se eligió ningún nivel."
+  "approval.skip.tier_required": "No se eligió ningún nivel.",
+  "approval.blocked.no_b2b": "Tu plan de Shopify no incluye B2B, así que Shopify aún no puede crear una empresa para este comprador. La solicitud se queda en tu cola: apruébala cuando B2B esté disponible (plan Basic o superior con los nuevos Mercados). Inicio muestra lo que admite tu plan.",
+  "approval.error.email_unavailable": "Shopify no permitió que Tradepass enviara su correo de bienvenida B2B en esta tienda, así que no se envió ningún correo. El comprador está aprobado. Envíale el mensaje preparado desde la página de la solicitud.",
+  "approval.field.taxExemptAll": "No cobrar ningún impuesto en esta ubicación",
+  "approval.field.taxExemptAllHelp": "Solo para compradores exentos de todos los impuestos allí donde les envíes. Un certificado de reventa suele cubrir un estado o país: usa las exenciones de arriba para que se siga cobrando impuesto donde no haya exención.",
+  "approval.skip.no_b2b": "B2B no está disponible en el plan de Shopify de esta tienda.",
+  "approval.step.tags": "Etiquetas de cliente",
+  "approval.tags.note": "Etiquetas añadidas al cliente: {tags} (Configuración → Solicitantes y contacto).",
+  "approval.tax.addCovered": "Añadir estas exenciones",
+  "approval.tax.alsoCovered": "Los certificados también cubren: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "El estado de esta ubicación no tiene impuesto estatal sobre las ventas, así que no hace falta exención.",
+  "approval.tax.reason.us_exempt_org": "Certificado de una organización exenta: Shopify no tiene una exención específica para ello. Revisa el certificado; solo si el comprador no debe ningún impuesto, elige «No cobrar ningún impuesto».",
+  "approval.tax.reason.us_resale_local_only": "El certificado del comprador cubre este estado. Alaska no tiene impuesto estatal sobre las ventas, pero algunas ciudades cobran el suyo.",
+  "approval.tax.reason.us_state_not_covered": "Los certificados del comprador cubren estados distintos al de esta ubicación. Añade esas exenciones solo si los pedidos de esta ubicación se envían allí."
 }

@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify nepriėmė pakeitimo. Niekas nepašalinta. Bandykite vėliau.",
   "certificates.error.unknown_intent": "Įvyko klaida. Bandykite dar kartą.",
   "certificates.error.file": "Nepavyko atidaryti šio failo. Bandykite dar kartą.",
-  "certificates.action.copyLink": "Kopijuoti atnaujinimo nuorodą"
+  "certificates.action.copyLink": "Kopijuoti atnaujinimo nuorodą",
+  "certificates.usForm.exempt": "Nuo mokesčių atleista organizacija",
+  "certificates.usForm.mtc": "Vieninga MTC perpardavimo pažyma",
+  "certificates.usForm.sst": "Streamlined Sales Tax pažyma",
+  "certificates.usForm.state": "Valstijos perpardavimo pažyma"
 }

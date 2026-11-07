@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Ett godkännandesteg fungerade inte",
   "buyers.activity.approval.undo": "Godkännandet ångrat",
   "buyers.activity.tier.assisted_add_verified": "Nivåtilldelning bekräftad",
-  "buyers.activity.tier.assisted_remove_verified": "Borttagning från nivå bekräftad"
+  "buyers.activity.tier.assisted_remove_verified": "Borttagning från nivå bekräftad",
+  "buyers.tax.specific": "{count, plural, one {# undantag} other {# undantag}}"
 }

@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "ไม่มีประเทศที่ตรงกับการค้นหาของคุณ",
+  "countries.search": "ค้นหาประเทศ",
+  "countries.selected": "{count, plural, =0 {ยังไม่ได้เลือกประเทศ} other {เลือกแล้ว # ประเทศ}}"
+}

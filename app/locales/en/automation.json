@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Approve wholesale application to tier",
   "automation.flow.welcomeNote": "Tradepass can already send Shopify's B2B access email when it approves a buyer, so no extra workflow is needed for that.",
   "automation.flow.open": "Open Shopify Flow",
-  "automation.flow.alerts": "Want an email when someone applies? In Shopify Flow, use the trigger “Wholesale application submitted” with Flow's “Send internal email” action. That action only sends to fixed staff addresses you enter in the workflow."
+  "automation.flow.alerts": "Want an email when someone applies? In Shopify Flow, use the trigger “Wholesale application submitted” with Flow's “Send internal email” action. That action only sends to fixed staff addresses you enter in the workflow.",
+  "automation.condition.disposable_email": "Throwaway email address (mailinator.com…)",
+  "automation.condition.free_email": "Free email service (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Shipping address is a P.O. box",
+  "automation.condition.registry_mismatch": "Registry name doesn't match the company",
+  "automation.condition.website_mismatch": "Website doesn't match the email domain",
+  "automation.flow.alertsMore": "More alerts: “Wholesale application info received” runs when an applicant answers your request, and “Certificate expiring” before a certificate runs out. Every trigger includes the company, contact, email, phone, country, state, tier and a link to the application, ready for an email or a Slack message.",
+  "automation.flow.trigger.application_info_received": "Wholesale application info received",
+  "automation.flow.welcomeNoteFlow": "Approval asks Shopify to send its own B2B welcome email. If Shopify doesn't allow that on your store, Shopify's Flow template “Company contact assigned permission” → “Send B2B access email” does the same; Tradepass assigns that permission during approval."
 }

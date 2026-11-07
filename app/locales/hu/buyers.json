@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Egy jóváhagyási lépés nem sikerült",
   "buyers.activity.approval.undo": "Jóváhagyás visszavonva",
   "buyers.activity.tier.assisted_add_verified": "Szinthozzárendelés megerősítve",
-  "buyers.activity.tier.assisted_remove_verified": "Szintből való eltávolítás megerősítve"
+  "buyers.activity.tier.assisted_remove_verified": "Szintből való eltávolítás megerősítve",
+  "buyers.tax.specific": "{count, plural, one {# mentesség} other {# mentesség}}"
 }

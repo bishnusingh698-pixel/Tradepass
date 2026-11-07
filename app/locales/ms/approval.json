@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Tiada apa-apa untuk dicuba semula.",
   "approval.skip.finished": "Sudah diluluskan.",
   "approval.skip.missing_address": "Alamat pengebilan tiada.",
-  "approval.skip.tier_required": "Peringkat harga belum dipilih."
+  "approval.skip.tier_required": "Peringkat harga belum dipilih.",
+  "approval.blocked.no_b2b": "Pelan Shopify anda tidak termasuk B2B, jadi Shopify belum boleh mencipta syarikat untuk pembeli ini. Permohonan kekal dalam baris gilir anda: luluskannya apabila B2B tersedia (pelan Basic atau lebih tinggi dengan Markets baharu). Laman Utama menunjukkan apa yang disokong pelan anda.",
+  "approval.error.email_unavailable": "Shopify tidak membenarkan Tradepass menghantar e-mel alu-aluan B2B di kedai ini, jadi tiada e-mel dihantar. Pembeli telah diluluskan. Hantar mesej siap sedia daripada halaman permohonan.",
+  "approval.field.taxExemptAll": "Jangan kutip sebarang cukai daripada lokasi ini",
+  "approval.field.taxExemptAllHelp": "Hanya untuk pembeli yang dikecualikan daripada semua cukai di mana-mana sahaja anda menghantar. Sijil jualan semula biasanya meliputi satu negeri atau negara: gunakan pengecualian di atas, supaya cukai masih dikenakan di tempat yang tiada pengecualian.",
+  "approval.skip.no_b2b": "B2B tidak tersedia dalam pelan Shopify kedai ini.",
+  "approval.step.tags": "Teg pelanggan",
+  "approval.tags.note": "Teg yang ditambah kepada pelanggan: {tags} (Tetapan → Pemohon dan hubungan).",
+  "approval.tax.addCovered": "Tambah pengecualian ini",
+  "approval.tax.alsoCovered": "Sijil juga meliputi: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Negeri lokasi ini tiada cukai jualan peringkat negeri, jadi pengecualian tidak diperlukan di sana.",
+  "approval.tax.reason.us_exempt_org": "Sijil organisasi yang dikecualikan cukai: Shopify tiada pengecualian khusus untuknya. Semak sijil; hanya jika pembeli langsung tidak berhutang cukai, pilih “Jangan kutip sebarang cukai”.",
+  "approval.tax.reason.us_resale_local_only": "Sijil pembeli meliputi negeri ini. Alaska tiada cukai jualan peringkat negeri, tetapi sesetengah bandar mengenakan cukai sendiri.",
+  "approval.tax.reason.us_state_not_covered": "Sijil pembeli meliputi negeri selain negeri lokasi ini. Tambah pengecualian itu hanya jika pesanan lokasi ini dihantar ke sana."
 }

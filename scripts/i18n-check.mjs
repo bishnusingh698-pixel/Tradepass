@@ -4,7 +4,8 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { parse, TYPE } from "@formatjs/icu-messageformat-parser";
 
-const SAME_OK = new Set(["app.name"]);
+// Format-only strings ("{state}: {form}") read the same in every language.
+const SAME_OK = new Set(["app.name", "applications.detail.usPermit"]);
 const read = (p) => JSON.parse(readFileSync(p, "utf8"));
 // pending.json holds strings added after the translation pass (English fallback until translated).
 const nsFiles = readdirSync("app/locales/en").filter((f) => f.endsWith(".json") && f !== "pending.json");

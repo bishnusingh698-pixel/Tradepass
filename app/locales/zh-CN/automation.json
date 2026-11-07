@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "批准批发申请并分配至等级",
   "automation.flow.welcomeNote": "Tradepass 在批准买家时已可发送 Shopify 的 B2B 访问邮件，因此无需为此额外设置工作流程。",
   "automation.flow.open": "打开 Shopify Flow",
-  "automation.flow.alerts": "想在有人提交申请时收到邮件？请在 Shopify Flow 中使用触发器“Wholesale application submitted”和 Flow 操作“Send internal email”。该操作只会发送到您在工作流中填写的固定员工地址。"
+  "automation.flow.alerts": "想在有人提交申请时收到邮件？请在 Shopify Flow 中使用触发器“Wholesale application submitted”和 Flow 操作“Send internal email”。该操作只会发送到您在工作流中填写的固定员工地址。",
+  "automation.condition.disposable_email": "一次性邮箱地址（mailinator.com…）",
+  "automation.condition.free_email": "免费邮箱服务（gmail.com、outlook.com…）",
+  "automation.condition.po_box": "收货地址是邮政信箱",
+  "automation.condition.registry_mismatch": "登记名称与公司不符",
+  "automation.condition.website_mismatch": "网站与邮箱域名不一致",
+  "automation.flow.alertsMore": "更多提醒：“已收到批发申请信息”会在申请人回复您的请求时运行，“证书即将到期”会在证书到期前运行。每个触发器都包含公司、联系人、邮箱、电话、国家/地区、州、等级和申请链接，可直接用于邮件或 Slack 消息。",
+  "automation.flow.trigger.application_info_received": "已收到批发申请信息",
+  "automation.flow.welcomeNoteFlow": "批准时会请 Shopify 发送其自己的 B2B 欢迎邮件。如果 Shopify 不允许在您的店铺这样做，Shopify 的 Flow 模板“已为公司联系人分配权限”→“发送 B2B 访问邮件”也能完成同样的事；Tradepass 会在批准时分配该权限。"
 }

@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify ने बदलाव स्वीकार नहीं किया। कुछ भी हटाया नहीं गया। बाद में फिर कोशिश करें।",
   "certificates.error.unknown_intent": "कुछ गड़बड़ हो गई। कृपया फिर से कोशिश करें।",
   "certificates.error.file": "हम यह फ़ाइल नहीं खोल सके। कृपया फिर से कोशिश करें।",
-  "certificates.action.copyLink": "रिन्यूअल लिंक कॉपी करें"
+  "certificates.action.copyLink": "रिन्यूअल लिंक कॉपी करें",
+  "certificates.usForm.exempt": "टैक्स-मुक्त संगठन",
+  "certificates.usForm.mtc": "MTC यूनिफ़ॉर्म रीसेल सर्टिफ़िकेट",
+  "certificates.usForm.sst": "Streamlined Sales Tax सर्टिफ़िकेट",
+  "certificates.usForm.state": "राज्य का रीसेल सर्टिफ़िकेट"
 }

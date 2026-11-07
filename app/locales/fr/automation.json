@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Approuver la demande professionnelle dans un niveau",
   "automation.flow.welcomeNote": "Tradepass peut déjà envoyer l’e-mail d’accès B2B de Shopify lorsqu’il approuve un acheteur : aucun flux supplémentaire n’est nécessaire pour cela.",
   "automation.flow.open": "Ouvrir Shopify Flow",
-  "automation.flow.alerts": "Vous voulez un e-mail à chaque nouvelle demande ? Dans Shopify Flow, utilisez le déclencheur « Wholesale application submitted » avec l’action Flow « Send internal email ». Cette action n’écrit qu’aux adresses fixes de votre équipe que vous saisissez dans le workflow."
+  "automation.flow.alerts": "Vous voulez un e-mail à chaque nouvelle demande ? Dans Shopify Flow, utilisez le déclencheur « Wholesale application submitted » avec l’action Flow « Send internal email ». Cette action n’écrit qu’aux adresses fixes de votre équipe que vous saisissez dans le workflow.",
+  "automation.condition.disposable_email": "Adresse e-mail jetable (mailinator.com…)",
+  "automation.condition.free_email": "Service de messagerie gratuit (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "L’adresse de livraison est une boîte postale",
+  "automation.condition.registry_mismatch": "Le nom du registre ne correspond pas à l’entreprise",
+  "automation.condition.website_mismatch": "Le site web ne correspond pas au domaine de l’e-mail",
+  "automation.flow.alertsMore": "Plus d’alertes : « Informations reçues pour une candidature » s’exécute quand un candidat répond à votre demande, et « Certificat bientôt expiré » avant l’expiration d’un certificat. Chaque déclencheur contient l’entreprise, le contact, l’e-mail, le téléphone, le pays, l’État, le niveau et un lien vers la candidature, prêts pour un e-mail ou un message Slack.",
+  "automation.flow.trigger.application_info_received": "Informations reçues pour une candidature",
+  "automation.flow.welcomeNoteFlow": "L’approbation demande à Shopify d’envoyer son propre e-mail de bienvenue B2B. Si Shopify ne l’autorise pas sur votre boutique, le modèle Flow de Shopify « Autorisation attribuée au contact de l’entreprise » → « Envoyer l’e-mail d’accès B2B » fait la même chose ; Tradepass attribue cette autorisation lors de l’approbation."
 }

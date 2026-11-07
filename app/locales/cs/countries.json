@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Vašemu hledání neodpovídá žádná země.",
+  "countries.search": "Hledat země",
+  "countries.selected": "{count, plural, =0 {Nejsou vybrány žádné země} one {Vybrána # země} few {Vybrány # země} many {Vybráno # země} other {Vybráno # zemí}}"
+}

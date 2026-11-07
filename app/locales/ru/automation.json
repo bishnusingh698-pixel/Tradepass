@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Одобрить оптовую заявку в уровень",
   "automation.flow.welcomeNote": "Tradepass уже умеет отправлять письмо Shopify о доступе к B2B при одобрении покупателя, поэтому отдельный процесс для этого не нужен.",
   "automation.flow.open": "Открыть Shopify Flow",
-  "automation.flow.alerts": "Хотите получать письмо о каждой новой заявке? В Shopify Flow используйте триггер «Wholesale application submitted» с действием Flow «Send internal email». Это действие отправляет письма только на постоянные адреса сотрудников, указанные в рабочем процессе."
+  "automation.flow.alerts": "Хотите получать письмо о каждой новой заявке? В Shopify Flow используйте триггер «Wholesale application submitted» с действием Flow «Send internal email». Это действие отправляет письма только на постоянные адреса сотрудников, указанные в рабочем процессе.",
+  "automation.condition.disposable_email": "Одноразовый адрес почты (mailinator.com…)",
+  "automation.condition.free_email": "Бесплатный почтовый сервис (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Адрес доставки — абонентский ящик",
+  "automation.condition.registry_mismatch": "Название в реестре не совпадает с компанией",
+  "automation.condition.website_mismatch": "Сайт не совпадает с доменом почты",
+  "automation.flow.alertsMore": "Другие оповещения: «Получена информация по оптовой заявке» срабатывает, когда заявитель отвечает на ваш запрос, а «Срок сертификата истекает» — перед окончанием срока сертификата. Каждый триггер содержит компанию, контакт, email, телефон, страну, штат, уровень и ссылку на заявку — всё готово для письма или сообщения в Slack.",
+  "automation.flow.trigger.application_info_received": "Получена информация по оптовой заявке",
+  "automation.flow.welcomeNoteFlow": "При одобрении Shopify получает запрос отправить собственное приветственное письмо B2B. Если Shopify не разрешает это в вашем магазине, то же самое делает шаблон Flow от Shopify «Контакту компании назначено разрешение» → «Отправить письмо с доступом B2B»; Tradepass назначает это разрешение при одобрении."
 }

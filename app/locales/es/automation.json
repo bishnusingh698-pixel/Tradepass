@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Aprobar solicitud mayorista en un nivel",
   "automation.flow.welcomeNote": "Tradepass ya puede enviar el correo de acceso B2B de Shopify cuando aprueba a un comprador, así que no necesita ningún flujo adicional para eso.",
   "automation.flow.open": "Abrir Shopify Flow",
-  "automation.flow.alerts": "¿Quieres un correo cuando alguien presente una solicitud? En Shopify Flow, usa el disparador «Wholesale application submitted» con la acción de Flow «Send internal email». Esa acción solo envía a direcciones fijas del personal que indiques en el flujo."
+  "automation.flow.alerts": "¿Quieres un correo cuando alguien presente una solicitud? En Shopify Flow, usa el disparador «Wholesale application submitted» con la acción de Flow «Send internal email». Esa acción solo envía a direcciones fijas del personal que indiques en el flujo.",
+  "automation.condition.disposable_email": "Correo desechable (mailinator.com…)",
+  "automation.condition.free_email": "Servicio de correo gratuito (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "La dirección de envío es un apartado postal",
+  "automation.condition.registry_mismatch": "El nombre del registro no coincide con la empresa",
+  "automation.condition.website_mismatch": "El sitio web no coincide con el dominio del correo",
+  "automation.flow.alertsMore": "Más alertas: «Información recibida de la solicitud mayorista» se ejecuta cuando un solicitante responde a tu petición, y «Certificado por vencer» antes de que venza un certificado. Cada activador incluye empresa, contacto, correo, teléfono, país, estado, nivel y un enlace a la solicitud, listos para un correo o un mensaje de Slack.",
+  "automation.flow.trigger.application_info_received": "Información recibida de la solicitud mayorista",
+  "automation.flow.welcomeNoteFlow": "Al aprobar, se pide a Shopify que envíe su propio correo de bienvenida B2B. Si Shopify no lo permite en tu tienda, la plantilla de Flow de Shopify «Permiso asignado al contacto de la empresa» → «Enviar correo de acceso B2B» hace lo mismo; Tradepass asigna ese permiso durante la aprobación."
 }

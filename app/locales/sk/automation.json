@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Schváliť žiadosť o veľkoobchod do úrovne",
   "automation.flow.welcomeNote": "Tradepass už dokáže pri schválení kupujúceho odoslať e-mail Shopify s prístupom B2B, takže na to netreba žiadny ďalší pracovný postup.",
   "automation.flow.open": "Otvoriť Shopify Flow",
-  "automation.flow.alerts": "Chcete e-mail, keď niekto podá žiadosť? V Shopify Flow použite spúšťač „Wholesale application submitted“ s akciou Flow „Send internal email“. Táto akcia posiela iba na pevné adresy zamestnancov, ktoré zadáte do pracovného postupu."
+  "automation.flow.alerts": "Chcete e-mail, keď niekto podá žiadosť? V Shopify Flow použite spúšťač „Wholesale application submitted“ s akciou Flow „Send internal email“. Táto akcia posiela iba na pevné adresy zamestnancov, ktoré zadáte do pracovného postupu.",
+  "automation.condition.disposable_email": "Jednorazová e-mailová adresa (mailinator.com…)",
+  "automation.condition.free_email": "Bezplatná e-mailová služba (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Doručovacia adresa je poštový priečinok",
+  "automation.condition.registry_mismatch": "Názov v registri nezodpovedá spoločnosti",
+  "automation.condition.website_mismatch": "Web nezodpovedá doméne e-mailu",
+  "automation.flow.alertsMore": "Ďalšie upozornenia: „Prijaté informácie k veľkoobchodnej žiadosti“ sa spustí, keď žiadateľ odpovie na vašu požiadavku, a „Potvrdenie čoskoro vyprší“ pred vypršaním potvrdenia. Každý spúšťač obsahuje spoločnosť, kontakt, e-mail, telefón, krajinu, štát, úroveň a odkaz na žiadosť, pripravené pre e-mail alebo správu v Slacku.",
+  "automation.flow.trigger.application_info_received": "Prijaté informácie k veľkoobchodnej žiadosti",
+  "automation.flow.welcomeNoteFlow": "Pri schválení je Shopify požiadaný, aby poslal vlastný uvítací e-mail B2B. Ak to Shopify vo vašom obchode nedovolí, to isté urobí šablóna Flow od Shopify „Kontaktu spoločnosti pridelené povolenie“ → „Odoslať e-mail s prístupom B2B“; Tradepass toto povolenie pri schválení pridelí."
 }

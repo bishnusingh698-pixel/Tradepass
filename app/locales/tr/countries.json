@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Aramanızla eşleşen ülke yok.",
+  "countries.search": "Ülke ara",
+  "countries.selected": "{count, plural, =0 {Ülke seçilmedi} one {# ülke seçildi} other {# ülke seçildi}}"
+}

@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nada a repetir.",
   "approval.skip.finished": "Já aprovada.",
   "approval.skip.missing_address": "Morada de faturação em falta.",
-  "approval.skip.tier_required": "Nenhum nível escolhido."
+  "approval.skip.tier_required": "Nenhum nível escolhido.",
+  "approval.blocked.no_b2b": "O seu plano Shopify não inclui B2B, por isso a Shopify ainda não pode criar uma empresa para este comprador. A candidatura fica na sua fila: aprove-a quando o B2B estiver disponível (plano Basic ou superior com os novos Mercados). O Início mostra o que o seu plano suporta.",
+  "approval.error.email_unavailable": "A Shopify não permitiu que o Tradepass enviasse o e-mail de boas-vindas B2B nesta loja, por isso não foi enviado nenhum e-mail. O comprador está aprovado. Envie-lhe a mensagem pronta a partir da página da candidatura.",
+  "approval.field.taxExemptAll": "Não cobrar nenhum imposto nesta localização",
+  "approval.field.taxExemptAllHelp": "Apenas para compradores isentos de todos os impostos em todos os locais para onde envia. Um certificado de revenda cobre normalmente um estado ou país: use antes as isenções acima, para que o imposto continue a ser cobrado onde não houver isenção.",
+  "approval.skip.no_b2b": "O B2B não está disponível no plano Shopify desta loja.",
+  "approval.step.tags": "Etiquetas de cliente",
+  "approval.tags.note": "Etiquetas adicionadas ao cliente: {tags} (Definições → Candidatos e contacto).",
+  "approval.tax.addCovered": "Adicionar estas isenções",
+  "approval.tax.alsoCovered": "Os certificados também cobrem: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "O estado desta localização não tem imposto estadual sobre vendas, por isso não é necessária isenção.",
+  "approval.tax.reason.us_exempt_org": "Certificado de uma organização isenta: a Shopify não tem uma isenção específica para isso. Verifique o certificado; apenas se o comprador não dever nenhum imposto, escolha «Não cobrar nenhum imposto».",
+  "approval.tax.reason.us_resale_local_only": "O certificado do comprador cobre este estado. O Alasca não tem imposto estadual sobre vendas, mas algumas cidades cobram o seu.",
+  "approval.tax.reason.us_state_not_covered": "Os certificados do comprador cobrem outros estados que não o desta localização. Adicione essas isenções apenas se as encomendas desta localização forem enviadas para lá."
 }

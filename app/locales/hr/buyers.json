@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Korak odobravanja nije uspio",
   "buyers.activity.approval.undo": "Odobrenje poništeno",
   "buyers.activity.tier.assisted_add_verified": "Dodjela razine potvrđena",
-  "buyers.activity.tier.assisted_remove_verified": "Uklanjanje iz razine potvrđeno"
+  "buyers.activity.tier.assisted_remove_verified": "Uklanjanje iz razine potvrđeno",
+  "buyers.tax.specific": "{count, plural, one {# oslobođenje} few {# oslobođenja} other {# oslobođenja}}"
 }

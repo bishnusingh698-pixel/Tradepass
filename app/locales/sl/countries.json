@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Iskanju ne ustreza nobena država.",
+  "countries.search": "Iskanje držav",
+  "countries.selected": "{count, plural, =0 {Ni izbranih držav} one {Izbrana # država} two {Izbrani # državi} few {Izbrane # države} other {Izbranih # držav}}"
+}

@@ -76,5 +76,17 @@
   "help.contact.body": "我们通常会在 2 个工作日内回复。",
   "help.contact.priority": "您使用的是 Pro 套餐，因此您的邮件会被优先处理，通常在 1 个工作日内回复。",
   "help.faq.alerts.q": "如何得知有新申请？",
-  "help.faq.alerts.a": "Tradepass 不发送电子邮件。新申请和回复会显示在首页和“申请”中。如需邮件提醒，请在 Shopify Flow（Tradepass Pro）中创建一个工作流，使用触发器“Wholesale application submitted”和 Flow 操作“Send internal email”。该操作只会发送到您在工作流中填写的固定员工地址。"
+  "help.faq.alerts.a": "Tradepass 不发送电子邮件。新申请和回复会显示在首页和“申请”中。如需邮件提醒，请在 Shopify Flow（Tradepass Pro）中创建一个工作流，使用触发器“Wholesale application submitted”和 Flow 操作“Send internal email”。该操作只会发送到您在工作流中填写的固定员工地址。",
+  "help.contact.whatsapp": "通过 WhatsApp 联系我们",
+  "help.faq.applicantStatus.a": "可以。您复制的每条消息都包含指向其状态页面的链接。已提交申请且已登录的客户会在表单区块中看到自己的状态而不是表单；如果您在客户账户中添加“批发申请状态”区块，他们在那里也能看到（Shopify 中的 设置 → 客户账户）。",
+  "help.faq.applicantStatus.q": "申请人能看到申请进度吗？",
+  "help.faq.flowAlerts.a": "Tradepass 本身不发送任何邮件。请使用 Shopify Flow（所有套餐免费）：选择一个 Tradepass 触发器，例如“已提交批发申请”“已收到批发申请信息”或“证书即将到期”，然后添加“发送内部邮件”或 Slack 消息。每个触发器都包含公司、联系人、邮箱、电话、国家/地区、州、等级和申请链接。“发送内部邮件”只会发送到您填写的固定员工地址，因此无法给申请人发邮件。",
+  "help.faq.flowAlerts.q": "如何接收新申请提醒？",
+  "help.faq.messageApplicants.a": "在您请求更多信息、拒绝或批准后，Tradepass 会以申请人的语言显示一条现成的消息。您可以复制，或在邮件应用、Gmail、Outlook、WhatsApp、手机短信、Telegram 或 LINE 中打开。Tradepass 不发送任何内容，因此没有费用或限制。Shopify Messaging 自动化只能触达订阅了营销信息的客户，因此不适用于申请人。",
+  "help.faq.messageApplicants.q": "如何给申请人写信？",
+  "help.faq.oldTaxExempt.a": "早期的批准会在州免税之外同时打开 Shopify 的“免除所有税费”设置。现在除非您另行选择，Tradepass 只应用州免税。Tradepass 从不自行更改税务设置：请在 Shopify 后台打开该公司地点并检查其税务设置。",
+  "help.faq.oldTaxExempt.q": "我在 2026 年 11 月之前批准的买家显示所有税费“已免除”。为什么？",
+  "help.faq.statePermits.a": "对于有免费官方查询的州，申请会显示“在州网站上核对”以及需要输入的内容；标记为已核对后，团队可以看到是谁在何时核对的。得克萨斯州以开放数据形式公布有效许可证，因此在 Starter 和 Pro 套餐中，Tradepass 会自动核对得州号码。EIN 没有免费的公开核对方式。",
+  "help.faq.statePermits.q": "Tradepass 能核对销售许可证吗？",
+  "help.faq.usCertificates.a": "申请人选择其证书（州自己的证书、Streamlined Sales Tax 证书、MTC 统一证书或免税组织证书），并为其涵盖的每个州添加销售许可证号码。每个州都会成为一份单独的证书，有各自的到期日。批准时会为地点所在州建议经销商免税；其他涵盖的州只提供而不应用，因为 Shopify 按收货地址计税。没有州级销售税的州无需免税。"
 }

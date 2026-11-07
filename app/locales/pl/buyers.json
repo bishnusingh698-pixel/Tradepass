@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Krok zatwierdzania nie powiódł się",
   "buyers.activity.approval.undo": "Cofnięto zatwierdzenie",
   "buyers.activity.tier.assisted_add_verified": "Potwierdzono przypisanie poziomu",
-  "buyers.activity.tier.assisted_remove_verified": "Potwierdzono usunięcie z poziomu"
+  "buyers.activity.tier.assisted_remove_verified": "Potwierdzono usunięcie z poziomu",
+  "buyers.tax.specific": "{count, plural, one {# zwolnienie} few {# zwolnienia} many {# zwolnień} other {# zwolnienia}}"
 }

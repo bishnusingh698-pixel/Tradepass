@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Niente da riprovare.",
   "approval.skip.finished": "Già approvata.",
   "approval.skip.missing_address": "Indirizzo di fatturazione mancante.",
-  "approval.skip.tier_required": "Nessun livello scelto."
+  "approval.skip.tier_required": "Nessun livello scelto.",
+  "approval.blocked.no_b2b": "Il tuo piano Shopify non include il B2B, quindi Shopify non può ancora creare un’azienda per questo acquirente. La richiesta resta in coda: approvala quando il B2B sarà disponibile (piano Basic o superiore con i nuovi Mercati). La Home mostra cosa supporta il tuo piano.",
+  "approval.error.email_unavailable": "Shopify non ha permesso a Tradepass di inviare la sua email di benvenuto B2B in questo negozio, quindi non è partita alcuna email. L’acquirente è approvato. Inviagli il messaggio pronto dalla pagina della richiesta.",
+  "approval.field.taxExemptAll": "Non riscuotere alcuna imposta per questa sede",
+  "approval.field.taxExemptAllHelp": "Solo per acquirenti esenti da qualsiasi imposta ovunque spedisci loro. Un certificato di rivendita di solito copre uno stato o un paese: usa invece le esenzioni qui sopra, così l’imposta viene ancora applicata dove non c’è esenzione.",
+  "approval.skip.no_b2b": "Il B2B non è disponibile con il piano Shopify di questo negozio.",
+  "approval.step.tags": "Tag cliente",
+  "approval.tags.note": "Tag aggiunti al cliente: {tags} (Impostazioni → Richiedenti e contatto).",
+  "approval.tax.addCovered": "Aggiungi queste esenzioni",
+  "approval.tax.alsoCovered": "I certificati coprono anche: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Lo stato di questa sede non ha un’imposta statale sulle vendite, quindi lì non serve alcuna esenzione.",
+  "approval.tax.reason.us_exempt_org": "Certificato di un’organizzazione esente: Shopify non ha un’esenzione specifica. Controlla il certificato; solo se l’acquirente non deve alcuna imposta, scegli «Non riscuotere alcuna imposta».",
+  "approval.tax.reason.us_resale_local_only": "Il certificato dell’acquirente copre questo stato. L’Alaska non ha un’imposta statale sulle vendite, ma alcune città applicano la propria.",
+  "approval.tax.reason.us_state_not_covered": "I certificati dell’acquirente coprono stati diversi da quello di questa sede. Aggiungi queste esenzioni solo se gli ordini di questa sede vengono spediti lì."
 }

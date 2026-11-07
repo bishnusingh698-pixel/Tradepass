@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify godtok ikke endringen. Ingenting ble fjernet. Prøv igjen senere.",
   "certificates.error.unknown_intent": "Noe gikk galt. Prøv igjen.",
   "certificates.error.file": "Vi kunne ikke åpne filen. Prøv igjen.",
-  "certificates.action.copyLink": "Kopier fornyelseslenke"
+  "certificates.action.copyLink": "Kopier fornyelseslenke",
+  "certificates.usForm.exempt": "Skattefritatt organisasjon",
+  "certificates.usForm.mtc": "Enhetlig MTC-videresalgssertifikat",
+  "certificates.usForm.sst": "Streamlined Sales Tax-sertifikat",
+  "certificates.usForm.state": "Delstatens videresalgssertifikat"
 }

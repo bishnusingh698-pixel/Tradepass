@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "لا توجد دولة تطابق بحثك.",
+  "countries.search": "البحث عن الدول",
+  "countries.selected": "{count, plural, =0 {لم يتم تحديد أي دولة} zero {لم يتم تحديد أي دولة} one {تم تحديد دولة واحدة} two {تم تحديد دولتين} few {تم تحديد # دول} many {تم تحديد # دولة} other {تم تحديد # دولة}}"
+}

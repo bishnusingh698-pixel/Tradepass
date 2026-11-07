@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Nicio țară nu corespunde căutării.",
+  "countries.search": "Caută țări",
+  "countries.selected": "{count, plural, =0 {Nicio țară selectată} one {# țară selectată} few {# țări selectate} other {# de țări selectate}}"
+}

@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Không có gì để thử lại.",
   "approval.skip.finished": "Đã được phê duyệt.",
   "approval.skip.missing_address": "Thiếu địa chỉ thanh toán.",
-  "approval.skip.tier_required": "Chưa chọn cấp giá."
+  "approval.skip.tier_required": "Chưa chọn cấp giá.",
+  "approval.blocked.no_b2b": "Gói Shopify của bạn không bao gồm B2B, nên Shopify chưa thể tạo công ty cho người mua này. Đơn vẫn nằm trong hàng đợi: hãy phê duyệt khi B2B khả dụng (gói Basic trở lên với Markets mới). Trang chủ cho biết gói của bạn hỗ trợ gì.",
+  "approval.error.email_unavailable": "Shopify không cho Tradepass gửi email chào mừng B2B trên cửa hàng này, nên không có email nào được gửi. Người mua đã được phê duyệt. Hãy gửi cho họ tin nhắn soạn sẵn từ trang đơn.",
+  "approval.field.taxExemptAll": "Không thu bất kỳ khoản thuế nào từ địa điểm này",
+  "approval.field.taxExemptAllHelp": "Chỉ dành cho người mua được miễn mọi loại thuế ở mọi nơi bạn giao hàng. Giấy chứng nhận bán lại thường chỉ áp dụng cho một bang hoặc quốc gia: hãy dùng các khoản miễn ở trên để thuế vẫn được thu ở nơi không có miễn trừ.",
+  "approval.skip.no_b2b": "B2B không khả dụng trong gói Shopify của cửa hàng này.",
+  "approval.step.tags": "Thẻ khách hàng",
+  "approval.tags.note": "Thẻ đã thêm cho khách hàng: {tags} (Cài đặt → Người đăng ký và liên hệ).",
+  "approval.tax.addCovered": "Thêm các khoản miễn này",
+  "approval.tax.alsoCovered": "Giấy chứng nhận cũng áp dụng cho: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Bang của địa điểm này không có thuế bán hàng cấp bang, nên không cần miễn trừ ở đó.",
+  "approval.tax.reason.us_exempt_org": "Giấy chứng nhận của tổ chức được miễn thuế: Shopify không có khoản miễn riêng cho loại này. Hãy kiểm tra giấy chứng nhận; chỉ khi người mua hoàn toàn không phải nộp thuế, hãy chọn “Không thu bất kỳ khoản thuế nào”.",
+  "approval.tax.reason.us_resale_local_only": "Giấy chứng nhận của người mua áp dụng cho bang này. Alaska không có thuế bán hàng cấp bang, nhưng một số thành phố thu thuế riêng.",
+  "approval.tax.reason.us_state_not_covered": "Giấy chứng nhận của người mua áp dụng cho các bang khác với bang của địa điểm này. Chỉ thêm các khoản miễn đó nếu đơn hàng của địa điểm này được giao đến đó."
 }

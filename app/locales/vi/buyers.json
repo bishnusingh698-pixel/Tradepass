@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Bước phê duyệt không thành công",
   "buyers.activity.approval.undo": "Đã hoàn tác phê duyệt",
   "buyers.activity.tier.assisted_add_verified": "Đã xác nhận chỉ định cấp giá",
-  "buyers.activity.tier.assisted_remove_verified": "Đã xác nhận xóa khỏi cấp giá"
+  "buyers.activity.tier.assisted_remove_verified": "Đã xác nhận xóa khỏi cấp giá",
+  "buyers.tax.specific": "{count, plural, other {# khoản miễn}}"
 }

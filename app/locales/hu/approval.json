@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nincs mit újrapróbálni.",
   "approval.skip.finished": "Már jóváhagyva.",
   "approval.skip.missing_address": "Hiányzik a számlázási cím.",
-  "approval.skip.tier_required": "Nincs kiválasztott szint."
+  "approval.skip.tier_required": "Nincs kiválasztott szint.",
+  "approval.blocked.no_b2b": "Shopify-csomagja nem tartalmaz B2B-t, így a Shopify még nem tud céget létrehozni ennek a vásárlónak. A jelentkezés a sorban marad: hagyja jóvá, amint a B2B elérhető (Basic vagy magasabb csomag az új Piacokkal). A Kezdőlap megmutatja, mit támogat a csomagja.",
+  "approval.error.email_unavailable": "A Shopify nem engedte, hogy a Tradepass elküldje a B2B üdvözlő e-mailt ebben az áruházban, így nem ment ki e-mail. A vásárló jóvá van hagyva. Küldje el neki a kész üzenetet a jelentkezés oldaláról.",
+  "approval.field.taxExemptAll": "Semmilyen adót ne szedjen ezen a telephelyen",
+  "approval.field.taxExemptAllHelp": "Csak olyan vásárlóknak, akik mindenhol mentesek minden adó alól, ahová szállít nekik. Egy viszonteladói igazolás általában egy államra vagy országra vonatkozik: inkább a fenti mentességeket használja, hogy ahol nincs mentesség, ott továbbra is legyen adó.",
+  "approval.skip.no_b2b": "A B2B nem érhető el ennek az áruháznak a Shopify-csomagjában.",
+  "approval.step.tags": "Vásárlói címkék",
+  "approval.tags.note": "A vásárlóhoz adott címkék: {tags} (Beállítások → Jelentkezők és kapcsolat).",
+  "approval.tax.addCovered": "Mentességek hozzáadása",
+  "approval.tax.alsoCovered": "Az igazolások ezekre is vonatkoznak: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Ennek a telephelynek az államában nincs állami forgalmi adó, így ott nincs szükség mentességre.",
+  "approval.tax.reason.us_exempt_org": "Adómentes szervezet igazolása: a Shopifyban nincs rá külön mentesség. Ellenőrizze az igazolást; csak akkor válassza a „Semmilyen adót ne szedjen” lehetőséget, ha a vásárló egyáltalán nem tartozik adóval.",
+  "approval.tax.reason.us_resale_local_only": "A vásárló igazolása erre az államra vonatkozik. Alaszkában nincs állami forgalmi adó, de egyes városok sajátot szednek.",
+  "approval.tax.reason.us_state_not_covered": "A vásárló igazolásai más államokra vonatkoznak, mint ennek a telephelynek az állama. Csak akkor adja hozzá ezeket a mentességeket, ha a telephely rendelései oda mennek."
 }

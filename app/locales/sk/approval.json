@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nie je čo opakovať.",
   "approval.skip.finished": "Už schválené.",
   "approval.skip.missing_address": "Chýba fakturačná adresa.",
-  "approval.skip.tier_required": "Nie je vybraná žiadna úroveň."
+  "approval.skip.tier_required": "Nie je vybraná žiadna úroveň.",
+  "approval.blocked.no_b2b": "Váš plán Shopify nezahŕňa B2B, takže Shopify zatiaľ nemôže pre tohto kupujúceho vytvoriť spoločnosť. Žiadosť zostáva vo fronte: schváľte ju, keď bude B2B dostupné (plán Basic alebo vyšší s novými Trhmi). Domovská stránka ukazuje, čo váš plán podporuje.",
+  "approval.error.email_unavailable": "Shopify nedovolil Tradepassu v tomto obchode odoslať uvítací e-mail B2B, takže žiadny e-mail neodišiel. Kupujúci je schválený. Pošlite mu pripravenú správu zo stránky žiadosti.",
+  "approval.field.taxExemptAll": "Na tomto mieste nevyberať žiadnu daň",
+  "approval.field.taxExemptAllHelp": "Len pre kupujúcich oslobodených od všetkých daní všade, kam im tovar posielate. Potvrdenie o ďalšom predaji zvyčajne pokrýva jeden štát alebo krajinu: použite radšej výnimky vyššie, aby sa daň naďalej účtovala tam, kde výnimka neplatí.",
+  "approval.skip.no_b2b": "B2B nie je v pláne Shopify tohto obchodu dostupné.",
+  "approval.step.tags": "Štítky zákazníka",
+  "approval.tags.note": "Štítky pridané zákazníkovi: {tags} (Nastavenia → Žiadatelia a kontakt).",
+  "approval.tax.addCovered": "Pridať tieto výnimky",
+  "approval.tax.alsoCovered": "Potvrdenia pokrývajú aj: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Štát tohto miesta nemá celoštátnu daň z predaja, takže tam výnimka nie je potrebná.",
+  "approval.tax.reason.us_exempt_org": "Potvrdenie organizácie oslobodenej od dane: Shopify preň nemá osobitnú výnimku. Skontrolujte potvrdenie; len ak kupujúci nedlží vôbec žiadnu daň, zvoľte „Nevyberať žiadnu daň“.",
+  "approval.tax.reason.us_resale_local_only": "Potvrdenie kupujúceho pokrýva tento štát. Aljaška nemá celoštátnu daň z predaja, ale niektoré mestá vyberajú vlastnú.",
+  "approval.tax.reason.us_state_not_covered": "Potvrdenia kupujúceho pokrývajú iné štáty než štát tohto miesta. Tieto výnimky pridajte, len ak sa objednávky tohto miesta posielajú tam."
 }

@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Inget land matchar sökningen.",
+  "countries.search": "Sök länder",
+  "countries.selected": "{count, plural, =0 {Inga länder valda} one {# land valt} other {# länder valda}}"
+}

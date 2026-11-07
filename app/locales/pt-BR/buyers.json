@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "A etapa de aprovação não funcionou",
   "buyers.activity.approval.undo": "Aprovação desfeita",
   "buyers.activity.tier.assisted_add_verified": "Atribuição de nível confirmada",
-  "buyers.activity.tier.assisted_remove_verified": "Remoção do nível confirmada"
+  "buyers.activity.tier.assisted_remove_verified": "Remoção do nível confirmada",
+  "buyers.tax.specific": "{count, plural, one {# isenção} many {# isenções} other {# isenções}}"
 }

@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Toptan satış başvurusunu seviyeye onayla",
   "automation.flow.welcomeNote": "Tradepass bir alıcıyı onayladığında Shopify'ın B2B erişim e-postasını zaten gönderebilir, bu nedenle bunun için ek bir iş akışı gerekmez.",
   "automation.flow.open": "Shopify Flow'u aç",
-  "automation.flow.alerts": "Biri başvurduğunda e-posta almak ister misiniz? Shopify Flow'da “Wholesale application submitted” tetikleyicisini Flow'un “Send internal email” eylemiyle kullanın. Bu eylem yalnızca iş akışına girdiğiniz sabit personel adreslerine gönderir."
+  "automation.flow.alerts": "Biri başvurduğunda e-posta almak ister misiniz? Shopify Flow'da “Wholesale application submitted” tetikleyicisini Flow'un “Send internal email” eylemiyle kullanın. Bu eylem yalnızca iş akışına girdiğiniz sabit personel adreslerine gönderir.",
+  "automation.condition.disposable_email": "Tek kullanımlık e-posta adresi (mailinator.com…)",
+  "automation.condition.free_email": "Ücretsiz e-posta hizmeti (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Teslimat adresi bir posta kutusu",
+  "automation.condition.registry_mismatch": "Sicildeki ad şirketle eşleşmiyor",
+  "automation.condition.website_mismatch": "Web sitesi e-posta alan adıyla eşleşmiyor",
+  "automation.flow.alertsMore": "Daha fazla uyarı: “Toptan satış başvurusu bilgisi alındı”, bir başvuru sahibi isteğinize yanıt verdiğinde, “Sertifikanın süresi doluyor” ise bir sertifikanın süresi dolmadan önce çalışır. Her tetikleyici şirket, kişi, e-posta, telefon, ülke, eyalet, kademe ve başvurunun bağlantısını içerir; e-posta veya Slack mesajı için hazırdır.",
+  "automation.flow.trigger.application_info_received": "Toptan satış başvurusu bilgisi alındı",
+  "automation.flow.welcomeNoteFlow": "Onay sırasında Shopify'dan kendi B2B hoş geldin e-postasını göndermesi istenir. Shopify mağazanızda buna izin vermiyorsa Shopify'ın “Şirket kişisine izin atandı” → “B2B erişim e-postası gönder” Flow şablonu aynı işi yapar; Tradepass bu izni onay sırasında atar."
 }

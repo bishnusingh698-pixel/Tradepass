@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Rien à relancer.",
   "approval.skip.finished": "Déjà approuvée.",
   "approval.skip.missing_address": "Adresse de facturation manquante.",
-  "approval.skip.tier_required": "Aucun niveau choisi."
+  "approval.skip.tier_required": "Aucun niveau choisi.",
+  "approval.blocked.no_b2b": "Votre forfait Shopify n’inclut pas le B2B, Shopify ne peut donc pas encore créer d’entreprise pour cet acheteur. La candidature reste dans votre file : approuvez-la dès que le B2B est disponible (forfait Basic ou supérieur avec les nouveaux Marchés). L’accueil indique ce que votre forfait prend en charge.",
+  "approval.error.email_unavailable": "Shopify n’a pas autorisé Tradepass à envoyer son e-mail de bienvenue B2B sur cette boutique, aucun e-mail n’est donc parti. L’acheteur est approuvé. Envoyez-lui le message prêt à l’emploi depuis la page de la candidature.",
+  "approval.field.taxExemptAll": "Ne percevoir aucune taxe pour cet emplacement",
+  "approval.field.taxExemptAllHelp": "Uniquement pour les acheteurs exonérés de toute taxe partout où vous les livrez. Un certificat de revente couvre généralement un État ou un pays : utilisez plutôt les exonérations ci-dessus, pour que la taxe reste appliquée là où aucune exonération ne s’applique.",
+  "approval.skip.no_b2b": "Le B2B n’est pas disponible avec le forfait Shopify de cette boutique.",
+  "approval.step.tags": "Tags client",
+  "approval.tags.note": "Tags ajoutés au client : {tags} (Paramètres → Candidats et contact).",
+  "approval.tax.addCovered": "Ajouter ces exonérations",
+  "approval.tax.alsoCovered": "Les certificats couvrent aussi : {states}.",
+  "approval.tax.reason.no_state_sales_tax": "L’État de cet emplacement n’a pas de taxe de vente à l’échelle de l’État, aucune exonération n’y est donc nécessaire.",
+  "approval.tax.reason.us_exempt_org": "Certificat d’un organisme exonéré : Shopify n’a pas d’exonération spécifique pour cela. Vérifiez le certificat ; seulement si l’acheteur ne doit aucune taxe, choisissez « Ne percevoir aucune taxe ».",
+  "approval.tax.reason.us_resale_local_only": "Le certificat de l’acheteur couvre cet État. L’Alaska n’a pas de taxe de vente à l’échelle de l’État, mais certaines villes appliquent la leur.",
+  "approval.tax.reason.us_state_not_covered": "Les certificats de l’acheteur couvrent d’autres États que celui de cet emplacement. N’ajoutez ces exonérations que si les commandes de cet emplacement y sont livrées."
 }

@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Falló un paso de la aprobación",
   "buyers.activity.approval.undo": "Aprobación deshecha",
   "buyers.activity.tier.assisted_add_verified": "Asignación de nivel confirmada",
-  "buyers.activity.tier.assisted_remove_verified": "Retirada del nivel confirmada"
+  "buyers.activity.tier.assisted_remove_verified": "Retirada del nivel confirmada",
+  "buyers.tax.specific": "{count, plural, one {# exención} many {# exenciones} other {# exenciones}}"
 }

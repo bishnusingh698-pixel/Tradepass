@@ -111,5 +111,18 @@
   "approval.skip.no_state": "沒有可重試的內容。",
   "approval.skip.finished": "已獲核准。",
   "approval.skip.missing_address": "缺少帳單地址。",
-  "approval.skip.tier_required": "未選擇等級。"
+  "approval.skip.tier_required": "未選擇等級。",
+  "approval.blocked.no_b2b": "您的 Shopify 方案不包含 B2B，因此 Shopify 暫時無法為此買家建立公司。申請會留在您的佇列中：B2B 可用後再核准（Basic 或更高方案並使用新版市場）。首頁會顯示您的方案支援哪些功能。",
+  "approval.error.email_unavailable": "Shopify 不允許 Tradepass 在此商店傳送 B2B 歡迎郵件，因此沒有寄出任何郵件。買家已獲核准。請從申請頁面傳送現成的訊息給買家。",
+  "approval.field.taxExemptAll": "此地點不收取任何稅費",
+  "approval.field.taxExemptAllHelp": "僅適用於在您出貨的所有地方都免除全部稅費的買家。轉售證明通常只適用於一個州或國家：請改用上方的免稅項，這樣在不適用免稅的地方仍會收稅。",
+  "approval.skip.no_b2b": "此商店的 Shopify 方案不支援 B2B。",
+  "approval.step.tags": "顧客標籤",
+  "approval.tags.note": "已新增到顧客的標籤：{tags}（設定 → 申請者與聯絡方式）。",
+  "approval.tax.addCovered": "新增這些免稅項",
+  "approval.tax.alsoCovered": "證明還適用於：{states}。",
+  "approval.tax.reason.no_state_sales_tax": "此地點所在州沒有州級銷售稅，因此不需要免稅。",
+  "approval.tax.reason.us_exempt_org": "免稅組織的證明：Shopify 沒有對應的專門免稅項。請核對證明；僅當買家完全不需繳稅時，才選擇「不收取任何稅費」。",
+  "approval.tax.reason.us_resale_local_only": "買家的證明適用於此州。阿拉斯加沒有州級銷售稅，但部分城市會徵收自己的稅。",
+  "approval.tax.reason.us_state_not_covered": "買家的證明適用於此地點所在州以外的其他州。僅當此地點的訂單會寄往那些州時，才新增這些免稅項。"
 }

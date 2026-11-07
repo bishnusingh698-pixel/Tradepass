@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Aprobați cererea en-gros într-un nivel",
   "automation.flow.welcomeNote": "Tradepass poate trimite deja e-mailul de acces B2B al Shopify când aprobă un cumpărător, deci nu este nevoie de un flux suplimentar pentru asta.",
   "automation.flow.open": "Deschideți Shopify Flow",
-  "automation.flow.alerts": "Vrei un e-mail când cineva aplică? În Shopify Flow, folosește declanșatorul „Wholesale application submitted” cu acțiunea Flow „Send internal email”. Această acțiune trimite doar la adresele fixe ale personalului pe care le introduci în flux."
+  "automation.flow.alerts": "Vrei un e-mail când cineva aplică? În Shopify Flow, folosește declanșatorul „Wholesale application submitted” cu acțiunea Flow „Send internal email”. Această acțiune trimite doar la adresele fixe ale personalului pe care le introduci în flux.",
+  "automation.condition.disposable_email": "Adresă de e-mail temporară (mailinator.com…)",
+  "automation.condition.free_email": "Serviciu de e-mail gratuit (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Adresa de livrare este o căsuță poștală",
+  "automation.condition.registry_mismatch": "Numele din registru nu se potrivește cu compania",
+  "automation.condition.website_mismatch": "Site-ul nu se potrivește cu domeniul e-mailului",
+  "automation.flow.alertsMore": "Mai multe alerte: „Informații primite pentru cererea de angro” rulează când un solicitant răspunde la cererea dvs., iar „Certificat pe cale să expire” înainte ca un certificat să expire. Fiecare declanșator include compania, contactul, e-mailul, telefonul, țara, statul, nivelul și un link la cerere, gata pentru un e-mail sau un mesaj Slack.",
+  "automation.flow.trigger.application_info_received": "Informații primite pentru cererea de angro",
+  "automation.flow.welcomeNoteFlow": "La aprobare, Shopify este rugat să trimită propriul e-mail de bun venit B2B. Dacă Shopify nu permite asta în magazinul dvs., șablonul Flow al Shopify „Permisiune atribuită contactului companiei” → „Trimite e-mail de acces B2B” face același lucru; Tradepass atribuie această permisiune în timpul aprobării."
 }
