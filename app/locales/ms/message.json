@@ -23,5 +23,18 @@
   "message.modal.close": "Tutup",
   "message.approved.subject": "Akaun borong anda dengan {store_name} telah diluluskan",
   "message.approved.body": "Hai {first_name},\n\nBerita baik: {company} telah diluluskan untuk akaun borong dengan {store_name}. Peringkat harga anda ialah {tier_name}.\n\nUntuk log masuk, buka pautan di bawah dan masukkan alamat e-mel ini. Kami akan menghantar kod sekali guna melalui e-mel, jadi anda tidak memerlukan kata laluan:\n{login_url}\n\nSetelah log masuk, anda akan melihat harga borong anda di seluruh kedai.",
-  "message.channel.mailto": "Buka dalam e-mel"
+  "message.channel.mailto": "Buka dalam e-mel",
+  "message.channel.gmail": "Buka dalam Gmail",
+  "message.channel.line": "Buka dalam LINE",
+  "message.channel.outlook": "Buka dalam Outlook",
+  "message.channel.sms": "Buka dalam mesej teks",
+  "message.channel.telegram": "Buka dalam Telegram",
+  "message.channel.whatsapp": "Buka dalam WhatsApp",
+  "message.modal.moreApps": "Apl lain:",
+  "message.modal.noPhone": "Permohonan tiada nombor telefon antarabangsa, jadi WhatsApp dan mesej teks dibuka tanpa penerima.",
+  "message.modal.nothingSent": "Tradepass tidak menghantar apa-apa sendiri: setiap butang hanya membuka apl anda dengan mesej yang sudah diisi.",
+  "message.modal.openIn": "Hantar daripada apl anda sendiri",
+  "message.modal.pasteHint": "Mesej terlalu panjang untuk apl ini, jadi ia dibuka tanpa teks. Mesej telah disalin: tampal sahaja.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Anda boleh menyemak status permohonan anda pada bila-bila masa: {status_link}"
 }

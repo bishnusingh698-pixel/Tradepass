@@ -23,5 +23,18 @@
   "message.modal.close": "閉じる",
   "message.approved.subject": "{store_name}の卸売アカウントが承認されました",
   "message.approved.body": "{first_name}様\n\n{company}の{store_name}卸売アカウントが承認されました。お客様の価格ランクは「{tier_name}」です。\n\nログインするには、以下のリンクを開いてこのメールアドレスを入力してください。ワンタイムコードをメールでお送りしますので、パスワードは不要です。\n{login_url}\n\nログイン後は、ストア全体で卸売価格が表示されます。",
-  "message.channel.mailto": "メールで開く"
+  "message.channel.mailto": "メールで開く",
+  "message.channel.gmail": "Gmail で開く",
+  "message.channel.line": "LINE で開く",
+  "message.channel.outlook": "Outlook で開く",
+  "message.channel.sms": "SMS で開く",
+  "message.channel.telegram": "Telegram で開く",
+  "message.channel.whatsapp": "WhatsApp で開く",
+  "message.modal.moreApps": "その他のアプリ：",
+  "message.modal.noPhone": "申請に国際電話番号がないため、WhatsApp と SMS は宛先なしで開きます。",
+  "message.modal.nothingSent": "Tradepass 自体は何も送信しません。各ボタンはメッセージを入力した状態でご自身のアプリを開くだけです。",
+  "message.modal.openIn": "ご自身のアプリから送信",
+  "message.modal.pasteHint": "メッセージがこのアプリには長すぎるため、本文なしで開きます。コピー済みなので貼り付けてください。",
+  "message.modal.phone": "電話",
+  "message.statusLine": "申請のステータスはいつでも確認できます：{status_link}"
 }

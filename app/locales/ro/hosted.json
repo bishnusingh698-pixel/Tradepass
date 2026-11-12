@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Acest link a fost deja folosit",
   "hosted.link.usedBody": "Fiecare link de actualizare funcționează o singură dată. Dacă trebuie să modificați altceva, contactați {store}.",
   "hosted.noscript": "Activați JavaScript în browser pentru a vă actualiza cererea.",
-  "hosted.error.generic": "A apărut o problemă din partea noastră. Încercați din nou peste câteva minute."
+  "hosted.error.generic": "A apărut o problemă din partea noastră. Încercați din nou peste câteva minute.",
+  "hosted.status.body.approved": "Conectați-vă cu această adresă de e-mail pentru a vedea prețurile angro.",
+  "hosted.status.body.needs_info": "{store} are nevoie de câteva informații suplimentare înainte de a decide.",
+  "hosted.status.body.pending": "{store} analizează fiecare cerere și vă va răspunde.",
+  "hosted.status.body.rejected": "{store} nu a putut aproba această cerere.",
+  "hosted.status.book": "Programați un apel de bun venit",
+  "hosted.status.busyTitle": "Prea multe solicitări. Încercați din nou peste câteva minute.",
+  "hosted.status.expiredBody": "Pentru siguranța dvs., linkurile de stare funcționează 90 de zile. Contactați {store} pentru un link nou.",
+  "hosted.status.reapply": "Puteți aplica din nou începând cu {date}.",
+  "hosted.status.shop": "Începeți cumpărăturile",
+  "hosted.status.signIn": "Conectare",
+  "hosted.status.submitted": "{company} a aplicat pe {date}.",
+  "hosted.status.title.approved": "Contul dvs. angro este aprobat",
+  "hosted.status.title.needs_info": "Avem nevoie de câteva informații suplimentare",
+  "hosted.status.title.pending": "Analizăm cererea dvs.",
+  "hosted.status.title.rejected": "Cererea dvs. nu a fost aprobată",
+  "hosted.status.update": "Actualizați cererea",
+  "hosted.status.whatsapp": "Scrieți-i lui {store} pe WhatsApp"
 }

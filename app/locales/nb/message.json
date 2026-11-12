@@ -23,5 +23,18 @@
   "message.modal.close": "Lukk",
   "message.approved.subject": "Engroskontoen din hos {store_name} er godkjent",
   "message.approved.body": "Hei {first_name}\n\nGode nyheter: {company} er godkjent for en engroskonto hos {store_name}. Prisnivået ditt er {tier_name}.\n\nFor å logge inn åpner du lenken nedenfor og skriver inn denne e-postadressen. Vi sender deg en engangskode på e-post, så du trenger ikke passord:\n{login_url}\n\nNår du er logget inn, ser du engrosprisene dine i hele butikken.",
-  "message.channel.mailto": "Åpne i e-post"
+  "message.channel.mailto": "Åpne i e-post",
+  "message.channel.gmail": "Åpne i Gmail",
+  "message.channel.line": "Åpne i LINE",
+  "message.channel.outlook": "Åpne i Outlook",
+  "message.channel.sms": "Åpne i SMS",
+  "message.channel.telegram": "Åpne i Telegram",
+  "message.channel.whatsapp": "Åpne i WhatsApp",
+  "message.modal.moreApps": "Flere apper:",
+  "message.modal.noPhone": "Søknaden har ikke et internasjonalt telefonnummer, så WhatsApp og SMS åpnes uten mottaker.",
+  "message.modal.nothingSent": "Tradepass sender ingenting selv: hver knapp åpner bare din egen app med meldingen fylt inn.",
+  "message.modal.openIn": "Send den fra dine egne apper",
+  "message.modal.pasteHint": "Meldingen er for lang for denne appen, så den åpnes uten teksten. Den er kopiert: bare lim den inn.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Du kan når som helst se statusen for søknaden din: {status_link}"
 }

@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Тази връзка вече е използвана",
   "hosted.link.usedBody": "Всяка връзка за актуализиране работи само веднъж. Ако трябва да промените нещо друго, моля, свържете се с {store}.",
   "hosted.noscript": "Моля, включете JavaScript в браузъра си, за да актуализирате заявката.",
-  "hosted.error.generic": "Възникна проблем от наша страна. Моля, опитайте отново след няколко минути."
+  "hosted.error.generic": "Възникна проблем от наша страна. Моля, опитайте отново след няколко минути.",
+  "hosted.status.body.approved": "Влезте с този имейл адрес, за да видите цените си на едро.",
+  "hosted.status.body.needs_info": "{store} има нужда от още малко информация, преди да реши.",
+  "hosted.status.body.pending": "{store} преглежда всяка кандидатура и ще се свърже с вас.",
+  "hosted.status.body.rejected": "{store} не успя да одобри тази кандидатура.",
+  "hosted.status.book": "Запазете въвеждащ разговор",
+  "hosted.status.busyTitle": "Твърде много заявки. Опитайте отново след няколко минути.",
+  "hosted.status.expiredBody": "За ваша сигурност връзките за състояние работят 90 дни. Свържете се с {store} за нова връзка.",
+  "hosted.status.reapply": "Можете да кандидатствате отново от {date}.",
+  "hosted.status.shop": "Започнете да пазарувате",
+  "hosted.status.signIn": "Вход",
+  "hosted.status.submitted": "{company} кандидатства на {date}.",
+  "hosted.status.title.approved": "Акаунтът ви за търговия на едро е одобрен",
+  "hosted.status.title.needs_info": "Нужна ни е още малко информация",
+  "hosted.status.title.pending": "Преглеждаме кандидатурата ви",
+  "hosted.status.title.rejected": "Кандидатурата ви не беше одобрена",
+  "hosted.status.update": "Актуализиране на кандидатурата",
+  "hosted.status.whatsapp": "Пишете на {store} в WhatsApp"
 }

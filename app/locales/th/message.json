@@ -23,5 +23,18 @@
   "message.modal.close": "ปิด",
   "message.approved.subject": "บัญชีขายส่งของคุณกับ {store_name} ได้รับการอนุมัติแล้ว",
   "message.approved.body": "เรียน คุณ{first_name}\n\nข่าวดี: {company} ได้รับการอนุมัติบัญชีขายส่งกับ {store_name} แล้ว ระดับราคาของคุณคือ {tier_name}\n\nหากต้องการเข้าสู่ระบบ โปรดเปิดลิงก์ด้านล่างและป้อนอีเมลนี้ เราจะส่งรหัสแบบใช้ครั้งเดียวให้ทางอีเมล คุณจึงไม่ต้องใช้รหัสผ่าน:\n{login_url}\n\nเมื่อเข้าสู่ระบบแล้ว คุณจะเห็นราคาขายส่งของคุณทั่วทั้งร้านค้า",
-  "message.channel.mailto": "เปิดในอีเมล"
+  "message.channel.mailto": "เปิดในอีเมล",
+  "message.channel.gmail": "เปิดใน Gmail",
+  "message.channel.line": "เปิดใน LINE",
+  "message.channel.outlook": "เปิดใน Outlook",
+  "message.channel.sms": "เปิดในข้อความ SMS",
+  "message.channel.telegram": "เปิดใน Telegram",
+  "message.channel.whatsapp": "เปิดใน WhatsApp",
+  "message.modal.moreApps": "แอปอื่นๆ:",
+  "message.modal.noPhone": "ใบสมัครไม่มีหมายเลขโทรศัพท์ระหว่างประเทศ WhatsApp และข้อความ SMS จึงเปิดโดยไม่มีผู้รับ",
+  "message.modal.nothingSent": "Tradepass ไม่ได้ส่งอะไรเอง แต่ละปุ่มแค่เปิดแอปของคุณพร้อมข้อความที่กรอกไว้",
+  "message.modal.openIn": "ส่งจากแอปของคุณเอง",
+  "message.modal.pasteHint": "ข้อความยาวเกินไปสำหรับแอปนี้ แอปจึงเปิดโดยไม่มีข้อความ ข้อความถูกคัดลอกแล้ว แค่วางลงไป",
+  "message.modal.phone": "โทรศัพท์",
+  "message.statusLine": "คุณตรวจสอบสถานะใบสมัครได้ทุกเมื่อ: {status_link}"
 }

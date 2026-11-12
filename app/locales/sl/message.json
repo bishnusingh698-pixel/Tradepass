@@ -23,5 +23,18 @@
   "message.modal.close": "Zapri",
   "message.approved.subject": "Vaš veleprodajni račun v trgovini {store_name} je odobren",
   "message.approved.body": "Pozdravljeni, {first_name},\n\nimamo dobro novico: podjetju {company} smo odobrili veleprodajni račun v trgovini {store_name}. Vaša cenovna raven je {tier_name}.\n\nZa prijavo odprite spodnjo povezavo in vnesite ta e-poštni naslov. Po e-pošti vam bomo poslali enkratno kodo, zato gesla ne potrebujete:\n{login_url}\n\nKo se prijavite, boste v celotni trgovini videli svoje veleprodajne cene.",
-  "message.channel.mailto": "Odpri v e-pošti"
+  "message.channel.mailto": "Odpri v e-pošti",
+  "message.channel.gmail": "Odpri v Gmailu",
+  "message.channel.line": "Odpri v LINE",
+  "message.channel.outlook": "Odpri v Outlooku",
+  "message.channel.sms": "Odpri v SMS-ih",
+  "message.channel.telegram": "Odpri v Telegramu",
+  "message.channel.whatsapp": "Odpri v WhatsAppu",
+  "message.modal.moreApps": "Več aplikacij:",
+  "message.modal.noPhone": "Prijava nima mednarodne telefonske številke, zato se WhatsApp in SMS-i odprejo brez prejemnika.",
+  "message.modal.nothingSent": "Tradepass sam ničesar ne pošlje: vsak gumb samo odpre vašo aplikacijo z izpolnjenim sporočilom.",
+  "message.modal.openIn": "Pošljite iz svojih aplikacij",
+  "message.modal.pasteHint": "Sporočilo je predolgo za to aplikacijo, zato se odpre brez besedila. Kopirano je: samo prilepite ga.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Stanje prijave lahko kadar koli preverite tukaj: {status_link}"
 }

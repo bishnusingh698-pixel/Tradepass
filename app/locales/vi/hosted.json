@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Liên kết này đã được sử dụng",
   "hosted.link.usedBody": "Mỗi liên kết cập nhật chỉ dùng được một lần. Nếu bạn cần thay đổi thêm, vui lòng liên hệ với {store}.",
   "hosted.noscript": "Vui lòng bật JavaScript trong trình duyệt để cập nhật đơn đăng ký của bạn.",
-  "hosted.error.generic": "Đã xảy ra lỗi từ phía chúng tôi. Vui lòng thử lại sau vài phút."
+  "hosted.error.generic": "Đã xảy ra lỗi từ phía chúng tôi. Vui lòng thử lại sau vài phút.",
+  "hosted.status.body.approved": "Đăng nhập bằng địa chỉ email này để xem giá sỉ của bạn.",
+  "hosted.status.body.needs_info": "{store} cần thêm một chút thông tin trước khi quyết định.",
+  "hosted.status.body.pending": "{store} xem xét mọi đơn và sẽ phản hồi bạn.",
+  "hosted.status.body.rejected": "{store} không thể phê duyệt đơn này.",
+  "hosted.status.book": "Đặt lịch gọi hướng dẫn",
+  "hosted.status.busyTitle": "Quá nhiều yêu cầu. Vui lòng thử lại sau vài phút.",
+  "hosted.status.expiredBody": "Vì an toàn của bạn, liên kết trạng thái có hiệu lực trong 90 ngày. Vui lòng liên hệ {store} để nhận liên kết mới.",
+  "hosted.status.reapply": "Bạn có thể đăng ký lại từ {date}.",
+  "hosted.status.shop": "Bắt đầu mua sắm",
+  "hosted.status.signIn": "Đăng nhập",
+  "hosted.status.submitted": "{company} đã đăng ký vào {date}.",
+  "hosted.status.title.approved": "Tài khoản bán sỉ của bạn đã được phê duyệt",
+  "hosted.status.title.needs_info": "Chúng tôi cần thêm một chút thông tin",
+  "hosted.status.title.pending": "Chúng tôi đang xem xét đơn của bạn",
+  "hosted.status.title.rejected": "Đơn của bạn không được phê duyệt",
+  "hosted.status.update": "Cập nhật đơn của bạn",
+  "hosted.status.whatsapp": "Nhắn tin cho {store} qua WhatsApp"
 }

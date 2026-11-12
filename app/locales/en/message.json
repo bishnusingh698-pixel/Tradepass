@@ -23,5 +23,18 @@
   "message.modal.close": "Close",
   "message.approved.subject": "Your wholesale account with {store_name} is approved",
   "message.approved.body": "Hello {first_name},\n\nGood news: {company} has been approved for a wholesale account with {store_name}. Your pricing tier is {tier_name}.\n\nTo sign in, open the link below and enter this email address. We'll email you a one-time code, so you don't need a password:\n{login_url}\n\nOnce you're signed in, you'll see your wholesale prices throughout the store.",
-  "message.channel.mailto": "Open in email"
+  "message.channel.mailto": "Open in email",
+  "message.channel.gmail": "Open in Gmail",
+  "message.channel.line": "Open in LINE",
+  "message.channel.outlook": "Open in Outlook",
+  "message.channel.sms": "Open in text messages",
+  "message.channel.telegram": "Open in Telegram",
+  "message.channel.whatsapp": "Open in WhatsApp",
+  "message.modal.moreApps": "More apps:",
+  "message.modal.noPhone": "There's no international phone number on the application, so WhatsApp and text messages open without a recipient.",
+  "message.modal.nothingSent": "Tradepass sends nothing itself: each button only opens your own app with the message filled in.",
+  "message.modal.openIn": "Send it from your own apps",
+  "message.modal.pasteHint": "The message is too long for this app, so it opens without the text. It's copied: just paste it in.",
+  "message.modal.phone": "Phone",
+  "message.statusLine": "You can check the status of your application at any time: {status_link}"
 }

@@ -23,5 +23,18 @@
   "message.modal.close": "Cerrar",
   "message.approved.subject": "Su cuenta mayorista en {store_name} ha sido aprobada",
   "message.approved.body": "Hola, {first_name}:\n\nBuenas noticias: {company} ha sido aprobada para una cuenta mayorista en {store_name}. Su nivel de precios es {tier_name}.\n\nPara iniciar sesión, abra el siguiente enlace e introduzca esta dirección de correo electrónico. Le enviaremos un código de un solo uso por correo, así que no necesita contraseña:\n{login_url}\n\nUna vez que inicie sesión, verá sus precios mayoristas en toda la tienda.",
-  "message.channel.mailto": "Abrir en el correo"
+  "message.channel.mailto": "Abrir en el correo",
+  "message.channel.gmail": "Abrir en Gmail",
+  "message.channel.line": "Abrir en LINE",
+  "message.channel.outlook": "Abrir en Outlook",
+  "message.channel.sms": "Abrir en mensajes de texto",
+  "message.channel.telegram": "Abrir en Telegram",
+  "message.channel.whatsapp": "Abrir en WhatsApp",
+  "message.modal.moreApps": "Más apps:",
+  "message.modal.noPhone": "La solicitud no tiene un número de teléfono internacional, así que WhatsApp y los mensajes de texto se abren sin destinatario.",
+  "message.modal.nothingSent": "Tradepass no envía nada por sí mismo: cada botón solo abre tu propia app con el mensaje ya escrito.",
+  "message.modal.openIn": "Envíalo desde tus propias apps",
+  "message.modal.pasteHint": "El mensaje es demasiado largo para esta app, así que se abre sin el texto. Ya está copiado: solo pégalo.",
+  "message.modal.phone": "Teléfono",
+  "message.statusLine": "Puedes consultar el estado de tu solicitud en cualquier momento: {status_link}"
 }

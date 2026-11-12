@@ -88,5 +88,8 @@
   "help.faq.oldTaxExempt.q": "我在 2026 年 11 月之前核准的買家顯示所有稅費「已免除」。為什麼？",
   "help.faq.statePermits.a": "對於提供免費官方查詢的州，申請會顯示「在州網站上核對」以及需要輸入的內容；標示為已核對後，團隊就能看到是誰在何時核對的。德州以開放資料公布有效許可，因此在 Starter 和 Pro 方案中，Tradepass 會自動核對德州號碼。EIN 沒有免費的公開核對方式。",
   "help.faq.statePermits.q": "Tradepass 能核對銷售許可嗎？",
-  "help.faq.usCertificates.a": "申請者選擇其證明（州自己的證明、Streamlined Sales Tax 證明、MTC 統一證明或免稅組織證明），並為其涵蓋的每個州新增銷售許可號碼。每個州都會成為一份獨立的證明，有各自的到期日。核准時會為地點所在州建議轉售商免稅；其他涵蓋的州只會提供而不套用，因為 Shopify 依收件地址計稅。沒有州級銷售稅的州不需要免稅。"
+  "help.faq.usCertificates.a": "申請者選擇其證明（州自己的證明、Streamlined Sales Tax 證明、MTC 統一證明或免稅組織證明），並為其涵蓋的每個州新增銷售許可號碼。每個州都會成為一份獨立的證明，有各自的到期日。核准時會為地點所在州建議轉售商免稅；其他涵蓋的州只會提供而不套用，因為 Shopify 依收件地址計稅。沒有州級銷售稅的州不需要免稅。",
+  "help.faq.usCertificates.q": "美國轉售證明如何運作？",
+  "help.faq.welcomeEmail.a": "開啟「傳送歡迎郵件」後，Tradepass 會請 Shopify 傳送其自己的 B2B 歡迎郵件。如果 Shopify 不允許應用程式在您的商店傳送該郵件，核准仍會完成，申請頁面會提供一則現成的「您已獲核准」訊息。您也可以在 Shopify 管理介面從聯絡人傳送 Shopify 的 B2B 存取郵件，或使用 Shopify Flow 自動傳送（觸發條件「已為公司聯絡人指派權限」，動作「傳送 B2B 存取郵件」）。這是唯一自動寄出的郵件，由 Shopify 寄送。",
+  "help.faq.welcomeEmail.q": "我核准買家後，買家會收到郵件嗎？"
 }

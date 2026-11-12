@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Ta povezava je že bila uporabljena",
   "hosted.link.usedBody": "Vsaka povezava za posodobitev deluje samo enkrat. Če morate spremeniti še kaj, se obrnite na trgovino {store}.",
   "hosted.noscript": "Če želite posodobiti vlogo, v brskalniku vklopite JavaScript.",
-  "hosted.error.generic": "Na naši strani je prišlo do napake. Poskusite znova čez nekaj minut."
+  "hosted.error.generic": "Na naši strani je prišlo do napake. Poskusite znova čez nekaj minut.",
+  "hosted.status.body.approved": "Prijavite se s tem e-poštnim naslovom, da vidite svoje veleprodajne cene.",
+  "hosted.status.body.needs_info": "{store} pred odločitvijo potrebuje še nekaj informacij.",
+  "hosted.status.body.pending": "{store} pregleda vsako prijavo in se vam bo oglasil.",
+  "hosted.status.body.rejected": "{store} te prijave ni mogel odobriti.",
+  "hosted.status.book": "Rezerviraj uvodni klic",
+  "hosted.status.busyTitle": "Preveč zahtev. Poskusite znova čez nekaj minut.",
+  "hosted.status.expiredBody": "Zaradi vaše varnosti povezave do stanja delujejo 90 dni. Za novo povezavo se obrnite na {store}.",
+  "hosted.status.reapply": "Znova se lahko prijavite od {date}.",
+  "hosted.status.shop": "Začnite nakupovati",
+  "hosted.status.signIn": "Prijava",
+  "hosted.status.submitted": "{company} je oddal(a) prijavo {date}.",
+  "hosted.status.title.approved": "Vaš veleprodajni račun je odobren",
+  "hosted.status.title.needs_info": "Potrebujemo še nekaj informacij",
+  "hosted.status.title.pending": "Pregledujemo vašo prijavo",
+  "hosted.status.title.rejected": "Vaša prijava ni bila odobrena",
+  "hosted.status.update": "Posodobi prijavo",
+  "hosted.status.whatsapp": "Pišite {store} na WhatsApp"
 }

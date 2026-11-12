@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "This link has already been used",
   "hosted.link.usedBody": "Each update link works once. If you need to change something else, please contact {store}.",
   "hosted.noscript": "Please turn on JavaScript in your browser to update your application.",
-  "hosted.error.generic": "Something went wrong on our side. Please try again in a few minutes."
+  "hosted.error.generic": "Something went wrong on our side. Please try again in a few minutes.",
+  "hosted.status.body.approved": "Sign in with this email address to see your wholesale prices.",
+  "hosted.status.body.needs_info": "{store} needs a little more information before deciding.",
+  "hosted.status.body.pending": "{store} reviews every application and will get back to you.",
+  "hosted.status.body.rejected": "{store} wasn't able to approve this application.",
+  "hosted.status.book": "Book an onboarding call",
+  "hosted.status.busyTitle": "Too many requests. Please try again in a few minutes.",
+  "hosted.status.expiredBody": "For your security, status links work for 90 days. Please contact {store} for a new link.",
+  "hosted.status.reapply": "You can apply again from {date}.",
+  "hosted.status.shop": "Start shopping",
+  "hosted.status.signIn": "Sign in",
+  "hosted.status.submitted": "{company} applied on {date}.",
+  "hosted.status.title.approved": "Your wholesale account is approved",
+  "hosted.status.title.needs_info": "We need a little more information",
+  "hosted.status.title.pending": "We're reviewing your application",
+  "hosted.status.title.rejected": "Your application wasn't approved",
+  "hosted.status.update": "Update your application",
+  "hosted.status.whatsapp": "Message {store} on WhatsApp"
 }

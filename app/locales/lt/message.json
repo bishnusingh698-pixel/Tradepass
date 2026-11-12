@@ -23,5 +23,18 @@
   "message.modal.close": "Uždaryti",
   "message.approved.subject": "Jūsų didmeninės prekybos paskyra parduotuvėje {store_name} patvirtinta",
   "message.approved.body": "Sveiki, {first_name},\n\nGeros žinios: įmonei {company} patvirtinta didmeninės prekybos paskyra parduotuvėje {store_name}. Jūsų kainų lygis: {tier_name}.\n\nNorėdami prisijungti, atidarykite toliau pateiktą nuorodą ir įveskite šį el. pašto adresą. Atsiųsime jums vienkartinį kodą, todėl slaptažodžio nereikia:\n{login_url}\n\nPrisijungę visoje parduotuvėje matysite savo didmenines kainas.",
-  "message.channel.mailto": "Atidaryti el. pašte"
+  "message.channel.mailto": "Atidaryti el. pašte",
+  "message.channel.gmail": "Atidaryti „Gmail“",
+  "message.channel.line": "Atidaryti LINE",
+  "message.channel.outlook": "Atidaryti „Outlook“",
+  "message.channel.sms": "Atidaryti SMS",
+  "message.channel.telegram": "Atidaryti „Telegram“",
+  "message.channel.whatsapp": "Atidaryti „WhatsApp“",
+  "message.modal.moreApps": "Daugiau programėlių:",
+  "message.modal.noPhone": "Paraiškoje nėra tarptautinio telefono numerio, todėl „WhatsApp“ ir SMS atsidaro be gavėjo.",
+  "message.modal.nothingSent": "„Tradepass“ pats nieko nesiunčia: kiekvienas mygtukas tik atidaro jūsų programėlę su užpildyta žinute.",
+  "message.modal.openIn": "Siųskite iš savo programėlių",
+  "message.modal.pasteHint": "Žinutė per ilga šiai programėlei, todėl ji atsidarys be teksto. Ji nukopijuota: tiesiog įklijuokite.",
+  "message.modal.phone": "Telefonas",
+  "message.statusLine": "Paraiškos būseną galite bet kada patikrinti čia: {status_link}"
 }

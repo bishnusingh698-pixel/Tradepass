@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "यह लिंक पहले ही इस्तेमाल हो चुका है",
   "hosted.link.usedBody": "हर अपडेट लिंक एक बार ही काम करता है। अगर आपको कुछ और बदलना है, तो कृपया {store} से संपर्क करें।",
   "hosted.noscript": "अपना आवेदन अपडेट करने के लिए कृपया अपने ब्राउज़र में JavaScript चालू करें।",
-  "hosted.error.generic": "हमारी तरफ़ से कुछ गड़बड़ हो गई। कृपया कुछ मिनट बाद फिर कोशिश करें।"
+  "hosted.error.generic": "हमारी तरफ़ से कुछ गड़बड़ हो गई। कृपया कुछ मिनट बाद फिर कोशिश करें।",
+  "hosted.status.body.approved": "अपनी होलसेल कीमतें देखने के लिए इस ईमेल पते से साइन इन करें।",
+  "hosted.status.body.needs_info": "फ़ैसला करने से पहले {store} को थोड़ी और जानकारी चाहिए।",
+  "hosted.status.body.pending": "{store} हर आवेदन की समीक्षा करता है और आपसे संपर्क करेगा।",
+  "hosted.status.body.rejected": "{store} इस आवेदन को मंज़ूर नहीं कर सका।",
+  "hosted.status.book": "ऑनबोर्डिंग कॉल बुक करें",
+  "hosted.status.busyTitle": "बहुत ज़्यादा अनुरोध। कृपया कुछ मिनट बाद फिर से कोशिश करें।",
+  "hosted.status.expiredBody": "आपकी सुरक्षा के लिए स्टेटस लिंक 90 दिनों तक काम करते हैं। नए लिंक के लिए कृपया {store} से संपर्क करें।",
+  "hosted.status.reapply": "आप {date} से फिर से आवेदन कर सकते हैं।",
+  "hosted.status.shop": "खरीदारी शुरू करें",
+  "hosted.status.signIn": "साइन इन करें",
+  "hosted.status.submitted": "{company} ने {date} को आवेदन किया।",
+  "hosted.status.title.approved": "आपका होलसेल खाता मंज़ूर हो गया है",
+  "hosted.status.title.needs_info": "हमें थोड़ी और जानकारी चाहिए",
+  "hosted.status.title.pending": "हम आपके आवेदन की समीक्षा कर रहे हैं",
+  "hosted.status.title.rejected": "आपका आवेदन मंज़ूर नहीं हुआ",
+  "hosted.status.update": "अपना आवेदन अपडेट करें",
+  "hosted.status.whatsapp": "WhatsApp पर {store} को संदेश भेजें"
 }

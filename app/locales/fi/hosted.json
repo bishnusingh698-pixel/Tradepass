@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Linkkiä on jo käytetty",
   "hosted.link.usedBody": "Jokainen päivityslinkki toimii kerran. Jos haluat muuttaa jotain muuta, ota yhteyttä kauppaan {store}.",
   "hosted.noscript": "Ota JavaScript käyttöön selaimessa, jotta voit päivittää hakemuksen.",
-  "hosted.error.generic": "Meillä tapahtui virhe. Yritä uudelleen muutaman minuutin kuluttua."
+  "hosted.error.generic": "Meillä tapahtui virhe. Yritä uudelleen muutaman minuutin kuluttua.",
+  "hosted.status.body.approved": "Kirjaudu tällä sähköpostiosoitteella nähdäksesi tukkuhintasi.",
+  "hosted.status.body.needs_info": "{store} tarvitsee hieman lisätietoja ennen päätöstä.",
+  "hosted.status.body.pending": "{store} käy läpi jokaisen hakemuksen ja palaa asiaan.",
+  "hosted.status.body.rejected": "{store} ei voinut hyväksyä tätä hakemusta.",
+  "hosted.status.book": "Varaa perehdytyspuhelu",
+  "hosted.status.busyTitle": "Liian monta pyyntöä. Yritä uudelleen muutaman minuutin kuluttua.",
+  "hosted.status.expiredBody": "Turvallisuussyistä tilalinkit toimivat 90 päivää. Pyydä uusi linkki kaupalta {store}.",
+  "hosted.status.reapply": "Voit hakea uudelleen {date} alkaen.",
+  "hosted.status.shop": "Aloita ostokset",
+  "hosted.status.signIn": "Kirjaudu sisään",
+  "hosted.status.submitted": "{company} haki {date}.",
+  "hosted.status.title.approved": "Tukkutilisi on hyväksytty",
+  "hosted.status.title.needs_info": "Tarvitsemme hieman lisätietoja",
+  "hosted.status.title.pending": "Käsittelemme hakemustasi",
+  "hosted.status.title.rejected": "Hakemustasi ei hyväksytty",
+  "hosted.status.update": "Päivitä hakemuksesi",
+  "hosted.status.whatsapp": "Lähetä viesti kaupalle {store} WhatsAppissa"
 }

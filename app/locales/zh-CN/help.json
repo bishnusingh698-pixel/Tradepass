@@ -88,5 +88,8 @@
   "help.faq.oldTaxExempt.q": "我在 2026 年 11 月之前批准的买家显示所有税费“已免除”。为什么？",
   "help.faq.statePermits.a": "对于有免费官方查询的州，申请会显示“在州网站上核对”以及需要输入的内容；标记为已核对后，团队可以看到是谁在何时核对的。得克萨斯州以开放数据形式公布有效许可证，因此在 Starter 和 Pro 套餐中，Tradepass 会自动核对得州号码。EIN 没有免费的公开核对方式。",
   "help.faq.statePermits.q": "Tradepass 能核对销售许可证吗？",
-  "help.faq.usCertificates.a": "申请人选择其证书（州自己的证书、Streamlined Sales Tax 证书、MTC 统一证书或免税组织证书），并为其涵盖的每个州添加销售许可证号码。每个州都会成为一份单独的证书，有各自的到期日。批准时会为地点所在州建议经销商免税；其他涵盖的州只提供而不应用，因为 Shopify 按收货地址计税。没有州级销售税的州无需免税。"
+  "help.faq.usCertificates.a": "申请人选择其证书（州自己的证书、Streamlined Sales Tax 证书、MTC 统一证书或免税组织证书），并为其涵盖的每个州添加销售许可证号码。每个州都会成为一份单独的证书，有各自的到期日。批准时会为地点所在州建议经销商免税；其他涵盖的州只提供而不应用，因为 Shopify 按收货地址计税。没有州级销售税的州无需免税。",
+  "help.faq.usCertificates.q": "美国转售证书如何运作？",
+  "help.faq.welcomeEmail.a": "开启“发送欢迎邮件”后，Tradepass 会请 Shopify 发送其自己的 B2B 欢迎邮件。如果 Shopify 不允许应用在您的店铺发送该邮件，批准仍会完成，申请页面会提供一条现成的“您已获批准”消息。您也可以在 Shopify 后台从联系人处发送 Shopify 的 B2B 访问邮件，或使用 Shopify Flow 自动发送（触发器“已为公司联系人分配权限”，操作“发送 B2B 访问邮件”）。这是唯一自动发出的邮件，由 Shopify 发送。",
+  "help.faq.welcomeEmail.q": "我批准买家后，买家会收到邮件吗？"
 }

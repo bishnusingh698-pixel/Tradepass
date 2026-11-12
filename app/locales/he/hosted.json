@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "כבר נעשה שימוש בקישור הזה",
   "hosted.link.usedBody": "כל קישור עדכון פועל פעם אחת בלבד. כדי לשנות משהו נוסף, אפשר לפנות אל {store}.",
   "hosted.noscript": "כדי לעדכן את הבקשה, יש להפעיל JavaScript בדפדפן.",
-  "hosted.error.generic": "משהו השתבש אצלנו. אפשר לנסות שוב בעוד כמה דקות."
+  "hosted.error.generic": "משהו השתבש אצלנו. אפשר לנסות שוב בעוד כמה דקות.",
+  "hosted.status.body.approved": "התחברו עם כתובת האימייל הזו כדי לראות את המחירים הסיטונאיים שלכם.",
+  "hosted.status.body.needs_info": "{store} צריכה עוד קצת מידע לפני שתתקבל החלטה.",
+  "hosted.status.body.pending": "{store} בודקת כל בקשה ותחזור אליכם.",
+  "hosted.status.body.rejected": "{store} לא הצליחה לאשר את הבקשה הזו.",
+  "hosted.status.book": "קביעת שיחת היכרות",
+  "hosted.status.busyTitle": "יותר מדי בקשות. נסו שוב בעוד כמה דקות.",
+  "hosted.status.expiredBody": "למען האבטחה שלכם, קישורי סטטוס פועלים 90 ימים. פנו אל {store} לקבלת קישור חדש.",
+  "hosted.status.reapply": "תוכלו להגיש שוב החל מ-{date}.",
+  "hosted.status.shop": "התחלת קנייה",
+  "hosted.status.signIn": "התחברות",
+  "hosted.status.submitted": "{company} הגישה בקשה ב-{date}.",
+  "hosted.status.title.approved": "חשבון הסיטונאות שלכם אושר",
+  "hosted.status.title.needs_info": "אנחנו צריכים עוד קצת מידע",
+  "hosted.status.title.pending": "אנחנו בודקים את הבקשה שלכם",
+  "hosted.status.title.rejected": "הבקשה שלכם לא אושרה",
+  "hosted.status.update": "עדכון הבקשה",
+  "hosted.status.whatsapp": "שליחת הודעה אל {store} ב-WhatsApp"
 }

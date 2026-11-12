@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Tautan ini sudah digunakan",
   "hosted.link.usedBody": "Setiap tautan pembaruan hanya berlaku satu kali. Jika Anda perlu mengubah hal lain, silakan hubungi {store}.",
   "hosted.noscript": "Aktifkan JavaScript di browser Anda untuk memperbarui pengajuan.",
-  "hosted.error.generic": "Terjadi kesalahan di sistem kami. Silakan coba lagi dalam beberapa menit."
+  "hosted.error.generic": "Terjadi kesalahan di sistem kami. Silakan coba lagi dalam beberapa menit.",
+  "hosted.status.body.approved": "Masuk dengan alamat email ini untuk melihat harga grosir Anda.",
+  "hosted.status.body.needs_info": "{store} memerlukan sedikit informasi lagi sebelum memutuskan.",
+  "hosted.status.body.pending": "{store} meninjau setiap aplikasi dan akan menghubungi Anda.",
+  "hosted.status.body.rejected": "{store} tidak dapat menyetujui aplikasi ini.",
+  "hosted.status.book": "Pesan panggilan orientasi",
+  "hosted.status.busyTitle": "Terlalu banyak permintaan. Coba lagi dalam beberapa menit.",
+  "hosted.status.expiredBody": "Demi keamanan Anda, tautan status berlaku selama 90 hari. Hubungi {store} untuk mendapatkan tautan baru.",
+  "hosted.status.reapply": "Anda dapat mendaftar lagi mulai {date}.",
+  "hosted.status.shop": "Mulai belanja",
+  "hosted.status.signIn": "Masuk",
+  "hosted.status.submitted": "{company} mendaftar pada {date}.",
+  "hosted.status.title.approved": "Akun grosir Anda telah disetujui",
+  "hosted.status.title.needs_info": "Kami memerlukan sedikit informasi lagi",
+  "hosted.status.title.pending": "Kami sedang meninjau aplikasi Anda",
+  "hosted.status.title.rejected": "Aplikasi Anda tidak disetujui",
+  "hosted.status.update": "Perbarui aplikasi Anda",
+  "hosted.status.whatsapp": "Kirim pesan ke {store} di WhatsApp"
 }

@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Bu bağlantı zaten kullanıldı",
   "hosted.link.usedBody": "Her güncelleme bağlantısı yalnızca bir kez çalışır. Başka bir şeyi değiştirmeniz gerekiyorsa lütfen {store} mağazasıyla iletişime geçin.",
   "hosted.noscript": "Başvurunuzu güncellemek için lütfen tarayıcınızda JavaScript'i açın.",
-  "hosted.error.generic": "Bizim tarafımızda bir sorun oluştu. Lütfen birkaç dakika sonra tekrar deneyin."
+  "hosted.error.generic": "Bizim tarafımızda bir sorun oluştu. Lütfen birkaç dakika sonra tekrar deneyin.",
+  "hosted.status.body.approved": "Toptan fiyatlarınızı görmek için bu e-posta adresiyle giriş yapın.",
+  "hosted.status.body.needs_info": "{store} karar vermeden önce biraz daha bilgiye ihtiyaç duyuyor.",
+  "hosted.status.body.pending": "{store} her başvuruyu inceler ve size geri döner.",
+  "hosted.status.body.rejected": "{store} bu başvuruyu onaylayamadı.",
+  "hosted.status.book": "Tanışma görüşmesi planlayın",
+  "hosted.status.busyTitle": "Çok fazla istek. Lütfen birkaç dakika sonra yeniden deneyin.",
+  "hosted.status.expiredBody": "Güvenliğiniz için durum bağlantıları 90 gün çalışır. Yeni bir bağlantı için lütfen {store} ile iletişime geçin.",
+  "hosted.status.reapply": "{date} tarihinden itibaren yeniden başvurabilirsiniz.",
+  "hosted.status.shop": "Alışverişe başlayın",
+  "hosted.status.signIn": "Giriş yap",
+  "hosted.status.submitted": "{company}, {date} tarihinde başvurdu.",
+  "hosted.status.title.approved": "Toptan satış hesabınız onaylandı",
+  "hosted.status.title.needs_info": "Biraz daha bilgiye ihtiyacımız var",
+  "hosted.status.title.pending": "Başvurunuzu inceliyoruz",
+  "hosted.status.title.rejected": "Başvurunuz onaylanmadı",
+  "hosted.status.update": "Başvurunuzu güncelleyin",
+  "hosted.status.whatsapp": "WhatsApp'tan {store} mağazasına yazın"
 }

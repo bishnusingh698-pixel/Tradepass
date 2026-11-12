@@ -23,5 +23,18 @@
   "message.modal.close": "Închide",
   "message.approved.subject": "Contul dumneavoastră en-gros la {store_name} a fost aprobat",
   "message.approved.body": "Bună ziua, {first_name},\n\nVești bune: {company} a fost aprobată pentru un cont en-gros la {store_name}. Nivelul dumneavoastră de prețuri este {tier_name}.\n\nPentru a vă conecta, deschideți linkul de mai jos și introduceți această adresă de e-mail. Vă vom trimite prin e-mail un cod unic, deci nu aveți nevoie de parolă:\n{login_url}\n\nDupă conectare, veți vedea prețurile en-gros în tot magazinul.",
-  "message.channel.mailto": "Deschide în e-mail"
+  "message.channel.mailto": "Deschide în e-mail",
+  "message.channel.gmail": "Deschide în Gmail",
+  "message.channel.line": "Deschide în LINE",
+  "message.channel.outlook": "Deschide în Outlook",
+  "message.channel.sms": "Deschide în SMS",
+  "message.channel.telegram": "Deschide în Telegram",
+  "message.channel.whatsapp": "Deschide în WhatsApp",
+  "message.modal.moreApps": "Alte aplicații:",
+  "message.modal.noPhone": "Cererea nu are un număr de telefon internațional, așa că WhatsApp și SMS-urile se deschid fără destinatar.",
+  "message.modal.nothingSent": "Tradepass nu trimite nimic singur: fiecare buton doar deschide propria aplicație cu mesajul completat.",
+  "message.modal.openIn": "Trimiteți-l din propriile aplicații",
+  "message.modal.pasteHint": "Mesajul este prea lung pentru această aplicație, așa că se deschide fără text. Este copiat: doar lipiți-l.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Puteți verifica oricând starea cererii: {status_link}"
 }

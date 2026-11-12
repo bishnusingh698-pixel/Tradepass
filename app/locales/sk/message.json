@@ -23,5 +23,18 @@
   "message.modal.close": "Zavrieť",
   "message.approved.subject": "Váš veľkoobchodný účet v obchode {store_name} bol schválený",
   "message.approved.body": "Dobrý deň, {first_name},\n\nmáme dobrú správu: firme {company} bol schválený veľkoobchodný účet v obchode {store_name}. Vaša cenová úroveň je {tier_name}.\n\nAk sa chcete prihlásiť, otvorte odkaz nižšie a zadajte túto e-mailovú adresu. Pošleme vám e-mailom jednorazový kód, takže heslo nepotrebujete:\n{login_url}\n\nPo prihlásení uvidíte v celom obchode svoje veľkoobchodné ceny.",
-  "message.channel.mailto": "Otvoriť v e-maile"
+  "message.channel.mailto": "Otvoriť v e-maile",
+  "message.channel.gmail": "Otvoriť v Gmaile",
+  "message.channel.line": "Otvoriť v LINE",
+  "message.channel.outlook": "Otvoriť v Outlooku",
+  "message.channel.sms": "Otvoriť v SMS",
+  "message.channel.telegram": "Otvoriť v Telegrame",
+  "message.channel.whatsapp": "Otvoriť vo WhatsAppe",
+  "message.modal.moreApps": "Ďalšie aplikácie:",
+  "message.modal.noPhone": "Žiadosť neobsahuje medzinárodné telefónne číslo, takže WhatsApp a SMS sa otvoria bez príjemcu.",
+  "message.modal.nothingSent": "Tradepass sám nič neposiela: každé tlačidlo len otvorí vašu vlastnú aplikáciu s vyplnenou správou.",
+  "message.modal.openIn": "Odoslať z vlastných aplikácií",
+  "message.modal.pasteHint": "Správa je pre túto aplikáciu príliš dlhá, takže sa otvorí bez textu. Je skopírovaná: stačí ju vložiť.",
+  "message.modal.phone": "Telefón",
+  "message.statusLine": "Stav svojej žiadosti môžete kedykoľvek skontrolovať tu: {status_link}"
 }

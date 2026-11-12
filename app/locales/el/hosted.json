@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Αυτός ο σύνδεσμος έχει ήδη χρησιμοποιηθεί",
   "hosted.link.usedBody": "Κάθε σύνδεσμος ενημέρωσης λειτουργεί μία φορά. Αν χρειάζεται να αλλάξετε κάτι άλλο, επικοινωνήστε με το κατάστημα {store}.",
   "hosted.noscript": "Ενεργοποιήστε τη JavaScript στο πρόγραμμα περιήγησής σας για να ενημερώσετε την αίτησή σας.",
-  "hosted.error.generic": "Παρουσιάστηκε πρόβλημα από τη δική μας πλευρά. Δοκιμάστε ξανά σε λίγα λεπτά."
+  "hosted.error.generic": "Παρουσιάστηκε πρόβλημα από τη δική μας πλευρά. Δοκιμάστε ξανά σε λίγα λεπτά.",
+  "hosted.status.body.approved": "Συνδεθείτε με αυτή τη διεύθυνση email για να δείτε τις τιμές χονδρικής σας.",
+  "hosted.status.body.needs_info": "Το {store} χρειάζεται λίγες ακόμη πληροφορίες πριν αποφασίσει.",
+  "hosted.status.body.pending": "Το {store} εξετάζει κάθε αίτηση και θα επικοινωνήσει μαζί σας.",
+  "hosted.status.body.rejected": "Το {store} δεν μπόρεσε να εγκρίνει αυτή την αίτηση.",
+  "hosted.status.book": "Κλείστε μια κλήση γνωριμίας",
+  "hosted.status.busyTitle": "Πάρα πολλά αιτήματα. Δοκιμάστε ξανά σε λίγα λεπτά.",
+  "hosted.status.expiredBody": "Για την ασφάλειά σας, οι σύνδεσμοι κατάστασης λειτουργούν για 90 ημέρες. Επικοινωνήστε με το {store} για νέο σύνδεσμο.",
+  "hosted.status.reapply": "Μπορείτε να κάνετε ξανά αίτηση από {date}.",
+  "hosted.status.shop": "Ξεκινήστε τις αγορές",
+  "hosted.status.signIn": "Σύνδεση",
+  "hosted.status.submitted": "Η {company} έκανε αίτηση στις {date}.",
+  "hosted.status.title.approved": "Ο λογαριασμός χονδρικής σας εγκρίθηκε",
+  "hosted.status.title.needs_info": "Χρειαζόμαστε λίγες ακόμη πληροφορίες",
+  "hosted.status.title.pending": "Εξετάζουμε την αίτησή σας",
+  "hosted.status.title.rejected": "Η αίτησή σας δεν εγκρίθηκε",
+  "hosted.status.update": "Ενημέρωση αίτησης",
+  "hosted.status.whatsapp": "Μήνυμα στο {store} στο WhatsApp"
 }

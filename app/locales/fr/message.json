@@ -23,5 +23,18 @@
   "message.modal.close": "Fermer",
   "message.approved.subject": "Votre compte de vente en gros chez {store_name} est approuvé",
   "message.approved.body": "Bonjour {first_name},\n\nBonne nouvelle : {company} a été approuvée pour un compte de vente en gros chez {store_name}. Votre niveau de prix est {tier_name}.\n\nPour vous connecter, ouvrez le lien ci-dessous et saisissez cette adresse e-mail. Nous vous enverrons un code à usage unique par e-mail : aucun mot de passe n’est nécessaire.\n{login_url}\n\nUne fois connecté, vous verrez vos prix de gros dans toute la boutique.",
-  "message.channel.mailto": "Ouvrir dans la messagerie"
+  "message.channel.mailto": "Ouvrir dans la messagerie",
+  "message.channel.gmail": "Ouvrir dans Gmail",
+  "message.channel.line": "Ouvrir dans LINE",
+  "message.channel.outlook": "Ouvrir dans Outlook",
+  "message.channel.sms": "Ouvrir dans les SMS",
+  "message.channel.telegram": "Ouvrir dans Telegram",
+  "message.channel.whatsapp": "Ouvrir dans WhatsApp",
+  "message.modal.moreApps": "Autres applications :",
+  "message.modal.noPhone": "La candidature ne contient pas de numéro de téléphone international, WhatsApp et les SMS s’ouvrent donc sans destinataire.",
+  "message.modal.nothingSent": "Tradepass n’envoie rien lui-même : chaque bouton ouvre simplement votre propre application avec le message prérempli.",
+  "message.modal.openIn": "L’envoyer depuis vos propres applications",
+  "message.modal.pasteHint": "Le message est trop long pour cette application, elle s’ouvre donc sans le texte. Il est copié : il suffit de le coller.",
+  "message.modal.phone": "Téléphone",
+  "message.statusLine": "Vous pouvez consulter le statut de votre candidature à tout moment : {status_link}"
 }

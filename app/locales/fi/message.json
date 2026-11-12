@@ -23,5 +23,18 @@
   "message.modal.close": "Sulje",
   "message.approved.subject": "Tukkuasiakastilisi kaupassa {store_name} on hyväksytty",
   "message.approved.body": "Hei {first_name}\n\nHyviä uutisia: yritykselle {company} on hyväksytty tukkuasiakastili kauppaan {store_name}. Hintatasosi on {tier_name}.\n\nKirjaudu sisään avaamalla alla oleva linkki ja antamalla tämä sähköpostiosoite. Lähetämme sinulle sähköpostitse kertakäyttökoodin, joten salasanaa ei tarvita:\n{login_url}\n\nKun olet kirjautunut sisään, näet tukkuhintasi kaikkialla kaupassa.",
-  "message.channel.mailto": "Avaa sähköpostissa"
+  "message.channel.mailto": "Avaa sähköpostissa",
+  "message.channel.gmail": "Avaa Gmailissa",
+  "message.channel.line": "Avaa LINEssa",
+  "message.channel.outlook": "Avaa Outlookissa",
+  "message.channel.sms": "Avaa tekstiviesteissä",
+  "message.channel.telegram": "Avaa Telegramissa",
+  "message.channel.whatsapp": "Avaa WhatsAppissa",
+  "message.modal.moreApps": "Muut sovellukset:",
+  "message.modal.noPhone": "Hakemuksessa ei ole kansainvälistä puhelinnumeroa, joten WhatsApp ja tekstiviestit avautuvat ilman vastaanottajaa.",
+  "message.modal.nothingSent": "Tradepass ei lähetä itse mitään: jokainen painike vain avaa oman sovelluksesi viesti valmiiksi täytettynä.",
+  "message.modal.openIn": "Lähetä omista sovelluksistasi",
+  "message.modal.pasteHint": "Viesti on liian pitkä tälle sovellukselle, joten se avautuu ilman tekstiä. Viesti on kopioitu: liitä se.",
+  "message.modal.phone": "Puhelin",
+  "message.statusLine": "Voit tarkistaa hakemuksesi tilan milloin tahansa: {status_link}"
 }

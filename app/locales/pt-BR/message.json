@@ -23,5 +23,18 @@
   "message.modal.close": "Fechar",
   "message.approved.subject": "Sua conta de atacado na {store_name} foi aprovada",
   "message.approved.body": "Olá, {first_name},\n\nBoas notícias: a {company} foi aprovada para uma conta de atacado na {store_name}. Seu nível de preço é {tier_name}.\n\nPara fazer login, abra o link abaixo e informe este endereço de e-mail. Enviaremos um código de uso único por e-mail, então você não precisa de senha:\n{login_url}\n\nDepois de fazer login, você verá seus preços de atacado em toda a loja.",
-  "message.channel.mailto": "Abrir no e-mail"
+  "message.channel.mailto": "Abrir no e-mail",
+  "message.channel.gmail": "Abrir no Gmail",
+  "message.channel.line": "Abrir no LINE",
+  "message.channel.outlook": "Abrir no Outlook",
+  "message.channel.sms": "Abrir no SMS",
+  "message.channel.telegram": "Abrir no Telegram",
+  "message.channel.whatsapp": "Abrir no WhatsApp",
+  "message.modal.moreApps": "Mais apps:",
+  "message.modal.noPhone": "A solicitação não tem um telefone internacional, então o WhatsApp e o SMS abrem sem destinatário.",
+  "message.modal.nothingSent": "O Tradepass não envia nada sozinho: cada botão só abre seu próprio app com a mensagem preenchida.",
+  "message.modal.openIn": "Envie pelos seus próprios apps",
+  "message.modal.pasteHint": "A mensagem é longa demais para este app, então ele abre sem o texto. Ela foi copiada: é só colar.",
+  "message.modal.phone": "Telefone",
+  "message.statusLine": "Você pode acompanhar o status da sua solicitação a qualquer momento: {status_link}"
 }

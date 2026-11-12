@@ -23,5 +23,18 @@
   "message.modal.close": "סגירה",
   "message.approved.subject": "החשבון הסיטונאי שלך ב-{store_name} אושר",
   "message.approved.body": "שלום {first_name},\n\nחדשות טובות: החשבון הסיטונאי של {company} ב-{store_name} אושר. רמת התמחור שלך: {tier_name}.\n\nכדי להתחבר, יש לפתוח את הקישור הבא ולהזין את כתובת האימייל הזו. נשלח באימייל קוד חד-פעמי, כך שאין צורך בסיסמה:\n{login_url}\n\nאחרי ההתחברות, המחירים הסיטונאיים יוצגו בכל רחבי החנות.",
-  "message.channel.mailto": "פתיחה באימייל"
+  "message.channel.mailto": "פתיחה באימייל",
+  "message.channel.gmail": "פתיחה ב-Gmail",
+  "message.channel.line": "פתיחה ב-LINE",
+  "message.channel.outlook": "פתיחה ב-Outlook",
+  "message.channel.sms": "פתיחה בהודעות טקסט",
+  "message.channel.telegram": "פתיחה ב-Telegram",
+  "message.channel.whatsapp": "פתיחה ב-WhatsApp",
+  "message.modal.moreApps": "אפליקציות נוספות:",
+  "message.modal.noPhone": "אין בבקשה מספר טלפון בינלאומי, ולכן WhatsApp והודעות הטקסט נפתחים בלי נמען.",
+  "message.modal.nothingSent": "Tradepass לא שולחת דבר בעצמה: כל כפתור רק פותח את האפליקציה שלכם עם ההודעה ממולאת.",
+  "message.modal.openIn": "שליחה מהאפליקציות שלכם",
+  "message.modal.pasteHint": "ההודעה ארוכה מדי לאפליקציה הזו, ולכן היא נפתחת בלי הטקסט. ההודעה הועתקה: פשוט הדביקו אותה.",
+  "message.modal.phone": "טלפון",
+  "message.statusLine": "אפשר לבדוק את סטטוס הבקשה בכל עת: {status_link}"
 }

@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Ši nuoroda jau panaudota",
   "hosted.link.usedBody": "Kiekviena atnaujinimo nuoroda veikia vieną kartą. Jei reikia pakeisti ką nors kita, susisiekite su parduotuve {store}.",
   "hosted.noscript": "Įjunkite JavaScript savo naršyklėje, kad galėtumėte atnaujinti paraišką.",
-  "hosted.error.generic": "Mūsų sistemoje įvyko klaida. Bandykite dar kartą po kelių minučių."
+  "hosted.error.generic": "Mūsų sistemoje įvyko klaida. Bandykite dar kartą po kelių minučių.",
+  "hosted.status.body.approved": "Prisijunkite šiuo el. pašto adresu, kad matytumėte savo didmenines kainas.",
+  "hosted.status.body.needs_info": "{store} prieš priimdama sprendimą reikia šiek tiek daugiau informacijos.",
+  "hosted.status.body.pending": "{store} peržiūri kiekvieną paraišką ir su jumis susisieks.",
+  "hosted.status.body.rejected": "{store} negalėjo patvirtinti šios paraiškos.",
+  "hosted.status.book": "Užsisakyti įvadinį skambutį",
+  "hosted.status.busyTitle": "Per daug užklausų. Bandykite dar kartą po kelių minučių.",
+  "hosted.status.expiredBody": "Saugumo sumetimais būsenos nuorodos veikia 90 dienų. Dėl naujos nuorodos kreipkitės į {store}.",
+  "hosted.status.reapply": "Vėl pateikti paraišką galėsite nuo {date}.",
+  "hosted.status.shop": "Pradėti apsipirkti",
+  "hosted.status.signIn": "Prisijungti",
+  "hosted.status.submitted": "{company} paraišką pateikė {date}.",
+  "hosted.status.title.approved": "Jūsų didmeninė paskyra patvirtinta",
+  "hosted.status.title.needs_info": "Mums reikia šiek tiek daugiau informacijos",
+  "hosted.status.title.pending": "Peržiūrime jūsų paraišką",
+  "hosted.status.title.rejected": "Jūsų paraiška nepatvirtinta",
+  "hosted.status.update": "Atnaujinti paraišką",
+  "hosted.status.whatsapp": "Rašyti {store} per „WhatsApp“"
 }

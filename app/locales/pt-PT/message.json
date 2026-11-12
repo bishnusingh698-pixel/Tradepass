@@ -23,5 +23,18 @@
   "message.modal.close": "Fechar",
   "message.approved.subject": "A sua conta de venda por grosso na {store_name} foi aprovada",
   "message.approved.body": "Olá, {first_name},\n\nBoas notícias: a {company} foi aprovada para uma conta de venda por grosso na {store_name}. O seu nível de preços é {tier_name}.\n\nPara iniciar sessão, abra a ligação abaixo e introduza este endereço de e-mail. Vamos enviar-lhe um código de utilização única por e-mail, pelo que não precisa de palavra-passe:\n{login_url}\n\nDepois de iniciar sessão, verá os seus preços por grosso em toda a loja.",
-  "message.channel.mailto": "Abrir no e-mail"
+  "message.channel.mailto": "Abrir no e-mail",
+  "message.channel.gmail": "Abrir no Gmail",
+  "message.channel.line": "Abrir no LINE",
+  "message.channel.outlook": "Abrir no Outlook",
+  "message.channel.sms": "Abrir nas mensagens SMS",
+  "message.channel.telegram": "Abrir no Telegram",
+  "message.channel.whatsapp": "Abrir no WhatsApp",
+  "message.modal.moreApps": "Mais apps:",
+  "message.modal.noPhone": "A candidatura não tem um número de telefone internacional, por isso o WhatsApp e as SMS abrem sem destinatário.",
+  "message.modal.nothingSent": "O Tradepass não envia nada por si: cada botão apenas abre a sua própria app com a mensagem preenchida.",
+  "message.modal.openIn": "Envie-a a partir das suas apps",
+  "message.modal.pasteHint": "A mensagem é demasiado longa para esta app, por isso abre sem o texto. Foi copiada: basta colá-la.",
+  "message.modal.phone": "Telefone",
+  "message.statusLine": "Pode consultar o estado da sua candidatura a qualquer momento: {status_link}"
 }

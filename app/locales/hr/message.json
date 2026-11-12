@@ -23,5 +23,18 @@
   "message.modal.close": "Zatvori",
   "message.approved.subject": "Vaš veleprodajni račun u trgovini {store_name} je odobren",
   "message.approved.body": "Dobar dan, {first_name},\n\nimamo dobre vijesti: tvrtki {company} odobren je veleprodajni račun u trgovini {store_name}. Vaša cjenovna razina je {tier_name}.\n\nZa prijavu otvorite poveznicu u nastavku i unesite ovu adresu e-pošte. E-poštom ćemo vam poslati jednokratni kod pa vam lozinka nije potrebna:\n{login_url}\n\nNakon prijave vidjet ćete svoje veleprodajne cijene u cijeloj trgovini.",
-  "message.channel.mailto": "Otvori u e-pošti"
+  "message.channel.mailto": "Otvori u e-pošti",
+  "message.channel.gmail": "Otvori u Gmailu",
+  "message.channel.line": "Otvori u LINE-u",
+  "message.channel.outlook": "Otvori u Outlooku",
+  "message.channel.sms": "Otvori u SMS-ovima",
+  "message.channel.telegram": "Otvori u Telegramu",
+  "message.channel.whatsapp": "Otvori u WhatsAppu",
+  "message.modal.moreApps": "Više aplikacija:",
+  "message.modal.noPhone": "Zahtjev nema međunarodni broj telefona, pa se WhatsApp i SMS otvaraju bez primatelja.",
+  "message.modal.nothingSent": "Tradepass sam ništa ne šalje: svaki gumb samo otvara vašu aplikaciju s ispunjenom porukom.",
+  "message.modal.openIn": "Pošaljite iz vlastitih aplikacija",
+  "message.modal.pasteHint": "Poruka je preduga za ovu aplikaciju, pa se otvara bez teksta. Kopirana je: samo je zalijepite.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Status svog zahtjeva možete provjeriti u bilo kojem trenutku: {status_link}"
 }

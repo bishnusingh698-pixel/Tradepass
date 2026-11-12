@@ -23,5 +23,18 @@
   "message.modal.close": "Zamknij",
   "message.approved.subject": "Konto hurtowe w sklepie {store_name} zostało zatwierdzone",
   "message.approved.body": "Dzień dobry {first_name},\n\nmamy dobrą wiadomość: firma {company} otrzymała zatwierdzenie konta hurtowego w sklepie {store_name}. Przypisany poziom cenowy to {tier_name}.\n\nAby się zalogować, wystarczy otworzyć poniższy link i wpisać ten adres e-mail. Wyślemy kod jednorazowy, więc hasło nie jest potrzebne:\n{login_url}\n\nPo zalogowaniu ceny hurtowe będą widoczne w całym sklepie.",
-  "message.channel.mailto": "Otwórz w poczcie"
+  "message.channel.mailto": "Otwórz w poczcie",
+  "message.channel.gmail": "Otwórz w Gmailu",
+  "message.channel.line": "Otwórz w LINE",
+  "message.channel.outlook": "Otwórz w Outlooku",
+  "message.channel.sms": "Otwórz w SMS-ach",
+  "message.channel.telegram": "Otwórz w Telegramie",
+  "message.channel.whatsapp": "Otwórz w WhatsAppie",
+  "message.modal.moreApps": "Więcej aplikacji:",
+  "message.modal.noPhone": "Wniosek nie zawiera międzynarodowego numeru telefonu, więc WhatsApp i SMS-y otwierają się bez odbiorcy.",
+  "message.modal.nothingSent": "Tradepass sam niczego nie wysyła: każdy przycisk tylko otwiera Twoją aplikację z wypełnioną wiadomością.",
+  "message.modal.openIn": "Wyślij z własnych aplikacji",
+  "message.modal.pasteHint": "Wiadomość jest za długa dla tej aplikacji, więc otworzy się bez tekstu. Została skopiowana: wystarczy ją wkleić.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Status wniosku możesz sprawdzić w każdej chwili: {status_link}"
 }

@@ -23,5 +23,18 @@
   "message.modal.close": "Stäng",
   "message.approved.subject": "Ditt grossistkonto hos {store_name} är godkänt",
   "message.approved.body": "Hej {first_name},\n\nGoda nyheter: {company} har godkänts för ett grossistkonto hos {store_name}. Din prisnivå är {tier_name}.\n\nLogga in genom att öppna länken nedan och ange den här e-postadressen. Vi mejlar dig en engångskod, så du behöver inget lösenord:\n{login_url}\n\nNär du har loggat in ser du dina grossistpriser i hela butiken.",
-  "message.channel.mailto": "Öppna i mejl"
+  "message.channel.mailto": "Öppna i mejl",
+  "message.channel.gmail": "Öppna i Gmail",
+  "message.channel.line": "Öppna i LINE",
+  "message.channel.outlook": "Öppna i Outlook",
+  "message.channel.sms": "Öppna i sms",
+  "message.channel.telegram": "Öppna i Telegram",
+  "message.channel.whatsapp": "Öppna i WhatsApp",
+  "message.modal.moreApps": "Fler appar:",
+  "message.modal.noPhone": "Ansökan saknar ett internationellt telefonnummer, så WhatsApp och sms öppnas utan mottagare.",
+  "message.modal.nothingSent": "Tradepass skickar ingenting själv: varje knapp öppnar bara din egen app med meddelandet ifyllt.",
+  "message.modal.openIn": "Skicka från dina egna appar",
+  "message.modal.pasteHint": "Meddelandet är för långt för den här appen, så den öppnas utan texten. Det är kopierat: klistra bara in det.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Du kan när som helst se statusen för din ansökan: {status_link}"
 }

@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Эта ссылка уже использована",
   "hosted.link.usedBody": "Каждая ссылка для обновления срабатывает один раз. Если нужно изменить что-то ещё, свяжитесь с магазином {store}.",
   "hosted.noscript": "Включите JavaScript в браузере, чтобы обновить заявку.",
-  "hosted.error.generic": "На нашей стороне что-то пошло не так. Повторите попытку через несколько минут."
+  "hosted.error.generic": "На нашей стороне что-то пошло не так. Повторите попытку через несколько минут.",
+  "hosted.status.body.approved": "Войдите с этим адресом почты, чтобы увидеть оптовые цены.",
+  "hosted.status.body.needs_info": "{store} нужно немного больше информации, прежде чем принять решение.",
+  "hosted.status.body.pending": "{store} рассматривает каждую заявку и свяжется с вами.",
+  "hosted.status.body.rejected": "{store} не удалось одобрить эту заявку.",
+  "hosted.status.book": "Записаться на вводный звонок",
+  "hosted.status.busyTitle": "Слишком много запросов. Повторите попытку через несколько минут.",
+  "hosted.status.expiredBody": "В целях безопасности ссылки на статус действуют 90 дней. Обратитесь в {store} за новой ссылкой.",
+  "hosted.status.reapply": "Вы сможете подать заявку снова с {date}.",
+  "hosted.status.shop": "Начать покупки",
+  "hosted.status.signIn": "Войти",
+  "hosted.status.submitted": "{company} подала заявку {date}.",
+  "hosted.status.title.approved": "Ваш оптовый аккаунт одобрен",
+  "hosted.status.title.needs_info": "Нам нужно немного больше информации",
+  "hosted.status.title.pending": "Мы рассматриваем вашу заявку",
+  "hosted.status.title.rejected": "Ваша заявка не одобрена",
+  "hosted.status.update": "Обновить заявку",
+  "hosted.status.whatsapp": "Написать {store} в WhatsApp"
 }

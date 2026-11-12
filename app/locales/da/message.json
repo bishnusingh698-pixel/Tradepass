@@ -23,5 +23,18 @@
   "message.modal.close": "Luk",
   "message.approved.subject": "Din engroskonto hos {store_name} er godkendt",
   "message.approved.body": "Hej {first_name}\n\nGode nyheder: {company} er blevet godkendt til en engroskonto hos {store_name}. Dit prisniveau er {tier_name}.\n\nFor at logge ind skal du åbne linket nedenfor og indtaste denne e-mailadresse. Vi sender dig en engangskode via e-mail, så du behøver ingen adgangskode:\n{login_url}\n\nNår du er logget ind, kan du se dine engrospriser overalt i butikken.",
-  "message.channel.mailto": "Åbn i e-mail"
+  "message.channel.mailto": "Åbn i e-mail",
+  "message.channel.gmail": "Åbn i Gmail",
+  "message.channel.line": "Åbn i LINE",
+  "message.channel.outlook": "Åbn i Outlook",
+  "message.channel.sms": "Åbn i sms",
+  "message.channel.telegram": "Åbn i Telegram",
+  "message.channel.whatsapp": "Åbn i WhatsApp",
+  "message.modal.moreApps": "Flere apps:",
+  "message.modal.noPhone": "Ansøgningen har intet internationalt telefonnummer, så WhatsApp og sms åbner uden modtager.",
+  "message.modal.nothingSent": "Tradepass sender ikke selv noget: hver knap åbner blot din egen app med beskeden udfyldt.",
+  "message.modal.openIn": "Send den fra dine egne apps",
+  "message.modal.pasteHint": "Beskeden er for lang til denne app, så den åbner uden teksten. Den er kopieret: indsæt den bare.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Du kan altid se status for din ansøgning her: {status_link}"
 }

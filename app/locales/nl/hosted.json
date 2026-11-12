@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Deze link is al gebruikt",
   "hosted.link.usedBody": "Elke link om bij te werken werkt één keer. Wilt u nog iets anders wijzigen? Neem dan contact op met {store}.",
   "hosted.noscript": "Zet JavaScript aan in uw browser om uw aanvraag bij te werken.",
-  "hosted.error.generic": "Er is bij ons iets misgegaan. Probeer het over een paar minuten opnieuw."
+  "hosted.error.generic": "Er is bij ons iets misgegaan. Probeer het over een paar minuten opnieuw.",
+  "hosted.status.body.approved": "Log in met dit e-mailadres om uw groothandelsprijzen te zien.",
+  "hosted.status.body.needs_info": "{store} heeft wat meer informatie nodig voordat er wordt beslist.",
+  "hosted.status.body.pending": "{store} beoordeelt elke aanvraag en neemt contact met u op.",
+  "hosted.status.body.rejected": "{store} kon deze aanvraag niet goedkeuren.",
+  "hosted.status.book": "Kennismakingsgesprek inplannen",
+  "hosted.status.busyTitle": "Te veel verzoeken. Probeer het over een paar minuten opnieuw.",
+  "hosted.status.expiredBody": "Voor uw veiligheid werken statuslinks 90 dagen. Neem contact op met {store} voor een nieuwe link.",
+  "hosted.status.reapply": "U kunt vanaf {date} opnieuw aanvragen.",
+  "hosted.status.shop": "Begin met winkelen",
+  "hosted.status.signIn": "Inloggen",
+  "hosted.status.submitted": "{company} heeft op {date} aangevraagd.",
+  "hosted.status.title.approved": "Uw groothandelsaccount is goedgekeurd",
+  "hosted.status.title.needs_info": "We hebben wat meer informatie nodig",
+  "hosted.status.title.pending": "We beoordelen uw aanvraag",
+  "hosted.status.title.rejected": "Uw aanvraag is niet goedgekeurd",
+  "hosted.status.update": "Uw aanvraag bijwerken",
+  "hosted.status.whatsapp": "{store} een bericht sturen op WhatsApp"
 }

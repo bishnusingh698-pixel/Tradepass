@@ -23,5 +23,18 @@
   "message.modal.close": "Kapat",
   "message.approved.subject": "{store_name} mağazasındaki toptan satış hesabınız onaylandı",
   "message.approved.body": "Merhaba {first_name},\n\nGüzel haber: {company} için {store_name} mağazasında toptan satış hesabı onaylandı. Fiyat seviyeniz: {tier_name}.\n\nOturum açmak için aşağıdaki bağlantıyı açın ve bu e-posta adresini girin. Size e-postayla tek kullanımlık bir kod göndereceğiz, bu nedenle şifreye ihtiyacınız yok:\n{login_url}\n\nOturum açtıktan sonra mağazanın her yerinde toptan satış fiyatlarınızı göreceksiniz.",
-  "message.channel.mailto": "E-postada aç"
+  "message.channel.mailto": "E-postada aç",
+  "message.channel.gmail": "Gmail'de aç",
+  "message.channel.line": "LINE'da aç",
+  "message.channel.outlook": "Outlook'ta aç",
+  "message.channel.sms": "Kısa mesajda aç",
+  "message.channel.telegram": "Telegram'da aç",
+  "message.channel.whatsapp": "WhatsApp'ta aç",
+  "message.modal.moreApps": "Diğer uygulamalar:",
+  "message.modal.noPhone": "Başvuruda uluslararası bir telefon numarası yok, bu yüzden WhatsApp ve kısa mesaj alıcısız açılır.",
+  "message.modal.nothingSent": "Tradepass kendisi hiçbir şey göndermez: her düğme yalnızca mesaj doldurulmuş olarak kendi uygulamanızı açar.",
+  "message.modal.openIn": "Kendi uygulamalarınızdan gönderin",
+  "message.modal.pasteHint": "Mesaj bu uygulama için çok uzun, bu yüzden metin olmadan açılır. Kopyalandı: yapıştırmanız yeterli.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Başvurunuzun durumunu istediğiniz zaman kontrol edebilirsiniz: {status_link}"
 }

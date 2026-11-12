@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "تم استخدام هذا الرابط بالفعل",
   "hosted.link.usedBody": "يعمل كل رابط تحديث مرة واحدة فقط. إذا احتجت إلى تغيير شيء آخر، فيُرجى التواصل مع {store}.",
   "hosted.noscript": "يُرجى تفعيل JavaScript في متصفحك لتحديث طلبك.",
-  "hosted.error.generic": "حدث خطأ من جهتنا. يُرجى المحاولة مرة أخرى بعد بضع دقائق."
+  "hosted.error.generic": "حدث خطأ من جهتنا. يُرجى المحاولة مرة أخرى بعد بضع دقائق.",
+  "hosted.status.body.approved": "سجّل الدخول بهذا البريد الإلكتروني لرؤية أسعار الجملة الخاصة بك.",
+  "hosted.status.body.needs_info": "يحتاج {store} إلى مزيد من المعلومات قبل اتخاذ القرار.",
+  "hosted.status.body.pending": "يراجع {store} كل طلب وسيعاود التواصل معك.",
+  "hosted.status.body.rejected": "لم يتمكن {store} من الموافقة على هذا الطلب.",
+  "hosted.status.book": "احجز مكالمة تعريفية",
+  "hosted.status.busyTitle": "طلبات كثيرة جدًا. يرجى المحاولة مرة أخرى بعد بضع دقائق.",
+  "hosted.status.expiredBody": "حفاظًا على أمانك، تعمل روابط الحالة لمدة 90 يومًا. يرجى التواصل مع {store} للحصول على رابط جديد.",
+  "hosted.status.reapply": "يمكنك التقديم مرة أخرى بدءًا من {date}.",
+  "hosted.status.shop": "ابدأ التسوق",
+  "hosted.status.signIn": "تسجيل الدخول",
+  "hosted.status.submitted": "قدّمت {company} الطلب في {date}.",
+  "hosted.status.title.approved": "تمت الموافقة على حساب الجملة الخاص بك",
+  "hosted.status.title.needs_info": "نحتاج إلى مزيد من المعلومات",
+  "hosted.status.title.pending": "نراجع طلبك",
+  "hosted.status.title.rejected": "لم تتم الموافقة على طلبك",
+  "hosted.status.update": "تحديث طلبك",
+  "hosted.status.whatsapp": "راسل {store} على WhatsApp"
 }
