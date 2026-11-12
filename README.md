@@ -142,9 +142,17 @@ All of these are in `.env.example`. On Render, set them in the service's **Envir
 | `JOB_SECRET` | Long random string. cron-job.org sends it as `X-Tradepass-Job-Secret` | The agent generates it |
 | `BILLING_TEST` | `false` in production; `true` on a staging app so charges are test charges | — |
 | `SUPPORT_EMAIL` | The support address shown in Help | Your email |
+| `SUPPORT_WHATSAPP_URL` | Optional. Your own `https://wa.me/<number>` link; Help then shows "Chat with us on WhatsApp". A plain link, no WhatsApp Business API | Your WhatsApp number |
+| `TRUSTED_PROXY_HOPS` | Optional, default `0`. How many proxies at the end of `X-Forwarded-For` are ours (Shopify's app proxy + Render = `2` once confirmed on the live deploy, REVIEW N2), so per-IP spam limits use the real visitor | Check one request's headers after deploy |
 
 | `HMRC_CLIENT_ID`, `HMRC_CLIENT_SECRET` | Optional. UK VAT checks: register an application on the HMRC Developer Hub (https://developer.service.hmrc.gov.uk) and subscribe it to "Check a UK VAT number". Without them, UK numbers show "Couldn't check" (the format is still checked) | HMRC Developer Hub |
 | `ABN_GUID` | Optional. Australian ABN checks: free GUID from https://abr.business.gov.au/Tools/WebServices. Without it a mistyped ABN is still caught by the checksum | ABN Lookup |
+| `NZBN_API_KEY` | Optional. New Zealand NZBN checks: free subscription key from https://portal.api.business.govt.nz (MBIE says there is no fee; subscriptions are reviewed). Without it NZ numbers get the offline check digit and a link | NZBN API portal |
+| `SOCRATA_APP_TOKEN` | Optional. Higher rate limit for the Texas sales-tax permit check on data.texas.gov (works without it) | data.texas.gov → Developer settings |
+
+Norway's Brønnøysund register (`data.brreg.no`) and the EU's VIES need no key.
+
+**Outbound hosts** the server calls (all free government services, each 5 s per call, 6 s per check, never blocking an application): `ec.europa.eu`, `data.brreg.no`, `data.texas.gov`, and with the keys above `api.service.hmrc.gov.uk`, `abr.business.gov.au`, `api.business.govt.nz`. Plus Shopify. No email, SMS or messaging service is called (tests/email-removal.test.ts checks this).
 
 `render.yaml` also sets `NODE_VERSION=22.12.0` and `NODE_ENV=production`. `SHOP_CUSTOM_DOMAIN` (template option for a custom shop domain) is not needed.
 

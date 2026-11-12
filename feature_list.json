@@ -742,6 +742,181 @@
       "description": "/healthz never touches DB; capacity estimate shows 100 stores within Neon free limits",
       "status": "built",
       "verified": "2026-10-17: tests/healthz-jobs.test.ts (no DB); capacity estimate in PLAN.md"
+    },
+    {
+      "id": "P9-A1",
+      "phase": "P9",
+      "description": "US resale certificates per state (state/SST/MTC/exempt-org), one certificate row per state, location-state exemption suggestion (D-098)",
+      "status": "needs-live-check",
+      "verified": "2026-11-07: unit/integration tests pass; exemption on a real company location needs a dev store"
+    },
+    {
+      "id": "P9-A2",
+      "phase": "P9",
+      "description": "State permit lookups: official links, 'Mark as checked', live Texas open-data check on Starter (D-099)",
+      "status": "needs-live-check",
+      "verified": "2026-11-07: unit/integration tests pass; data.texas.gov from Render to confirm"
+    },
+    {
+      "id": "P9-A3",
+      "phase": "P9",
+      "description": "US form fields (store type, URL, years, EIN, D-U-N-S, trade references), E.164 phone, ZIP check, 'US retailers' and 'Nonprofits' templates (D-100)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-A4",
+      "phase": "P9",
+      "description": "Nonprofits: IRS TEOS link, no bulk import (D-101)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-B1",
+      "phase": "P9",
+      "description": "Messages open in mail app, Gmail, Outlook web, WhatsApp, texts, Telegram, LINE; long-text paste fallback (D-103)",
+      "status": "needs-live-check",
+      "verified": "2026-11-07: unit/integration tests pass; Outlook web and sms: formats on phones"
+    },
+    {
+      "id": "P9-B2",
+      "phase": "P9",
+      "description": "Signed status links, hosted status page, status card for logged-in applicants (D-104)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-B3",
+      "phase": "P9",
+      "description": "Customer-account 'Wholesale application status' block (D-104)",
+      "status": "needs-live-check",
+      "verified": "2026-11-07: extension validated with the toolkit; placement and network access need a dev store"
+    },
+    {
+      "id": "P9-B4",
+      "phase": "P9",
+      "description": "Re-apply cool-down setting (D-105)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-B5",
+      "phase": "P9",
+      "description": "Saved replies per language for reject and more info, used by bulk reject and rules (D-106)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-B6",
+      "phase": "P9",
+      "description": "Flow trigger 'Wholesale application info received' + docs/flow-templates.md (D-107)",
+      "status": "needs-live-check",
+      "verified": "2026-11-07: unit/integration tests pass; Flow run on a dev store"
+    },
+    {
+      "id": "P9-B7",
+      "phase": "P9",
+      "description": "Merchant WhatsApp, booking and shopping links; support WhatsApp in Help",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-B8",
+      "phase": "P9",
+      "description": "'You're approved' message when Shopify refuses the welcome email (D-092)",
+      "status": "needs-live-check",
+      "verified": "2026-11-07: unit/integration tests pass; whether the mutation is accepted needs a dev store"
+    },
+    {
+      "id": "P9-C1",
+      "phase": "P9",
+      "description": "Waiting time, stale highlight, oldest-first, Mine/Nobody filter, Assign to me (D-108)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-C2",
+      "phase": "P9",
+      "description": "Previous/next navigation and keyboard shortcuts J/K/A/M/R/? (D-108)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-C3",
+      "phase": "P9",
+      "description": "Approve with defaults; finish-in-Shopify links (D-108)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-C4",
+      "phase": "P9",
+      "description": "Risk hints incl. throwaway email; automation conditions (D-109, D-114)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-C5",
+      "phase": "P9",
+      "description": "Attribution (UTM, referrer host, landing path) on applications, CSV and Home (D-102)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-C6",
+      "phase": "P9",
+      "description": "Home 30/90-day numbers and top sources",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-C7",
+      "phase": "P9",
+      "description": "QR code and form link (D-111)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-C8",
+      "phase": "P9",
+      "description": "Printable application page (D-108)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-C9",
+      "phase": "P9",
+      "description": "Customer tags on approval, removed on pause (D-110)",
+      "status": "needs-live-check",
+      "verified": "2026-11-07: unit/integration tests pass; tagsAdd on a dev store"
+    },
+    {
+      "id": "P9-D1",
+      "phase": "P9",
+      "description": "Draft privacy (no files or tax number), dark-theme contrast, phone camera upload, upload failure reasons (D-112)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-E1",
+      "phase": "P9",
+      "description": "Offline check digits for 34 countries (D-095)",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass"
+    },
+    {
+      "id": "P9-E2",
+      "phase": "P9",
+      "description": "Brønnøysund (NO) live check, NZBN (NZ, free key), official lookup links incl. CH and CA (D-113)",
+      "status": "needs-live-check",
+      "verified": "2026-11-07: unit/integration tests pass; registry hosts unreachable from the build environment"
+    },
+    {
+      "id": "P9-F1",
+      "phase": "P9",
+      "description": "Fixes: welcome email unavailable (C7), tier sync query (C8), blanket tax exemption (C9), paused buyer checkout (N1), N2-N4, M18, M19, m17-m19",
+      "status": "built",
+      "verified": "2026-11-07: unit/integration tests pass; N1 needs a dev-store checkout"
     }
   ]
 }

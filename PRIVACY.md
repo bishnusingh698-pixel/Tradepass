@@ -21,13 +21,20 @@ Tradepass collects wholesale applications for a merchant. The merchant is the co
 | Activity log | Who did what, when, result, with our IDs or Shopify IDs only (never names, emails or numbers) | Audit trail | **24 months**, or shop/redact |
 | Import runs | Uploaded CSV rows (may include names, emails, addresses) while the run is open; afterwards row numbers and problem codes only | Resumable imports | Row data cleared when the run finishes or is cancelled; the run record until shop/redact |
 | Spam protection | Salted hashes of IP addresses and emails, counted per hour; a salted IP hash on each application | Rate limiting | Counters deleted after 2 hours; the application's hash with the application |
-| Link tokens | Hash of each more-info or renewal link token, purpose, expiry, used time (tokens contain no personal data) | Single-use links | 7 days after expiry |
+| Link tokens | Hash of each more-info or renewal link token, purpose, expiry, used time (tokens contain no personal data). Status links (90 days, read-only) are signed but not stored | Single-use links | 7 days after expiry |
+| Where the applicant came from | Five short values: UTM source, medium and campaign, the referring site's **host only** (never the full URL) and the landing path. Kept in the visitor's tab (`sessionStorage`, no cookie) until they apply | The merchant's "where applications come from" numbers (D-102) | Same as the application |
+| US seller's permits | Per state: the state and the permit number, **encrypted**; the result of a live check (Texas open data) or who marked it as checked and when | Tax exemptions per state (D-098, D-099) | Same as the certificate |
+| Saved replies, applicant/contact settings | The merchant's own texts and links (WhatsApp, booking, shopping), customer tags to add | Messages and approval | Until changed, or shop/redact |
 | Staff sessions | Shopify session data (template), which can include the staff member's name and email | Admin sign-in | Deleted on uninstall |
 | Store details | Store name, primary domain, country, currency, plan facts, settings | Running the app | shop/redact |
 
 Applicants who are already logged in are linked to their Shopify customer ID. For imported buyers, the contact's email address (filled into the renewal message the merchant sends) is read live from Shopify each time and never stored.
 
-**Tradepass sends no email** (DECISIONS D-091). When a buyer is approved with "Send welcome email" on, Tradepass asks Shopify to send its own B2B welcome email (`companyContactSendWelcomeEmail`); Shopify sends it. For "more information", "not approved" and certificate renewal, the merchant sees a ready-made message and sends it themselves from their own email; nothing about it passes through Tradepass's servers beyond showing it in the admin.
+**Tradepass sends no email** (DECISIONS D-091). When a buyer is approved with "Send welcome email" on, Tradepass asks Shopify to send its own B2B welcome email (`companyContactSendWelcomeEmail`); Shopify sends it. For "more information", "not approved", "you're approved" and certificate renewal, the merchant sees a ready-made message and sends it themselves: copied, or opened in their own mail app, Gmail, Outlook, WhatsApp, their phone's text messages, Telegram or LINE through an ordinary link (D-103). Nothing about it passes through Tradepass's servers beyond showing it in the admin, and Tradepass uses no SMS or messaging gateway.
+
+**The browser draft.** The storefront form saves an unfinished application in the visitor's own browser (`localStorage`) so a reload doesn't lose it. Files and the tax number are never saved there (D-112).
+
+**Status for applicants.** A signed-in customer who applied sees their status on the form, on a status page and, if the merchant adds the block, in their customer account. Only the stage, dates and the merchant's own links are shown (D-104).
 
 ## Encryption and other protections
 - Tax numbers are encrypted with AES-256-GCM using `ENCRYPTION_KEY`, which exists only in the server's environment. They're decrypted only to show to the store's own staff (lists show them masked).
@@ -56,4 +63,4 @@ All three live in `app/lib/privacy.server.ts`, which also powers "Delete all Tra
 The merchant types the store name to confirm. We delete all our rows for the store (applications, files references, certificates, buyers, tiers, forms, activity, jobs, imports, tokens, rules) and reset settings, but keep the store record, plan and sessions so the app stays installed (DECISIONS D-020). Shopify companies, markets, catalogs and files stay.
 
 ## Sub-processors
-Render (hosting), Neon (database), Shopify. Tradepass uses no email provider (Brevo was removed in D-091; no personal data was ever sent to it in production because the app was not yet deployed). Official tax registries (EU VIES, and optionally UK HMRC and Australian ABN Lookup) receive only the tax number being checked.
+Render (hosting), Neon (database), Shopify. Tradepass uses no email provider (Brevo was removed in D-091; no personal data was ever sent to it in production because the app was not yet deployed). Official registries receive only the number being checked: EU VIES (`ec.europa.eu`), Norway's Brønnøysund Register Centre (`data.brreg.no`), the Texas Comptroller's open data (`data.texas.gov`), and, only when the merchant's operator sets a key, UK HMRC (`api.service.hmrc.gov.uk`), Australian ABN Lookup (`abr.business.gov.au`) and the New Zealand Business Number register (`api.business.govt.nz`). All are free government services; links to other official lookups (Switzerland, Canada, US states, IRS) are opened by the merchant in their own browser.

@@ -203,3 +203,53 @@ Repeat on **Dawn**, **Horizon** and two other free themes (e.g. Sense, Craft). O
 | 20 | 20.1–20.4 | A (not a development store) |
 | 21 | 21.1–21.3 | A |
 | 22 | 22.1–22.3 | A + B |
+
+## Test 26. US store, 2026-11 features [A, US address, not Plus]
+
+Store A with a US address, Shopify Markets on, B2B on, Tradepass on Starter (or a development store, which gets Pro features).
+Use a real phone for the link checks.
+
+**Form**
+- [ ] Form → Use a template → **US retailers** → Apply → Save. The form asks for the certificate type, state + seller's permit rows, store type, and (optional) EIN, years in business, D-U-N-S, trade references.
+- [ ] On the store, apply as "Lone Star Supply" with a **Texas** address (ZIP `78701`), certificate **MTC uniform resale certificate**, 3 states: TX with a real active 11-digit Texas taxpayer number (look one up on comptroller.texas.gov), **Oregon**, Florida.
+- [ ] Apply once more with **Streamlined Sales Tax certificate** for Texas. On each application in the admin, the state rows show the hints: Texas isn't an SST member state; Oregon has no statewide sales tax; Florida's annual certificates expire on December 31; MTC with "See the MTC's notes for each state".
+- [ ] Phone: pick +1 and type `512 555 0123` → saved as `+15125550123`. Type a 4-digit ZIP → the form refuses it.
+- [ ] On a phone, the upload shows **Take a photo**; take a picture of a paper certificate. Turn on airplane mode mid-upload → the message says the connection dropped.
+- [ ] Reload the half-filled form → it comes back **without** the tax number and files (the note says so).
+
+**Review**
+- [ ] Applications: the new one shows "Waiting 0 days", the source ("Direct or unknown" or your UTM), and a **Texas: MTC** row with "Active permit in the state's open data: <name>" (Starter). Free plan: "Check on the Texas website" only.
+- [ ] Florida row: **Check on the Florida website** opens floridarevenue.com; **Mark as checked** → "Checked by <you> on <date>" (and in Activity).
+- [ ] Apply again as a **nonprofit** (template "Nonprofits"): **Check on the IRS website** opens the IRS Tax Exempt Organization Search; the approval dialog says Shopify has no specific exemption for nonprofits.
+- [ ] Apply as a buyer whose shipping state is **Oregon**: the approval suggests **no** exemption ("no statewide sales tax").
+- [ ] Approve "Lone Star Supply" with defaults: only `US_TX_RESELLER_EXEMPTION` is set; "Don't collect any tax" is **off**; the other covered state (FL) is offered under "Add these exemptions", not applied. Check the company location's tax settings in Shopify.
+- [ ] J / K move between applications, A opens Approve, ? shows the shortcuts; typing in a note doesn't trigger them.
+- [ ] Print or save as PDF: tax numbers are shortened.
+
+**Messages (the only email is Shopify's welcome email)**
+- [ ] Ask for more info → the message opens in **Gmail**, **Outlook on the web**, your **mail app**, **WhatsApp** (to `+1512…`), **text messages** (iPhone and Android), Telegram, LINE. Tradepass sends nothing; check your Render logs show no outbound mail/SMS host.
+- [ ] Saved replies: Settings → Saved replies → add a Spanish "more info" text; ask an applicant whose language is Spanish → that text is offered.
+- [ ] Approve with "Send welcome email" on → either Shopify's B2B welcome email arrives (the **only** email anyone gets), or the email step says "skipped" and the "you're approved" message is offered (D-092). Then try Flow: "Company contact assigned permission" → "Send B2B access email".
+- [ ] Customer tags (Settings → Applicants and contact → `wholesale, tx`): approve → the customer has both tags; Pause the buyer with "remove on pause" on → tags removed, Resume → back.
+
+**Applicant side**
+- [ ] The copied message has a status link: it shows the stage and your WhatsApp / booking links. After 90 days it says the link expired.
+- [ ] Log in on the store as the applicant: the form block shows the status card instead of the form; the apply button says **View your application**.
+- [ ] Customer accounts editor → add the **Wholesale application status** block to the profile page → the logged-in applicant sees their status there.
+- [ ] Reject with Settings "Days before a rejected applicant can apply again" = 30 → applying again shows the date.
+- [ ] Help shows **Chat with us on WhatsApp** when `SUPPORT_WHATSAPP_URL` is set on Render.
+
+**Flow (Pro)**
+- [ ] Build workflows 1–3 from docs/flow-templates.md (internal email on submit and on "more info", Slack on submit); answer a more-info request → the **Wholesale application info received** trigger runs with company, phone, state and the admin link.
+
+## Test 27. EU store (VAT) [A with a German address, or a second store]
+
+- [ ] Template **Resellers**; apply with German VAT `DE136695976` → "Verified" by VIES with the registry name; `DE136695977` is refused in the form (check digit).
+- [ ] Apply from **Norway** with `NO 923609016 MVA` → verified by Brønnøysund (no key needed). A Swiss `CHE-…` number shows **Check it yourself on uid.admin.ch**; a Canadian GST number shows the canada.ca link.
+- [ ] Approve a French buyer: the EU reverse-charge exemption is suggested only with a verified VAT number.
+- [ ] Messages open in the applicant's language (try German and Arabic, which is right-to-left); WhatsApp/text buttons work with a `+49…` number.
+- [ ] The storefront form in Arabic and Hebrew is right-to-left; the status card and status page too.
+- [ ] Use `mailinator.com` as the email → the application shows the throwaway-email hint; a Pro rule with that condition rejects it automatically.
+
+## Needs a dev store (2026-11 additions)
+`companyContactSendWelcomeEmail` accepted or refused (D-092); Flow's "Send B2B access email" on non-Plus; checkout lock reading `$app:tradepass.paused` (D-094); `tagsAdd`/`tagsRemove`; the customer-account block and its network access (D-104); Outlook web and `sms:` link formats on iOS/Android (D-103); NZBN status field with a real key (D-113); `data.texas.gov` and `data.brreg.no` reachable from Render; the real `X-Forwarded-For` chain for `TRUSTED_PROXY_HOPS` (N2).
