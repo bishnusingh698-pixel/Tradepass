@@ -17,6 +17,8 @@ Approving creates the company, location and contact in Shopify, applies payment 
 
 Shopify's own B2B welcome email invites approved buyers to sign in. Tradepass tracks certificate expiry dates and gives you a secure link to send buyers when a new certificate is due. You choose what retail visitors see: show prices, hide them until sign-in, or make your store wholesale-only. No theme code is changed.
 
+Tradepass sends no email itself. For more information, rejections and renewals you get a ready-made message in the applicant's language to send from your own mail app, Gmail, Outlook, WhatsApp or text messages, and Shopify Flow can alert your team when an application arrives.
+
 Includes 36 languages, auto-approve rules, Shopify Flow, CSV import and a free plan.
 
 ## Feature bullets
@@ -24,7 +26,9 @@ Includes 36 languages, auto-approve rules, Shopify Flow, CSV import and a free p
 - **One-click approval** creates the B2B company, location and contact, with payment terms and tax exemptions (US state resale, EU reverse charge).
 - **Automatic price tiers** on Basic, Grow and Advanced: the buyer lands in the right B2B market, and your 3-catalog limit is tracked for you. Direct catalog assignment on Plus.
 - **Certificate vault** with expiry tracking, Shopify Flow triggers on Expiring soon and Expired, and a secure renewal link you send the buyer.
-- **No emails from us to set up**: approval uses Shopify's own B2B welcome email; for "more information" and "not approved" you get a ready-made message in the applicant's language to copy or open in your email app.
+- **No emails from us to set up**: approval uses Shopify's own B2B welcome email; for "more information", "not approved" and renewals you get a ready-made message in the applicant's language to copy or open in your mail app, Gmail, Outlook, WhatsApp or text messages. Shopify Flow triggers alert your team (internal email or Slack) when applications arrive or applicants reply.
+- **US-ready**: resale certificates per state (state, SST, MTC, nonprofit), official state lookups with a live Texas permit check, and the exemption suggested for the buyer's state only.
+- **Applicants see their status** on your store, on a status page and in their customer account.
 - **Storefront access control**: show prices, hide them until sign-in, or lock checkout to wholesale buyers. No theme code edits.
 - **Automation**: auto-approve rules, Shopify Flow triggers and an approval action, CSV import and conversion of tagged customers.
 

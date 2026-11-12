@@ -54,7 +54,22 @@ Function schema 2026-10). Doc search (`search_docs_chunks`) needs shopify.dev an
 |---|---|
 | N5 (fresh trial after `shop/redact` + reinstall) | Keeping any trial record after the mandatory redaction keeps shop data; product decision, unchanged. |
 | N6 (Shopify behaviour) | Needs a dev store; the list grew (see "Needs a dev store" in CHECKLIST.md). |
-| Form script size | `tradepass-form.js` is ~12 KB gzipped (Shopify suggests ≤ 10 KB for app-block JS; it was 10.6 KB before this pass). Only the form page loads it. A minify step at deploy is in ROADMAP. |
+| Form script size | `tradepass-form.js` was ~12 KB gzipped mid-pass, ~20 KB at the end (see Final verification) (Shopify suggests ≤ 10 KB for app-block JS; it was 10.6 KB before this pass). Only the form page loads it. A minify step at deploy is in ROADMAP. |
+
+### Final verification (2026-11-12, end of the pass)
+| Check | Result |
+|---|---|
+| Schema validation (Shopify dev toolkit, offline, Admin 2026-10) | ✅ **96 / 96 Admin operations** valid except `companyContactSendWelcomeEmail` (absent from the schema; handled, D-092); checkout Function query valid against its 2026-10 schema; customer-account block validated |
+| Scopes the validator reports | ✅ all covered by `shopify.app.toml` (it lists alternatives; no new scope needed) |
+| `prisma migrate deploy` on an empty Postgres, `migrate diff` | ✅ 3 migrations apply; diff empty |
+| `npm run typecheck`, `npm run lint`, `npm run build` | ✅ |
+| `vitest run` | ✅ 455 / 455 (was 377) |
+| `node scripts/i18n-check.mjs` (35 locales) and i18n tests | ✅; `app/locales/en/pending.json` is **empty** (all 358 strings, including the 134 inherited from `main`, translated into every language) |
+| Static guard (`tests/email-removal.test.ts`) | ✅ no email provider, SMTP, SMS or messaging gateway; the only email mutation is Shopify's B2B welcome email; server code names only Shopify and free official registry hosts |
+
+Second bug-hunt pass over the branch diff (new public endpoints, tokens, rate limits, upload errors, registries): no new defects; the status endpoints only show a signed-in customer's own application or one reached by a signed token, are rate-limited per IP, and mint fresh "update" links without cancelling the one in the merchant's message. One wording issue in the new checklist (state hints shown in the admin, not on the form) was corrected.
+
+Form script: `tradepass-form.js` is now **~20 KB gzipped** (68 KB raw) after the US rows, phone picker, status card and check digits; only the form page loads it. Minify/split step in ROADMAP.
 
 ## Review of 2026-11-01
 
