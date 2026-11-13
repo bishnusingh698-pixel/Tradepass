@@ -1,0 +1,12 @@
+{
+  "title": "Toptan satış hesabı",
+  "status": {
+    "pending": "Başvuru inceleniyor",
+    "needs_info": "Daha fazla bilgiye ihtiyacımız var",
+    "approved": "Onaylandı",
+    "rejected": "Onaylanmadı"
+  },
+  "submitted": "Başvuru tarihi: {{date}}",
+  "reapply": "{{date}} tarihinden itibaren yeniden başvurabilirsiniz.",
+  "view": "Ayrıntıları görün"
+}

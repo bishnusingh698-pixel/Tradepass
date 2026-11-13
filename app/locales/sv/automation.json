@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Godkänn grossistansökan till nivå",
   "automation.flow.welcomeNote": "Tradepass kan redan skicka Shopifys B2B-åtkomstmejl när en köpare godkänns, så inget extra arbetsflöde behövs för det.",
   "automation.flow.open": "Öppna Shopify Flow",
-  "automation.flow.alerts": "Vill du få ett mejl när någon ansöker? Använd utlösaren ”Wholesale application submitted” med Flow-åtgärden ”Send internal email” i Shopify Flow. Åtgärden skickar bara till fasta personaladresser som du anger i arbetsflödet."
+  "automation.flow.alerts": "Vill du få ett mejl när någon ansöker? Använd utlösaren ”Wholesale application submitted” med Flow-åtgärden ”Send internal email” i Shopify Flow. Åtgärden skickar bara till fasta personaladresser som du anger i arbetsflödet.",
+  "automation.condition.disposable_email": "Engångsadress för e-post (mailinator.com…)",
+  "automation.condition.free_email": "Gratis e-posttjänst (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Leveransadressen är en postbox",
+  "automation.condition.registry_mismatch": "Registernamnet stämmer inte med företaget",
+  "automation.condition.website_mismatch": "Webbplatsen stämmer inte med e-postdomänen",
+  "automation.flow.alertsMore": "Fler aviseringar: ”Information mottagen för grossistansökan” körs när en sökande svarar på din begäran, och ”Intyg löper ut” innan ett intyg går ut. Varje utlösare innehåller företag, kontakt, e-post, telefon, land, delstat, nivå och en länk till ansökan, redo för ett mejl eller Slack-meddelande.",
+  "automation.flow.trigger.application_info_received": "Information mottagen för grossistansökan",
+  "automation.flow.welcomeNoteFlow": "Vid godkännandet ombeds Shopify skicka sitt eget B2B-välkomstmejl. Om Shopify inte tillåter det i din butik gör Shopifys Flow-mall ”Behörighet tilldelad företagskontakt” → ”Skicka B2B-åtkomstmejl” samma sak; Tradepass tilldelar den behörigheten vid godkännandet."
 }

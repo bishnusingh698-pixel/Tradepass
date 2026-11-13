@@ -3,6 +3,7 @@
 // country data by scripts/sync-tax-ids.mjs) and the server check in intake.
 // Client-safe: no Node APIs.
 import table from "./tax-ids.json";
+import { taxChecksum } from "./tax-checksums.js";
 
 /** n = official name, ex = example, re = pattern for the normalised number, p = prefix added when missing, s = strict. */
 export type TaxIdRule = { n: string; ex: string; re: string; p?: string; s: boolean };
@@ -30,7 +31,10 @@ export function checkTaxIdFormat(country: string | null | undefined, number: str
   if (!n) return "unchecked";
   if (rule.p && !n.startsWith(rule.p) && !/^[A-Z]{2}/.test(n)) n = rule.p + n;
   // Greece: VIES uses EL, people often type GR. Northern Ireland: XI.
-  if (new RegExp(rule.re).test(n)) return "ok";
+  const shapeOk = new RegExp(rule.re).test(n);
+  // A published check digit that doesn't match is a typo for certain (offline, no registry call).
+  const checksum = shapeOk ? taxChecksum(country!.toUpperCase(), n) : null;
+  if (shapeOk && checksum !== false) return "ok";
   return rule.s ? "invalid" : "unchecked";
 }
 

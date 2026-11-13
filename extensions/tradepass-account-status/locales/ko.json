@@ -1,0 +1,12 @@
+{
+  "title": "도매 계정",
+  "status": {
+    "pending": "신청 검토 중",
+    "needs_info": "추가 정보가 필요합니다",
+    "approved": "승인됨",
+    "rejected": "승인되지 않음"
+  },
+  "submitted": "신청일: {{date}}",
+  "reapply": "{{date}}부터 다시 신청할 수 있습니다.",
+  "view": "자세히 보기"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Conta de atacado",
+  "status": {
+    "pending": "Solicitação em análise",
+    "needs_info": "Precisamos de mais informações",
+    "approved": "Aprovada",
+    "rejected": "Não aprovada"
+  },
+  "submitted": "Solicitado em {{date}}",
+  "reapply": "Você pode solicitar novamente a partir de {{date}}.",
+  "view": "Ver detalhes"
+}

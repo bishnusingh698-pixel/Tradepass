@@ -25,7 +25,7 @@ export function openApproveModal() {
   (document.getElementById(APPROVE_MODAL_ID) as (HTMLElement & { showOverlay?: () => void }) | null)?.showOverlay?.();
 }
 
-const STEPS: ApprovalStep[] = ["company", "location", "contact", "terms_tax", "tier", "email"];
+const STEPS: ApprovalStep[] = ["company", "location", "contact", "terms_tax", "tier", "tags", "email"];
 
 type LoaderData = { defaults?: ApprovalDefaults; error?: string; message?: string; progress?: ApprovalState | null; status?: string | null };
 type ActionData = { ok: boolean; state?: ApprovalState | null; undone?: boolean; error?: string; message?: string };
@@ -204,6 +204,24 @@ export function ApproveModal({ applicationId, companyName }: { applicationId: st
                   set({ taxExempt: on, exemptions: on && !input.exemptions.length && defaults.suggestedExemption.exemption ? [defaults.suggestedExemption.exemption] : input.exemptions });
                 }}
               />
+              {(defaults.suggestedExemption.alsoCovered ?? []).length > 0 && (
+                <s-stack direction="inline" gap="small-200" alignItems="center">
+                  <s-text color="subdued">
+                    {t("approval.tax.alsoCovered", { states: (defaults.suggestedExemption.alsoCovered ?? []).map(exemptionLabel).join(", ") })}
+                  </s-text>
+                  {(defaults.suggestedExemption.alsoCovered ?? []).some((x) => !input.taxExempt || !input.exemptions.includes(x)) && (
+                    <s-button
+                      variant="tertiary"
+                      onClick={() => {
+                        touch("taxExempt");
+                        set({ taxExempt: true, exemptions: [...new Set([...(input.taxExempt ? input.exemptions : []), ...(defaults.suggestedExemption.alsoCovered ?? [])])] });
+                      }}
+                    >
+                      {t("approval.tax.addCovered")}
+                    </s-button>
+                  )}
+                </s-stack>
+              )}
               {input.taxExempt && (
                 <s-stack direction="block" gap="small-200">
                   <s-stack direction="inline" gap="small-200">
@@ -236,6 +254,12 @@ export function ApproveModal({ applicationId, companyName }: { applicationId: st
                   </s-select>
                 </s-stack>
               )}
+              <s-checkbox
+                label={t("approval.field.taxExemptAll")}
+                details={t("approval.field.taxExemptAllHelp")}
+                checked={Boolean(input.taxExemptAll)}
+                onChange={(e) => set({ taxExemptAll: checked(e) })}
+              />
               <s-text-field
                 label={t("approval.field.taxRegistrationId")}
                 value={input.taxRegistrationId ?? ""}
@@ -311,6 +335,9 @@ export function ApproveModal({ applicationId, companyName }: { applicationId: st
               ) : (
                 <s-paragraph>{t("approval.contact.willCreate", { name: defaults.contactName || defaults.contactEmail, email: defaults.contactEmail })}</s-paragraph>
               )}
+              {(input.customerTags ?? []).length > 0 && (
+                <s-text color="subdued">{t("approval.tags.note", { tags: (input.customerTags ?? []).join(", ") })}</s-text>
+              )}
               <s-switch
                 label={t("approval.field.sendWelcome")}
                 details={t("approval.welcome.shopify")}
@@ -366,7 +393,7 @@ function Progress({ state, busy, success }: { state: ApprovalState; busy: boolea
         </s-banner>
       )}
       <s-stack direction="block" gap="small-200" accessibilityRole="status">
-        {STEPS.map((s) => {
+        {STEPS.filter((s) => state.steps[s] && !(s === "tags" && state.steps[s].status === "skipped" && !state.input.customerTags?.length)).map((s) => {
           const st = state.steps[s];
           const running = st.status === "running" || (busy && st.status === "pending" && STEPS.find((x) => state.steps[x].status === "pending") === s);
           return (
@@ -385,6 +412,9 @@ function Progress({ state, busy, success }: { state: ApprovalState; busy: boolea
               </s-stack>
               {st.status === "failed" && st.error && (
                 <s-text tone="critical">{st.error}</s-text>
+              )}
+              {st.status === "skipped" && st.code === "email_unavailable" && st.error && (
+                <s-text color="subdued">{st.error}</s-text>
               )}
             </s-stack>
           );

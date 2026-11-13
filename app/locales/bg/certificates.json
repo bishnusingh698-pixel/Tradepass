@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify не прие промяната. Нищо не е премахнато. Опитайте отново по-късно.",
   "certificates.error.unknown_intent": "Възникна грешка. Моля, опитайте отново.",
   "certificates.error.file": "Не успяхме да отворим този файл. Моля, опитайте отново.",
-  "certificates.action.copyLink": "Копиране на връзка за подновяване"
+  "certificates.action.copyLink": "Копиране на връзка за подновяване",
+  "certificates.usForm.exempt": "Организация, освободена от данъци",
+  "certificates.usForm.mtc": "Единно MTC удостоверение за препродажба",
+  "certificates.usForm.sst": "Удостоверение Streamlined Sales Tax",
+  "certificates.usForm.state": "Щатско удостоверение за препродажба"
 }

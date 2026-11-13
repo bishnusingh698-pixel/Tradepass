@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Tidak ada yang perlu dicoba lagi.",
   "approval.skip.finished": "Sudah disetujui.",
   "approval.skip.missing_address": "Alamat penagihan tidak ada.",
-  "approval.skip.tier_required": "Tingkat harga belum dipilih."
+  "approval.skip.tier_required": "Tingkat harga belum dipilih.",
+  "approval.blocked.no_b2b": "Paket Shopify Anda tidak menyertakan B2B, jadi Shopify belum dapat membuat perusahaan untuk pembeli ini. Aplikasi tetap di antrean: setujui setelah B2B tersedia (paket Basic atau lebih tinggi dengan Markets baru). Beranda menunjukkan apa yang didukung paket Anda.",
+  "approval.error.email_unavailable": "Shopify tidak mengizinkan Tradepass mengirim email sambutan B2B di toko ini, jadi tidak ada email yang terkirim. Pembeli sudah disetujui. Kirimkan pesan siap pakai dari halaman aplikasi.",
+  "approval.field.taxExemptAll": "Jangan pungut pajak apa pun dari lokasi ini",
+  "approval.field.taxExemptAllHelp": "Hanya untuk pembeli yang bebas dari semua pajak di mana pun Anda mengirim. Sertifikat penjualan kembali biasanya hanya mencakup satu negara bagian atau negara: gunakan pengecualian di atas, agar pajak tetap dipungut di tempat yang tidak dikecualikan.",
+  "approval.skip.no_b2b": "B2B tidak tersedia di paket Shopify toko ini.",
+  "approval.step.tags": "Tag pelanggan",
+  "approval.tags.note": "Tag yang ditambahkan ke pelanggan: {tags} (Pengaturan → Pemohon dan kontak).",
+  "approval.tax.addCovered": "Tambahkan pengecualian ini",
+  "approval.tax.alsoCovered": "Sertifikat juga mencakup: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Negara bagian lokasi ini tidak memiliki pajak penjualan tingkat negara bagian, jadi tidak perlu pengecualian di sana.",
+  "approval.tax.reason.us_exempt_org": "Sertifikat organisasi bebas pajak: Shopify tidak memiliki pengecualian khusus untuk ini. Periksa sertifikatnya; hanya jika pembeli sama sekali tidak terutang pajak, pilih “Jangan pungut pajak apa pun”.",
+  "approval.tax.reason.us_resale_local_only": "Sertifikat pembeli mencakup negara bagian ini. Alaska tidak memiliki pajak penjualan tingkat negara bagian, tetapi beberapa kota memungut pajak sendiri.",
+  "approval.tax.reason.us_state_not_covered": "Sertifikat pembeli mencakup negara bagian selain negara bagian lokasi ini. Tambahkan pengecualian itu hanya jika pesanan lokasi ini dikirim ke sana."
 }

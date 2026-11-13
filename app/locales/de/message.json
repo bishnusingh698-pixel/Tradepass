@@ -20,6 +20,21 @@
   "message.modal.copy": "Nachricht kopieren",
   "message.modal.copied": "Nachricht kopiert",
   "message.modal.copyFailed": "Die Nachricht konnte nicht kopiert werden. Markieren Sie den Text und kopieren Sie ihn selbst.",
-  "message.modal.mailto": "In E-Mail öffnen",
-  "message.modal.close": "Schließen"
+  "message.modal.close": "Schließen",
+  "message.approved.subject": "Ihr Großhandelskonto bei {store_name} wurde genehmigt",
+  "message.approved.body": "Guten Tag {first_name},\n\ngute Nachrichten: {company} wurde für ein Großhandelskonto bei {store_name} genehmigt. Ihre Preisstufe ist {tier_name}.\n\nÖffnen Sie zum Anmelden den folgenden Link und geben Sie diese E-Mail-Adresse ein. Wir senden Ihnen einen Einmalcode per E-Mail, Sie benötigen also kein Passwort:\n{login_url}\n\nSobald Sie angemeldet sind, sehen Sie im gesamten Shop Ihre Großhandelspreise.",
+  "message.channel.mailto": "In E-Mail öffnen",
+  "message.channel.gmail": "In Gmail öffnen",
+  "message.channel.line": "In LINE öffnen",
+  "message.channel.outlook": "In Outlook öffnen",
+  "message.channel.sms": "In SMS öffnen",
+  "message.channel.telegram": "In Telegram öffnen",
+  "message.channel.whatsapp": "In WhatsApp öffnen",
+  "message.modal.moreApps": "Weitere Apps:",
+  "message.modal.noPhone": "Die Bewerbung enthält keine internationale Telefonnummer, daher öffnen sich WhatsApp und SMS ohne Empfänger.",
+  "message.modal.nothingSent": "Tradepass sendet selbst nichts: Jede Schaltfläche öffnet nur Ihre eigene App mit der ausgefüllten Nachricht.",
+  "message.modal.openIn": "Aus Ihren eigenen Apps senden",
+  "message.modal.pasteHint": "Die Nachricht ist für diese App zu lang, daher öffnet sie sich ohne Text. Sie ist kopiert: einfach einfügen.",
+  "message.modal.phone": "Telefon",
+  "message.statusLine": "Den Status Ihrer Bewerbung können Sie jederzeit hier sehen: {status_link}"
 }

@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "이미 사용된 링크입니다",
   "hosted.link.usedBody": "업데이트 링크는 한 번만 사용할 수 있습니다. 다른 내용을 변경해야 하는 경우 {store}에 문의해 주십시오.",
   "hosted.noscript": "신청서를 업데이트하려면 브라우저에서 JavaScript를 켜 주십시오.",
-  "hosted.error.generic": "시스템에 문제가 발생했습니다. 몇 분 후에 다시 시도해 주십시오."
+  "hosted.error.generic": "시스템에 문제가 발생했습니다. 몇 분 후에 다시 시도해 주십시오.",
+  "hosted.status.body.approved": "이 이메일 주소로 로그인하면 도매가를 볼 수 있습니다.",
+  "hosted.status.body.needs_info": "{store}에서 결정하기 전에 정보가 조금 더 필요합니다.",
+  "hosted.status.body.pending": "{store}에서 모든 신청서를 검토한 후 연락드립니다.",
+  "hosted.status.body.rejected": "{store}에서 이 신청서를 승인할 수 없었습니다.",
+  "hosted.status.book": "온보딩 통화 예약",
+  "hosted.status.busyTitle": "요청이 너무 많습니다. 몇 분 후 다시 시도해 주세요.",
+  "hosted.status.expiredBody": "보안을 위해 상태 링크는 90일 동안 유효합니다. 새 링크는 {store}에 문의해 주세요.",
+  "hosted.status.reapply": "{date}부터 다시 신청할 수 있습니다.",
+  "hosted.status.shop": "쇼핑 시작",
+  "hosted.status.signIn": "로그인",
+  "hosted.status.submitted": "{company}에서 {date}에 신청했습니다.",
+  "hosted.status.title.approved": "도매 계정이 승인되었습니다",
+  "hosted.status.title.needs_info": "정보가 조금 더 필요합니다",
+  "hosted.status.title.pending": "신청서를 검토하고 있습니다",
+  "hosted.status.title.rejected": "신청서가 승인되지 않았습니다",
+  "hosted.status.update": "신청서 업데이트",
+  "hosted.status.whatsapp": "WhatsApp으로 {store}에 메시지 보내기"
 }

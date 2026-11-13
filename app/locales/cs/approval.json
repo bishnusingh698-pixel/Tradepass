@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Není co opakovat.",
   "approval.skip.finished": "Již schváleno.",
   "approval.skip.missing_address": "Chybí fakturační adresa.",
-  "approval.skip.tier_required": "Není vybrána žádná úroveň."
+  "approval.skip.tier_required": "Není vybrána žádná úroveň.",
+  "approval.blocked.no_b2b": "Váš tarif Shopify nezahrnuje B2B, takže Shopify zatím nemůže pro tohoto kupujícího vytvořit společnost. Žádost zůstává ve frontě: schvalte ji, jakmile bude B2B dostupné (tarif Basic nebo vyšší s novými Trhy). Domovská stránka ukazuje, co váš tarif podporuje.",
+  "approval.error.email_unavailable": "Shopify nedovolil Tradepassu v tomto obchodě odeslat uvítací e-mail B2B, takže žádný e-mail neodešel. Kupující je schválen. Pošlete mu připravenou zprávu ze stránky žádosti.",
+  "approval.field.taxExemptAll": "Na tomto místě nevybírat žádnou daň",
+  "approval.field.taxExemptAllHelp": "Jen pro kupující osvobozené od všech daní všude, kam jim zboží posíláte. Osvědčení o přeprodeji obvykle pokrývá jeden stát nebo zemi: použijte raději výjimky výše, aby se daň dál účtovala tam, kde výjimka neplatí.",
+  "approval.skip.no_b2b": "B2B není v tarifu Shopify tohoto obchodu dostupné.",
+  "approval.step.tags": "Štítky zákazníka",
+  "approval.tags.note": "Štítky přidané zákazníkovi: {tags} (Nastavení → Žadatelé a kontakt).",
+  "approval.tax.addCovered": "Přidat tyto výjimky",
+  "approval.tax.alsoCovered": "Osvědčení pokrývají také: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Stát tohoto místa nemá celostátní daň z prodeje, takže tam výjimka není potřeba.",
+  "approval.tax.reason.us_exempt_org": "Osvědčení organizace osvobozené od daně: Shopify pro něj nemá zvláštní výjimku. Zkontrolujte osvědčení; jen pokud kupující nedluží vůbec žádnou daň, zvolte „Nevybírat žádnou daň“.",
+  "approval.tax.reason.us_resale_local_only": "Osvědčení kupujícího pokrývá tento stát. Aljaška nemá celostátní daň z prodeje, ale některá města vybírají vlastní.",
+  "approval.tax.reason.us_state_not_covered": "Osvědčení kupujícího pokrývají jiné státy než stát tohoto místa. Tyto výjimky přidejte, jen pokud se objednávky tohoto místa posílají tam."
 }

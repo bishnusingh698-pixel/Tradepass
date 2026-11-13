@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify không chấp nhận thay đổi. Chưa có gì bị xóa. Hãy thử lại sau.",
   "certificates.error.unknown_intent": "Đã xảy ra lỗi. Vui lòng thử lại.",
   "certificates.error.file": "Chúng tôi không mở được tệp này. Vui lòng thử lại.",
-  "certificates.action.copyLink": "Sao chép liên kết gia hạn"
+  "certificates.action.copyLink": "Sao chép liên kết gia hạn",
+  "certificates.usForm.exempt": "Tổ chức được miễn thuế",
+  "certificates.usForm.mtc": "Giấy chứng nhận bán lại thống nhất MTC",
+  "certificates.usForm.sst": "Giấy chứng nhận Streamlined Sales Tax",
+  "certificates.usForm.state": "Giấy chứng nhận bán lại của bang"
 }

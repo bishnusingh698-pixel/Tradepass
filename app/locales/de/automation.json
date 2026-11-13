@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Großhandelsantrag in Stufe genehmigen",
   "automation.flow.welcomeNote": "Tradepass kann bereits bei der Genehmigung eines Käufers die B2B-Zugangs-E-Mail von Shopify senden, dafür ist also kein zusätzlicher Workflow nötig.",
   "automation.flow.open": "Shopify Flow öffnen",
-  "automation.flow.alerts": "Sie möchten eine E-Mail, wenn sich jemand bewirbt? Verwenden Sie in Shopify Flow den Trigger „Wholesale application submitted“ mit der Flow-Aktion „Send internal email“. Diese Aktion sendet nur an feste Mitarbeiteradressen, die Sie im Workflow eintragen."
+  "automation.flow.alerts": "Sie möchten eine E-Mail, wenn sich jemand bewirbt? Verwenden Sie in Shopify Flow den Trigger „Wholesale application submitted“ mit der Flow-Aktion „Send internal email“. Diese Aktion sendet nur an feste Mitarbeiteradressen, die Sie im Workflow eintragen.",
+  "automation.condition.disposable_email": "Wegwerf-E-Mail-Adresse (mailinator.com …)",
+  "automation.condition.free_email": "Kostenloser E-Mail-Dienst (gmail.com, outlook.com …)",
+  "automation.condition.po_box": "Lieferadresse ist ein Postfach",
+  "automation.condition.registry_mismatch": "Registername passt nicht zum Unternehmen",
+  "automation.condition.website_mismatch": "Website passt nicht zur E-Mail-Domain",
+  "automation.flow.alertsMore": "Weitere Benachrichtigungen: „Großhandelsbewerbung: Informationen erhalten“ läuft, wenn ein Bewerber auf Ihre Anfrage antwortet, und „Bescheinigung läuft ab“ vor Ablauf einer Bescheinigung. Jeder Auslöser enthält Unternehmen, Kontakt, E-Mail, Telefon, Land, Bundesstaat, Stufe und einen Link zur Bewerbung – bereit für eine E-Mail oder Slack-Nachricht.",
+  "automation.flow.trigger.application_info_received": "Großhandelsbewerbung: Informationen erhalten",
+  "automation.flow.welcomeNoteFlow": "Bei der Genehmigung wird Shopify gebeten, die eigene B2B-Willkommens-E-Mail zu senden. Wenn Shopify das in Ihrem Shop nicht erlaubt, erledigt Shopifys Flow-Vorlage „Berechtigung für Unternehmenskontakt zugewiesen“ → „B2B-Zugangs-E-Mail senden“ dasselbe; Tradepass weist diese Berechtigung bei der Genehmigung zu."
 }

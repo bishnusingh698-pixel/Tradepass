@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "الموافقة على طلب جملة إلى مستوى",
   "automation.flow.welcomeNote": "يستطيع Tradepass بالفعل إرسال رسالة الوصول إلى B2B من Shopify عند الموافقة على مشترٍ، لذا لا حاجة إلى سير عمل إضافي لذلك.",
   "automation.flow.open": "فتح Shopify Flow",
-  "automation.flow.alerts": "هل تريد رسالة بريد إلكتروني عندما يتقدّم أحد بطلب؟ في Shopify Flow، استخدم المشغّل “Wholesale application submitted” مع إجراء Flow‏ “Send internal email”. يرسل هذا الإجراء فقط إلى عناوين ثابتة لفريق العمل تُدخلها في سير العمل."
+  "automation.flow.alerts": "هل تريد رسالة بريد إلكتروني عندما يتقدّم أحد بطلب؟ في Shopify Flow، استخدم المشغّل “Wholesale application submitted” مع إجراء Flow‏ “Send internal email”. يرسل هذا الإجراء فقط إلى عناوين ثابتة لفريق العمل تُدخلها في سير العمل.",
+  "automation.condition.disposable_email": "عنوان بريد مؤقت (mailinator.com…)",
+  "automation.condition.free_email": "خدمة بريد مجانية (gmail.com، outlook.com…)",
+  "automation.condition.po_box": "عنوان الشحن صندوق بريد",
+  "automation.condition.registry_mismatch": "اسم السجل لا يطابق الشركة",
+  "automation.condition.website_mismatch": "الموقع الإلكتروني لا يطابق نطاق البريد",
+  "automation.flow.alertsMore": "مزيد من التنبيهات: يعمل «تم استلام معلومات طلب الجملة» عندما يرد مقدّم الطلب على طلبك، و«شهادة على وشك الانتهاء» قبل انتهاء صلاحية شهادة. يتضمن كل مشغّل الشركة وجهة الاتصال والبريد الإلكتروني والهاتف والدولة والولاية والمستوى ورابطًا إلى الطلب، جاهزة لرسالة بريد إلكتروني أو Slack.",
+  "automation.flow.trigger.application_info_received": "تم استلام معلومات طلب الجملة",
+  "automation.flow.welcomeNoteFlow": "عند الموافقة يُطلب من Shopify إرسال رسالة الترحيب B2B الخاصة به. إذا لم يسمح Shopify بذلك في متجرك، فإن قالب Flow من Shopify «تم منح إذن لجهة اتصال الشركة» ← «إرسال بريد الوصول B2B» يؤدي المهمة نفسها؛ ويمنح Tradepass هذا الإذن أثناء الموافقة."
 }

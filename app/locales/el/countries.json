@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Καμία χώρα δεν ταιριάζει με την αναζήτησή σας.",
+  "countries.search": "Αναζήτηση χωρών",
+  "countries.selected": "{count, plural, =0 {Δεν επιλέχθηκαν χώρες} one {Επιλέχθηκε # χώρα} other {Επιλέχθηκαν # χώρες}}"
+}

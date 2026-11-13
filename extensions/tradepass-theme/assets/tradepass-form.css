@@ -51,5 +51,16 @@
 .tpf-sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (min-width:750px){.tpf-submit{align-self:flex-start}}
 @media (prefers-reduced-motion:no-preference){.tpf-submit{transition:opacity .15s}}
+/* Dark theme backgrounds (set by the script): lighter error red, still 4.5:1 or more on dark. */
+.tpf--dark .tpf-error,.tpf--dark .tpf-summary a{color:#ffb4ab}
+.tpf--dark [aria-invalid=true],.tpf--dark .tpf-summary{border-color:#ffb4ab}
+.tpf-phone{display:flex;gap:.5rem;flex-wrap:wrap}
+.tpf-phone select{flex:0 1 12rem;inline-size:auto}
+.tpf-phone input{flex:1 1 10rem}
+.tpf-states{display:flex;flex-direction:column;gap:.75rem}
+.tpf-staterow{display:flex;flex-direction:column;gap:.5rem;padding:.75rem;border:1px solid rgba(127,127,127,.4);border-radius:4px}
+.tpf-staterow .tpf-link,.tpf-states>.tpf-link{align-self:flex-start}
+.tpf-filebtns{display:flex;flex-wrap:wrap;gap:.5rem}
+@media (hover:hover) and (pointer:fine){.tpf-filebtn--camera{display:none}}
 .tradepass-form__brand{margin-block-start:1rem;font-size:.8125rem;text-align:center}
 .tradepass-form__brand a{color:inherit;text-decoration:underline}

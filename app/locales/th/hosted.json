@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "ลิงก์นี้ถูกใช้ไปแล้ว",
   "hosted.link.usedBody": "ลิงก์อัปเดตแต่ละลิงก์ใช้ได้ครั้งเดียว หากต้องการเปลี่ยนแปลงข้อมูลอื่น โปรดติดต่อ {store}",
   "hosted.noscript": "โปรดเปิด JavaScript ในเบราว์เซอร์ของคุณเพื่ออัปเดตใบสมัคร",
-  "hosted.error.generic": "เกิดข้อผิดพลาดจากฝั่งของเรา โปรดลองอีกครั้งในอีกไม่กี่นาที"
+  "hosted.error.generic": "เกิดข้อผิดพลาดจากฝั่งของเรา โปรดลองอีกครั้งในอีกไม่กี่นาที",
+  "hosted.status.body.approved": "ลงชื่อเข้าใช้ด้วยอีเมลนี้เพื่อดูราคาขายส่งของคุณ",
+  "hosted.status.body.needs_info": "{store} ต้องการข้อมูลเพิ่มเติมเล็กน้อยก่อนตัดสินใจ",
+  "hosted.status.body.pending": "{store} ตรวจสอบใบสมัครทุกใบและจะติดต่อกลับ",
+  "hosted.status.body.rejected": "{store} ไม่สามารถอนุมัติใบสมัครนี้ได้",
+  "hosted.status.book": "จองการโทรแนะนำการใช้งาน",
+  "hosted.status.busyTitle": "มีคำขอมากเกินไป โปรดลองอีกครั้งในอีกไม่กี่นาที",
+  "hosted.status.expiredBody": "เพื่อความปลอดภัยของคุณ ลิงก์สถานะใช้งานได้ 90 วัน โปรดติดต่อ {store} เพื่อขอลิงก์ใหม่",
+  "hosted.status.reapply": "คุณสมัครใหม่ได้ตั้งแต่ {date}",
+  "hosted.status.shop": "เริ่มช้อปปิ้ง",
+  "hosted.status.signIn": "ลงชื่อเข้าใช้",
+  "hosted.status.submitted": "{company} สมัครเมื่อ {date}",
+  "hosted.status.title.approved": "บัญชีขายส่งของคุณได้รับการอนุมัติแล้ว",
+  "hosted.status.title.needs_info": "เราต้องการข้อมูลเพิ่มเติมเล็กน้อย",
+  "hosted.status.title.pending": "เรากำลังตรวจสอบใบสมัครของคุณ",
+  "hosted.status.title.rejected": "ใบสมัครของคุณไม่ได้รับการอนุมัติ",
+  "hosted.status.update": "อัปเดตใบสมัครของคุณ",
+  "hosted.status.whatsapp": "ส่งข้อความถึง {store} ทาง WhatsApp"
 }

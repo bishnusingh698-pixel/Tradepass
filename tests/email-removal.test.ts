@@ -201,6 +201,27 @@ describe("no email path left in the app", () => {
     expect([...new Set(mutations)]).toEqual(["companyContactSendWelcomeEmail"]);
   });
 
+  it("has no SMS gateway or paid messaging API: WhatsApp, texts and mail apps are plain links the merchant opens", () => {
+    const hits = sources
+      .filter(({ src }) => /twilio|vonage|nexmo|messagebird|plivo|sinch|telnyx|clicksend|textmagic|africastalking|graph\.facebook\.com|whatsapp\.com\/v\d|api\.telegram\.org|api\.line\.me|shopifyMessaging|messagingSend/i.test(src))
+      .map((x) => x.f);
+    expect(hits).toEqual([]);
+    // No server code fetches a messaging host: wa.me / api.whatsapp.com / t.me / line.me only appear as links.
+    const fetched = sources.filter(({ f, src }) => /\.server\.ts$/.test(f) && /fetch\(\s*[`'"]https:\/\/(wa\.me|api\.whatsapp\.com|t\.me|line\.me)/.test(src));
+    expect(fetched).toEqual([]);
+  });
+
+  it("server code talks only to Shopify and free official registries (no paid or keyed-for-cost services)", () => {
+    // Every https host named in server modules. Registries: VIES (EU), HMRC (UK, free key), ABR (AU, free GUID),
+    // data.texas.gov (open data), Brønnøysund (NO, open data), NZBN (NZ, free key). Example hosts are test placeholders.
+    const allowed = new Set([
+      "ec.europa.eu", "api.service.hmrc.gov.uk", "abr.business.gov.au", "data.texas.gov", "data.brreg.no", "api.business.govt.nz",
+      "admin.shopify.com", "apps.shopify.com", "shop.example.com", "x.invalid",
+    ]);
+    const hosts = new Set(sources.filter(({ f }) => /\.server\.ts$/.test(f)).flatMap(({ src }) => [...src.matchAll(/https:\/\/([a-z0-9.-]+\.[a-z]{2,})/gi)].map((m) => m[1].toLowerCase())));
+    expect([...hosts].filter((h) => !allowed.has(h))).toEqual([]);
+  });
+
   it("old stored email settings still load and are dropped", () => {
     const s = readSettings({ notifications: { emails: { received: { enabled: false } }, merchant: { mode: "instant", email: "x@y.test" } }, branding: { logoUrl: "https://x" }, certificates: { autoRenewal: false, expiringDays: 45 } });
     expect(s).not.toHaveProperty("notifications");

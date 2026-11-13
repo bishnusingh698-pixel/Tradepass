@@ -1,0 +1,12 @@
+{
+  "title": "Compte professionnel",
+  "status": {
+    "pending": "Demande en cours d'examen",
+    "needs_info": "Il nous faut plus d'informations",
+    "approved": "Approuvée",
+    "rejected": "Non approuvée"
+  },
+  "submitted": "Demande envoyée le {{date}}",
+  "reapply": "Vous pourrez refaire une demande à partir du {{date}}.",
+  "view": "Voir le détail"
+}

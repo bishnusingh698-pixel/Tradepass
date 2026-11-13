@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Ce lien a déjà été utilisé",
   "hosted.link.usedBody": "Chaque lien de mise à jour ne fonctionne qu’une fois. Si vous souhaitez modifier autre chose, veuillez contacter {store}.",
   "hosted.noscript": "Veuillez activer JavaScript dans votre navigateur pour mettre à jour votre demande.",
-  "hosted.error.generic": "Une erreur s’est produite de notre côté. Veuillez réessayer dans quelques minutes."
+  "hosted.error.generic": "Une erreur s’est produite de notre côté. Veuillez réessayer dans quelques minutes.",
+  "hosted.status.body.approved": "Connectez-vous avec cette adresse e-mail pour voir vos prix de gros.",
+  "hosted.status.body.needs_info": "{store} a besoin d’un peu plus d’informations avant de décider.",
+  "hosted.status.body.pending": "{store} examine chaque candidature et reviendra vers vous.",
+  "hosted.status.body.rejected": "{store} n’a pas pu approuver cette candidature.",
+  "hosted.status.book": "Réserver un appel de prise en main",
+  "hosted.status.busyTitle": "Trop de demandes. Veuillez réessayer dans quelques minutes.",
+  "hosted.status.expiredBody": "Pour votre sécurité, les liens de statut fonctionnent pendant 90 jours. Contactez {store} pour obtenir un nouveau lien.",
+  "hosted.status.reapply": "Vous pourrez postuler à nouveau à partir du {date}.",
+  "hosted.status.shop": "Commencer vos achats",
+  "hosted.status.signIn": "Se connecter",
+  "hosted.status.submitted": "{company} a postulé le {date}.",
+  "hosted.status.title.approved": "Votre compte grossiste est approuvé",
+  "hosted.status.title.needs_info": "Nous avons besoin d’un peu plus d’informations",
+  "hosted.status.title.pending": "Nous examinons votre candidature",
+  "hosted.status.title.rejected": "Votre candidature n’a pas été approuvée",
+  "hosted.status.update": "Mettre à jour votre candidature",
+  "hosted.status.whatsapp": "Écrire à {store} sur WhatsApp"
 }

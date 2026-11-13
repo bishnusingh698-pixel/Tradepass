@@ -20,6 +20,21 @@
   "message.modal.copy": "Αντιγραφή μηνύματος",
   "message.modal.copied": "Το μήνυμα αντιγράφηκε",
   "message.modal.copyFailed": "Δεν ήταν δυνατή η αντιγραφή του μηνύματος. Επιλέξτε το κείμενο και αντιγράψτε το εσείς.",
-  "message.modal.mailto": "Άνοιγμα στο email",
-  "message.modal.close": "Κλείσιμο"
+  "message.modal.close": "Κλείσιμο",
+  "message.approved.subject": "Ο λογαριασμός χονδρικής σας στο {store_name} εγκρίθηκε",
+  "message.approved.body": "Γεια σας {first_name},\n\nΚαλά νέα: η {company} εγκρίθηκε για λογαριασμό χονδρικής στο {store_name}. Το επίπεδο τιμών σας είναι {tier_name}.\n\nΓια να συνδεθείτε, ανοίξτε τον παρακάτω σύνδεσμο και εισαγάγετε αυτή τη διεύθυνση email. Θα σας στείλουμε με email έναν κωδικό μίας χρήσης, οπότε δεν χρειάζεστε κωδικό πρόσβασης:\n{login_url}\n\nΜόλις συνδεθείτε, θα βλέπετε τις τιμές χονδρικής σε όλο το κατάστημα.",
+  "message.channel.mailto": "Άνοιγμα στο email",
+  "message.channel.gmail": "Άνοιγμα στο Gmail",
+  "message.channel.line": "Άνοιγμα στο LINE",
+  "message.channel.outlook": "Άνοιγμα στο Outlook",
+  "message.channel.sms": "Άνοιγμα στα SMS",
+  "message.channel.telegram": "Άνοιγμα στο Telegram",
+  "message.channel.whatsapp": "Άνοιγμα στο WhatsApp",
+  "message.modal.moreApps": "Περισσότερες εφαρμογές:",
+  "message.modal.noPhone": "Η αίτηση δεν έχει διεθνή αριθμό τηλεφώνου, οπότε το WhatsApp και τα SMS ανοίγουν χωρίς παραλήπτη.",
+  "message.modal.nothingSent": "Το Tradepass δεν στέλνει τίποτα μόνο του: κάθε κουμπί απλώς ανοίγει τη δική σας εφαρμογή με το μήνυμα συμπληρωμένο.",
+  "message.modal.openIn": "Στείλτε το από τις δικές σας εφαρμογές",
+  "message.modal.pasteHint": "Το μήνυμα είναι πολύ μεγάλο για αυτή την εφαρμογή, οπότε ανοίγει χωρίς το κείμενο. Έχει αντιγραφεί: απλώς επικολλήστε το.",
+  "message.modal.phone": "Τηλέφωνο",
+  "message.statusLine": "Μπορείτε να ελέγξετε την κατάσταση της αίτησής σας ανά πάσα στιγμή: {status_link}"
 }

@@ -3,6 +3,8 @@ import type { Admin } from "./gql.server";
 import { logActivity } from "./activity.server";
 import { can, effectivePlan } from "./plans";
 import { readSettings } from "./settings";
+import { replyIn } from "./replies";
+import { riskForApplication } from "./applications";
 import { APPROVAL_STEPS, approvalDefaults, approveApplication, undoApproval, type ApprovalCtx } from "./approval.server";
 import { rejectApplication } from "./applications.server";
 import { pauseBuyers } from "./buyers.server";
@@ -28,6 +30,30 @@ export async function autoApprovalsToday(shop: string, now = new Date()): Promis
   return db.application.count({ where: { shop, autoRuleId: { not: null }, status: "approved", decidedAt: { gte: startOfUtcDay(now) } } });
 }
 
+/**
+ * Take one of today's auto-approval slots for this application. A Postgres advisory transaction
+ * lock (per shop) serialises only this check-and-mark, not the approval itself. Approvals still in
+ * progress (marked, not yet approved) count too.
+ */
+export async function reserveAutoApproval(shop: string, applicationId: string, ruleId: string, limit: number, now = new Date()): Promise<boolean> {
+  return db.$transaction(async (tx) => {
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${`tradepass-auto:${shop}`}))`;
+    const used = await tx.application.count({
+      where: {
+        shop, autoRuleId: { not: null }, id: { not: applicationId },
+        OR: [
+          { status: "approved", decidedAt: { gte: startOfUtcDay(now) } },
+          // Reserved today and not decided yet (the approval is under way, or stopped part-way).
+          { status: { in: ["pending", "needs_info"] }, submittedAt: { gte: startOfUtcDay(now) } },
+        ],
+      },
+    });
+    if (used >= limit) return false;
+    await tx.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: ruleId } });
+    return true;
+  });
+}
+
 async function factsFor(shop: string, applicationId: string) {
   const app = await db.application.findFirst({ where: { shop, id: applicationId } });
   if (!app) return null;
@@ -43,6 +69,7 @@ async function factsFor(shop: string, applicationId: string) {
     hasCertificate: files + certs > 0,
     flags: app.flags,
     answers: (app.answers ?? {}) as Record<string, unknown>,
+    risk: riskForApplication(app),
   };
   return { app, facts };
 }
@@ -68,7 +95,11 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
 
     if (rule.kind === "reject") {
       const a = rule.action as RejectAction;
-      const ok = await rejectApplication(ctx, applicationId, { reason: a.reason ?? null });
+      // A saved reply is written in the applicant's own language when the merchant has that text.
+      const reply = a.replyId ? settings.replies.reject.find((r) => r.id === a.replyId) : null;
+      const shopPrimary = (await db.shop.findUnique({ where: { shop }, select: { primaryLocale: true } }))?.primaryLocale ?? "en";
+      const reason = (reply && replyIn(reply, found.app.locale, shopPrimary)?.text) || a.reason || null;
+      const ok = await rejectApplication(ctx, applicationId, { reason });
       if (!ok) return { decided: null };
       await db.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: rule.id } });
       await logActivity({ shop, actor: ACTOR, action: "automation.reject", subject: applicationId, detail: { ruleId: rule.id } });
@@ -80,10 +111,6 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
     // Duplicates are left for the merchant; reject rules above still apply to them.
     if (found.app.flags.includes("duplicate")) {
       await logActivity({ shop, actor: ACTOR, action: "automation.skipped_duplicate", subject: applicationId, detail: { ruleId: rule.id } });
-      return { decided: null };
-    }
-    if ((await autoApprovalsToday(shop)) >= settings.automation.dailyLimit) {
-      await logActivity({ shop, actor: ACTOR, action: "automation.limit_reached", subject: applicationId, detail: { ruleId: rule.id, limit: settings.automation.dailyLimit } });
       return { decided: null };
     }
     const a = rule.action as ApproveAction;
@@ -99,8 +126,13 @@ export async function evaluateRules(admin: Admin, shop: string, applicationId: s
       paymentTermsTemplateId: a.paymentTermsTemplateId ?? defaults.input.paymentTermsTemplateId,
       sendWelcome: a.sendWelcome ?? defaults.input.sendWelcome,
     };
-    // Mark first, so a partial approval can still be found and reversed.
-    await db.application.updateMany({ where: { shop, id: applicationId }, data: { autoRuleId: rule.id } });
+    // Reserve a slot under today's limit and mark the application in one short, per-shop serialised
+    // step, so two applications arriving together can't both take the last slot (REVIEW N3). The
+    // mark also lets a partial approval be found and reversed.
+    if (!(await reserveAutoApproval(shop, applicationId, rule.id, settings.automation.dailyLimit))) {
+      await logActivity({ shop, actor: ACTOR, action: "automation.limit_reached", subject: applicationId, detail: { ruleId: rule.id, limit: settings.automation.dailyLimit } });
+      return { decided: null };
+    }
     const state = await approveApplication(ctx, applicationId, input);
     const failed = APPROVAL_STEPS.find((s) => state.steps[s]?.status === "failed");
     // A failed welcome email still leaves an approved buyer (it can be sent again from the application).

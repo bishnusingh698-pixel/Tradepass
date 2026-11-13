@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Langkah kelulusan gagal",
   "buyers.activity.approval.undo": "Kelulusan dibatalkan",
   "buyers.activity.tier.assisted_add_verified": "Penetapan peringkat disahkan",
-  "buyers.activity.tier.assisted_remove_verified": "Pengalihan peringkat disahkan"
+  "buyers.activity.tier.assisted_remove_verified": "Pengalihan peringkat disahkan",
+  "buyers.tax.specific": "{count, plural, other {# pengecualian}}"
 }

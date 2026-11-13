@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify не принял изменение. Ничего не удалено. Повторите попытку позже.",
   "certificates.error.unknown_intent": "Что-то пошло не так. Повторите попытку.",
   "certificates.error.file": "Не удалось открыть файл. Повторите попытку.",
-  "certificates.action.copyLink": "Скопировать ссылку для продления"
+  "certificates.action.copyLink": "Скопировать ссылку для продления",
+  "certificates.usForm.exempt": "Организация, освобождённая от налогов",
+  "certificates.usForm.mtc": "Единый сертификат перепродажи MTC",
+  "certificates.usForm.sst": "Сертификат Streamlined Sales Tax",
+  "certificates.usForm.state": "Сертификат перепродажи штата"
 }

@@ -1,0 +1,14 @@
+# Scaffold — see docs/flow-templates.md. Verify the keys on shopify.dev and add template.flow
+# (exported from the Flow editor) before moving this folder into extensions/.
+[[extensions]]
+name = "Email staff about new wholesale applications"
+type = "flow_template"
+handle = "tradepass-template-new-application-email"
+description = "Email staff about new wholesale applications. Uses Tradepass's Flow triggers."
+
+  [extensions.template]
+  categories = ["customers"]
+  module = "./template.flow"
+  require_app = true
+  discoverable = true
+  enabled = true

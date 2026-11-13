@@ -76,5 +76,20 @@
   "help.contact.body": "보통 영업일 기준 2일 이내에 답변해 드립니다.",
   "help.contact.priority": "Pro 요금제를 사용 중이시므로 문의에 우선 답변해 드리며, 보통 영업일 기준 1일 이내에 답변해 드립니다.",
   "help.faq.alerts.q": "새 신청은 어떻게 알 수 있나요?",
-  "help.faq.alerts.a": "Tradepass는 이메일을 보내지 않습니다. 새 신청과 답변은 홈과 신청 아래에서 확인할 수 있습니다. 이메일 알림을 받으려면 Shopify Flow(Tradepass Pro)에서 “Wholesale application submitted” 트리거와 Flow의 “Send internal email” 작업으로 워크플로를 만드세요. 이 작업은 워크플로에 입력한 고정 직원 주소로만 보냅니다."
+  "help.faq.alerts.a": "Tradepass는 이메일을 보내지 않습니다. 새 신청과 답변은 홈과 신청 아래에서 확인할 수 있습니다. 이메일 알림을 받으려면 Shopify Flow(Tradepass Pro)에서 “Wholesale application submitted” 트리거와 Flow의 “Send internal email” 작업으로 워크플로를 만드세요. 이 작업은 워크플로에 입력한 고정 직원 주소로만 보냅니다.",
+  "help.contact.whatsapp": "WhatsApp으로 문의하기",
+  "help.faq.applicantStatus.a": "네. 복사하는 모든 메시지에 신청자의 상태 페이지 링크가 포함됩니다. 신청한 로그인 고객은 양식 블록에서 양식 대신 상태를 보며, 고객 계정에 '도매 신청 상태' 블록을 추가하면 그곳에서도 볼 수 있습니다(Shopify의 설정 → 고객 계정).",
+  "help.faq.applicantStatus.q": "신청자가 신청 진행 상황을 볼 수 있나요?",
+  "help.faq.flowAlerts.a": "Tradepass는 직접 이메일을 보내지 않습니다. Shopify Flow(모든 요금제에서 무료)를 사용하세요. '도매 신청서 제출됨', '도매 신청서 정보 수신', '증명서 만료 예정' 같은 Tradepass 트리거를 선택하고 '내부 이메일 보내기' 또는 Slack 메시지를 추가하세요. 각 트리거에는 회사, 연락처, 이메일, 전화, 국가, 주, 등급, 신청서 링크가 포함됩니다. '내부 이메일 보내기'는 입력한 고정 직원 주소로만 보내므로 신청자에게는 이메일을 보낼 수 없습니다.",
+  "help.faq.flowAlerts.q": "새 신청서 알림은 어떻게 받나요?",
+  "help.faq.messageApplicants.a": "추가 정보 요청, 거절, 승인 후 Tradepass가 신청자의 언어로 준비된 메시지를 보여 줍니다. 복사하거나 메일 앱, Gmail, Outlook, WhatsApp, 휴대폰 문자, Telegram, LINE에서 여세요. Tradepass는 아무것도 보내지 않으므로 비용이나 제한이 없습니다. Shopify Messaging 자동화는 마케팅 수신에 동의한 고객에게만 도달하므로 신청자에게는 맞지 않습니다.",
+  "help.faq.messageApplicants.q": "신청자에게 어떻게 연락하나요?",
+  "help.faq.oldTaxExempt.a": "이전 승인에서는 주 면제와 함께 Shopify의 '모든 세금 면제' 설정도 켜졌습니다. 이제 Tradepass는 다른 선택을 하지 않는 한 주 면제만 적용합니다. Tradepass는 세금 설정을 스스로 변경하지 않습니다. Shopify 관리자에서 회사 지점을 열고 세금 설정을 확인하세요.",
+  "help.faq.oldTaxExempt.q": "2026년 11월 이전에 승인한 구매자가 모든 세금에 대해 '면제'로 표시됩니다. 왜 그런가요?",
+  "help.faq.statePermits.a": "무료 공식 조회가 있는 주는 신청서에 '주 웹사이트에서 확인'과 입력할 내용이 표시됩니다. 확인 완료로 표시하면 팀이 누가 언제 확인했는지 볼 수 있습니다. 텍사스는 유효한 허가를 공개 데이터로 게시하므로 Starter와 Pro에서는 Tradepass가 텍사스 번호를 자동으로 확인합니다. EIN에 대한 무료 공개 확인은 없습니다.",
+  "help.faq.statePermits.q": "Tradepass가 판매자 허가를 확인할 수 있나요?",
+  "help.faq.usCertificates.a": "신청자는 증명서(주 자체, Streamlined Sales Tax 증명서, MTC 통일 증명서 또는 면세 단체 증명서)를 고르고 해당하는 주마다 판매자 허가 번호를 추가합니다. 주마다 각자의 만료일을 가진 별도 증명서가 됩니다. 승인 시 지점이 있는 주의 재판매업체 면제를 제안하며, Shopify는 배송 주소 기준으로 과세하므로 다른 해당 주는 제안만 하고 적용하지 않습니다. 주 단위 판매세가 없는 주는 면제가 필요 없습니다.",
+  "help.faq.usCertificates.q": "미국 재판매 증명서는 어떻게 작동하나요?",
+  "help.faq.welcomeEmail.a": "'환영 이메일 보내기'가 켜져 있으면 Tradepass가 Shopify에 자체 B2B 환영 이메일을 보내도록 요청합니다. 스토어에서 Shopify가 앱의 발송을 허용하지 않아도 승인은 완료되며, 신청서 페이지에 준비된 '승인되었습니다' 메시지가 제공됩니다. Shopify 관리자의 연락처에서 Shopify B2B 액세스 이메일을 보내거나 Shopify Flow로 자동 발송할 수도 있습니다(트리거 '회사 연락처에 권한이 할당됨', 작업 'B2B 액세스 이메일 보내기'). 자동으로 발송되는 이메일은 이것뿐이며 Shopify가 보냅니다.",
+  "help.faq.welcomeEmail.q": "승인하면 구매자가 이메일을 받나요?"
 }

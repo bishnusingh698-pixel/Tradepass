@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "승인 단계 실패",
   "buyers.activity.approval.undo": "승인 취소됨",
   "buyers.activity.tier.assisted_add_verified": "등급 할당 확인됨",
-  "buyers.activity.tier.assisted_remove_verified": "등급 제거 확인됨"
+  "buyers.activity.tier.assisted_remove_verified": "등급 제거 확인됨",
+  "buyers.tax.specific": "{count, plural, other {면제 #건}}"
 }

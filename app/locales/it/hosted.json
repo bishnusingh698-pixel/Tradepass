@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Questo link è già stato usato",
   "hosted.link.usedBody": "Ogni link di aggiornamento funziona una sola volta. Se deve modificare altro, contatti {store}.",
   "hosted.noscript": "Attivi JavaScript nel browser per aggiornare la sua richiesta.",
-  "hosted.error.generic": "Si è verificato un problema da parte nostra. Riprovi tra qualche minuto."
+  "hosted.error.generic": "Si è verificato un problema da parte nostra. Riprovi tra qualche minuto.",
+  "hosted.status.body.approved": "Accedi con questo indirizzo email per vedere i tuoi prezzi all’ingrosso.",
+  "hosted.status.body.needs_info": "{store} ha bisogno di qualche informazione in più prima di decidere.",
+  "hosted.status.body.pending": "{store} esamina ogni richiesta e ti risponderà.",
+  "hosted.status.body.rejected": "{store} non ha potuto approvare questa richiesta.",
+  "hosted.status.book": "Prenota una chiamata di benvenuto",
+  "hosted.status.busyTitle": "Troppe richieste. Riprova tra qualche minuto.",
+  "hosted.status.expiredBody": "Per la tua sicurezza, i link di stato funzionano per 90 giorni. Contatta {store} per un nuovo link.",
+  "hosted.status.reapply": "Puoi fare di nuovo richiesta dal {date}.",
+  "hosted.status.shop": "Inizia a fare acquisti",
+  "hosted.status.signIn": "Accedi",
+  "hosted.status.submitted": "{company} ha fatto richiesta il {date}.",
+  "hosted.status.title.approved": "Il tuo account all’ingrosso è approvato",
+  "hosted.status.title.needs_info": "Ci servono altre informazioni",
+  "hosted.status.title.pending": "Stiamo esaminando la tua richiesta",
+  "hosted.status.title.rejected": "La tua richiesta non è stata approvata",
+  "hosted.status.update": "Aggiorna la tua richiesta",
+  "hosted.status.whatsapp": "Scrivi a {store} su WhatsApp"
 }

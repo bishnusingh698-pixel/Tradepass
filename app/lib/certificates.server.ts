@@ -3,7 +3,7 @@ import db from "../db.server";
 import { storefrontUrl } from "./shop.server";
 import { logActivity } from "./activity.server";
 import { decrypt, encrypt, sha256, signToken, verifyToken } from "./crypto.server";
-import { emitFlowTrigger } from "./flow.server";
+import { adminUrl, emitFlowTrigger } from "./flow.server";
 import { buildMessage, renewalKind, type ApplicantMessage } from "./messages";
 import { gql, mutate, type Admin } from "./gql.server";
 import { readSettings } from "./settings";
@@ -41,10 +41,14 @@ const normType = (t: string): CertificateType => ((CERTIFICATE_TYPES as string[]
 export async function recordApplicationCertificates(
   shop: string,
   applicationId: string,
-  files: { fileGid: string; type: string; country?: string | null; region?: string | null; number?: string | null; expiresOn?: string | null }[],
+  files: {
+    fileGid: string | null; type: string; country?: string | null; region?: string | null; number?: string | null; expiresOn?: string | null;
+    form?: string | null; checkResult?: string | null; checkName?: string | null;
+  }[],
 ): Promise<void> {
   for (const f of files) {
-    const exists = await db.certificate.findFirst({ where: { shop, applicationId, fileGid: f.fileGid }, select: { id: true } });
+    // Same file and state → same row (a multistate certificate has one row per state).
+    const exists = await db.certificate.findFirst({ where: { shop, applicationId, fileGid: f.fileGid, region: f.region?.toUpperCase() || null }, select: { id: true } });
     if (exists) continue;
     await db.certificate.create({
       data: {
@@ -57,6 +61,10 @@ export async function recordApplicationCertificates(
         expiresOn: parseDate(f.expiresOn),
         status: "pending",
         fileGid: f.fileGid,
+        form: f.form ?? null,
+        checkResult: f.checkResult ?? null,
+        checkName: f.checkName ?? null,
+        ...(f.checkResult ? { checkedBy: "system", checkedAt: new Date() } : {}),
       },
     });
   }
@@ -366,6 +374,8 @@ async function certificateDay(
         country: buyer.country ?? c.country ?? undefined,
         tierName: tier?.name,
         expiryDate: c.expiresOn!.toISOString().slice(0, 10),
+        state: c.region ?? "",
+        adminUrl: adminUrl(shop, `/app/buyers/${buyer.id}`),
       });
     }
   }
@@ -425,4 +435,42 @@ export async function fileUrl(admin: Admin, fileGid: string): Promise<{ url: str
   const n = data?.node;
   const url = n?.url ?? n?.image?.url;
   return url ? { url, mimeType: n.mimeType ?? null } : null;
+}
+
+// ------------------------------------------------------------ US permit checks (A2)
+
+/** Staff checked the permit on the state's official site: record who and when (logged). */
+export async function markCertificateChecked(shop: string, id: string, actor: string, now = new Date()): Promise<boolean> {
+  const n = await db.certificate.updateMany({
+    where: { shop, id },
+    data: { checkResult: "manual", checkedBy: actor.slice(0, 100), checkedAt: now },
+  });
+  if (n.count) await logActivity({ shop, actor, action: "certificate.checked", subject: id });
+  return n.count === 1;
+}
+
+/**
+ * Check a US permit again against the state's free official dataset (Texas only). Plan-gated like
+ * VIES (Starter); never throws; "unavailable" when the registry can't be reached in time.
+ */
+export async function recheckCertificate(
+  shop: string,
+  id: string,
+  actor: string,
+  check: (state: string, number: string) => Promise<{ status: string; name?: string }> = async (st, n) => (await import("./taxcheck.server")).checkUsPermit(st, n),
+): Promise<{ ok: boolean; result?: string }> {
+  const cert = await db.certificate.findFirst({ where: { shop, id } });
+  if (!cert || cert.country !== "US" || !cert.region || !cert.numberEnc) return { ok: false };
+  let number = "";
+  try {
+    number = decrypt(cert.numberEnc);
+  } catch {
+    return { ok: false };
+  }
+  const r = await check(cert.region, number).catch(() => ({ status: "unavailable", name: undefined }));
+  if (r.status === "na") return { ok: false };
+  const result = r.status === "verified" ? "verified" : r.status === "not_verified" ? "not_found" : "unavailable";
+  await db.certificate.updateMany({ where: { shop, id }, data: { checkResult: result, checkName: r.name ?? null, checkedBy: "system", checkedAt: new Date() } });
+  await logActivity({ shop, actor, action: "certificate.live_check", subject: id, result: result === "unavailable" ? "failed" : "ok", detail: { result } });
+  return { ok: true, result };
 }

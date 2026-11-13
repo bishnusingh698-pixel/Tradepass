@@ -71,11 +71,13 @@ describe("approval step machine", () => {
   it("runs all steps, verifies each, creates the buyer and assigns the tier", async () => {
     const app = await newApp(SHOP);
     const state = await approveApplication(ctx(), app.id, input());
-    expect(Object.values(state.steps).map((s) => s.status)).toEqual(["done", "done", "done", "done", "done", "done"]);
+    // No customer tags configured: the tags step (C19) is skipped.
+    expect(Object.values(state.steps).map((s) => s.status)).toEqual(["done", "done", "done", "done", "done", "skipped", "done"]);
     const loc = state.steps.location.gid!;
     expect(fake.markets.get(marketGid)!.locs).toContain(loc);
     const l = fake.locations.get(loc)!;
-    expect(l).toMatchObject({ terms: "gid://shopify/PaymentTermsTemplate/4", taxExempt: true, exemptions: ["US_TX_RESELLER_EXEMPTION"] });
+    // A state exemption only: the location-wide "exempt from all taxes" flag stays off (C9).
+    expect(l).toMatchObject({ terms: "gid://shopify/PaymentTermsTemplate/4", taxExempt: false, exemptions: ["US_TX_RESELLER_EXEMPTION"] });
     expect(l.roles).toContain(state.steps.contact.gid);
     const saved = await db.application.findUnique({ where: { id: app.id } });
     expect(saved?.status).toBe("approved");

@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Goedkeuringsstap niet gelukt",
   "buyers.activity.approval.undo": "Goedkeuring ongedaan gemaakt",
   "buyers.activity.tier.assisted_add_verified": "Niveautoewijzing bevestigd",
-  "buyers.activity.tier.assisted_remove_verified": "Verwijdering uit niveau bevestigd"
+  "buyers.activity.tier.assisted_remove_verified": "Verwijdering uit niveau bevestigd",
+  "buyers.tax.specific": "{count, plural, one {# vrijstelling} other {# vrijstellingen}}"
 }

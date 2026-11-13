@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "ขั้นตอนการอนุมัติไม่สำเร็จ",
   "buyers.activity.approval.undo": "ยกเลิกการอนุมัติแล้ว",
   "buyers.activity.tier.assisted_add_verified": "ยืนยันการกำหนดระดับแล้ว",
-  "buyers.activity.tier.assisted_remove_verified": "ยืนยันการนำออกจากระดับแล้ว"
+  "buyers.activity.tier.assisted_remove_verified": "ยืนยันการนำออกจากระดับแล้ว",
+  "buyers.tax.specific": "{count, plural, other {การยกเว้น # รายการ}}"
 }

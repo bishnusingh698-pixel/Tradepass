@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "یہ لنک پہلے ہی استعمال ہو چکا ہے",
   "hosted.link.usedBody": "ہر اپ ڈیٹ لنک ایک بار کام کرتا ہے۔ اگر آپ کو کچھ اور تبدیل کرنا ہے تو براہ کرم {store} سے رابطہ کریں۔",
   "hosted.noscript": "اپنی درخواست اپ ڈیٹ کرنے کے لیے براہ کرم اپنے براؤزر میں JavaScript آن کریں۔",
-  "hosted.error.generic": "ہماری طرف سے کچھ غلط ہو گیا۔ براہ کرم چند منٹ بعد دوبارہ کوشش کریں۔"
+  "hosted.error.generic": "ہماری طرف سے کچھ غلط ہو گیا۔ براہ کرم چند منٹ بعد دوبارہ کوشش کریں۔",
+  "hosted.status.body.approved": "اپنی ہول سیل قیمتیں دیکھنے کے لیے اس ای میل پتے سے سائن ان کریں۔",
+  "hosted.status.body.needs_info": "فیصلے سے پہلے {store} کو تھوڑی مزید معلومات درکار ہیں۔",
+  "hosted.status.body.pending": "{store} ہر درخواست کا جائزہ لیتا ہے اور آپ سے رابطہ کرے گا۔",
+  "hosted.status.body.rejected": "{store} اس درخواست کو منظور نہیں کر سکا۔",
+  "hosted.status.book": "آن بورڈنگ کال بک کریں",
+  "hosted.status.busyTitle": "بہت زیادہ درخواستیں۔ براہ کرم چند منٹ بعد دوبارہ کوشش کریں۔",
+  "hosted.status.expiredBody": "آپ کی حفاظت کے لیے اسٹیٹس لنکس 90 دن تک کام کرتے ہیں۔ نئے لنک کے لیے براہ کرم {store} سے رابطہ کریں۔",
+  "hosted.status.reapply": "آپ {date} سے دوبارہ درخواست دے سکتے ہیں۔",
+  "hosted.status.shop": "خریداری شروع کریں",
+  "hosted.status.signIn": "سائن ان کریں",
+  "hosted.status.submitted": "{company} نے {date} کو درخواست دی۔",
+  "hosted.status.title.approved": "آپ کا ہول سیل اکاؤنٹ منظور ہو گیا ہے",
+  "hosted.status.title.needs_info": "ہمیں تھوڑی مزید معلومات درکار ہیں",
+  "hosted.status.title.pending": "ہم آپ کی درخواست کا جائزہ لے رہے ہیں",
+  "hosted.status.title.rejected": "آپ کی درخواست منظور نہیں ہوئی",
+  "hosted.status.update": "اپنی درخواست اپ ڈیٹ کریں",
+  "hosted.status.whatsapp": "WhatsApp پر {store} کو پیغام بھیجیں"
 }

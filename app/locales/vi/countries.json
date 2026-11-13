@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Không có quốc gia nào khớp với tìm kiếm.",
+  "countries.search": "Tìm quốc gia",
+  "countries.selected": "{count, plural, =0 {Chưa chọn quốc gia nào} other {Đã chọn # quốc gia}}"
+}

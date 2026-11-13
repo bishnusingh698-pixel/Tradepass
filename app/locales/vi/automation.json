@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Phê duyệt đơn đăng ký bán buôn vào cấp giá",
   "automation.flow.welcomeNote": "Tradepass đã có thể gửi email truy cập B2B của Shopify khi phê duyệt người mua, nên bạn không cần thêm quy trình nào cho việc đó.",
   "automation.flow.open": "Mở Shopify Flow",
-  "automation.flow.alerts": "Muốn nhận email khi có người đăng ký? Trong Shopify Flow, hãy dùng trình kích hoạt “Wholesale application submitted” với hành động “Send internal email” của Flow. Hành động này chỉ gửi đến các địa chỉ nhân viên cố định mà bạn nhập trong quy trình."
+  "automation.flow.alerts": "Muốn nhận email khi có người đăng ký? Trong Shopify Flow, hãy dùng trình kích hoạt “Wholesale application submitted” với hành động “Send internal email” của Flow. Hành động này chỉ gửi đến các địa chỉ nhân viên cố định mà bạn nhập trong quy trình.",
+  "automation.condition.disposable_email": "Địa chỉ email dùng một lần (mailinator.com…)",
+  "automation.condition.free_email": "Dịch vụ email miễn phí (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Địa chỉ giao hàng là hộp thư bưu điện",
+  "automation.condition.registry_mismatch": "Tên trong sổ đăng ký không khớp với công ty",
+  "automation.condition.website_mismatch": "Trang web không khớp với tên miền email",
+  "automation.flow.alertsMore": "Thêm cảnh báo: “Đã nhận thông tin đơn bán sỉ” chạy khi người đăng ký trả lời yêu cầu của bạn, và “Giấy chứng nhận sắp hết hạn” trước khi giấy chứng nhận hết hạn. Mỗi trình kích hoạt gồm công ty, liên hệ, email, điện thoại, quốc gia, bang, cấp và liên kết đến đơn, sẵn sàng cho email hoặc tin nhắn Slack.",
+  "automation.flow.trigger.application_info_received": "Đã nhận thông tin đơn bán sỉ",
+  "automation.flow.welcomeNoteFlow": "Khi phê duyệt, Shopify được yêu cầu gửi email chào mừng B2B của chính Shopify. Nếu Shopify không cho phép điều đó trên cửa hàng của bạn, mẫu Flow của Shopify “Đã cấp quyền cho liên hệ công ty” → “Gửi email truy cập B2B” cũng làm việc tương tự; Tradepass cấp quyền đó trong quá trình phê duyệt."
 }

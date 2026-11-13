@@ -111,5 +111,18 @@
   "approval.skip.no_state": "אין מה לנסות שוב.",
   "approval.skip.finished": "כבר אושרה.",
   "approval.skip.missing_address": "חסרה כתובת לחיוב.",
-  "approval.skip.tier_required": "לא נבחרה רמה."
+  "approval.skip.tier_required": "לא נבחרה רמה.",
+  "approval.blocked.no_b2b": "תוכנית ה-Shopify שלכם לא כוללת B2B, ולכן Shopify עדיין לא יכולה ליצור חברה לקונה הזה. הבקשה נשארת בתור: אשרו אותה כש-B2B יהיה זמין (תוכנית Basic ומעלה עם השווקים החדשים). דף הבית מציג מה התוכנית שלכם תומכת.",
+  "approval.error.email_unavailable": "Shopify לא אפשרה ל-Tradepass לשלוח את אימייל הפתיחה של B2B בחנות הזו, ולכן לא נשלח אימייל. הקונה אושר. שלחו לו את ההודעה המוכנה מדף הבקשה.",
+  "approval.field.taxExemptAll": "לא לגבות מס כלל במיקום הזה",
+  "approval.field.taxExemptAllHelp": "רק לקונים שפטורים מכל מס בכל מקום שאליו אתם שולחים. אישור למכירה חוזרת חל בדרך כלל על מדינה אחת: השתמשו במקום זאת בפטורים שלמעלה, כך שמס ייגבה במקומות שבהם אין פטור.",
+  "approval.skip.no_b2b": "B2B לא זמין בתוכנית ה-Shopify של החנות הזו.",
+  "approval.step.tags": "תגיות לקוח",
+  "approval.tags.note": "תגיות שנוספו ללקוח: {tags} (הגדרות ← מגישים ויצירת קשר).",
+  "approval.tax.addCovered": "הוספת הפטורים האלה",
+  "approval.tax.alsoCovered": "האישורים חלים גם על: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "במדינה של המיקום הזה אין מס מכירה מדינתי, ולכן אין צורך בפטור שם.",
+  "approval.tax.reason.us_exempt_org": "אישור של ארגון פטור ממס: ל-Shopify אין פטור ייעודי עבורו. בדקו את האישור; רק אם הקונה לא חייב מס כלל, בחרו ״לא לגבות מס כלל״.",
+  "approval.tax.reason.us_resale_local_only": "האישור של הקונה חל על המדינה הזו. באלסקה אין מס מכירה מדינתי, אבל ערים מסוימות גובות מס משלהן.",
+  "approval.tax.reason.us_state_not_covered": "האישורים של הקונה חלים על מדינות אחרות מזו של המיקום. הוסיפו את הפטורים האלה רק אם ההזמנות של המיקום נשלחות לשם."
 }

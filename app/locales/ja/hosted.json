@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "このリンクはすでに使用されています",
   "hosted.link.usedBody": "更新用リンクは1回のみ有効です。ほかに変更が必要な場合は、{store}にお問い合わせください。",
   "hosted.noscript": "申請内容を更新するには、ブラウザでJavaScriptを有効にしてください。",
-  "hosted.error.generic": "システムで問題が発生しました。数分後にもう一度お試しください。"
+  "hosted.error.generic": "システムで問題が発生しました。数分後にもう一度お試しください。",
+  "hosted.status.body.approved": "このメールアドレスでログインすると卸売価格が表示されます。",
+  "hosted.status.body.needs_info": "{store} が判断する前に、もう少し情報が必要です。",
+  "hosted.status.body.pending": "{store} はすべての申請を確認し、ご連絡します。",
+  "hosted.status.body.rejected": "{store} はこの申請を承認できませんでした。",
+  "hosted.status.book": "導入の通話を予約",
+  "hosted.status.busyTitle": "リクエストが多すぎます。数分後にもう一度お試しください。",
+  "hosted.status.expiredBody": "セキュリティのため、ステータスリンクの有効期間は90日です。新しいリンクは {store} にお問い合わせください。",
+  "hosted.status.reapply": "{date} から再申請できます。",
+  "hosted.status.shop": "買い物を始める",
+  "hosted.status.signIn": "ログイン",
+  "hosted.status.submitted": "{company} は {date} に申請しました。",
+  "hosted.status.title.approved": "卸売アカウントが承認されました",
+  "hosted.status.title.needs_info": "もう少し情報が必要です",
+  "hosted.status.title.pending": "申請を確認しています",
+  "hosted.status.title.rejected": "申請は承認されませんでした",
+  "hosted.status.update": "申請を更新",
+  "hosted.status.whatsapp": "WhatsApp で {store} にメッセージ"
 }

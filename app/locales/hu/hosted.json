@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Ezt a linket már felhasználták",
   "hosted.link.usedBody": "Minden frissítési link csak egyszer használható. Ha mást is módosítana, kérjük, forduljon a(z) {store} áruházhoz.",
   "hosted.noscript": "Kérjük, kapcsolja be a JavaScriptet a böngészőjében a jelentkezés frissítéséhez.",
-  "hosted.error.generic": "Hiba történt a mi oldalunkon. Kérjük, próbálja újra néhány perc múlva."
+  "hosted.error.generic": "Hiba történt a mi oldalunkon. Kérjük, próbálja újra néhány perc múlva.",
+  "hosted.status.body.approved": "Jelentkezzen be ezzel az e-mail-címmel a nagykereskedelmi árak megtekintéséhez.",
+  "hosted.status.body.needs_info": "{store} a döntés előtt még néhány információt kér.",
+  "hosted.status.body.pending": "{store} minden jelentkezést átnéz, és jelentkezni fog.",
+  "hosted.status.body.rejected": "{store} nem tudta jóváhagyni ezt a jelentkezést.",
+  "hosted.status.book": "Bevezető hívás foglalása",
+  "hosted.status.busyTitle": "Túl sok kérés. Próbálja újra néhány perc múlva.",
+  "hosted.status.expiredBody": "Biztonsági okokból az állapotlinkek 90 napig működnek. Új linkért forduljon ide: {store}.",
+  "hosted.status.reapply": "{date} után újra jelentkezhet.",
+  "hosted.status.shop": "Vásárlás indítása",
+  "hosted.status.signIn": "Bejelentkezés",
+  "hosted.status.submitted": "{company} jelentkezésének dátuma: {date}.",
+  "hosted.status.title.approved": "Nagykereskedelmi fiókját jóváhagytuk",
+  "hosted.status.title.needs_info": "Még néhány információra van szükségünk",
+  "hosted.status.title.pending": "Átnézzük a jelentkezését",
+  "hosted.status.title.rejected": "Jelentkezését nem hagytuk jóvá",
+  "hosted.status.update": "Jelentkezés frissítése",
+  "hosted.status.whatsapp": "Üzenet a(z) {store} részére WhatsAppon"
 }

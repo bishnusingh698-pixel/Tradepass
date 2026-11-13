@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Tidak ada negara yang cocok dengan pencarian Anda.",
+  "countries.search": "Cari negara",
+  "countries.selected": "{count, plural, =0 {Tidak ada negara dipilih} other {# negara dipilih}}"
+}

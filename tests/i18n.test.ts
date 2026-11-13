@@ -12,7 +12,8 @@ const en = catalogs.en as Record<string, string>;
 // locale's own pending.json; every other key must be present in every locale.
 const pending = new Set(Object.keys(JSON.parse(readFileSync("app/locales/en/pending.json", "utf8")) as Record<string, string>));
 // Strings allowed to equal English in every language (brand names, units).
-const SAME_AS_ENGLISH_OK = new Set(["app.name"]);
+// Format-only strings ("{state}: {form}") read the same in every language (scripts/i18n-check.mjs keeps the same list).
+const SAME_AS_ENGLISH_OK = new Set(["app.name", "applications.detail.usPermit"]);
 
 function walk(els: MessageFormatElement[], out: { args: Set<string>; plurals: Set<string>[] }) {
   for (const el of els) {

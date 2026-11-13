@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "卸売申請を承認して価格ランクに追加",
   "automation.flow.welcomeNote": "Tradepassはバイヤーの承認時にShopifyのB2Bアクセスメールを送信できるため、そのための追加のワークフローは不要です。",
   "automation.flow.open": "Shopify Flowを開く",
-  "automation.flow.alerts": "申請があったときにメールを受け取りたい場合は、Shopify Flowでトリガー「Wholesale application submitted」とFlowのアクション「Send internal email」を使ってください。このアクションは、ワークフローに入力した固定のスタッフのアドレスにのみ送信します。"
+  "automation.flow.alerts": "申請があったときにメールを受け取りたい場合は、Shopify Flowでトリガー「Wholesale application submitted」とFlowのアクション「Send internal email」を使ってください。このアクションは、ワークフローに入力した固定のスタッフのアドレスにのみ送信します。",
+  "automation.condition.disposable_email": "使い捨てメールアドレス（mailinator.com など）",
+  "automation.condition.free_email": "無料メールサービス（gmail.com、outlook.com など）",
+  "automation.condition.po_box": "配送先住所が私書箱",
+  "automation.condition.registry_mismatch": "登録上の名称が会社と一致しない",
+  "automation.condition.website_mismatch": "ウェブサイトがメールのドメインと一致しない",
+  "automation.flow.alertsMore": "その他のアラート：「卸売申請の情報を受信」は申請者が依頼に回答したときに、「証明書の期限が近い」は証明書の期限切れ前に実行されます。各トリガーには会社、連絡先、メール、電話、国、州、ティア、申請へのリンクが含まれ、メールや Slack メッセージにそのまま使えます。",
+  "automation.flow.trigger.application_info_received": "卸売申請の情報を受信",
+  "automation.flow.welcomeNoteFlow": "承認時、Shopify に独自の B2B ウェルカムメールの送信を依頼します。ストアで Shopify がそれを許可しない場合は、Shopify の Flow テンプレート「会社の連絡先に権限が割り当てられた」→「B2B アクセスメールを送信」で同じことができます。Tradepass は承認時にその権限を割り当てます。"
 }

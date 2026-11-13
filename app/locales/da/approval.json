@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Intet at prøve igen.",
   "approval.skip.finished": "Allerede godkendt.",
   "approval.skip.missing_address": "Faktureringsadresse mangler.",
-  "approval.skip.tier_required": "Intet niveau valgt."
+  "approval.skip.tier_required": "Intet niveau valgt.",
+  "approval.blocked.no_b2b": "Dit Shopify-abonnement omfatter ikke B2B, så Shopify kan endnu ikke oprette en virksomhed for denne køber. Ansøgningen bliver i din kø: godkend den, når B2B er tilgængeligt (Basic-abonnement eller højere med de nye Markeder). Forsiden viser, hvad dit abonnement understøtter.",
+  "approval.error.email_unavailable": "Shopify lod ikke Tradepass sende sin B2B-velkomstmail i denne butik, så der blev ikke sendt nogen e-mail. Køberen er godkendt. Send køberen den færdige besked fra ansøgningssiden.",
+  "approval.field.taxExemptAll": "Opkræv ingen afgift fra denne lokation",
+  "approval.field.taxExemptAllHelp": "Kun for købere, der er fritaget for alle afgifter, overalt hvor du sender til dem. Et videresalgscertifikat dækker normalt én stat eller ét land: brug i stedet fritagelserne ovenfor, så der stadig opkræves afgift, hvor ingen fritagelse gælder.",
+  "approval.skip.no_b2b": "B2B er ikke tilgængeligt i denne butiks Shopify-abonnement.",
+  "approval.step.tags": "Kundetags",
+  "approval.tags.note": "Tags tilføjet til kunden: {tags} (Indstillinger → Ansøgere og kontakt).",
+  "approval.tax.addCovered": "Tilføj disse fritagelser",
+  "approval.tax.alsoCovered": "Certifikaterne dækker også: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Denne lokations stat har ingen statslig salgsafgift, så der er ikke brug for en fritagelse.",
+  "approval.tax.reason.us_exempt_org": "Certifikat fra en skattefritaget organisation: Shopify har ingen særlig fritagelse for det. Tjek certifikatet; vælg kun “Opkræv ingen afgift”, hvis køberen slet ikke skylder afgift.",
+  "approval.tax.reason.us_resale_local_only": "Køberens certifikat dækker denne stat. Alaska har ingen statslig salgsafgift, men nogle byer opkræver deres egen.",
+  "approval.tax.reason.us_state_not_covered": "Køberens certifikater dækker andre stater end denne lokations stat. Tilføj kun disse fritagelser, hvis lokationens ordrer sendes dertil."
 }

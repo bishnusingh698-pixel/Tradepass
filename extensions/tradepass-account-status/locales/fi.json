@@ -1,0 +1,12 @@
+{
+  "title": "Tukkutili",
+  "status": {
+    "pending": "Hakemus käsittelyssä",
+    "needs_info": "Tarvitsemme lisätietoja",
+    "approved": "Hyväksytty",
+    "rejected": "Ei hyväksytty"
+  },
+  "submitted": "Haettu {{date}}",
+  "reapply": "Voit hakea uudelleen {{date}} alkaen.",
+  "view": "Näytä tiedot"
+}

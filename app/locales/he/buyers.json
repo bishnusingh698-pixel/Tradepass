@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "שלב באישור נכשל",
   "buyers.activity.approval.undo": "האישור בוטל",
   "buyers.activity.tier.assisted_add_verified": "השיוך לרמה אומת",
-  "buyers.activity.tier.assisted_remove_verified": "ההסרה מהרמה אומתה"
+  "buyers.activity.tier.assisted_remove_verified": "ההסרה מהרמה אומתה",
+  "buyers.tax.specific": "{count, plural, one {פטור אחד} two {# פטורים} other {# פטורים}}"
 }

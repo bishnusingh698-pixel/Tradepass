@@ -20,6 +20,21 @@
   "message.modal.copy": "Salin pesan",
   "message.modal.copied": "Pesan disalin",
   "message.modal.copyFailed": "Pesan tidak dapat disalin. Pilih teksnya lalu salin sendiri.",
-  "message.modal.mailto": "Buka di email",
-  "message.modal.close": "Tutup"
+  "message.modal.close": "Tutup",
+  "message.approved.subject": "Akun grosir Anda di {store_name} telah disetujui",
+  "message.approved.body": "Halo {first_name},\n\nKabar baik: {company} telah disetujui untuk akun grosir di {store_name}. Tingkat harga Anda adalah {tier_name}.\n\nUntuk masuk, buka tautan di bawah dan masukkan alamat email ini. Kami akan mengirimkan kode sekali pakai melalui email, jadi Anda tidak memerlukan kata sandi:\n{login_url}\n\nSetelah masuk, Anda akan melihat harga grosir Anda di seluruh toko.",
+  "message.channel.mailto": "Buka di email",
+  "message.channel.gmail": "Buka di Gmail",
+  "message.channel.line": "Buka di LINE",
+  "message.channel.outlook": "Buka di Outlook",
+  "message.channel.sms": "Buka di SMS",
+  "message.channel.telegram": "Buka di Telegram",
+  "message.channel.whatsapp": "Buka di WhatsApp",
+  "message.modal.moreApps": "Aplikasi lain:",
+  "message.modal.noPhone": "Aplikasi tidak memiliki nomor telepon internasional, jadi WhatsApp dan SMS terbuka tanpa penerima.",
+  "message.modal.nothingSent": "Tradepass sendiri tidak mengirim apa pun: setiap tombol hanya membuka aplikasi Anda dengan pesan yang sudah terisi.",
+  "message.modal.openIn": "Kirim dari aplikasi Anda sendiri",
+  "message.modal.pasteHint": "Pesan terlalu panjang untuk aplikasi ini, jadi aplikasi terbuka tanpa teks. Pesan sudah disalin: tinggal tempel.",
+  "message.modal.phone": "Telepon",
+  "message.statusLine": "Anda dapat memeriksa status aplikasi kapan saja: {status_link}"
 }

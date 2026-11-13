@@ -15,13 +15,15 @@ import db from "../db.server";
 import { gql, mutate, GqlError, UserErrorsError, type Admin } from "./gql.server";
 import { logActivity } from "./activity.server";
 import { decrypt, sha256 } from "./crypto.server";
-import { emitFlowTrigger } from "./flow.server";
+import { applicationPayload, emitFlowTrigger } from "./flow.server";
 import { createT } from "./i18n";
 import { LockBusyError, withApplicationLock } from "./lock.server";
 import { approvalQuota, effectivePlan } from "./plans";
 import { approvalsThisMonth, normaliseTaxNumber } from "./applications.server";
 import { suggestExemption, US_RESELLER_STATES } from "./tax";
 import { refreshShopFacts } from "./shop.server";
+import { syncBuyerMarker } from "./buyer-marker.server";
+import { readSettings } from "./settings";
 import {
   AssignmentError, ASSISTED_JOB, catalogBudget, moveLocations, paymentTermsOptions, readDefaults, TierError,
 } from "./tiers.server";
@@ -34,8 +36,15 @@ export type Address = {
 export type ApproveInput = {
   tierId: string;
   paymentTermsTemplateId: string | null;
+  /** Apply the listed exemptions (e.g. one US state's reseller exemption). */
   taxExempt: boolean;
   exemptions: string[]; // TaxExemption enum values
+  /**
+   * Shopify's location-wide `taxExempt` flag: no tax at all, anywhere. Off unless the merchant
+   * explicitly chooses it — a resale certificate covers one state, so setting it with a state
+   * exemption (as before 2026-11-07) also stopped tax on orders shipped to every other state.
+   */
+  taxExemptAll?: boolean;
   taxRegistrationId: string | null;
   companyName: string;
   locationName: string;
@@ -48,9 +57,11 @@ export type ApproveInput = {
   sendWelcome: boolean;
   /** Orders go to the merchant as drafts (buyer experience checkoutToDraft). Defaults to the tier's setting. */
   checkoutToDraft?: boolean;
+  /** Customer tags added to the contact's customer (Settings → customer tags, C19). */
+  customerTags?: string[];
 };
 
-export const APPROVAL_STEPS = ["company", "location", "contact", "terms_tax", "tier", "email"] as const;
+export const APPROVAL_STEPS = ["company", "location", "contact", "terms_tax", "tier", "tags", "email"] as const;
 export type ApprovalStep = (typeof APPROVAL_STEPS)[number];
 export type StepState = {
   status: "pending" | "running" | "done" | "failed" | "skipped";
@@ -60,6 +71,8 @@ export type StepState = {
   created?: boolean; // true = this approval created the Shopify object (Undo may remove it)
   pendingAssignment?: boolean; // tier step in assisted mode: waiting for the merchant
   jobIds?: string[];
+  /** tags step: the tags this approval added (the customer didn't have them before), for Undo. */
+  added?: string[];
 };
 export type ApprovalState = {
   input: ApproveInput;
@@ -146,6 +159,12 @@ const Q = {
       companyLocationTaxSettingsUpdate(companyLocationId: $companyLocationId, taxExempt: $taxExempt, exemptionsToAssign: $exemptionsToAssign,
         exemptionsToRemove: $exemptionsToRemove, taxRegistrationId: $taxRegistrationId) {
         companyLocation { id } userErrors { field message code } } }`,
+  contactCustomer: `#graphql
+    query ApprovalContactCustomer($id: ID!) { companyContact(id: $id) { id customer { id tags } } }`,
+  tagsAdd: `#graphql
+    mutation ApprovalTagsAdd($id: ID!, $tags: [String!]!) { tagsAdd(id: $id, tags: $tags) { node { id } userErrors { field message } } }`,
+  tagsRemove: `#graphql
+    mutation ApprovalTagsRemove($id: ID!, $tags: [String!]!) { tagsRemove(id: $id, tags: $tags) { node { id } userErrors { field message } } }`,
   welcome: `#graphql
     mutation ApprovalWelcome($companyContactId: ID!) { companyContactSendWelcomeEmail(companyContactId: $companyContactId) {
       companyContact { id } userErrors { field message code } } }`,
@@ -173,7 +192,11 @@ export function emptySteps(): Record<ApprovalStep, StepState> {
 
 function readState(raw: unknown): ApprovalState | null {
   const s = raw as ApprovalState | null;
-  return s && s.steps && s.input ? s : null;
+  if (!(s && s.steps && s.input)) return null;
+  // Approvals saved before a step existed (the tags step, 2026-11-07): a finished one skipped it,
+  // an unfinished one runs it.
+  for (const k of APPROVAL_STEPS) if (!s.steps[k]) s.steps[k] = { status: s.finishedAt ? "skipped" : "pending" };
+  return s;
 }
 
 async function translator(ctx: ApprovalCtx) {
@@ -382,11 +405,12 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
       (l.buyerExperienceConfiguration?.paymentTermsTemplate?.id ?? null) === (i.paymentTermsTemplateId ?? null) &&
       Boolean(l.buyerExperienceConfiguration?.checkoutToDraft) === draft;
     const want = i.taxExempt ? [...new Set(i.exemptions)] : [];
+    const exemptAll = Boolean(i.taxExemptAll);
     const taxOk = (l: any) => {
       const ts = l.taxSettings ?? {};
       const have: string[] = ts.taxExemptions ?? [];
       // Shopify may store the registration id with other spacing or case than typed.
-      return Boolean(ts.taxExempt) === Boolean(i.taxExempt) && have.length === want.length && want.every((x) => have.includes(x)) &&
+      return Boolean(ts.taxExempt) === exemptAll && have.length === want.length && want.every((x) => have.includes(x)) &&
         (i.taxRegistrationId ? normaliseTaxNumber(String(ts.taxRegistrationId ?? "")) === normaliseTaxNumber(i.taxRegistrationId) : true);
     };
     if (!termsOk(loc)) {
@@ -400,12 +424,12 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
       const have: string[] = loc.taxSettings?.taxExemptions ?? [];
       await mutate(admin, "companyLocationTaxSettingsUpdate", Q.taxUpdate, {
         companyLocationId: locationGid,
-        taxExempt: Boolean(i.taxExempt),
+        taxExempt: exemptAll,
         exemptionsToAssign: want.filter((x) => !have.includes(x)),
         exemptionsToRemove: have.filter((x) => !want.includes(x)),
         ...(i.taxRegistrationId ? { taxRegistrationId: i.taxRegistrationId } : {}),
       });
-      await logActivity({ shop, actor, action: "approval.tax_set", subject: locationGid, detail: { taxExempt: i.taxExempt, exemptions: want } });
+      await logActivity({ shop, actor, action: "approval.tax_set", subject: locationGid, detail: { taxExemptAll: exemptAll, exemptions: want } });
     }
     const after = (await gql(admin, Q.location, { id: locationGid })).companyLocation;
     if (!after || !termsOk(after) || !taxOk(after)) throw new StepError("verify_failed");
@@ -422,6 +446,27 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
     await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "tier.assign", subject: r.state.steps.location.gid!, detail: { tierId: tier.id, mode: res.mode } });
   },
 
+  async tags(r) {
+    // Customer tags (C19): added to the contact's customer, read back, and remembered so Undo removes
+    // only the tags this approval added.
+    const st = r.state.steps.tags;
+    const want = [...new Set(r.state.input.customerTags ?? [])];
+    const contactGid = r.state.steps.contact.gid;
+    if (!want.length || !contactGid) {
+      st.status = "skipped";
+      return;
+    }
+    const read = async () => (await gql(r.ctx.admin, Q.contactCustomer, { id: contactGid })).companyContact?.customer as { id: string; tags: string[] } | null;
+    const before = await read();
+    if (!before) throw new StepError("missing_in_shopify");
+    const missing = want.filter((x) => !before.tags.some((y) => y.toLowerCase() === x.toLowerCase()));
+    if (missing.length) await mutate(r.ctx.admin, "tagsAdd", Q.tagsAdd, { id: before.id, tags: missing });
+    const after = await read();
+    if (!after || !want.every((x) => after.tags.some((y) => y.toLowerCase() === x.toLowerCase()))) throw new StepError("verify_failed");
+    Object.assign(st, { gid: before.id, added: [...new Set([...(st.added ?? []), ...missing])] });
+    if (missing.length) await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "approval.tags_added", subject: before.id, detail: { count: missing.length } });
+  },
+
   async email(r) {
     const st = r.state.steps.email;
     const contactGid = r.state.steps.contact.gid;
@@ -429,17 +474,38 @@ const STEP_FNS: Record<ApprovalStep, (r: Run) => Promise<void>> = {
       st.status = "skipped";
       return;
     }
-    // Shopify's own B2B welcome email: it invites the contact to sign in to the store. There is
-    // no fallback any more; a failure shows on this step and the merchant can send it again.
+    // Shopify's own B2B welcome email: it invites the contact to sign in to the store. Tradepass
+    // sends no email itself (D-091). shopify.dev documents companyContactSendWelcomeEmail, but the
+    // Admin schema in the Shopify dev toolkit (2026-01 … unstable) doesn't contain it, so Shopify
+    // may refuse it as an unknown field (D-092). Then the step is skipped, not failed: the buyer is
+    // fully approved and the merchant gets the ready-made "approved" message plus the ways to send
+    // Shopify's B2B access email themselves (company page in Shopify admin, or a Flow workflow).
     try {
       await mutate(r.ctx.admin, "companyContactSendWelcomeEmail", Q.welcome, { companyContactId: contactGid });
     } catch (e) {
+      if (welcomeUnavailable(e)) {
+        st.status = "skipped";
+        st.code = "email_unavailable";
+        st.error = (await translator(r.ctx))("approval.error.email_unavailable");
+        await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "approval.welcome_unavailable", subject: contactGid });
+        return;
+      }
       throw new StepError("email_failed", e instanceof UserErrorsError ? e.userErrors.map((u) => u.message).join(" ") : undefined);
     }
     await logActivity({ shop: r.ctx.shop, actor: r.ctx.actor, action: "approval.welcome_sent", subject: contactGid, detail: { via: "shopify" } });
     st.gid = "shopify";
   },
 };
+
+/**
+ * Shopify refused the welcome mutation itself (unknown field, or the app isn't allowed to call it),
+ * as opposed to a one-off failure (userErrors, throttling) that a Retry can fix.
+ */
+export function welcomeUnavailable(e: unknown): boolean {
+  if (!(e instanceof GqlError)) return false;
+  const text = JSON.stringify(e.errors ?? "");
+  return /undefinedField|Cannot query field|doesn't exist on type|ACCESS_DENIED|access denied/i.test(text);
+}
 
 function locationInput(r: Run) {
   const i = r.state.input;
@@ -549,6 +615,7 @@ async function finalizeApplication(app: Application, r: Run, source: "applicatio
   const i = state.input;
   const companyGid = state.steps.company.gid!;
   const locationGid = state.steps.location.gid!;
+  const before = await db.buyer.findUnique({ where: { shop_companyGid: { shop: ctx.shop, companyGid } }, select: { status: true } });
   const buyer = await db.buyer.upsert({
     where: { shop_companyGid: { shop: ctx.shop, companyGid } },
     create: {
@@ -560,6 +627,8 @@ async function finalizeApplication(app: Application, r: Run, source: "applicatio
   if (!buyer.locationGids.includes(locationGid))
     await db.buyer.update({ where: { id: buyer.id }, data: { locationGids: [...buyer.locationGids, locationGid] } });
   state.buyerId = buyer.id;
+  // A paused company approved again is active: lift the checkout-lock marker (N1).
+  if (before?.status === "paused") await syncBuyerMarker(ctx.admin, ctx.shop, buyer.id);
   await attachJobsToBuyer(ctx.shop, state.steps.tier.jobIds, buyer.id);
   await db.application.updateMany({ where: { id: app.id, shop: ctx.shop }, data: { status: "approved", decidedAt: new Date(), buyerId: buyer.id } });
   await db.certificate.updateMany({ where: { shop: ctx.shop, applicationId: app.id, buyerId: null }, data: { buyerId: buyer.id } });
@@ -569,10 +638,10 @@ async function finalizeApplication(app: Application, r: Run, source: "applicatio
   state.flowSent = true;
   await r.save(state);
   const tier = await db.tier.findFirst({ where: { id: i.tierId, shop: ctx.shop }, select: { name: true } });
-  await emitFlowTrigger(ctx.admin, ctx.shop, "application_approved", {
-    applicationId: app.id, buyerId: buyer.id, companyGid, companyName: i.companyName,
-    contactEmail: r.email ?? undefined, country: i.billingAddress.countryCode, tierName: tier?.name,
-  }).catch(() => undefined);
+  await emitFlowTrigger(ctx.admin, ctx.shop, "application_approved", await applicationPayload(ctx.shop, app.id, {
+    buyerId: buyer.id, companyGid, companyName: i.companyName,
+    contactEmail: r.email ?? undefined, country: i.billingAddress.countryCode, state: i.billingAddress.zoneCode ?? "", tierName: tier?.name ?? "",
+  })).catch(() => undefined);
 }
 
 async function attachJobsToBuyer(shop: string, jobIds: string[] | undefined, buyerId: string) {
@@ -609,10 +678,12 @@ export function mergeRetryInput(prev: ApprovalState, next: ApproveInput): Approv
     out.paymentTermsTemplateId = p.paymentTermsTemplateId;
     out.checkoutToDraft = p.checkoutToDraft;
     out.taxExempt = p.taxExempt;
+    out.taxExemptAll = p.taxExemptAll;
     out.exemptions = p.exemptions;
     out.taxRegistrationId = p.taxRegistrationId;
   }
   if (done("tier") || prev.steps.tier?.status === "running") out.tierId = p.tierId;
+  if (done("tags")) out.customerTags = p.customerTags;
   if (done("email")) out.sendWelcome = p.sendWelcome;
   return out;
 }
@@ -677,6 +748,7 @@ export function normalizeApproveInput(raw: unknown): ApproveInput | null {
     paymentTermsTemplateId: terms,
     taxExempt,
     exemptions: taxExempt ? exemptions : [],
+    taxExemptAll: r.taxExemptAll === true,
     taxRegistrationId: cleanStr(r.taxRegistrationId, 100) || null,
     companyName,
     locationName: cleanStr(r.locationName) || companyName,
@@ -685,6 +757,9 @@ export function normalizeApproveInput(raw: unknown): ApproveInput | null {
     contact,
     sendWelcome: r.sendWelcome !== false,
     checkoutToDraft: r.checkoutToDraft === true,
+    customerTags: Array.isArray(r.customerTags)
+      ? [...new Set(r.customerTags.filter((x): x is string => typeof x === "string").map((x) => x.trim()).filter((x) => x && x.length <= 40 && !/[<>,]/.test(x)))].slice(0, 10)
+      : [],
   };
 }
 
@@ -756,6 +831,10 @@ async function undoState(ctx: ApprovalCtx, state: ApprovalState, subject: string
       throw e;
     }
   };
+  // Tags this approval added go first (the customer stays; Undo never deletes customers).
+  if (s.tags?.gid && s.tags.added?.length) {
+    await step("approval.tags_removed", s.tags.gid, () => mutate(ctx.admin, "tagsRemove", Q.tagsRemove, { id: s.tags.gid, tags: s.tags.added }));
+  }
   // Tier first, so a market never keeps a location we are about to delete.
   if (s.tier.jobIds?.length) await db.job.deleteMany({ where: { shop: ctx.shop, id: { in: s.tier.jobIds }, state: "waiting" } });
   if (s.location.gid && (s.tier.status === "done" || s.tier.status === "failed" || s.tier.status === "running") && !s.tier.pendingAssignment) {
@@ -777,7 +856,7 @@ async function undoState(ctx: ApprovalCtx, state: ApprovalState, subject: string
 export type ApprovalDefaults = {
   input: ApproveInput;
   existingCustomer: { gid: string; name: string; email: string; otherCompany: string | null } | null;
-  suggestedExemption: { exemption: string | null; reason: string };
+  suggestedExemption: { exemption: string | null; reason: string; alsoCovered?: string[] };
   paymentTermsOptions: { id: string; name: string }[];
   tiers: { id: string; name: string }[];
   catalogBudget: { used: number | null; limit: number | null };
@@ -805,15 +884,21 @@ export async function approvalDefaults(ctx: ApprovalCtx, applicationId: string):
     tiers.find((x) => x.id === app.suggestedTierId) ?? tiers.find((x) => x.id === form?.suggestedTierId) ?? tiers[0];
   const td = readDefaults(tier?.defaults);
 
-  // Certificates outrank the billing state: a Texas certificate means the Texas exemption.
-  const resale = certs.find((c) => c.type === "resale" && c.status !== "rejected");
+  // US: one certificate per state; the location's state (where orders ship) decides which one
+  // applies, and the other covered states are offered.
+  const usable = certs.filter((c) => c.status !== "rejected");
+  const resale = usable.find((c) => c.type === "resale");
+  const covered = [...new Set(usable.filter((c) => c.type === "resale" && c.country === "US" && c.region).map((c) => c.region!))];
+  const locationState = (shipping && validAddress(shipping) ? shipping.zoneCode : billing.zoneCode) ?? null;
   const suggestion = suggestExemption({
     storeCountry: shopRow?.country ?? "",
     buyerCountry: billing.countryCode || app.countryCode || "",
-    buyerRegion: billing.zoneCode,
-    certificateType: resale ? "resale" : certs[0] ? (certs[0].type as "vat") : null,
+    buyerRegion: locationState,
+    certificateType: resale ? "resale" : usable[0] ? (usable[0].type as "vat") : null,
     certificateRegion: resale?.region ?? null,
     vatVerified: app.taxCheck === "verified",
+    coveredStates: covered.length ? covered : undefined,
+    exemptOrg: usable.some((c) => c.form === "exempt"),
   });
 
   let taxNumber: string | null = null;
@@ -852,6 +937,7 @@ export async function approvalDefaults(ctx: ApprovalCtx, applicationId: string):
     contact: existing ? { mode: "existing", customerGid: existing.gid } : { mode: "new" },
     sendWelcome: true,
     checkoutToDraft: td.checkoutToDraft,
+    customerTags: readSettings(shopRow?.settings ?? {}).customerTags.onApprove,
   };
 
   return {

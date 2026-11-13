@@ -20,6 +20,21 @@
   "message.modal.copy": "Скопировать сообщение",
   "message.modal.copied": "Сообщение скопировано",
   "message.modal.copyFailed": "Не удалось скопировать сообщение. Выделите текст и скопируйте его сами.",
-  "message.modal.mailto": "Открыть в почте",
-  "message.modal.close": "Закрыть"
+  "message.modal.close": "Закрыть",
+  "message.approved.subject": "Ваш оптовый аккаунт в магазине {store_name} одобрен",
+  "message.approved.body": "Здравствуйте, {first_name}!\n\nОтличные новости: компании {company} одобрен оптовый аккаунт в магазине {store_name}. Ваш ценовой уровень: {tier_name}.\n\nЧтобы войти, откройте ссылку ниже и введите этот адрес электронной почты. Мы отправим вам одноразовый код, поэтому пароль не нужен:\n{login_url}\n\nПосле входа вы увидите оптовые цены во всём магазине.",
+  "message.channel.mailto": "Открыть в почте",
+  "message.channel.gmail": "Открыть в Gmail",
+  "message.channel.line": "Открыть в LINE",
+  "message.channel.outlook": "Открыть в Outlook",
+  "message.channel.sms": "Открыть в SMS",
+  "message.channel.telegram": "Открыть в Telegram",
+  "message.channel.whatsapp": "Открыть в WhatsApp",
+  "message.modal.moreApps": "Другие приложения:",
+  "message.modal.noPhone": "В заявке нет международного номера телефона, поэтому WhatsApp и SMS откроются без получателя.",
+  "message.modal.nothingSent": "Tradepass сам ничего не отправляет: каждая кнопка лишь открывает ваше приложение с заполненным сообщением.",
+  "message.modal.openIn": "Отправьте из своих приложений",
+  "message.modal.pasteHint": "Сообщение слишком длинное для этого приложения, поэтому оно откроется без текста. Текст скопирован — просто вставьте его.",
+  "message.modal.phone": "Телефон",
+  "message.statusLine": "Статус заявки можно проверить в любое время: {status_link}"
 }

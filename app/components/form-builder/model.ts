@@ -9,6 +9,7 @@ export const LOCKED_FIELDS = ["companyName", "email", "firstName", "lastName", "
 export const STANDARD_FIELDS: Record<string, FieldType> = {
   companyName: "text", businessType: "select", website: "url", yearEstablished: "number",
   locationsCount: "number", monthlyOrderValue: "select", referral: "text",
+  storeType: "select", storeUrl: "url", yearsInBusiness: "number", ein: "text", duns: "text", tradeReferences: "textarea",
   firstName: "text", lastName: "text", email: "email", phone: "phone", jobTitle: "text", preferredLanguage: "select",
   billingAddress: "address", shippingAddress: "address", taxNumber: "country_tax", certificates: "file",
   message: "textarea", consent: "consent",

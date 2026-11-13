@@ -3,7 +3,7 @@
 // file. App Bridge adds the token to fetch() calls to our own app, so we fetch
 // and hand the browser a blob instead.
 
-function saveBlob(blob: Blob, filename: string) {
+export function saveBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;

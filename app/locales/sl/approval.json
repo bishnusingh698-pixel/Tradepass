@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Ni ničesar za ponovni poskus.",
   "approval.skip.finished": "Že odobreno.",
   "approval.skip.missing_address": "Manjka naslov za račun.",
-  "approval.skip.tier_required": "Raven ni izbrana."
+  "approval.skip.tier_required": "Raven ni izbrana.",
+  "approval.blocked.no_b2b": "Vaš paket Shopify ne vključuje B2B, zato Shopify za tega kupca še ne more ustvariti podjetja. Prijava ostane v vaši čakalni vrsti: odobrite jo, ko bo B2B na voljo (paket Basic ali višji z novimi Trgi). Domača stran prikazuje, kaj podpira vaš paket.",
+  "approval.error.email_unavailable": "Shopify Tradepassu v tej trgovini ni dovolil poslati pozdravnega e-poštnega sporočila B2B, zato ni bilo poslano nobeno sporočilo. Kupec je odobren. Pošljite mu pripravljeno sporočilo s strani prijave.",
+  "approval.field.taxExemptAll": "Na tej lokaciji ne zaračunaj nobenega davka",
+  "approval.field.taxExemptAllHelp": "Samo za kupce, ki so oproščeni vseh davkov povsod, kamor jim pošiljate. Potrdilo o nadaljnji prodaji običajno velja za eno zvezno državo ali državo: raje uporabite oprostitve zgoraj, da se davek še vedno zaračuna tam, kjer oprostitev ne velja.",
+  "approval.skip.no_b2b": "B2B v paketu Shopify te trgovine ni na voljo.",
+  "approval.step.tags": "Oznake stranke",
+  "approval.tags.note": "Oznake, dodane stranki: {tags} (Nastavitve → Prosilci in stik).",
+  "approval.tax.addCovered": "Dodaj te oprostitve",
+  "approval.tax.alsoCovered": "Potrdila veljajo tudi za: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Zvezna država te lokacije nima prometnega davka na ravni države, zato oprostitev tam ni potrebna.",
+  "approval.tax.reason.us_exempt_org": "Potrdilo davka oproščene organizacije: Shopify zanj nima posebne oprostitve. Preverite potrdilo; samo če kupec ne dolguje nobenega davka, izberite »Ne zaračunaj nobenega davka«.",
+  "approval.tax.reason.us_resale_local_only": "Kupčevo potrdilo velja za to zvezno državo. Aljaska nima prometnega davka na ravni države, nekatera mesta pa zaračunavajo svojega.",
+  "approval.tax.reason.us_state_not_covered": "Kupčeva potrdila veljajo za druge zvezne države kot ta lokacija. Te oprostitve dodajte le, če se naročila te lokacije pošiljajo tja."
 }

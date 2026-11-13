@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "آپ کی تلاش سے کوئی ملک میل نہیں کھاتا۔",
+  "countries.search": "ممالک تلاش کریں",
+  "countries.selected": "{count, plural, =0 {کوئی ملک منتخب نہیں} one {# ملک منتخب} other {# ممالک منتخب}}"
+}

@@ -20,6 +20,21 @@
   "message.modal.copy": "Copia messaggio",
   "message.modal.copied": "Messaggio copiato",
   "message.modal.copyFailed": "Non è stato possibile copiare il messaggio. Seleziona il testo e copialo tu.",
-  "message.modal.mailto": "Apri nell'email",
-  "message.modal.close": "Chiudi"
+  "message.modal.close": "Chiudi",
+  "message.approved.subject": "Il suo account all’ingrosso presso {store_name} è stato approvato",
+  "message.approved.body": "Gentile {first_name},\n\nottime notizie: {company} è stata approvata per un account all’ingrosso presso {store_name}. Il suo livello di prezzo è {tier_name}.\n\nPer accedere, apra il link qui sotto e inserisca questo indirizzo email. Le invieremo via email un codice monouso, quindi non serve alcuna password:\n{login_url}\n\nDopo l’accesso vedrà i suoi prezzi all’ingrosso in tutto il negozio.",
+  "message.channel.mailto": "Apri nell'email",
+  "message.channel.gmail": "Apri in Gmail",
+  "message.channel.line": "Apri in LINE",
+  "message.channel.outlook": "Apri in Outlook",
+  "message.channel.sms": "Apri negli SMS",
+  "message.channel.telegram": "Apri in Telegram",
+  "message.channel.whatsapp": "Apri in WhatsApp",
+  "message.modal.moreApps": "Altre app:",
+  "message.modal.noPhone": "La richiesta non contiene un numero di telefono internazionale, quindi WhatsApp e gli SMS si aprono senza destinatario.",
+  "message.modal.nothingSent": "Tradepass non invia nulla da solo: ogni pulsante apre solo la tua app con il messaggio già compilato.",
+  "message.modal.openIn": "Invialo dalle tue app",
+  "message.modal.pasteHint": "Il messaggio è troppo lungo per questa app, quindi si apre senza testo. È stato copiato: basta incollarlo.",
+  "message.modal.phone": "Telefono",
+  "message.statusLine": "Puoi controllare lo stato della tua richiesta in qualsiasi momento: {status_link}"
 }

@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Onay adımı başarısız oldu",
   "buyers.activity.approval.undo": "Onay geri alındı",
   "buyers.activity.tier.assisted_add_verified": "Seviye ataması doğrulandı",
-  "buyers.activity.tier.assisted_remove_verified": "Seviyeden kaldırma doğrulandı"
+  "buyers.activity.tier.assisted_remove_verified": "Seviyeden kaldırma doğrulandı",
+  "buyers.tax.specific": "{count, plural, one {# muafiyet} other {# muafiyet}}"
 }

@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify zmenu neprijal. Nič sa neodstránilo. Skúste to neskôr.",
   "certificates.error.unknown_intent": "Niečo sa pokazilo. Skúste to, prosím, znova.",
   "certificates.error.file": "Tento súbor sa nepodarilo otvoriť. Skúste to, prosím, znova.",
-  "certificates.action.copyLink": "Kopírovať odkaz na obnovenie"
+  "certificates.action.copyLink": "Kopírovať odkaz na obnovenie",
+  "certificates.usForm.exempt": "Organizácia oslobodená od dane",
+  "certificates.usForm.mtc": "Jednotné potvrdenie o ďalšom predaji MTC",
+  "certificates.usForm.sst": "Potvrdenie Streamlined Sales Tax",
+  "certificates.usForm.state": "Štátne potvrdenie o ďalšom predaji"
 }

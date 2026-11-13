@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Hakuasi vastaavaa maata ei löytynyt.",
+  "countries.search": "Hae maita",
+  "countries.selected": "{count, plural, =0 {Maita ei valittu} one {# maa valittu} other {# maata valittu}}"
+}

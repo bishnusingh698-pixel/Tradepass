@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Setujui pengajuan grosir ke tingkat harga",
   "automation.flow.welcomeNote": "Tradepass sudah dapat mengirim email akses B2B Shopify saat menyetujui pembeli, jadi tidak perlu alur kerja tambahan untuk itu.",
   "automation.flow.open": "Buka Shopify Flow",
-  "automation.flow.alerts": "Ingin menerima email saat ada yang mendaftar? Di Shopify Flow, gunakan pemicu “Wholesale application submitted” dengan tindakan Flow “Send internal email”. Tindakan itu hanya mengirim ke alamat staf tetap yang Anda masukkan di alur kerja."
+  "automation.flow.alerts": "Ingin menerima email saat ada yang mendaftar? Di Shopify Flow, gunakan pemicu “Wholesale application submitted” dengan tindakan Flow “Send internal email”. Tindakan itu hanya mengirim ke alamat staf tetap yang Anda masukkan di alur kerja.",
+  "automation.condition.disposable_email": "Alamat email sekali pakai (mailinator.com…)",
+  "automation.condition.free_email": "Layanan email gratis (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Alamat pengiriman adalah kotak pos",
+  "automation.condition.registry_mismatch": "Nama di registri tidak cocok dengan perusahaan",
+  "automation.condition.website_mismatch": "Situs web tidak cocok dengan domain email",
+  "automation.flow.alertsMore": "Peringatan lain: “Info aplikasi grosir diterima” berjalan saat pemohon menjawab permintaan Anda, dan “Sertifikat akan kedaluwarsa” sebelum sertifikat habis masa berlakunya. Setiap pemicu menyertakan perusahaan, kontak, email, telepon, negara, negara bagian, tingkat, dan tautan ke aplikasi, siap untuk email atau pesan Slack.",
+  "automation.flow.trigger.application_info_received": "Info aplikasi grosir diterima",
+  "automation.flow.welcomeNoteFlow": "Saat persetujuan, Shopify diminta mengirim email sambutan B2B miliknya sendiri. Jika Shopify tidak mengizinkannya di toko Anda, templat Flow Shopify “Izin diberikan ke kontak perusahaan” → “Kirim email akses B2B” melakukan hal yang sama; Tradepass memberikan izin itu saat persetujuan."
 }

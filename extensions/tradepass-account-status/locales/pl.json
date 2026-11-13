@@ -1,0 +1,12 @@
+{
+  "title": "Konto hurtowe",
+  "status": {
+    "pending": "Wniosek jest rozpatrywany",
+    "needs_info": "Potrzebujemy więcej informacji",
+    "approved": "Zatwierdzony",
+    "rejected": "Niezatwierdzony"
+  },
+  "submitted": "Złożono {{date}}",
+  "reapply": "Możesz złożyć wniosek ponownie od {{date}}.",
+  "view": "Zobacz szczegóły"
+}

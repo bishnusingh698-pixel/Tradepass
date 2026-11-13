@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Ingenting å prøve på nytt.",
   "approval.skip.finished": "Allerede godkjent.",
   "approval.skip.missing_address": "Fakturaadresse mangler.",
-  "approval.skip.tier_required": "Ingen nivå valgt."
+  "approval.skip.tier_required": "Ingen nivå valgt.",
+  "approval.blocked.no_b2b": "Shopify-abonnementet ditt inkluderer ikke B2B, så Shopify kan ikke opprette en bedrift for denne kjøperen ennå. Søknaden blir i køen: godkjenn den når B2B er tilgjengelig (Basic-abonnement eller høyere med de nye Markedene). Startsiden viser hva abonnementet ditt støtter.",
+  "approval.error.email_unavailable": "Shopify lot ikke Tradepass sende B2B-velkomst-e-posten i denne butikken, så ingen e-post ble sendt. Kjøperen er godkjent. Send den ferdige meldingen fra søknadssiden.",
+  "approval.field.taxExemptAll": "Ikke krev inn noen avgift for denne lokasjonen",
+  "approval.field.taxExemptAllHelp": "Bare for kjøpere som er fritatt for all avgift overalt der du sender til dem. Et videresalgssertifikat dekker vanligvis én delstat eller ett land: bruk heller fritakene over, så avgift fortsatt kreves der ingen fritak gjelder.",
+  "approval.skip.no_b2b": "B2B er ikke tilgjengelig i denne butikkens Shopify-abonnement.",
+  "approval.step.tags": "Kundetagger",
+  "approval.tags.note": "Tagger lagt til kunden: {tags} (Innstillinger → Søkere og kontakt).",
+  "approval.tax.addCovered": "Legg til disse fritakene",
+  "approval.tax.alsoCovered": "Sertifikatene dekker også: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Delstaten til denne lokasjonen har ingen delstatlig omsetningsavgift, så det trengs ikke fritak der.",
+  "approval.tax.reason.us_exempt_org": "Sertifikat fra en skattefritatt organisasjon: Shopify har ikke et eget fritak for det. Sjekk sertifikatet; velg bare «Ikke krev inn noen avgift» hvis kjøperen ikke skylder avgift i det hele tatt.",
+  "approval.tax.reason.us_resale_local_only": "Kjøperens sertifikat dekker denne delstaten. Alaska har ingen delstatlig omsetningsavgift, men noen byer krever inn sin egen.",
+  "approval.tax.reason.us_state_not_covered": "Kjøperens sertifikater dekker andre delstater enn denne lokasjonens. Legg bare til disse fritakene hvis lokasjonens bestillinger sendes dit."
 }

@@ -20,6 +20,21 @@
   "message.modal.copy": "نسخ الرسالة",
   "message.modal.copied": "تم نسخ الرسالة",
   "message.modal.copyFailed": "تعذّر نسخ الرسالة. حدّد النص وانسخه بنفسك.",
-  "message.modal.mailto": "فتح في البريد",
-  "message.modal.close": "إغلاق"
+  "message.modal.close": "إغلاق",
+  "message.approved.subject": "تمت الموافقة على حساب الجملة الخاص بك لدى {store_name}",
+  "message.approved.body": "مرحبًا {first_name}،\n\nيسعدنا إبلاغك بأنه تمت الموافقة على حساب جملة لـ {company} لدى {store_name}. مستوى التسعير الخاص بك هو {tier_name}.\n\nلتسجيل الدخول، افتح الرابط أدناه وأدخل عنوان البريد الإلكتروني هذا. سنرسل إليك رمزًا لمرة واحدة، فلا حاجة إلى كلمة مرور:\n{login_url}\n\nبعد تسجيل الدخول، سترى أسعار الجملة الخاصة بك في جميع أنحاء المتجر.",
+  "message.channel.mailto": "فتح في البريد",
+  "message.channel.gmail": "فتح في Gmail",
+  "message.channel.line": "فتح في LINE",
+  "message.channel.outlook": "فتح في Outlook",
+  "message.channel.sms": "فتح في الرسائل النصية",
+  "message.channel.telegram": "فتح في Telegram",
+  "message.channel.whatsapp": "فتح في WhatsApp",
+  "message.modal.moreApps": "تطبيقات أخرى:",
+  "message.modal.noPhone": "لا يوجد رقم هاتف دولي في الطلب، لذا يُفتح WhatsApp والرسائل النصية دون مستلم.",
+  "message.modal.nothingSent": "لا يرسل Tradepass أي شيء بنفسه: كل زر يفتح تطبيقك فقط مع الرسالة معبّأة.",
+  "message.modal.openIn": "أرسلها من تطبيقاتك",
+  "message.modal.pasteHint": "الرسالة أطول من أن يقبلها هذا التطبيق، لذا يُفتح دون النص. تم نسخها: فقط الصقها.",
+  "message.modal.phone": "الهاتف",
+  "message.statusLine": "يمكنك التحقق من حالة طلبك في أي وقت: {status_link}"
 }

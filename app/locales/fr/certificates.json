@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify n’a pas accepté la modification. Rien n’a été retiré. Réessayez plus tard.",
   "certificates.error.unknown_intent": "Une erreur s’est produite. Veuillez réessayer.",
   "certificates.error.file": "Nous n’avons pas pu ouvrir ce fichier. Veuillez réessayer.",
-  "certificates.action.copyLink": "Copier le lien de renouvellement"
+  "certificates.action.copyLink": "Copier le lien de renouvellement",
+  "certificates.usForm.exempt": "Organisme exonéré d’impôt",
+  "certificates.usForm.mtc": "Certificat de revente uniforme MTC",
+  "certificates.usForm.sst": "Certificat Streamlined Sales Tax",
+  "certificates.usForm.state": "Certificat de revente de l’État"
 }

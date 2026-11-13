@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "承認ステップが失敗",
   "buyers.activity.approval.undo": "承認を取り消し",
   "buyers.activity.tier.assisted_add_verified": "価格ランクの割り当てを確認",
-  "buyers.activity.tier.assisted_remove_verified": "価格ランクからの削除を確認"
+  "buyers.activity.tier.assisted_remove_verified": "価格ランクからの削除を確認",
+  "buyers.tax.specific": "{count, plural, other {# 件の免除}}"
 }

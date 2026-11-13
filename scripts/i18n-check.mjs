@@ -4,7 +4,8 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { parse, TYPE } from "@formatjs/icu-messageformat-parser";
 
-const SAME_OK = new Set(["app.name"]);
+// Format-only strings ("{state}: {form}") read the same in every language.
+const SAME_OK = new Set(["app.name", "applications.detail.usPermit"]);
 const read = (p) => JSON.parse(readFileSync(p, "utf8"));
 // pending.json holds strings added after the translation pass (English fallback until translated).
 const nsFiles = readdirSync("app/locales/en").filter((f) => f.endsWith(".json") && f !== "pending.json");
@@ -68,6 +69,23 @@ for (const loc of process.argv.slice(2)) {
     for (const k of Object.keys(enT)) if (!(k in tr)) bad(loc, `${p}: missing ${k}`);
     for (const k of Object.keys(tr)) if (!(k in enT)) bad(loc, `${p}: extra ${k}`);
     for (const [k, v] of Object.entries(tr)) if (k in enT && !same(liquidVars(v), liquidVars(enT[k]))) bad(loc, `${p}: ${k} variables differ`);
+  }
+  // Extra storefront strings (assets/tradepass-texts.<locale>.json, D-097): same keys and placeholders as English.
+  {
+    const dir = "extensions/tradepass-theme/assets";
+    const enX = read(`${dir}/tradepass-texts.en.json`);
+    const p = `${dir}/tradepass-texts.${loc}.json`;
+    if (!existsSync(p)) bad(loc, `missing ${p}`);
+    else {
+      const tr = read(p);
+      for (const k of Object.keys(enX)) if (!(k in tr)) bad(loc, `${p}: missing ${k}`);
+      for (const k of Object.keys(tr)) if (!(k in enX)) bad(loc, `${p}: extra ${k}`);
+      for (const [k, v] of Object.entries(tr)) {
+        if (!(k in enX)) continue;
+        if (!same(liquidVars(v), liquidVars(enX[k]))) bad(loc, `${p}: ${k} variables differ`);
+        if (v === enX[k]) bad(loc, `${p}: ${k} same as English`);
+      }
+    }
   }
   const lp = `docs/listing/${loc}.json`;
   if (!existsSync(lp)) bad(loc, `missing ${lp}`);

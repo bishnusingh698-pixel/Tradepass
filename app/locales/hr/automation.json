@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Odobri zahtjev za veleprodaju u razinu",
   "automation.flow.welcomeNote": "Tradepass već može poslati Shopifyjevu poruku za B2B pristup kad odobri kupca pa za to nije potreban dodatni tijek rada.",
   "automation.flow.open": "Otvori Shopify Flow",
-  "automation.flow.alerts": "Želite e-poruku kad netko podnese prijavu? U Shopify Flowu upotrijebite okidač „Wholesale application submitted” s Flow radnjom „Send internal email”. Ta radnja šalje samo na stalne adrese zaposlenika koje unesete u tijek rada."
+  "automation.flow.alerts": "Želite e-poruku kad netko podnese prijavu? U Shopify Flowu upotrijebite okidač „Wholesale application submitted” s Flow radnjom „Send internal email”. Ta radnja šalje samo na stalne adrese zaposlenika koje unesete u tijek rada.",
+  "automation.condition.disposable_email": "Jednokratna e-adresa (mailinator.com…)",
+  "automation.condition.free_email": "Besplatna usluga e-pošte (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Adresa za dostavu je poštanski pretinac",
+  "automation.condition.registry_mismatch": "Naziv u registru ne odgovara tvrtki",
+  "automation.condition.website_mismatch": "Web-mjesto ne odgovara domeni e-adrese",
+  "automation.flow.alertsMore": "Više upozorenja: „Primljene informacije za veleprodajni zahtjev” pokreće se kad podnositelj odgovori na vaš zahtjev, a „Potvrda uskoro istječe” prije isteka potvrde. Svaki okidač sadrži tvrtku, kontakt, e-adresu, telefon, zemlju, saveznu državu, razinu i poveznicu na zahtjev, spremno za e-poruku ili Slack poruku.",
+  "automation.flow.trigger.application_info_received": "Primljene informacije za veleprodajni zahtjev",
+  "automation.flow.welcomeNoteFlow": "Pri odobrenju Shopify se traži da pošalje vlastitu B2B e-poruku dobrodošlice. Ako Shopify to ne dopušta u vašoj trgovini, Shopifyjev predložak za Flow „Kontaktu tvrtke dodijeljeno dopuštenje” → „Pošalji e-poruku za B2B pristup” čini isto; Tradepass dodjeljuje to dopuštenje tijekom odobrenja."
 }

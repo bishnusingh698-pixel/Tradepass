@@ -21,6 +21,14 @@ Ideas noted during the build (not committed):
 - Translated labels for the 22 Canadian tax exemptions (D-033).
 - A spam count in the admin (spam is currently discarded unseen, D-036).
 
+Ideas from the 2026-11 research pass (not built, D-113/D-114):
+- Swiss UID register live check (public SOAP service, 20 calls a minute) once its request format is confirmed from the BFS documentation.
+- More state permit datasets: only Texas publishes active permits as open data today; add others as they appear (check each state's open-data portal).
+- Professional-licence lookups (salons, medical, firearms): one link per state and board would need hundreds of entries, mostly web forms; the licence certificate type and expiry tracking cover the workflow for now.
+- Shrink the storefront form script (about 19 KB gzipped) with a build step and split the US-only code out.
+- Shopify Flow templates submitted to the Flow template library (needs Partner review), instead of copy-paste docs.
+- If Shopify publishes a supported API for the B2B access email, switch the approval's email step to it (D-092).
+
 ## Deferred from the spec (not built yet)
 Built on 2026-10-17 (D-076 to D-080): "Powered by Tradepass" on the Free-plan form, tax-number checks gated to Starter, activity export (Pro), server-side file limits, the Settings switch for assisted tier assignment.
 - Playwright end-to-end tests against a dev store; measured accessibility and performance passes.
@@ -55,3 +63,4 @@ Built on 2026-10-17 (D-076 to D-080): "Powered by Tradepass" on the Free-plan fo
 - `companies(query: "name:…")` matching and `customers(query: "email:… OR …")` batches; 200-row upload through the embedded app.
 - Copy message / Open in email inside the embedded admin (clipboard permission, mailto in the admin iframe); `unauthenticated.admin(shop)` in jobs; `companyLocationTaxSettingsUpdate` removing an exemption.
 - Gating on Dawn, Horizon and two other free themes; hourly gated-list refresh after tagging a product.
+- 2026-11 pass: `companyContactSendWelcomeEmail` accepted or refused (D-092) and Flow's "Send B2B access email" on non-Plus; `$app:tradepass.paused` read by the checkout Function (D-094); `tagsAdd`/`tagsRemove` on the buyer; the customer-account status block and its network access (D-104); Outlook web and `sms:` link formats on iOS/Android (D-103); NZBN status field with a real key (D-113); `data.texas.gov` reachable from Render.

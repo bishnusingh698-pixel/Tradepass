@@ -53,8 +53,8 @@ describe("tier editor validation", () => {
 describe("sync with Shopify", () => {
   const tier = { mode: "market", marketGid: "m1", catalogGid: "c1", priceListGid: "p1", discountPct: 20 };
   const nodes = {
-    m1: { status: "ACTIVE", catalogs: { nodes: [{ id: "c1" }] } },
-    c1: { status: "ACTIVE", priceList: { id: "p1" } },
+    m1: { marketStatus: "ACTIVE", catalogs: { nodes: [{ id: "c1" }] } },
+    c1: { catalogStatus: "ACTIVE", priceList: { id: "p1" } },
     p1: { parent: { adjustment: { type: "PERCENTAGE_DECREASE", value: 20 } } },
   };
   it("ok when everything matches", () => expect(syncStateFor(tier, nodes, false)).toBe("ok"));
@@ -64,8 +64,8 @@ describe("sync with Shopify", () => {
   });
   it("changed when the merchant edits the discount, unlinks the catalog or deactivates the market", () => {
     expect(syncStateFor(tier, { ...nodes, p1: { parent: { adjustment: { type: "PERCENTAGE_DECREASE", value: 25 } } } }, false)).toBe("changed_in_shopify");
-    expect(syncStateFor(tier, { ...nodes, m1: { status: "ACTIVE", catalogs: { nodes: [] } } }, false)).toBe("changed_in_shopify");
-    expect(syncStateFor(tier, { ...nodes, m1: { status: "DRAFT", catalogs: { nodes: [{ id: "c1" }] } } }, false)).toBe("changed_in_shopify");
+    expect(syncStateFor(tier, { ...nodes, m1: { marketStatus: "ACTIVE", catalogs: { nodes: [] } } }, false)).toBe("changed_in_shopify");
+    expect(syncStateFor(tier, { ...nodes, m1: { marketStatus: "DRAFT", catalogs: { nodes: [{ id: "c1" }] } } }, false)).toBe("changed_in_shopify");
   });
   it("flags a Plus-only tier after a downgrade from Plus", () => {
     expect(syncStateFor({ ...tier, mode: "direct", marketGid: null }, nodes, false)).toBe("changed_in_shopify");

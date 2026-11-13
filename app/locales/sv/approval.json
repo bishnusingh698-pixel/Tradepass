@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Inget att försöka igen.",
   "approval.skip.finished": "Redan godkänd.",
   "approval.skip.missing_address": "Faktureringsadress saknas.",
-  "approval.skip.tier_required": "Ingen nivå vald."
+  "approval.skip.tier_required": "Ingen nivå vald.",
+  "approval.blocked.no_b2b": "Din Shopify-plan omfattar inte B2B, så Shopify kan inte skapa ett företag för den här köparen än. Ansökan ligger kvar i kön: godkänn den när B2B finns tillgängligt (Basic eller högre med de nya Marknaderna). Startsidan visar vad din plan stöder.",
+  "approval.error.email_unavailable": "Shopify lät inte Tradepass skicka sitt B2B-välkomstmejl i den här butiken, så inget mejl skickades. Köparen är godkänd. Skicka det färdiga meddelandet från ansökningssidan.",
+  "approval.field.taxExemptAll": "Ta inte ut någon skatt för den här platsen",
+  "approval.field.taxExemptAllHelp": "Bara för köpare som är befriade från all skatt överallt dit du skickar. Ett återförsäljningsintyg gäller oftast en delstat eller ett land: använd hellre undantagen ovan, så att skatt fortfarande tas ut där inget undantag gäller.",
+  "approval.skip.no_b2b": "B2B är inte tillgängligt i den här butikens Shopify-plan.",
+  "approval.step.tags": "Kundtaggar",
+  "approval.tags.note": "Taggar som lagts till på kunden: {tags} (Inställningar → Sökande och kontakt).",
+  "approval.tax.addCovered": "Lägg till dessa undantag",
+  "approval.tax.alsoCovered": "Intygen omfattar även: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Den här platsens delstat har ingen delstatlig försäljningsskatt, så inget undantag behövs där.",
+  "approval.tax.reason.us_exempt_org": "Intyg från en skattebefriad organisation: Shopify har inget särskilt undantag för det. Kontrollera intyget; välj bara ”Ta inte ut någon skatt” om köparen inte är skyldig någon skatt alls.",
+  "approval.tax.reason.us_resale_local_only": "Köparens intyg gäller den här delstaten. Alaska har ingen delstatlig försäljningsskatt, men vissa städer tar ut en egen.",
+  "approval.tax.reason.us_state_not_covered": "Köparens intyg gäller andra delstater än den här platsens. Lägg bara till dessa undantag om platsens beställningar skickas dit."
 }

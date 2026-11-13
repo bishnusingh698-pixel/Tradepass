@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nimic de reîncercat.",
   "approval.skip.finished": "Deja aprobată.",
   "approval.skip.missing_address": "Lipsește adresa de facturare.",
-  "approval.skip.tier_required": "Niciun nivel ales."
+  "approval.skip.tier_required": "Niciun nivel ales.",
+  "approval.blocked.no_b2b": "Planul dvs. Shopify nu include B2B, așa că Shopify nu poate crea încă o companie pentru acest cumpărător. Cererea rămâne în coadă: aprobați-o când B2B devine disponibil (plan Basic sau superior cu noile Piețe). Pagina de start arată ce suportă planul dvs.",
+  "approval.error.email_unavailable": "Shopify nu a permis Tradepass să trimită e-mailul de bun venit B2B în acest magazin, așa că nu s-a trimis niciun e-mail. Cumpărătorul este aprobat. Trimiteți-i mesajul pregătit de pe pagina cererii.",
+  "approval.field.taxExemptAll": "Nu colecta nicio taxă pentru această locație",
+  "approval.field.taxExemptAllHelp": "Doar pentru cumpărătorii scutiți de orice taxă oriunde le livrați. Un certificat de revânzare acoperă de obicei un stat sau o țară: folosiți mai degrabă scutirile de mai sus, ca taxa să se aplice în continuare unde nu există scutire.",
+  "approval.skip.no_b2b": "B2B nu este disponibil în planul Shopify al acestui magazin.",
+  "approval.step.tags": "Etichete de client",
+  "approval.tags.note": "Etichete adăugate clientului: {tags} (Setări → Solicitanți și contact).",
+  "approval.tax.addCovered": "Adaugă aceste scutiri",
+  "approval.tax.alsoCovered": "Certificatele acoperă și: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Statul acestei locații nu are taxă pe vânzări la nivel de stat, deci nu e nevoie de scutire acolo.",
+  "approval.tax.reason.us_exempt_org": "Certificatul unei organizații scutite de taxe: Shopify nu are o scutire specifică pentru el. Verificați certificatul; doar dacă cumpărătorul nu datorează nicio taxă, alegeți „Nu colecta nicio taxă”.",
+  "approval.tax.reason.us_resale_local_only": "Certificatul cumpărătorului acoperă acest stat. Alaska nu are taxă pe vânzări la nivel de stat, dar unele orașe percep propria taxă.",
+  "approval.tax.reason.us_state_not_covered": "Certificatele cumpărătorului acoperă alte state decât statul acestei locații. Adăugați aceste scutiri doar dacă comenzile acestei locații se livrează acolo."
 }

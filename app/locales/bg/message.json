@@ -20,6 +20,21 @@
   "message.modal.copy": "Копиране на съобщението",
   "message.modal.copied": "Съобщението е копирано",
   "message.modal.copyFailed": "Съобщението не можа да бъде копирано. Маркирайте текста и го копирайте сами.",
-  "message.modal.mailto": "Отваряне в имейл",
-  "message.modal.close": "Затваряне"
+  "message.modal.close": "Затваряне",
+  "message.approved.subject": "Профилът Ви за покупки на едро в {store_name} е одобрен",
+  "message.approved.body": "Здравейте, {first_name},\n\nДобра новина: {company} е одобрена за профил за покупки на едро в {store_name}. Вашето ценово ниво е {tier_name}.\n\nЗа да влезете, отворете връзката по-долу и въведете този имейл адрес. Ще Ви изпратим еднократен код по имейл, така че не Ви е нужна парола:\n{login_url}\n\nСлед като влезете, ще виждате цените си на едро в целия магазин.",
+  "message.channel.mailto": "Отваряне в имейл",
+  "message.channel.gmail": "Отваряне в Gmail",
+  "message.channel.line": "Отваряне в LINE",
+  "message.channel.outlook": "Отваряне в Outlook",
+  "message.channel.sms": "Отваряне в SMS",
+  "message.channel.telegram": "Отваряне в Telegram",
+  "message.channel.whatsapp": "Отваряне в WhatsApp",
+  "message.modal.moreApps": "Още приложения:",
+  "message.modal.noPhone": "В кандидатурата няма международен телефонен номер, затова WhatsApp и SMS се отварят без получател.",
+  "message.modal.nothingSent": "Tradepass не изпраща нищо сам: всеки бутон само отваря вашето приложение с попълнено съобщение.",
+  "message.modal.openIn": "Изпратете го от собствените си приложения",
+  "message.modal.pasteHint": "Съобщението е твърде дълго за това приложение, затова то се отваря без текста. Копирано е: просто го поставете.",
+  "message.modal.phone": "Телефон",
+  "message.statusLine": "Можете да проверите състоянието на кандидатурата си по всяко време: {status_link}"
 }

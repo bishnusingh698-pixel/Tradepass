@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "此連結已使用過",
   "hosted.link.usedBody": "每個更新連結僅能使用一次。如需修改其他內容，請聯絡 {store}。",
   "hosted.noscript": "請在瀏覽器中啟用 JavaScript 以更新您的申請。",
-  "hosted.error.generic": "我們這邊發生問題，請幾分鐘後再試一次。"
+  "hosted.error.generic": "我們這邊發生問題，請幾分鐘後再試一次。",
+  "hosted.status.body.approved": "使用此電子郵件地址登入即可查看您的批發價格。",
+  "hosted.status.body.needs_info": "{store} 在決定前還需要一些資訊。",
+  "hosted.status.body.pending": "{store} 會審核每一份申請，並會與您聯絡。",
+  "hosted.status.body.rejected": "{store} 無法核准此申請。",
+  "hosted.status.book": "預約導入通話",
+  "hosted.status.busyTitle": "要求過多。請幾分鐘後再試。",
+  "hosted.status.expiredBody": "為了您的安全，狀態連結的有效期為 90 天。請聯絡 {store} 取得新連結。",
+  "hosted.status.reapply": "您可以自 {date} 起重新申請。",
+  "hosted.status.shop": "開始購物",
+  "hosted.status.signIn": "登入",
+  "hosted.status.submitted": "{company} 於 {date} 提交了申請。",
+  "hosted.status.title.approved": "您的批發帳號已獲核准",
+  "hosted.status.title.needs_info": "我們還需要一些資訊",
+  "hosted.status.title.pending": "我們正在審核您的申請",
+  "hosted.status.title.rejected": "您的申請未獲核准",
+  "hosted.status.update": "更新您的申請",
+  "hosted.status.whatsapp": "透過 WhatsApp 聯絡 {store}"
 }

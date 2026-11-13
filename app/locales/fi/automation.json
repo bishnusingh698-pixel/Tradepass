@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Hyväksy tukkuasiakashakemus tasolle",
   "automation.flow.welcomeNote": "Tradepass voi jo lähettää Shopifyn B2B-käyttöoikeussähköpostin, kun ostaja hyväksytään, joten siihen ei tarvita erillistä työnkulkua.",
   "automation.flow.open": "Avaa Shopify Flow",
-  "automation.flow.alerts": "Haluatko sähköpostin, kun joku hakee? Käytä Shopify Flow’ssa käynnistintä ”Wholesale application submitted” ja Flow’n toimintoa ”Send internal email”. Toiminto lähettää vain kiinteisiin henkilökunnan osoitteisiin, jotka annat työnkulussa."
+  "automation.flow.alerts": "Haluatko sähköpostin, kun joku hakee? Käytä Shopify Flow’ssa käynnistintä ”Wholesale application submitted” ja Flow’n toimintoa ”Send internal email”. Toiminto lähettää vain kiinteisiin henkilökunnan osoitteisiin, jotka annat työnkulussa.",
+  "automation.condition.disposable_email": "Kertakäyttöinen sähköpostiosoite (mailinator.com…)",
+  "automation.condition.free_email": "Ilmainen sähköpostipalvelu (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Toimitusosoite on postilokero",
+  "automation.condition.registry_mismatch": "Rekisterin nimi ei vastaa yritystä",
+  "automation.condition.website_mismatch": "Verkkosivusto ei vastaa sähköpostin verkkotunnusta",
+  "automation.flow.alertsMore": "Lisää ilmoituksia: ”Tukkuhakemuksen tiedot vastaanotettu” käynnistyy, kun hakija vastaa pyyntöösi, ja ”Todistus vanhenemassa” ennen todistuksen vanhenemista. Jokainen käynnistin sisältää yrityksen, yhteyshenkilön, sähköpostin, puhelimen, maan, osavaltion, tason ja linkin hakemukseen valmiina sähköpostiin tai Slack-viestiin.",
+  "automation.flow.trigger.application_info_received": "Tukkuhakemuksen tiedot vastaanotettu",
+  "automation.flow.welcomeNoteFlow": "Hyväksynnän yhteydessä Shopifyta pyydetään lähettämään oma B2B-tervetuloviestinsä. Jos Shopify ei salli sitä kaupassasi, Shopifyn Flow-malli ”Yrityksen yhteyshenkilölle annettu käyttöoikeus” → ”Lähetä B2B-käyttöoikeussähköposti” tekee saman; Tradepass antaa tämän käyttöoikeuden hyväksynnän aikana."
 }

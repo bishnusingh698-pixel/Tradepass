@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Este enlace ya se ha utilizado",
   "hosted.link.usedBody": "Cada enlace de actualización funciona una sola vez. Si necesita cambiar algo más, contacte con {store}.",
   "hosted.noscript": "Active JavaScript en su navegador para actualizar su solicitud.",
-  "hosted.error.generic": "Se produjo un error por nuestra parte. Vuelva a intentarlo en unos minutos."
+  "hosted.error.generic": "Se produjo un error por nuestra parte. Vuelva a intentarlo en unos minutos.",
+  "hosted.status.body.approved": "Inicia sesión con este correo para ver tus precios mayoristas.",
+  "hosted.status.body.needs_info": "{store} necesita un poco más de información antes de decidir.",
+  "hosted.status.body.pending": "{store} revisa cada solicitud y te responderá.",
+  "hosted.status.body.rejected": "{store} no pudo aprobar esta solicitud.",
+  "hosted.status.book": "Reservar una llamada de bienvenida",
+  "hosted.status.busyTitle": "Demasiadas solicitudes. Vuelve a intentarlo en unos minutos.",
+  "hosted.status.expiredBody": "Por tu seguridad, los enlaces de estado funcionan durante 90 días. Contacta con {store} para obtener uno nuevo.",
+  "hosted.status.reapply": "Puedes volver a solicitarlo a partir del {date}.",
+  "hosted.status.shop": "Empezar a comprar",
+  "hosted.status.signIn": "Iniciar sesión",
+  "hosted.status.submitted": "{company} envió la solicitud el {date}.",
+  "hosted.status.title.approved": "Tu cuenta mayorista está aprobada",
+  "hosted.status.title.needs_info": "Necesitamos un poco más de información",
+  "hosted.status.title.pending": "Estamos revisando tu solicitud",
+  "hosted.status.title.rejected": "Tu solicitud no fue aprobada",
+  "hosted.status.update": "Actualizar tu solicitud",
+  "hosted.status.whatsapp": "Escribir a {store} por WhatsApp"
 }

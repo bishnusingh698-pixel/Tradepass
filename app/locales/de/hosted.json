@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Dieser Link wurde bereits verwendet",
   "hosted.link.usedBody": "Jeder Aktualisierungslink funktioniert nur einmal. Wenn Sie noch etwas ändern möchten, wenden Sie sich bitte an {store}.",
   "hosted.noscript": "Bitte aktivieren Sie JavaScript in Ihrem Browser, um Ihren Antrag zu aktualisieren.",
-  "hosted.error.generic": "Bei uns ist ein Fehler aufgetreten. Bitte versuchen Sie es in einigen Minuten erneut."
+  "hosted.error.generic": "Bei uns ist ein Fehler aufgetreten. Bitte versuchen Sie es in einigen Minuten erneut.",
+  "hosted.status.body.approved": "Melden Sie sich mit dieser E-Mail-Adresse an, um Ihre Großhandelspreise zu sehen.",
+  "hosted.status.body.needs_info": "{store} benötigt noch ein paar Informationen, bevor entschieden wird.",
+  "hosted.status.body.pending": "{store} prüft jede Bewerbung und meldet sich bei Ihnen.",
+  "hosted.status.body.rejected": "{store} konnte diese Bewerbung nicht genehmigen.",
+  "hosted.status.book": "Einführungsgespräch buchen",
+  "hosted.status.busyTitle": "Zu viele Anfragen. Bitte versuchen Sie es in ein paar Minuten erneut.",
+  "hosted.status.expiredBody": "Zu Ihrer Sicherheit funktionieren Statuslinks 90 Tage lang. Bitte wenden Sie sich für einen neuen Link an {store}.",
+  "hosted.status.reapply": "Sie können sich ab dem {date} erneut bewerben.",
+  "hosted.status.shop": "Jetzt einkaufen",
+  "hosted.status.signIn": "Anmelden",
+  "hosted.status.submitted": "{company} hat sich am {date} beworben.",
+  "hosted.status.title.approved": "Ihr Großhandelskonto ist genehmigt",
+  "hosted.status.title.needs_info": "Wir benötigen noch ein paar Informationen",
+  "hosted.status.title.pending": "Wir prüfen Ihre Bewerbung",
+  "hosted.status.title.rejected": "Ihre Bewerbung wurde nicht genehmigt",
+  "hosted.status.update": "Bewerbung aktualisieren",
+  "hosted.status.whatsapp": "{store} auf WhatsApp schreiben"
 }

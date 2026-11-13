@@ -17,6 +17,7 @@ import { readDefinition } from "./forms.server";
 import type { FormDefinition } from "./form-defaults";
 import { ensureCheckoutLock } from "./checkout-lock.server";
 import { logActivity } from "./activity.server";
+import { safeHttpsUrl, safeWhatsAppUrl } from "./message-links";
 
 export const NAMESPACE = "tradepass";
 /** Handles listed for card/quick-add gating. Each costs ~30 bytes on every storefront page. */
@@ -48,15 +49,27 @@ function localeFile(locale: string): Json | null {
   return (entries.find(([p]) => name(p) === want) ?? entries.find(([p]) => name(p) === want.split("-")[0]))?.[1] ?? null;
 }
 
-/** Every key in the extension's English locale file (dotted). */
+// Storefront strings added after the theme locale files neared Shopify's 15 KB cap (D-097) live in
+// assets/tradepass-texts.<locale>.json (flat keys, no size cap per file). The form loads the visitor's
+// file from Shopify's CDN; the hosted pages and the admin preview merge them here.
+const extraModules = import.meta.glob<Record<string, string>>("/extensions/tradepass-theme/assets/tradepass-texts.*.json", { eager: true, import: "default" });
+
+function extraFile(locale: string): Record<string, string> | null {
+  const want = locale.toLowerCase();
+  const name = (p: string) => p.split("/").pop()!.replace(/^tradepass-texts\./, "").replace(/\.json$/, "").toLowerCase();
+  const entries = Object.entries(extraModules);
+  return (entries.find(([p]) => name(p) === want) ?? entries.find(([p]) => name(p) === want.split("-")[0]))?.[1] ?? null;
+}
+
+/** Every key in the extension's English locale file (dotted), plus the extra storefront strings. */
 export function storefrontTextKeys(): string[] {
-  return Object.keys(flatten(localeFile("en") ?? {}));
+  return [...Object.keys(flatten(localeFile("en") ?? {})), ...Object.keys(extraFile("en") ?? {})];
 }
 
 /** Built-in storefront strings for a language (English underneath), plus merchant overrides. Used by the hosted pages. */
 export function storefrontTexts(locale: string, overrides?: Record<string, string>): Record<string, string> {
   const own = localeFile(locale);
-  const out = { ...flatten(localeFile("en") ?? {}), ...(own ? flatten(own) : {}) };
+  const out = { ...flatten(localeFile("en") ?? {}), ...(extraFile("en") ?? {}), ...(own ? flatten(own) : {}), ...(extraFile(locale) ?? {}) };
   for (const [k, v] of Object.entries(overrides ?? {})) if (v && k in out) out[k] = v;
   return out;
 }
@@ -79,6 +92,8 @@ export type StorefrontConfig = {
   debugUntil: string | null;
   tiers: Record<string, Record<string, string>>; // tier id → buyer-facing names per locale
   brand: string | null; // "Powered by Tradepass" link URL; null on plans with "no_branding"
+  wa: string | null; // merchant's WhatsApp contact link (wa.me / api.whatsapp.com only), B7
+  links: { booking: string | null; shopping: string | null }; // optional success/status links, B11
 };
 
 const COLOR = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
@@ -154,6 +169,8 @@ export function buildConfig(
     debugUntil: until && new Date(until) > now ? until : null,
     tiers: tierNames,
     brand: can(plan, "no_branding") ? null : POWERED_BY_URL,
+    wa: safeWhatsAppUrl(settings.contact.whatsappUrl),
+    links: { booking: safeHttpsUrl(settings.links.bookingUrl), shopping: safeHttpsUrl(settings.links.shoppingUrl) },
   };
 }
 

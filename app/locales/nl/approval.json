@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Niets om opnieuw te proberen.",
   "approval.skip.finished": "Al goedgekeurd.",
   "approval.skip.missing_address": "Factuuradres ontbreekt.",
-  "approval.skip.tier_required": "Geen niveau gekozen."
+  "approval.skip.tier_required": "Geen niveau gekozen.",
+  "approval.blocked.no_b2b": "Uw Shopify-abonnement bevat geen B2B, dus Shopify kan nog geen bedrijf voor deze koper aanmaken. De aanvraag blijft in uw wachtrij: keur hem goed zodra B2B beschikbaar is (Basic-abonnement of hoger met de nieuwe Markten). Home toont wat uw abonnement ondersteunt.",
+  "approval.error.email_unavailable": "Shopify liet Tradepass in deze winkel de B2B-welkomstmail niet versturen, dus er is geen e-mail verzonden. De koper is goedgekeurd. Stuur hem het kant-en-klare bericht vanaf de aanvraagpagina.",
+  "approval.field.taxExemptAll": "Geen enkele belasting innen voor deze locatie",
+  "approval.field.taxExemptAllHelp": "Alleen voor kopers die overal waar u naartoe levert van elke belasting zijn vrijgesteld. Een wederverkoopcertificaat geldt meestal voor één staat of land: gebruik liever de vrijstellingen hierboven, zodat er nog belasting wordt berekend waar geen vrijstelling geldt.",
+  "approval.skip.no_b2b": "B2B is niet beschikbaar in het Shopify-abonnement van deze winkel.",
+  "approval.step.tags": "Klanttags",
+  "approval.tags.note": "Tags toegevoegd aan de klant: {tags} (Instellingen → Aanvragers en contact).",
+  "approval.tax.addCovered": "Deze vrijstellingen toevoegen",
+  "approval.tax.alsoCovered": "De certificaten gelden ook voor: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "De staat van deze locatie heft geen staatsbrede omzetbelasting, dus daar is geen vrijstelling nodig.",
+  "approval.tax.reason.us_exempt_org": "Certificaat van een belastingvrijgestelde organisatie: Shopify heeft hiervoor geen specifieke vrijstelling. Controleer het certificaat; kies alleen „Geen enkele belasting innen” als de koper helemaal geen belasting verschuldigd is.",
+  "approval.tax.reason.us_resale_local_only": "Het certificaat van de koper geldt voor deze staat. Alaska heeft geen staatsbrede omzetbelasting, maar sommige steden heffen hun eigen belasting.",
+  "approval.tax.reason.us_state_not_covered": "De certificaten van de koper gelden voor andere staten dan die van deze locatie. Voeg die vrijstellingen alleen toe als bestellingen van deze locatie daarheen worden verzonden."
 }

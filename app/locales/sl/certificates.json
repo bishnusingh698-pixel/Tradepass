@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify spremembe ni sprejel. Nič ni bilo odstranjeno. Poskusite znova pozneje.",
   "certificates.error.unknown_intent": "Prišlo je do napake. Poskusite znova.",
   "certificates.error.file": "Te datoteke nismo mogli odpreti. Poskusite znova.",
-  "certificates.action.copyLink": "Kopiraj povezavo za podaljšanje"
+  "certificates.action.copyLink": "Kopiraj povezavo za podaljšanje",
+  "certificates.usForm.exempt": "Davka oproščena organizacija",
+  "certificates.usForm.mtc": "Enotno potrdilo o nadaljnji prodaji MTC",
+  "certificates.usForm.sst": "Potrdilo Streamlined Sales Tax",
+  "certificates.usForm.state": "Državno potrdilo o nadaljnji prodaji"
 }

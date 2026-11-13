@@ -16,6 +16,8 @@ const flatten = (o: Json, p = "", out: Record<string, string> = {}) => {
   return out;
 };
 const en = flatten(JSON.parse(read("locales/en.default.json")));
+// Strings added after the locale files neared their 15 KB cap live in assets/tradepass-texts.<locale>.json (D-097).
+const extra = JSON.parse(read("assets/tradepass-texts.en.json")) as Record<string, string>;
 const schema = flatten(JSON.parse(read("locales/en.default.schema.json")));
 
 describe("theme app extension budgets (hard constraint 7, Shopify limits)", () => {
@@ -64,9 +66,10 @@ describe("extension structure", () => {
 
   it("every literal string key the form script uses exists in the locale file", () => {
     const js = read("assets/tradepass-form.js");
-    const keys = [...js.matchAll(/tx\("(form\.[a-z_.A-Z]+)"/g)].map((m) => m[1]).filter((k) => !k.endsWith("."));
+    const keys = [...js.matchAll(/tx\("(form\.[a-z_.A-Z]+)"/g)].map((m) => m[1]).filter((k) => !k.endsWith(".") && !k.endsWith("_"));
+    for (const f of ["state", "sst", "mtc", "exempt"]) expect(extra[`form.tax.us_form_${f}`], f).toBeTypeOf("string");
     expect(keys.length).toBeGreaterThan(30);
-    for (const k of keys) expect(en[k], k).toBeTypeOf("string");
+    for (const k of keys) expect(en[k] ?? extra[k], k).toBeTypeOf("string");
     // Dynamic families
     for (const z of ["state", "province", "region", "county", "prefecture", "emirate", "governorate", "state_and_territory"]) expect(en[`form.address.zone.${z}`]).toBeTruthy();
     for (const z of ["postal", "zip", "pin", "postcode"]) expect(en[`form.address.zip.${z}`]).toBeTruthy();

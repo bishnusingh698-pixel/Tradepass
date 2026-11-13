@@ -1,0 +1,12 @@
+{
+  "title": "Akaun borong",
+  "status": {
+    "pending": "Permohonan sedang disemak",
+    "needs_info": "Kami perlukan lebih banyak maklumat",
+    "approved": "Diluluskan",
+    "rejected": "Tidak diluluskan"
+  },
+  "submitted": "Dimohon pada {{date}}",
+  "reapply": "Anda boleh memohon semula mulai {{date}}.",
+  "view": "Lihat butiran"
+}

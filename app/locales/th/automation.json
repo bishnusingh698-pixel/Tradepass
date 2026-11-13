@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "อนุมัติใบสมัครขายส่งเข้าระดับ",
   "automation.flow.welcomeNote": "Tradepass ส่งอีเมลการเข้าถึง B2B ของ Shopify ได้อยู่แล้วเมื่ออนุมัติผู้ซื้อ จึงไม่ต้องสร้างเวิร์กโฟลว์เพิ่มสำหรับเรื่องนี้",
   "automation.flow.open": "เปิด Shopify Flow",
-  "automation.flow.alerts": "ต้องการรับอีเมลเมื่อมีคนสมัครใช่ไหม ใน Shopify Flow ให้ใช้ทริกเกอร์ “Wholesale application submitted” กับการดำเนินการของ Flow “Send internal email” การดำเนินการนี้ส่งถึงเฉพาะที่อยู่ของพนักงานแบบตายตัวที่คุณกรอกในเวิร์กโฟลว์"
+  "automation.flow.alerts": "ต้องการรับอีเมลเมื่อมีคนสมัครใช่ไหม ใน Shopify Flow ให้ใช้ทริกเกอร์ “Wholesale application submitted” กับการดำเนินการของ Flow “Send internal email” การดำเนินการนี้ส่งถึงเฉพาะที่อยู่ของพนักงานแบบตายตัวที่คุณกรอกในเวิร์กโฟลว์",
+  "automation.condition.disposable_email": "อีเมลใช้แล้วทิ้ง (mailinator.com…)",
+  "automation.condition.free_email": "บริการอีเมลฟรี (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "ที่อยู่จัดส่งเป็นตู้ ปณ.",
+  "automation.condition.registry_mismatch": "ชื่อในทะเบียนไม่ตรงกับบริษัท",
+  "automation.condition.website_mismatch": "เว็บไซต์ไม่ตรงกับโดเมนอีเมล",
+  "automation.flow.alertsMore": "การแจ้งเตือนเพิ่มเติม: “ได้รับข้อมูลใบสมัครขายส่ง” ทำงานเมื่อผู้สมัครตอบคำขอของคุณ และ “ใบรับรองใกล้หมดอายุ” ก่อนใบรับรองหมดอายุ ทริกเกอร์แต่ละตัวมีบริษัท ผู้ติดต่อ อีเมล โทรศัพท์ ประเทศ รัฐ ระดับ และลิงก์ไปยังใบสมัคร พร้อมใช้ในอีเมลหรือข้อความ Slack",
+  "automation.flow.trigger.application_info_received": "ได้รับข้อมูลใบสมัครขายส่ง",
+  "automation.flow.welcomeNoteFlow": "เมื่ออนุมัติ ระบบจะขอให้ Shopify ส่งอีเมลต้อนรับ B2B ของตัวเอง หาก Shopify ไม่อนุญาตในร้านของคุณ เทมเพลต Flow ของ Shopify “มอบสิทธิ์ให้ผู้ติดต่อของบริษัทแล้ว” → “ส่งอีเมลเข้าถึง B2B” จะทำงานเดียวกัน โดย Tradepass จะมอบสิทธิ์นั้นระหว่างการอนุมัติ"
 }

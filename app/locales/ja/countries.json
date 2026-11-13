@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "検索に一致する国はありません。",
+  "countries.search": "国を検索",
+  "countries.selected": "{count, plural, =0 {国が選択されていません} other {# か国を選択中}}"
+}

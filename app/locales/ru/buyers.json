@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Шаг одобрения не выполнен",
   "buyers.activity.approval.undo": "Одобрение отменено",
   "buyers.activity.tier.assisted_add_verified": "Назначение уровня подтверждено",
-  "buyers.activity.tier.assisted_remove_verified": "Удаление из уровня подтверждено"
+  "buyers.activity.tier.assisted_remove_verified": "Удаление из уровня подтверждено",
+  "buyers.tax.specific": "{count, plural, one {# освобождение} few {# освобождения} many {# освобождений} other {# освобождения}}"
 }

@@ -1,0 +1,12 @@
+{
+  "title": "Nagykereskedelmi fiók",
+  "status": {
+    "pending": "A jelentkezést átnézzük",
+    "needs_info": "További információra van szükségünk",
+    "approved": "Jóváhagyva",
+    "rejected": "Nincs jóváhagyva"
+  },
+  "submitted": "Beküldve: {{date}}",
+  "reapply": "{{date}} után jelentkezhet újra.",
+  "view": "Részletek"
+}

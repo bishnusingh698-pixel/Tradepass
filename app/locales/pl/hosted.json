@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Ten link został już użyty",
   "hosted.link.usedBody": "Każdy link do uzupełnienia działa jeden raz. Aby zmienić coś jeszcze, skontaktuj się ze sklepem {store}.",
   "hosted.noscript": "Włącz JavaScript w przeglądarce, aby uzupełnić wniosek.",
-  "hosted.error.generic": "Po naszej stronie wystąpił błąd. Spróbuj ponownie za kilka minut."
+  "hosted.error.generic": "Po naszej stronie wystąpił błąd. Spróbuj ponownie za kilka minut.",
+  "hosted.status.body.approved": "Zaloguj się tym adresem e-mail, aby zobaczyć swoje ceny hurtowe.",
+  "hosted.status.body.needs_info": "{store} potrzebuje jeszcze kilku informacji przed podjęciem decyzji.",
+  "hosted.status.body.pending": "{store} rozpatruje każdy wniosek i skontaktuje się z Tobą.",
+  "hosted.status.body.rejected": "{store} nie mógł zatwierdzić tego wniosku.",
+  "hosted.status.book": "Umów rozmowę wprowadzającą",
+  "hosted.status.busyTitle": "Zbyt wiele żądań. Spróbuj ponownie za kilka minut.",
+  "hosted.status.expiredBody": "Dla Twojego bezpieczeństwa linki do statusu działają przez 90 dni. Poproś {store} o nowy link.",
+  "hosted.status.reapply": "Możesz ponownie złożyć wniosek od {date}.",
+  "hosted.status.shop": "Zacznij zakupy",
+  "hosted.status.signIn": "Zaloguj się",
+  "hosted.status.submitted": "{company} złożył wniosek {date}.",
+  "hosted.status.title.approved": "Twoje konto hurtowe zostało zatwierdzone",
+  "hosted.status.title.needs_info": "Potrzebujemy jeszcze kilku informacji",
+  "hosted.status.title.pending": "Rozpatrujemy Twój wniosek",
+  "hosted.status.title.rejected": "Twój wniosek nie został zatwierdzony",
+  "hosted.status.update": "Zaktualizuj wniosek",
+  "hosted.status.whatsapp": "Napisz do {store} na WhatsAppie"
 }

@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Nėra ko kartoti.",
   "approval.skip.finished": "Jau patvirtinta.",
   "approval.skip.missing_address": "Trūksta atsiskaitymo adreso.",
-  "approval.skip.tier_required": "Nepasirinktas lygis."
+  "approval.skip.tier_required": "Nepasirinktas lygis.",
+  "approval.blocked.no_b2b": "Jūsų „Shopify“ plane nėra B2B, todėl „Shopify“ dar negali sukurti įmonės šiam pirkėjui. Paraiška lieka eilėje: patvirtinkite ją, kai B2B bus pasiekiamas (planas „Basic“ ar aukštesnis su naujomis Rinkomis). Pradžios puslapyje matysite, ką palaiko jūsų planas.",
+  "approval.error.email_unavailable": "„Shopify“ neleido „Tradepass“ šioje parduotuvėje išsiųsti B2B pasveikinimo laiško, todėl laiškas neišsiųstas. Pirkėjas patvirtintas. Nusiųskite jam paruoštą žinutę iš paraiškos puslapio.",
+  "approval.field.taxExemptAll": "Šioje vietoje nerinkti jokių mokesčių",
+  "approval.field.taxExemptAllHelp": "Tik pirkėjams, atleistiems nuo visų mokesčių visur, kur jiems siunčiate. Perpardavimo pažyma paprastai galioja vienoje valstijoje ar šalyje: geriau naudokite aukščiau esančias išimtis, kad mokestis vis tiek būtų taikomas ten, kur išimtis negalioja.",
+  "approval.skip.no_b2b": "B2B nepasiekiamas šios parduotuvės „Shopify“ plane.",
+  "approval.step.tags": "Kliento žymos",
+  "approval.tags.note": "Klientui pridėtos žymos: {tags} (Nustatymai → Pareiškėjai ir kontaktai).",
+  "approval.tax.addCovered": "Pridėti šias išimtis",
+  "approval.tax.alsoCovered": "Pažymos taip pat galioja: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Šios vietos valstijoje nėra valstijos pardavimo mokesčio, todėl išimties ten nereikia.",
+  "approval.tax.reason.us_exempt_org": "Nuo mokesčių atleistos organizacijos pažyma: „Shopify“ neturi jai skirtos išimties. Patikrinkite pažymą; tik jei pirkėjas visai nemoka mokesčių, pasirinkite „Nerinkti jokių mokesčių“.",
+  "approval.tax.reason.us_resale_local_only": "Pirkėjo pažyma galioja šioje valstijoje. Aliaskoje nėra valstijos pardavimo mokesčio, bet kai kurie miestai renka savo.",
+  "approval.tax.reason.us_state_not_covered": "Pirkėjo pažymos galioja kitose valstijose nei šios vietos valstija. Pridėkite šias išimtis tik tada, jei šios vietos užsakymai siunčiami ten."
 }

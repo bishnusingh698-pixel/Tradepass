@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify heeft de wijziging niet geaccepteerd. Er is niets verwijderd. Probeer het later opnieuw.",
   "certificates.error.unknown_intent": "Er is iets misgegaan. Probeer het opnieuw.",
   "certificates.error.file": "We konden dit bestand niet openen. Probeer het opnieuw.",
-  "certificates.action.copyLink": "Vernieuwingslink kopiëren"
+  "certificates.action.copyLink": "Vernieuwingslink kopiëren",
+  "certificates.usForm.exempt": "Belastingvrijgestelde organisatie",
+  "certificates.usForm.mtc": "Uniform MTC-wederverkoopcertificaat",
+  "certificates.usForm.sst": "Streamlined Sales Tax-certificaat",
+  "certificates.usForm.state": "Wederverkoopcertificaat van de staat"
 }

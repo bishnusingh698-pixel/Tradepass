@@ -1,0 +1,12 @@
+{
+  "title": "Großhandelskonto",
+  "status": {
+    "pending": "Bewerbung wird geprüft",
+    "needs_info": "Wir brauchen weitere Angaben",
+    "approved": "Genehmigt",
+    "rejected": "Nicht genehmigt"
+  },
+  "submitted": "Beworben am {{date}}",
+  "reapply": "Sie können sich ab dem {{date}} erneut bewerben.",
+  "view": "Details ansehen"
+}

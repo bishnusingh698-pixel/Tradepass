@@ -51,10 +51,13 @@ describe("Flow triggers", () => {
     expect(p).toEqual({
       company_id: 42, "Application ID": "app_1", "Buyer ID": "buy_1", "Company name": "Acme",
       "Contact email": "a@example.com", Country: "US", Tier: "Retailer",
+      // B8: what alert recipes need, empty when unknown so Flow conditions never see a missing key.
+      "Admin URL": "", "Contact name": "", Phone: "", State: "",
     });
     expect(buildFlowPayload("application_submitted", { applicationId: "x" })).toEqual({
-      "Application ID": "x", "Company name": "", "Contact email": "", Country: "",
+      "Application ID": "x", "Admin URL": "", "Company name": "", "Contact name": "", "Contact email": "", Phone: "", Country: "", State: "", Tier: "",
     });
+    expect(Object.keys(buildFlowPayload("application_info_received", { applicationId: "x" })!)).toContain("Phone");
     expect(buildFlowPayload("certificate_expired", { ...full, companyGid: undefined })).toBeNull();
   });
 

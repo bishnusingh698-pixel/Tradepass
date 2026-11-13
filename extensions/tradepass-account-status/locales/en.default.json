@@ -1,0 +1,12 @@
+{
+  "title": "Wholesale account",
+  "status": {
+    "pending": "Application under review",
+    "needs_info": "We need more information",
+    "approved": "Approved",
+    "rejected": "Not approved"
+  },
+  "submitted": "Applied on {{date}}",
+  "reapply": "You can apply again from {{date}}.",
+  "view": "View details"
+}

@@ -19,9 +19,23 @@
   var MAX_BYTES = 5 * 1024 * 1024;
   var TYPES = { "application/pdf": 1, "image/jpeg": 1, "image/png": 1 };
   var EXT = /\.(pdf|jpe?g|png)$/i;
+  /** PDF, JPG or PNG. Some phones send PDFs with an empty or generic type: the name decides, the server checks the content. */
+  function fileTypeOk(file) {
+    return !!TYPES[file.type] || (EXT.test(file.name) && (!file.type || file.type === "application/octet-stream"));
+  }
   // ISO 3166-1 alpha-2 codes; names come from Intl.DisplayNames in the visitor's language.
   var CODES = "AD AE AF AG AI AL AM AO AR AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GS GT GW GY HK HN HR HT HU ID IE IL IM IN IO IQ IS IT JE JM JO JP KE KG KH KI KM KN KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MK ML MM MN MO MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PS PT PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SZ TC TD TF TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG UM US UY UZ VA VC VE VG VN VU WF WS XK YE YT ZA ZM ZW".split(" ");
   var EU = "AT BE BG CY CZ DE DK EE ES FI FR GR HR HU IE IT LT LU LV MT NL PL PT RO SE SI SK".split(" ");
+  // ITU country calling codes for the phone field's country-code picker (E.164 numbers).
+  var DIAL = {};
+  "AD376 AE971 AF93 AG1 AI1 AL355 AM374 AO244 AR54 AT43 AU61 AW297 AX358 AZ994 BA387 BB1 BD880 BE32 BF226 BG359 BH973 BI257 BJ229 BL590 BM1 BN673 BO591 BQ599 BR55 BS1 BT975 BW267 BY375 BZ501 CA1 CC61 CD243 CF236 CG242 CH41 CI225 CK682 CL56 CM237 CN86 CO57 CR506 CV238 CW599 CX61 CY357 CZ420 DE49 DJ253 DK45 DM1 DO1 DZ213 EC593 EE372 EG20 EH212 ER291 ES34 ET251 FI358 FJ679 FK500 FO298 FR33 GA241 GB44 GD1 GE995 GF594 GG44 GH233 GI350 GL299 GM220 GN224 GP590 GQ240 GR30 GS500 GT502 GW245 GY592 HK852 HN504 HR385 HT509 HU36 ID62 IE353 IL972 IM44 IN91 IO246 IQ964 IS354 IT39 JE44 JM1 JO962 JP81 KE254 KG996 KH855 KI686 KM269 KN1 KR82 KW965 KY1 KZ7 LA856 LB961 LC1 LI423 LK94 LR231 LS266 LT370 LU352 LV371 LY218 MA212 MC377 MD373 ME382 MF590 MG261 MK389 ML223 MM95 MN976 MO853 MQ596 MR222 MS1 MT356 MU230 MV960 MW265 MX52 MY60 MZ258 NA264 NC687 NE227 NF672 NG234 NI505 NL31 NO47 NP977 NR674 NU683 NZ64 OM968 PA507 PE51 PF689 PG675 PH63 PK92 PL48 PM508 PN64 PS970 PT351 PY595 QA974 RE262 RO40 RS381 RU7 RW250 SA966 SB677 SC248 SD249 SE46 SG65 SH290 SI386 SJ47 SK421 SL232 SM378 SN221 SO252 SR597 SS211 ST239 SV503 SX1 SZ268 TC1 TD235 TF262 TG228 TH66 TJ992 TK690 TL670 TM993 TN216 TO676 TR90 TT1 TV688 TW886 TZ255 UA380 UG256 UM1 US1 UY598 UZ998 VA39 VC1 VE58 VG1 VN84 VU678 WF681 WS685 XK383 YE967 YT262 ZA27 ZM260 ZW263".split(" ").forEach(function (x) { DIAL[x.slice(0, 2)] = x.slice(2); });
+  var US_FORMS = ["state", "sst", "mtc", "exempt"];
+  var MAX_STATES = 12;
+  /** "+14155550123" → true; US/Canada numbers (+1) need 10 digits after the code. */
+  function e164Ok(v) {
+    if (!/^\+[1-9]\d{6,14}$/.test(v)) return false;
+    return v.indexOf("+1") !== 0 || v.length === 12;
+  }
   var AUTO = {
     companyName: "organization", firstName: "given-name", lastName: "family-name", email: "email",
     phone: "tel", jobTitle: "organization-title", website: "url"
@@ -53,6 +67,216 @@
     return "k" + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
   }
   function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  // Copied from app/lib/tax-checksums.js by scripts/sync-tax-ids.mjs (do not edit here).
+  /* checksums:start */
+  var TAX_CHECKSUMS = (function () {
+    function digits(s) { return /^\d+$/.test(s) ? s.split("").map(Number) : null; }
+    function weighted(d, w) { var t = 0; for (var i = 0; i < w.length; i++) t += d[i] * w[i]; return t; }
+    // ISO 7064 MOD 11,10 (Germany USt-IdNr, Croatia OIB).
+    function mod1110(d) {
+      var p = 10;
+      for (var i = 0; i < d.length - 1; i++) { var s = (d[i] + p) % 10; if (s === 0) s = 10; p = (2 * s) % 11; }
+      var c = 11 - p; if (c === 10) c = 0;
+      return c === d[d.length - 1];
+    }
+    function luhn(d) {
+      var t = 0;
+      for (var i = d.length - 1, k = 0; i >= 0; i--, k++) { var x = d[i]; if (k % 2 === 1) { x *= 2; if (x > 9) x -= 9; } t += x; }
+      return t % 10 === 0;
+    }
+    // Mod 11 with weights; "c" maps the remainder to the check digit (null = no valid check digit).
+    function mod11(d, w, c) { var r = weighted(d, w) % 11; var k = c(r); return k !== null && k === d[w.length]; }
+    var m11 = function (r) { var k = 11 - r; return k === 11 ? 0 : k === 10 ? null : k; };
+    var A36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var A31 = "0123456789ABCDEFGHJKLMNPQRTUWXY";
+  
+    var rules = {
+      // India GSTIN: GSTN's mod-36 check character (15th).
+      IN: function (n) {
+        if (!/^[0-9A-Z]{15}$/.test(n)) return null;
+        var t = 0;
+        for (var i = 0; i < 14; i++) { var p = A36.indexOf(n[i]) * (i % 2 === 0 ? 1 : 2); t += Math.floor(p / 36) + (p % 36); }
+        return A36[(36 - (t % 36)) % 36] === n[14];
+      },
+      // Brazil CNPJ: two mod-11 check digits (Receita Federal).
+      BR: function (n) {
+        var d = digits(n); if (!d || d.length !== 14 || /^(\d)\1+$/.test(n)) return null;
+        var c = function (len, w) { var r = weighted(d, w) % 11; return (r < 2 ? 0 : 11 - r) === d[len]; };
+        return c(12, [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]) && c(13, [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]);
+      },
+      // Switzerland UID (CHE-123.456.789): mod 11 over the 8 digits (Federal Statistical Office).
+      CH: function (n) {
+        var m = /^(?:CHE)?(\d{9})(?:MWST|TVA|IVA)?$/.exec(n); if (!m) return null;
+        return mod11(digits(m[1]), [5, 4, 3, 2, 7, 6, 5, 4], m11);
+      },
+      // Norway organisation number (Brønnøysund): mod 11.
+      NO: function (n) {
+        var m = /^(?:NO)?(\d{9})(?:MVA)?$/.exec(n); if (!m) return null;
+        return mod11(digits(m[1]), [3, 2, 7, 6, 5, 4, 3, 2], m11);
+      },
+      // New Zealand: GST number = IRD number (Inland Revenue's two-weight mod 11), or the 13-digit NZBN (GS1).
+      NZ: function (n) {
+        var d = digits(n); if (!d) return null;
+        if (d.length === 13) { var t = 0; for (var i = 0; i < 12; i++) t += d[i] * (i % 2 === 0 ? 1 : 3); return (10 - (t % 10)) % 10 === d[12]; }
+        if (d.length !== 8 && d.length !== 9) return null;
+        if (d.length === 8) d.unshift(0);
+        var v = Number(d.join(""));
+        if (v < 10000000 || v > 150000000) return false;
+        var pick = function (w) { var r = weighted(d, w) % 11; return r === 0 ? 0 : 11 - r; };
+        var c = pick([3, 2, 7, 6, 5, 4, 3, 2]);
+        if (c === 10) c = pick([7, 4, 3, 2, 5, 2, 7, 6]);
+        return c !== 10 && c === d[8];
+      },
+      // Australia ABN (ABR): subtract 1 from the first digit, weighted sum divisible by 89.
+      AU: function (n) {
+        var d = digits(n); if (!d || d.length !== 11) return null;
+        d[0] -= 1;
+        return weighted(d, [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19]) % 89 === 0;
+      },
+      // Chile RUT (SII): mod 11, check 0-9 or K.
+      CL: function (n) {
+        var m = /^(\d{7,8})([0-9K])$/.exec(n); if (!m) return null;
+        var t = 0, w = 2;
+        for (var i = m[1].length - 1; i >= 0; i--) { t += Number(m[1][i]) * w; w = w === 7 ? 2 : w + 1; }
+        var r = 11 - (t % 11);
+        return (r === 11 ? "0" : r === 10 ? "K" : String(r)) === m[2];
+      },
+      // Argentina CUIT (AFIP): mod 11.
+      AR: function (n) { var d = digits(n); if (!d || d.length !== 11) return null; return mod11(d, [5, 4, 3, 2, 7, 6, 5, 4, 3, 2], m11); },
+      // Italy partita IVA: Luhn.
+      IT: function (n) { var m = /^(?:IT)?(\d{11})$/.exec(n); return m ? luhn(digits(m[1])) : null; },
+      // Poland NIP: mod 11 (10 = invalid).
+      PL: function (n) { var m = /^(?:PL)?(\d{10})$/.exec(n); return m ? mod11(digits(m[1]), [6, 5, 7, 2, 3, 4, 5, 6, 7], function (r) { return r === 10 ? null : r; }) : null; },
+      // Portugal NIF: mod 11.
+      PT: function (n) { var m = /^(?:PT)?(\d{9})$/.exec(n); return m ? mod11(digits(m[1]), [9, 8, 7, 6, 5, 4, 3, 2], function (r) { return r < 2 ? 0 : 11 - r; }) : null; },
+      // Belgium enterprise number: 97 - (first 8 digits mod 97).
+      BE: function (n) { var m = /^(?:BE)?([01]\d{9})$/.exec(n); if (!m) return null; return 97 - (Number(m[1].slice(0, 8)) % 97) === Number(m[1].slice(8)); },
+      // Denmark CVR: weighted sum divisible by 11.
+      DK: function (n) { var m = /^(?:DK)?(\d{8})$/.exec(n); return m ? weighted(digits(m[1]), [2, 7, 6, 5, 4, 3, 2, 1]) % 11 === 0 : null; },
+      // Finland Y-tunnus: mod 11 (remainder 1 = invalid).
+      FI: function (n) { var m = /^(?:FI)?(\d{8})$/.exec(n); return m ? mod11(digits(m[1]), [7, 9, 10, 5, 8, 4, 2], function (r) { return r === 0 ? 0 : r === 1 ? null : 11 - r; }) : null; },
+      // Germany USt-IdNr: ISO 7064 MOD 11,10.
+      DE: function (n) { var m = /^(?:DE)?(\d{9})$/.exec(n); return m ? mod1110(digits(m[1])) : null; },
+      // Croatia OIB: ISO 7064 MOD 11,10.
+      HR: function (n) { var m = /^(?:HR)?(\d{11})$/.exec(n); return m ? mod1110(digits(m[1])) : null; },
+      // France TVA: numeric key = (12 + 3 × (SIREN mod 97)) mod 97; letter keys have no public formula.
+      FR: function (n) { var m = /^(?:FR)?(\d{2})(\d{9})$/.exec(n); if (!m) return null; return (12 + 3 * (Number(m[2]) % 97)) % 97 === Number(m[1]); },
+      // Estonia KMKR: weights 3 7 1.
+      EE: function (n) { var m = /^(?:EE)?(\d{9})$/.exec(n); if (!m) return null; var d = digits(m[1]); return (10 - (weighted(d, [3, 7, 1, 3, 7, 1, 3, 7]) % 10)) % 10 === d[8]; },
+      // Luxembourg: first 6 digits mod 89.
+      LU: function (n) { var m = /^(?:LU)?(\d{8})$/.exec(n); if (!m) return null; return Number(m[1].slice(0, 6)) % 89 === Number(m[1].slice(6)); },
+      // Slovenia: mod 11 (11 - r; 10 → 0; 11 = invalid).
+      SI: function (n) { var m = /^(?:SI)?(\d{8})$/.exec(n); return m ? mod11(digits(m[1]), [8, 7, 6, 5, 4, 3, 2], function (r) { var k = 11 - r; return k === 11 ? null : k === 10 ? 0 : k; }) : null; },
+      // Hungary: weights 9 7 3 1.
+      HU: function (n) { var m = /^(?:HU)?(\d{8})$/.exec(n); if (!m) return null; var d = digits(m[1]); return (10 - (weighted(d, [9, 7, 3, 1, 9, 7, 3]) % 10)) % 10 === d[7]; },
+      // Sweden: Luhn over the 10-digit organisation number, then "01".
+      SE: function (n) { var m = /^(?:SE)?(\d{10})01$/.exec(n); return m ? luhn(digits(m[1])) : null; },
+      // Greece: powers of two, mod 11 mod 10.
+      GR: function (n) { var m = /^(?:EL|GR)?(\d{9})$/.exec(n); if (!m) return null; var d = digits(m[1]); return weighted(d, [256, 128, 64, 32, 16, 8, 4, 2]) % 11 % 10 === d[8]; },
+      // Slovakia IČ DPH: the whole number is divisible by 11.
+      SK: function (n) { var m = /^(?:SK)?(\d{10})$/.exec(n); return m ? Number(m[1]) % 11 === 0 : null; },
+      // United Kingdom VAT (9 digits, or 12 with a branch): mod 97, or the 9755 scheme.
+      GB: function (n) {
+        var m = /^(?:GB|XI)?(\d{9})(\d{3})?$/.exec(n); if (!m) return null;
+        var d = digits(m[1]); var t = weighted(d, [8, 7, 6, 5, 4, 3, 2]) + Number(m[1].slice(7));
+        return t % 97 === 0 || (t + 55) % 97 === 0;
+      },
+      // China unified social credit code (GB 32100-2015): mod 31 over 17 characters.
+      CN: function (n) {
+        if (!/^[0-9A-HJ-NPQRTUWXY]{18}$/.test(n)) return null;
+        var w = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30, 28], t = 0;
+        for (var i = 0; i < 17; i++) t += A31.indexOf(n[i]) * w[i];
+        return A31[(31 - (t % 31)) % 31] === n[17];
+      },
+      // South Korea business registration number (National Tax Service).
+      KR: function (n) {
+        var d = digits(n); if (!d || d.length !== 10) return null;
+        var t = weighted(d, [1, 3, 7, 1, 3, 7, 1, 3, 5]) + Math.floor((d[8] * 5) / 10);
+        return (10 - (t % 10)) % 10 === d[9];
+      },
+      // Russia INN (10 digits for companies, 12 for individuals).
+      RU: function (n) {
+        var d = digits(n); if (!d) return null;
+        var c = function (w) { return (weighted(d, w) % 11) % 10; };
+        if (d.length === 10) return c([2, 4, 10, 3, 5, 9, 4, 6, 8]) === d[9];
+        if (d.length === 12) return c([7, 2, 4, 10, 3, 5, 9, 4, 6, 8]) === d[10] && c([3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8]) === d[11];
+        return null;
+      },
+      // Türkiye: T.C. kimlik no (11 digits, used by sole traders).
+      TR: function (n) {
+        var d = digits(n); if (!d) return null;
+        // The 10-digit VKN algorithm couldn't be confirmed against a published number: not checked.
+        if (d.length === 11) {
+          if (d[0] === 0) return false;
+          var c10 = ((d[0] + d[2] + d[4] + d[6] + d[8]) * 7 - (d[1] + d[3] + d[5] + d[7])) % 10;
+          if (c10 < 0) c10 += 10;
+          var s10 = 0; for (var j = 0; j < 10; j++) s10 += d[j];
+          return c10 === d[9] && s10 % 10 === d[10];
+        }
+        return null;
+      },
+      // Israel company / dealer number: Luhn-style 1-2 weights.
+      IL: function (n) {
+        var d = digits(n); if (!d || d.length !== 9) return null;
+        var t = 0; for (var i = 0; i < 9; i++) { var x = d[i] * (i % 2 === 0 ? 1 : 2); t += x > 9 ? x - 9 : x; }
+        return t % 10 === 0;
+      },
+      // Peru RUC (SUNAT): mod 11.
+      PE: function (n) { var d = digits(n); if (!d || d.length !== 11) return null; return mod11(d, [5, 4, 3, 2, 7, 6, 5, 4, 3, 2], function (r) { return (11 - r) % 10; }); },
+      // Thailand 13-digit tax ID: mod 11.
+      TH: function (n) { var d = digits(n); if (!d || d.length !== 13) return null; return (11 - (weighted(d, [13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2]) % 11)) % 10 === d[12]; },
+      // Japan corporate number (National Tax Agency): the first digit checks the other 12.
+      JP: function (n) {
+        var m = /^T?(\d{13})$/.exec(n); if (!m) return null;
+        var d = digits(m[1]), t = 0;
+        for (var i = 1; i <= 12; i++) t += d[13 - i] * (i % 2 === 1 ? 1 : 2);
+        return 9 - (t % 9) === d[0];
+      },
+      // Taiwan unified business number (Ministry of Finance, divisible-by-5 rule since 2023).
+      TW: function (n) {
+        var d = digits(n); if (!d || d.length !== 8) return null;
+        var w = [1, 2, 1, 2, 1, 2, 4, 1], t = 0;
+        for (var i = 0; i < 8; i++) { var p = d[i] * w[i]; t += Math.floor(p / 10) + (p % 10); }
+        return t % 5 === 0 || (d[6] === 7 && (t + 1) % 5 === 0);
+      }
+    };
+  
+    return function (country, n) {
+      var f = rules[country];
+      if (!f || !n) return null;
+      try { return f(n); } catch (e) { return null; }
+    };
+  })();
+  /* checksums:end */
+  /** Draft values without documents (upload references) or tax numbers (kept: tax country and state). */
+  function sanitizeDraft(values, fieldsById) {
+    var out = {};
+    for (var k in values) {
+      var f = fieldsById[k];
+      var v = values[k];
+      if (f && f.type === "file") continue;
+      if (f && f.type === "country_tax") { if (v) out[k] = { country: v.country || "", region: v.region || "", number: "" }; continue; }
+      out[k] = v;
+    }
+    return out;
+  }
+  /** "rgb(r, g, b)" / "rgba(r, g, b, a)" is an opaque, dark colour (relative luminance under 0.2); null when transparent or unknown. */
+  function darkColor(css) {
+    var m = /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/.exec(css || "");
+    if (!m || (m[4] != null && Number(m[4]) < 0.5)) return null;
+    var lin = function (c) { c = Number(c) / 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+    return 0.2126 * lin(m[1]) + 0.7152 * lin(m[2]) + 0.0722 * lin(m[3]) < 0.2;
+  }
+  /** The first non-transparent background behind the form is dark. */
+  function isDarkBackground(el) {
+    try {
+      for (var n = el; n && n.nodeType === 1; n = n.parentElement) {
+        var d = darkColor(getComputedStyle(n).backgroundColor);
+        if (d !== null) return d;
+      }
+    } catch (e) { /* no styles (tests, old browsers) */ }
+    return false;
+  }
 
   function render(container, opts) {
     opts = opts || {};
@@ -72,6 +296,7 @@
 
     container.innerHTML = "";
     container.classList.add("tpf");
+    if (isDarkBackground(container)) container.classList.add("tpf--dark");
     container.setAttribute("dir", opts.dir || "ltr");
     container.setAttribute("lang", locale);
 
@@ -116,12 +341,15 @@
       try { return JSON.parse(localStorage.getItem(storeKey) || "null"); } catch (e) { return null; }
     }
     var saveTimer = null;
+    // The draft never holds documents (their signed upload references) or tax numbers: a shared or
+    // public computer must not keep them. After a restore the applicant adds those again.
+    function draftValues() { return sanitizeDraft(state.values, fieldsById); }
     function saveDraft() {
       if (preview) return;
       clearTimeout(saveTimer);
       saveTimer = setTimeout(function () {
         try {
-          localStorage.setItem(storeKey, JSON.stringify({ v: state.values, idem: state.idem, startedAt: state.startedAt, at: Date.now() }));
+          localStorage.setItem(storeKey, JSON.stringify({ v: draftValues(), idem: state.idem, startedAt: state.startedAt, at: Date.now() }));
         } catch (e) { /* storage full or blocked: keep going */ }
       }, 300);
     }
@@ -156,12 +384,22 @@
           if (!a.city) errs.city = tx("form.error.required", { field: tx("form.address.city") });
           if (c && c.r && !a.zoneCode) errs.zoneCode = tx("form.error.choose", { field: zoneLabel(c) });
           if (c && c.z !== 0 && !a.zip) errs.zip = tx("form.error.required", { field: zipLabel(c) });
+          else if (a.countryCode === "US" && a.zip && !/^\d{5}(-\d{4})?$/.test(a.zip.trim())) errs.zip = tx("form.error.zip");
         }
         if (f.id === "billingAddress" && countryBlocked(a.countryCode)) errs.countryCode = tx("form.error.country_blocked");
         return Object.keys(errs).length ? errs : null;
       }
       if (f.type === "country_tax") {
         var tv = v || {};
+        if (tv.states) {
+          var rows = tv.states.filter(function (r) { return r.region || r.number; });
+          if (req && !rows.length) return tx("form.error.required", { field: taxLabel("US") });
+          for (var ri = 0; ri < rows.length; ri++) {
+            if (!rows[ri].region) return tx("form.error.us_state");
+            if (!rows[ri].number) return tx("form.error.required", { field: tx("form.tax.us_permit") });
+          }
+          return null;
+        }
         if (req && !tv.number) return tx("form.error.required", { field: taxLabel(tv.country) });
         if (tv.number && tv.number.length > 40) return tx("form.error.too_long", { max: 40 });
         var bill0 = state.values.billingAddress;
@@ -185,7 +423,9 @@
         if (v.length > max) return tx("form.error.too_long", { max: max });
         if (f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return tx("form.error.email");
         if (f.type === "url" && !/^(https?:\/\/)?[^\s.]+\.[^\s]{2,}$/i.test(v)) return tx("form.error.url");
-        if (f.type === "phone" && !/^\+?[\d\s().-]{6,20}$/.test(v)) return tx("form.error.phone");
+        if (f.type === "phone" && !(v.charAt(0) === "+" ? e164Ok(v) : /^\+?[\d\s().-]{6,20}$/.test(v))) return tx("form.error.phone");
+        if (f.id === "ein" && !/^\d{2}-?\d{7}$/.test(v.trim())) return tx("form.error.ein");
+        if (f.id === "duns" && !/^\d{9}$/.test(v.replace(/[\s-]/g, ""))) return tx("form.error.duns");
         if (f.type === "number" && !/^-?\d+([.,]\d+)?$/.test(v)) return tx("form.error.number");
         if (f.type === "date" && isNaN(Date.parse(v))) return tx("form.error.date");
       }
@@ -223,7 +463,7 @@
       if (!r || !r[2] || !r[4] || !number) return false;
       var n = String(number).replace(/[\s.\-/]/g, "").toUpperCase();
       if (r[3] && n.indexOf(r[3]) !== 0 && !/^[A-Z]{2}/.test(n)) n = r[3] + n;
-      try { return !new RegExp(r[2]).test(n); } catch (e) { return false; }
+      try { return !new RegExp(r[2]).test(n) || TAX_CHECKSUMS(country, n) === false; } catch (e) { return false; }
     }
     // Countries the merchant accepts applications from (Settings → Countries).
     var countryRule = opts.countryRule || null;
@@ -309,6 +549,8 @@
             opts_.map(function (o) { return h("option", { value: o.value, text: optLabel(f, o) }); })
           ));
           input.value = v || "";
+        } else if (f.type === "phone") {
+          return phoneControl(f, id, describedBy);
         } else {
           input = h("input", {
             id: id, name: f.id, type: INPUT[f.type] || "text",
@@ -325,6 +567,39 @@
         input.addEventListener("blur", blur(f));
         return { el: input, input: input, focus: function () { input.focus(); } };
       };
+    }
+
+    /** Country code + national number → E.164 ("+" code digits). Starts from the billing or store country. */
+    function phoneControl(f, id, describedBy) {
+      var box = h("div", { className: "tpf-phone" });
+      var cur = state.values[f.id] || "";
+      var bill = state.values.billingAddress;
+      var cc = (bill && bill.countryCode) || opts.country || "";
+      var national = cur;
+      if (cur.charAt(0) === "+") {
+        // Longest calling code that fits; keep the chosen country when its code matches.
+        var best = "";
+        for (var k in DIAL) if (cur.indexOf("+" + DIAL[k]) === 0 && DIAL[k].length > (DIAL[best] || "").length) best = k;
+        if (best && !(DIAL[cc] && cur.indexOf("+" + DIAL[cc]) === 0)) cc = best;
+        national = DIAL[cc] ? cur.slice(DIAL[cc].length + 1) : cur;
+      }
+      var sel = h("select", { id: id + "-cc", "aria-label": tx("form.phone.country"), autocomplete: "tel-country-code" }, sortedCodes.filter(function (c) { return DIAL[c]; }).map(function (c) {
+        return h("option", { value: c, text: countryName(c) + " (+" + DIAL[c] + ")" });
+      }));
+      sel.value = DIAL[cc] ? cc : "US";
+      var input = h("input", { id: id, name: f.id, type: "tel", inputmode: "tel", autocomplete: "tel-national", maxlength: 20, "aria-describedby": describedBy });
+      input.value = national;
+      if (f.state === "required") input.setAttribute("aria-required", "true");
+      function update(fromBlur) {
+        var digits = input.value.replace(/\D/g, "").replace(/^0+/, "");
+        onChange(f, digits ? "+" + DIAL[sel.value] + digits : "", fromBlur);
+      }
+      sel.addEventListener("change", function () { update(true); });
+      input.addEventListener("input", function () { update(false); });
+      input.addEventListener("blur", blur(f));
+      box.appendChild(sel);
+      box.appendChild(input);
+      return { el: box, input: input, focus: function () { input.focus(); } };
     }
 
     function checkboxesControl(f) {
@@ -478,7 +753,8 @@
           box.innerHTML = "";
           var bill = state.values.billingAddress;
           var country = v.country || (bill && bill.countryCode) || opts.country || "";
-          var cs = countrySelect(id + "-country", country, null, function (c) { v.country = c; onChange(f, v); build(); var n = document.getElementById(id + "-country"); if (n) n.focus(); });
+          var cs = countrySelect(id + "-country", country, null, function (c) { v.country = c; if (c !== "US") { delete v.states; delete v.form; } onChange(f, v); build(); var n = document.getElementById(id + "-country"); if (n) n.focus(); });
+          if (taxKind(country) !== "us_resale" && v.states) { delete v.states; delete v.form; }
           box.appendChild(sub(id + "-country", tx("form.tax.country"), cs).el);
           var kind = taxKind(country);
           var rule = taxRule(country);
@@ -492,15 +768,54 @@
               : kind === "vat" ? h("p", { className: "tpf-help", text: tx("form.tax.vat_help") }) : null,
             numberInput
           ]));
-          if (kind === "us_resale") {
-            var us = countries && countries.US;
-            var rs = h("select", { id: id + "-state" }, [h("option", { value: "", text: tx("form.select") })].concat(
-              (us && us.r || []).map(function (z) { return h("option", { value: z[0], text: z[1] }); })
-            ));
-            rs.value = v.region || "";
-            rs.addEventListener("change", function () { v.region = rs.value; onChange(f, v); });
-            box.appendChild(sub(id + "-state", tx("form.tax.us_state"), rs).el);
+          if (kind === "us_resale") { usRows(); return; }
+        }
+        /** US: which certificate, then one seller's permit / sales tax ID per state it covers. */
+        function usRows() {
+          box.lastChild && box.removeChild(box.lastChild); // the single-number input built above
+          var us = countries && countries.US;
+          v.form = US_FORMS.indexOf(v.form) >= 0 ? v.form : "state";
+          if (!v.states || !v.states.length) v.states = [{ region: v.region || (state.values.billingAddress || {}).zoneCode || "", number: v.number || "" }];
+          var fs = h("select", { id: id + "-form" }, US_FORMS.map(function (x) { return h("option", { value: x, text: tx("form.tax.us_form_" + x) }); }));
+          fs.value = v.form;
+          fs.addEventListener("change", function () { v.form = fs.value; onChange(f, v, true); });
+          box.appendChild(sub(id + "-form", tx("form.tax.us_form"), fs).el);
+          var list = h("div", { className: "tpf-states" });
+          function sync() {
+            var first = v.states[0] || {};
+            v.region = first.region || ""; v.number = first.number || "";
+            onChange(f, v);
           }
+          function draw() {
+            list.innerHTML = "";
+            v.states.forEach(function (row, i) {
+              var rid = id + "-s" + i;
+              var rs = h("select", { id: rid + "-state" }, [h("option", { value: "", text: tx("form.select") })].concat(
+                (us && us.r || []).map(function (z) { return h("option", { value: z[0], text: z[1] }); })
+              ));
+              rs.value = row.region || "";
+              rs.addEventListener("change", function () { row.region = rs.value; sync(); });
+              var ni = h("input", { id: i === 0 ? id : rid, type: "text", maxlength: 40, autocomplete: "off", spellcheck: "false", "aria-describedby": i === 0 ? describedBy : null });
+              ni.value = row.number || "";
+              ni.addEventListener("input", function () { row.number = ni.value.trim(); sync(); });
+              ni.addEventListener("blur", blur(f));
+              if (i === 0) numberInput = ni;
+              var name = rs.value ? rs.options[rs.selectedIndex].text : String(i + 1);
+              list.appendChild(h("div", { className: "tpf-staterow" }, [
+                sub(rid + "-state", tx("form.tax.us_state"), rs).el,
+                sub(i === 0 ? id : rid, tx("form.tax.us_permit"), ni).el,
+                v.states.length > 1 ? h("button", { type: "button", className: "tpf-link", text: tx("form.tax.us_remove_state", { name: name }), onclick: function () {
+                  v.states.splice(i, 1); sync(); draw(); var n = document.getElementById(id); if (n) n.focus();
+                } }) : null
+              ]));
+            });
+            if (v.states.length < MAX_STATES) list.appendChild(h("button", { type: "button", className: "tpf-link", text: tx("form.tax.us_add_state"), onclick: function () {
+              v.states.push({ region: "", number: "" }); sync(); draw();
+              var n = document.getElementById(id + "-s" + (v.states.length - 1) + "-state"); if (n) n.focus();
+            } }));
+          }
+          draw();
+          box.appendChild(list);
         }
         build();
         addressRebuilders.push(build);
@@ -537,14 +852,18 @@
             list.appendChild(row);
           });
           input.disabled = files.length >= MAX_FILES;
+          if (typeof cam !== "undefined") cam.disabled = input.disabled;
         }
         input.addEventListener("change", function () {
           var picked = Array.prototype.slice.call(input.files || []);
           input.value = "";
+          pick(picked);
+        });
+        function pick(picked) {
           var err = null;
           picked.forEach(function (file) {
             if (files.length >= MAX_FILES) { err = tx("form.error.file_count"); return; }
-            if (!TYPES[file.type] || !EXT.test(file.name)) { err = tx("form.error.file_type", { name: file.name }); return; }
+            if (!fileTypeOk(file)) { err = tx("form.error.file_type", { name: file.name }); return; }
             if (file.size > MAX_BYTES) { err = tx("form.error.file_size", { name: file.name }); return; }
             var item = { name: file.name, status: "uploading", ref: null, expiresOn: "" };
             files.push(item);
@@ -552,22 +871,34 @@
             upload(file, f.id).then(function (ref) {
               item.ref = ref; item.status = "done";
               live.textContent = tx("form.upload.done", { name: file.name });
-            }, function () {
+            }, function (e) {
               item.status = "failed";
               files.splice(files.indexOf(item), 1);
-              live.textContent = tx("form.upload.failed", { name: file.name });
-              showError(f, tx("form.upload.failed", { name: file.name }));
+              // The server's reason in the applicant's language (type, size, too many tries), else the general message.
+              var code = e && e.error;
+              var msg = code === "file_type" ? tx("form.error.file_type", { name: file.name })
+                : code === "file_size" ? tx("form.error.file_size", { name: file.name })
+                  : code === "rate_limited" ? tx("form.rate_limited")
+                    : e && e.offline ? tx("form.upload.offline", { name: file.name })
+                      : tx("form.upload.failed", { name: file.name });
+              live.textContent = msg;
+              showError(f, msg);
             }).then(function () { onChange(f, files); draw(); });
           });
           state.touched[f.id] = true;
           showError(f, err || validate(f));
           onChange(f, files);
           draw();
-        });
+        }
+        // Phones: a second button opens the camera straight away (photo of a paper certificate).
+        var cam = h("input", { id: id + "-cam", type: "file", accept: "image/*", capture: "environment", "aria-describedby": id + "-hint", className: "tpf-fileinput" });
+        cam.addEventListener("change", function () { pick(Array.prototype.slice.call(cam.files || [])); cam.value = ""; });
         box.appendChild(hint);
         box.appendChild(list);
-        box.appendChild(input);
-        box.appendChild(h("label", { "for": id, className: "tpf-filebtn", text: tx("form.upload.add") }));
+        box.appendChild(h("div", { className: "tpf-filebtns" }, [
+          input, h("label", { "for": id, className: "tpf-filebtn", text: tx("form.upload.add") }),
+          cam, h("label", { "for": id + "-cam", className: "tpf-filebtn tpf-filebtn--camera", text: tx("form.upload.camera") })
+        ]));
         box.appendChild(live);
         draw();
         return { el: box, input: input, focus: function () { input.focus(); } };
@@ -601,7 +932,8 @@
         fd.append("field", field);
         return fetch(uploadUrl, { method: "POST", body: fd, credentials: "same-origin" });
       }).then(function (res) {
-        return res.json().then(function (j) {
+        if (res.status === 429) throw { retry: false, error: "rate_limited" };
+        return res.json().catch(function () { return {}; }).then(function (j) {
           if (!res.ok || !j.ref) throw { retry: false, error: j && j.error };
           return j.ref;
         });
@@ -619,13 +951,15 @@
       return { destroy: function () { container.innerHTML = ""; } };
     }
 
+    def.sections.forEach(function (s) { s.fields.forEach(function (f) { fieldsById[f.id] = f; }); });
     var draft = loadDraft();
     if (draft && draft.v) {
       state.values = draft.v;
+      state.values = draftValues(); // drafts saved by older versions could still hold files or a tax number
       state.idem = draft.idem || null;
       state.startedAt = draft.startedAt || state.startedAt;
       draftNote.hidden = false;
-      draftNote.appendChild(h("span", { text: tx("form.draft_restored") + " " }));
+      draftNote.appendChild(h("span", { text: tx("form.draft_restored") + " " + tx("form.draft_private") + " " }));
       draftNote.appendChild(h("button", { type: "button", className: "tpf-link", text: tx("form.clear_draft"), onclick: function () {
         clearDraft();
         render(container, opts);
@@ -637,7 +971,6 @@
     ["firstName", "lastName", "email"].forEach(function (k) { if (pre[k] && !state.values[k]) state.values[k] = pre[k]; });
     if (!state.values.preferredLanguage) state.values.preferredLanguage = locale;
 
-    def.sections.forEach(function (s) { s.fields.forEach(function (f) { fieldsById[f.id] = f; }); });
 
     form.appendChild(summary);
     form.appendChild(draftNote);
@@ -674,6 +1007,7 @@
     var submitBtn = h("button", { type: "submit", className: "tpf-submit button", text: tx("form.submit") });
     form.appendChild(submitBtn);
     form.appendChild(status);
+    if (opts.whatsapp && !preview) form.appendChild(h("p", { className: "tpf-help" }, [h("a", { href: opts.whatsapp, target: "_blank", rel: "noopener", text: tx("form.whatsapp") })]));
     container.appendChild(form);
 
     function refreshConditions() {
@@ -742,7 +1076,7 @@
       ] : [
         h("h2", { className: "tpf-success__title", text: tx("form.success.heading") }),
         h("p", { text: msgText })
-      ]);
+      ].concat(extraLinks(opts, tx, "pending")));
       container.innerHTML = "";
       container.appendChild(box);
       box.focus();
@@ -772,6 +1106,7 @@
         elapsedMs: Date.now() - state.startedAt,
         hp: hp.value,
         spam: spamInput ? spamInput.value : null,
+        attribution: attribution(),
         answers: collect()
       };
       setSending(true, tx("form.sending"));
@@ -782,6 +1117,7 @@
           if (res.ok && j.ok) return success(j.status === "duplicate");
           setSending(false);
           if (res.status === 429) { status.textContent = tx("form.rate_limited"); return; }
+          if (j.error === "cooldown" && j.until) { status.textContent = tx("form.status.reapply", { date: longDate(j.until, locale) }); return; }
           if (j.errors) {
             var list = [];
             for (var id in j.errors) {
@@ -809,6 +1145,64 @@
     return { destroy: function () { container.innerHTML = ""; }, values: function () { return state.values; } };
   }
 
+  function longDate(iso, locale) {
+    try { return new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" }).format(new Date(iso.length === 10 ? iso + "T00:00:00Z" : iso)); } catch (e) { return iso; }
+  }
+  /** Optional merchant links (B7, B11): book a call while pending, start shopping once approved, WhatsApp always. */
+  function extraLinks(o, tx, st) {
+    var out = [];
+    var l = o.links || {};
+    var add = function (href, text) { if (href) out.push(h("p", {}, [h("a", { href: href, className: "tpf-filebtn", rel: "noopener", target: href.charAt(0) === "/" ? null : "_blank", text: text })])); };
+    if (st === "approved") add(l.shopping, tx("form.status.shop"));
+    if (st === "pending" || st === "needs_info") add(l.booking, tx("form.status.book"));
+    add(o.whatsapp, tx("form.whatsapp"));
+    return out;
+  }
+  /** A logged-in customer who already applied sees their application instead of the form (B5). */
+  function statusCard(container, a, o, tx) {
+    var locale = o.locale || "en";
+    var kids = [
+      h("h2", { className: "tpf-success__title", text: tx("form.status.title." + a.status) }),
+      h("p", { text: tx("form.status.submitted", { date: longDate(a.submittedAt, locale) }) })
+    ];
+    if (a.status === "needs_info") {
+      if (a.message) kids.push(h("p", { className: "tpf-note", text: a.message }));
+      if (a.updateUrl) kids.push(h("p", {}, [h("a", { href: a.updateUrl, className: "tpf-submit button", text: tx("form.status.update") })]));
+    }
+    if (a.status === "rejected" && a.reapplyFrom) kids.push(h("p", { text: tx("form.status.reapply", { date: longDate(a.reapplyFrom, locale) }) }));
+    kids = kids.concat(extraLinks(o, tx, a.status));
+    if (a.statusUrl) kids.push(h("p", {}, [h("a", { href: a.statusUrl, text: tx("form.status.details") })]));
+    container.innerHTML = "";
+    container.classList.add("tpf");
+    container.appendChild(h("div", { className: "tpf-success", role: "status" }, kids));
+  }
+
+  /**
+   * Where the applicant came from (A15): UTM parameters and the referring site's host, first touch of
+   * the browsing session (the app embed stores it on every page), else this page. No personal data.
+   */
+  function attribution() {
+    var a = null;
+    try { a = JSON.parse(sessionStorage.getItem("tradepass-attr") || "null"); } catch (e) { a = null; }
+    if (a) return a;
+    try {
+      var q = new URLSearchParams(location.search);
+      var ref = document.referrer ? new URL(document.referrer).host : "";
+      a = { utm_source: q.get("utm_source") || "", utm_medium: q.get("utm_medium") || "", utm_campaign: q.get("utm_campaign") || "", ref: ref === location.host ? "" : ref, landing: location.pathname };
+    } catch (e) { a = null; }
+    return a;
+  }
+
+  /** Storefront strings added after the theme locale files neared their size cap (assets/tradepass-texts.<locale>.json). */
+  function loadExtraTexts(urls) {
+    var list = (urls || []).filter(Boolean);
+    function next(i) {
+      if (i >= list.length) return Promise.resolve({});
+      return fetch(list[i]).then(function (r) { if (!r.ok) throw r; return r.json(); }).catch(function () { return next(i + 1); });
+    }
+    return Promise.race([next(0), sleep(3000).then(function () { return {}; })]);
+  }
+
   /** Boot every form block on the page from its inline JSON. */
   function boot() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-tradepass-form]"), function (root) {
@@ -819,18 +1213,31 @@
       try { cfg = JSON.parse(cfgNode.textContent); } catch (e) { cfg = {}; }
       var texts = cfg.texts || {};
       var ov = cfg.overrides || {};
-      for (var k in ov) if (ov[k]) texts[k] = ov[k];
       var mount = root.querySelector(".tpf-mount") || root;
+      var status = cfg.loggedIn && !cfg.submitUrl ? Promise.race([
+        fetch((cfg.endpoint || "/apps/tradepass") + "/status", { credentials: "same-origin", headers: { Accept: "application/json" } })
+          .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+        sleep(4000).then(function () { return null; })
+      ]) : Promise.resolve(null);
+      Promise.all([loadExtraTexts(cfg.extraTexts), status]).then(function (got) {
+      var extra = got[0];
+      for (var x in extra) if (texts[x] == null) texts[x] = extra[x];
+      for (var k in ov) if (ov[k]) texts[k] = ov[k];
+      var app = got[1] && got[1].application;
+      var tx0 = function (key, vars) { var v = texts[key]; return v == null ? "" : String(v).replace(/\{\{\s*(\w+)\s*\}\}/g, function (_, n) { return vars && vars[n] != null ? vars[n] : ""; }); };
+      // Rejected and free to apply again: the form, as for a first application.
+      if (app && !(app.status === "rejected" && !app.reapplyFrom)) { statusCard(mount, app, { locale: cfg.locale, links: cfg.links, whatsapp: cfg.whatsapp }, tx0); return; }
       render(mount, {
         definition: cfg.definition, texts: texts, locale: cfg.locale, dir: cfg.dir,
         endpoint: cfg.endpoint, formId: cfg.formId, country: cfg.country, prefill: cfg.prefill,
         languages: cfg.languages, countriesUrl: cfg.countriesUrl, submitUrl: cfg.submitUrl, uploadUrl: cfg.uploadUrl,
-        countryRule: cfg.countryRule
+        countryRule: cfg.countryRule, links: cfg.links, whatsapp: cfg.whatsapp
+      });
       });
     });
   }
 
-  window.TradepassForm = { render: render, boot: boot, version: 1 };
+  window.TradepassForm = { render: render, boot: boot, version: 1, _test: { sanitizeDraft: sanitizeDraft, darkColor: darkColor, fileTypeOk: fileTypeOk, checksum: TAX_CHECKSUMS } };
   if (typeof document !== "undefined" && !window.TradepassFormNoBoot) {
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
     else boot();

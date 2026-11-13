@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Luluskan permohonan borong ke peringkat harga",
   "automation.flow.welcomeNote": "Tradepass sudah boleh menghantar e-mel akses B2B Shopify apabila meluluskan pembeli, jadi tiada aliran kerja tambahan diperlukan untuk itu.",
   "automation.flow.open": "Buka Shopify Flow",
-  "automation.flow.alerts": "Mahu e-mel apabila seseorang memohon? Dalam Shopify Flow, gunakan pencetus “Wholesale application submitted” dengan tindakan Flow “Send internal email”. Tindakan itu hanya menghantar ke alamat kakitangan tetap yang anda masukkan dalam aliran kerja."
+  "automation.flow.alerts": "Mahu e-mel apabila seseorang memohon? Dalam Shopify Flow, gunakan pencetus “Wholesale application submitted” dengan tindakan Flow “Send internal email”. Tindakan itu hanya menghantar ke alamat kakitangan tetap yang anda masukkan dalam aliran kerja.",
+  "automation.condition.disposable_email": "Alamat e-mel pakai buang (mailinator.com…)",
+  "automation.condition.free_email": "Perkhidmatan e-mel percuma (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Alamat penghantaran ialah peti surat",
+  "automation.condition.registry_mismatch": "Nama daftar tidak sepadan dengan syarikat",
+  "automation.condition.website_mismatch": "Laman web tidak sepadan dengan domain e-mel",
+  "automation.flow.alertsMore": "Lebih banyak amaran: “Maklumat permohonan borong diterima” berjalan apabila pemohon menjawab permintaan anda, dan “Sijil hampir tamat” sebelum sijil tamat tempoh. Setiap pencetus termasuk syarikat, kenalan, e-mel, telefon, negara, negeri, peringkat dan pautan ke permohonan, sedia untuk e-mel atau mesej Slack.",
+  "automation.flow.trigger.application_info_received": "Maklumat permohonan borong diterima",
+  "automation.flow.welcomeNoteFlow": "Semasa kelulusan, Shopify diminta menghantar e-mel alu-aluan B2B miliknya sendiri. Jika Shopify tidak membenarkannya di kedai anda, templat Flow Shopify “Kebenaran diberikan kepada kenalan syarikat” → “Hantar e-mel akses B2B” melakukan perkara yang sama; Tradepass memberikan kebenaran itu semasa kelulusan."
 }

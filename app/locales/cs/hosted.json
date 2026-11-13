@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Tento odkaz už byl použit",
   "hosted.link.usedBody": "Každý odkaz pro aktualizaci funguje jen jednou. Pokud potřebujete změnit ještě něco dalšího, kontaktujte prosím obchod {store}.",
   "hosted.noscript": "Chcete-li aktualizovat svou žádost, zapněte prosím v prohlížeči JavaScript.",
-  "hosted.error.generic": "Na naší straně se něco pokazilo. Zkuste to prosím znovu za několik minut."
+  "hosted.error.generic": "Na naší straně se něco pokazilo. Zkuste to prosím znovu za několik minut.",
+  "hosted.status.body.approved": "Přihlaste se touto e-mailovou adresou a uvidíte své velkoobchodní ceny.",
+  "hosted.status.body.needs_info": "{store} potřebuje před rozhodnutím ještě pár informací.",
+  "hosted.status.body.pending": "{store} posuzuje každou žádost a ozve se vám.",
+  "hosted.status.body.rejected": "{store} tuto žádost nemohl schválit.",
+  "hosted.status.book": "Rezervovat úvodní hovor",
+  "hosted.status.busyTitle": "Příliš mnoho požadavků. Zkuste to prosím za pár minut.",
+  "hosted.status.expiredBody": "Z bezpečnostních důvodů fungují odkazy na stav 90 dní. Pro nový odkaz kontaktujte {store}.",
+  "hosted.status.reapply": "Znovu se můžete přihlásit od {date}.",
+  "hosted.status.shop": "Začít nakupovat",
+  "hosted.status.signIn": "Přihlásit se",
+  "hosted.status.submitted": "{company} podal(a) žádost {date}.",
+  "hosted.status.title.approved": "Váš velkoobchodní účet je schválen",
+  "hosted.status.title.needs_info": "Potřebujeme ještě pár informací",
+  "hosted.status.title.pending": "Posuzujeme vaši žádost",
+  "hosted.status.title.rejected": "Vaše žádost nebyla schválena",
+  "hosted.status.update": "Aktualizovat žádost",
+  "hosted.status.whatsapp": "Napsat {store} na WhatsApp"
 }

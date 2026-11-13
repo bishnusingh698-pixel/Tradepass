@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify hat die Änderung nicht akzeptiert. Es wurde nichts entfernt. Versuchen Sie es später erneut.",
   "certificates.error.unknown_intent": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
   "certificates.error.file": "Wir konnten diese Datei nicht öffnen. Bitte versuchen Sie es erneut.",
-  "certificates.action.copyLink": "Verlängerungslink kopieren"
+  "certificates.action.copyLink": "Verlängerungslink kopieren",
+  "certificates.usForm.exempt": "Steuerbefreite Organisation",
+  "certificates.usForm.mtc": "Einheitliche MTC-Wiederverkaufsbescheinigung",
+  "certificates.usForm.sst": "Streamlined-Sales-Tax-Bescheinigung",
+  "certificates.usForm.state": "Wiederverkaufsbescheinigung des Bundesstaats"
 }

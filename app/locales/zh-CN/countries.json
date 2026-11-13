@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "没有与搜索匹配的国家/地区。",
+  "countries.search": "搜索国家/地区",
+  "countries.selected": "{count, plural, =0 {未选择国家/地区} other {已选择 # 个国家/地区}}"
+}

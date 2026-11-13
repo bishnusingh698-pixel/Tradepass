@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "لم يقبل Shopify التغيير، ولم تتم إزالة أي شيء. حاول مرة أخرى لاحقًا.",
   "certificates.error.unknown_intent": "حدث خطأ ما. يُرجى المحاولة مرة أخرى.",
   "certificates.error.file": "تعذّر فتح هذا الملف. يُرجى المحاولة مرة أخرى.",
-  "certificates.action.copyLink": "نسخ رابط التجديد"
+  "certificates.action.copyLink": "نسخ رابط التجديد",
+  "certificates.usForm.exempt": "منظمة معفاة من الضرائب",
+  "certificates.usForm.mtc": "شهادة إعادة بيع موحدة MTC",
+  "certificates.usForm.sst": "شهادة Streamlined Sales Tax",
+  "certificates.usForm.state": "شهادة إعادة بيع صادرة عن الولاية"
 }

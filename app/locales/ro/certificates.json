@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify nu a acceptat modificarea. Nu s-a eliminat nimic. Încercați din nou mai târziu.",
   "certificates.error.unknown_intent": "A apărut o eroare. Încercați din nou.",
   "certificates.error.file": "Nu am putut deschide acest fișier. Încercați din nou.",
-  "certificates.action.copyLink": "Copiază linkul de reînnoire"
+  "certificates.action.copyLink": "Copiază linkul de reînnoire",
+  "certificates.usForm.exempt": "Organizație scutită de taxe",
+  "certificates.usForm.mtc": "Certificat de revânzare uniform MTC",
+  "certificates.usForm.sst": "Certificat Streamlined Sales Tax",
+  "certificates.usForm.state": "Certificat de revânzare de stat"
 }

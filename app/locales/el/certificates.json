@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Το Shopify δεν δέχτηκε την αλλαγή. Δεν καταργήθηκε τίποτα. Δοκιμάστε ξανά αργότερα.",
   "certificates.error.unknown_intent": "Κάτι πήγε στραβά. Δοκιμάστε ξανά.",
   "certificates.error.file": "Δεν ήταν δυνατό το άνοιγμα αυτού του αρχείου. Δοκιμάστε ξανά.",
-  "certificates.action.copyLink": "Αντιγραφή συνδέσμου ανανέωσης"
+  "certificates.action.copyLink": "Αντιγραφή συνδέσμου ανανέωσης",
+  "certificates.usForm.exempt": "Οργανισμός απαλλαγμένος από φόρους",
+  "certificates.usForm.mtc": "Ενιαίο πιστοποιητικό μεταπώλησης MTC",
+  "certificates.usForm.sst": "Πιστοποιητικό Streamlined Sales Tax",
+  "certificates.usForm.state": "Πολιτειακό πιστοποιητικό μεταπώλησης"
 }

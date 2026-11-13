@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Intet land matcher din søgning.",
+  "countries.search": "Søg efter lande",
+  "countries.selected": "{count, plural, =0 {Ingen lande valgt} one {# land valgt} other {# lande valgt}}"
+}

@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "אין מדינה שתואמת לחיפוש.",
+  "countries.search": "חיפוש מדינות",
+  "countries.selected": "{count, plural, =0 {לא נבחרו מדינות} one {נבחרה מדינה אחת} two {נבחרו # מדינות} other {נבחרו # מדינות}}"
+}

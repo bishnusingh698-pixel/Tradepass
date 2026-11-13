@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Patvirtinimo žingsnis nepavyko",
   "buyers.activity.approval.undo": "Patvirtinimas atšauktas",
   "buyers.activity.tier.assisted_add_verified": "Lygio priskyrimas patvirtintas",
-  "buyers.activity.tier.assisted_remove_verified": "Pašalinimas iš lygio patvirtintas"
+  "buyers.activity.tier.assisted_remove_verified": "Pašalinimas iš lygio patvirtintas",
+  "buyers.tax.specific": "{count, plural, one {# išimtis} few {# išimtys} many {# išimties} other {# išimčių}}"
 }

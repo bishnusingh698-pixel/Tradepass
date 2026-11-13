@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Lenken er allerede brukt",
   "hosted.link.usedBody": "Hver oppdateringslenke fungerer én gang. Hvis du må endre noe annet, kan du kontakte {store}.",
   "hosted.noscript": "Slå på JavaScript i nettleseren for å oppdatere søknaden din.",
-  "hosted.error.generic": "Noe gikk galt hos oss. Prøv igjen om noen minutter."
+  "hosted.error.generic": "Noe gikk galt hos oss. Prøv igjen om noen minutter.",
+  "hosted.status.body.approved": "Logg på med denne e-postadressen for å se engrosprisene dine.",
+  "hosted.status.body.needs_info": "{store} trenger litt mer informasjon før det tas en beslutning.",
+  "hosted.status.body.pending": "{store} går gjennom alle søknader og kommer tilbake til deg.",
+  "hosted.status.body.rejected": "{store} kunne ikke godkjenne denne søknaden.",
+  "hosted.status.book": "Bestill en oppstartssamtale",
+  "hosted.status.busyTitle": "For mange forespørsler. Prøv igjen om noen minutter.",
+  "hosted.status.expiredBody": "Av sikkerhetshensyn virker statuslenker i 90 dager. Kontakt {store} for en ny lenke.",
+  "hosted.status.reapply": "Du kan søke igjen fra {date}.",
+  "hosted.status.shop": "Begynn å handle",
+  "hosted.status.signIn": "Logg på",
+  "hosted.status.submitted": "{company} søkte {date}.",
+  "hosted.status.title.approved": "Engroskontoen din er godkjent",
+  "hosted.status.title.needs_info": "Vi trenger litt mer informasjon",
+  "hosted.status.title.pending": "Vi går gjennom søknaden din",
+  "hosted.status.title.rejected": "Søknaden din ble ikke godkjent",
+  "hosted.status.update": "Oppdater søknaden din",
+  "hosted.status.whatsapp": "Send melding til {store} på WhatsApp"
 }

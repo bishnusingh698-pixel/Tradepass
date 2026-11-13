@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Pautan ini telah digunakan",
   "hosted.link.usedBody": "Setiap pautan kemas kini hanya berfungsi sekali. Jika anda perlu menukar perkara lain, sila hubungi {store}.",
   "hosted.noscript": "Sila hidupkan JavaScript dalam pelayar anda untuk mengemas kini permohonan.",
-  "hosted.error.generic": "Berlaku ralat di pihak kami. Sila cuba lagi dalam beberapa minit."
+  "hosted.error.generic": "Berlaku ralat di pihak kami. Sila cuba lagi dalam beberapa minit.",
+  "hosted.status.body.approved": "Log masuk dengan alamat e-mel ini untuk melihat harga borong anda.",
+  "hosted.status.body.needs_info": "{store} memerlukan sedikit maklumat lagi sebelum membuat keputusan.",
+  "hosted.status.body.pending": "{store} menyemak setiap permohonan dan akan menghubungi anda.",
+  "hosted.status.body.rejected": "{store} tidak dapat meluluskan permohonan ini.",
+  "hosted.status.book": "Tempah panggilan orientasi",
+  "hosted.status.busyTitle": "Terlalu banyak permintaan. Sila cuba lagi dalam beberapa minit.",
+  "hosted.status.expiredBody": "Demi keselamatan anda, pautan status berfungsi selama 90 hari. Sila hubungi {store} untuk pautan baharu.",
+  "hosted.status.reapply": "Anda boleh memohon semula mulai {date}.",
+  "hosted.status.shop": "Mula membeli-belah",
+  "hosted.status.signIn": "Log masuk",
+  "hosted.status.submitted": "{company} memohon pada {date}.",
+  "hosted.status.title.approved": "Akaun borong anda telah diluluskan",
+  "hosted.status.title.needs_info": "Kami memerlukan sedikit maklumat lagi",
+  "hosted.status.title.pending": "Kami sedang menyemak permohonan anda",
+  "hosted.status.title.rejected": "Permohonan anda tidak diluluskan",
+  "hosted.status.update": "Kemas kini permohonan anda",
+  "hosted.status.whatsapp": "Hantar mesej kepada {store} di WhatsApp"
 }

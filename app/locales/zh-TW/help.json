@@ -76,5 +76,20 @@
   "help.contact.body": "我們通常會在 2 個工作天內回覆。",
   "help.contact.priority": "您使用的是 Pro 方案，因此您的郵件會優先處理，通常在 1 個工作天內回覆。",
   "help.faq.alerts.q": "如何得知有新申請？",
-  "help.faq.alerts.a": "Tradepass 不會寄送電子郵件。新申請和回覆會顯示在首頁和「申請」中。如需郵件通知，請在 Shopify Flow（Tradepass Pro）中建立工作流程，使用觸發條件「Wholesale application submitted」和 Flow 動作「Send internal email」。此動作只會寄到您在工作流程中輸入的固定員工地址。"
+  "help.faq.alerts.a": "Tradepass 不會寄送電子郵件。新申請和回覆會顯示在首頁和「申請」中。如需郵件通知，請在 Shopify Flow（Tradepass Pro）中建立工作流程，使用觸發條件「Wholesale application submitted」和 Flow 動作「Send internal email」。此動作只會寄到您在工作流程中輸入的固定員工地址。",
+  "help.contact.whatsapp": "透過 WhatsApp 與我們聊聊",
+  "help.faq.applicantStatus.a": "可以。您複製的每則訊息都包含其狀態頁面的連結。已申請且已登入的顧客會在表單區塊中看到自己的狀態而非表單；若您在顧客帳號中新增「批發申請狀態」區塊，他們在那裡也看得到（Shopify 的 設定 → 顧客帳號）。",
+  "help.faq.applicantStatus.q": "申請者可以看到申請進度嗎？",
+  "help.faq.flowAlerts.a": "Tradepass 本身不會寄送任何郵件。請使用 Shopify Flow（所有方案免費）：選擇 Tradepass 觸發條件，例如「已提交批發申請」、「已收到批發申請資訊」或「證明即將到期」，再新增「傳送內部電子郵件」或 Slack 訊息。每個觸發條件都包含公司、聯絡人、電子郵件、電話、國家/地區、州、等級和申請連結。「傳送內部電子郵件」只會寄到您輸入的固定員工地址，因此無法寄給申請者。",
+  "help.faq.flowAlerts.q": "如何接收新申請提醒？",
+  "help.faq.messageApplicants.a": "在您要求更多資訊、拒絕或核准後，Tradepass 會以申請者的語言顯示一則現成訊息。您可以複製，或在郵件 App、Gmail、Outlook、WhatsApp、手機簡訊、Telegram 或 LINE 中開啟。Tradepass 不會傳送任何內容，因此沒有費用或限制。Shopify Messaging 自動化只能觸及訂閱行銷資訊的顧客，因此不適用於申請者。",
+  "help.faq.messageApplicants.q": "如何寫信給申請者？",
+  "help.faq.oldTaxExempt.a": "早期的核准會在州免稅之外同時開啟 Shopify 的「免除所有稅費」設定。現在除非您另行選擇，Tradepass 只套用州免稅。Tradepass 從不自行變更稅務設定：請在 Shopify 管理介面開啟該公司地點並檢查其稅務設定。",
+  "help.faq.oldTaxExempt.q": "我在 2026 年 11 月之前核准的買家顯示所有稅費「已免除」。為什麼？",
+  "help.faq.statePermits.a": "對於提供免費官方查詢的州，申請會顯示「在州網站上核對」以及需要輸入的內容；標示為已核對後，團隊就能看到是誰在何時核對的。德州以開放資料公布有效許可，因此在 Starter 和 Pro 方案中，Tradepass 會自動核對德州號碼。EIN 沒有免費的公開核對方式。",
+  "help.faq.statePermits.q": "Tradepass 能核對銷售許可嗎？",
+  "help.faq.usCertificates.a": "申請者選擇其證明（州自己的證明、Streamlined Sales Tax 證明、MTC 統一證明或免稅組織證明），並為其涵蓋的每個州新增銷售許可號碼。每個州都會成為一份獨立的證明，有各自的到期日。核准時會為地點所在州建議轉售商免稅；其他涵蓋的州只會提供而不套用，因為 Shopify 依收件地址計稅。沒有州級銷售稅的州不需要免稅。",
+  "help.faq.usCertificates.q": "美國轉售證明如何運作？",
+  "help.faq.welcomeEmail.a": "開啟「傳送歡迎郵件」後，Tradepass 會請 Shopify 傳送其自己的 B2B 歡迎郵件。如果 Shopify 不允許應用程式在您的商店傳送該郵件，核准仍會完成，申請頁面會提供一則現成的「您已獲核准」訊息。您也可以在 Shopify 管理介面從聯絡人傳送 Shopify 的 B2B 存取郵件，或使用 Shopify Flow 自動傳送（觸發條件「已為公司聯絡人指派權限」，動作「傳送 B2B 存取郵件」）。這是唯一自動寄出的郵件，由 Shopify 寄送。",
+  "help.faq.welcomeEmail.q": "我核准買家後，買家會收到郵件嗎？"
 }

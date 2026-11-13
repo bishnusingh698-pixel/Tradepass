@@ -6,6 +6,8 @@ import { adminContext } from "../lib/context.server";
 import db from "../db.server";
 import { createForm, listForms } from "../lib/forms.server";
 import { syncStorefrontConfig } from "../lib/storefront-sync.server";
+import { storefrontUrl } from "../lib/shop.server";
+import { ShareForm } from "../components/ShareForm";
 import { logActivity } from "../lib/activity.server";
 import { can } from "../lib/plans";
 import { useI18n } from "../lib/i18n/react";
@@ -15,7 +17,7 @@ import { Modal, TextInput, flag } from "../components/form-builder/wc";
 import { LIMITS } from "../components/form-builder/model";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { shop, plan } = await adminContext(request);
+  const { shop, plan, settings, shopRow } = await adminContext(request);
   const [forms, tiers] = await Promise.all([
     listForms(shop),
     db.tier.findMany({ where: { shop }, select: { id: true, name: true } }),
@@ -25,6 +27,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     tiers: Object.fromEntries(tiers.map((x) => [x.id, x.name])),
     canMultiple: can(plan, "multiple_forms"),
     shop,
+    // The page the form block sits on (Storefront access → "Apply for wholesale" link), on the store's own domain.
+    formUrl: storefrontUrl(shopRow, settings.storefront.applyUrl || "/pages/wholesale", shop),
     // eslint-disable-next-line no-undef
     apiKey: process.env.SHOPIFY_API_KEY || "",
   };
@@ -44,7 +48,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Forms() {
-  const { forms, tiers, canMultiple, shop, apiKey } = useLoaderData<typeof loader>();
+  const { forms, tiers, canMultiple, shop, apiKey, formUrl } = useLoaderData<typeof loader>();
   const fetcher = useFetcher<typeof action>();
   const { t, locale } = useI18n();
   const href = useLocaleHref();
@@ -120,6 +124,7 @@ export default function Forms() {
           {t("common.cancel")}
         </s-button>
       </Modal>
+      <ShareForm url={formUrl} />
     </s-page>
   );
 }

@@ -259,7 +259,7 @@ function ChecklistRow({ step, embedLink, blockLink, onRecheck }: { step: Checkli
   );
 }
 
-function PendingWork({ pending }: { pending: { applications: number; oldestAt: string | null; expiring: number; assignments: number; incomplete: number } }) {
+function PendingWork({ pending }: { pending: { applications: number; oldestAt: string | null; expiring: number; assignments: number; incomplete: number; stale?: number; staleDays?: number } }) {
   const { t } = useI18n();
   const href = useLocaleHref();
   const nothing = !pending.applications && !pending.expiring && !pending.assignments && !pending.incomplete;
@@ -278,6 +278,11 @@ function PendingWork({ pending }: { pending: { applications: number; oldestAt: s
                   {t("home.pending.oldest")} <RelativeTime iso={pending.oldestAt} />
                 </>
               )}
+            </s-link>
+          )}
+          {(pending.stale ?? 0) > 0 && (
+            <s-link href={href("/app/applications?tab=pending&sort=oldest")}>
+              <s-badge tone="critical">{t("home.pending.stale", { count: pending.stale ?? 0, days: pending.staleDays ?? 0 })}</s-badge>
             </s-link>
           )}
           {pending.incomplete > 0 && (
@@ -299,6 +304,7 @@ function Numbers30({ currency }: { currency: string | null }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const n = fetcher.data;
+  const days = n?.days ?? 30;
   const pct = (v: number | null) => (v == null ? "—" : i18n.number(v, { style: "percent", maximumFractionDigits: 0 }));
   const hrs = (v: number | null) => (v == null ? "—" : v < 48 ? t("home.numbers.hours", { count: Math.round(v) }) : t("home.numbers.days", { count: Math.round(v / 24) }));
   const tile = (label: string, value: string, prev: string) => (
@@ -306,12 +312,19 @@ function Numbers30({ currency }: { currency: string | null }) {
       <s-stack direction="block" gap="small-400">
         <s-text color="subdued">{label}</s-text>
         <s-heading>{value}</s-heading>
-        <s-text color="subdued">{t("home.numbers.previous", { value: prev })}</s-text>
+        <s-text color="subdued">{t("home.numbers.previousDays", { count: days, value: prev })}</s-text>
       </s-stack>
     </s-box>
   );
   return (
-    <s-section heading={t("home.numbers.heading")}>
+    <s-section heading={t("home.numbers.headingDays", { count: days })}>
+      <s-stack direction="inline" gap="small-200">
+        {([30, 90] as const).map((x) => (
+          <s-button key={x} variant={days === x ? "primary" : "secondary"} disabled={fetcher.state !== "idle"} onClick={() => fetcher.load(`/app/stats?days=${x}`)}>
+            {t("home.numbers.window", { count: x })}
+          </s-button>
+        ))}
+      </s-stack>
       {!n ? (
         <s-stack direction="inline" gap="small-200" alignItems="center">
           <s-spinner accessibilityLabel={t("home.numbers.loading")} size="base" />
@@ -330,6 +343,14 @@ function Numbers30({ currency }: { currency: string | null }) {
               <s-text type="strong">{t("home.numbers.newBuyers")}</s-text>
               {n.newBuyersByTier.map((b) => (
                 <s-text key={b.tier || "none"}>{t("home.numbers.tierLine", { tier: b.tier || t("home.numbers.noTier"), count: b.count })}</s-text>
+              ))}
+            </s-stack>
+          )}
+          {(n.sources ?? []).length > 0 && (
+            <s-stack direction="block" gap="small-200">
+              <s-text type="strong">{t("home.numbers.sources")}</s-text>
+              {(n.sources ?? []).map((x) => (
+                <s-text key={x.source || "direct"}>{t("home.numbers.sourceLine", { source: x.source || t("home.numbers.direct"), count: x.count })}</s-text>
               ))}
             </s-stack>
           )}

@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify změnu nepřijal. Nic nebylo odebráno. Zkuste to později.",
   "certificates.error.unknown_intent": "Něco se pokazilo. Zkuste to prosím znovu.",
   "certificates.error.file": "Tento soubor se nepodařilo otevřít. Zkuste to prosím znovu.",
-  "certificates.action.copyLink": "Kopírovat odkaz na obnovení"
+  "certificates.action.copyLink": "Kopírovat odkaz na obnovení",
+  "certificates.usForm.exempt": "Organizace osvobozená od daně",
+  "certificates.usForm.mtc": "Jednotné osvědčení o přeprodeji MTC",
+  "certificates.usForm.sst": "Osvědčení Streamlined Sales Tax",
+  "certificates.usForm.state": "Státní osvědčení o přeprodeji"
 }

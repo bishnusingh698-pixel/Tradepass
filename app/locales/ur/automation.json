@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "ہول سیل درخواست کو درجے میں منظور کریں",
   "automation.flow.welcomeNote": "Tradepass خریدار کو منظور کرتے وقت پہلے ہی Shopify کی B2B رسائی والی ای میل بھیج سکتا ہے، اس لیے اس کے لیے کسی اضافی ورک فلو کی ضرورت نہیں۔",
   "automation.flow.open": "Shopify Flow کھولیں",
-  "automation.flow.alerts": "کیا آپ چاہتے ہیں کہ کوئی درخواست دے تو آپ کو ای میل ملے؟ Shopify Flow میں ٹرگر “Wholesale application submitted” کو Flow کے ایکشن “Send internal email” کے ساتھ استعمال کریں۔ یہ ایکشن صرف ان مقررہ اسٹاف پتوں پر بھیجتا ہے جو آپ ورک فلو میں درج کرتے ہیں۔"
+  "automation.flow.alerts": "کیا آپ چاہتے ہیں کہ کوئی درخواست دے تو آپ کو ای میل ملے؟ Shopify Flow میں ٹرگر “Wholesale application submitted” کو Flow کے ایکشن “Send internal email” کے ساتھ استعمال کریں۔ یہ ایکشن صرف ان مقررہ اسٹاف پتوں پر بھیجتا ہے جو آپ ورک فلو میں درج کرتے ہیں۔",
+  "automation.condition.disposable_email": "عارضی ای میل پتہ (mailinator.com…)",
+  "automation.condition.free_email": "مفت ای میل سروس (gmail.com، outlook.com…)",
+  "automation.condition.po_box": "شپنگ کا پتہ پی او باکس ہے",
+  "automation.condition.registry_mismatch": "رجسٹری کا نام کمپنی سے میل نہیں کھاتا",
+  "automation.condition.website_mismatch": "ویب سائٹ ای میل ڈومین سے میل نہیں کھاتی",
+  "automation.flow.alertsMore": "مزید الرٹس: “ہول سیل درخواست کی معلومات موصول ہوئیں” تب چلتا ہے جب درخواست دہندہ آپ کی درخواست کا جواب دیتا ہے، اور “سرٹیفکیٹ کی میعاد ختم ہونے والی ہے” سرٹیفکیٹ ختم ہونے سے پہلے۔ ہر ٹرگر میں کمپنی، رابطہ، ای میل، فون، ملک، ریاست، درجہ اور درخواست کا لنک شامل ہوتا ہے، ای میل یا Slack پیغام کے لیے تیار۔",
+  "automation.flow.trigger.application_info_received": "ہول سیل درخواست کی معلومات موصول ہوئیں",
+  "automation.flow.welcomeNoteFlow": "منظوری کے وقت Shopify سے اپنی B2B خوش آمدید ای میل بھیجنے کو کہا جاتا ہے۔ اگر Shopify آپ کے اسٹور پر اس کی اجازت نہیں دیتا، تو Shopify کا Flow ٹیمپلیٹ “کمپنی رابطے کو اجازت دی گئی” ← “B2B رسائی ای میل بھیجیں” یہی کام کرتا ہے؛ Tradepass منظوری کے دوران یہ اجازت دیتا ہے۔"
 }

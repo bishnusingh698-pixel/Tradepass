@@ -54,6 +54,10 @@
     {%- endif -%}
     <a class="tp-apply__btn button" href="{{ tp_apply | escape }}">{{ tp_button | escape }}</a>
   </div>
+  {%- if customer -%}
+    {%- comment -%} Applied already: the button leads to the application's status (B5). Asked once per visit, through the app proxy (only this customer's own application). {%- endcomment -%}
+    <script>(function(){var b=document.currentScript.previousElementSibling.querySelector(".tp-apply__btn");if(!b)return;function go(a){if(a&&a.statusUrl){b.href=a.statusUrl;b.textContent={{ 'apply_block.status' | t | json }}}}try{var c=sessionStorage.getItem("tradepass-status");if(c){go(JSON.parse(c));return}}catch(e){}fetch("/apps/tradepass/status",{credentials:"same-origin",headers:{Accept:"application/json"}}).then(function(r){return r.ok?r.json():null}).then(function(j){var a=j&&j.application;try{sessionStorage.setItem("tradepass-status",JSON.stringify(a?{statusUrl:a.statusUrl}:{}))}catch(e){}go(a)}).catch(function(){})})();</script>
+  {%- endif -%}
 {%- endif -%}
 
 {% schema %}

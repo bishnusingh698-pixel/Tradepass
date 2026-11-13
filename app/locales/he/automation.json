@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "אישור בקשה לחשבון סיטונאי לרמה",
   "automation.flow.welcomeNote": "Tradepass כבר יכול לשלוח את אימייל הגישה ל-B2B של Shopify כשהוא מאשר קונה, כך שאין צורך בתהליך נוסף לשם כך.",
   "automation.flow.open": "פתיחת Shopify Flow",
-  "automation.flow.alerts": "רוצים לקבל אימייל כשמישהו מגיש בקשה? ב-Shopify Flow אפשר להשתמש בטריגר “Wholesale application submitted” עם פעולת Flow‏ “Send internal email”. הפעולה הזו שולחת רק לכתובות קבועות של הצוות שמזינים בתהליך העבודה."
+  "automation.flow.alerts": "רוצים לקבל אימייל כשמישהו מגיש בקשה? ב-Shopify Flow אפשר להשתמש בטריגר “Wholesale application submitted” עם פעולת Flow‏ “Send internal email”. הפעולה הזו שולחת רק לכתובות קבועות של הצוות שמזינים בתהליך העבודה.",
+  "automation.condition.disposable_email": "כתובת אימייל חד-פעמית (mailinator.com…)",
+  "automation.condition.free_email": "שירות דואר חינמי (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "כתובת המשלוח היא תא דואר",
+  "automation.condition.registry_mismatch": "השם במרשם לא תואם לחברה",
+  "automation.condition.website_mismatch": "האתר לא תואם לדומיין האימייל",
+  "automation.flow.alertsMore": "התראות נוספות: ״התקבל מידע לבקשת סיטונאות״ פועל כשמגיש עונה לבקשה שלכם, ו״תוקף אישור מסתיים״ לפני שאישור פג. כל טריגר כולל חברה, איש קשר, אימייל, טלפון, מדינה, מדינה בארה״ב, רמה וקישור לבקשה, מוכנים לאימייל או להודעת Slack.",
+  "automation.flow.trigger.application_info_received": "התקבל מידע לבקשת סיטונאות",
+  "automation.flow.welcomeNoteFlow": "באישור מתבקשת Shopify לשלוח את אימייל הפתיחה שלה ל-B2B. אם Shopify לא מאפשרת זאת בחנות שלכם, תבנית ה-Flow של Shopify ״הוקצתה הרשאה לאיש קשר בחברה״ ← ״שליחת אימייל גישה ל-B2B״ עושה את אותו הדבר; Tradepass מקצה את ההרשאה הזו במהלך האישור."
 }

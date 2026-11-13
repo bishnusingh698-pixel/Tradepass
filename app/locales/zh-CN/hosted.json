@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "此链接已被使用",
   "hosted.link.usedBody": "每个更新链接仅可使用一次。如需修改其他内容，请联系 {store}。",
   "hosted.noscript": "请在浏览器中启用 JavaScript 以更新您的申请。",
-  "hosted.error.generic": "我们这边出现了问题，请几分钟后重试。"
+  "hosted.error.generic": "我们这边出现了问题，请几分钟后重试。",
+  "hosted.status.body.approved": "使用此电子邮件地址登录即可查看您的批发价格。",
+  "hosted.status.body.needs_info": "{store} 在作出决定前还需要一些信息。",
+  "hosted.status.body.pending": "{store} 会审核每一份申请，并会与您联系。",
+  "hosted.status.body.rejected": "{store} 无法批准此申请。",
+  "hosted.status.book": "预约入门通话",
+  "hosted.status.busyTitle": "请求过多。请几分钟后再试。",
+  "hosted.status.expiredBody": "为了您的安全，状态链接的有效期为 90 天。请联系 {store} 获取新链接。",
+  "hosted.status.reapply": "您可以从 {date} 起重新申请。",
+  "hosted.status.shop": "开始购物",
+  "hosted.status.signIn": "登录",
+  "hosted.status.submitted": "{company} 于 {date} 提交了申请。",
+  "hosted.status.title.approved": "您的批发账户已获批准",
+  "hosted.status.title.needs_info": "我们还需要一些信息",
+  "hosted.status.title.pending": "我们正在审核您的申请",
+  "hosted.status.title.rejected": "您的申请未获批准",
+  "hosted.status.update": "更新您的申请",
+  "hosted.status.whatsapp": "通过 WhatsApp 联系 {store}"
 }

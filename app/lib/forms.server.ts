@@ -1,6 +1,6 @@
 import db from "../db.server";
 import { gql, type Admin } from "./gql.server";
-import { defaultFormDefinition, type FormDefinition } from "./form-defaults";
+import { defaultFormDefinition, withAllStandardFields, type FormDefinition } from "./form-defaults";
 import { LIMITS, sanitizeDefinition, validateDefinition, type FormError } from "../components/form-builder/model";
 import { can, type PlanId } from "./plans";
 
@@ -11,7 +11,7 @@ export type FormSummary = { id: string; name: string; isDefault: boolean; sugges
 /** Stored definitions may predate a field we added; fill the top-level blocks so the builder never crashes. */
 export function readDefinition(stored: unknown): FormDefinition {
   const def = sanitizeDefinition(stored);
-  return def ?? defaultFormDefinition();
+  return def ? withAllStandardFields(def) : defaultFormDefinition();
 }
 
 export async function listForms(shop: string): Promise<FormSummary[]> {

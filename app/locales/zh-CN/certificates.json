@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify 未接受此更改，未移除任何内容。请稍后重试。",
   "certificates.error.unknown_intent": "出现问题，请重试。",
   "certificates.error.file": "无法打开此文件。请重试。",
-  "certificates.action.copyLink": "复制续期链接"
+  "certificates.action.copyLink": "复制续期链接",
+  "certificates.usForm.exempt": "免税组织",
+  "certificates.usForm.mtc": "MTC 统一转售证书",
+  "certificates.usForm.sst": "Streamlined Sales Tax 证书",
+  "certificates.usForm.state": "州转售证书"
 }

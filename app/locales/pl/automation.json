@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Zatwierdź wniosek hurtowy na poziom",
   "automation.flow.welcomeNote": "Tradepass może już wysyłać e-mail Shopify o dostępie B2B przy zatwierdzaniu kupującego, więc nie trzeba do tego dodatkowego przepływu pracy.",
   "automation.flow.open": "Otwórz Shopify Flow",
-  "automation.flow.alerts": "Chcesz dostawać e-mail, gdy ktoś złoży wniosek? W Shopify Flow użyj wyzwalacza „Wholesale application submitted” z akcją Flow „Send internal email”. Ta akcja wysyła wiadomości tylko na stałe adresy pracowników wpisane w przepływie pracy."
+  "automation.flow.alerts": "Chcesz dostawać e-mail, gdy ktoś złoży wniosek? W Shopify Flow użyj wyzwalacza „Wholesale application submitted” z akcją Flow „Send internal email”. Ta akcja wysyła wiadomości tylko na stałe adresy pracowników wpisane w przepływie pracy.",
+  "automation.condition.disposable_email": "Jednorazowy adres e-mail (mailinator.com…)",
+  "automation.condition.free_email": "Darmowa poczta (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Adres wysyłki to skrytka pocztowa",
+  "automation.condition.registry_mismatch": "Nazwa w rejestrze nie zgadza się z firmą",
+  "automation.condition.website_mismatch": "Strona nie zgadza się z domeną e-maila",
+  "automation.flow.alertsMore": "Więcej alertów: „Otrzymano informacje do wniosku hurtowego” uruchamia się, gdy wnioskodawca odpowie na Twoją prośbę, a „Zaświadczenie wygasa” przed wygaśnięciem zaświadczenia. Każdy wyzwalacz zawiera firmę, kontakt, e-mail, telefon, kraj, stan, poziom i link do wniosku – gotowe do e-maila lub wiadomości w Slacku.",
+  "automation.flow.trigger.application_info_received": "Otrzymano informacje do wniosku hurtowego",
+  "automation.flow.welcomeNoteFlow": "Przy zatwierdzaniu Shopify jest proszony o wysłanie własnego powitalnego e-maila B2B. Jeśli Shopify nie pozwala na to w Twoim sklepie, szablon Flow Shopify „Przypisano uprawnienie kontaktowi firmy” → „Wyślij e-mail z dostępem B2B” robi to samo; Tradepass przypisuje to uprawnienie podczas zatwierdzania."
 }

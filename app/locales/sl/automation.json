@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Odobri vlogo za veleprodajo v raven",
   "automation.flow.welcomeNote": "Tradepass ob odobritvi kupca že lahko pošlje sporočilo Shopify za dostop B2B, zato za to ne potrebujete dodatnega poteka dela.",
   "automation.flow.open": "Odpri Shopify Flow",
-  "automation.flow.alerts": "Želite e-poštno sporočilo, ko nekdo odda vlogo? V Shopify Flow uporabite sprožilec »Wholesale application submitted« z dejanjem Flow »Send internal email«. To dejanje pošilja samo na stalne naslove zaposlenih, ki jih vnesete v potek dela."
+  "automation.flow.alerts": "Želite e-poštno sporočilo, ko nekdo odda vlogo? V Shopify Flow uporabite sprožilec »Wholesale application submitted« z dejanjem Flow »Send internal email«. To dejanje pošilja samo na stalne naslove zaposlenih, ki jih vnesete v potek dela.",
+  "automation.condition.disposable_email": "Začasen e-poštni naslov (mailinator.com…)",
+  "automation.condition.free_email": "Brezplačna e-poštna storitev (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Naslov za dostavo je poštni predal",
+  "automation.condition.registry_mismatch": "Ime v registru se ne ujema s podjetjem",
+  "automation.condition.website_mismatch": "Spletno mesto se ne ujema z domeno e-pošte",
+  "automation.flow.alertsMore": "Več opozoril: »Prejete informacije za veleprodajno prijavo« se zažene, ko prosilec odgovori na vašo zahtevo, in »Potrdilo bo poteklo« pred potekom potrdila. Vsak sprožilec vsebuje podjetje, stik, e-pošto, telefon, državo, zvezno državo, raven in povezavo do prijave, pripravljeno za e-pošto ali sporočilo v Slacku.",
+  "automation.flow.trigger.application_info_received": "Prejete informacije za veleprodajno prijavo",
+  "automation.flow.welcomeNoteFlow": "Ob odobritvi Shopify zaprosimo, naj pošlje svoje pozdravno e-poštno sporočilo B2B. Če Shopify tega v vaši trgovini ne dovoli, isto naredi Shopifyjeva predloga Flow »Stiku podjetja je dodeljeno dovoljenje« → »Pošlji e-pošto za dostop B2B«; Tradepass to dovoljenje dodeli med odobritvijo."
 }

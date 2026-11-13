@@ -33,15 +33,18 @@ export async function checklist(shop: string, settings: Settings): Promise<Check
 
 export async function pendingWork(shop: string, settings: Settings) {
   const soon = new Date(Date.now() + settings.certificates.expiringDays * DAY);
-  const [apps, expiring, assignments, incomplete] = await Promise.all([
+  const staleBefore = new Date(Date.now() - settings.review.staleDays * DAY);
+  const [apps, expiring, assignments, incomplete, stale] = await Promise.all([
     pendingSummary(shop),
     db.certificate.count({ where: { shop, buyerId: { not: null }, status: { in: ["valid", "expiring"] }, expiresOn: { lte: soon, gte: new Date() } } }),
     // Counted in both modes: tasks created in assisted mode stay open after switching back to automatic.
     pendingAssignmentCount(shop),
     // Approvals that stopped part-way (Shopify error, closed tab): the merchant should Retry or Undo.
     db.application.count({ where: { shop, approvalStatus: { in: ["failed", "running"] }, status: { in: ["pending", "needs_info", "approved"] } } }),
+    // Waiting longer than the merchant's threshold (C12): slow answers send buyers elsewhere.
+    db.application.count({ where: { shop, status: "pending", submittedAt: { lt: staleBefore } } }),
   ]);
-  return { applications: apps.count, oldestAt: apps.oldestAt, expiring, assignments, incomplete };
+  return { applications: apps.count, oldestAt: apps.oldestAt, expiring, assignments, incomplete, stale, staleDays: settings.review.staleDays };
 }
 
 export type AlertId = "catalog_limit" | "embed_off" | "tier_missing" | "plan_limit" | "first_buyer";
@@ -93,6 +96,10 @@ export type Numbers = {
   months: MonthRow[];
   /** Every current buyer by tier (paused buyers count under the tier they'll return to). */
   buyersByTier: { tier: string; active: number; paused: number }[];
+  /** Window of the numbers above (30 or 90 days, C16). */
+  days?: 30 | 90;
+  /** Top sources in the window ("" = direct). */
+  sources?: { source: string; count: number }[];
 };
 
 export type MonthRow = { month: string; received: number; approved: number; rejected: number; rate: number | null; avgDays: number | null };
@@ -219,16 +226,32 @@ export async function buyerOrders(admin: Admin, shop: string, from: Date) {
   return { count, total: Math.round(total * 100) / 100, currency, truncated: nodes.length >= MAX_ORDERS };
 }
 
-export async function homeNumbers(admin: Admin, shop: string, now = new Date()): Promise<Numbers> {
-  const a = new Date(now.getTime() - 30 * DAY);
-  const b = new Date(now.getTime() - 60 * DAY);
-  const [cur, prev, buyers, tiers, months, byTier] = await Promise.all([
+/**
+ * Where applications came from in the window (C16): UTM source, else the referring site, else
+ * "direct" (typed the address, bookmarks, apps that send no referrer). Database only.
+ */
+export async function topSources(shop: string, from: Date, to: Date, limit = 5): Promise<{ source: string; count: number }[]> {
+  const rows = await db.application.findMany({ where: { shop, status: { not: "draft" }, submittedAt: { gte: from, lt: to } }, select: { attribution: true }, take: 10_000 });
+  const counts = new Map<string, number>();
+  for (const r of rows) {
+    const a = (r.attribution ?? {}) as Record<string, string>;
+    const key = a.utm_source || a.ref || "";
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return [...counts.entries()].map(([source, count]) => ({ source, count })).sort((x, y) => y.count - x.count || x.source.localeCompare(y.source)).slice(0, limit);
+}
+
+export async function homeNumbers(admin: Admin, shop: string, now = new Date(), days: 30 | 90 = 30): Promise<Numbers> {
+  const a = new Date(now.getTime() - days * DAY);
+  const b = new Date(now.getTime() - 2 * days * DAY);
+  const [cur, prev, buyers, tiers, months, byTier, sources] = await Promise.all([
     windowStats(shop, a, now),
     windowStats(shop, b, a),
     db.buyer.groupBy({ by: ["tierId"], where: { shop, approvedAt: { gte: a } }, _count: { _all: true } }),
     db.tier.findMany({ where: { shop }, select: { id: true, name: true } }),
     monthlyReport(shop, now),
     buyersPerTier(shop),
+    topSources(shop, a, now),
   ]);
   let orders: Numbers["orders"] = null;
   try {
@@ -247,5 +270,7 @@ export async function homeNumbers(admin: Admin, shop: string, now = new Date()):
     orders,
     months,
     buyersByTier: byTier,
+    days,
+    sources,
   };
 }

@@ -1,0 +1,12 @@
+{
+  "title": "Grossistkonto",
+  "status": {
+    "pending": "Ansökan granskas",
+    "needs_info": "Vi behöver mer information",
+    "approved": "Godkänd",
+    "rejected": "Inte godkänd"
+  },
+  "submitted": "Ansökt den {{date}}",
+  "reapply": "Du kan ansöka igen från {{date}}.",
+  "view": "Visa detaljer"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Conta de revenda",
+  "status": {
+    "pending": "Pedido em análise",
+    "needs_info": "Precisamos de mais informações",
+    "approved": "Aprovado",
+    "rejected": "Não aprovado"
+  },
+  "submitted": "Pedido enviado a {{date}}",
+  "reapply": "Pode voltar a candidatar-se a partir de {{date}}.",
+  "view": "Ver detalhes"
+}

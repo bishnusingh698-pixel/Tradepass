@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify nie przyjął zmiany. Nic nie usunięto. Spróbuj ponownie później.",
   "certificates.error.unknown_intent": "Wystąpił błąd. Spróbuj ponownie.",
   "certificates.error.file": "Nie udało się otworzyć pliku. Spróbuj ponownie.",
-  "certificates.action.copyLink": "Kopiuj link do odnowienia"
+  "certificates.action.copyLink": "Kopiuj link do odnowienia",
+  "certificates.usForm.exempt": "Organizacja zwolniona z podatku",
+  "certificates.usForm.mtc": "Jednolite zaświadczenie o odsprzedaży MTC",
+  "certificates.usForm.sst": "Zaświadczenie Streamlined Sales Tax",
+  "certificates.usForm.state": "Stanowe zaświadczenie o odsprzedaży"
 }

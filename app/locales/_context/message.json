@@ -150,12 +150,29 @@
     "maxLength": 138,
     "placeholders": []
   },
-  "message.modal.mailto": {
+  "message.modal.close": {
     "note": "Admin text.",
     "maxLength": 60,
     "placeholders": []
   },
-  "message.modal.close": {
+  "message.approved.subject": {
+    "note": "Subject of the ready-made 'you're approved' message the merchant sends the buyer themselves (copy, mail app, WhatsApp).",
+    "maxLength": 120,
+    "placeholders": [
+      "store_name"
+    ]
+  },
+  "message.approved.body": {
+    "note": "Body of the 'you're approved' message. {login_url} is the store's sign-in page; the buyer signs in with a one-time code Shopify emails them.",
+    "placeholders": [
+      "first_name",
+      "company",
+      "store_name",
+      "tier_name",
+      "login_url"
+    ]
+  },
+  "message.channel.mailto": {
     "note": "Admin text.",
     "maxLength": 60,
     "placeholders": []

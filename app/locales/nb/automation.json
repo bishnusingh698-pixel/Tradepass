@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Godkjenn engrossøknad til nivå",
   "automation.flow.welcomeNote": "Tradepass kan allerede sende Shopifys e-post om B2B-tilgang når en kjøper godkjennes, så du trenger ingen ekstra arbeidsflyt for det.",
   "automation.flow.open": "Åpne Shopify Flow",
-  "automation.flow.alerts": "Vil du ha en e-post når noen søker? I Shopify Flow bruker du utløseren «Wholesale application submitted» med Flow-handlingen «Send internal email». Handlingen sender bare til faste ansattadresser som du legger inn i arbeidsflyten."
+  "automation.flow.alerts": "Vil du ha en e-post når noen søker? I Shopify Flow bruker du utløseren «Wholesale application submitted» med Flow-handlingen «Send internal email». Handlingen sender bare til faste ansattadresser som du legger inn i arbeidsflyten.",
+  "automation.condition.disposable_email": "Engangs-e-postadresse (mailinator.com…)",
+  "automation.condition.free_email": "Gratis e-posttjeneste (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Leveringsadressen er en postboks",
+  "automation.condition.registry_mismatch": "Registernavnet samsvarer ikke med bedriften",
+  "automation.condition.website_mismatch": "Nettstedet samsvarer ikke med e-postdomenet",
+  "automation.flow.alertsMore": "Flere varsler: «Informasjon mottatt for engrossøknad» kjører når en søker svarer på forespørselen din, og «Sertifikat utløper» før et sertifikat går ut. Hver utløser inneholder bedrift, kontakt, e-post, telefon, land, delstat, nivå og en lenke til søknaden, klar for en e-post eller Slack-melding.",
+  "automation.flow.trigger.application_info_received": "Informasjon mottatt for engrossøknad",
+  "automation.flow.welcomeNoteFlow": "Ved godkjenning blir Shopify bedt om å sende sin egen B2B-velkomst-e-post. Hvis Shopify ikke tillater det i butikken din, gjør Shopifys Flow-mal «Tillatelse tildelt bedriftskontakt» → «Send B2B-tilgangs-e-post» det samme; Tradepass tildeler den tillatelsen under godkjenningen."
 }

@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopifyが変更を受け付けませんでした。何も削除されていません。後でもう一度お試しください。",
   "certificates.error.unknown_intent": "問題が発生しました。もう一度お試しください。",
   "certificates.error.file": "このファイルを開けませんでした。もう一度お試しください。",
-  "certificates.action.copyLink": "更新リンクをコピー"
+  "certificates.action.copyLink": "更新リンクをコピー",
+  "certificates.usForm.exempt": "免税団体",
+  "certificates.usForm.mtc": "MTC 統一再販証明書",
+  "certificates.usForm.sst": "Streamlined Sales Tax 証明書",
+  "certificates.usForm.state": "州の再販証明書"
 }

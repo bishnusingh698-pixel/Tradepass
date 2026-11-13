@@ -1,12 +1,12 @@
 {%- comment -%}
-  GENERATED from locales/en.default.json (form.* keys) - tests/storefront-extension.test.ts checks it
-  stays in sync. Prints a JSON object of the built-in form strings in the visitor language.
+  GENERATED from locales/en.default.json (form.* keys) by scripts/theme-form-texts.mjs - tests/storefront-extension.test.ts
+  checks it stays in sync. Prints a JSON object of the built-in form strings in the visitor language.
   Placeholders are passed through literally so the form script fills them in.
 {%- endcomment -%}
-{%- capture tp_ph_name -%}{% raw %}{{ name }}{% endraw %}{%- endcapture -%}
+{%- capture tp_ph_example -%}{% raw %}{{ example }}{% endraw %}{%- endcapture -%}
 {%- capture tp_ph_field -%}{% raw %}{{ field }}{% endraw %}{%- endcapture -%}
 {%- capture tp_ph_max -%}{% raw %}{{ max }}{% endraw %}{%- endcapture -%}
-{%- capture tp_ph_example -%}{% raw %}{{ example }}{% endraw %}{%- endcapture -%}
+{%- capture tp_ph_name -%}{% raw %}{{ name }}{% endraw %}{%- endcapture -%}
 {
   "form.heading": {{ "form.heading" | t | json }},
   "form.intro": {{ "form.intro" | t | json }},
@@ -114,5 +114,6 @@
   "form.error.tax_format": {{ "form.error.tax_format" | t: name: tp_ph_name | json }},
   "form.error.country_blocked": {{ "form.error.country_blocked" | t | json }},
   "form.success.heading": {{ "form.success.heading" | t | json }},
-  "form.success.body": {{ "form.success.body" | t | json }}
+  "form.success.body": {{ "form.success.body" | t | json }},
+  "form.draft_private": {{ "form.draft_private" | t | json }}
 }

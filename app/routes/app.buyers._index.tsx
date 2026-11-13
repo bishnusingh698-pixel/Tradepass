@@ -234,7 +234,7 @@ export default function Buyers() {
                     </s-stack>
                   </s-table-cell>
                   <s-table-cell>{r.info?.terms ?? "—"}</s-table-cell>
-                  <s-table-cell>{r.info?.taxExempt == null ? "—" : t(r.info.taxExempt ? "buyers.tax.exempt" : "buyers.tax.charged")}</s-table-cell>
+                  <s-table-cell>{r.info?.taxExempt == null ? "—" : r.info.taxExempt ? t("buyers.tax.exempt") : r.taxExemptions > 0 ? t("buyers.tax.specific", { count: r.taxExemptions }) : t("buyers.tax.charged")}</s-table-cell>
                   <s-table-cell><CertBadge status={r.cert} /></s-table-cell>
                   <s-table-cell>
                     {r.info?.orders ? `${r.info.orders.count} · ${money(r.info.orders.total, r.info.orders.currency, locale)}` : "—"}

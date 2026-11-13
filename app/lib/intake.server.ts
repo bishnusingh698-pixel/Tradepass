@@ -13,17 +13,21 @@ import { normaliseTaxNumber } from "./applications.server";
 import { readDefinition } from "./forms.server";
 import type { FormDefinition, FormField } from "./form-defaults";
 import { hashKey, hit, LIMITS, looksLikeBot, peek } from "./spam.server";
-import { checkTaxNumber as realCheckTax, type TaxCheck } from "./taxcheck.server";
+import { checkTaxNumber as realCheckTax, checkUsPermit as realCheckUsPermit, type TaxCheck } from "./taxcheck.server";
 import { MAX_UPLOAD_FILES, verifyFileRef } from "./uploads.server";
 import type { Admin } from "./gql.server";
 import { can, effectivePlan } from "./plans";
 import { checkTaxIdFormat } from "./tax-ids";
 import { countryAllowed, readSettings } from "./settings";
 import { isRealDate } from "./dates";
+import { dunsOk, einOk, isUsCertForm, isUsState, usZipOk, type UsCertForm } from "./us-states";
+import { cooldownFor } from "./status.server";
 
 export type IntakeDeps = {
   getAdmin: (shop: string) => Promise<Admin | null>;
   checkTaxNumber: (country: string, number: string) => Promise<TaxCheck>;
+  /** US state permit check (Texas open data); "na" for states without a free official dataset. */
+  checkUsPermit?: (state: string, number: string) => Promise<TaxCheck>;
   emitFlowTrigger: typeof import("./flow.server").emitFlowTrigger;
   evaluateRules: typeof import("./rules.server").evaluateRules;
   recordApplicationCertificates: typeof import("./certificates.server").recordApplicationCertificates;
@@ -33,7 +37,7 @@ export type IntakeDeps = {
    * auto-approval alone can take longer. The default stores a durable job first
    * so the hourly run finishes the work if this process stops.
    */
-  defer: (shop: string, applicationId: string, run: () => Promise<void>) => Promise<void>;
+  defer: (shop: string, applicationId: string, run: () => Promise<void>, payload?: { kind?: "info" }) => Promise<void>;
 };
 
 export const INTAKE_JOB = "intake_followup";
@@ -51,12 +55,13 @@ export const defaultDeps: IntakeDeps = {
     }
   },
   checkTaxNumber: (c, n) => realCheckTax(c, n),
+  checkUsPermit: (st, n) => realCheckUsPermit(st, n),
   emitFlowTrigger: async (...a) => (await import("./flow.server")).emitFlowTrigger(...a),
   evaluateRules: async (...a) => (await import("./rules.server")).evaluateRules(...a),
   recordApplicationCertificates: async (...a) => (await import("./certificates.server")).recordApplicationCertificates(...a),
-  defer: async (shop, applicationId, run) => {
+  defer: async (shop, applicationId, run, extra) => {
     const job = await db.job.create({
-      data: { shop, type: INTAKE_JOB, payload: { applicationId }, runAfter: new Date(Date.now() + INTAKE_JOB_GRACE_MS) },
+      data: { shop, type: INTAKE_JOB, payload: { applicationId, ...(extra?.kind ? { kind: extra.kind } : {}) }, runAfter: new Date(Date.now() + INTAKE_JOB_GRACE_MS) },
       select: { id: true },
     });
     void run()
@@ -70,13 +75,18 @@ export type IntakeContext = { shop: string; loggedInCustomerId: string | null; i
 export type IntakeResponse =
   | { http: 200; body: { ok: true; status: "received" | "duplicate"; id?: string } }
   | { http: 400; body: { ok: false; error?: string; errors?: Record<string, string> } }
-  | { http: 429; body: { ok: false; error: "rate_limited" } };
+  | { http: 429; body: { ok: false; error: "rate_limited" } }
+  | { http: 409; body: { ok: false; error: "cooldown"; until: string } };
 
 const KEY_RE = /^[A-Za-z0-9_-]{8,100}$/;
 const LOCALE_RE = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})?$/;
 const EMAIL_RE = /^[^\s@<>()]+@[^\s@<>()]+\.[^\s@<>()]{2,}$/;
 const URL_RE = /^(https?:\/\/)?[^\s.<>"]+\.[^\s<>"]{2,}$/i;
 const PHONE_RE = /^\+?[\d\s().-]{6,20}$/;
+/** E.164: "+", country code, up to 15 digits in all. The form's country-code picker builds it. */
+const E164_RE = /^\+[1-9]\d{6,14}$/;
+/** At most this many states on one application (a multistate certificate lists the states it covers). */
+export const MAX_US_STATES = 12;
 const NUMBER_RE = /^-?\d+([.,]\d+)?$/;
 const COUNTRY_RE = /^[A-Z]{2}$/;
 const MAX = { text: 255, textarea: 5000 } as const;
@@ -86,7 +96,7 @@ type FileAnswer = { fileGid: string; name: string; expiresOn: string | null };
 type Clean = {
   answers: Json;
   errors: Record<string, string>;
-  tax: { country: string; number: string; region: string } | null;
+  tax: { country: string; number: string; region: string; form?: UsCertForm; states?: { region: string; number: string }[] } | null;
   files: Record<string, FileAnswer[]>;
 };
 
@@ -117,8 +127,33 @@ function cleanAddress(v: unknown, f: FormField): { value: Json | null; error: st
   const any = Object.keys(out).length > 0;
   if (f.state === "required" || any) {
     if (!out.countryCode || !out.address1 || !out.city) return { value: null, error: "form.error.required" };
+    // US addresses need a state and a ZIP or ZIP+4 (taxes and B2B locations depend on them).
+    if (out.countryCode === "US") {
+      if (!isUsState(String(out.zoneCode ?? "").toUpperCase())) return { value: null, error: "form.error.required" };
+      out.zoneCode = String(out.zoneCode).toUpperCase();
+      if (!usZipOk(String(out.zip ?? ""))) return { value: null, error: "form.error.zip" };
+    }
   }
   return { value: any ? out : null, error: null };
+}
+
+/** US permits: { form, states: [{ region, number }] } → cleaned list (one entry per state, first wins). */
+export function cleanUsPermits(t: Json): { form: UsCertForm; states: { region: string; number: string }[]; error: string | null } {
+  const form: UsCertForm = isUsCertForm(t.form) ? t.form : "state";
+  const states: { region: string; number: string }[] = [];
+  for (const row of (t.states as unknown[]).slice(0, MAX_US_STATES + 1)) {
+    if (!isObj(row)) continue;
+    const region = str(row.region, 2).toUpperCase();
+    const number = str(row.number, 40);
+    if (!region && !number) continue;
+    if (!isUsState(region)) return { form, states: [], error: "form.error.us_state" };
+    if (!number) return { form, states: [], error: "form.error.required" };
+    if (number.length > 40) return { form, states: [], error: "form.error.too_long" };
+    if (states.some((x) => x.region === region)) continue;
+    states.push({ region, number });
+  }
+  if (states.length > MAX_US_STATES) return { form, states: [], error: "form.error.too_many_states" };
+  return { form, states, error: null };
 }
 
 /** Validate submitted answers against the form; returns cleaned answers and error message keys per field. */
@@ -145,6 +180,16 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
       }
       case "country_tax": {
         const t = isObj(v) ? v : {};
+        const billingCc = isObj(input.billingAddress) ? str(input.billingAddress.countryCode, 2).toUpperCase() : "";
+        // US: the certificate form and one seller's permit / sales tax ID per state it covers.
+        if (Array.isArray(t.states) && (str(t.country, 2).toUpperCase() || billingCc) === "US") {
+          const us = cleanUsPermits(t);
+          if (us.error) { fail(us.error); break; }
+          if (!us.states.length) { if (required) fail("form.error.required"); break; }
+          out.tax = { country: "US", number: us.states[0].number, region: us.states[0].region, form: us.form, states: us.states };
+          out.answers[f.id] = { country: "US", region: us.states[0].region, form: us.form, states: us.states.map((x) => ({ region: x.region })) };
+          break;
+        }
         const number = str(t.number, 40);
         if (number.length > 40) { fail("form.error.too_long"); break; }
         if (!number) { if (required) fail("form.error.required"); break; }
@@ -200,10 +245,12 @@ export function cleanAnswers(def: FormDefinition, raw: unknown, shop: string): C
         if (s.length > max) { fail("form.error.too_long"); break; }
         if (f.type === "email" && !EMAIL_RE.test(s)) { fail("form.error.email"); break; }
         if (f.type === "url" && !URL_RE.test(s)) { fail("form.error.url"); break; }
-        if (f.type === "phone" && !PHONE_RE.test(s)) { fail("form.error.phone"); break; }
+        if (f.type === "phone" && !(s.startsWith("+") ? E164_RE.test(s.replace(/[\s().-]/g, "")) : PHONE_RE.test(s))) { fail("form.error.phone"); break; }
+        if (f.id === "ein" && !einOk(s)) { fail("form.error.ein"); break; }
+        if (f.id === "duns" && !dunsOk(s)) { fail("form.error.duns"); break; }
         if (f.type === "number" && !NUMBER_RE.test(s)) { fail("form.error.number"); break; }
         if (f.type === "date" && !isRealDate(s)) { fail("form.error.date"); break; }
-        out.answers[f.id] = f.type === "email" ? s.toLowerCase() : s;
+        out.answers[f.id] = f.type === "email" ? s.toLowerCase() : f.type === "phone" && s.startsWith("+") ? s.replace(/[\s().-]/g, "") : s;
       }
     }
   }
@@ -271,6 +318,24 @@ async function findDuplicates(shop: string, email: string, companyName: string, 
   });
 }
 
+/**
+ * Where the applicant came from: UTM tags, the referring site's host (never the full URL, which can
+ * carry personal data) and the landing path. Anything else is dropped.
+ */
+export function cleanAttribution(raw: unknown): Prisma.InputJsonObject | null {
+  if (!isObj(raw)) return null;
+  const tag = (v: unknown) => (typeof v === "string" ? v.trim().toLowerCase().replace(/[^\w .:+-]/g, "").slice(0, 60) : "");
+  const ref = typeof raw.ref === "string" ? raw.ref.trim().toLowerCase().replace(/^www\./, "") : "";
+  const landing = typeof raw.landing === "string" && raw.landing.startsWith("/") ? raw.landing.split(/[?#]/)[0].slice(0, 120) : "";
+  const out: Record<string, string> = {
+    utm_source: tag(raw.utm_source), utm_medium: tag(raw.utm_medium), utm_campaign: tag(raw.utm_campaign),
+    ref: /^[a-z0-9.-]{1,100}(:\d{1,5})?$/.test(ref) ? ref : "",
+    landing,
+  };
+  for (const k of Object.keys(out)) if (!out[k]) delete out[k];
+  return Object.keys(out).length ? out : null;
+}
+
 /** Handle POST /proxy/submit. Idempotent on (shop, idempotencyKey). */
 export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: IntakeDeps = defaultDeps): Promise<IntakeResponse> {
   const body = isObj(raw) ? raw : {};
@@ -316,13 +381,30 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
   let taxNumberEnc: string | null = null;
   let taxHash: string | null = null;
   let taxCheck: TaxCheck = { status: "na" };
+  // Rejected recently and the merchant set a re-apply wait: say from when they may apply again (B10).
+  // An open or approved earlier application is a duplicate instead (handled below).
+  {
+    const keys = { email, companyName, taxHash: clean.tax ? sha256(normaliseTaxNumber(clean.tax.number)) : null };
+    const open = (email || companyName || keys.taxHash ? await findDuplicates(shop, email, companyName, keys.taxHash) : []).some((d) => OPEN.includes(d.status));
+    const until = open ? null : await cooldownFor(shop, keys);
+    if (until) return { http: 409, body: { ok: false, error: "cooldown", until } };
+  }
+  let usChecks: UsCheck[] = [];
   if (clean.tax) {
     taxNumberEnc = encrypt(clean.tax.number);
     taxHash = sha256(normaliseTaxNumber(clean.tax.number));
     clean.answers.taxNumberHash = taxHash;
-    taxCheck = (await taxChecksEnabled(shop))
-      ? await deps.checkTaxNumber(clean.tax.country || countryCode || "", clean.tax.number).catch(() => ({ status: "unavailable" as const }))
-      : SKIPPED;
+    const live = await taxChecksEnabled(shop);
+    if (clean.tax.states?.length) {
+      const us = await usPermitChecks(clean.tax.states, live, deps);
+      usChecks = us.checks;
+      taxCheck = us.summary;
+      clean.answers.usPermits = clean.tax.states.map((x) => ({ region: x.region, numberEnc: encrypt(x.number) }));
+    } else {
+      taxCheck = live
+        ? await deps.checkTaxNumber(clean.tax.country || countryCode || "", clean.tax.number).catch(() => ({ status: "unavailable" as const }))
+        : SKIPPED;
+    }
   }
   const certs = clean.files.certificates ?? [];
   if (certs.length) clean.answers.certificateMeta = certs.map((c) => ({ fileGid: c.fileGid, expiresOn: c.expiresOn }));
@@ -356,6 +438,7 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
         flags,
         suggestedTierId: form.suggestedTierId,
         ipHash: ipKey,
+        attribution: cleanAttribution(body.attribution) ?? Prisma.DbNull,
       },
       select: { id: true },
     });
@@ -379,12 +462,55 @@ export async function handleSubmit(ctx: IntakeContext, raw: unknown, deps: Intak
     detail: { duplicate: flags.includes("duplicate"), taxCheck: taxCheck.status, files: allFiles.length },
   }).catch(() => undefined);
 
-  await afterSubmit(ctx, deps, { id: app.id, countryCode, certificates: certs, tax: clean.tax });
+  await afterSubmit(ctx, deps, { id: app.id, countryCode, certificates: certs, tax: clean.tax, usChecks });
 
   return { http: 200, body: { ok: true, status: tellApplicant ? "duplicate" : "received", id: app.id } };
 }
 
-type Submitted = { id: string; countryCode: string | null; certificates: FileAnswer[]; tax: Clean["tax"] };
+type Submitted = { id: string; countryCode: string | null; certificates: FileAnswer[]; tax: Clean["tax"]; usChecks?: UsCheck[] };
+export type UsCheck = { region: string; status: TaxCheck["status"]; name?: string };
+
+/**
+ * Live checks for the US states that publish a free official dataset (Texas), within one 6-second
+ * budget for the whole application; other states are "na". On Free nothing is called ("skipped").
+ */
+async function usPermitChecks(states: { region: string; number: string }[], live: boolean, deps: Pick<IntakeDeps, "checkUsPermit">) {
+  const checks: UsCheck[] = [];
+  const started = Date.now();
+  for (const st of states) {
+    if (!live) { checks.push({ region: st.region, status: "skipped" }); continue; }
+    if (Date.now() - started > TAX_BUDGET_MS) { checks.push({ region: st.region, status: "unavailable" }); continue; }
+    const r = await (deps.checkUsPermit ?? realCheckUsPermit)(st.region, st.number).catch(() => ({ status: "unavailable" as const, name: undefined }));
+    checks.push({ region: st.region, status: r.status, name: r.name });
+  }
+  // The application's badge: the worst live result, else "na" (no state with a dataset) or "skipped".
+  const ran = checks.filter((c) => c.status !== "na" && c.status !== "skipped");
+  const summary: TaxCheck = ran.some((c) => c.status === "not_verified") ? { status: "not_verified" }
+    : ran.some((c) => c.status === "unavailable") ? { status: "unavailable" }
+      : ran.length ? { status: "verified", name: ran.find((c) => c.name)?.name }
+        : { status: live ? "na" : "skipped" };
+  return { checks, summary };
+}
+const TAX_BUDGET_MS = 6000;
+
+/** Certificate rows for a US application: one per covered state, sharing the first uploaded file. */
+export function usCertificateRows(t: NonNullable<Clean["tax"]>, files: FileAnswer[], checks: UsCheck[] = []) {
+  const file = files[0] ?? null;
+  return (t.states ?? []).map((st) => {
+    const c = checks.find((x) => x.region === st.region);
+    return {
+      fileGid: file?.fileGid ?? null,
+      type: t.form === "exempt" ? "other" : "resale",
+      form: t.form ?? "state",
+      country: "US",
+      region: st.region,
+      number: st.number,
+      expiresOn: file?.expiresOn ?? null,
+      checkResult: c && ["verified", "not_verified", "unavailable"].includes(c.status) ? (c.status === "not_verified" ? "not_found" : c.status) : null,
+      checkName: c?.name ?? null,
+    };
+  });
+}
 
 /** Follow-ups never fail the submission; each is isolated. */
 async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
@@ -397,6 +523,11 @@ async function afterSubmit(ctx: IntakeContext, deps: IntakeDeps, a: Submitted) {
     }
   };
   await safe("certificates", async () => {
+    // US: one certificate per covered state, with or without an uploaded file.
+    if (a.tax?.states?.length) {
+      await deps.recordApplicationCertificates(shop, a.id, usCertificateRows(a.tax, a.certificates, a.usChecks));
+      return;
+    }
     if (!a.certificates.length) return;
     const t = a.tax;
     const resale = t?.country === "US";
@@ -429,10 +560,18 @@ export async function intakeFollowups(shop: string, applicationId: string, deps:
   };
   const admin = await deps.getAdmin(shop);
   if (!admin) return;
-  await safe("flow", () => deps.emitFlowTrigger(admin, shop, "application_submitted", {
-    applicationId: app.id, companyName: app.companyName, contactEmail: app.email, country: app.countryCode ?? undefined,
-  }));
+  await safe("flow", async () => deps.emitFlowTrigger(admin, shop, "application_submitted", await (await import("./flow.server")).applicationPayload(shop, app.id)));
   await safe("rules", () => deps.evaluateRules(admin, shop, app.id));
+}
+
+/**
+ * The applicant answered "Ask for more info": the "Wholesale application info received" Flow trigger
+ * (B8), so merchants can be alerted. Runs after the response, backed by a job like intake follow-ups.
+ */
+export async function infoReceivedFollowup(shop: string, applicationId: string, deps: Pick<IntakeDeps, "getAdmin" | "emitFlowTrigger"> = defaultDeps): Promise<void> {
+  const admin = await deps.getAdmin(shop);
+  if (!admin) return;
+  await deps.emitFlowTrigger(admin, shop, "application_info_received", await (await import("./flow.server")).applicationPayload(shop, applicationId));
 }
 
 // ---------------------------------------------------------------- needs info
@@ -468,7 +607,7 @@ export async function applyUpdate(
   ctx: UpdateContext,
   applicationId: string,
   raw: unknown,
-  deps: Pick<IntakeDeps, "checkTaxNumber" | "recordApplicationCertificates"> = defaultDeps,
+  deps: Pick<IntakeDeps, "checkTaxNumber" | "checkUsPermit" | "recordApplicationCertificates"> & Partial<Pick<IntakeDeps, "defer" | "getAdmin" | "emitFlowTrigger">> = defaultDeps,
 ): Promise<{ ok: true } | { ok: false; errors: Record<string, string> } | { ok: false; error: "not_found" | "closed" }> {
   const { shop } = ctx;
   const app = await db.application.findFirst({ where: { shop, id: applicationId } });
@@ -484,12 +623,22 @@ export async function applyUpdate(
 
   const answers: Json = { ...(isObj(app.answers) ? app.answers : {}), ...clean.answers };
   const data: Prisma.ApplicationUpdateInput = { status: "pending" };
+  let usChecks: UsCheck[] = [];
   if (clean.tax) {
     answers.taxNumberHash = sha256(normaliseTaxNumber(clean.tax.number));
     data.taxNumberEnc = encrypt(clean.tax.number);
-    const check: TaxCheck = (await taxChecksEnabled(shop))
-      ? await deps.checkTaxNumber(clean.tax.country || app.countryCode || "", clean.tax.number).catch(() => ({ status: "unavailable" as const, name: undefined }))
-      : SKIPPED;
+    const live = await taxChecksEnabled(shop);
+    let check: TaxCheck;
+    if (clean.tax.states?.length) {
+      const us = await usPermitChecks(clean.tax.states, live, deps);
+      usChecks = us.checks;
+      check = us.summary;
+      answers.usPermits = clean.tax.states.map((x) => ({ region: x.region, numberEnc: encrypt(x.number) }));
+    } else {
+      check = live
+        ? await deps.checkTaxNumber(clean.tax.country || app.countryCode || "", clean.tax.number).catch(() => ({ status: "unavailable" as const, name: undefined }))
+        : SKIPPED;
+    }
     data.taxCheck = check.status;
     data.taxCheckName = check.name ?? null;
   }
@@ -522,7 +671,9 @@ export async function applyUpdate(
       data: allFiles.map((f) => ({ shop, applicationId: app.id, fileGid: f.fileGid, kind: f.field === "certificates" ? "certificate" : "other" })),
     });
   }
-  if (certs.length) {
+  if (clean.tax?.states?.length) {
+    await deps.recordApplicationCertificates(shop, app.id, usCertificateRows(clean.tax, certs, usChecks)).catch(() => undefined);
+  } else if (certs.length) {
     const taxAns = isObj(answers.taxNumber) ? answers.taxNumber : {};
     await deps.recordApplicationCertificates(shop, app.id, certs.map((c) => ({
       fileGid: c.fileGid, type: taxAns.country === "US" ? "resale" : "other",
@@ -531,6 +682,7 @@ export async function applyUpdate(
   }
   // The application is back under Pending (Home and the queue show it); the activity log records the reply.
   await logActivity({ shop, actor: "applicant", action: "application.updated", subject: app.id, detail: { fields: Object.keys(clean.answers) } }).catch(() => undefined);
+  await (deps.defer ?? defaultDeps.defer)(shop, app.id, () => infoReceivedFollowup(shop, app.id, { getAdmin: deps.getAdmin ?? defaultDeps.getAdmin, emitFlowTrigger: deps.emitFlowTrigger ?? defaultDeps.emitFlowTrigger }), { kind: "info" }).catch(() => undefined);
   return { ok: true };
 }
 

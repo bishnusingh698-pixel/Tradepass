@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify לא קיבלה את השינוי. שום דבר לא הוסר. אפשר לנסות שוב מאוחר יותר.",
   "certificates.error.unknown_intent": "משהו השתבש. אפשר לנסות שוב.",
   "certificates.error.file": "לא הצלחנו לפתוח את הקובץ. אפשר לנסות שוב.",
-  "certificates.action.copyLink": "העתקת קישור לחידוש"
+  "certificates.action.copyLink": "העתקת קישור לחידוש",
+  "certificates.usForm.exempt": "ארגון פטור ממס",
+  "certificates.usForm.mtc": "אישור מכירה חוזרת אחיד של MTC",
+  "certificates.usForm.sst": "אישור Streamlined Sales Tax",
+  "certificates.usForm.state": "אישור מכירה חוזרת של המדינה"
 }

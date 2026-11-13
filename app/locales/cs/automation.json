@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Schválit žádost o velkoobchod do úrovně",
   "automation.flow.welcomeNote": "Tradepass už umí při schválení kupujícího odeslat e-mail Shopify s přístupem B2B, takže k tomu není potřeba žádný další pracovní postup.",
   "automation.flow.open": "Otevřít Shopify Flow",
-  "automation.flow.alerts": "Chcete e-mail, když někdo podá žádost? V Shopify Flow použijte spouštěč „Wholesale application submitted“ s akcí Flow „Send internal email“. Tato akce posílá jen na pevné adresy zaměstnanců, které zadáte do pracovního postupu."
+  "automation.flow.alerts": "Chcete e-mail, když někdo podá žádost? V Shopify Flow použijte spouštěč „Wholesale application submitted“ s akcí Flow „Send internal email“. Tato akce posílá jen na pevné adresy zaměstnanců, které zadáte do pracovního postupu.",
+  "automation.condition.disposable_email": "Jednorázová e-mailová adresa (mailinator.com…)",
+  "automation.condition.free_email": "Bezplatná e-mailová služba (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Doručovací adresa je poštovní přihrádka",
+  "automation.condition.registry_mismatch": "Název v registru neodpovídá společnosti",
+  "automation.condition.website_mismatch": "Web neodpovídá doméně e-mailu",
+  "automation.flow.alertsMore": "Další upozornění: „Přijaty informace k velkoobchodní žádosti“ se spustí, když žadatel odpoví na vaši žádost, a „Osvědčení brzy vyprší“ před vypršením osvědčení. Každý spouštěč obsahuje společnost, kontakt, e-mail, telefon, zemi, stát, úroveň a odkaz na žádost, připravené pro e-mail nebo zprávu ve Slacku.",
+  "automation.flow.trigger.application_info_received": "Přijaty informace k velkoobchodní žádosti",
+  "automation.flow.welcomeNoteFlow": "Při schválení je Shopify požádán, aby poslal vlastní uvítací e-mail B2B. Pokud to Shopify ve vašem obchodě nedovolí, totéž udělá šablona Flow od Shopify „Kontaktu společnosti přiděleno oprávnění“ → „Odeslat e-mail s přístupem B2B“; Tradepass toto oprávnění při schválení přidělí."
 }

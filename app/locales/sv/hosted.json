@@ -12,5 +12,22 @@
   "hosted.link.usedTitle": "Länken har redan använts",
   "hosted.link.usedBody": "Varje uppdateringslänk fungerar en gång. Om du behöver ändra något mer kan du kontakta {store}.",
   "hosted.noscript": "Aktivera JavaScript i webbläsaren för att uppdatera din ansökan.",
-  "hosted.error.generic": "Något gick fel hos oss. Försök igen om några minuter."
+  "hosted.error.generic": "Något gick fel hos oss. Försök igen om några minuter.",
+  "hosted.status.body.approved": "Logga in med den här e-postadressen för att se dina grossistpriser.",
+  "hosted.status.body.needs_info": "{store} behöver lite mer information innan beslut fattas.",
+  "hosted.status.body.pending": "{store} granskar varje ansökan och återkommer till dig.",
+  "hosted.status.body.rejected": "{store} kunde inte godkänna den här ansökan.",
+  "hosted.status.book": "Boka ett introduktionssamtal",
+  "hosted.status.busyTitle": "För många förfrågningar. Försök igen om några minuter.",
+  "hosted.status.expiredBody": "Av säkerhetsskäl fungerar statuslänkar i 90 dagar. Kontakta {store} för en ny länk.",
+  "hosted.status.reapply": "Du kan ansöka igen från {date}.",
+  "hosted.status.shop": "Börja handla",
+  "hosted.status.signIn": "Logga in",
+  "hosted.status.submitted": "{company} ansökte {date}.",
+  "hosted.status.title.approved": "Ditt grossistkonto är godkänt",
+  "hosted.status.title.needs_info": "Vi behöver lite mer information",
+  "hosted.status.title.pending": "Vi granskar din ansökan",
+  "hosted.status.title.rejected": "Din ansökan godkändes inte",
+  "hosted.status.update": "Uppdatera din ansökan",
+  "hosted.status.whatsapp": "Skriv till {store} på WhatsApp"
 }

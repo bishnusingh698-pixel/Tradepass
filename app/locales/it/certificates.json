@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify non ha accettato la modifica. Non è stato rimosso nulla. Riprovi più tardi.",
   "certificates.error.unknown_intent": "Si è verificato un problema. Riprovi.",
   "certificates.error.file": "Non è stato possibile aprire questo file. Riprovi.",
-  "certificates.action.copyLink": "Copia link di rinnovo"
+  "certificates.action.copyLink": "Copia link di rinnovo",
+  "certificates.usForm.exempt": "Organizzazione esente da imposte",
+  "certificates.usForm.mtc": "Certificato di rivendita uniforme MTC",
+  "certificates.usForm.sst": "Certificato Streamlined Sales Tax",
+  "certificates.usForm.state": "Certificato di rivendita statale"
 }

@@ -111,5 +111,18 @@
   "approval.skip.no_state": "Ei mitään yritettävää uudelleen.",
   "approval.skip.finished": "Jo hyväksytty.",
   "approval.skip.missing_address": "Laskutusosoite puuttuu.",
-  "approval.skip.tier_required": "Tasoa ei ole valittu."
+  "approval.skip.tier_required": "Tasoa ei ole valittu.",
+  "approval.blocked.no_b2b": "Shopify-tilaukseesi ei sisälly B2B:tä, joten Shopify ei voi vielä luoda yritystä tälle ostajalle. Hakemus pysyy jonossasi: hyväksy se, kun B2B on käytettävissä (Basic-tilaus tai parempi uusilla Markkinoilla). Etusivu näyttää, mitä tilauksesi tukee.",
+  "approval.error.email_unavailable": "Shopify ei sallinut Tradepassin lähettää B2B-tervetuloviestiään tässä kaupassa, joten sähköpostia ei lähetetty. Ostaja on hyväksytty. Lähetä hänelle valmis viesti hakemuksen sivulta.",
+  "approval.field.taxExemptAll": "Älä peri mitään veroa tästä sijainnista",
+  "approval.field.taxExemptAllHelp": "Vain ostajille, jotka on vapautettu kaikista veroista kaikkialla, minne toimitat. Jälleenmyyntitodistus kattaa yleensä yhden osavaltion tai maan: käytä sen sijaan yllä olevia vapautuksia, jotta veroa peritään yhä siellä, missä vapautusta ei ole.",
+  "approval.skip.no_b2b": "B2B ei ole käytettävissä tämän kaupan Shopify-tilauksessa.",
+  "approval.step.tags": "Asiakastunnisteet",
+  "approval.tags.note": "Asiakkaalle lisätyt tunnisteet: {tags} (Asetukset → Hakijat ja yhteystiedot).",
+  "approval.tax.addCovered": "Lisää nämä vapautukset",
+  "approval.tax.alsoCovered": "Todistukset kattavat myös: {states}.",
+  "approval.tax.reason.no_state_sales_tax": "Tämän sijainnin osavaltiossa ei ole osavaltion laajuista myyntiveroa, joten vapautusta ei tarvita.",
+  "approval.tax.reason.us_exempt_org": "Verovapaan järjestön todistus: Shopifyssa ei ole sille omaa vapautusta. Tarkista todistus; valitse ”Älä peri mitään veroa” vain, jos ostaja ei ole velvollinen maksamaan mitään veroa.",
+  "approval.tax.reason.us_resale_local_only": "Ostajan todistus kattaa tämän osavaltion. Alaskassa ei ole osavaltion myyntiveroa, mutta jotkin kaupungit perivät omansa.",
+  "approval.tax.reason.us_state_not_covered": "Ostajan todistukset kattavat muita osavaltioita kuin tämän sijainnin osavaltion. Lisää ne vain, jos tämän sijainnin tilaukset toimitetaan sinne."
 }

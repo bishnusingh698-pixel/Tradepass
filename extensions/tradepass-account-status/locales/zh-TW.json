@@ -1,0 +1,12 @@
+{
+  "title": "批發帳戶",
+  "status": {
+    "pending": "申請審核中",
+    "needs_info": "我們需要更多資訊",
+    "approved": "已核准",
+    "rejected": "未獲核准"
+  },
+  "submitted": "申請日期：{{date}}",
+  "reapply": "您可以從 {{date}} 起重新申請。",
+  "view": "查看詳情"
+}

@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "منظوری کا مرحلہ کامیاب نہیں ہوا",
   "buyers.activity.approval.undo": "منظوری واپس لی گئی",
   "buyers.activity.tier.assisted_add_verified": "درجے میں شمولیت کی تصدیق ہو گئی",
-  "buyers.activity.tier.assisted_remove_verified": "درجے سے ہٹانے کی تصدیق ہو گئی"
+  "buyers.activity.tier.assisted_remove_verified": "درجے سے ہٹانے کی تصدیق ہو گئی",
+  "buyers.tax.specific": "{count, plural, one {# چھوٹ} other {# چھوٹ}}"
 }

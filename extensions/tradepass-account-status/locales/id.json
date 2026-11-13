@@ -1,0 +1,12 @@
+{
+  "title": "Akun grosir",
+  "status": {
+    "pending": "Pengajuan sedang ditinjau",
+    "needs_info": "Kami perlu informasi lebih lanjut",
+    "approved": "Disetujui",
+    "rejected": "Tidak disetujui"
+  },
+  "submitted": "Diajukan pada {{date}}",
+  "reapply": "Anda dapat mengajukan lagi mulai {{date}}.",
+  "view": "Lihat detail"
+}

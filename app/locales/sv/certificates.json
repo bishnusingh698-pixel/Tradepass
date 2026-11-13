@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify godtog inte ändringen. Inget togs bort. Försök igen senare.",
   "certificates.error.unknown_intent": "Något gick fel. Försök igen.",
   "certificates.error.file": "Vi kunde inte öppna filen. Försök igen.",
-  "certificates.action.copyLink": "Kopiera förnyelselänk"
+  "certificates.action.copyLink": "Kopiera förnyelselänk",
+  "certificates.usForm.exempt": "Skattebefriad organisation",
+  "certificates.usForm.mtc": "Enhetligt MTC-återförsäljningsintyg",
+  "certificates.usForm.sst": "Streamlined Sales Tax-intyg",
+  "certificates.usForm.state": "Delstatens återförsäljningsintyg"
 }

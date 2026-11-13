@@ -221,3 +221,90 @@ Theme app extension `extensions/tradepass-theme`, app proxy endpoints `app/route
 - https://shopify.dev/docs/api/functions/latest/cart-and-checkout-validation
 - https://help.shopify.com/en/manual/your-account/languages (36 admin languages, matches the prompt's list)
 - Area checks 2026-10-16/17: theme app extensions (configuration, app blocks, app-data metafields), Liquid customer object, cart-and-checkout-validation Function API and tutorial, validationCreate/validationUpdate, Flow trigger and action extension references, Brevo send-transac-email, App Bridge Save Bar / resourcePicker / app.extensions(), companyLocationAssignRoles, companyContactCreate, publicationUpdate, paymentTermsTemplates, BuyerExperienceConfigurationInput
+
+## 2026-11-07 — verified with the Shopify dev toolkit (`@shopify/dev-mcp` 1.18.0, run locally)
+
+The hosted `shopify-dev-mcp` server didn't connect and shopify.dev is blocked by the session's network policy,
+so the toolkit was run over stdio. Its `validate` tool checks operations against the schemas it bundles
+(offline): **every operation in `app/` and `extensions/` passes against Admin 2026-10**, and the checkout
+Function input query passes against the cart-and-checkout-validation Function schema 2026-10. Doc search
+(`search_docs_chunks`) needs shopify.dev and was unavailable; facts that only docs prose can confirm are under
+"Needs a dev store" in CHECKLIST.md.
+
+- ❌ `companyContactSendWelcomeEmail` — **not in any bundled Admin schema** (2026-01, -04, -07, -10, 2027-01,
+  unstable). Kept behind a "skip if Shopify refuses the field" guard (DECISIONS D-092).
+- ❌→✅ `Market.status` + `Catalog.status` in one selection conflict (different enum types): aliased.
+- ⚠️→✅ `Shop.billingAddress` is deprecated; `Shop.shopAddress { countryCodeV2 }` used.
+- ✅ `metafieldsSet(metafields: [MetafieldsSetInput!]!)` (max 25, atomic) and
+  `metafieldsDelete(metafields: [MetafieldIdentifierInput!]!) { deletedMetafields { key namespace ownerId } }`;
+  `Company` implements `HasMetafields`.
+- ✅ Function input: `PurchasingCompany.company: Company!` with `metafield(namespace: String, key: String!)` —
+  read as `paused: metafield(namespace: "$app:tradepass", key: "paused") { value }`.
+- ✅ `CompanyLocationTaxSettings.taxExempt` ("whether the location is exempt from taxes") vs `taxExemptions`
+  ("the list of tax exemptions applied"): D-093.
+- ✅ `priceListDelete(id: ID!) { deletedId userErrors }` (REVIEW M5's open question).
+- ✅ `tagsAdd(id: ID!, tags: [String!]!) { node userErrors }`, `tagsRemove(...)` (feature C19).
+- ✅ `customerSendAccountInviteEmail` exists but only for **legacy** customer accounts; not used.
+- ✅ Customer account UI extension target `customer-account.profile.block.render`; Session Token API with the
+  `network_access` capability; server side `authenticate.public.customerAccount(request)` in
+  `@shopify/shopify-app-react-router` 3.0.2 (type definitions in node_modules).
+- Required scopes the validator reports for our queries are all covered by D-016's list.
+
+A test (`tests/graphql-verified.test.ts`) pins a hash of every operation: a changed or new operation fails
+until it has been validated again with the toolkit and its hash added.
+
+## US sales tax facts (feature A1/A2), checked 2026-11-07 on official sites
+
+| Fact | Source |
+|---|---|
+| Oregon has no general sales, use or transaction tax | Oregon DOR, https://www.oregon.gov/dor/programs/businesses/pages/sales-tax.aspx |
+| Delaware has no state or local sales tax (gross receipts tax on sellers instead) | Delaware Division of Revenue, https://revenue.delaware.gov/business-tax-forms/doing-business-in-delaware/step-4-gross-receipts-taxes/ |
+| Montana has no general sales tax | Montana DOR, https://revenue.mt.gov/taxes/general-sales-tax |
+| New Hampshire has no general sales and use tax | NH DRA, https://www.revenue.nh.gov/faq/does-new-hampshire-have-sales-tax |
+| Alaska has no statewide sales tax; local governments may levy one | Alaska DCRA, https://www.commerce.alaska.gov/web/dcra/officeofthestateassessor/alaskataxfacts.aspx |
+| Streamlined Sales Tax: 23 full member states + Tennessee (associate) | SST Governing Board, https://www.streamlinedsalestax.org/ |
+| MTC uniform resale certificate: states attach their own conditions; acceptance can change without notice; the seller decides | MTC, https://www.mtc.gov/resources/uniform-sales-use-tax-exemption-certificate/ and https://www.mtc.gov/resources/faq-uniform-sales-and-use-tax-certificate/ — so **no state list is hard-coded**, only a neutral hint and a link |
+| Florida annual resale certificates expire on 31 December | Florida DOR, https://floridarevenue.com/taxes/taxesfees/Pages/annual_resale_certificate_sut.aspx |
+| Georgia: most exemption certificates don't expire (GATE agricultural ones do) | Georgia DOR, https://dor.georgia.gov/taxes/sales-use-tax/sales-tax-id-verification-tool — not shown as a hint (not needed) |
+
+Official permit lookups (link only unless marked live): CA CDTFA (https://services.cdtfa.ca.gov/m/svs/AboutSales.aspx),
+TX Comptroller taxpayer search (https://comptroller.texas.gov/taxes/sales/taxpayer-search.php; 11-digit taxpayer
+number starting with 1 or 3, or 9-digit FEIN), FL DOR certificate verification (https://floridarevenue.com/taxes/certificates),
+WA DOR reseller permit verification (https://dor.wa.gov/taxes-rates/retail-sales-tax/reseller-permits/how-verify-reseller-permits),
+IL MyTax Illinois "Verify a Registered Business" (https://mytax.illinois.gov/), AZ AZTaxes license verification
+(https://www.aztaxes.gov/Home/LicenseVerification), CO Revenue Online (https://www.colorado.gov/revenueonline), GA Sales
+Tax ID verification tool (https://dor.georgia.gov/taxes/sales-use-tax/sales-tax-id-verification-tool), NC sales and use
+tax number registries (https://www.ncdor.gov/sales-and-use-tax-number-registries), MA verify a sales tax certificate
+(https://www.mass.gov/how-to/verify-a-sales-or-meals-food-beverage-tax-certificate). New York, Pennsylvania and Ohio:
+no public lookup found on their sites, so no link. Other states: not researched yet (ROADMAP).
+
+**Texas open data (live check, Starter like VIES).** Dataset "Active Sales Tax Permit Holders", Texas Comptroller,
+`jrea-zgmq` on data.texas.gov (https://data.texas.gov/Government-and-Taxes/Active-Sales-Tax-Permit-Holders/jrea-zgmq),
+Socrata API `https://data.texas.gov/resource/jrea-zgmq.json?taxpayer_number=<11 digits>&$limit=1`, no key
+(optional free `SOCRATA_APP_TOKEN` header `X-App-Token`). ⚠️ The column API name `taxpayer_number` comes from the
+dataset's CSV header ("Taxpayer Number") and published query examples; data.texas.gov is blocked from this
+session, so **confirm one real query after deploy**. Any non-200, non-array or unexpected reply is "Couldn't check".
+Searches found **no other state** publishing an active-permit dataset.
+
+**Nonprofits.** IRS Tax Exempt Organization Search (https://www.irs.gov/charities-non-profits/tax-exempt-organization-search)
+is a web search; the free bulk files (Pub. 78, EO BMF, https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads)
+hold over a million organisations, too large for Neon's free 0.5 GB next to our data, so Tradepass links to the
+search (with the EIN) instead of importing. There is no free public EIN verification; EINs are format-checked only.
+
+## Offline check digits (feature E23)
+
+Algorithms (published by the registries named in `app/lib/tax-checksums.js`) and the real numbers they were tested
+against are in `tests/review-2026-11.test.ts`. India GSTIN (GSTN mod 36), Brazil CNPJ (Receita Federal), Swiss UID
+(FSO mod 11), Norway organisation number (Brønnøysund mod 11), New Zealand IRD/GST (Inland Revenue two-weight mod 11)
+and NZBN (GS1), Australia ABN (ABR), Chile RUT, Argentina CUIT, Italy, Poland, Portugal, Belgium, Denmark, Finland,
+Germany and Croatia (ISO 7064 MOD 11,10), France (TVA key), Estonia, Luxembourg, Slovenia, Hungary, Sweden, Greece,
+Slovakia, UK VAT (mod 97 / 9755), China USCC (GB 32100-2015), South Korea BRN, Russia INN, Türkiye TCKN, Israel,
+Peru RUC, Thailand, Japan corporate number, Taiwan UBN (divisible-by-5 rule).
+
+## Official registries added 2026-11-07 (E24, D-113)
+The registry hosts are blocked by this build environment's network policy, so nothing below was called live; facts come from web searches of the official pages and are marked.
+- **Norway, Enhetsregisteret** (Brønnøysundregistrene): `GET https://data.brreg.no/enhetsregisteret/api/enheter/{orgnr}`, JSON, no key. A removed entity answers **410 Gone** with `slettedato` (official API docs, data.brreg.no/enhetsregisteret/api/docs/index.html, as quoted in search results); unknown numbers 404. Fields used: `organisasjonsnummer`, `navn`, `konkurs`, `underAvvikling`, `underTvangsavviklingEllerTvangsopplosning`, `slettedato`, `registrertIMvaregisteret` (field names listed by the docs' filters and the Microsoft connector schema). Licence: NLOD 2.0 per data.norge.no (attribution: "Brønnøysundregistrene"). 🔲 Confirm the 200-response field names with one live call after deploy.
+- **New Zealand, NZBN API v5** (MBIE): `GET https://api.business.govt.nz/gateway/nzbn/v5/entities/{nzbn}` with header `Ocp-Apim-Subscription-Key`. portal.api.business.govt.nz: "there is no fee for using this API"; subscriptions may be reviewed; sandbox and production keys differ. `entityName` per third-party clients; the status field name (`entityStatusDescription` / `entityStatusCode`) is **not confirmed**, so the parser treats a missing status as "unavailable". 🔲 Needs verification with a real key.
+- **Switzerland, UID register**: public SOAP service `https://www.uid-wse.admin.ch/V5.0/PublicServices.svc`, namespace `http://www.uid.admin.ch/xmlns/uid-wse`, SOAPAction `…/IPublicServices/ValidateVatNumber` (from a published WSDL, V3.0). Federal Statistical Office: free, **20 requests per minute**, over the limit the caller is blocked for a while. Request element names couldn't be read from official docs here → not called; link `https://www.uid.admin.ch/` only.
+- **Canada, CRA GST/HST Registry**: web form only ("Confirming a GST/HST account number", canada.ca; enter the first nine digits). Link only.
+- Official lookup links per country: `app/lib/tax-registries.ts`.

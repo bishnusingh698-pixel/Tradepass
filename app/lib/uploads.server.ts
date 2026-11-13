@@ -163,3 +163,28 @@ export function verifyFileRef(ref: unknown, shop: string, now = Date.now()): str
     return null;
   }
 }
+
+/**
+ * The request body as bytes, or null as soon as it grows past `max` (the rest is never read).
+ * The Content-Length check alone misses chunked bodies, which arrive without one.
+ */
+export async function readCapped(request: Request, max: number): Promise<Uint8Array | null> {
+  if (!request.body) return new Uint8Array();
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.byteLength;
+    if (size > max) {
+      await reader.cancel().catch(() => undefined);
+      return null;
+    }
+    chunks.push(value);
+  }
+  const out = new Uint8Array(size);
+  let at = 0;
+  for (const c of chunks) { out.set(c, at); at += c.byteLength; }
+  return out;
+}

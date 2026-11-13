@@ -117,8 +117,7 @@ export default function BuyerDetail() {
           <Fact label={t("buyers.col.contact")}>{d.info?.contactName ?? "—"}</Fact>
           <Fact label={t("buyers.col.terms")}>{d.info?.terms ?? "—"}</Fact>
           <Fact label={t("buyers.col.tax")}>
-            {d.info?.taxExempt == null ? "—" : t(d.info.taxExempt ? "buyers.tax.exempt" : "buyers.tax.charged")}
-            {d.buyer.taxExemptions.length > 0 && ` (${d.buyer.taxExemptions.length})`}
+            {d.info?.taxExempt == null ? "—" : d.info.taxExempt ? t("buyers.tax.exempt") : d.buyer.taxExemptions.length > 0 ? t("buyers.tax.specific", { count: d.buyer.taxExemptions.length }) : t("buyers.tax.charged")}
           </Fact>
           <Fact label={t("buyers.col.certificates")}><CertBadge status={d.certSummary} /></Fact>
           <Fact label={t("buyers.col.orders")}>

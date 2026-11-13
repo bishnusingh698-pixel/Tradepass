@@ -40,3 +40,11 @@ services:
         sync: false
       - key: ABN_GUID
         sync: false
+      - key: SUPPORT_WHATSAPP_URL
+        sync: false
+      - key: TRUSTED_PROXY_HOPS
+        value: "0"
+      - key: NZBN_API_KEY
+        sync: false
+      - key: SOCRATA_APP_TOKEN
+        sync: false

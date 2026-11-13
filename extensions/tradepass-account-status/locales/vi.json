@@ -1,0 +1,12 @@
+{
+  "title": "Tài khoản bán sỉ",
+  "status": {
+    "pending": "Đơn đang được xem xét",
+    "needs_info": "Chúng tôi cần thêm thông tin",
+    "approved": "Đã duyệt",
+    "rejected": "Chưa được duyệt"
+  },
+  "submitted": "Đã nộp ngày {{date}}",
+  "reapply": "Bạn có thể nộp lại từ {{date}}.",
+  "view": "Xem chi tiết"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Account all'ingrosso",
+  "status": {
+    "pending": "Richiesta in esame",
+    "needs_info": "Ci servono altre informazioni",
+    "approved": "Approvata",
+    "rejected": "Non approvata"
+  },
+  "submitted": "Richiesta inviata il {{date}}",
+  "reapply": "Potrai fare di nuovo richiesta dal {{date}}.",
+  "view": "Vedi dettagli"
+}

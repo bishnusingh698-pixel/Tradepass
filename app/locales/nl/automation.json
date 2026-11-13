@@ -86,5 +86,13 @@
   "automation.flow.action.approve": "Groothandelsaanvraag goedkeuren voor niveau",
   "automation.flow.welcomeNote": "Tradepass kan de B2B-toegangsmail van Shopify al versturen wanneer het een koper goedkeurt, dus daarvoor is geen extra workflow nodig.",
   "automation.flow.open": "Shopify Flow openen",
-  "automation.flow.alerts": "Wil je een e-mail als iemand een aanvraag doet? Gebruik in Shopify Flow de trigger 'Wholesale application submitted' met de Flow-actie 'Send internal email'. Die actie mailt alleen vaste adressen van medewerkers die je in de workflow invult."
+  "automation.flow.alerts": "Wil je een e-mail als iemand een aanvraag doet? Gebruik in Shopify Flow de trigger 'Wholesale application submitted' met de Flow-actie 'Send internal email'. Die actie mailt alleen vaste adressen van medewerkers die je in de workflow invult.",
+  "automation.condition.disposable_email": "Wegwerp-e-mailadres (mailinator.com…)",
+  "automation.condition.free_email": "Gratis e-maildienst (gmail.com, outlook.com…)",
+  "automation.condition.po_box": "Verzendadres is een postbus",
+  "automation.condition.registry_mismatch": "Registernaam komt niet overeen met het bedrijf",
+  "automation.condition.website_mismatch": "Website komt niet overeen met het e-maildomein",
+  "automation.flow.alertsMore": "Meer meldingen: „Informatie ontvangen voor groothandelsaanvraag” draait wanneer een aanvrager op uw verzoek antwoordt, en „Certificaat verloopt” voordat een certificaat verloopt. Elke trigger bevat bedrijf, contact, e-mail, telefoon, land, staat, niveau en een link naar de aanvraag, klaar voor een e-mail of Slack-bericht.",
+  "automation.flow.trigger.application_info_received": "Informatie ontvangen voor groothandelsaanvraag",
+  "automation.flow.welcomeNoteFlow": "Bij goedkeuring wordt Shopify gevraagd zijn eigen B2B-welkomstmail te sturen. Als Shopify dat in uw winkel niet toestaat, doet Shopify's Flow-sjabloon „Machtiging toegewezen aan bedrijfscontact” → „B2B-toegangsmail sturen” hetzelfde; Tradepass wijst die machtiging toe tijdens de goedkeuring."
 }

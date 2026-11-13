@@ -85,7 +85,7 @@ afterAll(async () => {
 describe("submit", () => {
   it("stores an application with encrypted tax number, hash, customer link and follow-ups", async () => {
     const d = deps();
-    const b = body({}, { taxNumber: { country: "DE", number: "DE 123 456 789" } });
+    const b = body({}, { taxNumber: { country: "DE", number: "DE 136 695 976" } });
     const res = await handleSubmit({ shop: SHOP, loggedInCustomerId: "42", ip: `10.1.1.1#${rnd}` }, b, d);
     expect(res).toMatchObject({ http: 200, body: { ok: true, status: "received" } });
     const app = await db.application.findFirstOrThrow({ where: { shop: SHOP, idempotencyKey: b.idempotencyKey } });
@@ -95,9 +95,9 @@ describe("submit", () => {
     expect(app.customerGid).toBe("gid://shopify/Customer/42");
     expect(app.taxCheck).toBe("verified");
     expect(app.taxCheckName).toBe("ACME GMBH");
-    expect(decrypt(app.taxNumberEnc!)).toBe("DE 123 456 789");
+    expect(decrypt(app.taxNumberEnc!)).toBe("DE 136 695 976");
     const answers = app.answers as Record<string, unknown>;
-    expect(answers.taxNumberHash).toBe(sha256(normaliseTaxNumber("DE123456789")));
+    expect(answers.taxNumberHash).toBe(sha256(normaliseTaxNumber("DE136695976")));
     expect(JSON.stringify(answers)).not.toContain("123 456 789");
     expect(d.emitFlowTrigger).toHaveBeenCalledWith(expect.anything(), SHOP, "application_submitted", expect.objectContaining({ applicationId: app.id }));
     expect(d.evaluateRules).toHaveBeenCalledWith(expect.anything(), SHOP, app.id);
@@ -150,10 +150,10 @@ describe("submit", () => {
 
   it("flags duplicates by email, company name and tax number and tells the applicant", async () => {
     const d = deps();
-    const first = body({}, { companyName: `Dup Co ${rnd}`, taxNumber: { country: "FR", number: "FR12345678901" } });
+    const first = body({}, { companyName: `Dup Co ${rnd}`, taxNumber: { country: "FR", number: "FR40303265045" } });
     await handleSubmit(ctx("10.5.0.1"), first, d);
     const byName = body({}, { companyName: `dup co ${rnd}` });
-    const byTax = body({}, { taxNumber: { country: "FR", number: "fr 1234 5678 901" } });
+    const byTax = body({}, { taxNumber: { country: "FR", number: "fr 4030 3265 045" } });
     for (const b of [byName, byTax]) {
       const r = await handleSubmit(ctx(`10.5.${Math.floor(Math.random() * 200)}.2`), b, d);
       expect(r.body).toMatchObject({ ok: true, status: "duplicate" });
@@ -182,7 +182,7 @@ describe("submit", () => {
   it("never fails the submission when follow-ups or the tax lookup fail", async () => {
     const boom = async () => { throw new Error("down"); };
     const d = deps({ checkTaxNumber: boom, emitFlowTrigger: boom, evaluateRules: boom, getAdmin: async () => null });
-    const b = body({}, { taxNumber: { country: "DE", number: "DE999999999" } });
+    const b = body({}, { taxNumber: { country: "DE", number: "DE999999995" } });
     const r = await handleSubmit(ctx(), b, d);
     expect(r.body).toMatchObject({ ok: true, status: "received" });
     const app = await db.application.findFirstOrThrow({ where: { shop: SHOP, idempotencyKey: b.idempotencyKey } });
@@ -240,14 +240,14 @@ describe("needs-info update", () => {
     const d = deps({ checkTaxNumber: vi.fn(async () => ({ status: "not_verified" as const })) });
     const bad = await applyUpdate({ shop: SHOP, ip: "x" }, app.id, { answers: { phone: "abc" } }, d);
     expect(bad).toEqual({ ok: false, errors: { phone: "form.error.phone" } });
-    const ok = await applyUpdate({ shop: SHOP, ip: "x" }, app.id, { answers: { phone: "+49 30 1234567", taxNumber: { country: "DE", number: "DE111111111" }, companyName: "Hacked" } }, d);
+    const ok = await applyUpdate({ shop: SHOP, ip: "x" }, app.id, { answers: { phone: "+49 30 1234567", taxNumber: { country: "DE", number: "DE111111117" }, companyName: "Hacked" } }, d);
     expect(ok).toEqual({ ok: true });
     const after = await db.application.findUniqueOrThrow({ where: { id: app.id } });
     expect(after.status).toBe("pending");
     expect(after.companyName).toBe(app.companyName); // not requested → ignored
     expect(after.taxCheck).toBe("not_verified");
-    expect(decrypt(after.taxNumberEnc!)).toBe("DE111111111");
-    expect((after.answers as Record<string, unknown>).phone).toBe("+49 30 1234567");
+    expect(decrypt(after.taxNumberEnc!)).toBe("DE111111117");
+    expect((after.answers as Record<string, unknown>).phone).toBe("+49301234567");
     expect((after.answers as Record<string, unknown>).firstName).toBe("Jo");
     // Other shops can't touch it.
     expect(await applyUpdate({ shop: OTHER, ip: "x" }, app.id, { answers: {} }, d)).toEqual({ ok: false, error: "not_found" });

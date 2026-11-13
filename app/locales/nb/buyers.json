@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Godkjenningstrinn mislyktes",
   "buyers.activity.approval.undo": "Godkjenning angret",
   "buyers.activity.tier.assisted_add_verified": "Nivåtildeling bekreftet",
-  "buyers.activity.tier.assisted_remove_verified": "Fjerning fra nivå bekreftet"
+  "buyers.activity.tier.assisted_remove_verified": "Fjerning fra nivå bekreftet",
+  "buyers.tax.specific": "{count, plural, one {# fritak} other {# fritak}}"
 }

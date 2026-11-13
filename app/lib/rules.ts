@@ -8,14 +8,20 @@ export type Condition =
   | { type: "tax_verified" }
   | { type: "certificate_uploaded" }
   | { type: "custom_field"; field: string; value: string }
-  | { type: "spam" };
+  | { type: "spam" }
+  // Risk hints (C14): a free email domain, a website that doesn't match the email, a registry name that
+  // doesn't match the company, a P.O. box as the shipping address.
+  | { type: "free_email" } | { type: "disposable_email" } | { type: "website_mismatch" } | { type: "registry_mismatch" } | { type: "po_box" };
 
-export const CONDITION_TYPES = ["country", "business_type", "email_domain", "tax_verified", "certificate_uploaded", "custom_field", "spam"] as const;
+export const CONDITION_TYPES = [
+  "country", "business_type", "email_domain", "tax_verified", "certificate_uploaded", "custom_field", "spam",
+  "free_email", "disposable_email", "website_mismatch", "registry_mismatch", "po_box",
+] as const;
 
 export type RuleConditions = { match: "all" | "any"; list: Condition[] };
 export type ApproveAction = { tierId: string; paymentTermsTemplateId: string | null; sendWelcome: boolean };
 /** The reason is stored on the application, so the merchant can copy the "not approved" message from it. */
-export type RejectAction = { reason: string | null };
+export type RejectAction = { reason: string | null; /** A saved reply (B9), written in each applicant's language. */ replyId?: string | null };
 
 export type RuleDef = {
   id?: string;
@@ -35,6 +41,8 @@ export type ApplicationFacts = {
   hasCertificate: boolean;
   flags: string[];
   answers: Record<string, unknown>;
+  /** Risk hints worked out at evaluation time (C14). */
+  risk?: string[];
 };
 
 const norm = (s: string) => s.trim().toLowerCase();
@@ -60,6 +68,12 @@ export function matchCondition(c: Condition, f: ApplicationFacts): boolean {
       return f.hasCertificate;
     case "spam":
       return f.flags.includes("possible_spam");
+    case "free_email":
+    case "disposable_email":
+    case "website_mismatch":
+    case "registry_mismatch":
+    case "po_box":
+      return (f.risk ?? []).includes(c.type);
     case "custom_field": {
       const a = f.answers[c.field];
       const want = norm(c.value);
@@ -128,6 +142,11 @@ function sanitizeCondition(raw: unknown): Condition | null {
     case "tax_verified":
     case "certificate_uploaded":
     case "spam":
+    case "free_email":
+    case "disposable_email":
+    case "website_mismatch":
+    case "registry_mismatch":
+    case "po_box":
       return { type: raw.type };
     case "custom_field":
       return { type: "custom_field", field: typeof raw.field === "string" ? raw.field.trim().slice(0, 100) : "", value: typeof raw.value === "string" ? raw.value.trim().slice(0, 255) : "" };
@@ -154,7 +173,10 @@ export function sanitizeRules(raw: unknown): RuleDef[] {
           paymentTermsTemplateId: typeof a.paymentTermsTemplateId === "string" && /^gid:\/\/shopify\/PaymentTermsTemplate\/\d+$/.test(a.paymentTermsTemplateId) ? a.paymentTermsTemplateId : null,
           sendWelcome: a.sendWelcome !== false,
         }
-      : { reason: typeof a.reason === "string" && a.reason.trim() ? a.reason.trim().slice(0, 2000) : null };
+      : {
+          reason: typeof a.reason === "string" && a.reason.trim() ? a.reason.trim().slice(0, 2000) : null,
+          ...(typeof a.replyId === "string" && /^[a-z0-9_-]{1,40}$/i.test(a.replyId) ? { replyId: a.replyId } : {}),
+        };
     out.push({
       ...(typeof r.id === "string" && r.id.length <= 40 ? { id: r.id } : {}),
       kind: r.kind,

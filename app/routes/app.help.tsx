@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { redirect, useFetcher, useLoaderData } from "react-router";
+import { safeWhatsAppUrl } from "../lib/message-links";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { adminContext } from "../lib/context.server";
@@ -19,6 +20,7 @@ const DEBUG_HOURS = 24;
 const FAQ = [
   "plus", "threeTiers", "signIn", "documents", "hidePrices", "theme", "uninstall", "pos", "taxExemptions",
   "vatFails", "import", "languages", "alerts", "approvalLimit", "markets", "privacy", "slowFirstLoad",
+  "flowAlerts", "messageApplicants", "welcomeEmail", "usCertificates", "statePermits", "applicantStatus", "oldTaxExempt",
 ] as const;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -27,6 +29,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const until = ctx.settings.debug.storefrontUntil;
   return {
     supportEmail: process.env.SUPPORT_EMAIL ?? "",
+    // "Chat with us on WhatsApp" (B7): shown only when SUPPORT_WHATSAPP_URL is a https wa.me / api.whatsapp.com link.
+    supportWhatsApp: safeWhatsAppUrl(process.env.SUPPORT_WHATSAPP_URL),
     priority: can(ctx.plan, "priority_support"),
     debugUntil: until && new Date(until) > new Date() ? until : null,
     isDevStore: Boolean(ctx.shopRow?.isDevStore),
@@ -199,6 +203,9 @@ export default function Help() {
               {t("help.contact", { email: d.supportEmail })}
             </s-link>
           ) : null}
+          {d.supportWhatsApp && (
+            <s-link href={d.supportWhatsApp} target="_blank">{t("help.contact.whatsapp")}</s-link>
+          )}
           <s-link href={href("/app/diagnostics")}>{t("spike.title")}</s-link>
         </s-stack>
       </s-section>

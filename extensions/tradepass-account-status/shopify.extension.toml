@@ -1,0 +1,17 @@
+# Customer account profile block: the signed-in customer's wholesale application status (B5).
+# Target and capability names from the Shopify dev toolkit (polaris-customer-account-extensions).
+# Needs a dev store: network access for customer account extensions may have to be requested in the
+# Partner Dashboard, and src/config.js must hold the app's public URL.
+api_version = "2026-10"
+
+[[extensions]]
+name = "Wholesale application status"
+handle = "tradepass-account-status"
+type = "ui_extension"
+
+  [[extensions.targeting]]
+  module = "./src/ProfileBlock.jsx"
+  target = "customer-account.profile.block.render"
+
+  [extensions.capabilities]
+  network_access = true

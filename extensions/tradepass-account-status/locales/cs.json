@@ -1,0 +1,12 @@
+{
+  "title": "Velkoobchodní účet",
+  "status": {
+    "pending": "Žádost se posuzuje",
+    "needs_info": "Potřebujeme více informací",
+    "approved": "Schváleno",
+    "rejected": "Neschváleno"
+  },
+  "submitted": "Podáno {{date}}",
+  "reapply": "Znovu můžete požádat od {{date}}.",
+  "view": "Zobrazit podrobnosti"
+}

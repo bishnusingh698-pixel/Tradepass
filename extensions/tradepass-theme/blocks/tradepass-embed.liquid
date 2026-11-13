@@ -140,6 +140,8 @@
       #MainContent > :not(.tp-wall),main > :not(.tp-wall){display:none!important}
     {%- endif %}
   </style>
+  {%- comment -%} First touch of the visit (UTM tags, referring site's host) for "where applicants come from". No personal data, this tab only. {%- endcomment -%}
+  <script>try{if(!sessionStorage.getItem("tradepass-attr")){var q=new URLSearchParams(location.search),r=document.referrer?new URL(document.referrer).host:"";sessionStorage.setItem("tradepass-attr",JSON.stringify({utm_source:q.get("utm_source")||"",utm_medium:q.get("utm_medium")||"",utm_campaign:q.get("utm_campaign")||"",ref:r===location.host?"":r,landing:location.pathname}))}}catch(e){}</script>
   {%- if tp_gate or tp_wall or tp_banner or tp_hint -%}
     {%- liquid
       assign tp_locale = request.locale.iso_code

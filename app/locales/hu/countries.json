@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Egy ország sem felel meg a keresésnek.",
+  "countries.search": "Országok keresése",
+  "countries.selected": "{count, plural, =0 {Nincs kiválasztott ország} one {# ország kiválasztva} other {# ország kiválasztva}}"
+}

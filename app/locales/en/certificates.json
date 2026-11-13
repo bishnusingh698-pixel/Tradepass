@@ -85,5 +85,9 @@
   "certificates.error.shopify_error": "Shopify didn't accept the change. Nothing was removed. Try again later.",
   "certificates.error.unknown_intent": "Something went wrong. Please try again.",
   "certificates.error.file": "We couldn't open this file. Please try again.",
-  "certificates.action.copyLink": "Copy renewal link"
+  "certificates.action.copyLink": "Copy renewal link",
+  "certificates.usForm.exempt": "Tax-exempt organization",
+  "certificates.usForm.mtc": "MTC uniform resale certificate",
+  "certificates.usForm.sst": "Streamlined Sales Tax certificate",
+  "certificates.usForm.state": "State resale certificate"
 }

@@ -114,5 +114,6 @@
   "buyers.activity.approval.step_failed": "Langkah persetujuan gagal",
   "buyers.activity.approval.undo": "Persetujuan dibatalkan",
   "buyers.activity.tier.assisted_add_verified": "Penetapan tingkat harga dikonfirmasi",
-  "buyers.activity.tier.assisted_remove_verified": "Penghapusan tingkat harga dikonfirmasi"
+  "buyers.activity.tier.assisted_remove_verified": "Penghapusan tingkat harga dikonfirmasi",
+  "buyers.tax.specific": "{count, plural, other {# pengecualian}}"
 }

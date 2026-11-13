@@ -1,0 +1,5 @@
+{
+  "countries.noMatch": "Paieškos neatitinka jokia šalis.",
+  "countries.search": "Ieškoti šalių",
+  "countries.selected": "{count, plural, =0 {Šalių nepasirinkta} one {Pasirinkta # šalis} few {Pasirinktos # šalys} many {Pasirinkta # šalies} other {Pasirinkta # šalių}}"
+}
